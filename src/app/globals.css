@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .primaryClasses {
+    @apply bg-primary border-primary active:bg-primaryDark active:border-primaryDark lg:hover:bg-primaryDark lg:hover:border-primaryDark text-white;
+  }
+
+  .primaryLightClasses {
+    @apply bg-primaryLight border-primaryLight active:bg-primary active:border-primary lg:hover:bg-primary lg:hover:border-primary text-black active:text-white lg:hover:text-white;
+  }
+
+  .secondaryLightClasses {
+    @apply bg-secondaryLight border-secondaryLight active:bg-secondary active:border-secondary lg:hover:bg-secondary lg:hover:border-secondary text-white;
+  }
+
+  .whiteOutlinedClasses {
+    @apply bg-transparent border-white text-white hover:bg-white hover:border-white hover:text-textMain;
+  }
+
+  .grayClasses {
+    @apply bg-[#c3c3c3] border-[#c3c3c3] text-white;
+  }
+
+  .dangerClasses {
+    @apply bg-red-600 border-red-600 text-white hover:bg-red-500 hover:border-red-500;
+  }
+  .successClasses {
+    @apply bg-green-600 border-green-600 text-white hover:bg-green-500 hover:border-green-500;
+  }
+
+  .systemClasses {
+    @apply bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200 hover:border-neutral-300;
+  }
+
+  .filter-white {
+    filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(329deg)
+      brightness(106%) contrast(101%);
+  }
+
+  .bg-center-cover {
+    @apply bg-cover bg-center bg-no-repeat;
+  }
+
+  .no-shaking {
+    backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .no-arrow {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+::selection {
+  @apply bg-primary;
+}
+
+input::selection {
+  @apply bg-[#111] text-white;
+}
+
+button::selection {
+  @apply bg-transparent;
+}
+
+a:link::selection,
+a:visited::selection {
+  color: auto;
+  @apply bg-transparent;
+}
