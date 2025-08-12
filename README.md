@@ -1,2 +1,2 @@
-# best-pc-client
-An e-commerce store for computer and its accessories
+# best-super shop client
+An e-commerce store almost everything
