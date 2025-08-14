@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+@theme {
+  --breakpoint-2xs: 360px;
+  --breakpoint-xs: 480px;
+  --breakpoint-2md: 850px;
+  --breakpoint-2lg: 1100px;
+  --breakpoint-3xl: 1700px;
+  --breakpoint-4xl: 1920px;
+
+  --text-2xs: 0.625rem;
+  --text-3xs: 0.5rem;
+
+  --color-primary: #9333ea;
+  --color-primary-dark: #6f2794;
+  --color-primary-light: #c27aff;
+  --color-secondary: #f6339a;
+  --color-secondary-dark: #e60076;
+}
+
+@utility primaryClasses {
+  @apply bg-primary border-primary active:bg-primary-dark active:border-primary-dark lg:hover:bg-primary-dark lg:hover:border-primary-dark text-white;
+}
+
+@utility primaryLightClasses {
+  @apply bg-primary-light border-primary-light active:bg-primary active:border-primary lg:hover:bg-primary lg:hover:border-primary text-black active:text-white lg:hover:text-white;
+}
+
+@utility secondaryClasses {
+  @apply bg-secondary border-secondary active:bg-secondary-dark active:border-secondary-dark lg:hover:bg-secondary-dark lg:hover:border-secondary-dark text-white;
+}
+
+@utility dangerClasses {
+  @apply bg-red-600 border-red-600 text-white hover:bg-red-500 hover:border-red-500;
+}
+
+@utility successClasses {
+  @apply bg-green-600 border-green-600 text-white hover:bg-green-500 hover:border-green-500;
+}
+
+@utility systemClasses {
+  @apply bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200 hover:border-neutral-300;
+}
+
+@utility filter-white {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(329deg)
+    brightness(106%) contrast(101%);
+}
+
+@utility bg-center-cover {
+  @apply bg-cover bg-center bg-no-repeat;
+}
+
+@utility no-shaking {
+  backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility no-arrow {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+::selection {
+  @apply bg-primary;
+}
+
+input::selection {
+  @apply bg-[#111] text-white;
+}
+
+button::selection {
+  @apply bg-transparent;
+}
+
+a:link::selection,
+a:visited::selection {
+  color: auto;
+  @apply bg-transparent;
+}
+
+/* @media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+} */
+
+/* body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+} */
