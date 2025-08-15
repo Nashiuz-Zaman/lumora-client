@@ -11,10 +11,6 @@ type AccordionVerticalProps = {
   previewHeight?: number | string | null;
 };
 
-/**
- * AccordionVertical
- * @param {number|string|null} previewHeight - Optional collapsed height (px, rem, etc). If null, fully hidden.
- */
 const AccordionVertical = ({
   children,
   expanded = false,

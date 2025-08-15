@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect, useState, ReactNode, MouseEvent } from "react";
-import { IcfyIcon } from "../shared"; // Adjust path if needed
+import LoadingIcon from "../icons/LoadingIcon";
 
 type ButtonBtnTransProps = {
-  children: ReactNode,
-  onClick?: () => void,
-  modifyClasses?: string,
-  isDisabled?: boolean,
-  isLoading?: boolean,
-  id?: string,
-  type?: "button" | "submit" | "reset",
-  ariaLabel?: string,
-  title?: string,
-  iconModifyClasses?: string,
+  children: ReactNode;
+  onClick?: () => void;
+  modifyClasses?: string;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  id?: string;
+  type?: "button" | "submit" | "reset";
+  ariaLabel?: string;
+  title?: string;
+  iconModifyClasses?: string;
 };
 
 const ButtonBtnTrans = ({
@@ -39,7 +39,7 @@ const ButtonBtnTrans = ({
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation(); // Prevent triggering Link
     e.preventDefault(); // Prevent Link navigation
-    onClick && onClick();
+    onClick?.();
   };
 
   return (
@@ -63,12 +63,11 @@ const ButtonBtnTrans = ({
       </span>
 
       {/* Loader Icon */}
-      <IcfyIcon
-        icon="eos-icons:loading"
-        modifyClasses={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl ${
-          isLoading ? "block" : "hidden"
-        } ${iconModifyClasses}`}
-      />
+      {isLoading && (
+        <LoadingIcon
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl ${iconModifyClasses}`}
+        />
+      )}
     </button>
   );
 };

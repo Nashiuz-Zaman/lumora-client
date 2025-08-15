@@ -5,30 +5,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 // component
-import { CartBtn, LinkBtn } from "../../buttons";
-import NavBtn from "../../shared/NavBtn";
-import { Searchbar } from "../../shared";
+import { CartBtn, MobileMenuBtn } from "../../shared/buttons";
+import { InnerContainer } from "../../shared/containers";
 
-// hook
-import { useModalVisibility, useMobileNavigation } from "@/hooks";
-
-import { InnerContainer } from "../../containers";
-import useAppState from "@/hooks/useAppState";
-import UserProfile from "@/components/shared/UserProfile";
-import useAuthMethods from "@/hooks/useAuthMethods";
-import Notifications from "@/components/shared/Notifications";
 import ExpandableSearchPortal from "@/components/shared/ExpandableSearchPortal";
 
 // types
-import type { FC, MouseEventHandler } from "react";
+import type { MouseEventHandler } from "react";
+import UserAvatarMenu from "@/components/shared/UserAvatarMenu";
+import Searchbar from "@/components/shared/Searchbar";
+// import { UserRoles } from "@/constants/user";
 
-const Header: FC = () => {
-  const { openSocialLoginModal, openCreateAccountModal } = useModalVisibility();
-  const { user } = useAppState();
-  const { logout } = useAuthMethods();
-  const { openMobileNav } = useMobileNavigation();
-
-  const btnClasses = " font-medium whiteOutlinedClasses !rounded-full";
+const Header = () => {
+  // Temporary mock handlers
+  const openSocialLoginModal = () => console.log("Open Social Login Modal");
+  const openCreateAccountModal = () => console.log("Open Create Account Modal");
+  const logout = () => console.log("Logout clicked");
+  const openMobileNav: MouseEventHandler<HTMLButtonElement> = () =>
+    console.log("Open Mobile Navigation");
 
   return (
     <header>
@@ -36,12 +30,12 @@ const Header: FC = () => {
         Order & Get your items from USA in 15 Days (T&C Applied)
       </p>
 
-      <div className="bg-gradient-to-r from-primaryDark to-purple-500">
-        <InnerContainer modifyClasses="flex items-center flex-wrap py-5 xl:py-6">
+      <div className="bg-gradient-to-r from-primary-dark to-purple-500">
+        <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
           {/* mobile nav btn */}
-          <NavBtn
-            onClick={openMobileNav as MouseEventHandler<HTMLButtonElement>}
-            modifyClasses="2md:hidden mr-[1.19rem]"
+          <MobileMenuBtn
+            onClick={openMobileNav}
+            className="2md:hidden mr-[1.19rem]"
           />
 
           {/* logo */}
@@ -49,27 +43,14 @@ const Header: FC = () => {
             <Image
               width={128}
               height={70}
-              src="/website-logo/logo-header.svg"
+              src="/logos/website/logo-white.png"
               alt="website-logo"
               className="block w-[3.2rem] md:w-[3.95113rem] xl:w-32 h-auto sm:mr-[1.79rem] xl:mr-[3.625rem]"
             />
           </Link>
 
           {/* search bar */}
-          <Searchbar modifyClasses="hidden 2md:block" />
-
-          {/* order and traveler signup */}
-          <div className="hidden 2md:flex items-center gap-2 lg:gap-4 ml-auto lg:text-sm xl:text-base">
-            <LinkBtn href="/" modifyClasses={btnClasses}>
-              How to Order
-            </LinkBtn>
-
-            {!user && (
-              <LinkBtn href="/signup/traveler" modifyClasses={btnClasses}>
-                Traveler SignUp
-              </LinkBtn>
-            )}
-          </div>
+          <Searchbar className="hidden 2md:block" />
 
           <div className="ml-auto flex items-center gap-4">
             <ExpandableSearchPortal
@@ -79,7 +60,7 @@ const Header: FC = () => {
             />
 
             {/* header nav options */}
-            {!user && (
+            {!false && (
               <div className="flex gap-4 font-semibold text-2xs lg:text-xs xl:text-base text-white">
                 <button onClick={openCreateAccountModal}>Sign Up</button>
                 <button onClick={openSocialLoginModal}>Log In</button>
@@ -89,20 +70,16 @@ const Header: FC = () => {
             {/* shopping cart link */}
             <CartBtn />
 
-            {user?._id && (
+            {false && (
               <div className="flex items-center gap-4">
-                <Notifications
-                  className="text-white text-3xl 2xl:text-4xl"
-                  countClassName="bg-white !text-red-600"
-                />
-                <UserProfile userData={user} logoutFunction={logout} />
+                <UserAvatarMenu  logoutFunction={logout} />
               </div>
             )}
           </div>
         </InnerContainer>
 
         {/* Mobile-only search bar portal target */}
-        <InnerContainer modifyClasses="2md:hidden">
+        <InnerContainer className="2md:hidden">
           <div id="header-search-mobile-screen" className="w-full h-max"></div>
         </InnerContainer>
       </div>

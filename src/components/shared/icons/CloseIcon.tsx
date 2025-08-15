@@ -1,4 +1,4 @@
-const CloseIcon = ({ className = "" }: { className: string }) => {
+const CloseIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useState, ReactNode, MouseEvent } from "react";
-import { IcfyIcon } from "../shared";
+import LoadingIcon from "../icons/LoadingIcon";
 
 type ButtonBtnProps = {
-  children: ReactNode,
-  onClick?: () => void,
-  modifyClasses?: string,
-  isDisabled?: boolean,
-  id?: string,
-  type?: "submit" | "button" | "reset",
-  title?: string,
-  isLoading?: boolean,
-  iconModifyClasses?: string,
+  children: ReactNode;
+  onClick?: () => void;
+  modifyClasses?: string;
+  isDisabled?: boolean;
+  id?: string;
+  type?: "submit" | "button" | "reset";
+  title?: string;
+  isLoading?: boolean;
+  iconModifyClasses?: string;
 };
 
 const ButtonBtn = ({
@@ -66,12 +66,11 @@ const ButtonBtn = ({
         {children}
       </span>
 
-      <IcfyIcon
-        modifyClasses={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl ${
-          isLoading ? "block" : "hidden"
-        } ${iconModifyClasses}`}
-        icon="eos-icons:loading"
-      />
+      {isLoading && (
+        <LoadingIcon
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl ${iconModifyClasses}`}
+        />
+      )}
     </button>
   );
 };

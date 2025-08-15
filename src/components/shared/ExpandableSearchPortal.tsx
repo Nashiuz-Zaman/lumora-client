@@ -2,13 +2,12 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-
-import Searchbar from "../../../../../bring-by-air/client/src/components/shared/Searchbar";
-import AccordionHorizontal from "../../../../../bring-by-air/client/src/components/shared/AccordionHorizontal";
-import AccordionVertical from "../../../../../bring-by-air/client/src/components/shared/AccordionVertical";
-import { ButtonBtnTrans } from "../../../../../bring-by-air/client/src/components/buttons";
-import CloseIcon from "../../../../../bring-by-air/client/src/components/shared/icons/CloseIcon";
-import SearchIcon from "../../../../../bring-by-air/client/src/components/shared/icons/SearchIcon";
+import { ButtonBtnTrans } from "./buttons";
+import CloseIcon from "./icons/CloseIcon";
+import SearchIcon from "./icons/SearchIcon";
+import AccordionVertical from "./AccordionVertical";
+import AccordionHorizontal from "./AccordionHorizontal";
+import Searchbar from "./Searchbar";
 
 // Props type
 type ExpandableSearchPortalProps = {
@@ -105,7 +104,7 @@ const ExpandableSearchPortal = ({
               modifyClasses={horizontalAccordionClasses}
             >
               <Searchbar
-                modifyClasses={searchbarClasses}
+                className={searchbarClasses}
                 onSubmit={(e) => {
                   e.preventDefault();
                   if (typeof onSubmit === "function") onSubmit(e);
