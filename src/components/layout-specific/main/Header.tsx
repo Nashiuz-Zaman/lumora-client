@@ -35,7 +35,7 @@ const Header = () => {
           {/* mobile nav btn */}
           <MobileMenuBtn
             onClick={openMobileNav}
-            className="2md:hidden mr-[1.19rem]"
+            className="2md:hidden mr-1 text-white text-2xl"
           />
 
           {/* logo */}
