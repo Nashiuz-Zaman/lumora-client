@@ -16,7 +16,7 @@ type ButtonBtnTransProps = {
   iconModifyClasses?: string;
 };
 
-const ButtonBtnTrans = ({
+export const ButtonBtnTrans = ({
   children,
   onClick,
   modifyClasses = "",
@@ -72,4 +72,4 @@ const ButtonBtnTrans = ({
   );
 };
 
-export default ButtonBtnTrans;
+

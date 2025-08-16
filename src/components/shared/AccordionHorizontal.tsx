@@ -10,7 +10,7 @@ type AccordionHorizontalProps = {
   duration?: string;
 };
 
-const AccordionHorizontal = ({
+export const AccordionHorizontal = ({
   children,
   expanded = false,
   modifyClasses = "",
@@ -34,4 +34,4 @@ const AccordionHorizontal = ({
   );
 };
 
-export default AccordionHorizontal;
+

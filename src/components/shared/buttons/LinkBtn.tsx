@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { ReactNode, MouseEvent } from "react";
 
-const LinkBtn = ({
+export const LinkBtn = ({
   children,
   href = "/",
   modifyClasses = "",
@@ -54,5 +54,3 @@ const LinkBtn = ({
     </Link>
   );
 };
-
-export default LinkBtn;

@@ -11,7 +11,7 @@ type AccordionVerticalProps = {
   previewHeight?: number | string | null;
 };
 
-const AccordionVertical = ({
+export const AccordionVertical = ({
   children,
   expanded = false,
   modifyClasses = "",
@@ -60,5 +60,3 @@ const AccordionVertical = ({
     </div>
   );
 };
-
-export default AccordionVertical;

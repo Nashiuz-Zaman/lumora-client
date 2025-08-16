@@ -5,9 +5,10 @@ import { createPortal } from "react-dom";
 import { ButtonBtnTrans } from "./buttons";
 import CloseIcon from "./icons/CloseIcon";
 import SearchIcon from "./icons/SearchIcon";
-import AccordionVertical from "./AccordionVertical";
-import AccordionHorizontal from "./AccordionHorizontal";
+
 import Searchbar from "./Searchbar";
+import { AccordionHorizontal } from "./AccordionHorizontal";
+import { AccordionVertical } from "./AccordionVertical";
 
 // Props type
 type ExpandableSearchPortalProps = {
@@ -20,7 +21,7 @@ type ExpandableSearchPortalProps = {
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
-const ExpandableSearchPortal = ({
+export const ExpandableSearchPortal = ({
   portalTargetId = "searchbar-portal-root",
   verticalAccordionClasses = "",
   horizontalAccordionClasses = "",
@@ -118,5 +119,3 @@ const ExpandableSearchPortal = ({
     </>
   );
 };
-
-export default ExpandableSearchPortal;

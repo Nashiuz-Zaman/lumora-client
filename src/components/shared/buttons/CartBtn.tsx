@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import CartIcon from "../icons/CartIcon";
 
-const CartBtn = ({
+export const CartBtn = ({
   href = "/cart",
   className = "",
   quantity = 0,
@@ -30,4 +30,3 @@ const CartBtn = ({
   );
 };
 
-export default CartBtn;

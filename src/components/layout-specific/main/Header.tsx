@@ -6,9 +6,7 @@ import Link from "next/link";
 
 // component
 import { CartBtn, MobileMenuBtn } from "../../shared/buttons";
-import { InnerContainer } from "../../shared/containers";
-
-import ExpandableSearchPortal from "@/components/shared/ExpandableSearchPortal";
+import { InnerContainer, ExpandableSearchPortal } from "../../shared";
 
 // types
 import type { MouseEventHandler } from "react";
@@ -72,7 +70,7 @@ const Header = () => {
 
             {false && (
               <div className="flex items-center gap-4">
-                <UserAvatarMenu  logoutFunction={logout} />
+                <UserAvatarMenu logoutFunction={logout} />
               </div>
             )}
           </div>

@@ -3,7 +3,7 @@
 import { MouseEvent } from "react";
 import HamburgerIcon from "../icons/HamburgerIcon";
 
-const MobileMenuBtn = ({
+export const MobileMenuBtn = ({
   onClick,
   className = "",
 }: {
@@ -21,4 +21,3 @@ const MobileMenuBtn = ({
   );
 };
 
-export default MobileMenuBtn;

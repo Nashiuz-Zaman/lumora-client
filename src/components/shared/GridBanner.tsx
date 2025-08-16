@@ -6,7 +6,7 @@ import { CenterContainer } from "./containers/CenterContainer";
 
 gsap.registerPlugin(useGSAP);
 
-const GridBanner = ({
+export const GridBanner = ({
   images,
   className = "",
 }: {
@@ -71,5 +71,3 @@ const GridBanner = ({
     </CenterContainer>
   );
 };
-
-export default GridBanner;

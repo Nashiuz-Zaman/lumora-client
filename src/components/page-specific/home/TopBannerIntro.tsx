@@ -1,9 +1,8 @@
 "use client";
 
-import { LinkBtn } from "@/components/shared/buttons";
-import { InnerContainer } from "@/components/shared/containers";
+import { InnerContainer, LinkBtn } from "@/components/shared";
 
-const TopBannerIntro = ({ className = "" }: { className?: string }) => {
+export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
   return (
     <InnerContainer>
       <section
@@ -31,5 +30,3 @@ const TopBannerIntro = ({ className = "" }: { className?: string }) => {
     </InnerContainer>
   );
 };
-
-export default TopBannerIntro;

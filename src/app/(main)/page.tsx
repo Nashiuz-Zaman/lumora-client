@@ -1,14 +1,19 @@
-import TopBanner from "@/components/page-specific/home/TopBanner";
+import {
+  FeaturedProductCategories,
+  SoldBrands,
+  TopBanner,
+} from "@/components/page-specific/home";
 
 export const metadata = {
-  title:
-    "BringByAir.com | Your trusted home for quality products from top e-commerce platforms",
+  title: "Lumora | Products from top brands all in one place for you",
 };
 
 const HomePage = () => {
   return (
     <>
       <TopBanner />
+      <SoldBrands />
+      <FeaturedProductCategories />
     </>
   );
 };

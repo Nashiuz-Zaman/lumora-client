@@ -2,7 +2,7 @@
 
 import CloseIcon from "../icons/CloseIcon";
 
-const CloseBtn = ({
+export const CloseBtn = ({
   onClick,
   modifyClasses = "",
   title = "Close",
@@ -23,5 +23,3 @@ const CloseBtn = ({
     </button>
   );
 };
-
-export default CloseBtn;

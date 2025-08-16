@@ -1,7 +1,7 @@
 "use client";
 
-import GridBanner from "@/components/shared/GridBanner";
-import TopBannerIntro from "./TopBannerIntro";
+import { GridBanner } from "@/components/shared";
+import { TopBannerIntro } from "./TopBannerIntro";
 
 /**
  * Grid configuration for the banner section.
@@ -31,7 +31,7 @@ const gridBlocks = [
  * Combines the introduction text (TopBannerIntro) with
  * the animated grid of images (GridBanner).
  */
-const TopBanner = () => {
+export const TopBanner = () => {
   return (
     <section className="my-16">
       {/* Intro heading, description, and CTA */}
@@ -42,5 +42,3 @@ const TopBanner = () => {
     </section>
   );
 };
-
-export default TopBanner;

@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 
-const InnerContainer = ({
+export const InnerContainer = ({
   children,
   paddingSide = "both",
   className = "",
@@ -24,4 +24,4 @@ const InnerContainer = ({
   );
 };
 
-export default InnerContainer;
+
