@@ -30,13 +30,13 @@ const navSections: INavSection[] = [
       {
         name: "Users",
         icon: "fa-solid:users",
-        path: "/admin/database/users",
+        path: "/admin/users",
         exact: true,
       },
       {
         name: "Products",
         icon: "fluent-mdl2:product-variant",
-        path: "/admin/database/products",
+        path: "/admin/products",
         exact: true,
       },
     ],

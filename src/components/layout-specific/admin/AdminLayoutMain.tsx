@@ -30,7 +30,7 @@ export const AdminLayoutMain = ({ children }: { children: ReactNode }) => {
           </div>
 
           {/* Page content */}
-          <div className="overflow-y-auto flex flex-col">{children}</div>
+          <div className="overflow-y-auto flex flex-col bg-neutral-100">{children}</div>
         </main>
       )}
     </div>
