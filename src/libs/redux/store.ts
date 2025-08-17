@@ -1,11 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-
-// reducers
-import navReducer from "@/redux/features/nav/navSlice";
+import backdropReducer from "./features/nav/backdropSlice";
 
 export const store = configureStore({
   reducer: {
-    nav: navReducer,
+    backdrop: backdropReducer,
   },
 });
 
