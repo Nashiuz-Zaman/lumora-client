@@ -9,3 +9,5 @@ export * from "./UserAvatarMenu";
 export * from "./containers/CenterContainer";
 export * from "./containers/InnerContainer";
 export * from "./buttons";
+export * from "./IcfyIcon";
+export * from "./BrandLogo";

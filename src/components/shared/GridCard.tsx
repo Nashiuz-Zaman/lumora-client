@@ -24,7 +24,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
             src={images[0].src}
             alt={images[0].alt}
             fill
-            className="object-cover rounded-md"
+            className="object-cover "
           />
         </div>
       ) : count === 2 ? (
@@ -36,7 +36,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
                 src={img.src}
                 alt={img.alt}
                 fill
-                className="object-cover rounded-md"
+                className="object-cover "
               />
             </div>
           ))}
@@ -50,7 +50,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
                 src={images[0].src}
                 alt={images[0].alt}
                 fill
-                className="object-cover rounded-md"
+                className="object-cover "
               />
             </div>
           </div>
@@ -60,7 +60,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
                 src={img.src}
                 alt={img.alt}
                 fill
-                className="object-cover rounded-md"
+                className="object-cover "
               />
             </div>
           ))}
@@ -74,7 +74,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
                 src={img.src}
                 alt={img.alt}
                 fill
-                className="object-cover rounded-md"
+                className="object-cover "
               />
             </div>
           ))}

@@ -1,12 +1,12 @@
 "use client";
 
-// core
-import Image from "next/image";
-import Link from "next/link";
-
 // component
 import { CartBtn, MobileMenuBtn } from "../../shared/buttons";
-import { InnerContainer, ExpandableSearchPortal } from "../../shared";
+import {
+  InnerContainer,
+  ExpandableSearchPortal,
+  BrandLogo,
+} from "../../shared";
 
 // types
 import type { MouseEventHandler } from "react";
@@ -37,15 +37,7 @@ const Header = () => {
           />
 
           {/* logo */}
-          <Link href="/">
-            <Image
-              width={128}
-              height={70}
-              src="/logos/website/logo-white.png"
-              alt="website-logo"
-              className="block w-[3.2rem] md:w-[3.95113rem] xl:w-32 h-auto sm:mr-[1.79rem] xl:mr-[3.625rem]"
-            />
-          </Link>
+          <BrandLogo className="mr-6" />
 
           {/* search bar */}
           <Searchbar className="hidden 2md:block" />

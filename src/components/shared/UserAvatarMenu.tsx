@@ -7,14 +7,14 @@ import Image from "next/image";
 import { TUserRoleValue, UserRoles } from "@/constants/user";
 import { useClickOutside } from "@/hooks";
 
-type UserAvatarMenuProps = {
+type TUserAvatarMenuProps = {
   userData?: {
     _id: string;
     name: string;
     image?: string;
     role: { name?: TUserRoleValue };
   };
-  logoutFunction: () => void;
+  logoutFunction?: () => void;
   className?: string;
 };
 
@@ -22,7 +22,7 @@ const UserAvatarMenu = ({
   userData,
   logoutFunction,
   className = "",
-}: UserAvatarMenuProps) => {
+}: TUserAvatarMenuProps) => {
   const [isClient, setIsClient] = useState(false);
   const [showInfoPanel, setShowInfoPanel] = useState(false);
 
@@ -81,7 +81,8 @@ const UserAvatarMenu = ({
           <button
             onClick={(e: MouseEvent<HTMLButtonElement>) => {
               e.preventDefault();
-              logoutFunction();
+
+              if (logoutFunction) logoutFunction();
             }}
             className={optionsClasses}
           >

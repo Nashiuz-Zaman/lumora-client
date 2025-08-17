@@ -19,12 +19,6 @@ export const showToast = ({
   toast(message ?? "No message provided", {
     position,
     autoClose,
-    hideProgressBar: true,
-    closeOnClick: true,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
     type,
     className: modifyClasses,
   });

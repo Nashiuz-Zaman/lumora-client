@@ -5,16 +5,6 @@ import { CategoryCard } from "./CategoryCard";
 
 const cardsData = [
   {
-    heading: "Gaming & Entertainment",
-    linkText: "Level Up",
-    images: [
-      {
-        src: "/featured-product-collections/entertainment-1.webp",
-        alt: "featured collection product",
-      },
-    ],
-  },
-  {
     heading: "Fashion & Accessories",
     linkText: "Shop Fashion",
     images: [
@@ -36,7 +26,16 @@ const cardsData = [
       },
     ],
   },
-
+  {
+    heading: "Gaming & Entertainment",
+    linkText: "Level Up",
+    images: [
+      {
+        src: "/featured-product-collections/entertainment-1.webp",
+        alt: "featured collection product",
+      },
+    ],
+  },
   {
     heading: "Food & Snacks",
     linkText: "Taste Now",
@@ -114,7 +113,7 @@ const cardsData = [
 export const FeaturedProductCategories = () => {
   return (
     <CenterContainer className="bg-neutral-200 py-5">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-5">
         {cardsData.map((card, idx) => (
           <CategoryCard
             key={idx}
