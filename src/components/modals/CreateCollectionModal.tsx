@@ -57,7 +57,7 @@ export const CreateCollectionModal = ({
     <ButtonBtn
       type="button"
       onClick={openModal}
-      modifyClasses="!successClasses !rounded-full !py-2 !px-4 ml-4"
+      modifyClasses="!secondaryClasses !py-2 !px-4 ml-4"
     >
       <DatabaseIcon className="text-lg" />
       <span>Create Collection</span>

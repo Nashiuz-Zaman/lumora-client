@@ -36,7 +36,7 @@ export const ProductsLayoutTopPanel = ({
         {productsRootPageRegex.test(path) && (
           <LinkBtn
             href={goToAddProductUrl}
-            modifyClasses="!successClasses !rounded-full !py-2 !px-4 ml-auto"
+            modifyClasses="!secondaryClasses !py-2 !px-4 ml-auto"
           >
             <ProductIcon className="text-lg" />
             <span>Create Product</span>

@@ -28,8 +28,7 @@ export const ButtonBtn = ({
 }: ButtonBtnProps) => {
   const [isClient, setIsClient] = useState(false);
 
-  const allClasses = `focus:outline-none flex items-center justify-center w-max transition-all rounded-md text-center px-6 py-2 lg:py-3 lg:px-10
-    active:scale-[0.95] 
+  const allClasses = `focus:outline-none flex items-center justify-center w-max transition-all rounded-md text-center px-6 py-2 lg:py-3 lg:px-10 cursor-pointer active:scale-[0.95] 
     disabled:opacity-60 
     disabled:scale-100 
     disabled:hover:scale-100 
