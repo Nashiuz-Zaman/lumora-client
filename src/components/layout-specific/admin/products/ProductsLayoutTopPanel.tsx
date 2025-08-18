@@ -2,47 +2,45 @@
 
 // Core / Third-party
 import Link from "next/link";
-import { useDispatch } from "react-redux";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Ref, useEffect, useState } from "react";
 
 // Components
-import { ButtonBtn, InnerContainer, LinkBtn } from "@/components/shared";
+import { InnerContainer, LinkBtn } from "@/components/shared";
 import BackIcon from "@/components/shared/icons/BackIcon";
-import DatabaseIcon from "@/components/shared/icons/DatabaseIcon";
 import ProductIcon from "@/components/shared/icons/ProductIcon";
-
-// Redux slices
-import { setBackdropOpen } from "@/lib/redux/features/backdrop/backdropSlice";
-import { setShowCreateCollectionModal } from "@/lib/redux/features/modals/modalsSlice";
 
 // Hooks
 import { useBackRoute } from "@/hooks/useBackRoute";
 
-const TopPanelProducts = () => {
-  const dispatch = useDispatch();
-  const path = usePathname();
-  const productsRootPageRegex = /^\/admin\/database\/products$/;
+interface ITopPanelProductsProps {
+  ref?: Ref<HTMLDivElement>;
+  portalRef: (node: HTMLDivElement | null) => void;
+}
 
-  const [isClient, setIsClient] = useState<boolean>(false);
+export const ProductsLayoutTopPanel = ({
+  ref,
+  portalRef,
+}: ITopPanelProductsProps) => {
+  const path = usePathname();
+  const productsRootPageRegex = /^\/admin\/products$/;
+
+  const [isClient, setIsClient] = useState(false);
   const { backRouteUrl, setBackRouteManually } = useBackRoute();
 
   useEffect(() => {
     setIsClient(true);
-  }, []); 
-
-  // Opens create collection modal and backdrop
-  const openCreateCollectionModal = () => {
-    dispatch(setBackdropOpen(true));
-    dispatch(setShowCreateCollectionModal(true));
-  };
+  }, []);
 
   const goToAddProductUrl = `${path}/all-products/create`;
 
   if (!isClient) return null;
 
   return (
-    <div className="bg-neutral-50 h-20 border-b border-neutral-200 flex items-center">
+    <div
+      ref={ref}
+      className="bg-white h-20 border-b border-neutral-200 flex items-center"
+    >
       <InnerContainer className="flex items-center h-full">
         {/* Back button */}
         {backRouteUrl && (
@@ -69,17 +67,9 @@ const TopPanelProducts = () => {
 
         {/* Create Collection button */}
         {productsRootPageRegex.test(path) && (
-          <ButtonBtn
-            onClick={openCreateCollectionModal}
-            modifyClasses="!successClasses !rounded-full !py-2 !px-4 ml-4"
-          >
-            <DatabaseIcon className="text-lg" />
-            <span>Create Collection</span>
-          </ButtonBtn>
+          <div ref={portalRef} id="create-collection-button-portal"></div>
         )}
       </InnerContainer>
     </div>
   );
 };
-
-export default TopPanelProducts;

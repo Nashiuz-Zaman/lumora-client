@@ -4,7 +4,7 @@ import { RootState } from "@/libs/redux/store";
 // Redux
 import { useSelector } from "react-redux";
 
-const Backdrop = () => {
+export const Backdrop = () => {
   const backdropOpen = useSelector(
     (state: RootState) => state.backdrop.backdropOpen
   );
@@ -15,5 +15,3 @@ const Backdrop = () => {
     <div className="fixed w-full h-screen bg-black/40 backdrop-blur-sm z-40"></div>
   );
 };
-
-export default Backdrop;

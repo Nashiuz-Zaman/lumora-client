@@ -7,6 +7,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Slide } from "react-toastify";
 import ReduxProvider from "@/providers/ReduxProvider";
+import { Backdrop } from "@/components/shared";
 
 export const metadata: Metadata = {
   title: "Next.js TS, React 19, Tailwind v4, Redux-toolkit | Project Skeleton",
@@ -39,6 +40,8 @@ export default function RootLayout({
             pauseOnHover
             theme="light"
           />
+
+          <Backdrop />
           {children}
         </ReduxProvider>
       </body>

@@ -1,5 +1,6 @@
 export * from "./AccordionHorizontal";
-export * from "./AccordionHorizontal";
+export * from "./AccordionVertical";
+export * from "./Backdrop";
 export * from "./GridBanner";
 export * from "./GridCard";
 export * from "./CustomMarquee";
@@ -11,3 +12,8 @@ export * from "./containers/InnerContainer";
 export * from "./buttons";
 export * from "./IcfyIcon";
 export * from "./BrandLogo";
+export * from "./DashboardPageHeading";
+export * from "./DataLoadingSpinner";
+export * from "./Inputfield";
+export * from "./InputCheckbox";
+export * from "./TextArea";
