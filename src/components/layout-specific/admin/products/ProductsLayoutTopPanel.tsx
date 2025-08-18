@@ -3,19 +3,17 @@
 // Core / Third-party
 
 import { usePathname } from "next/navigation";
-import { Ref, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Components
 import { InnerContainer, LinkBtn } from "@/components/shared";
 import { ProductIcon } from "@/components/shared";
 
 interface ITopPanelProductsProps {
-  ref?: Ref<HTMLDivElement>;
   portalRef: (node: HTMLDivElement | null) => void;
 }
 
 export const ProductsLayoutTopPanel = ({
-  ref,
   portalRef,
 }: ITopPanelProductsProps) => {
   const path = usePathname();
@@ -32,10 +30,7 @@ export const ProductsLayoutTopPanel = ({
   if (!isClient) return null;
 
   return (
-    <div
-      ref={ref}
-      className="bg-white h-20 border-b border-neutral-200 flex items-center"
-    >
+    <div className="bg-white h-20 border-b border-neutral-200 flex items-center">
       <InnerContainer className="flex items-center h-full">
         {/* Create Product button */}
         {productsRootPageRegex.test(path) && (

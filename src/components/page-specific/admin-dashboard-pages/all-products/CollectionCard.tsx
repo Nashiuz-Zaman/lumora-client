@@ -3,17 +3,17 @@
 import { ButtonBtnTrans } from "@/components/shared";
 import { TrashcanIcon } from "@/components/shared";
 
-const CollectionCard = ({
+export const CollectionCard = ({
   title,
   onDelete,
   noDeleteBtn = false,
 }: {
   title: string;
-  onDelete: () => void;
+  onDelete?: () => void;
   noDeleteBtn?: boolean;
 }) => {
   return (
-    <div className="px-3 py-3 border border-neutral-200 rounded-md bg-white shadow-sm">
+    <div className="px-3 py-3 border border-neutral-200 rounded-md bg-white inline-block">
       {!noDeleteBtn && (
         <ButtonBtnTrans
           type="button"
@@ -24,9 +24,7 @@ const CollectionCard = ({
           <TrashcanIcon />
         </ButtonBtnTrans>
       )}
-      <p className="font-semibold pr-20 mt-2 underline">{title}</p>
+      <p className="font-semibold pr-20 mt-2">{title}</p>
     </div>
   );
 };
-
-export default CollectionCard;

@@ -1,6 +1,6 @@
+// THIS IS A PAGE
+import { CollectionCard } from "@/components/page-specific";
 import { DashboardPageHeading, InnerContainer } from "@/components/shared";
-import { ProductSortOptions } from "@/constants/product";
-import Link from "next/link";
 
 export const metadata = {
   title: "Central Products Management | Admin Panel",
@@ -8,25 +8,12 @@ export const metadata = {
 
 const AdminCentralProductManagementPage = () => {
   return (
-    <InnerContainer>
-      <DashboardPageHeading
-        className="mb-10 text-primary"
-        text={"All Products"}
-      />
+    <InnerContainer className="grow">
+      <section className="py-10">
+        <DashboardPageHeading className="mb-6" text={"All Products"} />
 
-      <Link
-        className="inline-block mb-20"
-        href={`/admin/database/products/all-products?page=1&sort=${ProductSortOptions[0]?.value}`}
-      >
         <CollectionCard noDeleteBtn={true} title="All Products" />
-      </Link>
-
-      <DashboardPageHeading
-        className="mb-5 text-primary"
-        text={"Product Collections"}
-      />
-
-      {/* <Collections /> */}
+      </section>
     </InnerContainer>
   );
 };

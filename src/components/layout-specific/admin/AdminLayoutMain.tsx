@@ -19,7 +19,7 @@ export const AdminLayoutMain = ({ children }: { children: ReactNode }) => {
 
       {height !== null && (
         <main
-          className="grow grid grid-cols-1 xl:grid-cols-[19rem_1fr] relative lg:static"
+          className="grow grid grid-cols-1 xl:grid-cols-[19rem_1fr] items-stretch relative lg:static"
           style={{ height: `calc(100vh - ${height}px)` }}
         >
           {/* Sm screen drawer navbar */}
