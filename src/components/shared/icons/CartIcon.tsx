@@ -1,4 +1,4 @@
-const CartIcon = ({ className = "" }: { className: string }) => {
+export const CartIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg
@@ -20,4 +20,4 @@ const CartIcon = ({ className = "" }: { className: string }) => {
   );
 };
 
-export default CartIcon;
+

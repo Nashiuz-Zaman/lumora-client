@@ -1,4 +1,4 @@
-const AdminIcon = ({ className = "" }: { className: string }) => {
+export const AdminIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg
@@ -15,4 +15,4 @@ const AdminIcon = ({ className = "" }: { className: string }) => {
   );
 };
 
-export default AdminIcon;
+

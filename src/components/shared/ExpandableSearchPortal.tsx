@@ -3,9 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ButtonBtnTrans } from "./buttons";
-import CloseIcon from "./icons/CloseIcon";
-import SearchIcon from "./icons/SearchIcon";
-
+import { CloseIcon, SearchIcon } from "./icons";
 import Searchbar from "./Searchbar";
 import { AccordionHorizontal } from "./AccordionHorizontal";
 import { AccordionVertical } from "./AccordionVertical";

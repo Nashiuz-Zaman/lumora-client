@@ -1,4 +1,4 @@
-const StarHalfIcon = ({ className = "" }: { className: string }) => {
+export const StarHalfIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const StarHalfIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default StarHalfIcon;

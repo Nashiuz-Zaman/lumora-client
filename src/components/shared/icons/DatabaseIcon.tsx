@@ -1,4 +1,4 @@
-const DatabaseIcon = ({ className = "" }: { className: string }) => {
+export const DatabaseIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -22,5 +22,3 @@ const DatabaseIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default DatabaseIcon;

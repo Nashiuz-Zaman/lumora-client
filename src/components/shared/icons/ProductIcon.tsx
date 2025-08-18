@@ -1,4 +1,4 @@
-const ProductIcon = ({ className = "" }: { className: string }) => {
+export const ProductIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const ProductIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default ProductIcon;

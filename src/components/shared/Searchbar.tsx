@@ -1,8 +1,8 @@
 "use client";
 
-import SearchIcon from "./icons/SearchIcon";
 import { ButtonBtnTrans } from "./buttons";
 import { FormEventHandler } from "react";
+import { SearchIcon } from "./icons";
 
 const Searchbar = ({
   className = "",

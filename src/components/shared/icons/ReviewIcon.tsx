@@ -1,4 +1,4 @@
-const ReviewIcon = ({ className = "" }: { className: string }) => {
+export const ReviewIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const ReviewIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default ReviewIcon;

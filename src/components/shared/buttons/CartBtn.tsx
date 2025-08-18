@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import CartIcon from "../icons/CartIcon";
+import { CartIcon } from "../icons";
 
 export const CartBtn = ({
   href = "/cart",
@@ -29,4 +29,3 @@ export const CartBtn = ({
     </div>
   );
 };
-

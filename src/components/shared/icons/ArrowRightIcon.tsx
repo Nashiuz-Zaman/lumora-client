@@ -1,4 +1,4 @@
-const ArrowRightIcon = ({ className = "" }: { className: string }) => {
+export const ArrowRightIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg
@@ -15,4 +15,3 @@ const ArrowRightIcon = ({ className = "" }: { className: string }) => {
   );
 };
 
-export default ArrowRightIcon;

@@ -17,3 +17,4 @@ export * from "./DataLoadingSpinner";
 export * from "./Inputfield";
 export * from "./InputCheckbox";
 export * from "./TextArea";
+export * from "./icons";

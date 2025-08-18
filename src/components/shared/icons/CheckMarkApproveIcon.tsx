@@ -1,4 +1,8 @@
-const CheckMarkApproveIcon = ({ className = "" }: { className: string }) => {
+export const CheckMarkApproveIcon = ({
+  className = "",
+}: {
+  className?: string;
+}) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +18,3 @@ const CheckMarkApproveIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default CheckMarkApproveIcon;

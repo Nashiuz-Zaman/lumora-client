@@ -1,4 +1,4 @@
-const TrashcanIcon = ({ className = "" }: { className: string }) => {
+export const TrashcanIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const TrashcanIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default TrashcanIcon;

@@ -1,4 +1,4 @@
-const RestrictedIcon = ({ className = "" }: { className: string }) => {
+export const RestrictedIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -20,4 +20,4 @@ const RestrictedIcon = ({ className = "" }: { className: string }) => {
   );
 };
 
-export default RestrictedIcon;
+

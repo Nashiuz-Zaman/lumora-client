@@ -1,4 +1,4 @@
-const GoogleIcon = ({ className = "" }: { className: string }) => {
+export const GoogleIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -26,5 +26,3 @@ const GoogleIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default GoogleIcon;

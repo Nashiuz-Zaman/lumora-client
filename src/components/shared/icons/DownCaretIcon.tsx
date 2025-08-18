@@ -1,4 +1,4 @@
-const DownCaret = ({ className = "" }: { className: string }) => {
+export const DownCaret = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -15,4 +15,4 @@ const DownCaret = ({ className = "" }: { className: string }) => {
   );
 };
 
-export default DownCaret;
+

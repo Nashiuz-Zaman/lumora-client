@@ -1,4 +1,4 @@
-const StarEmptyIcon = ({ className = "" }: { className: string }) => {
+export const StarEmptyIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const StarEmptyIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default StarEmptyIcon;

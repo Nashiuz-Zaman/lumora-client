@@ -1,17 +1,13 @@
 "use client";
 
 // Core / Third-party
-import Link from "next/link";
+
 import { usePathname } from "next/navigation";
 import { Ref, useEffect, useState } from "react";
 
 // Components
 import { InnerContainer, LinkBtn } from "@/components/shared";
-import BackIcon from "@/components/shared/icons/BackIcon";
-import ProductIcon from "@/components/shared/icons/ProductIcon";
-
-// Hooks
-import { useBackRoute } from "@/hooks/useBackRoute";
+import { ProductIcon } from "@/components/shared";
 
 interface ITopPanelProductsProps {
   ref?: Ref<HTMLDivElement>;
@@ -26,7 +22,6 @@ export const ProductsLayoutTopPanel = ({
   const productsRootPageRegex = /^\/admin\/products$/;
 
   const [isClient, setIsClient] = useState(false);
-  const { backRouteUrl, setBackRouteManually } = useBackRoute();
 
   useEffect(() => {
     setIsClient(true);
@@ -42,21 +37,9 @@ export const ProductsLayoutTopPanel = ({
       className="bg-white h-20 border-b border-neutral-200 flex items-center"
     >
       <InnerContainer className="flex items-center h-full">
-        {/* Back button */}
-        {backRouteUrl && (
-          <Link
-            href={backRouteUrl}
-            className="flex items-center gap-2 text-neutral-500 hover:text-neutral-950 transition-colors"
-          >
-            <BackIcon />
-            <span>Back</span>
-          </Link>
-        )}
-
         {/* Create Product button */}
         {productsRootPageRegex.test(path) && (
           <LinkBtn
-            onClick={() => setBackRouteManually(`${path}`)}
             href={goToAddProductUrl}
             modifyClasses="!successClasses !rounded-full !py-2 !px-4 ml-auto"
           >

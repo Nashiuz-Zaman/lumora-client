@@ -1,4 +1,4 @@
-const WarningIcon = ({ className = "" }: { className: string }) => {
+export const WarningIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const WarningIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default WarningIcon;

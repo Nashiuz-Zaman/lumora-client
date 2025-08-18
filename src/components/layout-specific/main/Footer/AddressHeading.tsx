@@ -1,5 +1,6 @@
 // core
-import LocationIcon from "@/components/shared/icons/LocationIcon";
+
+import { LocationIcon } from "@/components/shared";
 
 const AddressHeading = ({ heading }: { heading: string }) => {
   return (

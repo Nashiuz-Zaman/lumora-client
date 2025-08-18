@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState, ReactNode, MouseEvent } from "react";
-import LoadingIcon from "../icons/LoadingIcon";
+import { LoadingIcon } from "../icons";
 
 type ButtonBtnProps = {
   children: ReactNode;
@@ -74,5 +74,3 @@ export const ButtonBtn = ({
     </button>
   );
 };
-
-

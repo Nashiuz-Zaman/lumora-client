@@ -1,4 +1,8 @@
-const ThumbIconOutlined = ({ className = "" }: { className: string }) => {
+export const ThumbIconOutlined = ({
+  className = "",
+}: {
+  className: string;
+}) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +18,3 @@ const ThumbIconOutlined = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default ThumbIconOutlined;

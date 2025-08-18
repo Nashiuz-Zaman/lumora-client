@@ -1,4 +1,4 @@
-const QuotationIcon = ({ className = "" }: { className: string }) => {
+export const QuotationIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -18,5 +18,3 @@ const QuotationIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default QuotationIcon;

@@ -1,4 +1,4 @@
-const EditIcon = ({ className = "" }: { className: string }) => {
+export const EditIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -16,4 +16,3 @@ const EditIcon = ({ className = "" }: { className: string }) => {
   );
 };
 
-export default EditIcon;

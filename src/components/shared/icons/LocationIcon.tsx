@@ -1,4 +1,4 @@
-const LocationIcon = ({ className = "" }: { className: string }) => {
+export const LocationIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const LocationIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default LocationIcon;

@@ -1,4 +1,4 @@
-const TruckIcon = ({ className = "" }: { className: string }) => {
+export const TruckIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const TruckIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default TruckIcon;

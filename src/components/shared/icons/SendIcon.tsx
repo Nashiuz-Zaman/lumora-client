@@ -1,4 +1,4 @@
-const SendIcon = ({ className = "" }: { className: string }) => {
+export const SendIcon = ({ className = "" }: { className: string }) => {
   return (
     <div className={className}>
       <svg
@@ -14,5 +14,3 @@ const SendIcon = ({ className = "" }: { className: string }) => {
     </div>
   );
 };
-
-export default SendIcon;

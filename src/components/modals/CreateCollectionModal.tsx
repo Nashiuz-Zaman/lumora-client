@@ -5,8 +5,14 @@ import { FormEvent, useState } from "react";
 import { createPortal } from "react-dom";
 
 // Components
-import { ButtonBtn, Inputfield, TextArea, InputCheckbox } from "../shared";
-import DatabaseIcon from "../shared/icons/DatabaseIcon";
+import {
+  ButtonBtn,
+  Inputfield,
+  TextArea,
+  InputCheckbox,
+  DatabaseIcon,
+} from "../shared";
+
 import { BaseModal } from "./BaseModal";
 
 // Utils / Hooks

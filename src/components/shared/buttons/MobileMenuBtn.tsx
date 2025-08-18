@@ -1,7 +1,7 @@
 "use client";
 
 import { MouseEvent } from "react";
-import HamburgerIcon from "../icons/HamburgerIcon";
+import { HamburgerIcon } from "../icons";
 
 export const MobileMenuBtn = ({
   onClick,
@@ -20,4 +20,3 @@ export const MobileMenuBtn = ({
     </button>
   );
 };
-

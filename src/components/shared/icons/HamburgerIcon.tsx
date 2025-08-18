@@ -1,4 +1,4 @@
-const HamburgerIcon = ({ className = "" }: { className?: string }) => {
+export const HamburgerIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg
@@ -16,5 +16,3 @@ const HamburgerIcon = ({ className = "" }: { className?: string }) => {
     </div>
   );
 };
-
-export default HamburgerIcon;
