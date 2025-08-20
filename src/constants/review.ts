@@ -6,7 +6,7 @@ export const ReviewStatus = Object.freeze({
 } as const);
 
 // Type for review status values
-export type ReviewStatus = (typeof ReviewStatus)[keyof typeof ReviewStatus];
+export type TReviewStatus = (typeof ReviewStatus)[keyof typeof ReviewStatus];
 
 // Review sort options (frozen)
 export const ReviewSortOptions = Object.freeze([
@@ -18,4 +18,5 @@ export const ReviewSortOptions = Object.freeze([
 ] as const);
 
 // Type for sort option values
-export type ReviewSortOptionValue = (typeof ReviewSortOptions)[number]["value"];
+export type TReviewSortOptionValue =
+  (typeof ReviewSortOptions)[number]["value"];

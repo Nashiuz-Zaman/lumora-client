@@ -1,59 +1,82 @@
 "use client";
 
 import { ChangeEvent } from "react";
+import { Icon } from "@iconify/react";
 
 interface ITextAreaProps {
   labelText?: string;
   placeholder?: string;
-  name?: string;
-  labelTextModifyClasses?: string;
-  inputModifyClasses?: string;
-  modifyClasses?: string;
-  isRequired?: boolean;
-  defaultValue?: string;
-  value?: string; // controlled
+  labelTextClassName?: string;
+  inputClassName?: string;
+  className?: string;
+  labelContainerClassName?: string;
+  error?: string;
+  icon?: string | null;
+  iconClassName?: string;
+  invertIconPosition?: boolean;
   readOnly?: boolean;
+  value?: string; // controlled
+  defaultValue?: string;
   onChange?: (e: ChangeEvent<HTMLTextAreaElement>) => void;
+  [key: string]: unknown; // RHF register props
 }
 
 export const TextArea = ({
   labelText,
   placeholder = "No placeholder provided",
-  name = "",
-  labelTextModifyClasses = "",
-  inputModifyClasses = "",
-  modifyClasses = "",
-  isRequired = false,
-  defaultValue,
-  value,
-  readOnly = false,
-  onChange = () => {},
+  labelTextClassName = "",
+  inputClassName = "",
+  className = "",
+  labelContainerClassName = "",
+  icon = null,
+  iconClassName = "",
+  invertIconPosition = false,
+  error,
+  ...props
 }: ITextAreaProps) => {
-  const isControlled = value !== undefined;
-
   return (
-    <div className={`${modifyClasses}`}>
-      <label>
-        {labelText && (
-          <p className={`capitalize mb-2 ${labelTextModifyClasses}`}>
+    <label
+      className={`block w-full !rounded-[inherit] [color:inherit] ${className}`}
+    >
+      {labelText && (
+        <div className={`text-inherit ${labelContainerClassName}`}>
+          <p
+            className={`capitalize mb-2 [color:inherit] ${labelTextClassName}`}
+          >
             {labelText}
           </p>
-        )}
+        </div>
+      )}
 
+      <div
+        className={`bg-white border border-neutral-200 p-2 w-full lg:px-4 lg:py-3 ${
+          icon
+            ? `grid ${
+                invertIconPosition
+                  ? "grid-cols-[auto_1fr]"
+                  : "grid-cols-[1fr_auto]"
+              }`
+            : "block"
+        } ${inputClassName}`}
+      >
         <textarea
-          required={isRequired}
-          onChange={onChange}
-          {...(isControlled ? { value } : { defaultValue })}
-          name={name}
           placeholder={placeholder}
-          readOnly={readOnly}
-          className={`block [font-size:inherit] leading-[inherit] w-full focus:outline-none p-3 ${
-            readOnly
-              ? "!h-[6rem] overflow-y-auto text-neutral-400 bg-neutral-100"
-              : "h-[8rem] border border-neutral-200 [background-color:inherit]"
-          } ${inputModifyClasses}`}
+          className={`block [color:inherit] [font-size:inherit] [background-color:inherit] [line-height:inherit] w-full focus:outline-none ${
+            invertIconPosition ? "order-2" : "order-1"
+          }`}
+          {...props}
         />
-      </label>
-    </div>
+        {icon && (
+          <Icon
+            icon={icon}
+            className={`block my-1 mx-3 w-max text-inherit ${
+              invertIconPosition ? "order-1" : "order-2"
+            } ${iconClassName}`}
+          />
+        )}
+      </div>
+
+      {error && <p className={`text-red-600 text-sm mt-2`}>* {error}</p>}
+    </label>
   );
 };

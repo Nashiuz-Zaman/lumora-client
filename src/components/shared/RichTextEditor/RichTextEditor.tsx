@@ -6,7 +6,7 @@ import { TextStyle, FontSize, Color } from "@tiptap/extension-text-style";
 import { useEffect } from "react";
 import Toolbar from "./Toolbar";
 
-interface RichTextEditorProps {
+interface IRichTextEditorProps {
   labelText: string;
   labelTextClassName?: string;
   inputClassName?: string;
@@ -14,6 +14,8 @@ interface RichTextEditorProps {
   setNewContent: (content: string) => void;
   defaultContent?: string;
   toolbarClassName?: string;
+  error?: string;
+  errorClassName?: string;
 }
 
 const RichTextEditor = ({
@@ -24,7 +26,9 @@ const RichTextEditor = ({
   setNewContent,
   defaultContent = "",
   toolbarClassName = "",
-}: RichTextEditorProps) => {
+  errorClassName = "",
+  error,
+}: IRichTextEditorProps) => {
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
@@ -83,6 +87,11 @@ const RichTextEditor = ({
           style={{ whiteSpace: "pre-line" }}
         />
       </div>
+      {error && (
+        <p className={`text-red-600 text-sm mt-2 ${errorClassName}`}>
+          * {error}
+        </p>
+      )}
     </div>
   );
 };

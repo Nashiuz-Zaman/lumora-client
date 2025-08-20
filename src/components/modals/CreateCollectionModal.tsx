@@ -57,7 +57,7 @@ export const CreateCollectionModal = ({
     <ButtonBtn
       type="button"
       onClick={openModal}
-      modifyClasses="!secondaryClasses !py-2 !px-4 ml-4"
+      className="!secondaryClasses !py-2 !px-4 ml-4"
     >
       <DatabaseIcon className="text-lg" />
       <span>Create Collection</span>
@@ -112,7 +112,7 @@ export const CreateCollectionModal = ({
               invertIconPosition
             />
 
-            <ButtonBtn modifyClasses="!successClasses ml-auto !px-4 !py-2">
+            <ButtonBtn className="!successClasses ml-auto !px-4 !py-2">
               Create
             </ButtonBtn>
           </form>

@@ -46,9 +46,17 @@
   @apply bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200 hover:border-neutral-300;
 }
 
+@utility blackClasses {
+  @apply bg-neutral-900 border-neutral-900 text-white hover:bg-neutral-800 hover:border-neutral-800;
+}
+
 @utility filter-white {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(329deg)
     brightness(106%) contrast(101%);
+}
+
+@utility positioned-center {
+  @apply absolute top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
 }
 
 @utility bg-center-cover {

@@ -6,7 +6,7 @@ export const ReturnRequestStatus = Object.freeze({
 } as const);
 
 // Type for status values
-export type ReturnRequestStatus =
+export type TReturnRequestStatus =
   (typeof ReturnRequestStatus)[keyof typeof ReturnRequestStatus];
 
 // Return request sort options (frozen)
@@ -19,7 +19,7 @@ export const ReturnRequestSortOptions = Object.freeze([
 ] as const);
 
 // Type for sort option values
-export type ReturnRequestSortOptionValue =
+export type TReturnRequestSortOptionValue =
   (typeof ReturnRequestSortOptions)[number]["value"];
 
 // Return reasons (frozen)
@@ -32,4 +32,4 @@ export const ReturnReasons = Object.freeze([
 ] as const);
 
 // Type for return reasons
-export type ReturnReason = (typeof ReturnReasons)[number];
+export type TReturnReason = (typeof ReturnReasons)[number];

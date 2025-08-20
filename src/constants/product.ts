@@ -6,7 +6,7 @@ export const ProductStatus = Object.freeze({
 } as const);
 
 // Type derived from the frozen object
-export type ProductStatus = (typeof ProductStatus)[keyof typeof ProductStatus];
+export type TProductStatus = (typeof ProductStatus)[keyof typeof ProductStatus];
 
 // Product sort options (frozen for immutability)
 export const ProductSortOptions = Object.freeze([
@@ -16,5 +16,5 @@ export const ProductSortOptions = Object.freeze([
 ] as const);
 
 // Optional type for product sort values
-export type ProductSortOptionValue =
+export type TProductSortOptionValue =
   (typeof ProductSortOptions)[number]["value"];

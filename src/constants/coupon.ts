@@ -6,7 +6,7 @@ export const CouponStatus = Object.freeze({
 } as const);
 
 // Type derived from the frozen object
-export type CouponStatus = (typeof CouponStatus)[keyof typeof CouponStatus];
+export type TCouponStatus = (typeof CouponStatus)[keyof typeof CouponStatus];
 
 // Coupon sort options (frozen for immutability)
 export const CouponSortOptions = Object.freeze([

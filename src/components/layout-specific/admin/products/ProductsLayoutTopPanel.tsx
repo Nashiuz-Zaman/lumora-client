@@ -1,7 +1,6 @@
 "use client";
 
 // Core / Third-party
-
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -18,14 +17,13 @@ export const ProductsLayoutTopPanel = ({
 }: ITopPanelProductsProps) => {
   const path = usePathname();
   const productsRootPageRegex = /^\/admin\/products$/;
-
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const goToAddProductUrl = `${path}/all-products/create`;
+  const goToAddProductUrl = `${path}/create`;
 
   if (!isClient) return null;
 

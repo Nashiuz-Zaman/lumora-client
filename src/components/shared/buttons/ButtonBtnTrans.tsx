@@ -6,7 +6,7 @@ import { LoadingIcon } from "../icons";
 type ButtonBtnTransProps = {
   children: ReactNode;
   onClick?: () => void;
-  modifyClasses?: string;
+  className?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
   id?: string;
@@ -19,7 +19,7 @@ type ButtonBtnTransProps = {
 export const ButtonBtnTrans = ({
   children,
   onClick,
-  modifyClasses = "",
+  className = "",
   isDisabled = false,
   isLoading = false,
   id,
@@ -32,7 +32,7 @@ export const ButtonBtnTrans = ({
 
   useEffect(() => setIsClient(true), []);
 
-  const allClasses = `relative focus:outline-none flex items-center gap-1 w-max capitalize transition-all duration-default text-center active:scale-[0.98] disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed ${modifyClasses}`;
+  const allClasses = `relative focus:outline-none flex items-center gap-1 w-max capitalize transition-all duration-default text-center active:scale-[0.98] disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed hover:cursor-pointer ${className}`;
 
   if (!isClient) return null;
 

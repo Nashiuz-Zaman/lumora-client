@@ -4,12 +4,12 @@ import { Editor } from "@tiptap/react";
 import { rgbToHex } from "@/utils";
 import { IcfyIcon } from "../IcfyIcon";
 
-interface ToolbarProps {
+interface IToolbarProps {
   editor: Editor | null;
   className?: string;
 }
 
-const Toolbar = ({ editor, className = "" }: ToolbarProps) => {
+const Toolbar = ({ editor, className = "" }: IToolbarProps) => {
   if (!editor) return null;
 
   const rawColor = editor.getAttributes("textStyle").color as
@@ -76,7 +76,7 @@ const Toolbar = ({ editor, className = "" }: ToolbarProps) => {
         title="Font Size"
         value={(editor.getAttributes("textStyle").fontSize as string) || ""}
         onChange={(e) => handleFontSizeChange(e.target.value)}
-        className="w-16 text-sm border rounded-md bg-white p-1"
+        className="w-16 text-sm border border-neutral-200 rounded-md bg-white p-1"
       >
         <option value="">Size</option>
         <option value="12px">12px</option>

@@ -9,7 +9,7 @@ export const PaymentStatus = Object.freeze({
 } as const);
 
 // Type derived from the frozen object
-export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus];
+export type TPaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus];
 
 // Payment sort options (frozen for immutability)
 export const PaymentSortOptions = Object.freeze([
@@ -19,5 +19,5 @@ export const PaymentSortOptions = Object.freeze([
 ] as const);
 
 // Optional type for payment sort values
-export type PaymentSortOptionValue =
+export type TPaymentSortOptionValue =
   (typeof PaymentSortOptions)[number]["value"];

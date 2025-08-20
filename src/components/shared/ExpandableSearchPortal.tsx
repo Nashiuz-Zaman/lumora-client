@@ -76,7 +76,7 @@ export const ExpandableSearchPortal = ({
       {/* Toggle Button */}
       <ButtonBtnTrans
         onClick={showVertical ? handleClose : handleOpen}
-        modifyClasses={`text-white ${buttonClasses}`}
+        className={`text-white ${buttonClasses}`}
         ariaLabel="Toggle Search"
         title="Toggle Search"
       >

@@ -6,25 +6,25 @@ import { LoadingIcon } from "../icons";
 type ButtonBtnProps = {
   children: ReactNode;
   onClick?: () => void;
-  modifyClasses?: string;
+  className?: string;
   isDisabled?: boolean;
   id?: string;
   type?: "submit" | "button" | "reset";
   title?: string;
   isLoading?: boolean;
-  iconModifyClasses?: string;
+  iconClassName?: string;
 };
 
 export const ButtonBtn = ({
   children,
   onClick,
-  modifyClasses = "",
+  className = "",
   isDisabled = false,
   id,
   type = "submit",
   title = "",
   isLoading = false,
-  iconModifyClasses = "",
+  iconClassName = "",
 }: ButtonBtnProps) => {
   const [isClient, setIsClient] = useState(false);
 
@@ -36,7 +36,7 @@ export const ButtonBtn = ({
     disabled:!hover:scale-100 
     disabled:!active:scale-100 
     disabled:cursor-not-allowed 
-    border primary-classes relative ${modifyClasses}`;
+    border primary-classes relative ${className}`;
 
   useEffect(() => setIsClient(true), []);
 
@@ -67,7 +67,7 @@ export const ButtonBtn = ({
 
       {isLoading && (
         <LoadingIcon
-          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl ${iconModifyClasses}`}
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-3xl ${iconClassName}`}
         />
       )}
     </button>

@@ -17,7 +17,7 @@ export const CollectionCard = ({
       {!noDeleteBtn && (
         <ButtonBtnTrans
           type="button"
-          modifyClasses="ml-auto text-red-600"
+          className="ml-auto text-red-600"
           title="Delete Collection"
           onClick={onDelete}
         >
