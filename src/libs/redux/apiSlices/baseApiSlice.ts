@@ -8,5 +8,5 @@ export const baseApiSlice = createApi({
   }),
 
   endpoints: () => ({}),
-  tagTypes: [],
+  tagTypes: ["AdminProductsAll","CategoryTree"],
 });

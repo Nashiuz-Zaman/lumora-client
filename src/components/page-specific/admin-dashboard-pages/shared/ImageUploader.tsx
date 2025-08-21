@@ -116,7 +116,7 @@ export const ImageUploader = ({
         <ButtonBtn
           type="button"
           onClick={handleButtonClick}
-          className={`!secondaryClasses !py-2 !px-4 ${buttonClassName}`}
+          className={`!primaryClasses !py-1 !px-4 ${buttonClassName}`}
         >
           {buttonText}
         </ButtonBtn>

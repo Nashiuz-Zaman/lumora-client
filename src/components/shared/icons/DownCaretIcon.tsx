@@ -1,4 +1,4 @@
-export const DownCaret = ({ className = "" }: { className: string }) => {
+export const DownCaretIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

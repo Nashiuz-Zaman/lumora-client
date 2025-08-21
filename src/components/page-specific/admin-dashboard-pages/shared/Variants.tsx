@@ -75,7 +75,7 @@ export const Variants = ({ defaultVariant }: { defaultVariant: IVariant }) => {
         <ButtonBtn
           onClick={handleAddVariant}
           type="button"
-          className="!secondaryClasses !px-4 !py-1"
+          className="!primaryClasses !px-3 !py-1"
         >
           <PlusIcon className="text-lg" />
           New Variant

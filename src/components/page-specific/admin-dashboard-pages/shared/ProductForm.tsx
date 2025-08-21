@@ -10,6 +10,9 @@ import SpecsCreator from "./SpecsCreator";
 import SEOManager from "./SEOManager";
 import { ProductStatus } from "@/constants/product";
 import { ProductOptionsAndBrandVendor } from "./ProductOptionsAndBrandVendor";
+import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
+import axios from "axios";
+import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
 
 const defaultVariant = {
   sku: "",
@@ -43,13 +46,34 @@ export const ProductForm = ({
       metaKeywords: "",
       tags: "",
       canonicalUrl: "",
+      topCategory: "",
+      subCategory: "",
     },
   });
+  const [getSignedUrl] = useLazyGetSignedUrlQuery();
 
   const { handleSubmit } = methods;
 
   const onSubmit: SubmitHandler<IProduct> = (data) => {
-    console.log("Submitting only changed fields:", data);
+    const images = data.images || [];
+    const newImages: string[] = [];
+
+    images.forEach((image) => {
+      if (image instanceof File) {
+        const uploadImage = async () => {
+          const url = await uploadFileWithSignedUrl(image, getSignedUrl);
+          if (url) newImages.push(url);
+        };
+
+        uploadImage();
+      } else {
+        newImages.push(image);
+      }
+    });
+
+    const newData = { ...data, images: newImages };
+
+    console.log(newData);
   };
 
   return (
@@ -65,7 +89,7 @@ export const ProductForm = ({
             <SpecsCreator />
           </div>
 
-          <div>
+          <div className="space-y-6">
             <ProductOptionsAndBrandVendor />
             <SEOManager />
           </div>

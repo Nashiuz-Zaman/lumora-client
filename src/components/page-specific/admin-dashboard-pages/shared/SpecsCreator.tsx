@@ -82,7 +82,7 @@ const SpecsCreator = ({
               {...register(`specifications.${i}.key` as const, {
                 required: "Specification name is required",
               })}
-              inputModifyClasses="rounded-md"
+              inputClassName="rounded-md"
               placeholder="Spec Name"
             />
           </div>
@@ -91,7 +91,7 @@ const SpecsCreator = ({
             {...register(`specifications.${i}.value` as const, {
               required: "Specification value is required",
             })}
-            inputModifyClasses="rounded-md"
+            inputClassName="rounded-md"
             placeholder="Spec Value"
           />
         </div>

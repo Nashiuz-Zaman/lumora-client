@@ -1,4 +1,4 @@
-import { TProductStatus } from "@/constants/product";
+import { TProductStatusValue } from "@/constants/product";
 
 export interface IVariant {
   sku: string;
@@ -20,13 +20,15 @@ export interface IProduct {
   images?: (string | File)[];
   warrantyAndSupport: string;
   aboutProduct: string;
-  status: TProductStatus;
+  status: TProductStatusValue;
   specifications: { key: string; value: string }[];
   seoTitle?: string;
   seoDescription?: string;
   metaKeywords?: string;
   tags?: string;
   canonicalUrl?: string;
+  topCategory?: string;
+  subCategory?: string;
 }
 
 export interface IProductFormProps {

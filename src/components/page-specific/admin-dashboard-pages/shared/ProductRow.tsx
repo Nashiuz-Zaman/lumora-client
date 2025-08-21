@@ -9,7 +9,7 @@ import ColorBadge from '@/components/shared/ColorBadge';
 
 // utils
 import { formatPrice } from '@/utils/formatPrice';
-import { TProductStatus } from '@/constants/product';
+import { TProductStatusValue } from '@/constants/product';
 import { getProductStatusTextColor, getStatusLabel } from '@/utils/statusUtils';
 import { formatDateTime } from '@/utils/formatDateTime';
 

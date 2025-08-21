@@ -7,31 +7,32 @@ type TInputCheckboxProps = {
   labelTextClassName?: string;
   checkboxClassName?: string;
   iconClassName?: string;
-  ClassName?: string;
+  className?: string;
   [key: string]: unknown;
 };
 
 export const InputCheckbox = ({
   labelText,
-
   icon = null,
   invertIconPosition = false,
   labelTextClassName = "",
   checkboxClassName = "",
   iconClassName = "",
-  ClassName = "",
+  className = "",
+  ...props
 }: TInputCheckboxProps) => {
   return (
     <label
       className={`flex items-center w-max gap-2 cursor-pointer select-none ${
         invertIconPosition ? "flex-row-reverse" : ""
-      } ${ClassName}`}
+      } ${className}`}
     >
       {icon && <span className={`text-inherit ${iconClassName}`}>{icon}</span>}
 
       <input
         type="checkbox"
         className={`accent-green-700 cursor-pointer ${checkboxClassName}`}
+        {...props}
       />
 
       {labelText && (

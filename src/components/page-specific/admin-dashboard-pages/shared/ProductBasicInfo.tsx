@@ -4,6 +4,7 @@ import { useFormContext, Controller } from "react-hook-form";
 import { Inputfield } from "@/components/shared";
 import RichTextEditor from "@/components/shared/RichTextEditor/RichTextEditor";
 import { IProduct } from "@/types";
+import { CategorySelector } from "./CategorySelector";
 
 export const ProductBasicInfo = () => {
   const {
@@ -23,12 +24,14 @@ export const ProductBasicInfo = () => {
           error={errors.title?.message as string}
           className="mb-4"
           inputClassName="!rounded-md"
+          placeholder="Title"
         />
 
         <Inputfield
           labelText="Subtitle"
           labelTextClassName="font-semibold text-xl"
           {...register("subtitle")}
+          placeholder="Sub Title"
           inputClassName="!rounded-md"
         />
       </div>
@@ -70,6 +73,9 @@ export const ProductBasicInfo = () => {
           />
         )}
       />
+
+      {/* Category selector */}
+      <CategorySelector />
     </div>
   );
 };

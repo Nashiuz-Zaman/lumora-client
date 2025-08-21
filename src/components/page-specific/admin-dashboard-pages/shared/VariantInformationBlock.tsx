@@ -120,6 +120,7 @@ export const VariantInformationBlock = ({
       <div className="flex flex-col sm:flex-row gap-2">
         <Inputfield
           placeholder="New property name"
+          inputClassName="rounded-md"
           value={newKeyInput}
           onChange={(e: ChangeEvent<HTMLInputElement>) =>
             setNewKeyInput(e.target.value)
@@ -130,10 +131,10 @@ export const VariantInformationBlock = ({
           type="button"
           onClick={handleAddNewProperty}
           title="Add new property"
-          className="text-green-600 font-medium flex items-center justify-center"
+          className="font-medium flex items-center justify-center"
         >
-          <PlusIcon className="text-xl mr-1" />
-          Add Property
+          <PlusIcon className="text-xl" />
+          New Property
         </ButtonBtnTrans>
       </div>
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
+import { Controller, useFormContext } from "react-hook-form";
 import { IProduct } from "@/types";
 
 import {
@@ -9,6 +9,7 @@ import {
   Inputfield,
 } from "@/components/shared";
 import { ProductStatus } from "@/constants";
+import { ChangeEvent } from "react";
 
 type TProductOptionsAndBrandVendorProps = {
   className?: string;
@@ -17,29 +18,37 @@ type TProductOptionsAndBrandVendorProps = {
 export const ProductOptionsAndBrandVendor = ({
   className = "",
 }: TProductOptionsAndBrandVendorProps) => {
-  const { register, watch, setValue } = useFormContext<IProduct>();
+  const { register, watch, control } = useFormContext<IProduct>();
+
+  console.log(watch("status"));
 
   return (
     <div className={className}>
       {/* Product Options */}
-      <div className="bg-white rounded-xl border border-neutral-200 p-5 mb-8 ">
+      <div className="bg-white rounded-xl border border-neutral-200 p-5 mb-6">
         <FormSectionHeading tag="h4" text="Product Options" />
 
-        <InputCheckbox
-          labelText="Active"
-          {...register("status", {
-            onChange: (e) =>
-              setValue(
-                "status",
-                e.target.checked ? ProductStatus.Active : ProductStatus.Draft
-              ),
-          })}
-          checked={watch("status") === ProductStatus.Active}
+        <Controller
+          name="status"
+          control={control}
+          defaultValue={ProductStatus.Draft}
+          render={({ field }) => (
+            <InputCheckbox
+              checkboxClassName="!accent-primary"
+              labelText="Active"
+              checked={field.value === ProductStatus.Active}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                field.onChange(
+                  e.target.checked ? ProductStatus.Active : ProductStatus.Draft
+                )
+              }
+            />
+          )}
         />
       </div>
 
       {/* Brand & Vendor */}
-      <div className="bg-white rounded-xl p-5 border border-neutral-200 mb-8">
+      <div className="bg-white rounded-xl p-5 border border-neutral-200">
         <Inputfield
           {...register("brand")}
           labelText="Brand"
