@@ -32,8 +32,6 @@ export const ButtonBtnTrans = ({
 
   useEffect(() => setIsClient(true), []);
 
-  const allClasses = `relative focus:outline-none flex items-center gap-1 w-max capitalize transition-all duration-default text-center active:scale-[0.98] disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed hover:cursor-pointer ${className}`;
-
   if (!isClient) return null;
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
@@ -41,6 +39,20 @@ export const ButtonBtnTrans = ({
     e.preventDefault(); // Prevent Link navigation
     onClick?.();
   };
+
+  // 🔑 Use native Tailwind spacing and text classes
+  const allClasses = `
+    relative focus:outline-none flex items-center gap-2 w-max capitalize
+    transition-all duration-default text-center
+    active:scale-98 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed
+    hover:cursor-pointer
+    px-3 py-1.5         
+    sm:px-3.5 sm:py-2
+    md:px-4 md:py-2.5
+    lg:px-4.5 lg:py-3
+    xl:px-5 xl:py-3.5
+    ${className}
+  `;
 
   return (
     <button
@@ -65,7 +77,9 @@ export const ButtonBtnTrans = ({
       {/* Loader Icon */}
       {isLoading && (
         <LoadingIcon
-          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-xl ${iconModifyClasses}`}
+          className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2
+                      text-xl sm:text-2xl md:text-[1.5rem] lg:text-[1.625rem] xl:text-[1.75rem]
+                      ${iconModifyClasses}`}
         />
       )}
     </button>

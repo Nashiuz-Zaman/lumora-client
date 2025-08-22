@@ -28,16 +28,6 @@ export const ButtonBtn = ({
 }: ButtonBtnProps) => {
   const [isClient, setIsClient] = useState(false);
 
-  const allClasses = `focus:outline-none flex items-center justify-center w-max transition-all rounded-md text-center px-6 py-2 lg:py-3 lg:px-10 cursor-pointer active:scale-[0.95] 
-    disabled:opacity-60 
-    disabled:scale-100 
-    disabled:hover:scale-100 
-    disabled:active:scale-100 
-    disabled:!hover:scale-100 
-    disabled:!active:scale-100 
-    disabled:cursor-not-allowed 
-    border primary-classes relative ${className}`;
-
   useEffect(() => setIsClient(true), []);
 
   if (!isClient) return null;
@@ -46,6 +36,21 @@ export const ButtonBtn = ({
     e.stopPropagation();
     if (onClick) onClick();
   };
+
+  // 🔑 Native Tailwind spacing classes (all scale with root font-size)
+  const allClasses = `
+    focus:outline-none flex items-center justify-center w-max
+    transition-all rounded-md text-center
+    cursor-pointer active:scale-95
+    disabled:opacity-60 disabled:scale-100 disabled:cursor-not-allowed
+    border border-neutral-200 primary-classes relative
+    px-4 py-2
+    sm:px-5 sm:py-2.5
+    md:px-6 md:py-3
+    lg:px-7 lg:py-3
+    xl:px-8 xl:py-4
+    ${className}
+  `;
 
   return (
     <button

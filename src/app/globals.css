@@ -18,6 +18,14 @@
   --color-secondary-dark: #e60076;
 }
 
+html {
+  @apply !text-[75%]       /* ~12px */
+         xs:!text-[81.25%] /* ~13px */
+         md:!text-[87.5%]  /* ~14px */
+         lg:!text-[93.75%] /* ~15px */
+         xl:!text-[100%]; /* 16px */
+}
+
 @utility primaryClasses {
   @apply bg-primary border-primary active:bg-primary-dark active:border-primary-dark lg:hover:bg-primary-dark lg:hover:border-primary-dark text-white;
 }
