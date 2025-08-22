@@ -1,4 +1,5 @@
 import { baseApiSlice } from "../baseApiSlice";
+import { IApiResponse, IProduct } from "@/types";
 
 // Define fields
 export const textFields: string[] = [
@@ -23,41 +24,26 @@ export const strToArrayFields: string[] = ["metaKeywords", "tags"];
 export const mediaFields: string[] = ["images"];
 
 // --- Types ---
-export interface Product {
-  id: string;
-  title: string;
-  subtitle?: string;
-  description?: string;
-  brand?: string;
-  store?: string;
-  status?: string;
-  images?: string[];
-  // extend with other fields as needed
-}
 
-export interface GetProductsParams {
+export interface IGetProductsParams {
   page?: number;
   limit?: number;
   sort?: string;
   [key: string]: unknown;
 }
 
-export interface UpdateProductArgs {
+export interface IUpdateProductArgs {
   id: string;
-  data: Partial<Product>;
+  data: Partial<IProduct>;
 }
 
-export interface CloneOrMoveProductsArgs {
+export interface ICloneOrMoveProductsArgs {
   selectedProducts: string[];
   selectedCollections: string[];
   operation: "clone" | "move";
 }
 
-export interface BulkDeleteArgs {
-  ids: string[];
-}
-
-export interface FrequentlyBoughtTogetherArgs {
+export interface IFrequentlyBoughtTogetherArgs {
   id: string;
   ids: string[];
 }
@@ -65,7 +51,7 @@ export interface FrequentlyBoughtTogetherArgs {
 // --- API slice ---
 export const productsApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    getProductsAdmin: builder.query<Product[], GetProductsParams>({
+    getProductsAdmin: builder.query<IApiResponse, IGetProductsParams>({
       query: (params = {}) => ({
         url: `/products/admin`,
         method: "GET",
@@ -73,16 +59,15 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    getOneProductAdmin: builder.query<Product, string>({
+    getOneProductAdmin: builder.query<IApiResponse, string>({
       query: (id) => ({
         url: `/products/${id}/admin`,
         method: "GET",
       }),
-      keepUnusedDataFor: 0, // ✅ allowed here
-      // ❌ refetchOnMountOrArgChange removed (only allowed in hook usage)
+      keepUnusedDataFor: 0,
     }),
 
-    createProduct: builder.mutation<Product, Partial<Product>>({
+    createProduct: builder.mutation<IApiResponse, Partial<IProduct>>({
       query: (data) => ({
         url: `/products/`,
         method: "POST",
@@ -90,7 +75,7 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    updateProduct: builder.mutation<Product, UpdateProductArgs>({
+    updateProduct: builder.mutation<IApiResponse, IUpdateProductArgs>({
       query: ({ id, data }) => ({
         url: `/products/${id}`,
         method: "PATCH",
@@ -99,7 +84,10 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       invalidatesTags: ["AdminProductsAll"],
     }),
 
-    cloneOrMoveProducts: builder.mutation<unknown, CloneOrMoveProductsArgs>({
+    cloneOrMoveProducts: builder.mutation<
+      IApiResponse,
+      ICloneOrMoveProductsArgs
+    >({
       query: ({ selectedProducts, selectedCollections, operation }) => ({
         url: "/products/batch-update-collections",
         method: "PATCH",
@@ -112,8 +100,8 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       invalidatesTags: ["AdminProductsAll"],
     }),
 
-    bulkDeleteProducts: builder.mutation<unknown, BulkDeleteArgs>({
-      query: ({ ids }) => ({
+    bulkDeleteProducts: builder.mutation<IApiResponse, string[]>({
+      query: (ids) => ({
         url: "/products/bulk-delete",
         method: "PATCH",
         data: { ids },
@@ -122,8 +110,8 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     addFrequentlyBoughtTogether: builder.mutation<
-      unknown,
-      FrequentlyBoughtTogetherArgs
+      IApiResponse,
+      IFrequentlyBoughtTogetherArgs
     >({
       query: ({ id, ids }) => ({
         url: `/products/${id}/frequently-bought-together/add`,

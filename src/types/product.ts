@@ -1,6 +1,7 @@
 import { TProductStatusValue } from "@/constants/product";
 
 export interface IVariant {
+  _id?: string;
   sku: string;
   stock: number;
   price: number;
@@ -10,10 +11,13 @@ export interface IVariant {
 }
 
 export interface IProduct {
+  _id?: string;
+  slug: string;
   title: string;
   subtitle: string;
   defaultPrice: number;
   defaultImage: string;
+  totalStock: number;
   brand: string;
   variants: IVariant[];
   videos: { url: string }[];
@@ -29,6 +33,8 @@ export interface IProduct {
   canonicalUrl?: string;
   topCategory?: string;
   subCategory?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface IProductFormProps {

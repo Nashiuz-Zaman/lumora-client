@@ -1,7 +1,7 @@
 "use client";
 
-import { useForm, SubmitHandler, FormProvider } from "react-hook-form";
-import { IProduct, IProductFormProps } from "@/types";
+import { useForm, FormProvider } from "react-hook-form";
+import { IApiResponse, IProduct, IProductFormProps } from "@/types";
 import { ProductBasicInfo } from "./ProductBasicInfo";
 import { Variants } from "./Variants";
 import { ImageUploader } from "./ImageUploader";
@@ -11,8 +11,14 @@ import SEOManager from "./SEOManager";
 import { ProductStatus } from "@/constants/product";
 import { ProductOptionsAndBrandVendor } from "./ProductOptionsAndBrandVendor";
 import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
-import axios from "axios";
 import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
+import {
+  useCreateProductMutation,
+  useUpdateProductMutation,
+} from "@/libs/redux/apiSlices/products/productsApiSlice";
+import { catchAsyncGeneral, showToast } from "@/utils";
+import { ButtonBtn } from "@/components/shared";
+import cloneDeep from "lodash/cloneDeep";
 
 const defaultVariant = {
   sku: "",
@@ -26,7 +32,7 @@ export const ProductForm = ({
   mode = "create",
   product: existingProduct,
 }: IProductFormProps) => {
-  const methods = useForm<IProduct>({
+  const methods = useForm<Partial<IProduct>>({
     defaultValues: existingProduct || {
       title: "",
       subtitle: "",
@@ -51,34 +57,69 @@ export const ProductForm = ({
     },
   });
   const [getSignedUrl] = useLazyGetSignedUrlQuery();
+  const [createProduct, { isLoading: isCreating }] = useCreateProductMutation();
+  const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+  const { handleSubmit, reset } = methods;
 
-  const { handleSubmit } = methods;
+  // inside your ProductForm component
+  const onSubmit = catchAsyncGeneral(
+    async (args) => {
+      const data = args?.data as Partial<IProduct>;
+      const images = data?.images || [];
+      const newImages: string[] = [];
 
-  const onSubmit: SubmitHandler<IProduct> = (data) => {
-    const images = data.images || [];
-    const newImages: string[] = [];
-
-    images.forEach((image) => {
-      if (image instanceof File) {
-        const uploadImage = async () => {
+      for (const image of images) {
+        if (image instanceof File) {
           const url = await uploadFileWithSignedUrl(image, getSignedUrl);
           if (url) newImages.push(url);
-        };
-
-        uploadImage();
-      } else {
-        newImages.push(image);
+        } else {
+          newImages.push(image);
+        }
       }
-    });
 
-    const newData = { ...data, images: newImages };
+      const isMultiVariants: boolean =
+        Object.keys(data?.variants![0])?.length >
+        Object.keys(defaultVariant).length;
 
-    console.log(newData);
-  };
+      if (!isMultiVariants) {
+        data.variants = [cloneDeep(data?.variants![0])];
+      }
+
+      const newData = {
+        ...data,
+        images: newImages,
+      };
+
+      let res: IApiResponse;
+
+      if (mode === "create") {
+        res = await createProduct(newData).unwrap();
+      } else if (mode === "edit") {
+        res = await updateProduct({
+          id: newData._id as string,
+          data: newData,
+        }).unwrap();
+      } else return;
+
+      if (res?.success) {
+        showToast({ message: res?.message });
+
+        if (mode === "create") {
+          reset();
+        }
+      }
+    },
+    {
+      handleError: "toast",
+    }
+  );
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      <form
+        onSubmit={handleSubmit(async (data) => await onSubmit({ data }))}
+        className="space-y-6"
+      >
         <div className="grid grid-cols-[1.25fr_1fr] gap-5 max-w-full lg:max-w-[90%]">
           <div className="space-y-6">
             {/* No props needed anymore */}
@@ -95,12 +136,13 @@ export const ProductForm = ({
           </div>
         </div>
 
-        <button
+        <ButtonBtn
+          isLoading={isCreating || isUpdating}
           type="submit"
-          className="px-4 py-2 bg-primary text-white rounded"
+          className="!successClasses"
         >
           {mode === "create" ? "Create Product" : "Update Product"}
-        </button>
+        </ButtonBtn>
       </form>
     </FormProvider>
   );

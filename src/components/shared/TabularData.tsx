@@ -62,26 +62,36 @@ export const TabularData = <T extends Record<string, unknown>>({
 
   return (
     <div
-      className={`w-full overflow-x-auto flex flex-col grow ${classNameObj.containerDiv || ""}`}
+      className={`w-full overflow-x-auto flex flex-col grow bg-white border-b border-neutral-200 ${
+        classNameObj.containerDiv || ""
+      }`}
     >
       <table
-        className={`min-w-[80rem] max-w-full grow flex flex-col ${classNameObj.mainTable || ""}`}
+        className={`min-w-[80rem] max-w-full grow flex flex-col ${
+          classNameObj.mainTable || ""
+        }`}
       >
         <thead className="w-full">
           <tr
             className={`
-              bg-neutral-100 w-full text-xs sm:text-sm md:text-base lg:text-lg font-semibold
+              bg-neutral-100 w-full text-base 2xl:text-lg 
               grid
-              ${bordered === "full" || bordered === "divider" ? "border border-neutral-200" : ""}
+              ${
+                bordered === "full" || bordered === "divider"
+                  ? "border border-neutral-200"
+                  : ""
+              }
               ${rowClassesForBoth} ${classNameObj.headingRow || ""}
-              px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 lg:py-2.5
+              px-2 sm:px-3 md:px-4 lg:px-5 py-3 lg:py-4
             `}
           >
             {headings.map((heading, i) =>
               heading?.toLowerCase() === "checkbox" ? (
                 <th
                   key={i}
-                  className={`text-left block w-6 ${classNameObj.heading || ""}`}
+                  className={`text-left block w-6 ${
+                    classNameObj.heading || ""
+                  }`}
                 >
                   <InputCheckbox
                     onChange={toggleSelectAll}
@@ -91,7 +101,9 @@ export const TabularData = <T extends Record<string, unknown>>({
               ) : (
                 <th
                   key={i}
-                  className={`text-left block capitalize ${classNameObj.heading || ""}`}
+                  className={`text-left block capitalize font-semibold ${
+                    classNameObj.heading || ""
+                  }`}
                 >
                   {heading}
                 </th>
@@ -103,7 +115,11 @@ export const TabularData = <T extends Record<string, unknown>>({
         <tbody
           className={`
             w-full grow flex flex-col
-            ${bordered === "divider" && data?.length > 0 ? "divide-y divide-neutral-200" : ""}
+            ${
+              bordered === "divider" && data?.length > 0
+                ? "divide-y divide-neutral-200"
+                : ""
+            }
             ${classNameObj.tableBody || ""}
           `}
         >
@@ -143,7 +159,11 @@ export const TabularData = <T extends Record<string, unknown>>({
                     w-full grid text-xs sm:text-sm md:text-base lg:text-lg
                     px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 lg:py-2.5
                     ${onRowClick ? "cursor-pointer" : ""}
-                    ${bordered === "full" ? "!border-x !border-b border-neutral-200" : ""}
+                    ${
+                      bordered === "full"
+                        ? "!border-x !border-b border-neutral-200"
+                        : ""
+                    }
                     ${rowClassesForBoth} ${classNameObj.dataRow || ""}
                   `}
                 >
