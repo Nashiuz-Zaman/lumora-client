@@ -14,11 +14,22 @@ const defaultVariantKeys: string[] = [
   "discountPercentage",
 ];
 
-export const Variants = ({ defaultVariant }: { defaultVariant: IVariant }) => {
+const ignoredKeys: string[] = ["_id", "id"];
+
+export const Variants = ({
+  defaultVariant,
+  existingVariant,
+}: {
+  defaultVariant: IVariant;
+  existingVariant?: IVariant;
+}) => {
   const { control } = useFormContext<IProduct>();
-  const [variantKeys, setVariantKeys] = useState<string[]>([
-    ...defaultVariantKeys,
-  ]);
+
+  const [variantKeys, setVariantKeys] = useState<string[]>(
+    existingVariant
+      ? Object.keys(existingVariant).filter((key) => !ignoredKeys.includes(key))
+      : [...defaultVariantKeys]
+  );
 
   const { fields, append, update, remove } = useFieldArray({
     control,

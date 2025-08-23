@@ -32,7 +32,7 @@ export const ProductForm = ({
   mode = "create",
   product: existingProduct,
 }: IProductFormProps) => {
-  const methods = useForm<Partial<IProduct>>({
+  const formInstance = useForm<Partial<IProduct>>({
     defaultValues: existingProduct || {
       title: "",
       subtitle: "",
@@ -59,9 +59,8 @@ export const ProductForm = ({
   const [getSignedUrl] = useLazyGetSignedUrlQuery();
   const [createProduct, { isLoading: isCreating }] = useCreateProductMutation();
   const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset } = formInstance;
 
-  // inside your ProductForm component
   const onSubmit = catchAsyncGeneral(
     async (args) => {
       const data = args?.data as Partial<IProduct>;
@@ -115,7 +114,7 @@ export const ProductForm = ({
   );
 
   return (
-    <FormProvider {...methods}>
+    <FormProvider {...formInstance}>
       <form
         onSubmit={handleSubmit(async (data) => await onSubmit({ data }))}
         className="space-y-6"
@@ -124,7 +123,10 @@ export const ProductForm = ({
           <div className="space-y-6">
             {/* No props needed anymore */}
             <ProductBasicInfo />
-            <Variants defaultVariant={defaultVariant} />
+            <Variants
+              defaultVariant={defaultVariant}
+              existingVariant={existingProduct?.variants?.[0]}
+            />
             <ImageUploader />
             <ProductVideosInput />
             <SpecsCreator />

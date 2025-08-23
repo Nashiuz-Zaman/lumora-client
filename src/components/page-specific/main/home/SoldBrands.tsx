@@ -30,8 +30,9 @@ const renderFunc = ({ data, index }: { data: string; index: number }) => {
       <Image
         src={data}
         alt={`brand-${index}`}
-        fill
-        className="object-contain"
+        width={500}
+        height={500}
+        className="object-contain w-full h-full"
       />
     </div>
   );
@@ -60,5 +61,3 @@ export const SoldBrands = () => {
     </section>
   );
 };
-
-

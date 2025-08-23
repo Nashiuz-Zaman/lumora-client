@@ -10,19 +10,30 @@ export const CategorySelector = () => {
   const {
     control,
     setValue,
+    getValues,
+    watch,
     formState: { errors },
   } = useFormContext<IProduct>();
 
   const { data: categories = [], error } = useGetCategoryTreeQuery();
-  const [selectedTopCategory, setSelectedTopCategory] = useState<string>("");
+
+  // watch topCategory to update subcategories
+  const watchedTopCategory = watch("topCategory");
+
+  const [selectedTopCategory, setSelectedTopCategory] = useState<string>(
+    getValues("topCategory") || ""
+  );
+
   const topCategories = categories.map((c) => c.topCategory);
+
   const subCategories =
     categories.find((c) => c.topCategory._id === selectedTopCategory)
       ?.subCategories || [];
 
+  // Reset subCategory whenever topCategory changes
   useEffect(() => {
-    setValue("subCategory", "");
-  }, [selectedTopCategory, setValue]);
+    setValue("subCategory", getValues("subCategory") || "");
+  }, [selectedTopCategory, setValue, getValues]);
 
   if (error) return <div>Error loading categories</div>;
 
@@ -35,14 +46,15 @@ export const CategorySelector = () => {
         rules={{ required: "Top category is required" }}
         render={({ field }) => (
           <SelectField
-            labelTextClassName="font-semibold text-xl"
             {...field}
             labelText="Top Category"
+            labelTextClassName="font-semibold text-xl"
             placeholder="Select top category"
             options={topCategories.map((tc) => ({
               text: tc.title,
               value: tc._id,
             }))}
+            value={watchedTopCategory || selectedTopCategory} // pre-select
             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
               field.onChange(e);
               setSelectedTopCategory(e.target.value);
@@ -67,6 +79,7 @@ export const CategorySelector = () => {
               text: sc.title,
               value: sc._id,
             }))}
+            value={getValues("subCategory")} // pre-select
             error={errors.subCategory?.message as string}
             disabled={!selectedTopCategory}
           />

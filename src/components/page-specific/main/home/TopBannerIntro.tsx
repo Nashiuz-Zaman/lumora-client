@@ -22,7 +22,7 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
         {/* Call to Action Button */}
         <LinkBtn
           href="#top-deals"
-          modifyClasses="mx-auto !primaryClasses !rounded-full "
+          className="mx-auto !primaryClasses !rounded-full "
         >
           Start Shopping
         </LinkBtn>

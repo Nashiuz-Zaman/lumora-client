@@ -1,3 +1,4 @@
 export * from "./central-product-management/CollectionCard";
 export * from "./central-product-management/create-product/CreateProductMain";
+export * from "./central-product-management/edit-product/EditProductMain";
 export * from "./central-product-management/all-products/AllProductsMain";

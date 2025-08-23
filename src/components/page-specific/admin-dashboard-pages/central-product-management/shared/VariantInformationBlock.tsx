@@ -81,21 +81,24 @@ export const VariantInformationBlock = ({
                 labelTextClassName="font-medium text-sm sm:text-base"
                 type={isNumberField ? "number" : "text"}
                 readOnly={isDiscount}
-                {...register(`variants.${variantIndex}.${key}`, {
-                  required:
-                    ["sku", "price", "stock"].includes(key) ||
-                    !defaultVariantKeys.includes(key)
-                      ? `${toLabel(key)} is required`
-                      : false,
-                  ...(isNumberField && {
-                    valueAsNumber: true,
-                    validate: (value) => {
-                      if (isNaN(value as number)) return "Must be a number";
-                      if ((value as number) < 0) return "Cannot be negative";
-                      return true;
-                    },
-                  }),
-                })}
+                {...register(
+                  `variants.${variantIndex}.${key}`
+                  //   {
+                  //   required:
+                  //     ["sku", "price", "stock"].includes(key) ||
+                  //     !defaultVariantKeys.includes(key)
+                  //       ? `${toLabel(key)} is required`
+                  //       : false,
+                  //   ...(isNumberField && {
+                  //     valueAsNumber: true,
+                  //     validate: (value) => {
+                  //       if (isNaN(value as number)) return "Must be a number";
+                  //       if ((value as number) < 0) return "Cannot be negative";
+                  //       return true;
+                  //     },
+                  //   }),
+                  // }
+                )}
                 error={
                   errors.variants?.[variantIndex]?.[key]?.message as string
                 }

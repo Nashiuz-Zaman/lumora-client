@@ -16,12 +16,7 @@ import { ConfirmationModal } from "@/components/modals";
 import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/products/productsApiSlice";
 
 import { showToast, catchAsyncGeneral } from "@/utils";
-import {
-  useSelectable,
-  useModal,
-  useAllProductsQueries,
-  useCurrentUrlPath,
-} from "@/hooks";
+import { useSelectable, useModal, useAllProductsQueries } from "@/hooks";
 import { MouseEvent } from "react";
 
 export const productsTableHeadings: string[] = [
@@ -50,7 +45,6 @@ type Product = {
 
 export const AllProductsMain = () => {
   const router = useRouter();
-  const { pathname } = useCurrentUrlPath();
 
   const {
     queryMeta,
@@ -76,7 +70,7 @@ export const AllProductsMain = () => {
   const [bulkDeleteProducts] = useBulkDeleteProductsMutation();
 
   const handleRowClick = (_: MouseEvent<HTMLTableRowElement>, id: string) => {
-    router.push(`${pathname}/edit/${id}`);
+    router.push(`/admin/products/edit/${id}`);
   };
 
   const renderRow = ({ data }: { data: Product }) => (

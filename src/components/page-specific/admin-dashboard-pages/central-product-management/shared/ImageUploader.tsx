@@ -1,9 +1,17 @@
 "use client";
 
-import React, { useEffect, useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import Image from "next/image";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  MouseSensor,
+  TouchSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
 import { Droppable, Draggable, ButtonBtn, IcfyIcon } from "@/components/shared";
 import { IProduct } from "@/types";
 import { generateImagePreviews, isObjectURL } from "@/utils";
@@ -27,6 +35,20 @@ export const ImageUploader = ({
 }: TImageUploaderProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { control, setValue } = useFormContext<IProduct>();
+  const sensors = useSensors(
+    useSensor(MouseSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(TouchSensor, {
+      activationConstraint: {
+        delay: 150, //  hold before drag
+        tolerance: 5,
+      },
+    })
+  );
+  const [activeId, setActiveId] = useState<number | null>(null);
 
   const watchedImages = useWatch<IProduct, "images">({
     control,
@@ -73,6 +95,7 @@ export const ImageUploader = ({
 
   const handleDragEnd = (e: DragEndEvent) => {
     const { active, over } = e;
+    setActiveId(null); // clear after drop
     if (!active || !over) return;
     const temp = [...rawImages!];
     const [moved] = temp.splice(Number(active.id), 1);
@@ -122,8 +145,12 @@ export const ImageUploader = ({
         </ButtonBtn>
       </div>
 
-      {/* Images Grid */}
-      <DndContext onDragEnd={handleDragEnd}>
+      {/* Images Grid with DragOverlay */}
+      <DndContext
+        sensors={sensors}
+        onDragStart={({ active }) => setActiveId(Number(active.id))}
+        onDragEnd={handleDragEnd}
+      >
         <div
           className={`min-h-[20rem] bg-white border-2 border-dashed border-gray-300 rounded-xl p-4 grid transition-colors duration-200 ${
             previews.length > 0
@@ -143,7 +170,7 @@ export const ImageUploader = ({
 
           {previews.map((src, i) => (
             <Droppable key={i} id={i}>
-              <div className="relative group rounded-lg overflow-hidden border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
+              <div className="relative group overflow-hidden">
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(i)}
@@ -160,13 +187,28 @@ export const ImageUploader = ({
                     alt={`Uploaded ${i}`}
                     width={300}
                     height={300}
-                    className="object-cover w-full h-32 sm:h-40"
+                    className="object-contain w-full h-32 sm:h-40"
                   />
                 </Draggable>
               </div>
             </Droppable>
           ))}
         </div>
+
+        {/* Drag Overlay */}
+        <DragOverlay>
+          {activeId !== null ? (
+            <div className="overflow-hidden">
+              <Image
+                src={previews[activeId]}
+                alt={`Dragged ${activeId}`}
+                width={300}
+                height={300}
+                className="object-contain w-32 h-32 sm:w-40 sm:h-40"
+              />
+            </div>
+          ) : null}
+        </DragOverlay>
       </DndContext>
 
       {/* Clear all button */}

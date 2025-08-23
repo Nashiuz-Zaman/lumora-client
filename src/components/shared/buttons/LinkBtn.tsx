@@ -6,14 +6,14 @@ import { ReactNode, MouseEvent } from "react";
 export const LinkBtn = ({
   children,
   href = "/",
-  modifyClasses = "",
+  className = "",
   target,
   onClick,
   isExternal = false,
 }: {
   children: ReactNode;
   href?: string;
-  modifyClasses?: string;
+  className?: string;
   target?: string;
   onClick?: () => void;
   isExternal?: boolean;
@@ -27,7 +27,7 @@ export const LinkBtn = ({
     lg:px-7 lg:py-3
     xl:px-8 xl:py-4
     active:scale-98
-    ${modifyClasses}
+    ${className}
   `;
 
   const handleClick = (
