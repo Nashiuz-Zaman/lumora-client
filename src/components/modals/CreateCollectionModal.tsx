@@ -1,7 +1,7 @@
 "use client";
 
 // Core / Third-party
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import { createPortal } from "react-dom";
 
 // Components
@@ -37,9 +37,9 @@ export const CreateCollectionModal = ({
   const handleSubmit = catchAsyncGeneral(
     async (args) => {
       if (!args?.e) return;
-      const formData = new FormData(
-        (args.e as FormEvent<HTMLFormElement>)?.currentTarget
-      );
+      // const formData = new FormData(
+      //   (args.e as FormEvent<HTMLFormElement>)?.currentTarget
+      // );
 
       // const data = await createCollection(formData).unwrap();
       // if (data.status === "success") {
