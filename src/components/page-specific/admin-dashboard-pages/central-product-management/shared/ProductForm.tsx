@@ -111,7 +111,7 @@ export const ProductForm = ({
           reset();
 
           if (existingProduct) {
-            router.push("/admin/products/create");
+            router.push("/admin/products/all-products");
           }
         }
       }

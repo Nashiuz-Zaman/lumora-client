@@ -24,7 +24,7 @@ export const EditProductMain = ({ product }: { product: IProduct }) => {
 
           <LinkBtn
             className="!primaryClasses !px-3 !py-2"
-            href={`/admin/products/create?duplicate=${product._id}`}
+            href={`/admin/products/clone?productId=${product._id}`}
           >
             Create Clone
           </LinkBtn>

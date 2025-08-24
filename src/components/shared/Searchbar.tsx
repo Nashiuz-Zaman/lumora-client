@@ -18,7 +18,7 @@ const Searchbar = ({
       onSubmit={onSubmit}
       className={`w-full sm:max-w-[16rem] lg:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-[35rem] 4xl:max-w-[50rem] ${className}`}
     >
-      <div className="flex w-full rounded overflow-hidden border border-white/30 bg-white/10 backdrop-blur">
+      <div className="flex w-full rounded overflow-hidden border border-white/30 bg-white/10 backdrop-blur items-center">
         <input
           type="text"
           placeholder="Search for products"
