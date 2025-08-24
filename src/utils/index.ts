@@ -9,3 +9,4 @@ export * from "./generateImagePreviews";
 export * from "./getQueryParamsFromSearchParams";
 export * from "./buildUrlWithParams";
 export * from "./cleanObject";
+export * from "./stripIdsAndResetSku";

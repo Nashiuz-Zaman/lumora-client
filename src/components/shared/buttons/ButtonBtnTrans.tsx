@@ -45,12 +45,7 @@ export const ButtonBtnTrans = ({
     relative focus:outline-none flex items-center gap-2 w-max capitalize
     transition-all duration-default text-center
     active:scale-98 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed
-    hover:cursor-pointer
-    px-3 py-1.5         
-    sm:px-3.5 sm:py-2
-    md:px-4 md:py-2.5
-    lg:px-4.5 lg:py-3
-    xl:px-5 xl:py-3.5
+    hover:cursor-pointer h-max
     ${className}
   `;
 

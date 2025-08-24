@@ -19,6 +19,7 @@ import {
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { ButtonBtn } from "@/components/shared";
 import cloneDeep from "lodash/cloneDeep";
+import { useRouter } from "next/navigation";
 
 const defaultVariant = {
   sku: "",
@@ -32,35 +33,38 @@ export const ProductForm = ({
   mode = "create",
   product: existingProduct,
 }: IProductFormProps) => {
+  const router = useRouter();
   const formInstance = useForm<Partial<IProduct>>({
-    defaultValues: existingProduct || {
-      title: "",
-      subtitle: "",
-      defaultPrice: 0,
-      defaultImage: "",
-      brand: "",
-      variants: [{ ...defaultVariant }],
-      videos: [],
-      images: [],
-      status: ProductStatus.Draft,
-      warrantyAndSupport: "",
-      aboutProduct: "",
-      specifications: [],
-      // SEO fields
-      seoTitle: "",
-      seoDescription: "",
-      metaKeywords: "",
-      tags: "",
-      canonicalUrl: "",
-      topCategory: "",
-      subCategory: "",
-    },
+    defaultValues: existingProduct
+      ? cloneDeep(existingProduct)
+      : {
+          title: "",
+          subtitle: "",
+          defaultPrice: 0,
+          defaultImage: "",
+          brand: "",
+          variants: [{ ...defaultVariant }],
+          videos: [],
+          images: [],
+          status: ProductStatus.Draft,
+          warrantyAndSupport: "",
+          aboutProduct: "",
+          specifications: [],
+          // SEO fields
+          seoTitle: "",
+          seoDescription: "",
+          metaKeywords: "",
+          tags: "",
+          canonicalUrl: "",
+          topCategory: "",
+          subCategory: "",
+        },
   });
   const [getSignedUrl] = useLazyGetSignedUrlQuery();
   const [createProduct, { isLoading: isCreating }] = useCreateProductMutation();
   const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
   const { handleSubmit, reset } = formInstance;
-
+  console.log("clean", existingProduct);
   const onSubmit = catchAsyncGeneral(
     async (args) => {
       const data = args?.data as Partial<IProduct>;
@@ -105,6 +109,10 @@ export const ProductForm = ({
 
         if (mode === "create") {
           reset();
+
+          if (existingProduct) {
+            router.push("/admin/products/create");
+          }
         }
       }
     },

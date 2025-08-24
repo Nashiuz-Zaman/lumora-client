@@ -35,7 +35,8 @@ export const useAllProductsQueries = () => {
   const finalQueryParams: IAllProductQueryParams = useMemo(() => {
     return {
       page: Number(rawQueryParams.page) || 1,
-      sort: (rawQueryParams.sort as string) || ProductSortOptions[0].value,
+      sort:
+        (rawQueryParams.sort as string) || "-" + ProductSortOptions[1].value,
       search: (rawQueryParams.search as string) || "",
       status: cleanStatusParam(rawQueryParams?.status as string),
     };

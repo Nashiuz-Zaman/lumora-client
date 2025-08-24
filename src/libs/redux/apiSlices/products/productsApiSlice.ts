@@ -55,7 +55,7 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       query: (params = {}) => ({
         url: `/products/admin`,
         method: "GET",
-        params,
+        params: { ...params, limit: 10 },
       }),
     }),
 

@@ -4,7 +4,12 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { IProduct, IVariant } from "@/types";
 import { useState } from "react";
 import { VariantInformationBlock } from "./VariantInformationBlock";
-import { ButtonBtn, PlusIcon, TrashcanIcon } from "@/components/shared";
+import {
+  ButtonBtn,
+  ButtonBtnTrans,
+  PlusIcon,
+  TrashcanIcon,
+} from "@/components/shared";
 
 const defaultVariantKeys: string[] = [
   "sku",
@@ -94,7 +99,7 @@ export const Variants = ({
       </div>
 
       <div className="space-y-5">
-        {fields.map((variant, index) => (
+        {fields.map((variant, index, fieldsArr) => (
           <div key={variant.id}>
             <VariantInformationBlock
               variantIndex={index}
@@ -105,15 +110,33 @@ export const Variants = ({
             />
 
             {/* Show Remove Variant button for all except the first variant */}
-            {index > 0 && (
-              <ButtonBtn
+            {index > 0 && index < fieldsArr.length - 1 && (
+              <ButtonBtnTrans
                 type="button"
                 onClick={() => handleRemoveVariant(index)}
-                className="!dangerClasses !px-4 !py-1 mt-3"
+                className="text-red-600 !px-4 !py-1 mt-4"
               >
                 <TrashcanIcon className="text-sm" />
                 Remove Variant
-              </ButtonBtn>
+              </ButtonBtnTrans>
+            )}
+
+            {index > 0 && index === fieldsArr.length - 1 && (
+              <div className="flex items-center gap-3 mt-4">
+                <ButtonBtnTrans
+                  type="button"
+                  onClick={() => handleRemoveVariant(index)}
+                  className="text-red-600"
+                >
+                  <TrashcanIcon className="text-sm" />
+                  Remove Variant
+                </ButtonBtnTrans>
+
+                <ButtonBtnTrans onClick={handleAddVariant} type="button">
+                  <PlusIcon className="text-lg" />
+                  New Variant
+                </ButtonBtnTrans>
+              </div>
             )}
           </div>
         ))}

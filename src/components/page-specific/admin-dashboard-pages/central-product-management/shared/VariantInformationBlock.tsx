@@ -82,22 +82,23 @@ export const VariantInformationBlock = ({
                 type={isNumberField ? "number" : "text"}
                 readOnly={isDiscount}
                 {...register(
-                  `variants.${variantIndex}.${key}`
-                  //   {
-                  //   required:
-                  //     ["sku", "price", "stock"].includes(key) ||
-                  //     !defaultVariantKeys.includes(key)
-                  //       ? `${toLabel(key)} is required`
-                  //       : false,
-                  //   ...(isNumberField && {
-                  //     valueAsNumber: true,
-                  //     validate: (value) => {
-                  //       if (isNaN(value as number)) return "Must be a number";
-                  //       if ((value as number) < 0) return "Cannot be negative";
-                  //       return true;
-                  //     },
-                  //   }),
-                  // }
+                  `variants.${variantIndex}.${key}`,
+                  // make this commented section active again once product data upload has been finished
+                  {
+                    required:
+                      ["sku", "price", "stock"].includes(key) ||
+                      !defaultVariantKeys.includes(key)
+                        ? `${toLabel(key)} is required`
+                        : false,
+                    ...(isNumberField && {
+                      valueAsNumber: true,
+                      validate: (value) => {
+                        if (isNaN(value as number)) return "Must be a number";
+                        if ((value as number) < 0) return "Cannot be negative";
+                        return true;
+                      },
+                    }),
+                  }
                 )}
                 error={
                   errors.variants?.[variantIndex]?.[key]?.message as string
@@ -111,7 +112,7 @@ export const VariantInformationBlock = ({
                   className="mt-1 sm:mt-0"
                   onClick={() => onRemoveKey(key)}
                 >
-                  <TrashcanIcon className="text-red-500" />
+                  <TrashcanIcon className="text-red-500 sm:mb-4" />
                 </ButtonBtnTrans>
               )}
             </div>
@@ -120,7 +121,7 @@ export const VariantInformationBlock = ({
       </div>
 
       {/* New key input */}
-      <div className="flex flex-col sm:flex-row gap-2">
+      <div className="flex flex-col sm:flex-row gap-2 items-center">
         <Inputfield
           placeholder="New property name"
           inputClassName="rounded-md"
@@ -134,7 +135,7 @@ export const VariantInformationBlock = ({
           type="button"
           onClick={handleAddNewProperty}
           title="Add new property"
-          className="font-medium flex items-center justify-center"
+          className="font-medium"
         >
           <PlusIcon className="text-xl" />
           New Property
