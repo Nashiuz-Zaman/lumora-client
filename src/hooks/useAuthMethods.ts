@@ -48,7 +48,7 @@ export const useAuthMethods = () => {
           message: res?.message,
         });
 
-        router.push(`/confirmation-mail-sent?email=${res?.data?.email}`);
+        router.push(`/auth/confirmation-email-sent?email=${res?.data?.email}`);
       }
     },
     {
@@ -79,6 +79,8 @@ export const useAuthMethods = () => {
         showToast({
           message: res?.message,
         });
+
+        console.log(userData)
 
         router.push(
           `/${

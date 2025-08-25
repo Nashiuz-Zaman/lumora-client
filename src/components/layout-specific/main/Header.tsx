@@ -12,12 +12,10 @@ import {
 import type { MouseEventHandler } from "react";
 import UserAvatarMenu from "@/components/shared/UserAvatarMenu";
 import Searchbar from "@/components/shared/Searchbar";
+import Link from "next/link";
 // import { UserRoles } from "@/constants/user";
 
 const Header = () => {
-  // Temporary mock handlers
-  const openSocialLoginModal = () => console.log("Open Social Login Modal");
-  const openCreateAccountModal = () => console.log("Open Create Account Modal");
   const logout = () => console.log("Logout clicked");
   const openMobileNav: MouseEventHandler<HTMLButtonElement> = () =>
     console.log("Open Mobile Navigation");
@@ -52,8 +50,8 @@ const Header = () => {
             {/* header nav options */}
             {!false && (
               <div className="flex gap-4 font-semibold text-2xs lg:text-xs xl:text-base text-white">
-                <button onClick={openCreateAccountModal}>Sign Up</button>
-                <button onClick={openSocialLoginModal}>Log In</button>
+                <Link href="/auth/login">Login</Link>
+                <Link href="/auth/signup">Sign Up</Link>
               </div>
             )}
 

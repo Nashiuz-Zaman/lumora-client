@@ -44,7 +44,7 @@ export const ButtonBtn = ({
     cursor-pointer active:scale-95
     disabled:opacity-60 disabled:scale-100 disabled:cursor-not-allowed
     border border-neutral-200 primary-classes relative
-    px-8 py-4
+    px-8 py-3
     ${className}
   `;
 
