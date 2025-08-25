@@ -1,37 +1,51 @@
-import { baseApiSlice } from '../baseApiSlice';
+import { IApiResponse } from "@/types";
+import { baseApiSlice } from "../baseApiSlice";
+import { IGoogleUser } from "@/hooks";
+
+// Define types for request & response
+export interface ILocalLoginRequest {
+  email: string;
+  password: string;
+}
 
 export const authApiSlice = baseApiSlice.injectEndpoints({
-   endpoints: builder => ({
-      localLogin: builder.mutation({
-         query: data => {
-            return {
-               url: `/auth/login/local`,
-               method: 'POST',
-               data,
-            };
-         },
+  endpoints: (builder) => ({
+    localLogin: builder.mutation<IApiResponse, ILocalLoginRequest>({
+      query: (data) => ({
+        url: `/auth/login/local`,
+        method: "POST",
+        data,
       }),
+    }),
 
-      socialLogin: builder.mutation({
-         query: data => ({
-            url: '/auth/login/social',
-            method: 'POST',
-            data,
-         }),
+    socialLogin: builder.mutation<IApiResponse, IGoogleUser>({
+      query: (data) => ({
+        url: "/auth/login/social",
+        method: "POST",
+        data,
       }),
-      getCurrentUser: builder.query({
-         query: () => ({
-            url: '/auth/me',
-            method: 'GET',
-         }),
-      }),
-   }),
+    }),
 
-   overrideExisting: 'throw',
+    getCurrentUser: builder.query({
+      query: () => ({
+        url: "/auth/me",
+        method: "GET",
+      }),
+    }),
+
+    logout: builder.mutation<IApiResponse, void>({
+      query: () => ({
+        url: "/auth/logout",
+        method: "GET",
+      }),
+    }),
+  }),
+  overrideExisting: "throw",
 });
 
 export const {
-   useLocalLoginMutation,
-   useSocialLoginMutation,
-   useGetCurrentUserQuery,
+  useLocalLoginMutation,
+  useSocialLoginMutation,
+  useGetCurrentUserQuery,
+  useLogoutMutation,
 } = authApiSlice;

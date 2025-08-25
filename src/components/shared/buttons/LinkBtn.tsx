@@ -21,11 +21,7 @@ export const LinkBtn = ({
   const allClasses = `
     flex items-center gap-2 w-max capitalize transition-all duration-default
     rounded-md text-center font-medium border primary-classes focus:outline-none
-    px-4 py-2            /* base spacing */
-    sm:px-5 sm:py-2.5
-    md:px-6 md:py-3
-    lg:px-7 lg:py-3
-    xl:px-8 xl:py-4
+    px-8 py-4
     active:scale-98
     ${className}
   `;

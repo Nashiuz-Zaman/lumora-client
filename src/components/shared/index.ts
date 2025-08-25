@@ -30,3 +30,4 @@ export * from "./OptionsDropdown";
 export * from "./ParamsFilterForm";
 export * from "./SortOptionsMenu";
 export * from "./RadioBtnGroup";
+export * from "./ErrorMessage";

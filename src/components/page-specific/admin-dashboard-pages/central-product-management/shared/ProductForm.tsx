@@ -64,7 +64,7 @@ export const ProductForm = ({
   const [createProduct, { isLoading: isCreating }] = useCreateProductMutation();
   const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
   const { handleSubmit, reset } = formInstance;
-  console.log("clean", existingProduct);
+
   const onSubmit = catchAsyncGeneral(
     async (args) => {
       const data = args?.data as Partial<IProduct>;

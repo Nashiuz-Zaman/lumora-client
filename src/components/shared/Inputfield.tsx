@@ -41,7 +41,7 @@ export const Inputfield = ({
   passwordField = false,
   invertIconPosition = false,
   error,
-  
+
   ...props
 }: TInputfieldProps) => {
   const [passHidden, setPassHidden] = useState(true);
@@ -84,7 +84,7 @@ export const Inputfield = ({
       )}
 
       <div
-        className={`bg-white border border-neutral-200 p-2 items-center w-full lg:px-4 lg:py-3 ${
+        className={`bg-white border border-neutral-200  items-center w-full px-4 py-3 ${
           icon
             ? `grid ${
                 invertIconPosition

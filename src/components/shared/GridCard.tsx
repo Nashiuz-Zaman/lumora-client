@@ -13,7 +13,7 @@ export type GridCardProps = {
 };
 
 export const GridCard = ({ images, className = "" }: GridCardProps) => {
-  const count = images.length;
+  const count = images?.length;
 
   return (
     <div className={`w-full ${className}`}>
@@ -54,7 +54,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
               />
             </div>
           </div>
-          {images.slice(1).map((img, idx) => (
+          {images?.slice(1).map((img, idx) => (
             <div key={idx} className="relative w-full aspect-square">
               <Image
                 src={img.src}
@@ -68,7 +68,7 @@ export const GridCard = ({ images, className = "" }: GridCardProps) => {
       ) : (
         // 4+ Images (2x2 grid)
         <div className="grid grid-cols-2 grid-rows-2 gap-5">
-          {images.slice(0, 4).map((img, idx) => (
+          {images?.slice(0, 4).map((img, idx) => (
             <div key={idx} className="relative w-full aspect-square">
               <Image
                 src={img.src}

@@ -2,8 +2,8 @@
 export const UserRoles = Object.freeze({
   customer: "customer",
   admin: "admin",
-  superAdmin: "super-admin",
-} as const);
+  superAdmin: "superadmin",
+});
 
 // Type for user role values
 export type TUserRoleValue = (typeof UserRoles)[keyof typeof UserRoles];

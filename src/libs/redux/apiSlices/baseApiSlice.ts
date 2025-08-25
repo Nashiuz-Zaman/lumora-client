@@ -8,5 +8,10 @@ export const baseApiSlice = createApi({
   }),
 
   endpoints: () => ({}),
-  tagTypes: ["AdminProductsAll","CategoryTree"],
+  tagTypes: [
+    "AdminProductsAll",
+    "CategoryTree",
+    "CustomerSettingsData",
+    "CustomerProfileData",
+  ],
 });
