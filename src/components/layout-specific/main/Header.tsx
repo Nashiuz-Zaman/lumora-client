@@ -14,6 +14,7 @@ import Link from "next/link";
 
 // types
 import type { MouseEventHandler } from "react";
+import { MobileMegaMenu } from "./MobileMegaMenu";
 
 type THeaderProps = IMegaMenuProps;
 
@@ -74,6 +75,7 @@ const Header = ({ categories }: THeaderProps) => {
         </InnerContainer>
       </div>
 
+      <MobileMegaMenu categories={categories} />
       <MegaMenu categories={categories} />
     </header>
   );

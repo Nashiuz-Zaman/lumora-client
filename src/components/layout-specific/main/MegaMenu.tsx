@@ -86,7 +86,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
 
                         <LinkBtn
                           className="!primaryClasses !w-full !py-1"
-                          href={`/category/${top.slug}`}
+                          href={`/products/search?topCategory${top.slug}`}
                         >
                           View all products
                         </LinkBtn>

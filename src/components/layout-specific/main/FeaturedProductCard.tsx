@@ -9,8 +9,8 @@ export const FeaturedProductCard = ({
 }: {
   product: Partial<IProduct>;
 }) => (
-  <div className="bg-white p-4 flex flex-col gap-2 text-xs 3xl:text-sm 4xl:text-base">
-    <div className="relative w-full h-32 3xl:h-40 rounded-lg overflow-hidden mb-2 3xl:mb-3">
+  <div className="bg-white p-4 flex flex-col gap-2 md:text-xs 3xl:text-sm 4xl:text-base">
+    <div className="aspect-square mx-auto h-32 3xl:h-40 rounded-lg overflow-hidden mb-2 3xl:mb-3">
       <Image
         src={product.defaultImage!}
         alt={product.title!}
