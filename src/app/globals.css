@@ -24,6 +24,8 @@ html {
          md:!text-[87.5%]  /* ~14px */
          lg:!text-[93.75%] /* ~15px */
          xl:!text-[100%]; /* 16px */
+
+  scroll-behavior: smooth;
 }
 
 @utility primaryClasses {

@@ -19,7 +19,7 @@ export const LinkBtn = ({
   isExternal?: boolean;
 }) => {
   const allClasses = `
-    flex items-center gap-2 w-max capitalize transition-all duration-default
+    flex items-center justify-center gap-2 w-max capitalize transition-all
     rounded-md text-center font-medium border primary-classes focus:outline-none
     px-8 py-4
     active:scale-98

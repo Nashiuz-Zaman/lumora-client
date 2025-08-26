@@ -24,11 +24,12 @@ export const CategorySelector = () => {
     getValues("topCategory") || ""
   );
 
-  const topCategories = categories.map((c) => c.topCategory);
+  const topCategories = categories.map((category) => category.topCategory);
 
   const subCategories =
-    categories.find((c) => c.topCategory._id === selectedTopCategory)
-      ?.subCategories || [];
+    categories.find(
+      (category) => category.topCategory._id === selectedTopCategory
+    )?.subCategories || [];
 
   // Reset subCategory whenever topCategory changes
   useEffect(() => {
@@ -52,7 +53,7 @@ export const CategorySelector = () => {
             placeholder="Select top category"
             options={topCategories.map((tc) => ({
               text: tc.title,
-              value: tc._id,
+              value: tc._id!,
             }))}
             value={watchedTopCategory || selectedTopCategory} // pre-select
             onChange={(e: ChangeEvent<HTMLSelectElement>) => {
@@ -77,7 +78,7 @@ export const CategorySelector = () => {
             placeholder="Select subcategory"
             options={subCategories.map((sc) => ({
               text: sc.title,
-              value: sc._id,
+              value: sc._id!,
             }))}
             value={getValues("subCategory")} // pre-select
             error={errors.subCategory?.message as string}

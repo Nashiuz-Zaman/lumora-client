@@ -29,3 +29,4 @@ export * from "./ThumbIconOutlined";
 export * from "./TrashcanIcon";
 export * from "./TruckIcon";
 export * from "./WarningIcon";
+export * from "./RightCaretIcon";

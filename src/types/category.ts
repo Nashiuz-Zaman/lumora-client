@@ -1,16 +1,13 @@
-export interface ISubCategory {
-  _id: string;
+export interface ICategory {
+  _id?: string;
   title: string;
   slug: string;
-}
-
-export interface ITopCategory {
-  _id: string;
-  title: string;
-  slug: string;
+  parentCategory?: string | null;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 export interface ICategoryTreeItem {
-  topCategory: ITopCategory;
-  subCategories: ISubCategory[];
+  topCategory: ICategory;
+  subCategories: ICategory[];
 }

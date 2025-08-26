@@ -7,15 +7,17 @@ import {
   ExpandableSearchPortal,
   BrandLogo,
 } from "../../shared";
+import UserAvatarMenu from "@/components/shared/UserAvatarMenu";
+import Searchbar from "@/components/shared/Searchbar";
+import { IMegaMenuProps, MegaMenu } from "./MegaMenu";
+import Link from "next/link";
 
 // types
 import type { MouseEventHandler } from "react";
-import UserAvatarMenu from "@/components/shared/UserAvatarMenu";
-import Searchbar from "@/components/shared/Searchbar";
-import Link from "next/link";
-// import { UserRoles } from "@/constants/user";
 
-const Header = () => {
+type THeaderProps = IMegaMenuProps;
+
+const Header = ({ categories }: THeaderProps) => {
   const logout = () => console.log("Logout clicked");
   const openMobileNav: MouseEventHandler<HTMLButtonElement> = () =>
     console.log("Open Mobile Navigation");
@@ -71,6 +73,8 @@ const Header = () => {
           <div id="header-search-mobile-screen" className="w-full h-max"></div>
         </InnerContainer>
       </div>
+
+      <MegaMenu categories={categories} />
     </header>
   );
 };
