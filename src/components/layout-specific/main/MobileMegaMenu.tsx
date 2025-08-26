@@ -80,7 +80,7 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                         <Link
                           key={sub._id}
                           href={`/products/search?topCategory=${cat.topCategory.slug}&subCategory=${sub.slug}`}
-                          className="text-neutral-600 hover:text-primary hover:font-medium transition-colors"
+                          className="text-neutral-500 hover:text-primary hover:font-medium transition-colors"
                         >
                           {sub.title}
                         </Link>
