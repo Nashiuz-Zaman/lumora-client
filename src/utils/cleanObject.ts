@@ -1,6 +1,7 @@
 import pickBy from "lodash/pickBy";
 
-export const cleanObject = <T extends Record<string, unknown>>(
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const cleanObject = <T extends Record<string, any>>(
   obj: T
 ): Partial<T> => {
   return pickBy(

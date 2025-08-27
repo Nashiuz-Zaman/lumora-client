@@ -5,7 +5,7 @@ import { useEffect, useState, ReactNode } from "react";
 type AccordionVerticalProps = {
   children: ReactNode;
   expanded?: boolean;
-  modifyClasses?: string;
+  className?: string;
   animate?: boolean;
   duration?: string;
   previewHeight?: number | string | null;
@@ -14,7 +14,7 @@ type AccordionVerticalProps = {
 export const AccordionVertical = ({
   children,
   expanded = false,
-  modifyClasses = "",
+  className = "",
   animate = false,
   duration = "150ms",
   previewHeight = null,
@@ -38,12 +38,12 @@ export const AccordionVertical = ({
   }, [expanded, duration]);
 
   return (
-    <div className={modifyClasses}>
+    <div className={className}>
       <div
         style={{
           ...(previewHeight
             ? expanded
-              ? { maxHeight: "200rem" }
+              ? { maxHeight: "5000px" }
               : { maxHeight: previewHeight, overflow: "hidden" }
             : expanded
             ? { gridTemplateRows: "1fr" }

@@ -94,7 +94,7 @@ export const ExpandableSearchPortal = ({
             expanded={showVertical}
             animate
             duration={accordionDuration}
-            modifyClasses={verticalAccordionClasses}
+            className={verticalAccordionClasses}
           >
             <AccordionHorizontal
               expanded={showHorizontal}

@@ -1,11 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
-import { ICategoryTreeItem, IProduct } from "@/types";
+import { useRouter } from "next/navigation";
+import { ICategory, ICategoryTreeItem, IProduct } from "@/types";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import {
-  LinkBtn,
   AccordionVertical,
   InnerContainer,
   CloseIcon,
@@ -22,9 +21,49 @@ export interface IMobileMegaMenuProps {
 export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const router = useRouter();
 
   const toggleCategory = (index: number) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
+  };
+
+  // same logic as in MegaMenu
+  const handleCategoryClick = ({
+    topSlug,
+    subSlug,
+    type,
+  }: {
+    topSlug: string;
+    subSlug: string;
+    type: "top" | "sub";
+  }) => {
+    let searchFilter: { subCategories: Record<string, boolean> } = {
+      subCategories: {},
+    };
+
+    if (type === "sub") {
+      searchFilter = { subCategories: { [subSlug]: true } };
+    }
+
+    if (type === "top") {
+      const topCategoryData = categories.find(
+        (cat) => cat.topCategory.slug === topSlug
+      );
+
+      if (topCategoryData) {
+        const subs: Record<string, boolean> = {};
+        topCategoryData.subCategories.forEach((sub: ICategory) => {
+          subs[sub.slug] = true;
+        });
+
+        searchFilter = { subCategories: subs };
+      }
+    }
+
+    localStorage.setItem("searchFilters", JSON.stringify(searchFilter));
+
+    setMenuOpen(false); // close menu after selection
+    router.push("/products/search");
   };
 
   return (
@@ -51,7 +90,6 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
           {categories.map((cat, index) => (
             <div key={cat.topCategory._id}>
               {/* Top category button */}
-
               <div
                 role="button"
                 className="w-full text-left py-3 font-medium text-base"
@@ -59,7 +97,6 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
               >
                 <InnerContainer className="flex items-center justify-between">
                   {cat.topCategory.title}
-
                   <span className="text-primary">
                     {expandedIndex === index ? "−" : "+"}
                   </span>
@@ -77,13 +114,19 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                     {/* Subcategories */}
                     <div className="flex flex-col gap-1">
                       {cat.subCategories.map((sub) => (
-                        <Link
+                        <button
                           key={sub._id}
-                          href={`/products/search?topCategory=${cat.topCategory.slug}&subCategory=${sub.slug}`}
-                          className="text-neutral-500 hover:text-primary hover:font-medium transition-colors"
+                          onClick={() =>
+                            handleCategoryClick({
+                              type: "sub",
+                              subSlug: sub.slug,
+                              topSlug: "",
+                            })
+                          }
+                          className="text-left text-neutral-500 hover:text-primary hover:font-medium transition-colors"
                         >
                           {sub.title}
-                        </Link>
+                        </button>
                       ))}
                     </div>
 
@@ -99,12 +142,18 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                       </div>
                     )}
 
-                    <LinkBtn
-                      className="!primaryClasses !w-full !py-1 mt-2"
-                      href={`/products/search?topCategory${cat.topCategory.slug}`}
+                    <button
+                      onClick={() =>
+                        handleCategoryClick({
+                          type: "top",
+                          topSlug: cat.topCategory.slug,
+                          subSlug: "",
+                        })
+                      }
+                      className="!primaryClasses !w-full !py-1 mt-2 rounded bg-primary text-white font-medium"
                     >
                       View all products
-                    </LinkBtn>
+                    </button>
                   </div>
                 </InnerContainer>
               </AccordionVertical>

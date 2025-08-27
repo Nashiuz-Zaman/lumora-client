@@ -1,12 +1,12 @@
 "use client";
 
-import { ICategoryTreeItem, IProduct } from "@/types";
-import Link from "next/link";
+import { ICategory, ICategoryTreeItem, IProduct } from "@/types";
+
 import { cardsData } from "@/static-data/productCategoryCards";
 import { GridCard, GridCardImage } from "@/components/shared/GridCard";
-
-import { InnerContainer, LinkBtn } from "@/components/shared";
+import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
 import { FeaturedProductCard } from "./FeaturedProductCard";
+import { useRouter } from "next/navigation";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts: Partial<IProduct>[];
@@ -17,6 +17,46 @@ export interface IMegaMenuProps {
 }
 
 export const MegaMenu = ({ categories }: IMegaMenuProps) => {
+  const router = useRouter();
+
+  const handleCategoryClick = ({
+    topSlug,
+    subSlug,
+    type,
+  }: {
+    topSlug: string;
+    subSlug: string;
+    type: "top" | "sub";
+  }) => {
+    let searchFilter: { subCategories: Record<string, boolean> } = {
+      subCategories: {},
+    };
+
+    if (type === "sub") {
+      searchFilter = { subCategories: { [subSlug]: true } };
+    }
+
+    if (type === "top") {
+      const topCategoryData = categories.find(
+        (cat) => cat.topCategory.slug === topSlug
+      );
+
+      if (topCategoryData) {
+        // build subCategories object with all sub slugs
+        const subs: Record<string, boolean> = {};
+        topCategoryData.subCategories.forEach((sub: ICategory) => {
+          subs[sub.slug] = true;
+        });
+
+        searchFilter = { subCategories: subs };
+      }
+    }
+
+    localStorage.setItem("searchFilters", JSON.stringify(searchFilter));
+
+    router.push("/products/search");
+  };
+
   return (
     <nav className="hidden xl:block w-full bg-white border-b border-neutral-100">
       <InnerContainer className="!relative">
@@ -34,42 +74,52 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
 
               return (
                 <div key={top._id} className="group">
-                  {/* Top category text */}
                   <p className="cursor-pointer transition-colors duration-200 hover:text-primary font-medium text-xs 2xl:text-sm 3xl:text-base py-3 2xl:py-4">
                     {top.title}
                   </p>
 
-                  {/* MegaMenu dropdown */}
-                  <div className="absolute mt-[1px] flex left-0 top-full opacity-0 collapse  transition-all duration-300 group-hover:opacity-100 group-hover:visible w-full justify-center z-50 text-xs 3xl:text-base">
-                    <div className="w-full grid grid-cols-[1fr_1fr_2fr] gap-6 p-6 rounded-b-lg shadow-lg items-start bg-white">
+                  <div className="absolute mt-[1px] flex left-0 top-full opacity-0 collapse transition-all duration-300 group-hover:opacity-100 group-hover:visible w-full justify-center z-[5000] text-xs 3xl:text-base">
+                    <div className="w-full grid grid-cols-[1fr_1fr_2fr] gap-6 p-6 rounded-b-2xl shadow-lg items-start bg-white border border-neutral-100 border-t-0">
                       {/* Left column: Grid card */}
                       <div className="bg-neutral-100 rounded-lg p-6 flex items-center justify-center">
                         <div className="w-[90%]">
                           <GridCard images={images} className="!w-full" />
 
-                          <Link
-                            href={`/products/search?topCategory=${top.slug}`}
+                          <ButtonBtnTrans
+                            onClick={() =>
+                              handleCategoryClick({
+                                type: "top",
+                                topSlug: top.slug,
+                                subSlug: "",
+                              })
+                            }
                             className="font-medium underline mt-4 block text-center"
                           >
                             View all {top.title}
-                          </Link>
+                          </ButtonBtnTrans>
                         </div>
                       </div>
 
-                      {/* Middle column: Subcategories with heading */}
+                      {/* Middle column: Subcategories */}
                       <div className="flex flex-col gap-2 px-2">
                         <h4 className="font-semibold text-xl mb-2">
                           Browse Categories
                         </h4>
 
                         {subCategories.map((sub) => (
-                          <Link
+                          <ButtonBtnTrans
                             key={sub._id}
-                            href={`/products/search?topCategory=${top?.slug}&subCategory=${sub.slug}`}
-                            className="text-neutral-500 hover:text-primary hover:font-medium transition-all transform hover:translate-x-2"
+                            onClick={() =>
+                              handleCategoryClick({
+                                type: "sub",
+                                subSlug: sub.slug,
+                                topSlug: "",
+                              })
+                            }
+                            className="text-left text-neutral-500 hover:text-primary hover:font-medium transition-all transform hover:translate-x-2"
                           >
                             {sub.title}
-                          </Link>
+                          </ButtonBtnTrans>
                         ))}
                       </div>
 
@@ -84,12 +134,18 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                           ))}
                         </div>
 
-                        <LinkBtn
+                        <ButtonBtn
+                          onClick={() =>
+                            handleCategoryClick({
+                              type: "top",
+                              topSlug: top.slug,
+                              subSlug: "",
+                            })
+                          }
                           className="!primaryClasses !w-full !py-1"
-                          href={`/products/search?topCategory${top.slug}`}
                         >
                           View all products
-                        </LinkBtn>
+                        </ButtonBtn>
                       </div>
                     </div>
                   </div>

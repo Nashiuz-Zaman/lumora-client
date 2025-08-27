@@ -10,3 +10,4 @@ export * from "./useCurrentUrlPath";
 export * from "./useFirebaseMethods";
 export * from "./useAuthMethods";
 export * from "./useAuthState";
+export * from "./useSearchPageProductsQueries";

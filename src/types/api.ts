@@ -5,3 +5,10 @@ export interface IApiResponse<T = any> {
   message: string;
   data: T;
 }
+
+export interface IQueryMeta {
+  total: number;
+  page: number;
+  limit: number;
+  totalPages: number;
+}

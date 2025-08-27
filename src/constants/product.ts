@@ -6,12 +6,14 @@ export const ProductStatus = Object.freeze({
 } as const);
 
 // Type derived from the frozen object
-export type TProductStatusValue = (typeof ProductStatus)[keyof typeof ProductStatus];
+export type TProductStatusValue =
+  (typeof ProductStatus)[keyof typeof ProductStatus];
 
 // Product sort options (frozen for immutability)
 export const ProductSortOptions = Object.freeze([
   { label: "Product Name", value: "title" },
-  { label: "Created", value: "createdAt" },
+  { label: "Price", value: "defaultPrice" },
+  // { label: "Created", value: "createdAt" },
   { label: "Updated", value: "updatedAt" },
 ] as const);
 

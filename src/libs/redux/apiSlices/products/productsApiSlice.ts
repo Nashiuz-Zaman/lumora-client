@@ -1,5 +1,5 @@
 import { baseApiSlice } from "../baseApiSlice";
-import { IApiResponse, IProduct } from "@/types";
+import { IApiResponse, IProduct, IQueryMeta } from "@/types";
 
 // Define fields
 export const textFields: string[] = [
@@ -57,6 +57,23 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
         method: "GET",
         params: { ...params, limit: 10 },
       }),
+    }),
+
+    getProductsForSearchPage: builder.query<
+      IApiResponse<{
+        products: Partial<IProduct>[];
+        queryMeta: IQueryMeta;
+        brands: string[];
+      }>,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      any
+    >({
+      query: (data) => ({
+        url: "/products/search",
+        method: "POST",
+        data,
+      }),
+      keepUnusedDataFor: 60,
     }),
 
     getOneProductAdmin: builder.query<IApiResponse, string>({
@@ -132,4 +149,6 @@ export const {
   useBulkDeleteProductsMutation,
   useCloneOrMoveProductsMutation,
   useAddFrequentlyBoughtTogetherMutation,
+  useGetProductsForSearchPageQuery,
+  useLazyGetProductsForSearchPageQuery,
 } = productsApiSlice;

@@ -16,6 +16,7 @@ export interface IProduct {
   title: string;
   subtitle: string;
   defaultPrice: number;
+  defaultOldPrice: number;
   defaultImage: string;
   totalStock: number;
   brand: string;
