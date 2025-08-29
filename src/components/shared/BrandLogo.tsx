@@ -21,7 +21,7 @@ export const BrandLogo = ({
         alt={alt}
         width={128}
         height={70}
-        className="w-12 sm:w-16 md:w-20 lg:w-24 xl:w-32
+        className="w-24 xl:w-32
           h-auto block"
       />
     </Link>

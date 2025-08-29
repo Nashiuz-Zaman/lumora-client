@@ -112,7 +112,7 @@ export const Reviews = ({
         )}
 
         {queryMeta && queryMeta.totalPages > 0 && (
-          <div className="mt-auto pt-10">
+          <div className="mt-auto pt-7">
             <Pagination
               totalPages={queryMeta.totalPages}
               currentPage={queryMeta.page}
