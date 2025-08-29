@@ -4,7 +4,7 @@ import { IAdmin } from "./admin";
 import { IRole } from "./role";
 
 export interface IUser {
-  id: string;
+  _id?: string;
   displayName?: string;
   name?: string;
   email: string;

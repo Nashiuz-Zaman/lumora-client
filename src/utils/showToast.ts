@@ -1,7 +1,7 @@
 // toastify.ts
 import { toast, ToastPosition, TypeOptions } from "react-toastify";
 
-interface ShowToastProps {
+interface IShowToastProps {
   message?: string;
   type?: TypeOptions; // 'success' | 'info' | 'warning' | 'error' | 'default'
   position?: ToastPosition; // 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left'
@@ -15,7 +15,7 @@ export const showToast = ({
   position = "top-center",
   autoClose = 2500,
   modifyClasses = "",
-}: ShowToastProps) => {
+}: IShowToastProps) => {
   toast(message ?? "No message provided", {
     position,
     autoClose,

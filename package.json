@@ -19,6 +19,7 @@
     "axios": "^1.11.0",
     "firebase": "^12.1.0",
     "gsap": "^3.13.0",
+    "isomorphic-dompurify": "^2.26.0",
     "lodash": "^4.17.21",
     "next": "15.4.6",
     "react": "19.1.0",
@@ -26,7 +27,8 @@
     "react-fast-marquee": "^1.6.5",
     "react-hook-form": "^7.62.0",
     "react-redux": "^9.2.0",
-    "react-toastify": "^11.0.5"
+    "react-toastify": "^11.0.5",
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

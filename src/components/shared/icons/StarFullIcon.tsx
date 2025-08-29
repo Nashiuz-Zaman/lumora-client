@@ -1,4 +1,4 @@
-export const StarFullIcon = ({ className = "" }: { className: string }) => {
+export const StarFullIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

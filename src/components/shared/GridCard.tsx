@@ -2,17 +2,17 @@
 
 import Image from "next/image";
 
-export type GridCardImage = {
+export type TGridCardImage = {
   src: string;
   alt: string;
 };
 
-export type GridCardProps = {
-  images: GridCardImage[];
+export type TGridCardProps = {
+  images: TGridCardImage[];
   className?: string;
 };
 
-export const GridCard = ({ images, className = "" }: GridCardProps) => {
+export const GridCard = ({ images, className = "" }: TGridCardProps) => {
   const count = images?.length;
 
   return (

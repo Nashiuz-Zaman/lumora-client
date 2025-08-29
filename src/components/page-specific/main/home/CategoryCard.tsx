@@ -1,11 +1,11 @@
 "use client";
 
-import { GridCard, GridCardImage, LinkBtnTrans } from "@/components/shared";
+import { GridCard, TGridCardImage, LinkBtnTrans } from "@/components/shared";
 
-export type CategoryCardProps = {
+export type TCategoryCardProps = {
   heading: string;
   linkText: string;
-  images: GridCardImage[];
+  images: TGridCardImage[];
   className?: string;
 };
 
@@ -14,7 +14,7 @@ export const CategoryCard = ({
   linkText,
   images,
   className = "",
-}: CategoryCardProps) => {
+}: TCategoryCardProps) => {
   return (
     <div className={`bg-white p-5 pb-4 ${className}`}>
       {/* Top Heading */}

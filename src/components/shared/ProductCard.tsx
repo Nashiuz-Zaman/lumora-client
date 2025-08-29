@@ -6,15 +6,27 @@ import { ButtonBtn } from "./buttons";
 import { formatPrice } from "@/utils";
 import { IProduct } from "@/types";
 import { CartIcon } from "./icons";
+import { RatingStars } from "./RatingStars";
 
 interface IProductCardProps {
-  data: Partial<IProduct>;
+  data: Partial<IProduct> & {
+    averageRating?: number;
+    totalReviews?: number;
+  };
   className?: string;
 }
 
 export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
-  const { defaultImage, defaultPrice, defaultOldPrice, title, brand, slug } =
-    data;
+  const {
+    defaultImage,
+    defaultPrice,
+    defaultOldPrice,
+    title,
+    brand,
+    slug,
+    averageRating,
+    totalReviews,
+  } = data;
   const router = useRouter();
 
   const handleClick = () => {
@@ -40,7 +52,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
       </div>
 
       {/* Product Image */}
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-3">
         {defaultImage && (
           <Image
             src={defaultImage}
@@ -55,13 +67,19 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
       {/* Title */}
       <p
         title={title}
-        className="text-sm sm:text-base font-medium text-center text-neutral-700 line-clamp-2 mb-3"
+        className="text-sm sm:text-base font-medium text-center text-neutral-700 line-clamp-2"
       >
         {title}
       </p>
 
+      {/* ⭐ Rating row */}
+      <div className="flex items-center justify-center gap-1 text-gray-500 my-2">
+        <RatingStars rating={averageRating || 0} className="text-yellow-400" />
+        <span>({totalReviews})</span>
+      </div>
+
       {/* Pricing */}
-      <div className="flex justify-center items-center gap-3 mb-3">
+      <div className="flex justify-center items-center gap-3 mb-2">
         <span className="text-primary font-bold text-base sm:text-lg">
           {formatPrice(defaultPrice!)}
         </span>

@@ -16,7 +16,7 @@ export interface IAuthForm {
   confirmPassword?: string;
 }
 
-interface AuthFormProps {
+interface IAuthFormProps {
   mode: "signup" | "login";
   onSubmit: (
     data: IAuthForm,
@@ -31,7 +31,7 @@ export const AuthForm = ({
   onSubmit,
   onGoogleLogin,
   isLoading,
-}: AuthFormProps) => {
+}: IAuthFormProps) => {
   const formInstance = useForm<IAuthForm>();
   const {
     handleSubmit,

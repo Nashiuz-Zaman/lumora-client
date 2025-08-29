@@ -3,12 +3,12 @@
 import { ReactNode } from "react";
 import { useDraggable } from "@dnd-kit/core";
 
-interface DraggableProps {
+interface IDraggableProps {
   id: string | number;
   children: ReactNode;
 }
 
-export const Draggable = ({ children, id }: DraggableProps) => {
+export const Draggable = ({ children, id }: IDraggableProps) => {
   const { attributes, transform, setNodeRef, listeners } = useDraggable({
     id,
   });

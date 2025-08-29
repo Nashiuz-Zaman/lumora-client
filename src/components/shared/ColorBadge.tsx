@@ -2,12 +2,12 @@
 
 import { ReactNode } from "react";
 
-interface ColorBadgeProps {
+interface IColorBadgeProps {
   children: ReactNode;
   className?: string;
 }
 
-const ColorBadge = ({ children, className = "" }: ColorBadgeProps) => {
+const ColorBadge = ({ children, className = "" }: IColorBadgeProps) => {
   return (
     <span
       className={`inline-block px-3 py-1 rounded-md text-white ${className}`}

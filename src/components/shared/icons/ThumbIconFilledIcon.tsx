@@ -1,4 +1,8 @@
-export const ThumbIconFilled = ({ className = "" }: { className: string }) => {
+export const ThumbIconFilledIcon = ({
+  className = "",
+}: {
+  className?: string;
+}) => {
   return (
     <div className={className}>
       <svg

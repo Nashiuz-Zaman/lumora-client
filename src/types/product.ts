@@ -1,4 +1,6 @@
 import { TProductStatusValue } from "@/constants/product";
+import { IReview } from "./review";
+import { IQueryMeta } from "./api";
 
 export interface IVariant {
   _id?: string;
@@ -9,6 +11,13 @@ export interface IVariant {
   discountPercentage?: number;
   [key: string]: unknown;
 }
+
+export interface IVideo {
+  _id?: string;
+  url: string;
+}
+
+export type TImage = string | File;
 
 export interface IProduct {
   _id?: string;
@@ -21,8 +30,8 @@ export interface IProduct {
   totalStock: number;
   brand: string;
   variants: IVariant[];
-  videos: { url: string }[];
-  images?: (string | File)[];
+  videos: IVideo[];
+  images?: TImage[];
   warrantyAndSupport: string;
   aboutProduct: string;
   status: TProductStatusValue;
@@ -36,6 +45,23 @@ export interface IProduct {
   subCategory?: string;
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export type TProductWithMinimalReviewStats = IProduct & {
+  averageRating?: number;
+  totalReviews?: number;
+};
+
+export interface IProductWithReviewsAndStats {
+  product: IProduct;
+  reviews: IReview[];
+  reviewStats?: {
+    averageRating: number;
+    totalReviews: number;
+    ratingCounts: Record<number, number>;
+    ratingPercentages: Record<number, number>;
+  };
+  reviewMeta: IQueryMeta;
 }
 
 export interface IProductFormProps {

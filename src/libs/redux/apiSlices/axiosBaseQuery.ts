@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
 
-interface AxiosBaseQueryArgs {
+interface IAxiosBaseQueryArgs {
   url: string;
   method: AxiosRequestConfig["method"];
   data?: AxiosRequestConfig["data"];
@@ -13,7 +13,7 @@ export const axiosBaseQuery =
     baseUrl,
   }: {
     baseUrl: string;
-  }): BaseQueryFn<AxiosBaseQueryArgs, unknown, unknown> =>
+  }): BaseQueryFn<IAxiosBaseQueryArgs, unknown, unknown> =>
   async ({ url, method, data, params }) => {
     try {
       const result = await axios({

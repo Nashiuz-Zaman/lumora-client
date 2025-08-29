@@ -1,17 +1,13 @@
-export const fetchProductForAdmin = async (productId: string) => {
-  try {
-    const res = await fetch(
-      `http://localhost:5000/api/v1/products/${productId}/admin`
-    );
+import { IProduct } from "@/types";
+import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
-    if (!res.ok) {
-      const errorText = await res.text().catch(() => "");
-      return { data: null, error: errorText || "Failed to fetch product" };
-    }
+export const fetchProductForAdmin = catchAsyncServer(
+  async (productId: string): Promise<IProduct> => {
+    const apiUrl = getBaseApiUrl();
+    const res = await fetch(`${apiUrl}/products/${productId}/admin`);
+
+    if (!res.ok) throw new Error("Failed to fetch product data");
 
     return await res.json();
-  } catch (err) {
-    console.log(err instanceof Error ? err.message : "Unknown error");
-    return;
   }
-};
+);

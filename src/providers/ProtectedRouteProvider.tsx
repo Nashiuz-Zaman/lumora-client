@@ -8,7 +8,7 @@ import { useAuthState } from "@/hooks";
 import { UserRoles } from "@/constants";
 import { DataLoadingSpinner } from "@/components/shared";
 
-interface ProtectedRouteProviderProps {
+interface IProtectedRouteProviderProps {
   children: ReactNode;
   allowedRoles?: string[];
 }
@@ -16,7 +16,7 @@ interface ProtectedRouteProviderProps {
 const ProtectedRouteProvider = ({
   children,
   allowedRoles = [],
-}: ProtectedRouteProviderProps) => {
+}: IProtectedRouteProviderProps) => {
   const { user, isLoading } = useAuthState();
   const router = useRouter();
   const { fullUrl } = useCurrentUrlPath();

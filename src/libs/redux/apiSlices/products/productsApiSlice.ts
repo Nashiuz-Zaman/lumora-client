@@ -1,5 +1,10 @@
 import { baseApiSlice } from "../baseApiSlice";
-import { IApiResponse, IProduct, IQueryMeta } from "@/types";
+import {
+  IApiResponse,
+  IProduct,
+  IQueryMeta,
+  TProductWithMinimalReviewStats,
+} from "@/types";
 
 // Define fields
 export const textFields: string[] = [
@@ -61,7 +66,7 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
 
     getProductsForSearchPage: builder.query<
       IApiResponse<{
-        products: Partial<IProduct>[];
+        products: TProductWithMinimalReviewStats[];
         queryMeta: IQueryMeta;
         brands: string[];
       }>,

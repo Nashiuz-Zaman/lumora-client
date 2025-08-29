@@ -3,7 +3,7 @@ import { showToast } from "./showToast";
 type HandleErrorOption = "toast" | "function" | "throw";
 
 // Matches what axiosBaseQuery throws
-interface AxiosQueryError {
+interface IAxiosQueryError {
   status?: number;
   data?: unknown;
 }
@@ -15,7 +15,7 @@ interface ICatchAsyncOptions<T> {
   autoPrevent?: boolean;
 }
 
-function isAxiosQueryError(error: unknown): error is AxiosQueryError {
+function isAxiosQueryError(error: unknown): error is IAxiosQueryError {
   return (
     typeof error === "object" &&
     error !== null &&

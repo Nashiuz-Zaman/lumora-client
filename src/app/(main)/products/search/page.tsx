@@ -1,10 +1,10 @@
-import SearchProductsMain from "@/components/page-specific/main/search-products/SearchProductsMain";
+import SearchProductsMain from "@/components/page-specific/main/products/search-products/SearchProductsMain";
 
 const ProductsSearchPage = () => {
   return (
-    <div>
+    <>
       <SearchProductsMain />
-    </div>
+    </>
   );
 };
 

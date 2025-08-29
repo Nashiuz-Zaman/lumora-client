@@ -1,7 +1,7 @@
 import { TMegaMenuItem } from "@/components/layout-specific/main/MegaMenu";
-import { getBaseApiUrl } from "@/utils";
+import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
-export const fetchMegaMenuData = async (): Promise<TMegaMenuItem[]> => {
+export const fetchMegaMenuData = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();
   const res = await fetch(`${apiUrl}/products/mega-menu`, {
     next: {
@@ -18,4 +18,4 @@ export const fetchMegaMenuData = async (): Promise<TMegaMenuItem[]> => {
   } = await res.json();
 
   return data?.data || [];
-};
+});

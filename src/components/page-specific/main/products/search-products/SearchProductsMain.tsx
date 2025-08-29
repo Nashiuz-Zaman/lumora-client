@@ -2,7 +2,7 @@
 
 import { useSearchPageProductsQueries } from "@/hooks";
 import { SearchFilters } from "./SearchFilter";
-import { InnerContainer, ProductCard } from "@/components/shared";
+import { InnerContainer, Pagination, ProductCard } from "@/components/shared";
 import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categoryApiSlice";
 import { MobileSearchFilter } from "./MobileSearchFilter";
 
@@ -14,15 +14,18 @@ const SearchProductsMain = () => {
     brands,
     products,
     isFetching,
-    queryMeta, // <-- added for pagination info
+    queryMeta,
+    changePage,
   } = useSearchPageProductsQueries();
 
   const { data: categories } = useGetCategoryTreeQuery();
 
+  console.log(products);
+
   if (!categories) return null;
 
   return (
-    <InnerContainer className="my-10 xl:my-24">
+    <InnerContainer className="my-10 3xl:my-14">
       <div className="grid grid-cols-1 xl:grid-cols-[1fr_4fr] gap-16">
         {/* Left Column - Filters */}
         <SearchFilters
@@ -71,6 +74,15 @@ const SearchProductsMain = () => {
                   <ProductCard key={product._id} data={product} />
                 ))}
           </div>
+
+          {(queryMeta?.totalPages as number) > 0 && (
+            <Pagination
+              currentPage={queryMeta?.page ?? 1}
+              totalPages={queryMeta?.totalPages ?? 1}
+              setCurrentPage={changePage}
+              className="mt-auto pt-7"
+            />
+          )}
         </div>
       </div>
     </InnerContainer>

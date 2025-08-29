@@ -1,7 +1,7 @@
-export const ThumbIconOutlined = ({
+export const ThumbIconOutlinedIcon = ({
   className = "",
 }: {
-  className: string;
+  className?: string;
 }) => {
   return (
     <div className={className}>

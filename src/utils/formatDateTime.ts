@@ -1,10 +1,3 @@
-/**
- * Formats an ISO date string into a human-readable date-time format.
- *
- * @param isoDate - The ISO date string to format.
- * @param includeTime - Whether to include time in the formatted output. Defaults to true.
- * @returns The formatted date (and optionally time).
- */
 export const formatDateTime = (
   isoDate: string,
   includeTime: boolean = true

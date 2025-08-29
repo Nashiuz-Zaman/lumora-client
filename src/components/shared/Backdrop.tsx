@@ -1,12 +1,12 @@
 "use client";
 
-import { RootState } from "@/libs/redux/store";
+import { TRootState } from "@/libs/redux/store";
 // Redux
 import { useSelector } from "react-redux";
 
 export const Backdrop = () => {
   const backdropOpen = useSelector(
-    (state: RootState) => state.backdrop.backdropOpen
+    (state: TRootState) => state.backdrop.backdropOpen
   );
 
   if (!backdropOpen) return null;

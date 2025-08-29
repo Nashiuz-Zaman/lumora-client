@@ -2,15 +2,15 @@
 
 import { JSX, useRef } from "react";
 import { gsap } from "gsap";
-import { GridCard, GridCardImage } from "@/components/shared";
+import { GridCard, TGridCardImage } from "@/components/shared";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 gsap.registerPlugin(useGSAP);
 
-interface LeftColumnProps {
+interface ILeftColumnProps {
   heading?: string;
   subtitle?: JSX.Element | string;
-  images: GridCardImage[];
+  images: TGridCardImage[];
   className?: string;
 }
 
@@ -19,7 +19,7 @@ export const LeftColumnContent = ({
   subtitle = "A modern, clean e-commerce shop for top brands",
   images,
   className = "",
-}: LeftColumnProps) => {
+}: ILeftColumnProps) => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);

@@ -3,7 +3,7 @@
 import { ICategory, ICategoryTreeItem, IProduct } from "@/types";
 
 import { cardsData } from "@/static-data/productCategoryCards";
-import { GridCard, GridCardImage } from "@/components/shared/GridCard";
+import { GridCard, TGridCardImage } from "@/components/shared/GridCard";
 import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import { useRouter } from "next/navigation";
@@ -65,7 +65,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
             ({ topCategory: top, subCategories, featuredProducts = [] }) => {
               const cardData = cardsData.find((c) => c.heading === top.title);
 
-              const images: GridCardImage[] = cardData
+              const images: TGridCardImage[] = cardData
                 ? cardData?.images?.map((img) => ({
                     src: img?.src,
                     alt: img?.alt,

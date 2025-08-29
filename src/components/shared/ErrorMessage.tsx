@@ -1,10 +1,23 @@
-interface IErrorMessageProps {
-  message: string;
-  className?: string;
-}
+"use client";
 
-const ErrorMessage = ({ message, className = "" }: IErrorMessageProps) => {
-  return <p className={`py-2 text-red-600 text-sm ${className}`}>{message}</p>;
+type TErrorMessageProps = {
+  text?: string;
+  className?: string;
+  centered?: boolean;
 };
 
-export default ErrorMessage;
+export const ErrorMessage = ({
+  text = "Something went wrong",
+  className = "",
+  centered = false,
+}: TErrorMessageProps) => {
+  return (
+    <p
+      className={`text-red-600 ${
+        centered ? "positioned-center" : "my-4"
+      } text-center text-sm ${className}`}
+    >
+      {text}
+    </p>
+  );
+};

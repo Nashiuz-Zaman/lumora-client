@@ -10,6 +10,7 @@ import {
   cleanObject,
 } from "@/utils";
 import { useCallback, useEffect, useState } from "react";
+import { cloneDeep } from "lodash";
 
 // Types
 export interface ISearchPageProductsForm {
@@ -44,7 +45,7 @@ export const useSearchPageProductsQueries = () => {
     brands: {},
     priceMin: 0,
     priceMax: 50000,
-  }; 
+  };
 
   // Load from localStorage regarding categories
   if (typeof window !== "undefined") {
@@ -118,15 +119,13 @@ export const useSearchPageProductsQueries = () => {
 
   const onSubmit = () => {
     updateQueryParams();
-    trigger(cleanObject(buildQueryParams()));
+    trigger({ ...cloneDeep(cleanObject(buildQueryParams())), page: 1 });
   };
 
   const changePage = (page: number) => {
-    if (page !== Number(watchedValues.page)) {
-      setValue("page", page);
-      updateQueryParams(page);
-      trigger(cleanObject(buildQueryParams()));
-    }
+    setValue("page", page);
+    updateQueryParams(page);
+    trigger(cleanObject(buildQueryParams()));
   };
 
   useEffect(() => {

@@ -1,12 +1,12 @@
 import { ReactNode } from "react";
 
-export type SocialMediaLink = {
+export interface ISocialMediaLink {
   src: string;
   href: string;
   alt?: string;
-};
+}
 
-export const socialMediaLinks: SocialMediaLink[] = [
+export const socialMediaLinks: ISocialMediaLink[] = [
   {
     src: "/logos/social-media/fb.svg",
     href: "https://www.facebook.com/",
@@ -29,17 +29,17 @@ export const socialMediaLinks: SocialMediaLink[] = [
   },
 ];
 
-export type NavOptionItem = {
+export interface INavOptionItem {
   text: string;
   href: string;
-};
+}
 
-export type NavOptionGroup = {
+export interface INavOptionGroup {
   heading: string;
-  options: NavOptionItem[];
-};
+  options: INavOptionItem[];
+}
 
-export const navOptions: NavOptionGroup[] = [
+export const navOptions: INavOptionGroup[] = [
   {
     heading: "Product Category",
     options: [
@@ -62,17 +62,17 @@ export const navOptions: NavOptionGroup[] = [
   },
 ];
 
-export type AddressItem = {
+export interface IAddressItem {
   heading: string;
   description: ReactNode;
-};
+}
 
-export type Address = {
+export interface IAddress {
   heading: string;
-  addresses: AddressItem[];
-};
+  addresses: IAddressItem[];
+}
 
-export const address: Address = {
+export const address: IAddress = {
   heading: "Contact Us",
   addresses: [
     {

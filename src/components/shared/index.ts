@@ -31,5 +31,8 @@ export * from "./ParamsFilterForm";
 export * from "./SortOptionsMenu";
 export * from "./RadioBtnGroup";
 export * from "./ErrorMessage";
-export * from './InputfieldMinMax'
-export * from './ProductCard'
+export * from "./InputfieldMinMax";
+export * from "./ProductCard";
+export * from "./CustomSwiper";
+export * from "./RatingStars";
+export * from "./StarRatingInput";
