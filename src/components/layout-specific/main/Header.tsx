@@ -14,14 +14,21 @@ import Link from "next/link";
 
 // types
 import { MobileMegaMenu } from "./MobileMegaMenu";
-import { useCartState } from "@/hooks";
+import { useAuthMethods, useCartState } from "@/hooks";
+import { useEffect, useState } from "react";
 
 type THeaderProps = IMegaMenuProps;
 
 const Header = ({ categories }: THeaderProps) => {
-  const logout = () => console.log("Logout clicked");
+  const [isClient, setIsClient] = useState<boolean>(false);
+  const { logout } = useAuthMethods();
   const { cart } = useCartState();
 
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
   return (
     <header>
       <p className="bg-neutral-100 text-sm xl:text-base py-3 text-center px-4 xs:px-6">

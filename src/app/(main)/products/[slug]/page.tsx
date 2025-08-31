@@ -37,8 +37,12 @@ export async function generateMetadata({
   };
 }
 
-const ProductPagePublic = async ({ params }: { params: { slug: string } }) => {
-  const { slug } = params;
+const ProductPagePublic = async ({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) => {
+  const { slug } = await params;
   const result = await getProductForCustomer(slug);
 
   if ("isError" in result || !result) {

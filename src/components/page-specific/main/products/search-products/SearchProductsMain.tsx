@@ -20,8 +20,6 @@ const SearchProductsMain = () => {
 
   const { data: categories } = useGetCategoryTreeQuery();
 
-  console.log(products);
-
   if (!categories) return null;
 
   return (

@@ -2,7 +2,12 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ICategory, ICategoryTreeItem, IProduct } from "@/types";
+import {
+  ICategory,
+  ICategoryTreeItem,
+  IProduct,
+  TProductWithMinimalReviewStats,
+} from "@/types";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import {
   AccordionVertical,
@@ -136,7 +141,7 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                         {cat.featuredProducts.slice(0, 4).map((product) => (
                           <FeaturedProductCard
                             key={product.title}
-                            product={product}
+                            product={product as TProductWithMinimalReviewStats}
                           />
                         ))}
                       </div>
