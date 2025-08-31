@@ -20,8 +20,8 @@ const CartCheckoutLayoutMain = ({
   let title = "Your Cart";
   if (pathname.startsWith("/checkout")) {
     title = "Checkout";
-  } else if (pathname.startsWith("/order-complete")) {
-    title = "Payment Result";
+  } else if (pathname.startsWith("/payment-result")) {
+    title = "Payment";
   }
 
   return (

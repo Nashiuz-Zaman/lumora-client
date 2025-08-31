@@ -14,7 +14,7 @@ import { useEffect } from "react";
 const VALID_STATUSES = ["success", "fail", "cancel"] as const;
 type PaymentStatus = (typeof VALID_STATUSES)[number];
 
-const PaymentResultPage = () => {
+const PaymentResultPageMain = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -106,4 +106,4 @@ const PaymentResultPage = () => {
   );
 };
 
-export default PaymentResultPage;
+export default PaymentResultPageMain;

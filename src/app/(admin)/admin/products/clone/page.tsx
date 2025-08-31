@@ -1,6 +1,7 @@
 // THIS IS A PAGE
 
 import { CloneProductMain } from "@/components/page-specific";
+import { InnerContainer, LinkBtn } from "@/components/shared";
 import { fetchProductForAdmin } from "@/server-functions";
 import { IProduct } from "@/types";
 import { stripIdsAndResetSku } from "@/utils";
@@ -20,11 +21,25 @@ const CloneProductPage = async ({
 
   let product: IProduct | undefined;
 
-  if (productId) {
-    const response = await fetchProductForAdmin(productId);
-    if (response?.success) {
-      product = stripIdsAndResetSku(response.data) as IProduct;
-    }
+  const response = await fetchProductForAdmin(productId!);
+
+  if ("isError" in response || !response) {
+    return (
+      <InnerContainer className="h-[70vh] flex flex-col items-center justify-center">
+        <h2 className="text-2xl font-bold mb-2">Product Not Found</h2>
+        <p className="mb-4">
+          The product you are looking for could not be found.
+        </p>
+
+        <LinkBtn href="/" className="primaryClasses">
+          Go Home
+        </LinkBtn>
+      </InnerContainer>
+    );
+  }
+
+  if (response?.success) {
+    product = stripIdsAndResetSku(response.data) as IProduct;
   }
 
   return <CloneProductMain product={product} />;

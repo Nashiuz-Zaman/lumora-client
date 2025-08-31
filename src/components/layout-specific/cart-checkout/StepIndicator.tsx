@@ -9,7 +9,7 @@ const StepIndicator = () => {
   const steps = [
     { number: 1, label: "Cart", path: "/cart", isLink: true },
     { number: 2, label: "Checkout", path: "/checkout", isLink: true },
-    { number: 3, label: "Complete", path: "/order-complete", isLink: false },
+    { number: 3, label: "Payment", path: "/payment-result", isLink: false },
   ];
 
   return (

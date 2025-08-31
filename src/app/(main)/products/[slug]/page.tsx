@@ -5,12 +5,11 @@ import { getProductForCustomer } from "@/server-functions";
 import { InnerContainer, LinkBtn } from "@/components/shared";
 
 // 📝 Generate dynamic SEO metadata
-export async function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
+type tParams = Promise<{ slug: string }>;
+export async function generateMetadata(props: {
+  params: tParams;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug } = await props.params;
   const result = await getProductForCustomer(slug);
 
   if ("isError" in result || !result) {
@@ -37,12 +36,8 @@ export async function generateMetadata({
   };
 }
 
-const ProductPagePublic = async ({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) => {
-  const { slug } = await params;
+const ProductPagePublic = async (props: { params: tParams }) => {
+  const { slug } = await props.params;
   const result = await getProductForCustomer(slug);
 
   if ("isError" in result || !result) {

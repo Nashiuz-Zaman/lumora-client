@@ -45,17 +45,12 @@ export function getOrderStatusTextColor(code: number): string {
   switch (code) {
     case OrderStatus.Cancelled:
       return "text-red-600";
-    case OrderStatus["Quotation Not Sent"]:
-      return "text-neutral-400";
-    case OrderStatus["Quotation Sent"]:
-      return "text-yellow-500";
     case OrderStatus.Confirmed:
       return "text-blue-600";
     case OrderStatus.Shipped:
       return "text-indigo-600";
     case OrderStatus.Delivered:
       return "text-green-600";
-    case OrderStatus.Abandoned:
     case OrderStatus.Deleted:
     case OrderStatus.Returned:
       return "text-gray-500";

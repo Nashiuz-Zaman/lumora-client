@@ -1,9 +1,12 @@
-
+import PaymentResultPageMain from "@/components/page-specific/main/payment-result/PaymentResultPageMain";
+import { Suspense } from "react";
 
 const PaymentResultPage = () => {
   return (
-    <div>page</div>
-  )
-}
+    <Suspense>
+      <PaymentResultPageMain />
+    </Suspense>
+  );
+};
 
-export default PaymentResultPage
+export default PaymentResultPage;

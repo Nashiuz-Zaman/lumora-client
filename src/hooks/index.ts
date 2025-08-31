@@ -2,7 +2,6 @@ export * from "./useClickOutside";
 export * from "./useActiveLink";
 export * from "./useModal";
 export * from "./useElementHeight";
-export * from "./useBackRoute";
 export * from "./usePortalTarget";
 export * from "./useSelectable";
 export * from "./useAllProductsQueries";

@@ -15,7 +15,7 @@ export const ConfirmationEmailSentMain = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isCooldown, setIsCooldown] = useState(false);
   const router = useRouter();
-  const timeoutRef = useRef<NodeJS.Timeout | null>(null); // typed timeout
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [resendConfirmationEmail] = useResendConfirmationEmailMutation();
 
   const startCooldown = (expiresAt: number) => {
