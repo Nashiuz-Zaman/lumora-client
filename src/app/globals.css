@@ -27,41 +27,65 @@ html {
 }
 
 @utility primaryClasses {
-  @apply bg-primary border-primary active:bg-primary-dark active:border-primary-dark lg:hover:bg-primary-dark lg:hover:border-primary-dark text-white;
+  @apply bg-primary border-primary text-white
+         active:bg-primary-dark active:border-primary-dark
+         lg:hover:bg-primary-dark lg:hover:border-primary-dark
+         disabled:hover:bg-primary disabled:hover:border-primary disabled:hover:text-white;
 }
+
 @utility primaryOutlinedClasses {
-  @apply bg-transparent text-primary border-primary active:bg-primary lg:hover:bg-primary active:text-white lg:hover:text-white;
+  @apply bg-transparent text-primary border-primary
+         active:bg-primary lg:hover:bg-primary lg:hover:text-white
+         active:text-white lg:hover:border-primary
+         disabled:hover:bg-transparent disabled:hover:text-primary disabled:hover:border-primary;
 }
 
 @utility primaryLightClasses {
-  @apply bg-primary-light border-primary-light active:bg-primary active:border-primary lg:hover:bg-primary lg:hover:border-primary text-black active:text-white lg:hover:text-white;
+  @apply bg-primary-light border-primary-light text-black
+         active:bg-primary active:border-primary active:text-white
+         lg:hover:bg-primary lg:hover:border-primary lg:hover:text-white
+         disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-black;
 }
 
 @utility secondaryClasses {
-  @apply bg-secondary border-secondary active:bg-secondary-dark active:border-secondary-dark lg:hover:bg-secondary-dark lg:hover:border-secondary-dark text-white;
+  @apply bg-secondary border-secondary text-white
+         active:bg-secondary-dark active:border-secondary-dark
+         lg:hover:bg-secondary-dark lg:hover:border-secondary-dark
+         disabled:hover:bg-secondary disabled:hover:border-secondary disabled:hover:text-white;
 }
 
 @utility dangerClasses {
-  @apply bg-red-600 border-red-600 text-white hover:bg-red-500 hover:border-red-500;
+  @apply bg-red-600 border-red-600 text-white
+         hover:bg-red-500 hover:border-red-500
+         disabled:hover:bg-red-600 disabled:hover:border-red-600 disabled:hover:text-white;
 }
 
 @utility successClasses {
-  @apply bg-green-600 border-green-600 text-white hover:bg-green-500 hover:border-green-500;
+  @apply bg-green-600 border-green-600 text-white
+         hover:bg-green-500 hover:border-green-500
+         disabled:hover:bg-green-600 disabled:hover:border-green-600 disabled:hover:text-white;
+}
+
+@utility systemClasses {
+  @apply bg-neutral-100 border-neutral-200 text-neutral-800
+         hover:bg-neutral-200 hover:border-neutral-300
+         disabled:hover:bg-neutral-100 disabled:hover:border-neutral-200 disabled:hover:text-neutral-800;
+}
+
+@utility whiteGrayClasses {
+  @apply bg-white border-neutral-200
+         hover:bg-neutral-100
+         disabled:hover:bg-white disabled:hover:border-neutral-200;
+}
+
+@utility blackClasses {
+  @apply bg-neutral-900 border-neutral-900 text-white
+         hover:bg-neutral-800 hover:border-neutral-800
+         disabled:hover:bg-neutral-900 disabled:hover:border-neutral-900 disabled:hover:text-white;
 }
 
 @utility linkClasses {
   @apply text-blue-500 hover:text-blue-700 hover:underline;
-}
-
-@utility systemClasses {
-  @apply bg-neutral-100 border-neutral-200 text-neutral-800 hover:bg-neutral-200 hover:border-neutral-300;
-}
-@utility whiteGrayClasses {
-  @apply bg-white border-neutral-200 hover:bg-neutral-100;
-}
-
-@utility blackClasses {
-  @apply bg-neutral-900 border-neutral-900 text-white hover:bg-neutral-800 hover:border-neutral-800;
 }
 
 @utility filter-white {

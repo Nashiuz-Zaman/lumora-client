@@ -8,10 +8,11 @@ import { useCartState } from "./useCartState";
 import { useAuthState } from "./useAuthState";
 import { catchAsyncGeneral, showToast, TWithEvent } from "@/utils";
 import { ICartAction } from "@/types/cart";
+import { useEffect } from "react";
 
 export const useCartActions = () => {
   const { user } = useAuthState();
-  const { cart } = useCartState();
+  const { cart, setIsCartLoading } = useCartState();
 
   const [createUserCart, { isLoading: isCreatingUserCart }] =
     useCreateUserCartMutation();
@@ -28,6 +29,10 @@ export const useCartActions = () => {
     isUpdatingUserCart ||
     isUpdatingGuestCart;
 
+  useEffect(() => {
+    setIsCartLoading(isCartUpdating);
+  }, [isCartUpdating, setIsCartLoading]);
+
   const showCartUpdateSuccessToast = (result: {
     success: boolean;
     message: string;
@@ -39,23 +44,21 @@ export const useCartActions = () => {
   };
 
   const createOrUpdateCart = async (actionData: ICartAction) => {
-    const isCartEmpty = !cart?.items?.length;
-
-    if (user && !isCartEmpty) {
+    if (cart?._id && user) {
       return await updateUserCart(actionData).unwrap();
     }
-    if (user && isCartEmpty) {
+    if (!cart?._id && user) {
       return await createUserCart(actionData).unwrap();
     }
-    if (!user && !isCartEmpty) {
+    if (cart?._id && !user) {
       return await updateGuestCart(actionData).unwrap();
     }
     return await createGuestCart(actionData).unwrap();
   };
 
-  const addRemoveProductToCart = catchAsyncGeneral(async (data) => {
-    const { productId, variantId, action, quantity } = data as TWithEvent &
-      ICartAction;
+  const addRemoveProductToCart = catchAsyncGeneral(async (args) => {
+    const data = args?.data as ICartAction;
+    const { productId, variantId, action, quantity } = data;
 
     const actionData: ICartAction = {
       productId,

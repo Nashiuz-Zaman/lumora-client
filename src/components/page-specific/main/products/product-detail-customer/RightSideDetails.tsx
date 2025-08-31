@@ -13,6 +13,8 @@ import { AboutProduct } from "./AboutProduct";
 // types
 import { IVariant, IProductWithReviewsAndStats } from "@/types/product";
 import { VariantSelector } from "./VariantSelector";
+import { ICartAction } from "@/types/cart";
+import { useCartActions } from "@/hooks";
 
 interface IRightSideDetailsProps {
   data: IProductWithReviewsAndStats;
@@ -27,26 +29,43 @@ export const RightSideDetails = ({
     IVariant | undefined
   >();
   const [expanded, setExpanded] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+  const { addRemoveProductToCart, isCartUpdating } = useCartActions();
 
-  const handleVariantUpdate = useCallback(
-    (variant?: IVariant) => setCurProductVariant(variant),
-    []
-  );
+  const handleVariantUpdate = useCallback((variant?: IVariant) => {
+    setCurProductVariant(variant);
+    setQuantity(1);
+  }, []);
 
   const { product, reviewStats } = data;
 
   const handleAddToCart = () => {
-    // if (!curProductVariant) return;
-    // onSubmit(curProductVariant);
+    if (!curProductVariant) return;
+
+    const cartPayload: ICartAction = {
+      action: "add",
+      productId: data.product._id!,
+      variantId: curProductVariant?._id as string,
+      quantity,
+    };
+
+    addRemoveProductToCart({ data: cartPayload });
+  };
+
+  const handleDecrease = () => {
+    setQuantity((prev) => Math.max(1, prev - 1));
+  };
+
+  const handleIncrease = () => {
+    if (!curProductVariant) return;
+    setQuantity((prev) => Math.min(curProductVariant.stock, prev + 1));
   };
 
   return (
     <section className="flex flex-col gap-3">
       {/* Title and subtitle */}
       <div>
-        <h2 className="text-2xl font-semibold leading-snug">
-          {product.title}
-        </h2>
+        <h2 className="text-2xl font-semibold leading-snug">{product.title}</h2>
         {product.subtitle && (
           <p className="text-sm text-neutral-500">{product.subtitle}</p>
         )}
@@ -90,11 +109,34 @@ export const RightSideDetails = ({
         </>
       )}
 
-      <div className="mt-auto pt-6">
+      <div className="mt-auto pt-6 flex items-center gap-4">
+        {/* Quantity Selector */}
+        <div className="flex items-center border border-neutral-300 rounded-lg overflow-hidden">
+          <button
+            type="button"
+            onClick={handleDecrease}
+            className="px-3 py-2 text-lg font-medium hover:bg-neutral-100 disabled:opacity-50 cursor-pointer"
+            disabled={quantity <= 1}
+          >
+            –
+          </button>
+          <span className="px-4 py-2 text-sm font-semibold">{quantity}</span>
+          <button
+            type="button"
+            onClick={handleIncrease}
+            className="px-3 py-2 text-lg font-medium hover:bg-neutral-100 disabled:opacity-50 cursor-pointer"
+            disabled={!curProductVariant || quantity >= curProductVariant.stock}
+          >
+            +
+          </button>
+        </div>
+
+        {/* Add to Cart */}
         <ButtonBtn
           onClick={handleAddToCart}
+          isLoading={isCartUpdating}
           isDisabled={isAddToCartDisabled || !curProductVariant}
-          className="!primaryClasses"
+          className="primaryClasses"
         >
           <CartIcon className="text-2xl" /> Add to cart
         </ButtonBtn>

@@ -1,4 +1,4 @@
-import { ButtonBtn } from "@/components/shared";
+import { ButtonBtn, LockIcon } from "@/components/shared";
 import { PromoCode } from "./PromoCode";
 import { formatPrice } from "@/utils";
 
@@ -19,10 +19,10 @@ export const OrderSummary = ({
   shippingFee,
 }: Props) => {
   return (
-    <div className="bg-white rounded-2xl shadow-md border border-neutral-200 sticky top-6 overflow-hidden">
-      <div className="bg-gradient-to-r from-primary to-purple-400 px-6 py-6 text-white">
+    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 sticky top-6 overflow-hidden">
+      <div className="bg-gradient-to-br from-primary to-purple-500 px-6 py-6 text-white">
         <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
-        <p className="text-indigo-100 text-sm">Review your purchase</p>
+        <p className="text-white text-sm">Review your purchase</p>
       </div>
       <div className="px-6 py-6 space-y-6">
         <div className="space-y-3 text-sm">
@@ -32,7 +32,7 @@ export const OrderSummary = ({
           </div>
           <div className="flex justify-between">
             <span className="text-neutral-600">Shipping</span>
-            <span className="font-medium text-green-600">
+            <span className="font-medium text-secondary">
               {formatPrice(shippingFee)}
             </span>
           </div>
@@ -63,9 +63,9 @@ export const OrderSummary = ({
           Secure Checkout
         </ButtonBtn>
 
-        <div className="text-center space-y-3 text-xs text-neutral-500">
+        <div className="text-center space-y-3 text-xs">
           <div className="flex items-center justify-center gap-1">
-            🔒 <span>SSL Secured Checkout</span>
+            <LockIcon className="text-xl" /> <span>SSL Secured Checkout</span>
           </div>
         </div>
       </div>

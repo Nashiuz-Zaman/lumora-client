@@ -13,10 +13,12 @@ export const CartBtn = ({
   className?: string;
   quantity?: number;
 }) => {
+
+  
   return (
     <div className={`relative text-3xl 2xl:text-5xl ${className}`}>
       {quantity > 0 && (
-        <p className="absolute w-8 grid place-content-center aspect-square -top-3 text-sm -right-3 bg-primary rounded-full text-white">
+        <p className="absolute w-8 grid place-content-center aspect-square -top-3 text-sm -right-3 bg-white rounded-full text-primary">
           {quantity}
         </p>
       )}

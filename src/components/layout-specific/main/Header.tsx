@@ -14,11 +14,13 @@ import Link from "next/link";
 
 // types
 import { MobileMegaMenu } from "./MobileMegaMenu";
+import { useCartState } from "@/hooks";
 
 type THeaderProps = IMegaMenuProps;
 
 const Header = ({ categories }: THeaderProps) => {
   const logout = () => console.log("Logout clicked");
+  const { cart } = useCartState();
 
   return (
     <header>
@@ -50,7 +52,7 @@ const Header = ({ categories }: THeaderProps) => {
             )}
 
             {/* shopping cart link */}
-            <CartBtn />
+            <CartBtn quantity={cart?.totalItemQty} />
 
             {false && (
               <div className="flex items-center gap-4">

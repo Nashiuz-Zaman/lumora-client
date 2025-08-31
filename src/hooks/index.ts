@@ -12,3 +12,5 @@ export * from "./useAuthMethods";
 export * from "./useAuthState";
 export * from "./useSearchPageProductsQueries";
 export * from "./useCartState";
+export * from "./useCartState";
+export * from "./useCartActions";

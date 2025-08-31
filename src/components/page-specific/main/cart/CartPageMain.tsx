@@ -8,19 +8,19 @@ import { useCartActions } from "@/hooks/useCartActions";
 import { InnerContainer } from "@/components/shared";
 import { OrderSummary } from "./OrderSummary";
 import EmptyPageLoader from "@/components/shared/EmptyPageLoader";
+import { TUpdateQuantity } from "./CartItemCard";
 
 export const CartPageMain = () => {
-  const { cart, setIsCartLoading, isCartLoading } = useCartState();
+  const { cart } = useCartState();
   const { addRemoveProductToCart } = useCartActions();
 
-  console.log(isCartLoading);
-
-  const updateQuantity = async (
-    productId: string,
-    variantId: string,
-    change: number
+  //  increase/decrease prodcut
+  const updateQuantity: TUpdateQuantity = async (
+    productId,
+    variantId,
+    change
   ) => {
-    setIsCartLoading(true);
+    if (change === 0) return;
 
     const actionData = {
       productId,
@@ -28,18 +28,20 @@ export const CartPageMain = () => {
       quantity: Math.abs(change),
       action: change > 0 ? "add" : "remove",
     };
-    await addRemoveProductToCart({ actionData });
+
+    await addRemoveProductToCart({ data: actionData });
   };
 
+  // completely removes the product
   const removeItem = async (item: TPopulatedCartItem) => {
-    setIsCartLoading(true);
+    console.log(item.product._id!);
     const actionData: ICartAction = {
       productId: item.product._id!,
       variantId: item.variant._id!,
       quantity: item.quantity,
       action: "remove",
     };
-    await addRemoveProductToCart({ actionData });
+    await addRemoveProductToCart({ data: actionData });
   };
 
   if (!cart) return <EmptyPageLoader />;
@@ -51,10 +53,8 @@ export const CartPageMain = () => {
         <div className="mb-8">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-4xl font-bold text-neutral-900 mb-2">
-                Your Cart
-              </h2>
-              <p className="text-neutral-600">
+              <h2 className="text-3xl font-medium mb-2">Your Cart</h2>
+              <p className="text-neutral-400">
                 {cart?.totalItemQty
                   ? `${cart?.totalItemQty} items ready for checkout`
                   : null}
