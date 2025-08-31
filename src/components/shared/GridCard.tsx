@@ -2,17 +2,29 @@
 
 import Image from "next/image";
 
-export type TGridCardImage = {
+export interface IGridCardImage {
   src: string;
   alt: string;
-};
+}
 
-export type TGridCardProps = {
-  images: TGridCardImage[];
+export interface IGridCardProps {
+  images: IGridCardImage[];
   className?: string;
+}
+
+const GridCardImage = ({ src, alt }: IGridCardImage) => {
+  return (
+    <Image
+      src={src}
+      alt={alt}
+      width={600}
+      height={600}
+      className="object-cover w-full h-full"
+    />
+  );
 };
 
-export const GridCard = ({ images, className = "" }: TGridCardProps) => {
+export const GridCard = ({ images, className = "" }: IGridCardProps) => {
   const count = images?.length;
 
   return (
@@ -20,24 +32,14 @@ export const GridCard = ({ images, className = "" }: TGridCardProps) => {
       {count === 1 ? (
         // Single Image (1x1 square)
         <div className="relative w-full aspect-square">
-          <Image
-            src={images[0].src}
-            alt={images[0].alt}
-            fill
-            className="object-cover "
-          />
+          <GridCardImage src={images[0].src} alt={images[0].alt} />
         </div>
       ) : count === 2 ? (
         // Two Images (side by side inside 1 square)
         <div className="grid grid-cols-2 w-full aspect-square gap-2">
           {images.map((img, idx) => (
             <div key={idx} className="relative w-full h-full">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover "
-              />
+              <GridCardImage src={img.src} alt={img.alt} />
             </div>
           ))}
         </div>
@@ -46,22 +48,12 @@ export const GridCard = ({ images, className = "" }: TGridCardProps) => {
         <div className="grid grid-cols-2 grid-rows-2 gap-5 w-full aspect-square">
           <div className="relative w-full col-span-2">
             <div className="relative w-full h-full">
-              <Image
-                src={images[0].src}
-                alt={images[0].alt}
-                fill
-                className="object-cover "
-              />
+              <GridCardImage src={images[0].src} alt={images[0].alt} />
             </div>
           </div>
           {images?.slice(1).map((img, idx) => (
             <div key={idx} className="relative w-full aspect-square">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover "
-              />
+              <GridCardImage src={img.src} alt={img.alt} />
             </div>
           ))}
         </div>
@@ -70,12 +62,7 @@ export const GridCard = ({ images, className = "" }: TGridCardProps) => {
         <div className="grid grid-cols-2 grid-rows-2 gap-5">
           {images?.slice(0, 4).map((img, idx) => (
             <div key={idx} className="relative w-full aspect-square">
-              <Image
-                src={img.src}
-                alt={img.alt}
-                fill
-                className="object-cover "
-              />
+              <GridCardImage src={img.src} alt={img.alt} />
             </div>
           ))}
         </div>

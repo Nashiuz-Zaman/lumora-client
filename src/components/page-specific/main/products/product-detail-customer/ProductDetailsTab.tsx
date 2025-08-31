@@ -25,15 +25,12 @@ export const ProductDetailsTabs = ({ product }: { product: IProduct }) => {
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id as typeof activeTab)}
-            className={`px-5 py-2 text-sm font-medium transition-colors rounded-t-lg cursor-pointer
+            className={`px-5 py-2 text-sm font-medium transition-colors rounded-t-lg cursor-pointer -mb-[1px]
               ${
                 activeTab === tab.id
-                  ? "bg-gradient-to-br from-primary to-purple-400 border-x border-t border-neutral-200 text-white"
+                  ? "bg-primary border-x border-t border-neutral-200 text-white"
                   : "text-neutral-500 hover:text-neutral-900"
               }`}
-            style={{
-              marginBottom: activeTab === tab.id ? "-1px" : "0", // keeps active tab “on top”
-            }}
           >
             {tab.label}
           </button>

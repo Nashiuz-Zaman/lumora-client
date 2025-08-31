@@ -2,13 +2,13 @@
 
 import { IcfyIcon } from "./IcfyIcon";
 
-type DataLoadingSpinnerProps = {
+type IDataLoadingSpinnerProps = {
   className?: string;
 };
 
 export const DataLoadingSpinner = ({
   className = "",
-}: DataLoadingSpinnerProps) => {
+}: IDataLoadingSpinnerProps) => {
   return (
     <div
       className={`absolute w-full h-full top-0 left-0 flex items-center justify-center z-[1] py-16 text-primary text-6xl ${className}`}

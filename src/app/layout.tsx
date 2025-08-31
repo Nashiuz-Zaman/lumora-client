@@ -9,6 +9,7 @@ import { Slide } from "react-toastify";
 import { ReduxProvider } from "@/providers";
 import { Backdrop } from "@/components/shared";
 import AuthStateProvider from "@/providers/AuthStateProvider";
+import CartStateProvider from "@/providers/CartStateProvider";
 
 export const metadata: Metadata = {
   title: "Next.js TS, React 19, Tailwind v4, Redux-toolkit | Project Skeleton",
@@ -28,23 +29,25 @@ export default function RootLayout({
       >
         <ReduxProvider>
           <AuthStateProvider>
-            {/* react toastify */}
-            <ToastContainer
-              position="top-center"
-              autoClose={2000}
-              transition={Slide}
-              hideProgressBar
-              newestOnTop
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
+            <CartStateProvider>
+              {/* react toastify */}
+              <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                transition={Slide}
+                hideProgressBar
+                newestOnTop
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+              />
 
-            <Backdrop />
-            {children}
+              <Backdrop />
+              {children}
+            </CartStateProvider>
           </AuthStateProvider>
         </ReduxProvider>
       </body>

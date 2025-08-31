@@ -2,7 +2,7 @@
 
 import { JSX, useRef } from "react";
 import { gsap } from "gsap";
-import { GridCard, TGridCardImage } from "@/components/shared";
+import { GridCard, IGridCardImage } from "@/components/shared";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 gsap.registerPlugin(useGSAP);
@@ -10,7 +10,7 @@ gsap.registerPlugin(useGSAP);
 interface ILeftColumnProps {
   heading?: string;
   subtitle?: JSX.Element | string;
-  images: TGridCardImage[];
+  images: IGridCardImage[];
   className?: string;
 }
 

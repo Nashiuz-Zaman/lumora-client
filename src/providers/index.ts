@@ -1,2 +1,4 @@
 export * from "./ReduxProvider";
 export * from "./AuthStateProvider";
+export * from "./CartStateProvider";
+export * from "./ProtectedRouteProvider";

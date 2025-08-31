@@ -1,11 +1,11 @@
 "use client";
 
-import { GridCard, TGridCardImage, LinkBtnTrans } from "@/components/shared";
+import { GridCard, IGridCardImage, LinkBtnTrans } from "@/components/shared";
 
 export type TCategoryCardProps = {
   heading: string;
   linkText: string;
-  images: TGridCardImage[];
+  images: IGridCardImage[];
   className?: string;
 };
 

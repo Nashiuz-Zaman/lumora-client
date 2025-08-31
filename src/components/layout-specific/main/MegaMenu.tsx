@@ -1,15 +1,19 @@
 "use client";
 
-import { ICategory, ICategoryTreeItem, IProduct } from "@/types";
+import {
+  ICategory,
+  ICategoryTreeItem,
+  TProductWithMinimalReviewStats,
+} from "@/types";
 
 import { cardsData } from "@/static-data/productCategoryCards";
-import { GridCard, TGridCardImage } from "@/components/shared/GridCard";
+import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
 import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import { useRouter } from "next/navigation";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
-  featuredProducts: Partial<IProduct>[];
+  featuredProducts: TProductWithMinimalReviewStats[];
 };
 
 export interface IMegaMenuProps {
@@ -65,7 +69,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
             ({ topCategory: top, subCategories, featuredProducts = [] }) => {
               const cardData = cardsData.find((c) => c.heading === top.title);
 
-              const images: TGridCardImage[] = cardData
+              const images: IGridCardImage[] = cardData
                 ? cardData?.images?.map((img) => ({
                     src: img?.src,
                     alt: img?.alt,
