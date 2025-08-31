@@ -11,6 +11,7 @@ import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
 import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts: TProductWithMinimalReviewStats[];
@@ -22,6 +23,11 @@ export interface IMegaMenuProps {
 
 export const MegaMenu = ({ categories }: IMegaMenuProps) => {
   const router = useRouter();
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleCategoryClick = ({
     topSlug,
@@ -60,6 +66,8 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
 
     router.push("/products/search");
   };
+
+  if (!isClient) return null;
 
   return (
     <nav className="hidden xl:block w-full bg-white border-b border-neutral-100">

@@ -13,13 +13,13 @@ import {
 
 interface IPromoCodeProps {
   discount: number;
+  appliedCode: string | null; // 👈 comes from parent (OrderSummary)
 }
 
-export const PromoCode = ({ discount }: IPromoCodeProps) => {
+export const PromoCode = ({ discount, appliedCode }: IPromoCodeProps) => {
   const { user, isCustomer } = useAuthState() || {};
   const { cart } = useCartState() || {};
   const [couponCode, setCouponCode] = useState("");
-  const [appliedCode, setAppliedCode] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // RTK Mutations with isLoading state
@@ -51,8 +51,7 @@ export const PromoCode = ({ discount }: IPromoCodeProps) => {
         await applyGuestCoupon(couponCode).unwrap();
       }
 
-      setAppliedCode(couponCode.toUpperCase());
-      setCouponCode("");
+      setCouponCode(""); // reset input
     } catch (err) {
       console.error("Failed to apply coupon:", err);
       setErrorMessage("Failed to apply coupon. Please try again.");
@@ -77,8 +76,6 @@ export const PromoCode = ({ discount }: IPromoCodeProps) => {
       } else {
         await removeGuestCoupon(undefined).unwrap();
       }
-
-      setAppliedCode(null);
     } catch (err) {
       console.error("Failed to remove coupon:", err);
       setErrorMessage("Failed to remove coupon. Please try again.");
@@ -94,7 +91,7 @@ export const PromoCode = ({ discount }: IPromoCodeProps) => {
         <span className="text-sm font-medium text-neutral-700">Promo Code</span>
         {appliedCode && (
           <span className="text-xs text-green-600 font-medium">
-            {appliedCode} Applied
+            {appliedCode.toUpperCase()} Applied
           </span>
         )}
       </div>
@@ -133,9 +130,11 @@ export const PromoCode = ({ discount }: IPromoCodeProps) => {
         )}
       </div>
 
-      {appliedCode && (
+      {appliedCode && discount > 0 && (
         <div className="flex justify-between items-center mt-3 text-sm">
-          <span className="text-neutral-600">Discount ({appliedCode})</span>
+          <span className="text-neutral-600">
+            Discount ({appliedCode.toUpperCase()})
+          </span>
           <span className="font-medium text-green-600">
             -{formatPrice(discount)}
           </span>

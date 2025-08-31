@@ -1,18 +1,15 @@
-// Order status object (frozen for runtime immutability)
 export const OrderStatus = Object.freeze({
-  Abandoned: -99,
   Deleted: -3,
   Returned: -2,
   Cancelled: -1,
-  "Quotation Not Sent": 0,
-  "Quotation Sent": 1,
-  Confirmed: 2,
-  Shipped: 3,
-  Delivered: 4,
+  Pending: 0,
+  Confirmed: 1,
+  Shipped: 2,
+  Delivered: 3,
 } as const);
 
 // Type derived from the frozen object
-export type TOrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus];
+export type TOrderStatusValue = (typeof OrderStatus)[keyof typeof OrderStatus];
 
 // Order sort options (frozen for immutability)
 export const OrderSortOptions = Object.freeze([
