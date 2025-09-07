@@ -84,7 +84,7 @@ export const SelectField = ({
         {icon && (
           <div
             onClick={handleToggle}
-            className={`absolute top-1/2 -translate-y-1/2 ${
+            className={`absolute y-center ${
               invertIconPosition ? "left-3" : "right-3"
             } pointer-events-auto cursor-pointer transition-transform duration-200 ${
               isOpen ? "rotate-180" : "rotate-0"

@@ -31,11 +31,26 @@ const Header = ({ categories }: THeaderProps) => {
   if (!isClient) return null;
   return (
     <header>
-      <p className="bg-neutral-100 text-sm xl:text-base py-3 text-center px-4 xs:px-6">
-        Order & Get your items from USA in 15 Days (T&C Applied)
-      </p>
+      {/* Top promo / links bar */}
+      <InnerContainer className="bg-white text-sm xl:text-base py-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
+          {/* Left column: promotional text */}
+          <p className="text-center md:text-left">
+            Free shipping on orders over $2000! Limited time offer.
+          </p>
 
-      <div className="bg-gradient-to-r from-primary-dark to-purple-500">
+          {/* Right column: quick links */}
+          <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
+            <a href="/faq">FAQ</a>
+            <a href="/returns">Returns</a>
+            <a href="/support">Support</a>
+            <a href="/support">About</a>
+          </div>
+        </div>
+      </InnerContainer>
+
+      {/* Main header content */}
+      <div className="bg-gradient-to-r from-primary to-primary-dark">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
           {/* logo */}
           <BrandLogo className="mr-6" />

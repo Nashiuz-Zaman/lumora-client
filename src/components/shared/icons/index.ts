@@ -29,5 +29,6 @@ export * from "./ThumbIconOutlinedIcon";
 export * from "./TrashcanIcon";
 export * from "./TruckIcon";
 export * from "./WarningIcon";
-export * from "./RightCaretIcon";
+export * from "./CaretRightIcon";
+export * from "./CaretLeftIcon";
 export * from "./LockIcon";

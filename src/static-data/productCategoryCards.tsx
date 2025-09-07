@@ -94,7 +94,7 @@ export const cardsData = [
         alt: "featured collection product",
       },
       {
-        src: "/featured-product-collections/health-2.webp",
+        src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757081415/lumora/top-categories/health-2_1_b8egro.webp",
         alt: "featured collection product",
       },
       {

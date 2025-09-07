@@ -38,3 +38,6 @@ export * from "./RatingStars";
 export * from "./StarRatingInput";
 export * from "./EmptyPageLoader";
 export * from "./RedirectCountdown";
+export * from "./DesignerVideo";
+export * from "./SlideInOutWrapper";
+export * from "./Slider";

@@ -49,7 +49,6 @@ const AuthStateProvider = ({ children }: { children: ReactNode }) => {
         setIsLoading(false);
         setHasFetched(true);
       } else if (isError) {
-        console.log("User fetch failed:", error);
         setUser(null);
         setIsLoading(false);
         setHasFetched(true);

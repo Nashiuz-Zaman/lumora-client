@@ -1,6 +1,6 @@
 "use client";
 
-import { LinkBtnTrans, RightCaretIcon } from "@/components/shared";
+import { LinkBtnTrans, CaretRightIcon } from "@/components/shared";
 import { TProductWithMinimalReviewStats } from "@/types";
 import { formatPrice } from "@/utils";
 import Image from "next/image";
@@ -44,7 +44,7 @@ export const FeaturedProductCard = ({
         href={product.slug ? `/products/${product.slug}` : "#"}
         className="font-medium text-primary !gap-1 hover:underline"
       >
-        View product <RightCaretIcon />
+        View product <CaretRightIcon />
       </LinkBtnTrans>
     </div>
   </div>

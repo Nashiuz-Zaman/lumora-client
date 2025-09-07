@@ -1,8 +1,8 @@
 import {
   FeaturedProductCategories,
   SoldBrands,
-  TopBanner,
 } from "@/components/page-specific/main/home";
+import { HomeClientWrapper } from "@/components/page-specific/main/home/HomeClientWrapper";
 
 export const metadata = {
   title: "Lumora | Products from top brands all in one place for you",
@@ -11,9 +11,11 @@ export const metadata = {
 const HomePage = () => {
   return (
     <>
-      <TopBanner />
-      <SoldBrands />
-      <FeaturedProductCategories />
+      {/* intro banner is in the client wrapper */}
+      <HomeClientWrapper>
+        <SoldBrands />
+        <FeaturedProductCategories />
+      </HomeClientWrapper>
     </>
   );
 };

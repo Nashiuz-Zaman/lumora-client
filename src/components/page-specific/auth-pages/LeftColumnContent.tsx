@@ -41,18 +41,14 @@ export const LeftColumnContent = ({
         { y: -30, opacity: 0 },
         { y: 0, opacity: 1 },
         ">0.2" // slight overlap after heading
-      );
-    }
-
-    if (gridRef.current) {
-      tl.fromTo(
+      ).fromTo(
         gridRef.current,
         { opacity: 0 },
         { opacity: 1 },
         ">0.3" // after subtitle
       );
     }
-  }, []);
+  });
 
   return (
     <div

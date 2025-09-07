@@ -14,7 +14,7 @@ export const ErrorMessage = ({
   return (
     <p
       className={`text-red-600 ${
-        centered ? "positioned-center" : "my-4"
+        centered ? "absolute xy-center" : "my-4"
       } text-center text-sm ${className}`}
     >
       {text}

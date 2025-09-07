@@ -3,6 +3,16 @@
 import Link from "next/link";
 import { ReactNode, MouseEvent } from "react";
 
+interface ILinkBtnProps {
+  children: ReactNode;
+  href?: string;
+  className?: string;
+  target?: string;
+  onClick?: () => void;
+  isExternal?: boolean;
+  [key: string]: unknown;
+}
+
 export const LinkBtn = ({
   children,
   href = "/",
@@ -10,14 +20,8 @@ export const LinkBtn = ({
   target,
   onClick,
   isExternal = false,
-}: {
-  children: ReactNode;
-  href?: string;
-  className?: string;
-  target?: string;
-  onClick?: () => void;
-  isExternal?: boolean;
-}) => {
+  ...props
+}: ILinkBtnProps) => {
   const allClasses = `
     flex items-center justify-center gap-2 w-max capitalize transition-all
     rounded-md text-center font-medium focus:outline-none
@@ -41,6 +45,7 @@ export const LinkBtn = ({
         target={target || "_blank"}
         rel="noreferrer"
         onClick={onClick ? handleClick : undefined}
+        {...props}
       >
         {children}
       </a>
@@ -53,6 +58,7 @@ export const LinkBtn = ({
       className={allClasses}
       target={target}
       onClick={onClick ? handleClick : undefined}
+      {...props}
     >
       {children}
     </Link>

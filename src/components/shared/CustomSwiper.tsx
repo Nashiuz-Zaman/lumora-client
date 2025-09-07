@@ -12,7 +12,7 @@ type BreakpointsType = {
   [key: number]: { slidesPerView: number };
 };
 
-type CustomSwiperProps<T> = {
+type ICustomSwiperProps<T> = {
   data: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   showNavigation?: boolean;
@@ -25,12 +25,12 @@ type CustomSwiperProps<T> = {
   spaceBetween?: number;
   loop?: boolean;
   className?: string;
-} & Record<string, unknown>; // allow additional props for Swiper
+} & Record<string, unknown>;
 
 const defaultBreakpoints: BreakpointsType = {
   640: { slidesPerView: 2 },
   1024: { slidesPerView: 3 },
-  1280: { slidesPerView: 4} ,
+  1280: { slidesPerView: 4 },
   1700: { slidesPerView: 5 },
 };
 
@@ -48,7 +48,7 @@ export const CustomSwiper = <T,>({
   loop = false,
   className = "",
   ...props
-}: CustomSwiperProps<T>) => {
+}: ICustomSwiperProps<T>) => {
   const swiperRef = useRef<SwiperClass | null>(null);
 
   useEffect(() => {
@@ -63,11 +63,11 @@ export const CustomSwiper = <T,>({
     <div className={`relative max-w-screen h-full ${className}`}>
       {showNavigation && (
         <>
-          <button className="custom-swiper-prev hidden lg:grid w-12 aspect-square rounded-full place-content-center bg-primary hover:bg-primary-dark shadow-xl absolute top-1/2 -translate-y-1/2 -left-16 z-10 text-white">
+          <button className="custom-swiper-prev hidden lg:grid w-12 aspect-square rounded-full place-content-center bg-primary hover:bg-primary-dark shadow-xl absolute y-center -left-16 z-10 text-white">
             <Icon icon="uiw:left" />
           </button>
 
-          <button className="custom-swiper-next hidden lg:grid w-12 aspect-square rounded-full place-content-center bg-primary hover:bg-primary-dark shadow-xl absolute top-1/2 -translate-y-1/2 -right-16 z-10 text-white">
+          <button className="custom-swiper-next hidden lg:grid w-12 aspect-square rounded-full place-content-center bg-primary hover:bg-primary-dark shadow-xl absolute y-center -right-16 z-10 text-white">
             <Icon icon="uiw:right" />
           </button>
         </>
@@ -75,7 +75,7 @@ export const CustomSwiper = <T,>({
 
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className="!h-auto"
+        className="!h-auto !w-full"
         modules={[Autoplay, Navigation, A11y]}
         loop={loop}
         autoplay={autoplay}
@@ -88,8 +88,8 @@ export const CustomSwiper = <T,>({
         }
         {...props}
       >
-        {data.map((item, index) => (
-          <SwiperSlide key={index}>{renderItem(item, index)}</SwiperSlide>
+        {data.map((item, i) => (
+          <SwiperSlide key={`key-${i}`}>{renderItem(item, i)}</SwiperSlide>
         ))}
       </Swiper>
     </div>

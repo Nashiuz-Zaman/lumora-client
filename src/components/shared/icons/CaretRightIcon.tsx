@@ -1,4 +1,4 @@
-export const RightCaretIcon = ({ className = "" }: { className?: string }) => {
+export const CaretRightIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

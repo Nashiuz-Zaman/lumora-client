@@ -90,7 +90,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                     {top.title}
                   </p>
 
-                  <div className="absolute mt-[1px] flex left-0 top-full opacity-0 collapse transition-all duration-300 group-hover:opacity-100 group-hover:visible w-full justify-center z-[5000] text-xs 3xl:text-base">
+                  <div className="absolute mt-[1px] flex left-0 top-full opacity-0 collapse group-hover:transition-all group-hover:duration-500 group-hover:ease group-hover:opacity-100 group-hover:visible w-full justify-center z-[5000] text-xs 3xl:text-base">
                     <div className="w-full grid grid-cols-[1fr_1fr_2fr] gap-6 p-6 rounded-b-2xl shadow-lg items-start bg-white border border-neutral-100 border-t-0">
                       {/* Left column: Grid card */}
                       <div className="bg-neutral-100 rounded-lg p-6 flex items-center justify-center">

@@ -8,6 +8,8 @@ import { ReactNode } from "react";
 const MainLayout = async ({ children }: { children: ReactNode }) => {
   const categories = await fetchMegaMenuData();
 
+  console.log(categories);
+
   return (
     <div className="min-h-screen relative flex flex-col max-w-[120rem] mx-auto">
       {!Array.isArray(categories) ? (
@@ -20,6 +22,7 @@ const MainLayout = async ({ children }: { children: ReactNode }) => {
       )}
 
       <main className="flex flex-col grow">{children}</main>
+
       <Footer />
     </div>
   );

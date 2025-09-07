@@ -14,7 +14,7 @@ export const NoData = ({
   return (
     <p
       className={`text-neutral-400 ${
-        centered ? "positioned-center" : "my-24"
+        centered ? "absolute xy-center" : "my-24"
       } text-center ${className}`}
     >
       {text}

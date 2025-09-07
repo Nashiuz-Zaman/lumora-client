@@ -1,27 +1,28 @@
 "use client";
 
-import { useEffect, useRef, ReactNode, RefObject } from "react";
+import { useRef, ReactNode } from "react";
 import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+
+gsap.registerPlugin(useGSAP);
 
 interface ISlideInOutWrapperXProps {
-  parentRef: RefObject<HTMLDivElement | null>;
   children: ReactNode;
+  parent: HTMLElement | null;
   className?: string;
 }
 
 export const SlideInOutWrapperX = ({
-  parentRef,
   children,
+  parent,
   className,
 }: ISlideInOutWrapperXProps) => {
   const wrapperRef = useRef<HTMLDivElement>(null);
   const wrapperChildRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!parentRef.current || !wrapperRef.current || !wrapperChildRef.current)
-      return;
+  useGSAP(() => {
+    if (!parent || !wrapperRef.current || !wrapperChildRef.current) return;
 
-    const parent = parentRef.current;
     const wrapper = wrapperRef.current;
     const wrapperChild = wrapperChildRef.current;
 
@@ -39,7 +40,7 @@ export const SlideInOutWrapperX = ({
             opacity: 1,
             y: "0%",
           },
-          "0.12"
+          "0.16"
         );
     };
 
@@ -58,7 +59,7 @@ export const SlideInOutWrapperX = ({
             scaleX: "0",
             transformOrigin: "right",
           },
-          "0.12"
+          "0.16"
         )
         .to(wrapper, {
           transformOrigin: "left",
@@ -67,21 +68,24 @@ export const SlideInOutWrapperX = ({
 
     parent.addEventListener("mouseenter", handleEnter);
     parent.addEventListener("mouseleave", handleLeave);
-
-    return () => {
-      parent.removeEventListener("mouseenter", handleEnter);
-      parent.removeEventListener("mouseleave", handleLeave);
-    };
-  }, [parentRef]);
+  }, [parent]);
 
   return (
     <div
       ref={wrapperRef}
-      className={`absolute scale-x-[0] w-full origin-left z-[500] overflow-hidden ${className}`}
+      className={`absolute w-full z-[500] overflow-hidden ${className}`}
+      style={{
+        transform: "scaleX(0) translateX(0)",
+        transformOrigin: "left",
+      }}
     >
       <div
         ref={wrapperChildRef}
-        className="opacity-0 relative translate-y-[100%]"
+        className="relative"
+        style={{
+          transform: "translateY(100%)",
+          opacity: 0,
+        }}
       >
         {children}
       </div>
