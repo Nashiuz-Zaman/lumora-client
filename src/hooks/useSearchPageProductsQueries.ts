@@ -66,18 +66,19 @@ export const useSearchPageProductsQueries = () => {
   const subCategories = watchedValues.subCategories;
   const brands = watchedValues.brands;
 
-  const [hydrated, setHydrated] = useState(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
-    if (!hydrated) {
-      setHydrated(true);
+    if (!isClient) {
+      setIsClient(true);
       return;
     }
+
     localStorage.setItem(
       "searchFilters",
       JSON.stringify({ subCategories, brands })
     );
-  }, [hydrated, subCategories, brands]);
+  }, [isClient, subCategories, brands]);
 
   // Build query for API
   const buildQueryParams = useCallback(
@@ -119,6 +120,10 @@ export const useSearchPageProductsQueries = () => {
 
   const onSubmit = () => {
     updateQueryParams();
+      localStorage.setItem(
+      "searchFilters",
+      JSON.stringify({ subCategories, brands })
+    );
     trigger({ ...cloneDeep(cleanObject(buildQueryParams())), page: 1 });
   };
 
@@ -129,12 +134,12 @@ export const useSearchPageProductsQueries = () => {
   };
 
   useEffect(() => {
-    if (hydrated) {
+    if (isClient) {
       trigger(cleanObject(buildQueryParams()));
     }
     // this should run only once so suppressing this warning
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hydrated, trigger]);
+  }, [isClient, trigger]);
 
   return {
     control,

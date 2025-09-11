@@ -14,7 +14,7 @@ const gap = "gap-3";
 export const IntroBanner = () => {
   return (
     <section
-      className={`grid grid-cols-[1.15fr_2.75fr_1.15fr] h-[50rem] xl:h-[90vh] mb-16 ${gap}`}
+      className={`grid grid-cols-[1.15fr_2.75fr_1.15fr] h-[50rem] xl:h-[90vh] ${gap}`}
     >
       <Sneakers />
 

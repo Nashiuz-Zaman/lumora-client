@@ -136,43 +136,45 @@ export const SearchFilters = ({
       </div>
 
       {/* Brands */}
-      <div>
-        <div className="flex items-center justify-between mb-2">
-          <h3 className="font-semibold">Brands</h3>
+      {brands?.length > 0 && (
+        <div>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-semibold">Brands</h3>
 
-          {brands?.length > 5 && (
-            <ButtonBtnTrans
-              type="button"
-              className="text-sm text-primary font-medium hover:underline cursor-pointer"
-              onClick={() => setExpandedBrands((prev) => !prev)}
-            >
-              {expandedBrands ? "See Less" : "See More"}
-            </ButtonBtnTrans>
-          )}
-        </div>
-
-        <AccordionVertical
-          expanded={expandedBrands}
-          animate
-          duration="150ms"
-          previewHeight={200}
-        >
-          <div className="space-y-1">
-            {brands.map((brand) => (
-              <label key={brand} className="flex items-center gap-2">
-                <input
-                  type="checkbox"
-                  checked={!!watchedValues.brands[brand]}
-                  onChange={(e) =>
-                    setValue(`brands.${brand}`, e.target.checked)
-                  }
-                />
-                {brand}
-              </label>
-            ))}
+            {brands?.length > 5 && (
+              <ButtonBtnTrans
+                type="button"
+                className="text-sm text-primary font-medium hover:underline cursor-pointer"
+                onClick={() => setExpandedBrands((prev) => !prev)}
+              >
+                {expandedBrands ? "See Less" : "See More"}
+              </ButtonBtnTrans>
+            )}
           </div>
-        </AccordionVertical>
-      </div>
+
+          <AccordionVertical
+            expanded={expandedBrands}
+            animate
+            duration="150ms"
+            previewHeight={200}
+          >
+            <div className="space-y-1">
+              {brands.map((brand) => (
+                <label key={brand} className="flex items-center gap-2">
+                  <input
+                    type="checkbox"
+                    checked={!!watchedValues.brands[brand]}
+                    onChange={(e) =>
+                      setValue(`brands.${brand}`, e.target.checked)
+                    }
+                  />
+                  {brand}
+                </label>
+              ))}
+            </div>
+          </AccordionVertical>
+        </div>
+      )}
 
       {/* Apply Filters Button */}
       <ButtonBtn className="!primaryClasses">Apply Filters</ButtonBtn>

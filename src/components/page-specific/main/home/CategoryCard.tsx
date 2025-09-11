@@ -16,7 +16,7 @@ export const CategoryCard = ({
   className = "",
 }: TCategoryCardProps) => {
   return (
-    <div className={`bg-white p-5 pb-4 ${className}`}>
+    <div className={`bg-white p-5 pb-4 shadow-xs ${className}`}>
       {/* Top Heading */}
       <h3 className="text-base sm:text-lg font-semibold mb-3">{heading}</h3>
 

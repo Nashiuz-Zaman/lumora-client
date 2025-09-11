@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
-  featuredProducts: TProductWithMinimalReviewStats[];
+  featuredProducts?: TProductWithMinimalReviewStats[];
 };
 
 export interface IMegaMenuProps {

@@ -18,7 +18,7 @@ export const IntroBannerMobile = () => {
   const isAboveMd = useMediaQuery(BREAKPOINTS.min.sm!);
 
   return (
-    <section className={`mb-16 ${gap}`}>
+    <section className={`${gap}`}>
       {/* Top banner */}
       <div className="flex items-center justify-center py-10 mb-3">
         <TopBannerIntro />

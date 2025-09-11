@@ -1,7 +1,8 @@
 import {
-  FeaturedProductCategories,
-  SoldBrands,
+  ProductCategories,
+  TopBrands,
 } from "@/components/page-specific/main/home";
+
 import { HomeClientWrapper } from "@/components/page-specific/main/home/HomeClientWrapper";
 
 export const metadata = {
@@ -13,8 +14,8 @@ const HomePage = () => {
     <>
       {/* intro banner is in the client wrapper */}
       <HomeClientWrapper>
-        <SoldBrands />
-        <FeaturedProductCategories />
+        <ProductCategories />
+        <TopBrands />
       </HomeClientWrapper>
     </>
   );

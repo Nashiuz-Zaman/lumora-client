@@ -23,7 +23,7 @@ export const CustomMarquee = <T,>({
   return (
     <Marquee speed={speed}>
       <div className={`flex items-center ${gap} ${paddingRight}`}>
-        {data.map((item, i) => renderItem({ data: item, index: i }))}
+        {data?.map((item, i) => renderItem({ data: item, index: i }))}
       </div>
     </Marquee>
   );

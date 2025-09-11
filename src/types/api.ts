@@ -2,8 +2,8 @@
 export interface IApiResponse<T = any> {
   success: boolean;
   status: string;
-  message: string;
-  data: T;
+  message?: string;
+  data?: T;
 }
 
 export interface IQueryMeta {

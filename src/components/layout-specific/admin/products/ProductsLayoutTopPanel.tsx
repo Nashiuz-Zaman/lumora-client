@@ -9,7 +9,7 @@ import { InnerContainer, LinkBtn } from "@/components/shared";
 import { ProductIcon } from "@/components/shared";
 
 interface ITopPanelProductsProps {
-  portalRef: (node: HTMLDivElement | null) => void;
+  portalRef?: (node: HTMLDivElement | null) => void;
 }
 
 export const ProductsLayoutTopPanel = ({
@@ -34,7 +34,7 @@ export const ProductsLayoutTopPanel = ({
         {productsRootPageRegex.test(path) && (
           <LinkBtn
             href={goToAddProductUrl}
-            className="!secondaryClasses !py-2 !px-4 ml-auto"
+            className="!primaryOutlinedClasses !py-2 !px-4 ml-auto"
           >
             <ProductIcon className="text-lg" />
             <span>Create Product</span>

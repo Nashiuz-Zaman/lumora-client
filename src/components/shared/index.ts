@@ -41,3 +41,5 @@ export * from "./RedirectCountdown";
 export * from "./DesignerVideo";
 export * from "./SlideInOutWrapper";
 export * from "./Slider";
+export * from "./SectionHeading";
+export * from "./SectionTagline";

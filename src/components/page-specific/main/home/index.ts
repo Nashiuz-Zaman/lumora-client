@@ -1,5 +1,4 @@
-export * from "./FeaturedProductCategories";
-export * from "./SoldBrands";
-export * from "./TopBanner";
+export * from "./ProductCategories";
+export * from "./TopBrands";
 export * from "./TopBannerIntro";
 export * from "./intro-banner/IntroBanner";
