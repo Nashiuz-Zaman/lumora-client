@@ -6,7 +6,7 @@ export const getProductForCustomer = catchAsyncServer(async (slug: string) => {
 
   const apiUrl = getBaseApiUrl();
   const res = await fetch(`${apiUrl}/products/${slug}/customer`, {
-    next: { revalidate: 60 },
+    next: { revalidate: 3600 },
   });
 
   if (!res.ok) throw new Error("Failed to fetch product data");
