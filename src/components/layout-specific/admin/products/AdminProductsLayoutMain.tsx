@@ -1,24 +1,30 @@
 "use client";
 
-// Core
 import { ReactNode } from "react";
-
-// Hooks
+import { useParams } from "next/navigation"; // 👈
 import { ProductsLayoutTopPanel } from "./ProductsLayoutTopPanel";
+import { usePortalTarget } from "@/hooks";
+import AddToProductCollectionModal from "@/components/modals/AddToProductCollectionModal";
 
-// Components
 export const AdminProductsLayoutMain = ({
   children,
 }: {
   children: ReactNode;
 }) => {
+  const { ref, target } = usePortalTarget();
+  const params = useParams<{ slug?: string }>();
+
+  const slug = params?.slug;
+
   return (
-    <div className="grid grid-rows-[auto_1fr] grow">
+    <div className="grid grid-rows-[auto_1fr] h-[calc(100vh-7rem)]">
       {/* Top panel */}
-      <ProductsLayoutTopPanel />
+      <ProductsLayoutTopPanel portalRef={ref} />
+
+      {slug && <AddToProductCollectionModal target={target} slug={slug} />}
 
       {/* Main content */}
-      <div className="overflow-y-auto flex flex-col">{children}</div>
+      <div className="flex flex-col">{children}</div>
     </div>
   );
 };

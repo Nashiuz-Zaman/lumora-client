@@ -37,7 +37,6 @@ export const ButtonBtn = ({
     if (onClick) onClick();
   };
 
-  // 🔑 Native Tailwind spacing classes (all scale with root font-size)
   const allClasses = `
     focus:outline-none flex items-center justify-center w-max
     transition-all rounded-md text-center
@@ -59,7 +58,7 @@ export const ButtonBtn = ({
       className={allClasses}
     >
       <span
-        className={`w-full capitalize bg-transparent flex items-center justify-center gap-2 ${
+        className={`w-full capitalize bg-transparent flex items-center justify-center gap-[inherit] ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       >

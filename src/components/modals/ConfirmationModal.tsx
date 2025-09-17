@@ -7,6 +7,7 @@ interface IConfirmationModalProps {
   message: string;
   onConfirm: () => void;
   onCancel: () => void;
+  isAnimated?: boolean;
 }
 
 export const ConfirmationModal = ({
@@ -14,10 +15,13 @@ export const ConfirmationModal = ({
   message,
   onConfirm,
   onCancel,
+  isAnimated,
 }: IConfirmationModalProps) => {
   return (
     <BaseModal
+      noCloseBtn={true}
       condition={show}
+      isAnimated={isAnimated}
       closeFunction={onCancel}
       className="bg-white rounded-xl shadow-lg p-6 sm:p-8 w-[90%] md:w-[28rem] text-sm sm:text-base"
     >

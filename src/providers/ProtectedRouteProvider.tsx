@@ -6,7 +6,7 @@ import { useCurrentUrlPath } from "@/hooks/useCurrentUrlPath";
 import { IRole } from "@/types";
 import { useAuthState } from "@/hooks";
 import { UserRoles } from "@/constants";
-import { DataLoadingSpinner } from "@/components/shared";
+import { LoadingSpinner } from "@/components/shared";
 
 interface IProtectedRouteProviderProps {
   children: ReactNode;
@@ -60,7 +60,7 @@ const ProtectedRouteProvider = ({
   ) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <DataLoadingSpinner className="!static" />
+        <LoadingSpinner className="!static" />
       </div>
     );
   }

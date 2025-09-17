@@ -3,18 +3,15 @@
 import isEqual from "lodash/isEqual";
 import { useState, useMemo, useEffect } from "react";
 
-//  Type for keyfield such as "_id"
-type KeyField<T> = keyof T & string;
-
-export const useSelectable = <T extends Record<string, unknown>>(
+export const useSelectable = <T extends Record<string, any>, K extends keyof T>(
   data: T[] = [],
-  keyField: KeyField<T> = "_id" as KeyField<T>
+  keyField: K
 ) => {
-  const [selected, setSelected] = useState<string[]>([]);
-  const [single, setSingle] = useState<string | null>(null);
+  const [selected, setSelected] = useState<T[K][]>([]);
+  const [single, setSingle] = useState<T[K] | null>(null);
 
   const dataKeys = useMemo(
-    () => data.map((item) => String(item[keyField])),
+    () => data.map((item) => item[keyField]),
     [data, keyField]
   );
 
@@ -27,17 +24,13 @@ export const useSelectable = <T extends Record<string, unknown>>(
     }
   }, [dataKeys, selected, newSelected]);
 
-  const checkIfSelected = (item: T, customKey: KeyField<T> = keyField) => {
-    const id = String(item?.[customKey]);
-    return selected.includes(id);
-  };
+  const checkIfSelected = (item: T) => selected.includes(item[keyField]);
 
   const isAllSelected =
     selected.length > 0 && selected.length === dataKeys.length;
 
-  const toggleSelectOne = (item: T, customKey: KeyField<T> = keyField) => {
-    const id = String(item?.[customKey]);
-    if (!id) return;
+  const toggleSelectOne = (item: T) => {
+    const id = item[keyField];
     setSelected((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
@@ -50,7 +43,7 @@ export const useSelectable = <T extends Record<string, unknown>>(
   const removeSingle = () => setSingle(null);
 
   const selectedData = useMemo(
-    () => data.filter((item) => selected.includes(String(item[keyField]))),
+    () => data.filter((item) => selected.includes(item[keyField])),
     [data, selected, keyField]
   );
 
@@ -67,3 +60,9 @@ export const useSelectable = <T extends Record<string, unknown>>(
     removeSingle,
   };
 };
+
+// Export the hook’s return type for reuse
+export type TUseSelectableReturn<
+  T extends Record<string, any>,
+  K extends keyof T
+> = ReturnType<typeof useSelectable<T, K>>;

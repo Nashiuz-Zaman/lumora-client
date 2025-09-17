@@ -8,7 +8,7 @@ import { ReviewBreakdown } from "./ReviewBreakdown";
 
 import {
   Pagination,
-  DataLoadingSpinner,
+  LoadingSpinner,
   NoData,
   ErrorMessage,
 } from "@/components/shared";
@@ -88,7 +88,7 @@ export const Reviews = ({
           What customers say
         </h3>
 
-        {isReviewsLoading && <DataLoadingSpinner />}
+        {isReviewsLoading && <LoadingSpinner />}
 
         {isError && (
           <ErrorMessage

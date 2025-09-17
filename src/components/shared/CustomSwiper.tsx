@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
 
-type BreakpointsType = {
+type TBreakpointsType = {
   [key: number]: { slidesPerView: number };
 };
 
@@ -20,14 +20,14 @@ type ICustomSwiperProps<T> = {
     nextEl: string;
     prevEl: string;
   };
-  breakpoints?: BreakpointsType | null;
+  breakpoints?: TBreakpointsType | null;
   autoplay?: boolean;
   spaceBetween?: number;
   loop?: boolean;
   className?: string;
 } & Record<string, unknown>;
 
-const defaultBreakpoints: BreakpointsType = {
+const defaultBreakpoints: TBreakpointsType = {
   640: { slidesPerView: 2 },
   1024: { slidesPerView: 3 },
   1280: { slidesPerView: 4 },

@@ -8,43 +8,42 @@ import { useEffect, useState } from "react";
 import { InnerContainer, LinkBtn } from "@/components/shared";
 import { ProductIcon } from "@/components/shared";
 
-interface ITopPanelProductsProps {
+interface IProductsLayoutTopPanelProps {
   portalRef?: (node: HTMLDivElement | null) => void;
 }
 
 export const ProductsLayoutTopPanel = ({
   portalRef,
-}: ITopPanelProductsProps) => {
+}: IProductsLayoutTopPanelProps) => {
   const path = usePathname();
   const productsRootPageRegex = /^\/admin\/products$/;
+  const productCollectionPageRegex =
+    /^\/admin\/products\/product-collection\/[^\/]+$/;
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  const goToAddProductUrl = `${path}/create`;
-
   if (!isClient) return null;
 
   return (
     <div className="bg-white h-20 border-b border-neutral-200 flex items-center">
-      <InnerContainer className="flex items-center h-full">
+      <InnerContainer className="flex items-center h-full gap-4 justify-center sm:justify-end">
         {/* Create Product button */}
-        {productsRootPageRegex.test(path) && (
+        {(productsRootPageRegex.test(path) ||
+          productCollectionPageRegex.test(path)) && (
           <LinkBtn
-            href={goToAddProductUrl}
-            className="!primaryOutlinedClasses !py-2 !px-4 ml-auto"
+            href="/admin/products/create"
+            className="!primaryClasses !py-2 !px-5 !rounded-full"
           >
             <ProductIcon className="text-lg" />
             <span>Create Product</span>
           </LinkBtn>
         )}
 
-        {/* Create Collection button */}
-        {productsRootPageRegex.test(path) && (
-          <div ref={portalRef} id="create-collection-button-portal"></div>
-        )}
+        {/* Add to Collection Button portal target */}
+        {productCollectionPageRegex.test(path) && <div ref={portalRef}></div>}
       </InnerContainer>
     </div>
   );

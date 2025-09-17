@@ -1,11 +1,11 @@
 import { InnerContainer } from "./containers/InnerContainer";
-import { DataLoadingSpinner } from "./DataLoadingSpinner";
+import { LoadingSpinner } from "./LoadingSpinner";
 
 const EmptyPageLoader = ({ className }: { className?: string }) => {
   return (
     <InnerContainer>
       <div className={`h-[75vh] w-full relative ${className}`}>
-        <DataLoadingSpinner />
+        <LoadingSpinner />
       </div>
     </InnerContainer>
   );

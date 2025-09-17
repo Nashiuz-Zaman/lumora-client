@@ -13,11 +13,17 @@ import {
 } from "@/components/shared";
 import { ConfirmationModal } from "@/components/modals";
 
-import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/products/productsApiSlice";
+import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/product/productApiSlice";
 
 import { showToast, catchAsyncGeneral } from "@/utils";
-import { useSelectable, useModal, useAllProductsQueries } from "@/hooks";
+import {
+  useSelectable,
+  useModal,
+  useProductsQueries,
+  IProductQueriesParams,
+} from "@/hooks";
 import { MouseEvent } from "react";
+import { IProduct } from "@/types";
 
 export const productsTableHeadings: string[] = [
   "checkbox",
@@ -34,15 +40,6 @@ export const productsTableHeadings: string[] = [
 export const productsTableRowClasses =
   "grid grid-cols-[auto_0.3fr_0.1fr_0.1fr_0.15fr_0.1fr_0.1fr_0.2fr_0.15fr] gap-4 !px-4 items-center";
 
-// Product type (adjust according to your real product schema)
-type Product = {
-  _id: string;
-  title?: string;
-  brand?: string;
-  price?: number;
-  [key: string]: unknown;
-};
-
 export const AllProductsMain = () => {
   const router = useRouter();
 
@@ -55,7 +52,7 @@ export const AllProductsMain = () => {
     setFormParams,
     isFetching,
     refetch,
-  } = useAllProductsQueries();
+  } = useProductsQueries();
 
   const {
     selected,
@@ -64,18 +61,19 @@ export const AllProductsMain = () => {
     checkIfSelected,
     isAllSelected,
     setSelected,
-  } = useSelectable<Product>(products, "_id");
+  } = useSelectable<Partial<IProduct>>(products, "_id");
 
   const { isModalOpen, openModal, closeModal } = useModal();
+
   const [bulkDeleteProducts] = useBulkDeleteProductsMutation();
 
   const handleRowClick = (_: MouseEvent<HTMLTableRowElement>, id: string) => {
     router.push(`/admin/products/edit/${id}`);
   };
 
-  const renderRow = ({ data }: { data: Product }) => (
+  const renderRow = ({ data }: { data: Partial<IProduct> }) => (
     <ProductRow
-      data={data}
+      productData={data}
       isSelected={checkIfSelected(data, "_id")}
       toggleSelectOne={toggleSelectOne}
       selectKeyField="_id"
@@ -96,7 +94,7 @@ export const AllProductsMain = () => {
   return (
     <div className="grow flex flex-col">
       {/* Top params form */}
-      <ProductsTopParamsForm
+      <ProductsTopParamsForm<IProductQueriesParams>
         sortOptions={[...ProductSortOptions]}
         params={formParams}
         onSubmit={handleSubmit}
@@ -107,7 +105,7 @@ export const AllProductsMain = () => {
       {/* Delete action button */}
       <ButtonBtnTrans
         onClick={openModal}
-        className="text-red-600 font-inherit my-1 ml-auto px-4"
+        className="text-red-600 font-inherit my-1 xl:my-4 ml-auto px-4"
         isDisabled={selected.length < 1}
       >
         <TrashcanIcon />
@@ -137,9 +135,9 @@ export const AllProductsMain = () => {
       {/* Pagination */}
       {queryMeta?.totalPages > 0 && (
         <Pagination
-          className="mt-auto pt-10"
-          totalPages={+queryMeta.totalPages}
-          currentPage={+queryMeta?.page}
+          className="mt-auto pt-10 mb-10"
+          totalPages={queryMeta?.totalPages}
+          currentPage={queryMeta?.page}
           setCurrentPage={changePage}
         />
       )}

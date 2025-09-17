@@ -14,14 +14,17 @@
   --color-primary: #ad46ff;
   --color-primary-dark: #8a38cc;
   --color-primary-light: #bd6bff;
+  --color-primary-light-2: #ca89ff;
   --color-secondary: #f6339a;
   --color-secondary-dark: #e60076;
 }
 
 html {
   @apply !text-[75%]   /* ~12px */
-   
-         xl:!text-[100%]; /* 16px */
+  sm:!text-[81.25%] /* 13px */
+  2md:!text-[87.5%] /* 14px */
+  2xl:!text-[93.75%] /* 15px */
+  3xl:!text-[100%]; /* 16px */
 
   scroll-behavior: smooth;
 }
@@ -141,6 +144,12 @@ a:link::selection,
 a:visited::selection {
   color: auto;
   @apply bg-transparent;
+}
+
+/* Entire scrollbar */
+* {
+  scrollbar-width: thin; /* auto | thin | none */
+  scrollbar-color: var(--color-primary-light-2) #f1f1f1;
 }
 
 /* @media (prefers-color-scheme: dark) {

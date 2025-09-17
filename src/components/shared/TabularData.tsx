@@ -1,9 +1,10 @@
 "use client";
 
 import { MouseEvent, ReactNode, useEffect, useState } from "react";
-import { DataLoadingSpinner } from "./DataLoadingSpinner";
+import { LoadingSpinner } from "./LoadingSpinner";
 import { NoData } from "./NoData";
 import { InputCheckbox } from "./InputCheckbox";
+import { TUseSelectableReturn } from "@/hooks";
 
 interface IClassNameObj {
   containerDiv?: string;
@@ -21,7 +22,7 @@ interface IRenderRowProps<T> {
   [key: string]: unknown;
 }
 
-interface ITabularDataProps<T> {
+interface ITabularDataProps<T extends Record<string, any>> {
   headings: string[];
   data: T[];
   rowClassesForBoth?: string;
@@ -31,13 +32,13 @@ interface ITabularDataProps<T> {
   dataLoading?: boolean;
   onRowClick?: (e: MouseEvent<HTMLTableRowElement>, id: string) => void;
   noDataText?: string;
-  toggleSelectAll?: () => void;
+  toggleSelectAll?: TUseSelectableReturn<T, keyof T>["toggleSelectAll"];
   isAllSelected?: boolean;
   bordered?: "full" | "divider" | "none";
   dataKey?: string;
 }
 
-export const TabularData = <T extends Record<string, unknown>>({
+export const TabularData = <T extends Record<string, any>>({
   headings,
   data,
   rowClassesForBoth = "",
@@ -136,7 +137,7 @@ export const TabularData = <T extends Record<string, unknown>>({
           {dataLoading && (
             <tr className="grow flex flex-col w-full">
               <td className="grow grid place-content-center w-full">
-                <DataLoadingSpinner className="!static !py-20" />
+                <LoadingSpinner className="!static !py-20" />
               </td>
             </tr>
           )}

@@ -20,56 +20,49 @@ export const LeftColumnContent = ({
   images,
   className = "",
 }: ILeftColumnProps) => {
-  const headingRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const tl = gsap.timeline({ defaults: { duration: 1, ease: "power2.out" } });
+  useGSAP(
+    () => {
+      if (!containerRef.current) return;
 
-    if (headingRef.current) {
-      tl.fromTo(
-        headingRef.current,
-        { y: -50, opacity: 0 },
-        { y: 0, opacity: 1 }
-      );
-    }
+      const tl = gsap.timeline({
+        defaults: { duration: 0.6, ease: "power2.out" },
+      });
 
-    if (subtitleRef.current) {
-      tl.fromTo(
-        subtitleRef.current,
-        { y: -30, opacity: 0 },
-        { y: 0, opacity: 1 },
-        ">0.2" // slight overlap after heading
-      ).fromTo(
-        gridRef.current,
-        { opacity: 0 },
-        { opacity: 1 },
-        ">0.3" // after subtitle
-      );
-    }
-  });
+      tl.to("#leftcol-heading", { y: 0, opacity: 1 })
+        .to("#leftcol-subtitle", { y: 0, opacity: 1 }, "<0.25")
+        .to("#leftcol-grid", { opacity: 1 }, "<0.25");
+    },
+    { scope: containerRef }
+  );
 
   return (
     <div
+      ref={containerRef}
       className={`flex flex-col items-center justify-center gap-8 text-white select-none ${className}`}
     >
-      <Link href="/">
-        <h1
-          ref={headingRef}
-          className="text-5xl md:text-6xl font-extrabold tracking-widest text-center"
-        >
+      <Link
+        id="leftcol-heading"
+        className="block translate-y-[-100px] opacity-0"
+        href="/"
+      >
+        <h1 className="text-5xl md:text-6xl font-extrabold tracking-widest text-center">
           {heading}
         </h1>
       </Link>
+
       <p
-        ref={subtitleRef}
-        className="text-lg md:text-xl text-center max-w-md opacity-90 text-neutral-100"
+        id="leftcol-subtitle"
+        className="translate-y-[-100px] opacity-0 text-lg md:text-xl text-center max-w-md  text-neutral-100"
       >
         {subtitle}
       </p>
 
-      <div ref={gridRef} className="w-full max-w-md">
+      <div
+        id="leftcol-grid"
+        className="w-full max-w-md opacity-0"
+      >
         <GridCard images={images} />
       </div>
     </div>

@@ -5,7 +5,7 @@ export const stripIdsAndResetSku = (product: IProduct): IProduct => {
   // Deep copy
   const clone: IProduct = cloneDeep(product);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  
   const stripIds = (obj: any) => {
     if (!obj || typeof obj !== "object") return;
 

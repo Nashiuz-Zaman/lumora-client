@@ -1,4 +1,4 @@
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 export const catchAsyncServer = <T extends (...args: any[]) => Promise<any>>(
   fn: T
 ) => {
@@ -9,7 +9,7 @@ export const catchAsyncServer = <T extends (...args: any[]) => Promise<any>>(
   > => {
     try {
       return await fn(...args);
-      // gracefully handle error
+      // gracefully handle error below
     } catch (error) {
       console.log(`Error in ${fn.name}:`, error);
       return {

@@ -31,6 +31,7 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         url: "/auth/me",
         method: "GET",
       }),
+      keepUnusedDataFor: 0,
     }),
 
     logout: builder.mutation<IApiResponse, void>({

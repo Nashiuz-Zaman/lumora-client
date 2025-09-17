@@ -14,7 +14,7 @@ export const AdminHeader = ({ ref }: { ref: Ref<HTMLElement> }) => {
       ref={ref}
       className="h-[5rem] xl:h-[7rem] bg-white border-b border-neutral-200 flex items-center"
     >
-      <InnerContainer className="flex justify-between items-center !px-8">
+      <InnerContainer className="flex justify-between items-center">
         {/* Mobile nav button placeholder */}
         <div id="mobile-button-portal" className="xl:hidden" />
 

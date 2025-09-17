@@ -3,9 +3,7 @@ import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
 export const fetchAllProductCollections = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();
-  const res = await fetch(`${apiUrl}/product-collections`, {
-    next: { revalidate: 3600 },
-  });
+  const res = await fetch(`${apiUrl}/product-collections`);
 
   if (!res.ok) throw new Error("Failed to fetch product collections");
 

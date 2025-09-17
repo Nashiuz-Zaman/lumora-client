@@ -72,7 +72,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
         {title}
       </p>
 
-      {/* ⭐ Rating row */}
+      {/* Rating row */}
       <div className="flex items-center justify-center gap-1 text-gray-500 my-2">
         <RatingStars rating={averageRating || 0} className="text-yellow-400" />
         <span>({totalReviews})</span>

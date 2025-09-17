@@ -15,7 +15,7 @@ import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
 import {
   useCreateProductMutation,
   useUpdateProductMutation,
-} from "@/libs/redux/apiSlices/products/productsApiSlice";
+} from "@/libs/redux/apiSlices/product/productApiSlice";
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { ButtonBtn } from "@/components/shared";
 import cloneDeep from "lodash/cloneDeep";

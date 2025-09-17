@@ -13,7 +13,7 @@ export * from "./buttons";
 export * from "./IcfyIcon";
 export * from "./BrandLogo";
 export * from "./DashboardPageHeading";
-export * from "./DataLoadingSpinner";
+export * from "./LoadingSpinner";
 export * from "./Inputfield";
 export * from "./InputCheckbox";
 export * from "./TextArea";

@@ -16,7 +16,7 @@ export const CloseBtn = ({
       type="button"
       title={title}
       aria-label="Close button"
-      className={`ml-auto w-max block text-3xl text-textPrimary ${modifyClasses}`}
+      className={`ml-auto w-max block text-3xl text-textPrimary cursor-pointer ${modifyClasses}`}
       onClick={onClick}
     >
       <CloseIcon />

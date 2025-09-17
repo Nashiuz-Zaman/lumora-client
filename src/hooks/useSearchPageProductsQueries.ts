@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ProductSortOptions } from "@/constants/product";
-import { useLazyGetProductsForSearchPageQuery } from "@/libs/redux/apiSlices/products/productsApiSlice";
+import { useLazyGetProductsForSearchPageQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import {
   getQueryParamsFromSearchParams,
   buildUrlWithParams,

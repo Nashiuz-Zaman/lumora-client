@@ -5,24 +5,22 @@ import {
   ParamsFilterForm,
   TParamsFilterFormOptions,
 } from "@/components/shared";
-import { IAllProductQueryParams } from "@/hooks";
 
-interface ITopProductParamsFormProps {
-  params: IAllProductQueryParams;
-  setParams: Dispatch<SetStateAction<IAllProductQueryParams>>;
+interface IProductTopParamsFormProps<T> {
+  params: T;
+  setParams: Dispatch<SetStateAction<T>>;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   sortOptions: TParamsFilterFormOptions;
   showStatusFilter?: boolean;
 }
 
-const ProductsTopParamsForm = ({
+const ProductsTopParamsForm = <T extends Record<string, any>>({
   params,
   setParams,
   onSubmit,
   sortOptions,
   showStatusFilter = false,
-}: ITopProductParamsFormProps) => {
-  // Strongly typed status options
+}: IProductTopParamsFormProps<T>) => {
   const statusOptions: TParamsFilterFormOptions = [
     { label: "All", value: "all" },
     { label: "Active", value: "1" },
@@ -30,7 +28,7 @@ const ProductsTopParamsForm = ({
   ];
 
   return (
-    <ParamsFilterForm<IAllProductQueryParams>
+    <ParamsFilterForm<T>
       params={params}
       setParams={setParams}
       onSubmit={onSubmit}

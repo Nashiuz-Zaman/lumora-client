@@ -32,10 +32,7 @@ interface IParamsFilterFormProps<T> {
   roleLabel?: string;
 }
 
-export const ParamsFilterForm = <
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  T extends Record<string, any>
->({
+export const ParamsFilterForm = <T extends Record<string, any>>({
   params,
   setParams,
   onSubmit,
@@ -116,7 +113,7 @@ export const ParamsFilterForm = <
             </OptionsDropdown>
           </div>
 
-          <ButtonBtn type="submit" className="!primaryClasses !py-2 !px-3">
+          <ButtonBtn type="submit" className="!successClasses !py-2 !px-3">
             Search
           </ButtonBtn>
         </div>

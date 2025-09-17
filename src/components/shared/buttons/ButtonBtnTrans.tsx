@@ -42,7 +42,7 @@ export const ButtonBtnTrans = ({
 
   // 🔑 Use native Tailwind spacing and text classes
   const allClasses = `
-    relative focus:outline-none flex items-center gap-2 w-max capitalize
+    relative focus:outline-none gap-2 w-max capitalize
     transition-all duration-default text-center
     active:scale-98 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed
     hover:cursor-pointer h-max
@@ -62,7 +62,7 @@ export const ButtonBtnTrans = ({
     >
       {/* Text Content */}
       <span
-        className={`w-full bg-transparent flex items-center gap-2 ${
+        className={`w-full bg-transparent flex items-center gap-[inherit] ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       >

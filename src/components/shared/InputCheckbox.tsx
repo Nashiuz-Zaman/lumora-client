@@ -31,7 +31,7 @@ export const InputCheckbox = ({
 
       <input
         type="checkbox"
-        className={`accent-green-700 cursor-pointer ${checkboxClassName}`}
+        className={`appearance-auto accent-primary cursor-pointer ${checkboxClassName}`}
         {...props}
       />
 

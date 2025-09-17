@@ -43,8 +43,9 @@ export interface IProduct {
   canonicalUrl?: string;
   topCategory?: string;
   subCategory?: string;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: string;
+  updatedAt?: string;
+  totalVariants?: number;
 }
 
 export type TProductWithMinimalReviewStats = IProduct & {
@@ -67,4 +68,21 @@ export interface IProductWithReviewsAndStats {
 export interface IProductFormProps {
   mode?: "create" | "edit";
   product?: IProduct;
+}
+
+export interface IUpdateProductArgs {
+  id: string;
+  data: Partial<IProduct>;
+}
+
+export interface IProductsWithQueryMeta {
+  products: IProduct[];
+  queryMeta: IQueryMeta;
+}
+
+export interface IGetProductsParams {
+  page?: number;
+  limit?: number;
+  sort?: string;
+  [key: string]: unknown;
 }
