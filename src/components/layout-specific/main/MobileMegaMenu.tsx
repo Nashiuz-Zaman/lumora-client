@@ -3,17 +3,19 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {
-  ICategory,
   ICategoryTreeItem,
   IProduct,
   TProductWithMinimalReviewStats,
 } from "@/types";
+
 import { FeaturedProductCard } from "./FeaturedProductCard";
+
 import {
   AccordionVertical,
   InnerContainer,
   CloseIcon,
 } from "@/components/shared";
+import { setCategoryFilter } from "@/utils";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts: Partial<IProduct>[];
@@ -30,45 +32,6 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
 
   const toggleCategory = (index: number) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
-  };
-
-  // same logic as in MegaMenu
-  const handleCategoryClick = ({
-    topSlug,
-    subSlug,
-    type,
-  }: {
-    topSlug: string;
-    subSlug: string;
-    type: "top" | "sub";
-  }) => {
-    let searchFilter: { subCategories: Record<string, boolean> } = {
-      subCategories: {},
-    };
-
-    if (type === "sub") {
-      searchFilter = { subCategories: { [subSlug]: true } };
-    }
-
-    if (type === "top") {
-      const topCategoryData = categories.find(
-        (cat) => cat.topCategory.slug === topSlug
-      );
-
-      if (topCategoryData) {
-        const subs: Record<string, boolean> = {};
-        topCategoryData.subCategories.forEach((sub: ICategory) => {
-          subs[sub.slug] = true;
-        });
-
-        searchFilter = { subCategories: subs };
-      }
-    }
-
-    localStorage.setItem("searchFilters", JSON.stringify(searchFilter));
-
-    setMenuOpen(false); // close menu after selection
-    router.push("/products/search");
   };
 
   return (
@@ -121,13 +84,13 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                       {cat.subCategories.map((sub) => (
                         <button
                           key={sub._id}
-                          onClick={() =>
-                            handleCategoryClick({
-                              type: "sub",
-                              subSlug: sub.slug,
-                              topSlug: "",
-                            })
-                          }
+                          onClick={() => {
+                            setCategoryFilter({
+                              type: "subs",
+                              subSlugs: [sub.slug],
+                            });
+                            router.push("/products/search");
+                          }}
                           className="text-left text-neutral-500 hover:text-primary hover:font-medium transition-colors"
                         >
                           {sub.title}
@@ -148,13 +111,14 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                     )}
 
                     <button
-                      onClick={() =>
-                        handleCategoryClick({
+                      onClick={() => {
+                        setCategoryFilter({
                           type: "top",
                           topSlug: cat.topCategory.slug,
-                          subSlug: "",
-                        })
-                      }
+                          categories,
+                        });
+                        router.push("/products/search");
+                      }}
                       className="!primaryClasses !w-full !py-1 mt-2 rounded bg-primary text-white font-medium"
                     >
                       View all products

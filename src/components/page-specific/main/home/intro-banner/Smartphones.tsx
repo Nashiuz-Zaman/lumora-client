@@ -3,9 +3,10 @@
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { addSubCategoriesToFilter } from "@/utils";
+
 import { useRouter } from "next/navigation";
 import { useGetRefAsState } from "@/hooks";
+import { setCategoryFilter } from "@/utils";
 
 export const Smartphones = () => {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -28,7 +29,10 @@ export const Smartphones = () => {
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
             onClick={() => {
-              addSubCategoriesToFilter(["smartphones", "mobile-accessories"]);
+              setCategoryFilter({
+                type: "subs",
+                subSlugs: ["smartphones", "mobile-accessories"],
+              });
 
               router.push("/products/search");
             }}

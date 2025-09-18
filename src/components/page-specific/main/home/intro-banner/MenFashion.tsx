@@ -3,9 +3,10 @@
 import { Slider, SlideInOutWrapperX, ButtonBtn } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { addSubCategoriesToFilter } from "@/utils";
+
 import { useRouter } from "next/navigation";
 import { useGetRefAsState } from "@/hooks";
+import { setCategoryFilter } from "@/utils";
 
 const data = [
   {
@@ -52,14 +53,17 @@ const Card = ({ src, buttonText }: ICardProps) => {
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
             onClick={() => {
-              addSubCategoriesToFilter([
-                "mens-clothing",
-                "shoes",
-                "boots",
-                "bags-wallets",
-                "sunglasses",
-                "watches",
-              ]);
+              setCategoryFilter({
+                type: "subs",
+                subSlugs: [
+                  "mens-clothing",
+                  "shoes",
+                  "boots",
+                  "bags-wallets",
+                  "sunglasses",
+                  "watches",
+                ],
+              });
 
               router.push("/products/search");
             }}

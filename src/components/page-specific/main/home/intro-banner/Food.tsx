@@ -3,7 +3,7 @@
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { addSubCategoriesToFilter } from "@/utils";
+import { setCategoryFilter } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useGetRefAsState } from "@/hooks";
 
@@ -28,12 +28,15 @@ export const Food = () => {
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
             onClick={() => {
-              addSubCategoriesToFilter([
-                "chips-snacks",
-                "chocolates-candy",
-                "instant-meals",
-                "organic-food",
-              ]);
+              setCategoryFilter({
+                type: "subs",
+                subSlugs: [
+                  "chips-snacks",
+                  "chocolates-candy",
+                  "instant-meals",
+                  "organic-food",
+                ],
+              });
 
               router.push("/products/search");
             }}

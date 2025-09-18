@@ -1,6 +1,6 @@
 import {
   ProductCategories,
-  TopBrands,
+  ProductsFromCollection,
 } from "@/components/page-specific/main/home";
 
 import { HomeClientWrapper } from "@/components/page-specific/main/home/HomeClientWrapper";
@@ -15,7 +15,81 @@ const HomePage = () => {
       {/* intro banner is in the client wrapper */}
       <HomeClientWrapper>
         <ProductCategories />
-        <TopBrands />
+
+        <div className="space-y-14 my-14">
+          <ProductsFromCollection
+            collectionSlug="top-selling-products-homepage"
+            title="Top Selling"
+            tagline="Our best-sellers, loved by thousands."
+            navigation={{
+              nextEl: ".top-selling-products-homepage-next",
+              prevEl: ".top-selling-products-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="fashion-accessories-homepage"
+            title="Fashion & Accessories"
+            navigation={{
+              nextEl: ".fashion-accessories-homepage-next",
+              prevEl: ".fashion-accessories-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="gaming-entertainment-homepage"
+            title="Gaming & Entertainment"
+            navigation={{
+              nextEl: ".gaming-entertainment-homepage-next",
+              prevEl: ".gaming-entertainment-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="mobile-phones-electronics-homepage"
+            title="Mobile Phones & Electronics"
+            navigation={{
+              nextEl: ".mobile-phones-electronics-homepage-next",
+              prevEl: ".mobile-phones-electronics-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="food-snacks-homepage"
+            title="Food & Snacks"
+            navigation={{
+              nextEl: ".food-snacks-homepage-next",
+              prevEl: ".food-snacks-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="kitchen-essentials-homepage"
+            title="Kitchen Essentials"
+            navigation={{
+              nextEl: ".kitchen-essentials-homepage-next",
+              prevEl: ".kitchen-essentials-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="home-appliances-essentials-homepage"
+            title="Home Appliances & Essentials"
+            navigation={{
+              nextEl: ".home-appliances-essentials-homepage-next",
+              prevEl: ".home-appliances-essentials-homepage-prev",
+            }}
+          />
+
+          <ProductsFromCollection
+            collectionSlug="health-wellness-homepage"
+            title="Health & Wellness"
+            navigation={{
+              nextEl: ".health-wellness-homepage-next",
+              prevEl: ".health-wellness-homepage-prev",
+            }}
+          />
+        </div>
       </HomeClientWrapper>
     </>
   );

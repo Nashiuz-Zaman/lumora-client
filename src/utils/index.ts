@@ -14,4 +14,4 @@ export * from "./getBaseApiUrl";
 export * from "./catchAsyncServer";
 export * from "./extractVideoId";
 export * from "./generateAvatar";
-export * from "./manageCategoryBrandsFilter";
+export * from "./setSearchFilters";

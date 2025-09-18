@@ -6,7 +6,7 @@ import {
   SlideInOutWrapperX,
 } from "@/components/shared";
 import { useGetRefAsState } from "@/hooks";
-import { addSubCategoriesToFilter } from "@/utils";
+import { setCategoryFilter } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 
@@ -33,7 +33,10 @@ export const Sneakers = ({ className }: { className?: string }) => {
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
             onClick={() => {
-              addSubCategoriesToFilter(["sneakers"]);
+              setCategoryFilter({
+                type: "subs",
+                subSlugs: ["sneakers"],
+              });
 
               router.push("/products/search");
             }}

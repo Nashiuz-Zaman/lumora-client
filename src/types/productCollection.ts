@@ -12,7 +12,7 @@ export type TPopulatedProductInCollection = IProductInCollection<IProduct>;
 export type TPopulatedProductInCollectionWithReviewStats =
   TPopulatedProductInCollection & {
     reviewStats: {
-      avgRating: number;
+      averageRating: number;
       totalReviews: number;
     };
   };

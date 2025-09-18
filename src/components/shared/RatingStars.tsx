@@ -8,11 +8,13 @@ interface IRatingStarsProps {
 }
 
 export const RatingStars = ({
-  rating = 5,
+  rating = 2,
   className = "",
 }: IRatingStarsProps) => {
   // Round to nearest 0.5
   const rounded = Math.round(rating * 2) / 2;
+
+  console.log(rating)
 
   const starEls: ("full" | "half" | "empty")[] = Array.from(
     { length: 5 },

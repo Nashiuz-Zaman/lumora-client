@@ -7,7 +7,7 @@ import {
 } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { addSubCategoriesToFilter } from "@/utils";
+import { setCategoryFilter } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useGetRefAsState } from "@/hooks";
 
@@ -27,15 +27,18 @@ export const WomenFashion = () => {
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
             onClick={() => {
-              addSubCategoriesToFilter([
-                "womens-clothing",
-                "shoes",
-                "boots",
-                "bags-wallets",
-                "jewelry",
-                "sunglasses",
-                "watches",
-              ]);
+              setCategoryFilter({
+                type: "subs",
+                subSlugs: [
+                  "womens-clothing",
+                  "shoes",
+                  "boots",
+                  "bags-wallets",
+                  "jewelry",
+                  "sunglasses",
+                  "watches",
+                ],
+              });
 
               router.push("/products/search");
             }}

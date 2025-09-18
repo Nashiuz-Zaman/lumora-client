@@ -3,7 +3,6 @@
 import { useEffect, useRef } from "react";
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 import { A11y, Autoplay, Navigation } from "swiper/modules";
-import { Icon } from "@iconify/react";
 import "swiper/css";
 import "swiper/css/autoplay";
 import "swiper/css/navigation";
@@ -12,7 +11,7 @@ type TBreakpointsType = {
   [key: number]: { slidesPerView: number };
 };
 
-type ICustomSwiperProps<T> = {
+export type TCustomSwiperProps<T> = {
   data: T[];
   renderItem: (item: T, index: number) => React.ReactNode;
   showNavigation?: boolean;
@@ -25,6 +24,7 @@ type ICustomSwiperProps<T> = {
   spaceBetween?: number;
   loop?: boolean;
   className?: string;
+  innerContainerClassName?: string;
 } & Record<string, unknown>;
 
 const defaultBreakpoints: TBreakpointsType = {
@@ -47,8 +47,9 @@ export const CustomSwiper = <T,>({
   spaceBetween = 25,
   loop = false,
   className = "",
+  innerContainerClassName = "",
   ...props
-}: ICustomSwiperProps<T>) => {
+}: TCustomSwiperProps<T>) => {
   const swiperRef = useRef<SwiperClass | null>(null);
 
   useEffect(() => {
@@ -60,38 +61,32 @@ export const CustomSwiper = <T,>({
   if (!data.length) return null;
 
   return (
-    <div className={`relative max-w-screen h-full ${className}`}>
-      {showNavigation && (
-        <>
-          <button className="custom-swiper-prev hidden lg:grid w-12 aspect-square rounded-full place-content-center bg-primary hover:bg-primary-dark shadow-xl absolute y-center -left-16 z-10 text-white">
-            <Icon icon="uiw:left" />
-          </button>
-
-          <button className="custom-swiper-next hidden lg:grid w-12 aspect-square rounded-full place-content-center bg-primary hover:bg-primary-dark shadow-xl absolute y-center -right-16 z-10 text-white">
-            <Icon icon="uiw:right" />
-          </button>
-        </>
-      )}
-
-      <Swiper
-        onSwiper={(swiper) => (swiperRef.current = swiper)}
-        className="!h-auto !w-full"
-        modules={[Autoplay, Navigation, A11y]}
-        loop={loop}
-        autoplay={autoplay}
-        spaceBetween={spaceBetween}
-        {...(showNavigation ? { navigation } : {})}
-        breakpoints={
-          breakpoints
-            ? { ...defaultBreakpoints, ...breakpoints }
-            : defaultBreakpoints
-        }
-        {...props}
+    <div className={`w-full flex flex-col ${className}`}>
+      <div
+        className={`w-full h-full py-6 overflow-hidden ${innerContainerClassName}`}
       >
-        {data.map((item, i) => (
-          <SwiperSlide key={`key-${i}`}>{renderItem(item, i)}</SwiperSlide>
-        ))}
-      </Swiper>
+        <Swiper
+          onSwiper={(swiper) => (swiperRef.current = swiper)}
+          className="[&_.swiper-wrapper]:!h-full !overflow-visible"
+          modules={[Autoplay, Navigation, A11y]}
+          loop={loop}
+          autoplay={autoplay}
+          spaceBetween={spaceBetween}
+          {...(showNavigation ? { navigation } : {})}
+          breakpoints={
+            breakpoints
+              ? { ...defaultBreakpoints, ...breakpoints }
+              : defaultBreakpoints
+          }
+          {...props}
+        >
+          {data.map((item, i) => (
+            <SwiperSlide className="!h-auto" key={`key-${i}`}>
+              {renderItem(item, i)}
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
     </div>
   );
 };

@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  ICategory,
-  ICategoryTreeItem,
-  TProductWithMinimalReviewStats,
-} from "@/types";
+import { ICategoryTreeItem, TProductWithMinimalReviewStats } from "@/types";
 
 import { cardsData } from "@/static-data/productCategoryCards";
 import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
@@ -12,6 +8,7 @@ import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
 import { FeaturedProductCard } from "./FeaturedProductCard";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { setCategoryFilter } from "@/utils";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts?: TProductWithMinimalReviewStats[];
@@ -28,44 +25,6 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const handleCategoryClick = ({
-    topSlug,
-    subSlug,
-    type,
-  }: {
-    topSlug: string;
-    subSlug: string;
-    type: "top" | "sub";
-  }) => {
-    let searchFilter: { subCategories: Record<string, boolean> } = {
-      subCategories: {},
-    };
-
-    if (type === "sub") {
-      searchFilter = { subCategories: { [subSlug]: true } };
-    }
-
-    if (type === "top") {
-      const topCategoryData = categories.find(
-        (cat) => cat.topCategory.slug === topSlug
-      );
-
-      if (topCategoryData) {
-        // build subCategories object with all sub slugs
-        const subs: Record<string, boolean> = {};
-        topCategoryData.subCategories.forEach((sub: ICategory) => {
-          subs[sub.slug] = true;
-        });
-
-        searchFilter = { subCategories: subs };
-      }
-    }
-
-    localStorage.setItem("searchFilters", JSON.stringify(searchFilter));
-
-    router.push("/products/search");
-  };
 
   if (!isClient) return null;
 
@@ -98,13 +57,14 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                           <GridCard images={images} className="!w-full" />
 
                           <ButtonBtnTrans
-                            onClick={() =>
-                              handleCategoryClick({
+                            onClick={() => {
+                              setCategoryFilter({
                                 type: "top",
                                 topSlug: top.slug,
-                                subSlug: "",
-                              })
-                            }
+                                categories,
+                              });
+                              router.push("/products/search");
+                            }}
                             className="font-medium underline mt-4 block text-center"
                           >
                             View all {top.title}
@@ -121,13 +81,13 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                         {subCategories.map((sub) => (
                           <ButtonBtnTrans
                             key={sub._id}
-                            onClick={() =>
-                              handleCategoryClick({
-                                type: "sub",
-                                subSlug: sub.slug,
-                                topSlug: "",
-                              })
-                            }
+                            onClick={() => {
+                              setCategoryFilter({
+                                type: "subs",
+                                subSlugs: [sub.slug],
+                              });
+                              router.push("/products/search");
+                            }}
                             className="text-left text-neutral-500 hover:text-primary hover:font-medium transition-all transform hover:translate-x-2"
                           >
                             {sub.title}
@@ -147,13 +107,14 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                         </div>
 
                         <ButtonBtn
-                          onClick={() =>
-                            handleCategoryClick({
+                          onClick={() => {
+                            setCategoryFilter({
                               type: "top",
                               topSlug: top.slug,
-                              subSlug: "",
-                            })
-                          }
+                              categories,
+                            });
+                            router.push("/products/search");
+                          }}
                           className="!primaryClasses !w-full !py-1"
                         >
                           View all products
