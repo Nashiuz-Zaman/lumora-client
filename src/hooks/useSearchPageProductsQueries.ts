@@ -5,22 +5,34 @@ import { useForm } from "react-hook-form";
 import { ProductSortOptions } from "@/constants/product";
 import { useLazyGetProductsForSearchPageQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import {
-  getQueryParamsFromSearchParams,
   buildUrlWithParams,
   cleanObject,
+  csvToBooleanRecord,
+  getQueryParamsFromSearchParams,
+  compressObjectToBase64Url,
+  decompressBase64UrlToObject,
 } from "@/utils";
+
 import { useCallback, useEffect, useState } from "react";
-import { cloneDeep } from "lodash";
 
 // Types
-export interface ISearchPageProductsForm {
-  page: number;
-  sort: string;
-  search: string;
-  subCategories: Record<string, boolean>;
+interface ICompressedParams {
+  subCategory: Record<string, boolean>;
   brands: Record<string, boolean>;
-  priceMin: number | null;
-  priceMax: number | null;
+  sort: string;
+  priceMin: number;
+  priceMax: number;
+}
+
+export interface ISearchPageForm extends ICompressedParams {
+  page: number;
+  search?: string;
+}
+
+export interface IGetProductsForSearchPageQueryParams {
+  page: number;
+  search?: string;
+  q?: string;
 }
 
 export const useSearchPageProductsQueries = () => {
@@ -29,122 +41,99 @@ export const useSearchPageProductsQueries = () => {
   const router = useRouter();
   const [trigger, { data, isFetching }] =
     useLazyGetProductsForSearchPageQuery();
-
-  // Only pick page & search from URL
-  const rawQueryParams = getQueryParamsFromSearchParams(searchParams, [
-    "page",
-    "search",
-  ]);
-
-  // Parse query params from URL + defaults for others
-  const queryParams: ISearchPageProductsForm = {
-    page: rawQueryParams?.page ? Number(rawQueryParams.page) : 1,
-    sort: "-" + ProductSortOptions[1].value,
-    search: (rawQueryParams.search as string) || "",
-    subCategories: {},
-    brands: {},
-    priceMin: 0,
-    priceMax: 50000,
-  };
-
-  // Load from localStorage regarding categories
-  if (typeof window !== "undefined") {
-    const stored = localStorage.getItem("searchFilters");
-    if (stored) {
-      const parsed = JSON.parse(stored);
-      queryParams.subCategories = parsed.subCategories || {};
-      queryParams.brands = parsed.brands || {};
-    }
-  }
-
-  const { control, handleSubmit, watch, setValue } =
-    useForm<ISearchPageProductsForm>({
-      defaultValues: queryParams,
-    });
-
-  const watchedValues = watch();
-  const subCategories = watchedValues.subCategories;
-  const brands = watchedValues.brands;
-
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    if (!isClient) {
-      setIsClient(true);
-      return;
-    }
+  useEffect(() => setIsClient(true), []);
 
-    localStorage.setItem(
-      "searchFilters",
-      JSON.stringify({ subCategories, brands })
-    );
-  }, [isClient, subCategories, brands]);
+  // --- Parse query params from URL ---
+  const { page, search, q } = getQueryParamsFromSearchParams(searchParams, [
+    "page",
+    "search",
+    "q",
+  ]);
 
-  // Build query for API
+  // --- Decompress filters if present ---
+  const rawCompressed =
+    typeof q === "string"
+      ? decompressBase64UrlToObject<{
+          subCategory?: string;
+          brand?: string;
+          sort?: string;
+          priceMin?: number;
+          priceMax?: number;
+        }>(q)
+      : null;
+
+  // --- Normalize into form-friendly structure ---
+  const initialParams: ISearchPageForm = {
+    page: typeof page === "number" ? page : parseInt(page as string) || 1,
+    search: typeof search === "string" ? search : "",
+    sort: rawCompressed?.sort || "-" + ProductSortOptions[1].value,
+    priceMin: rawCompressed?.priceMin ?? 0,
+    priceMax: rawCompressed?.priceMax ?? 50000,
+    subCategory: csvToBooleanRecord(rawCompressed?.subCategory),
+    brands: csvToBooleanRecord(rawCompressed?.brand),
+  };
+
+  const { control, handleSubmit, watch, setValue, getValues } =
+    useForm<ISearchPageForm>({
+      defaultValues: initialParams,
+    });
+  console.log(watch());
+  // --- Build compressed query params for URL/API ---
   const buildQueryParams = useCallback(
-    () => ({
-      page: watchedValues.page,
-      sort: watchedValues.sort,
-      search: watchedValues.search,
-      subCategory: Object.entries(subCategories)
-        .filter(([, v]) => v)
-        .map(([slug]) => slug)
-        .join(","),
-      brand: Object.entries(brands)
-        .filter(([, v]) => v)
-        .map(([brand]) => brand)
-        .join(","),
-      priceMin: watchedValues.priceMin ?? undefined,
-      priceMax: watchedValues.priceMax ?? undefined,
-    }),
-    [
-      brands,
-      subCategories,
-      watchedValues.page,
-      watchedValues.sort,
-      watchedValues.search,
-      watchedValues.priceMax,
-      watchedValues.priceMin,
-    ]
+    (pageOverride?: number) => {
+      const values = getValues();
+
+      const qObj = cleanObject({
+        subCategory: Object.entries(values.subCategory)
+          .filter(([, v]) => v)
+          .map(([k]) => k)
+          .join(","),
+        brand: Object.entries(values.brands)
+          .filter(([, v]) => v)
+          .map(([k]) => k)
+          .join(","),
+        priceMin: values.priceMin,
+        priceMax: values.priceMax,
+        sort: values.sort,
+      });
+
+      return cleanObject({
+        page: pageOverride ?? values.page,
+        search: values.search,
+        q: compressObjectToBase64Url(qObj),
+      }) as IGetProductsForSearchPageQueryParams;
+    },
+    [getValues]
   );
 
-  // only sync page & search to URL
-  const updateQueryParams = (page?: number) => {
-    router.push(
-      buildUrlWithParams(path, {
-        page: page ?? 1,
-        search: watchedValues.search || undefined,
-      })
-    );
-  };
+  // --- Initial fetch ---
+  useEffect(() => {
+    if (isClient) trigger(buildQueryParams());
+    // this should run only once so below comment is ok
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isClient]);
 
+  // --- Form submission handler ---
   const onSubmit = () => {
-    updateQueryParams();
-      localStorage.setItem(
-      "searchFilters",
-      JSON.stringify({ subCategories, brands })
-    );
-    trigger({ ...cloneDeep(cleanObject(buildQueryParams())), page: 1 });
+    const queryParams = { ...buildQueryParams(1) };
+    router.push(buildUrlWithParams(path, queryParams));
+    trigger(queryParams);
   };
 
+  // --- Page change handler ---
   const changePage = (page: number) => {
     setValue("page", page);
-    updateQueryParams(page);
-    trigger(cleanObject(buildQueryParams()));
+    const queryParams = { ...buildQueryParams(page) };
+    router.push(buildUrlWithParams(path, queryParams));
+    trigger(queryParams);
   };
-
-  useEffect(() => {
-    if (isClient) {
-      trigger(cleanObject(buildQueryParams()));
-    }
-    // this should run only once so suppressing this warning
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClient, trigger]);
 
   return {
     control,
     handleSubmit: handleSubmit(onSubmit),
-    watchedValues,
+    watchedValues: watch(),
     setValue,
     changePage,
     products: data?.data?.products ?? [],

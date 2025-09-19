@@ -75,11 +75,6 @@ export interface IUpdateProductArgs {
   data: Partial<IProduct>;
 }
 
-export interface IProductsWithQueryMeta {
-  products: IProduct[];
-  queryMeta: IQueryMeta;
-}
-
 export interface IGetProductsParams {
   page?: number;
   limit?: number;

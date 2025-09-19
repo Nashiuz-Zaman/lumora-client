@@ -13,7 +13,6 @@ export type TProductStatusValue =
 export const ProductSortOptions = Object.freeze([
   { label: "Product Name", value: "title" },
   { label: "Price", value: "defaultPrice" },
-  // { label: "Created", value: "createdAt" },
   { label: "Updated", value: "updatedAt" },
 ] as const);
 

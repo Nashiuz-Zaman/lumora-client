@@ -9,13 +9,13 @@ import {
 } from "@/components/shared";
 import { ICategoryTreeItem } from "@/types";
 import { UseFormSetValue } from "react-hook-form";
-import { ISearchPageProductsForm } from "@/hooks";
+import { ISearchPageForm } from "@/hooks";
 
 interface ISearchFiltersProps {
   categories: ICategoryTreeItem[];
   brands: string[];
-  watchedValues: ISearchPageProductsForm;
-  setValue: UseFormSetValue<ISearchPageProductsForm>;
+  watchedValues: ISearchPageForm;
+  setValue: UseFormSetValue<ISearchPageForm>;
   handleSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 
@@ -35,12 +35,14 @@ export const SearchFilters = ({
         (acc, cat) => ({
           ...acc,
           [cat.topCategory.slug]: cat.subCategories.some(
-            (sub) => watchedValues.subCategories[sub.slug]
+            (sub) => watchedValues.subCategory[sub.slug]
           ),
         }),
         {}
       ) || {}
   );
+
+  console.log(watchedValues, "inside component");
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 hidden xl:block">
@@ -48,8 +50,8 @@ export const SearchFilters = ({
       <div>
         <h3 className="font-semibold mb-2">Price Range</h3>
         <InputFieldMinMax
-          min={0}
-          max={50000}
+          min={watchedValues.priceMin}
+          max={watchedValues.priceMax}
           step={10}
           prefix="$"
           labelMin="Min Price"
@@ -66,10 +68,10 @@ export const SearchFilters = ({
         <h3 className="font-semibold mb-2">Categories</h3>
         {categories.map((cat) => {
           const allSubChecked = cat.subCategories.every(
-            (sub) => watchedValues.subCategories[sub.slug]
+            (sub) => watchedValues.subCategory[sub.slug]
           );
           const someSubChecked = cat.subCategories.some(
-            (sub) => watchedValues.subCategories[sub.slug]
+            (sub) => watchedValues.subCategory[sub.slug]
           );
 
           return (
@@ -91,7 +93,7 @@ export const SearchFilters = ({
                     onChange={(e) => {
                       const checked = e.target.checked;
                       cat.subCategories.forEach((sub) =>
-                        setValue(`subCategories.${sub.slug}`, checked)
+                        setValue(`subCategory.${sub.slug}`, checked)
                       );
                     }}
                     onClick={(e) => e.stopPropagation()}
@@ -117,12 +119,9 @@ export const SearchFilters = ({
                     >
                       <input
                         type="checkbox"
-                        checked={!!watchedValues.subCategories[sub.slug]}
+                        checked={!!watchedValues.subCategory[sub.slug]}
                         onChange={(e) =>
-                          setValue(
-                            `subCategories.${sub.slug}`,
-                            e.target.checked
-                          )
+                          setValue(`subCategory.${sub.slug}`, e.target.checked)
                         }
                       />
                       {sub.title}

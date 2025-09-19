@@ -61,7 +61,7 @@ export const AllProductsMain = () => {
     checkIfSelected,
     isAllSelected,
     setSelected,
-  } = useSelectable<Partial<IProduct>>(products, "_id");
+  } = useSelectable(products, "_id");
 
   const { isModalOpen, openModal, closeModal } = useModal();
 
@@ -71,17 +71,16 @@ export const AllProductsMain = () => {
     router.push(`/admin/products/edit/${id}`);
   };
 
-  const renderRow = ({ data }: { data: Partial<IProduct> }) => (
+  const renderRow = ({ data }: { data: IProduct }) => (
     <ProductRow
       productData={data}
-      isSelected={checkIfSelected(data, "_id")}
+      isSelected={checkIfSelected(data)}
       toggleSelectOne={toggleSelectOne}
-      selectKeyField="_id"
     />
   );
 
   const handleConfirmDelete = catchAsyncGeneral(async () => {
-    const res = await bulkDeleteProducts(selected).unwrap();
+    const res = await bulkDeleteProducts(selected as string[]).unwrap();
 
     if (res?.success) {
       showToast({ message: res.message });

@@ -10,13 +10,13 @@ import {
 } from "@/components/shared";
 import { ICategoryTreeItem } from "@/types";
 import { UseFormSetValue } from "react-hook-form";
-import { ISearchPageProductsForm } from "@/hooks";
+import { ISearchPageForm } from "@/hooks";
 
 interface IMobileSearchFiltersProps {
   categories: ICategoryTreeItem[];
   brands: string[];
-  watchedValues: ISearchPageProductsForm;
-  setValue: UseFormSetValue<ISearchPageProductsForm>;
+  watchedValues: ISearchPageForm;
+  setValue: UseFormSetValue<ISearchPageForm>;
   handleSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 
@@ -103,10 +103,10 @@ export const MobileSearchFilter = ({
               <div className="mt-2 space-y-2">
                 {categories.map((cat) => {
                   const allSubChecked = cat.subCategories.every(
-                    (sub) => watchedValues.subCategories[sub.slug]
+                    (sub) => watchedValues.subCategory[sub.slug]
                   );
                   const someSubChecked = cat.subCategories.some(
-                    (sub) => watchedValues.subCategories[sub.slug]
+                    (sub) => watchedValues.subCategory[sub.slug]
                   );
 
                   return (
@@ -135,7 +135,7 @@ export const MobileSearchFilter = ({
                           >
                             <input
                               type="checkbox"
-                              checked={!!watchedValues.subCategories[sub.slug]}
+                              checked={!!watchedValues.subCategory[sub.slug]}
                               onChange={(e) =>
                                 setValue(
                                   `subCategories.${sub.slug}`,

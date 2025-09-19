@@ -22,8 +22,12 @@ const SortOptionsMenu = ({
   );
 
   useEffect(() => {
-    onUpdate?.(`${sortOrder}${sortBy}`);
-  }, [sortBy, sortOrder, onUpdate]);
+    const newSort = `${sortOrder}${sortBy}`;
+    if (selected !== newSort) {
+      onUpdate?.(newSort);
+    }
+  }, [sortBy, sortOrder, onUpdate, selected]);
+  console.log(selected);
 
   if (!options.length) return null;
 

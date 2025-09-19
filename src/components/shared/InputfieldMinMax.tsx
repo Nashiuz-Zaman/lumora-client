@@ -51,6 +51,7 @@ export const InputFieldMinMax = ({
           {prefix}
         </span>
       )}
+       
       <input
         type="number"
         min={min}

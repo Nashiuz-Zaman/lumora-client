@@ -13,7 +13,7 @@ export const useClickOutside = (
       clickEventTimer = setTimeout(() => {
         window.addEventListener("mousedown", callbackFunc);
         clearTimeout(clickEventTimer);
-      }, 250);
+      }, 200);
     } else {
       window.removeEventListener("mousedown", callbackFunc);
     }

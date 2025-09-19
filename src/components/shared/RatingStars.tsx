@@ -14,8 +14,6 @@ export const RatingStars = ({
   // Round to nearest 0.5
   const rounded = Math.round(rating * 2) / 2;
 
-  console.log(rating)
-
   const starEls: ("full" | "half" | "empty")[] = Array.from(
     { length: 5 },
     (_, i) => {

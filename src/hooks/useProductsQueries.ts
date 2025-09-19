@@ -18,6 +18,7 @@ import { ProductSortOptions } from "@/constants/product";
 
 // API Hooks
 import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { IQueryMeta } from "@/types";
 
 // Types
 export interface IProductQueriesParams {
@@ -117,7 +118,7 @@ export const useProductsQueries = () => {
     handleSubmit,
     changePage,
     products: query?.data?.data?.products ?? [],
-    queryMeta: query?.data?.data?.queryMeta,
+    queryMeta: query?.data?.data?.queryMeta as IQueryMeta,
     isFetching: query?.isFetching,
     refetch: query.refetch,
     cleanedParams: cleanObject(finalQueryParams),

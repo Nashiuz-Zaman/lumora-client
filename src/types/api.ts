@@ -1,4 +1,3 @@
-
 export interface IApiResponse<T = any> {
   success: boolean;
   status: string;
@@ -12,3 +11,5 @@ export interface IQueryMeta {
   limit: number;
   totalPages: number;
 }
+
+export type TQueryDataWithQueryMeta<T> = T & { queryMeta: IQueryMeta };

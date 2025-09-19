@@ -1,20 +1,20 @@
+import { IGetProductsForSearchPageQueryParams } from "@/hooks";
 import { baseApiSlice } from "../baseApiSlice";
 import {
   IApiResponse,
   IGetProductsParams,
   TPopulatedProductInCollection,
   IProduct,
-  IProductsWithQueryMeta,
-  IQueryMeta,
   IUpdateProductArgs,
   TProductWithMinimalReviewStats,
+  TQueryDataWithQueryMeta,
 } from "@/types";
 
 // --- API slice ---
 export const productsApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getProductsAdmin: builder.query<
-      IApiResponse<IProductsWithQueryMeta>,
+      IApiResponse<TQueryDataWithQueryMeta<{ products: IProduct[] }>>,
       IGetProductsParams
     >({
       query: (params = {}) => ({
@@ -28,17 +28,18 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     getProductsForSearchPage: builder.query<
-      IApiResponse<{
-        products: TProductWithMinimalReviewStats[];
-        queryMeta: IQueryMeta;
-        brands: string[];
-      }>,
-      any
+      IApiResponse<
+        TQueryDataWithQueryMeta<{
+          products: TProductWithMinimalReviewStats[];
+          brands: string[];
+        }>
+      >,
+      IGetProductsForSearchPageQueryParams
     >({
-      query: (data) => ({
+      query: (params) => ({
         url: "/products/search",
-        method: "POST",
-        data,
+        method: "GET",
+        params,
       }),
       keepUnusedDataFor: 60,
     }),
@@ -69,10 +70,11 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     getProductsFromProductCollection: builder.query<
-      IApiResponse<{
-        products: TPopulatedProductInCollection[];
-        queryMeta: IQueryMeta;
-      }>,
+      IApiResponse<
+        TQueryDataWithQueryMeta<{
+          products: TPopulatedProductInCollection[];
+        }>
+      >,
       { slug: string; params?: Record<string, any> }
     >({
       query: ({ slug, params }) => ({

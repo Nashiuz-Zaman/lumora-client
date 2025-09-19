@@ -23,7 +23,7 @@ interface ISelectFieldProps {
   errorClassName?: string;
   onFocus?: (e: React.FocusEvent<HTMLSelectElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLSelectElement>) => void;
-  [key: string]: unknown;
+  [key: string]: any;
 }
 
 export const SelectField = ({

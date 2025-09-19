@@ -8,16 +8,20 @@ interface IOptionsDropdownProps {
   className?: string;
   show?: boolean;
   setShow?: (show: boolean) => void;
+  toggleBtnIdentifier: string;
 }
 
 export const OptionsDropdown = ({
   children,
   className = "",
+  toggleBtnIdentifier = "",
   show = false,
   setShow = () => {},
 }: IOptionsDropdownProps) => {
   useClickOutside(show, (e: MouseEvent) => {
     const target = e.target as HTMLElement;
+    if (target.closest(toggleBtnIdentifier)) return;
+
     if (!target.closest(".modal-focus")) {
       setShow(false);
     }
@@ -33,5 +37,3 @@ export const OptionsDropdown = ({
     </div>
   );
 };
-
-
