@@ -1,6 +1,6 @@
 export const buildUrlWithParams = (
   basePath: string,
-  queryParams: Record<string, string | number | boolean | null | undefined>
+  queryParams: Record<string, any>
 ): string => {
   const params = new URLSearchParams();
 

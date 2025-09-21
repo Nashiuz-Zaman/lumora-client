@@ -12,7 +12,7 @@ import AdminProductCard from "../shared/AdminProductCard";
 import {
   useSelectable,
   useModal,
-  useProductCollectionProductsQueries,
+  useCollectionProductsQueries,
 } from "@/hooks";
 
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
@@ -27,7 +27,7 @@ export const ProductCollectionMain = ({
   const router = useRouter();
 
   const { queryMeta, changePage, collectionProducts, isFetching, refetch } =
-    useProductCollectionProductsQueries(productCollectionSlug);
+    useCollectionProductsQueries(productCollectionSlug);
 
   const productsWithoutSerial = collectionProducts?.map(
     (product) => product?.product

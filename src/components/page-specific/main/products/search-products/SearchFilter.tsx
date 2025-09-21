@@ -42,8 +42,6 @@ export const SearchFilters = ({
       ) || {}
   );
 
-  console.log(watchedValues, "inside component");
-
   return (
     <form onSubmit={handleSubmit} className="space-y-6 hidden xl:block">
       {/* Price Range */}
@@ -162,9 +160,9 @@ export const SearchFilters = ({
                 <label key={brand} className="flex items-center gap-2">
                   <input
                     type="checkbox"
-                    checked={!!watchedValues.brands[brand]}
+                    checked={!!watchedValues.brand[brand]}
                     onChange={(e) =>
-                      setValue(`brands.${brand}`, e.target.checked)
+                      setValue(`brand.${brand}`, e.target.checked)
                     }
                   />
                   {brand}

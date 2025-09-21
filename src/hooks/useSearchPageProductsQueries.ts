@@ -3,56 +3,76 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ProductSortOptions } from "@/constants/product";
-import { useLazyGetProductsForSearchPageQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useGetProductsForSearchPageQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import {
   buildUrlWithParams,
-  cleanObject,
   csvToBooleanRecord,
   getQueryParamsFromSearchParams,
-  compressObjectToBase64Url,
   decompressBase64UrlToObject,
+  booleanRecordToCsv,
+  cleanObject,
 } from "@/utils";
+import { useEffect, useMemo, useState } from "react";
+import { useProductSearchParamsManagement } from "./useProductSearchParamsManagement";
 
-import { useCallback, useEffect, useState } from "react";
-
-// Types
-interface ICompressedParams {
+export interface ISearchPageForm {
   subCategory: Record<string, boolean>;
-  brands: Record<string, boolean>;
+  brand: Record<string, boolean>;
   sort: string;
   priceMin: number;
   priceMax: number;
-}
-
-export interface ISearchPageForm extends ICompressedParams {
   page: number;
   search?: string;
 }
 
-export interface IGetProductsForSearchPageQueryParams {
+export interface IProductSearchQueryParams {
   page: number;
   search?: string;
   q?: string;
+  form?: boolean;
 }
 
 export const useSearchPageProductsQueries = () => {
   const searchParams = useSearchParams();
   const path = usePathname();
   const router = useRouter();
-  const [trigger, { data, isFetching }] =
-    useLazyGetProductsForSearchPageQuery();
   const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => setIsClient(true), []);
+  const { buildSearchQueryParams } = useProductSearchParamsManagement();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // --- Parse query params from URL ---
-  const { page, search, q } = getQueryParamsFromSearchParams(searchParams, [
+  const rawParamsFromUrl = getQueryParamsFromSearchParams(searchParams, [
     "page",
     "search",
     "q",
+    "form",
   ]);
 
-  // --- Decompress filters if present ---
+  const paramsFromUrl: IProductSearchQueryParams = {
+    page: rawParamsFromUrl.page === "" ? 1 : Number(rawParamsFromUrl.page),
+    form: !!rawParamsFromUrl.form,
+    search:
+      typeof rawParamsFromUrl.search === "string"
+        ? rawParamsFromUrl.search
+        : "",
+    q: typeof rawParamsFromUrl.q === "string" ? rawParamsFromUrl.q : "",
+  };
+
+  // --- Fetch products (reacts only to URL changes) ---
+  const { data, isFetching } = useGetProductsForSearchPageQuery(
+    cleanObject(paramsFromUrl) as IProductSearchQueryParams,
+    {
+      skip: !isClient,
+    }
+  );
+
+  const { page, search, q, form } = paramsFromUrl;
+
+  // --- Decompress filters ---
   const rawCompressed =
     typeof q === "string"
       ? decompressBase64UrlToObject<{
@@ -64,70 +84,59 @@ export const useSearchPageProductsQueries = () => {
         }>(q)
       : null;
 
-  // --- Normalize into form-friendly structure ---
-  const initialParams: ISearchPageForm = {
-    page: typeof page === "number" ? page : parseInt(page as string) || 1,
-    search: typeof search === "string" ? search : "",
-    sort: rawCompressed?.sort || "-" + ProductSortOptions[1].value,
-    priceMin: rawCompressed?.priceMin ?? 0,
-    priceMax: rawCompressed?.priceMax ?? 50000,
-    subCategory: csvToBooleanRecord(rawCompressed?.subCategory),
-    brands: csvToBooleanRecord(rawCompressed?.brand),
-  };
+  // --- Normalize params ---
+  const derivedParams: ISearchPageForm = useMemo(() => {
+    return {
+      page,
+      search,
+      sort: rawCompressed?.sort || "-" + ProductSortOptions[1].value,
+      priceMin: rawCompressed?.priceMin ?? 0,
+      priceMax: rawCompressed?.priceMax ?? 50000,
+      subCategory: csvToBooleanRecord(rawCompressed?.subCategory),
+      brand: csvToBooleanRecord(rawCompressed?.brand),
+    };
+  }, [page, search, rawCompressed]);
 
-  const { control, handleSubmit, watch, setValue, getValues } =
+  // --- RHF (for UI only) ---
+  const { control, handleSubmit, setValue, watch, getValues, reset } =
     useForm<ISearchPageForm>({
-      defaultValues: initialParams,
+      defaultValues: {},
     });
-  console.log(watch());
-  // --- Build compressed query params for URL/API ---
-  const buildQueryParams = useCallback(
-    (pageOverride?: number) => {
-      const values = getValues();
 
-      const qObj = cleanObject({
-        subCategory: Object.entries(values.subCategory)
-          .filter(([, v]) => v)
-          .map(([k]) => k)
-          .join(","),
-        brand: Object.entries(values.brands)
-          .filter(([, v]) => v)
-          .map(([k]) => k)
-          .join(","),
-        priceMin: values.priceMin,
-        priceMax: values.priceMax,
-        sort: values.sort,
-      });
-
-      return cleanObject({
-        page: pageOverride ?? values.page,
-        search: values.search,
-        q: compressObjectToBase64Url(qObj),
-      }) as IGetProductsForSearchPageQueryParams;
-    },
-    [getValues]
-  );
-
-  // --- Initial fetch ---
   useEffect(() => {
-    if (isClient) trigger(buildQueryParams());
-    // this should run only once so below comment is ok
+    if (isClient) {
+      if (!form) {
+        reset(derivedParams);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClient]);
+  }, [isClient, reset, form]);
 
-  // --- Form submission handler ---
+  // --- Handlers ---
   const onSubmit = () => {
-    const queryParams = { ...buildQueryParams(1) };
-    router.push(buildUrlWithParams(path, queryParams));
-    trigger(queryParams);
+    const values = getValues();
+
+    const updatedQuery = buildSearchQueryParams({
+      ...values,
+      page: 1,
+      subCategory: booleanRecordToCsv(values.subCategory),
+      brand: booleanRecordToCsv(values.brand),
+      form: true,
+    });
+    router.push(buildUrlWithParams(path, updatedQuery));
   };
 
-  // --- Page change handler ---
   const changePage = (page: number) => {
+    const values = getValues();
     setValue("page", page);
-    const queryParams = { ...buildQueryParams(page) };
-    router.push(buildUrlWithParams(path, queryParams));
-    trigger(queryParams);
+    const updatedQuery = buildSearchQueryParams({
+      ...values,
+      page,
+      subCategory: booleanRecordToCsv(values.subCategory),
+      brand: booleanRecordToCsv(values.brand),
+      form: true,
+    });
+    router.push(buildUrlWithParams(path, updatedQuery));
   };
 
   return {
@@ -140,6 +149,5 @@ export const useSearchPageProductsQueries = () => {
     brands: data?.data?.brands ?? [],
     queryMeta: data?.data?.queryMeta,
     isFetching,
-    cleanedParams: cleanObject(buildQueryParams()),
   };
 };

@@ -3,9 +3,7 @@
 import { Slider, SlideInOutWrapperX, ButtonBtn } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { useRouter } from "next/navigation";
-import { useGetRefAsState } from "@/hooks";
-import { setCategoryFilter } from "@/utils";
+import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 const data = [
   {
@@ -30,7 +28,7 @@ interface ICardProps {
 const Card = ({ src, buttonText }: ICardProps) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const parent = useGetRefAsState(parentRef);
-  const router = useRouter();
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
     <div
@@ -47,14 +45,12 @@ const Card = ({ src, buttonText }: ICardProps) => {
       >
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
-            onClick={() => {
-              setCategoryFilter({
+            onClick={() =>
+              handleCategoryClick({
                 type: "subs",
                 subSlugs: ["gaming-consoles", "pc-gaming", "vr-headsets"],
-              });
-
-              router.push("/products/search");
-            }}
+              })
+            }
             className="whiteOutlinedClasses"
           >
             {buttonText}

@@ -2,15 +2,13 @@
 
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { useRouter } from "next/navigation";
 import { useRef } from "react";
-import { useGetRefAsState } from "@/hooks/useGetRefAsState";
-import { setCategoryFilter } from "@/utils";
+import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 export const Laptop = ({ className }: { className?: string }) => {
-  const router = useRouter();
   const parentRef = useRef<HTMLDivElement | null>(null);
   const parent = useGetRefAsState(parentRef);
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
     <div
@@ -28,17 +26,15 @@ export const Laptop = ({ className }: { className?: string }) => {
         >
           <div className="py-10 flex items-center justify-center">
             <ButtonBtn
-              onClick={() => {
-                setCategoryFilter({
+              onClick={() =>
+                handleCategoryClick({
                   type: "subs",
                   subSlugs: ["gaming-laptops"],
-                });
-
-                router.push("/products/search");
-              }}
+                })
+              }
               className="whiteOutlinedClasses"
             >
-              Buy Laptops{" "}
+              Buy Laptops
             </ButtonBtn>
           </div>
         </SlideInOutWrapperX>

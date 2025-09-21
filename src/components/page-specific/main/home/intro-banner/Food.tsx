@@ -3,14 +3,12 @@
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { setCategoryFilter } from "@/utils";
-import { useRouter } from "next/navigation";
-import { useGetRefAsState } from "@/hooks";
+import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 export const Food = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const parent = useGetRefAsState(parentRef);
-  const router = useRouter();
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
     <div
@@ -28,7 +26,7 @@ export const Food = () => {
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
             onClick={() => {
-              setCategoryFilter({
+              handleCategoryClick({
                 type: "subs",
                 subSlugs: [
                   "chips-snacks",
@@ -37,8 +35,6 @@ export const Food = () => {
                   "organic-food",
                 ],
               });
-
-              router.push("/products/search");
             }}
             className="whiteOutlinedClasses"
           >

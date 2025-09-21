@@ -1,4 +1,5 @@
 import { TMegaMenuItem } from "@/components/layout-specific/main/MegaMenu";
+import { IApiResponse } from "@/types";
 import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
 export const fetchMegaMenuData = catchAsyncServer(async () => {
@@ -11,11 +12,5 @@ export const fetchMegaMenuData = catchAsyncServer(async () => {
 
   if (!res.ok) throw new Error("Failed to fetch mega menu data");
 
-  const data: {
-    status: string;
-    success: boolean;
-    data: TMegaMenuItem[];
-  } = await res.json();
-
-  return data?.data || [];
+  return (await res.json()) as IApiResponse<TMegaMenuItem[]>;
 });

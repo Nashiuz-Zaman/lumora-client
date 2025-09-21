@@ -119,7 +119,7 @@ export const MobileSearchFilter = ({
                           onChange={(e) => {
                             const checked = e.target.checked;
                             cat.subCategories.forEach((sub) =>
-                              setValue(`subCategories.${sub.slug}`, checked)
+                              setValue(`subCategory.${sub.slug}`, checked)
                             );
                           }}
                         />
@@ -138,7 +138,7 @@ export const MobileSearchFilter = ({
                               checked={!!watchedValues.subCategory[sub.slug]}
                               onChange={(e) =>
                                 setValue(
-                                  `subCategories.${sub.slug}`,
+                                  `subCategory.${sub.slug}`,
                                   e.target.checked
                                 )
                               }
@@ -175,9 +175,9 @@ export const MobileSearchFilter = ({
                     <label key={brand} className="flex items-center gap-2">
                       <input
                         type="checkbox"
-                        checked={!!watchedValues.brands[brand]}
+                        checked={!!watchedValues.brand[brand]}
                         onChange={(e) =>
-                          setValue(`brands.${brand}`, e.target.checked)
+                          setValue(`brand.${brand}`, e.target.checked)
                         }
                       />
                       {brand}

@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import {
-  ICategoryTreeItem,
-  IProduct,
-  TProductWithMinimalReviewStats,
-} from "@/types";
+import { TProductWithMinimalReviewStats } from "@/types";
 
 import { FeaturedProductCard } from "./FeaturedProductCard";
 
@@ -15,20 +10,14 @@ import {
   InnerContainer,
   CloseIcon,
 } from "@/components/shared";
-import { setCategoryFilter } from "@/utils";
 
-export type TMegaMenuItem = ICategoryTreeItem & {
-  featuredProducts: Partial<IProduct>[];
-};
+import { useProductSearchParamsManagement } from "@/hooks";
+import { IMegaMenuProps } from "./MegaMenu";
 
-export interface IMobileMegaMenuProps {
-  categories: TMegaMenuItem[];
-}
-
-export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
+export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const router = useRouter();
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   const toggleCategory = (index: number) => {
     setExpandedIndex((prev) => (prev === index ? null : index));
@@ -81,16 +70,15 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                   <div className="flex flex-col gap-3 px-4 pb-4">
                     {/* Subcategories */}
                     <div className="flex flex-col gap-1">
-                      {cat.subCategories.map((sub) => (
+                      {cat?.subCategories.map((sub) => (
                         <button
                           key={sub._id}
-                          onClick={() => {
-                            setCategoryFilter({
+                          onClick={() =>
+                            handleCategoryClick({
                               type: "subs",
                               subSlugs: [sub.slug],
-                            });
-                            router.push("/products/search");
-                          }}
+                            })
+                          }
                           className="text-left text-neutral-500 hover:text-primary hover:font-medium transition-colors"
                         >
                           {sub.title}
@@ -99,26 +87,28 @@ export const MobileMegaMenu = ({ categories }: IMobileMegaMenuProps) => {
                     </div>
 
                     {/* Featured products */}
-                    {cat.featuredProducts.length > 0 && (
-                      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
-                        {cat.featuredProducts.slice(0, 4).map((product) => (
-                          <FeaturedProductCard
-                            key={product.title}
-                            product={product as TProductWithMinimalReviewStats}
-                          />
-                        ))}
-                      </div>
-                    )}
+                    {cat?.featuredProducts &&
+                      cat.featuredProducts?.length > 0 && (
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+                          {cat.featuredProducts?.slice(0, 4).map((product) => (
+                            <FeaturedProductCard
+                              key={product.title}
+                              product={
+                                product as TProductWithMinimalReviewStats
+                              }
+                            />
+                          ))}
+                        </div>
+                      )}
 
                     <button
-                      onClick={() => {
-                        setCategoryFilter({
+                      onClick={() =>
+                        handleCategoryClick({
                           type: "top",
                           topSlug: cat.topCategory.slug,
                           categories,
-                        });
-                        router.push("/products/search");
-                      }}
+                        })
+                      }
                       className="!primaryClasses !w-full !py-1 mt-2 rounded bg-primary text-white font-medium"
                     >
                       View all products

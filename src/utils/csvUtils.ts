@@ -8,3 +8,16 @@ export const csvToBooleanRecord = (csv?: string): Record<string, boolean> => {
     return acc;
   }, {});
 };
+
+/**
+ * Convert Record<string, boolean> into a comma-separated string
+ */
+export const booleanRecordToCsv = (
+  record?: Record<string, boolean>
+): string => {
+  if (!record) return "";
+  return Object.entries(record)
+    .filter(([, v]) => v) // only include truthy
+    .map(([k]) => k) // take keys
+    .join(",");
+};

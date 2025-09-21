@@ -1,14 +1,21 @@
 "use client";
 
+// Types
 import { ICategoryTreeItem, TProductWithMinimalReviewStats } from "@/types";
 
+// Static Data
 import { cardsData } from "@/static-data/productCategoryCards";
+
+// Components - Shared
 import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
 import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
+
+// Components - Local
 import { FeaturedProductCard } from "./FeaturedProductCard";
-import { useRouter } from "next/navigation";
+
+// Hooks
 import { useEffect, useState } from "react";
-import { setCategoryFilter } from "@/utils";
+import { useProductSearchParamsManagement } from "@/hooks";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts?: TProductWithMinimalReviewStats[];
@@ -19,8 +26,8 @@ export interface IMegaMenuProps {
 }
 
 export const MegaMenu = ({ categories }: IMegaMenuProps) => {
-  const router = useRouter();
   const [isClient, setIsClient] = useState<boolean>(false);
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   useEffect(() => {
     setIsClient(true);
@@ -58,12 +65,11 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
 
                           <ButtonBtnTrans
                             onClick={() => {
-                              setCategoryFilter({
+                              handleCategoryClick({
                                 type: "top",
                                 topSlug: top.slug,
                                 categories,
                               });
-                              router.push("/products/search");
                             }}
                             className="font-medium underline mt-4 block text-center"
                           >
@@ -82,11 +88,10 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                           <ButtonBtnTrans
                             key={sub._id}
                             onClick={() => {
-                              setCategoryFilter({
+                              handleCategoryClick({
                                 type: "subs",
                                 subSlugs: [sub.slug],
                               });
-                              router.push("/products/search");
                             }}
                             className="text-left text-neutral-500 hover:text-primary hover:font-medium transition-all transform hover:translate-x-2"
                           >
@@ -98,7 +103,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                       {/* Right column: Featured products */}
                       <div className="flex flex-col gap-4">
                         <div className="grid grid-cols-3 gap-4">
-                          {featuredProducts.slice(0, 6).map((product) => (
+                          {featuredProducts?.slice(0, 6).map((product) => (
                             <FeaturedProductCard
                               key={product.title}
                               product={product}
@@ -108,12 +113,11 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
 
                         <ButtonBtn
                           onClick={() => {
-                            setCategoryFilter({
+                            handleCategoryClick({
                               type: "top",
                               topSlug: top.slug,
                               categories,
                             });
-                            router.push("/products/search");
                           }}
                           className="!primaryClasses !w-full !py-1"
                         >

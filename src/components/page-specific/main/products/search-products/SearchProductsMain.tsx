@@ -62,6 +62,7 @@ const SearchProductsMain = () => {
         <div>
           <SortDropdown
             onUpdate={(value) => {
+              console.log(value);
               setValue("sort", value);
             }}
             selected={watchedValues.sort}

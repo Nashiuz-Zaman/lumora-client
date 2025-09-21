@@ -7,14 +7,12 @@ import {
 } from "@/components/shared";
 import { useRef } from "react";
 import { slideInOutBtnGradient } from "./Sneakers";
-import { setCategoryFilter } from "@/utils";
-import { useRouter } from "next/navigation";
-import { useGetRefAsState } from "@/hooks";
+import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 export const WomenFashion = () => {
-  const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
   const parent = useGetRefAsState(parentRef);
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
     <div ref={parentRef} className="relative h-[60%] overflow-hidden">
@@ -26,8 +24,8 @@ export const WomenFashion = () => {
       >
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
-            onClick={() => {
-              setCategoryFilter({
+            onClick={() =>
+              handleCategoryClick({
                 type: "subs",
                 subSlugs: [
                   "womens-clothing",
@@ -38,10 +36,8 @@ export const WomenFashion = () => {
                   "sunglasses",
                   "watches",
                 ],
-              });
-
-              router.push("/products/search");
-            }}
+              })
+            }
             className="whiteOutlinedClasses"
           >
             Women&apos;s Fashion & Accessories

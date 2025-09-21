@@ -1,4 +1,4 @@
-import { IGetProductsForSearchPageQueryParams } from "@/hooks";
+import { IProductSearchQueryParams } from "@/hooks";
 import { baseApiSlice } from "../baseApiSlice";
 import {
   IApiResponse,
@@ -34,7 +34,7 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
           brands: string[];
         }>
       >,
-      IGetProductsForSearchPageQueryParams
+      IProductSearchQueryParams
     >({
       query: (params) => ({
         url: "/products/search",

@@ -6,13 +6,9 @@ import { buildUrlWithParams, cleanObject } from "@/utils";
 import { useGetProductsFromProductCollectionQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import { IQueryMeta } from "@/types";
 
-interface IUseProductCollectionProductsOptions {
-  limit?: number; // optional limit
-}
-
-export const useProductCollectionProductsQueries = (
+export const useCollectionProductsQueries = (
   collectionSlug: string,
-  options: IUseProductCollectionProductsOptions = {}
+  options: { limit?: number } = {}
 ) => {
   const { limit } = options;
 

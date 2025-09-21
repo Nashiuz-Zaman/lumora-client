@@ -5,19 +5,17 @@ import {
   DesignerVideo,
   SlideInOutWrapperX,
 } from "@/components/shared";
-import { useGetRefAsState } from "@/hooks";
-import { setCategoryFilter } from "@/utils";
-import { useRouter } from "next/navigation";
+import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 import { useRef } from "react";
 
-// export this gradietn to apply on
+// export this gradient to apply on
 export const slideInOutBtnGradient =
   "bg-gradient-to-br backdrop-blur-[3px] from-primary-dark/70 to-primary-dark/40";
 
 export const Sneakers = ({ className }: { className?: string }) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const parent = useGetRefAsState(parentRef);
-  const router = useRouter();
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
     <div ref={parentRef} className={`relative overflow-hidden ${className}`}>
@@ -32,14 +30,12 @@ export const Sneakers = ({ className }: { className?: string }) => {
       >
         <div className="py-10 flex items-center justify-center">
           <ButtonBtn
-            onClick={() => {
-              setCategoryFilter({
+            onClick={() =>
+              handleCategoryClick({
                 type: "subs",
                 subSlugs: ["sneakers"],
-              });
-
-              router.push("/products/search");
-            }}
+              })
+            }
             className="whiteOutlinedClasses"
           >
             Explore Sneakers
