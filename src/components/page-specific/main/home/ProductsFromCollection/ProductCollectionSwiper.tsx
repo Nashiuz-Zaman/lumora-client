@@ -36,7 +36,7 @@ export const ProductCollectionSwiper = ({
       spaceBetween={20}
       breakpoints={{
         640: { slidesPerView: 2 },
-        1024: { slidesPerView: 3 },
+        856: { slidesPerView: 3 },
         1280: { slidesPerView: 4 },
         1700: { slidesPerView: 5 },
       }}

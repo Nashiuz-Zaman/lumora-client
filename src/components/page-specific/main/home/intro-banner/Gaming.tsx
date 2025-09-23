@@ -2,7 +2,7 @@
 
 import { Slider, SlideInOutWrapperX, ButtonBtn } from "@/components/shared";
 import { useRef } from "react";
-import { slideInOutBtnGradient } from "./Sneakers";
+import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 const data = [
@@ -51,7 +51,7 @@ const Card = ({ src, buttonText }: ICardProps) => {
                 subSlugs: ["gaming-consoles", "pc-gaming", "vr-headsets"],
               })
             }
-            className="whiteOutlinedClasses"
+            className={btnClasses}
           >
             {buttonText}
           </ButtonBtn>

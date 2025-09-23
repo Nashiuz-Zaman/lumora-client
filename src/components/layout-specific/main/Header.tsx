@@ -1,21 +1,30 @@
 "use client";
 
 // component
-import { CartBtn } from "../../shared/buttons";
 import {
   InnerContainer,
   ExpandableSearchPortal,
   BrandLogo,
+  Searchbar,
+  CartBtn,
+  UserAvatarMenu,
+  SearchbarProductCard,
 } from "../../shared";
-import UserAvatarMenu from "@/components/shared/UserAvatarMenu";
-import Searchbar from "@/components/shared/Searchbar";
+
 import { IMegaMenuProps, MegaMenu } from "./MegaMenu";
 import Link from "next/link";
 
 // types
 import { MobileMegaMenu } from "./MobileMegaMenu";
-import { useAuthMethods, useCartState } from "@/hooks";
+import {
+  BREAKPOINTS,
+  useAuthMethods,
+  useCartState,
+  useMediaQuery,
+} from "@/hooks";
 import { useEffect, useState } from "react";
+import { ISearchbarResultProduct } from "@/types";
+import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 
 type THeaderProps = IMegaMenuProps;
 
@@ -24,13 +33,37 @@ const Header = ({ categories }: THeaderProps) => {
   const { logout } = useAuthMethods();
   const { cart } = useCartState();
 
+  // search hook
+  const [triggerSearch, { data, isFetching, isSuccess }] =
+    useLazySearchInSearchbarQuery();
+
+  const results = (!isFetching && isSuccess && data?.data?.products) || [];
+  const isSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
+
   useEffect(() => {
     setIsClient(true);
   }, []);
 
   if (!isClient) return null;
+
+  // simple renderer for results (can be customized)
+  const renderResult = (
+    item: ISearchbarResultProduct,
+    _index: number,
+    onClick: () => void
+  ): React.ReactNode => {
+    return (
+      <SearchbarProductCard
+        onClick={onClick}
+        title={item.title}
+        slug={item?.slug}
+        src={item.defaultImage}
+      />
+    );
+  };
+
   return (
-    <header>
+    <header className="relative z-[200]">
       {/* Top promo / links bar */}
       <InnerContainer className="bg-white text-sm xl:text-base py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
@@ -55,15 +88,30 @@ const Header = ({ categories }: THeaderProps) => {
           {/* logo */}
           <BrandLogo className="mr-6" />
 
-          {/* search bar */}
-          <Searchbar className="hidden 2md:block" />
+          {/* Desktop search bar */}
+          {isSm && (
+            <Searchbar<ISearchbarResultProduct>
+              results={results}
+              renderResult={renderResult}
+              showIcon
+              trigger={triggerSearch}
+              modalClassName="productSearchbarModal"
+            />
+          )}
 
           <div className="ml-auto flex items-center gap-4">
-            <ExpandableSearchPortal
-              portalTargetId="header-search-mobile-screen"
-              buttonClasses="2md:!hidden text-xl"
-              horizontalAccordionClasses="mb-5 xl:pb-6"
-            />
+            {/* Mobile expandable search */}
+            {!isSm && (
+              <ExpandableSearchPortal
+                portalTargetId="header-search-mobile-screen"
+                buttonClasses="text-xl"
+                horizontalAccordionClasses="mb-5 xl:pb-6"
+                results={results}
+                renderResult={renderResult}
+                trigger={triggerSearch}
+                modalClassName="productSearchbarModal"
+              />
+            )}
 
             {/* header nav options */}
             {!false && (

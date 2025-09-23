@@ -13,7 +13,7 @@ export const SectionHeading = ({
 }: ISectionHeadingProps) => {
   return (
     <h2
-      className={`text-3xl font-semibold tracking-tight ${className}`}
+      className={`text-2xl md:text-3xl font-semibold tracking-tight ${className}`}
     >
       {children}
     </h2>

@@ -38,7 +38,7 @@ export const AccordionVertical = ({
   }, [expanded, duration]);
 
   return (
-    <div className={className}>
+    <div {...(className ? { className } : {})}>
       <div
         style={{
           ...(previewHeight
@@ -53,9 +53,7 @@ export const AccordionVertical = ({
           animate ? `transition-all ${transitionDurationClass}` : ""
         }`}
       >
-        <div className={`${overflow} transition-all !duration-0 no-scrollbar`}>
-          {children}
-        </div>
+        <div className={`${overflow} transition-all`}>{children}</div>
       </div>
     </div>
   );

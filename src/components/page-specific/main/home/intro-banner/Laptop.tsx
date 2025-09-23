@@ -1,7 +1,7 @@
 "use client";
 
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
-import { slideInOutBtnGradient } from "./Sneakers";
+import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useRef } from "react";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
@@ -32,7 +32,7 @@ export const Laptop = ({ className }: { className?: string }) => {
                   subSlugs: ["gaming-laptops"],
                 })
               }
-              className="whiteOutlinedClasses"
+              className={btnClasses}
             >
               Buy Laptops
             </ButtonBtn>

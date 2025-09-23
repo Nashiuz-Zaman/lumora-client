@@ -53,6 +53,12 @@ export type TProductWithMinimalReviewStats = IProduct & {
   totalReviews?: number;
 };
 
+export interface ISearchbarResultProduct {
+  title: IProduct["title"];
+  defaultImage: IProduct["defaultImage"];
+  slug: IProduct["slug"];
+}
+
 export interface IProductWithReviewsAndStats {
   product: IProduct;
   reviews: IReview[];

@@ -67,11 +67,13 @@ html {
 }
 
 @utility primaryLightClasses {
-  @apply bg-primary-light border border-primary-light text-black
+  @apply bg-primary-light border border-primary-light text-white
          active:bg-primary active:border-primary active:text-white
          lg:hover:bg-primary lg:hover:border-primary lg:hover:text-white
-         disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-black;
+         disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-white;
 }
+
+
 
 @utility secondaryClasses {
   @apply bg-secondary border border-secondary text-white

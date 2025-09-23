@@ -1,24 +1,25 @@
 import {
-  ButtonBtnTrans,
-  CaretLeftIcon,
-  CaretRightIcon,
   CenterContainer,
   InnerContainer,
-  SectionHeading,
-  SectionTagline,
   TCustomSwiperProps,
 } from "@/components/shared";
 import { fetchCollectionProducts } from "@/server-functions/fetchCollectionProducts";
-
-import { TPopulatedProductInCollectionWithReviewStats } from "@/types";
+import {
+  ICategoryTreeItem,
+  TPopulatedProductInCollectionWithReviewStats,
+} from "@/types";
 import { ProductCollectionSwiper } from "./ProductCollectionSwiper";
+import { ProductsFromCollectionHeader } from "./ProductsFromCollectionHeader";
 
 interface IProductsFromCollectionProps {
   collectionSlug: string;
   title: string;
   tagline?: string;
   className?: string;
+  topCategorySlug?: string;
+  categoryTree?: ICategoryTreeItem[];
   navigation: TCustomSwiperProps<any>["navigation"];
+  [key: string]: any;
 }
 
 export const ProductsFromCollection = async ({
@@ -26,13 +27,15 @@ export const ProductsFromCollection = async ({
   title,
   tagline,
   className = "",
+  topCategorySlug,
+  categoryTree,
   navigation = {
     nextEl: ".custom-swiper-next",
     prevEl: ".custom-swiper-prev",
   },
+  ...props
 }: IProductsFromCollectionProps) => {
   if (!collectionSlug) return null;
-
   const result = await fetchCollectionProducts(collectionSlug);
 
   if (!result || "isError" in result) {
@@ -54,37 +57,15 @@ export const ProductsFromCollection = async ({
   }));
 
   return (
-    <CenterContainer>
+    <CenterContainer {...props}>
       <section className={`w-full ${className}`}>
-        <div className="mb-6 text-center flex items-center md:text-left">
-          <div>
-            <SectionHeading>{title}</SectionHeading>
-            {tagline && (
-              <SectionTagline className="mt-2">{tagline}</SectionTagline>
-            )}
-
-            <ButtonBtnTrans>See All</ButtonBtnTrans>
-          </div>
-
-          <div className="flex items-center gap-3 ml-auto">
-            <button
-              className={`${navigation.prevEl.replace(
-                ".",
-                ""
-              )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary-dark cursor-pointer shadow-md transition`}
-            >
-              <CaretLeftIcon />
-            </button>
-            <button
-              className={`${navigation.nextEl.replace(
-                ".",
-                ""
-              )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary-dark cursor-pointer shadow-md transition`}
-            >
-              <CaretRightIcon />
-            </button>
-          </div>
-        </div>
+        <ProductsFromCollectionHeader
+          title={title}
+          tagline={tagline}
+          navigation={navigation}
+          topCategorySlug={topCategorySlug}
+          categoryTree={categoryTree}
+        />
 
         <ProductCollectionSwiper
           navigation={navigation}

@@ -1,9 +1,5 @@
 import { useRef, useCallback, useEffect } from "react";
 
-/**
- * Returns a debounced version of a callback.
- * The callback will only execute after `delay` ms of no new calls.
- */
 export const useDebouncedCallback = <T extends (...args: any[]) => void>(
   callback: T,
   delay: number
@@ -18,12 +14,15 @@ export const useDebouncedCallback = <T extends (...args: any[]) => void>(
     [callback, delay]
   );
 
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (timer.current) clearTimeout(timer.current);
-    };
+  const cancel = useCallback(() => {
+    if (timer.current) {
+      clearTimeout(timer.current);
+      timer.current = null;
+    }
   }, []);
 
-  return debouncedFn;
+  // Cleanup on unmount
+  useEffect(() => cancel, [cancel]);
+
+  return [debouncedFn, cancel] as const;
 };

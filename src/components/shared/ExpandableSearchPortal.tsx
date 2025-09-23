@@ -4,22 +4,30 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ButtonBtnTrans } from "./buttons";
 import { CloseIcon, SearchIcon } from "./icons";
-import Searchbar from "./Searchbar";
+import { Searchbar } from "./Searchbar";
 import { AccordionHorizontal } from "./AccordionHorizontal";
 import { AccordionVertical } from "./AccordionVertical";
 
-// Props type
-type ExpandableSearchPortalProps = {
+interface IExpandableSearchPortalProps<T> {
   portalTargetId?: string;
   verticalAccordionClasses?: string;
   horizontalAccordionClasses?: string;
   buttonClasses?: string;
   searchbarClasses?: string;
   accordionDuration?: string;
-  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
-};
+  trigger?: (text: string) => void; // RTK query trigger function
+  onSubmit?: (text: string) => void;
+  results?: T[];
+  renderResult?: (
+    item: T,
+    index: number,
+    onClick: () => void
+  ) => React.ReactNode;
+  onChange?: (value: string) => void;
+  modalClassName?: string;
+}
 
-export const ExpandableSearchPortal = ({
+export const ExpandableSearchPortal = <T,>({
   portalTargetId = "searchbar-portal-root",
   verticalAccordionClasses = "",
   horizontalAccordionClasses = "",
@@ -27,7 +35,12 @@ export const ExpandableSearchPortal = ({
   searchbarClasses = "",
   accordionDuration = "250ms",
   onSubmit,
-}: ExpandableSearchPortalProps) => {
+  onChange,
+  results,
+  renderResult,
+  modalClassName = "",
+  trigger,
+}: IExpandableSearchPortalProps<T>) => {
   const [showVertical, setShowVertical] = useState(false);
   const [showHorizontal, setShowHorizontal] = useState(false);
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
@@ -100,15 +113,17 @@ export const ExpandableSearchPortal = ({
               expanded={showHorizontal}
               animate
               duration={accordionDuration}
-              modifyClasses={horizontalAccordionClasses}
+              className={horizontalAccordionClasses}
             >
-              <Searchbar
+              <Searchbar<T>
                 className={searchbarClasses}
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  if (typeof onSubmit === "function") onSubmit(e);
-                }}
-                showIcon={true}
+                results={results}
+                renderResult={renderResult}
+                trigger={trigger}
+                onChange={onChange}
+                onSubmit={onSubmit}
+                showIcon
+                modalClassName={modalClassName}
               />
             </AccordionHorizontal>
           </AccordionVertical>,

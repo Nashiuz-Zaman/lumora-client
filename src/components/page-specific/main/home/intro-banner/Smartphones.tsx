@@ -2,7 +2,7 @@
 
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
 import { useRef } from "react";
-import { slideInOutBtnGradient } from "./Sneakers";
+import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 export const Smartphones = () => {
@@ -31,7 +31,7 @@ export const Smartphones = () => {
                 subSlugs: ["smartphones", "mobile-accessories"],
               })
             }
-            className="whiteOutlinedClasses"
+            className={btnClasses}
           >
             Latest Smartphones
           </ButtonBtn>

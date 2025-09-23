@@ -18,7 +18,7 @@ type TUserAvatarMenuProps = {
   className?: string;
 };
 
-const UserAvatarMenu = ({
+export const UserAvatarMenu = ({
   userData,
   logoutFunction,
   className = "",
@@ -93,5 +93,3 @@ const UserAvatarMenu = ({
     </div>
   );
 };
-
-export default UserAvatarMenu;

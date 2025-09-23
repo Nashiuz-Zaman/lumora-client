@@ -61,8 +61,8 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
       </p>
 
       <LinkBtn
-        href="#top-deals"
-        className="mx-auto primaryOutlinedClasses !rounded-full"
+        href="#all-product-categories"
+        className="mx-auto primaryClasses !rounded-full"
       >
         <CartIcon className="text-2xl" /> Start Shopping
       </LinkBtn>

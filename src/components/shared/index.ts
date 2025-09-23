@@ -44,3 +44,4 @@ export * from "./Slider";
 export * from "./SectionHeading";
 export * from "./SectionTagline";
 export * from "./SortDropdown";
+export * from "./SearchbarProductCard";

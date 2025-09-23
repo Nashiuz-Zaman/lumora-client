@@ -2,7 +2,7 @@
 
 import { ButtonBtn, SlideInOutWrapperX } from "@/components/shared";
 import { useRef } from "react";
-import { slideInOutBtnGradient } from "./Sneakers";
+import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 export const Food = () => {
@@ -36,7 +36,7 @@ export const Food = () => {
                 ],
               });
             }}
-            className="whiteOutlinedClasses"
+            className={btnClasses}
           >
             Shop Frozen Food & More
           </ButtonBtn>

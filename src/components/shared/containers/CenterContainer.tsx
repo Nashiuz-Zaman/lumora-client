@@ -2,13 +2,15 @@ export const CenterContainer = ({
   children,
   paddingSide = "both",
   className = "",
+  ...props
 }: {
   children: React.ReactNode;
   paddingSide?: "left" | "right" | "both";
   className?: string;
+  [key: string]: any;
 }) => {
   return (
-    <div className={`w-full ${className}`}>
+    <div className={`w-full ${className}`} {...props}>
       <div
         className={`max-w-[100rem] w-full mx-auto ${
           paddingSide === "left"

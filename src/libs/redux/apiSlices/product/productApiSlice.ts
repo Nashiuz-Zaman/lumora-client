@@ -8,6 +8,7 @@ import {
   IUpdateProductArgs,
   TProductWithMinimalReviewStats,
   TQueryDataWithQueryMeta,
+  ISearchbarResultProduct,
 } from "@/types";
 
 // --- API slice ---
@@ -27,7 +28,28 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       ],
     }),
 
-    getProductsForSearchPage: builder.query<
+    searchInSearchbar: builder.query<
+      IApiResponse<
+        TQueryDataWithQueryMeta<{
+          products: ISearchbarResultProduct[];
+        }>
+      >,
+      string
+    >({
+      query: (searchText) => ({
+        url: "/products/search",
+        method: "GET",
+        params: {
+          limitFields: "title,defaultImage,slug",
+          limit: 10,
+          page: 1,
+          search: searchText,
+        },
+      }),
+      keepUnusedDataFor: 0,
+    }),
+
+    searchProducts: builder.query<
       IApiResponse<
         TQueryDataWithQueryMeta<{
           products: TProductWithMinimalReviewStats[];
@@ -105,6 +127,6 @@ export const {
   useUpdateProductMutation,
   useBulkDeleteProductsMutation,
   useGetProductsFromProductCollectionQuery,
-  useGetProductsForSearchPageQuery,
-  useLazyGetProductsForSearchPageQuery,
+  useSearchProductsQuery,
+  useLazySearchInSearchbarQuery,
 } = productsApiSlice;

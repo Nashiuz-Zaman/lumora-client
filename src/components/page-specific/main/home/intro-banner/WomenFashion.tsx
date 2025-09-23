@@ -6,7 +6,7 @@ import {
   SlideInOutWrapperX,
 } from "@/components/shared";
 import { useRef } from "react";
-import { slideInOutBtnGradient } from "./Sneakers";
+import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 export const WomenFashion = () => {
@@ -38,7 +38,7 @@ export const WomenFashion = () => {
                 ],
               })
             }
-            className="whiteOutlinedClasses"
+            className={btnClasses}
           >
             Women&apos;s Fashion & Accessories
           </ButtonBtn>

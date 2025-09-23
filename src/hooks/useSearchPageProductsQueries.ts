@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ProductSortOptions } from "@/constants/product";
-import { useGetProductsForSearchPageQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+
 import {
   buildUrlWithParams,
   csvToBooleanRecord,
@@ -14,6 +14,7 @@ import {
 } from "@/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useProductSearchParamsManagement } from "./useProductSearchParamsManagement";
+import { useSearchProductsQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 
 export interface ISearchPageForm {
   subCategory: Record<string, boolean>;
@@ -63,8 +64,12 @@ export const useSearchPageProductsQueries = () => {
   };
 
   // --- Fetch products (reacts only to URL changes) ---
-  const { data, isFetching } = useGetProductsForSearchPageQuery(
-    cleanObject(paramsFromUrl) as IProductSearchQueryParams,
+  const { data, isFetching } = useSearchProductsQuery(
+    cleanObject({
+      page: paramsFromUrl.page,
+      search: paramsFromUrl.search,
+      q: paramsFromUrl.q,
+    }) as IProductSearchQueryParams,
     {
       skip: !isClient,
     }
@@ -98,19 +103,11 @@ export const useSearchPageProductsQueries = () => {
   }, [page, search, rawCompressed]);
 
   // --- RHF (for UI only) ---
-  const { control, handleSubmit, setValue, watch, getValues, reset } =
+  const { control, handleSubmit, setValue, watch, getValues } =
     useForm<ISearchPageForm>({
-      defaultValues: {},
+      defaultValues: derivedParams, // initial mount
+      values: !form ? derivedParams : undefined, // sync with URL only if form=false
     });
-
-  useEffect(() => {
-    if (isClient) {
-      if (!form) {
-        reset(derivedParams);
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isClient, reset, form]);
 
   // --- Handlers ---
   const onSubmit = () => {

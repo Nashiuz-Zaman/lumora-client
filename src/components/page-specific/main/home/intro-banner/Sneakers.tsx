@@ -9,8 +9,8 @@ import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 import { useRef } from "react";
 
 // export this gradient to apply on
-export const slideInOutBtnGradient =
-  "bg-gradient-to-br backdrop-blur-[3px] from-primary-dark/70 to-primary-dark/40";
+export const slideInOutBtnGradient = "bg-white/30 backdrop-blur-[3px]";
+export const btnClasses = "primaryLightClasses underline underline-offset-3 !rounded-full";
 
 export const Sneakers = ({ className }: { className?: string }) => {
   const parentRef = useRef<HTMLDivElement>(null);
@@ -36,7 +36,7 @@ export const Sneakers = ({ className }: { className?: string }) => {
                 subSlugs: ["sneakers"],
               })
             }
-            className="whiteOutlinedClasses"
+            className={btnClasses}
           >
             Explore Sneakers
           </ButtonBtn>
