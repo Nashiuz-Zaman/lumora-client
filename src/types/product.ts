@@ -59,7 +59,7 @@ export interface ISearchbarResultProduct {
   slug: IProduct["slug"];
 }
 
-export interface IProductWithReviewsAndStats {
+export interface IProductWithReviewsStats {
   product: IProduct;
   reviews: IReview[];
   reviewStats?: {

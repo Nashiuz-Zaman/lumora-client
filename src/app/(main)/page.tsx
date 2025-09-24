@@ -21,6 +21,8 @@ const HomePage = async () => {
         {/* pass the fetched tree into ProductCategories */}
         <ProductCategories />
 
+        
+
         {!isErrorWithCategory && (
           <div className="space-y-14 my-14">
             {/* Top Selling stays unchanged */}

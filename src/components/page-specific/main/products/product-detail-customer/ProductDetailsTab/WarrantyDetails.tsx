@@ -28,5 +28,3 @@ export const WarrantyDetails = ({ data }: { data?: string | null }) => {
     </section>
   );
 };
-
-

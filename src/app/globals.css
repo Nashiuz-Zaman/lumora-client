@@ -73,8 +73,6 @@ html {
          disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-white;
 }
 
-
-
 @utility secondaryClasses {
   @apply bg-secondary border border-secondary text-white
          active:bg-secondary-dark active:border-secondary-dark

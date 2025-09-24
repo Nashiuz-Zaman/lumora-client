@@ -10,6 +10,7 @@ import { ReduxProvider } from "@/providers";
 import { Backdrop } from "@/components/shared";
 import AuthStateProvider from "@/providers/AuthStateProvider";
 import CartStateProvider from "@/providers/CartStateProvider";
+import { ProductQuickViewModal } from "@/components/modals";
 
 export const metadata: Metadata = {
   title: "Next.js TS, React 19, Tailwind v4, Redux-toolkit | Project Skeleton",
@@ -46,6 +47,7 @@ export default function RootLayout({
               />
 
               <Backdrop />
+              <ProductQuickViewModal />
               {children}
             </CartStateProvider>
           </AuthStateProvider>

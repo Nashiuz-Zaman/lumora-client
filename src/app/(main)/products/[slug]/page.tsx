@@ -1,7 +1,7 @@
 // app/products/[slug]/page.tsx
 import { Metadata } from "next";
 import { ProductPagePublicMain } from "@/components/page-specific";
-import { getProductForCustomer } from "@/server-functions";
+import { fetchProductForCustomer } from "@/server-functions";
 import { InnerContainer, LinkBtn } from "@/components/shared";
 
 type TParams = Promise<{ slug: string }>;
@@ -11,9 +11,9 @@ export async function generateMetadata(props: {
   params: TParams;
 }): Promise<Metadata> {
   const { slug } = await props.params;
-  const result = await getProductForCustomer(slug);
+  const result = await fetchProductForCustomer(slug);
 
-  if ("isError" in result || !result) {
+  if (!result || "isError" in result) {
     return {
       title: "Product Not Found - Lumora",
       description: "The product you are looking for could not be found.",
@@ -39,9 +39,9 @@ export async function generateMetadata(props: {
 
 const ProductPagePublic = async (props: { params: TParams }) => {
   const { slug } = await props.params;
-  const result = await getProductForCustomer(slug);
+  const result = await fetchProductForCustomer(slug, { reviewStats: true });
 
-  if ("isError" in result || !result) {
+  if (!result || "isError" in result) {
     return (
       <InnerContainer className="h-[70vh] flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold mb-2">Product Not Found</h2>

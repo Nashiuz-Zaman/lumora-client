@@ -3,11 +3,11 @@ import { ProductImages } from "./ProductImages";
 import { RightSideDetails } from "./RightSideDetails";
 import { ProductDetailsTabs } from "./ProductDetailsTab";
 // import YouMayAlsoLike from "./YouMayAlsoLike";
-import { IProductWithReviewsAndStats } from "@/types/product";
+import { IProductWithReviewsStats } from "@/types/product";
 import { Reviews } from "./Reviews";
 
 interface IProductPagePublicMainProps {
-  productWithReviewsAndStats?: IProductWithReviewsAndStats;
+  productWithReviewsAndStats?: IProductWithReviewsStats;
 }
 
 export const ProductPagePublicMain = ({

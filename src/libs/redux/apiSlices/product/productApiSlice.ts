@@ -9,6 +9,7 @@ import {
   TProductWithMinimalReviewStats,
   TQueryDataWithQueryMeta,
   ISearchbarResultProduct,
+  IProductWithReviewsStats,
 } from "@/types";
 
 // --- API slice ---
@@ -91,6 +92,27 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
       invalidatesTags: ["ProductsAdmin"],
     }),
 
+    getProductForCustomer: builder.query<
+      IApiResponse<Partial<IProductWithReviewsStats>>,
+      {
+        slug: string;
+        limitFields?: string;
+        populate?: string;
+        reviewStats?: boolean;
+      }
+    >({
+      query: ({ slug, limitFields, populate, reviewStats }) => ({
+        url: `/products/${slug}/customer`,
+        method: "GET",
+        params: {
+          ...(limitFields && { limitFields }),
+          ...(populate && { populate }),
+          ...(reviewStats && { reviewStats: true }),
+        },
+      }),
+      keepUnusedDataFor: 60,
+    }),
+
     getProductsFromProductCollection: builder.query<
       IApiResponse<
         TQueryDataWithQueryMeta<{
@@ -129,4 +151,6 @@ export const {
   useGetProductsFromProductCollectionQuery,
   useSearchProductsQuery,
   useLazySearchInSearchbarQuery,
+  useGetProductForCustomerQuery,
+  useLazyGetProductForCustomerQuery
 } = productsApiSlice;

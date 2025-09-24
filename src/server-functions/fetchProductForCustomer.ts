@@ -1,21 +1,35 @@
-import { IProductWithReviewsAndStats } from "@/types";
+import { IApiResponse, IProductWithReviewsStats } from "@/types";
 import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
-export const getProductForCustomer = catchAsyncServer(async (slug: string) => {
-  if (!slug) throw new Error("Slug is required");
+interface GetProductOptions {
+  limitFields?: string;
+  populate?: string;
+  reviewStats?: boolean;
+}
 
-  const apiUrl = getBaseApiUrl();
-  const res = await fetch(`${apiUrl}/products/${slug}/customer`, {
-    next: { revalidate: 3600 },
-  });
+export const fetchProductForCustomer = catchAsyncServer(
+  async (slug: string, options?: GetProductOptions) => {
+    if (!slug) throw new Error("Slug is required");
 
-  if (!res.ok) throw new Error("Failed to fetch product data");
+    const apiUrl = getBaseApiUrl();
+    const params = new URLSearchParams();
 
-  const data: {
-    status: string;
-    success: boolean;
-    data: IProductWithReviewsAndStats;
-  } = await res.json();
+    if (options?.limitFields) params.append("limitFields", options.limitFields);
+    if (options?.populate) params.append("populate", options.populate);
+    if (options?.reviewStats) params.append("reviewStats", "true");
 
-  return data?.data;
-});
+    const url = `${apiUrl}/products/${slug}/customer${
+      params.toString() ? `?${params.toString()}` : ""
+    }`;
+
+    const res = await fetch(url, {
+      next: { revalidate: 3600 },
+    });
+
+    if (!res.ok) throw new Error("Failed to fetch product data");
+
+    const result: IApiResponse<IProductWithReviewsStats> = await res.json();
+
+    return result?.data;
+  }
+);

@@ -45,3 +45,4 @@ export * from "./SectionHeading";
 export * from "./SectionTagline";
 export * from "./SortDropdown";
 export * from "./SearchbarProductCard";
+export * from "./VariantSelector";

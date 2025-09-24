@@ -3,3 +3,4 @@ export * from "./ConfirmationModal";
 export * from "./ViewVideoModal";
 export * from "./AddReviewModal";
 export * from "./AddToProductCollectionModal";
+export * from "./ProductQuickViewModal";

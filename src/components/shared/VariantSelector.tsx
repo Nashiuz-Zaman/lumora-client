@@ -12,8 +12,10 @@ import {
 export const VariantSelector = ({
   variants,
   onVariantSelect,
+  className = "",
 }: {
   variants: IVariant[];
+  className?: string;
   onVariantSelect?: (variant: IVariant | undefined) => void;
 }) => {
   // option keys like color, storage etc.
@@ -47,35 +49,37 @@ export const VariantSelector = ({
   );
 
   return (
-    <div className="space-y-6">
-      {optionKeys.map((key) => (
-        <div className="mb-6" key={key}>
-          <h3 className="font-medium mb-2 capitalize">{key}</h3>
-          <div className="flex flex-wrap gap-2">
-            {optionValues[key].map((value) => {
-              const isSelected = selectedOptions[key] === value;
-              return (
-                <button
-                  key={value}
-                  onClick={() =>
-                    setSelectedOptions((prev) => ({
-                      ...prev,
-                      [key]: value,
-                    }))
-                  }
-                  className={`px-4 py-2 cursor-pointer transition-all rounded-md border ${
-                    isSelected
-                      ? "bg-primary text-white border-primary"
-                      : "bg-white text-neutral-700 border-neutral-200"
-                  }`}
-                >
-                  {value}
-                </button>
-              );
-            })}
+    <div className={`space-y-5 ${className}`}>
+      <div className="space-y-5">
+        {optionKeys.map((key) => (
+          <div className="" key={key}>
+            <h3 className="font-medium mb-2 capitalize">{key}</h3>
+            <div className="flex flex-wrap gap-2">
+              {optionValues[key].map((value) => {
+                const isSelected = selectedOptions[key] === value;
+                return (
+                  <button
+                    key={value}
+                    onClick={() =>
+                      setSelectedOptions((prev) => ({
+                        ...prev,
+                        [key]: value,
+                      }))
+                    }
+                    className={`px-4 py-2 cursor-pointer transition-all rounded-md border ${
+                      isSelected
+                        ? "bg-primary text-white border-primary"
+                        : "bg-white text-neutral-700 border-neutral-200"
+                    }`}
+                  >
+                    {value}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <div className="font-medium">
         {Object.keys(selectedOptions).length === optionKeys.length ? (
