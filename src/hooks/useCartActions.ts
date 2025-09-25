@@ -1,3 +1,5 @@
+"use client";
+
 import {
   useCreateUserCartMutation,
   useCreateGuestCartMutation,
@@ -6,74 +8,63 @@ import {
 } from "@/libs/redux/apiSlices/cart/cartApiSlice";
 import { useCartState } from "./useCartState";
 import { useAuthState } from "./useAuthState";
-import { catchAsyncGeneral, showToast, TWithEvent } from "@/utils";
+import { catchAsyncGeneral, showToast } from "@/utils";
 import { ICartAction } from "@/types/cart";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
 
 export const useCartActions = () => {
   const { user } = useAuthState();
-  const { cart, setIsCartLoading } = useCartState();
+  const { cart, setIsCartLoading, isCartLoading } = useCartState();
 
-  const [createUserCart, { isLoading: isCreatingUserCart }] =
+  // mutations
+  const [createUserCart, { isLoading: creatingUser }] =
     useCreateUserCartMutation();
-  const [createGuestCart, { isLoading: isCreatingGuestCart }] =
+  const [createGuestCart, { isLoading: creatingGuest }] =
     useCreateGuestCartMutation();
-  const [updateUserCart, { isLoading: isUpdatingUserCart }] =
+  const [updateUserCart, { isLoading: updatingUser }] =
     useUpdateUserCartMutation();
-  const [updateGuestCart, { isLoading: isUpdatingGuestCart }] =
+  const [updateGuestCart, { isLoading: updatingGuest }] =
     useUpdateGuestCartMutation();
 
-  const isCartUpdating =
-    isCreatingUserCart ||
-    isCreatingGuestCart ||
-    isUpdatingUserCart ||
-    isUpdatingGuestCart;
+  // whenever any mutation is running, update the context loading state
+  const anyUpdating =
+    creatingUser || creatingGuest || updatingUser || updatingGuest;
 
   useEffect(() => {
-    setIsCartLoading(isCartUpdating);
-  }, [isCartUpdating, setIsCartLoading]);
+    setIsCartLoading(anyUpdating);
+  }, [anyUpdating, setIsCartLoading]);
+
+  const getMutation = useMemo(() => {
+    if (user) return cart?._id ? updateUserCart : createUserCart;
+    return cart?._id ? updateGuestCart : createGuestCart;
+  }, [
+    user,
+    cart?._id,
+    updateUserCart,
+    createUserCart,
+    updateGuestCart,
+    createGuestCart,
+  ]);
 
   const showCartUpdateSuccessToast = (result: {
     success: boolean;
     message: string;
   }) => {
-    if (result.success) {
+    if (result?.success) {
       showToast({ message: result.message, position: "top-center" });
       return true;
     }
-  };
-
-  const createOrUpdateCart = async (actionData: ICartAction) => {
-    if (cart?._id && user) {
-      return await updateUserCart(actionData).unwrap();
-    }
-    if (!cart?._id && user) {
-      return await createUserCart(actionData).unwrap();
-    }
-    if (cart?._id && !user) {
-      return await updateGuestCart(actionData).unwrap();
-    }
-    return await createGuestCart(actionData).unwrap();
+    return false;
   };
 
   const addRemoveProductToCart = catchAsyncGeneral(async (args) => {
     const data = args?.data as ICartAction;
-    const { productId, variantId, action, quantity } = data;
-
-    const actionData: ICartAction = {
-      productId,
-      variantId,
-      action,
-      quantity,
-    };
-
-    const result = await createOrUpdateCart(actionData);
+    const mutation = getMutation;
+    const result = await mutation(data).unwrap();
     showCartUpdateSuccessToast(result);
     return result;
   });
 
-  return {
-    addRemoveProductToCart,
-    isCartUpdating,
-  };
+  // return only the context loading state
+  return { addRemoveProductToCart, isCartLoading };
 };

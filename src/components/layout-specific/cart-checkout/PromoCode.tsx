@@ -13,7 +13,7 @@ import {
 
 interface IPromoCodeProps {
   discount: number;
-  appliedCode: string | null; // 👈 comes from parent (OrderSummary)
+  appliedCode: string | null;
 }
 
 export const PromoCode = ({ discount, appliedCode }: IPromoCodeProps) => {

@@ -4,24 +4,23 @@ import { ICartAction, TPopulatedCartItem } from "@/types/cart";
 import { CartItemCard, TUpdateQuantity } from "./CartItemCard";
 import { CartIcon, LinkBtn, LinkBtnTrans, NoData } from "@/components/shared/";
 import { useCartActions, useCartState } from "@/hooks";
+import { CartActions } from "@/constants";
 
 export const CartItemList = () => {
   const { cart } = useCartState();
   const { addRemoveProductToCart } = useCartActions();
 
-  //  increase/decrease prodcut
-  const updateQuantity: TUpdateQuantity = async (
-    productId,
-    variantId,
-    change
-  ) => {
-    if (change === 0) return;
+  console.log(cart);
 
-    const actionData = {
-      productId,
-      variantId,
+  //  increase/decrease prodcut
+  const updateQuantity: TUpdateQuantity = async (product, variant, change) => {
+    if (+change === 0 || !product || !variant) return;
+
+    const actionData: ICartAction = {
+      product,
+      variant,
       quantity: Math.abs(change),
-      action: change > 0 ? "add" : "remove",
+      action: change > 0 ? CartActions.add : CartActions.remove,
     };
 
     await addRemoveProductToCart({ data: actionData });
@@ -29,12 +28,13 @@ export const CartItemList = () => {
 
   // completely removes the product
   const removeItem = async (item: TPopulatedCartItem) => {
-    console.log(item.product._id!);
+    if (!item.product || !item.quantity || !item.variant) return;
+
     const actionData: ICartAction = {
-      productId: item.product._id!,
-      variantId: item.variant._id!,
+      product: item.product._id!,
+      variant: item.variant._id!,
       quantity: item.quantity,
-      action: "remove",
+      action: CartActions.remove,
     };
     await addRemoveProductToCart({ data: actionData });
   };
@@ -56,11 +56,11 @@ export const CartItemList = () => {
           </div>
         )}
 
-        {cartItems.length > 0 && (
+        {cartItems?.length > 0 && (
           <div className="space-y-3">
             {cartItems?.map((item, i) => (
               <CartItemCard
-                key={`${item.product._id}-${item.variant._id}-${i}`}
+                key={`key-${i}`}
                 item={item}
                 updateQuantity={updateQuantity}
                 removeItem={removeItem}

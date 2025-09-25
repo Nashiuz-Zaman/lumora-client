@@ -1,4 +1,6 @@
+import { IApiResponse, TPopulatedCart } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
+import { emptyCart } from "@/constants";
 
 export const cartApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -21,7 +23,10 @@ export const cartApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     // Fetch user cart (POST fetch-or-merge)
-    getUserCart: builder.query({
+    getUserCart: builder.query<
+      IApiResponse<{ cart: TPopulatedCart | typeof emptyCart }>,
+      undefined
+    >({
       query: () => ({
         url: "/carts/user-cart/fetch-or-merge",
         method: "POST",
@@ -30,7 +35,10 @@ export const cartApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     // Fetch guest cart
-    getGuestCart: builder.query({
+    getGuestCart: builder.query<
+      IApiResponse<{ cart: TPopulatedCart | typeof emptyCart }>,
+      undefined
+    >({
       query: () => ({
         url: "/carts/guest-cart",
         method: "GET",

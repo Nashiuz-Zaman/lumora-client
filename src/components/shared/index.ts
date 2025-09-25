@@ -46,3 +46,4 @@ export * from "./SectionTagline";
 export * from "./SortDropdown";
 export * from "./SearchbarProductCard";
 export * from "./VariantSelector";
+export * from "./QuantitySelector";

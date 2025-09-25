@@ -22,6 +22,10 @@ import { useEffect, useRef, useState } from "react";
 
 import { VariantSelector } from "@/components/shared";
 import { IVariant } from "@/utils/variantUtils";
+import { QuantitySelector } from "@/components/shared/QuantitySelector";
+import { ICartAction } from "@/types";
+import { useCartActions } from "@/hooks";
+import { CartActions } from "@/constants";
 
 export const ProductQuickViewModal = () => {
   const router = useRouter();
@@ -29,14 +33,16 @@ export const ProductQuickViewModal = () => {
   const { quickViewModalData, isModalOpen } = useSelector(
     (state: TRootState) => state.productQuickView
   );
-
   const slugRef = useRef<string>("");
   const [fetchProduct, { data, isFetching, isError }] =
     useLazyGetProductForCustomerQuery();
 
-  const [selectedVariant, setSelectedVariant] = useState<
+  const [curProductVariant, setCurProductVariant] = useState<
     IVariant | undefined
   >();
+  const { addRemoveProductToCart, isCartLoading } = useCartActions();
+
+  const [quantity, setQuantity] = useState<number>(1);
 
   // trigger fetch when modal opens
   useEffect(() => {
@@ -69,7 +75,8 @@ export const ProductQuickViewModal = () => {
 
     setTimeout(() => {
       dispatch(setQuickViewModalData({}));
-      setSelectedVariant(undefined);
+      setCurProductVariant(undefined);
+      setQuantity(1);
     }, 500);
   };
 
@@ -81,15 +88,24 @@ export const ProductQuickViewModal = () => {
   };
 
   const handleAddToCart = () => {
-    if (!quickViewModalData?.slug || !selectedVariant) return;
+    if (!curProductVariant) return;
 
-    closeModal();
-    // dispatch(addToCart({ slug: quickViewModalData.slug, variant: selectedVariant }))
-    console.log("Add to cart:", {
-      slug: quickViewModalData.slug,
-      variant: selectedVariant,
-    });
+    const cartPayload: ICartAction = {
+      action: CartActions.add,
+      product: quickViewModalData?._id as string,
+      variant: curProductVariant?._id as string,
+      quantity,
+    };
+
+    addRemoveProductToCart({ data: cartPayload });
   };
+
+  const handleIncrease = () => {
+    if (!curProductVariant) return;
+    setQuantity((prev) => prev + 1);
+  };
+  const handleDecrease = () =>
+    setQuantity((prev) => (prev > 1 ? prev - 1 : prev));
 
   return (
     <BaseModal
@@ -136,28 +152,38 @@ export const ProductQuickViewModal = () => {
               <div className="mb-4">
                 <VariantSelector
                   variants={quickViewModalData.variants}
-                  onVariantSelect={setSelectedVariant}
+                  onVariantSelect={setCurProductVariant}
                 />
               </div>
             )}
 
-            {/* CTA Buttons */}
-            <div className="mt-auto pt-4 flex gap-3 sm:gap-4 items-center justify-between">
+            <div className="mt-auto pt-4">
               <ButtonBtnTrans
                 onClick={handleViewDetails}
-                className="text-sm sm:text-base underline"
+                className="text-sm sm:text-base underline mr-auto mb-3"
               >
                 View Details
               </ButtonBtnTrans>
 
-              <ButtonBtn
-                onClick={handleAddToCart}
-                isDisabled={!selectedVariant}
-                className="!successClasses !rounded-full !px-5 !py-2 !gap-1"
-              >
-                <CartIcon />
-                Add to Cart
-              </ButtonBtn>
+              {/* CTA Section */}
+              <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                <QuantitySelector
+                  quantity={quantity}
+                  min={1}
+                  max={curProductVariant?.stock}
+                  onIncrease={handleIncrease}
+                  onDecrease={handleDecrease}
+                />
+                <ButtonBtn
+                  onClick={handleAddToCart}
+                  isLoading={isCartLoading}
+                  isDisabled={!curProductVariant}
+                  className="!successClasses !rounded-full !px-5 !py-2 !gap-2"
+                >
+                  <CartIcon className="text-2xl" />
+                  Add to Cart
+                </ButtonBtn>
+              </div>
             </div>
           </div>
         </div>

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 
 import {
   AccordionVertical,
   CartIcon,
   ButtonBtn,
   RatingStars,
+  QuantitySelector,
 } from "@/components/shared";
 import { AboutProduct } from "./AboutProduct";
 
@@ -30,7 +31,13 @@ export const RightSideDetails = ({
   >();
   const [expanded, setExpanded] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [isClient, setIsClient] = useState(false);
+
   const { addRemoveProductToCart, isCartUpdating } = useCartActions();
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const handleVariantUpdate = useCallback((variant?: IVariant) => {
     setCurProductVariant(variant);
@@ -44,8 +51,8 @@ export const RightSideDetails = ({
 
     const cartPayload: ICartAction = {
       action: "add",
-      productId: data.product._id!,
-      variantId: curProductVariant?._id as string,
+      product: data.product._id!,
+      variant: curProductVariant?._id as string,
       quantity,
     };
 
@@ -60,6 +67,8 @@ export const RightSideDetails = ({
     if (!curProductVariant) return;
     setQuantity((prev) => Math.min(curProductVariant.stock, prev + 1));
   };
+
+  if (!isClient) return null;
 
   return (
     <section className="flex flex-col gap-3">
@@ -93,7 +102,7 @@ export const RightSideDetails = ({
           <AccordionVertical
             expanded={expanded}
             animate
-            duration="300ms"
+            duration="250ms"
             previewHeight="8rem"
             className="mt-6 text-sm sm:text-base leading-relaxed"
           >
@@ -101,7 +110,7 @@ export const RightSideDetails = ({
           </AccordionVertical>
 
           <button
-            className="mt-2 w-max underline font-semibold"
+            className="mt-2 w-max underline cursor-pointer font-semibold"
             onClick={() => setExpanded((prev) => !prev)}
           >
             {expanded ? "Show Less" : "Read More..."}
@@ -111,32 +120,20 @@ export const RightSideDetails = ({
 
       <div className="mt-auto pt-6 flex items-center gap-4">
         {/* Quantity Selector */}
-        <div className="flex items-center border border-neutral-300 rounded-lg overflow-hidden">
-          <button
-            type="button"
-            onClick={handleDecrease}
-            className="px-3 py-2 text-lg font-medium hover:bg-neutral-100 disabled:opacity-50 cursor-pointer"
-            disabled={quantity <= 1}
-          >
-            –
-          </button>
-          <span className="px-4 py-2 text-sm font-semibold">{quantity}</span>
-          <button
-            type="button"
-            onClick={handleIncrease}
-            className="px-3 py-2 text-lg font-medium hover:bg-neutral-100 disabled:opacity-50 cursor-pointer"
-            disabled={!curProductVariant || quantity >= curProductVariant.stock}
-          >
-            +
-          </button>
-        </div>
+        <QuantitySelector
+          quantity={quantity}
+          min={1}
+          max={curProductVariant?.stock}
+          onIncrease={handleIncrease}
+          onDecrease={handleDecrease}
+        />
 
         {/* Add to Cart */}
         <ButtonBtn
           onClick={handleAddToCart}
           isLoading={isCartUpdating}
           isDisabled={isAddToCartDisabled || !curProductVariant}
-          className="primaryClasses"
+          className="successClasses !py-2.5 !rounded-full"
         >
           <CartIcon className="text-2xl" /> Add to cart
         </ButtonBtn>

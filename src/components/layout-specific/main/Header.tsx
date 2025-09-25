@@ -110,6 +110,7 @@ const Header = ({ categories }: THeaderProps) => {
                 renderResult={renderResult}
                 trigger={triggerSearch}
                 modalClassName="productSearchbarModal"
+                
               />
             )}
 

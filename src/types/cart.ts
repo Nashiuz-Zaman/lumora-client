@@ -1,3 +1,4 @@
+import { CartActions } from "@/constants";
 import { IProduct, IVariant } from "./product";
 
 export interface ICartItem<P = string, V = string> {
@@ -31,9 +32,9 @@ export interface ICart<C> {
 }
 
 export interface ICartAction {
-  productId: string;
-  variantId: string;
-  action: "add" | "remove";
+  product: string;
+  variant: string;
+  action: keyof typeof CartActions;
   quantity: number;
 }
 

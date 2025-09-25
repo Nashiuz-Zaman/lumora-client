@@ -1,13 +1,14 @@
 "use client";
 
 import Image from "next/image";
+import startCase from "lodash/startCase";
 import { TPopulatedCartItem } from "@/types/cart";
 import { formatPrice } from "@/utils";
 import { useCartActions } from "@/hooks";
 
 export type TUpdateQuantity = (
-  productId: string,
-  variantId: string,
+  product: string,
+  variant: string,
   change: number
 ) => void;
 
@@ -17,13 +18,13 @@ interface ICartItemCardProps {
   removeItem: (item: TPopulatedCartItem) => void;
 }
 
+// --- COMPONENT ---
 export const CartItemCard = ({
   item,
   updateQuantity,
   removeItem,
 }: ICartItemCardProps) => {
   const { isCartUpdating } = useCartActions();
-  console.log(item);
 
   const excludedKeys = [
     "_id",
@@ -40,53 +41,51 @@ export const CartItemCard = ({
 
   return (
     <div className="bg-white rounded-xl border border-neutral-200 p-6 transition-all duration-300">
-      <div className="flex flex-col md:flex-row md:items-start space-y-4 md:space-y-0 md:space-x-6">
+      <div className="grid grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
         {/* Thumbnail */}
-        <div className="flex-shrink-0">
-          <div className="w-24 h-24 rounded-2xl overflow-hidden flex items-center justify-center bg-neutral-100 shadow-lg">
-            {item.product.defaultImage ? (
-              <Image
-                src={item.product.defaultImage}
-                alt={item.product.title || "Product Image"}
-                width={300}
-                height={300}
-                className="object-contain w-full h-full"
-              />
-            ) : (
-              <span className="text-white text-3xl">No Image</span>
-            )}
-          </div>
+        <div className="w-24 h-24 rounded-2xl overflow-hidden flex items-center justify-center bg-neutral-100 shadow-lg">
+          {item.product.defaultImage ? (
+            <Image
+              src={item.product.defaultImage}
+              alt={item.product.title || "Product Image"}
+              width={300}
+              height={300}
+              className="object-contain w-full h-full"
+            />
+          ) : (
+            <span className="text-white text-3xl">No Image</span>
+          )}
         </div>
 
         {/* Product Info */}
-        <div>
+        <div className="min-w-0">
           <h3 className="line-clamp-3 font-semibold mb-2">
             {item.product.title || "Unnamed Product"}
           </h3>
 
           {/* Variant Details */}
-          {variantSpecs.length > 0 && (
+          {variantSpecs?.length > 0 && (
             <div className="grid grid-cols-2 gap-2 text-sm text-neutral-600 mb-3">
               {variantSpecs.map(([key, value]) => (
                 <div key={key}>
-                  <span className="font-medium">{key}:</span> {String(value)}
+                  <span className="font-semibold text-primary">
+                    {startCase(key)}:
+                  </span>{" "}
+                  {String(value)}
                 </div>
               ))}
             </div>
           )}
 
           {/* Quantity + Price */}
-          <div className="flex items-center justify-between">
+          <div className="grid grid-cols-[auto_1fr] items-center gap-4">
             <div className="flex items-center space-x-3">
               <button
-                className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={() =>
-                  updateQuantity(
-                    item.product._id as string,
-                    item.variant._id as string,
-                    -1
-                  )
-                }
+                className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                onClick={() => {
+                  if (!item?.product?._id || !item?.variant?._id) return;
+                  updateQuantity(item.product._id, item.variant._id, -1);
+                }}
                 disabled={item.quantity <= 1 || isCartUpdating}
               >
                 −
@@ -97,17 +96,13 @@ export const CartItemCard = ({
               </span>
 
               <button
-                className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                onClick={() =>
-                  updateQuantity(
-                    item.product._id as string,
-                    item.variant._id as string,
-                    1
-                  )
-                }
+                className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                onClick={() => {
+                  if (!item?.product?._id || !item?.variant?._id) return;
+                  updateQuantity(item.product._id, item.variant._id, 1);
+                }}
                 disabled={
-                  item.quantity >= (item.variant.stock ?? Infinity) ||
-                  isCartUpdating
+                  item.quantity >= item.variant.stock! || isCartUpdating
                 }
               >
                 +
@@ -126,14 +121,14 @@ export const CartItemCard = ({
         </div>
 
         {/* Remove */}
-        <div className="flex-shrink-0">
-          <button
-            className="w-10 h-10 rounded-full bg-red-50 hover:bg-red-100 text-red-600 flex items-center justify-center transition-colors"
-            onClick={() => removeItem(item)}
-          >
-            ✕
-          </button>
-        </div>
+
+        <button
+          title="Remove Product"
+          className="w-10 inline-block ml-auto h-10 rounded-full bg-red-50 hover:bg-red-100 text-red-600 items-center justify-center transition-colors cursor-pointer"
+          onClick={() => removeItem(item)}
+        >
+          ✕
+        </button>
       </div>
     </div>
   );
