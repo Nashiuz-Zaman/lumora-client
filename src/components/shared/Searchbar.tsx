@@ -38,8 +38,6 @@ export const Searchbar = <T,>({
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  console.log(isResultModalOpen);
-
   // Handle click outside to close modal
   useClickOutside(isResultModalOpen, (e) => {
     if (!containerRef.current?.contains(e.target as Node)) {

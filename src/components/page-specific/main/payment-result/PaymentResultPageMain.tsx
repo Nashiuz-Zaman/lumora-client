@@ -55,7 +55,7 @@ const PaymentResultPageMain = () => {
   const typedStatus = status as PaymentStatus;
 
   return (
-    <div className="my-60 grid place-content-center">
+    <div className="h-full grid place-content-center">
       <InnerContainer>
         <div className="flex flex-col items-center gap-6">
           <IcfyIcon

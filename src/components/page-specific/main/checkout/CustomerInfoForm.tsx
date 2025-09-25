@@ -111,10 +111,10 @@ const CustomerInfoForm = ({
       <ButtonBtn
         isLoading={isSubmitting}
         type="submit"
-        className="!successClasses ml-auto gap-2"
+        className="!successClasses ml-auto gap-2 !rounded-full"
       >
         <IcfyIcon className="text-3xl" icon="cib:samsung-pay" />
-        Checkout
+        Pay for order
       </ButtonBtn>
     </form>
   );

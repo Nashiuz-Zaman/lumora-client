@@ -10,8 +10,6 @@ export const CartItemList = () => {
   const { cart } = useCartState();
   const { addRemoveProductToCart } = useCartActions();
 
-  console.log(cart);
-
   //  increase/decrease prodcut
   const updateQuantity: TUpdateQuantity = async (product, variant, change) => {
     if (+change === 0 || !product || !variant) return;

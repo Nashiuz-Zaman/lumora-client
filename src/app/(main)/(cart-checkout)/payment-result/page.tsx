@@ -1,12 +1,12 @@
 import PaymentResultPageMain from "@/components/page-specific/main/payment-result/PaymentResultPageMain";
-import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Payment Result",
+};
 
 const PaymentResultPage = () => {
-  return (
-    <Suspense>
-      <PaymentResultPageMain />
-    </Suspense>
-  );
+  return <PaymentResultPageMain />;
 };
 
 export default PaymentResultPage;

@@ -33,10 +33,12 @@ export const ButtonBtn = ({
   if (!isClient) return null;
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    e.stopPropagation();
+    if (type !== "submit") {
+      e.preventDefault();
+      e.stopPropagation();
 
-    if (onClick && typeof onClick === "function") onClick();
+      if (onClick) onClick();
+    }
   };
 
   const allClasses = `

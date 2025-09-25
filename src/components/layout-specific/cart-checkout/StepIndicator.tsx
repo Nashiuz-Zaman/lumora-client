@@ -7,8 +7,8 @@ const StepIndicator = () => {
   const pathname = usePathname();
 
   const steps = [
-    { number: 1, label: "Cart", path: "/cart", isLink: true },
-    { number: 2, label: "Checkout", path: "/checkout", isLink: true },
+    { number: 1, label: "Cart", path: "/cart", isLink: false },
+    { number: 2, label: "Checkout", path: "/checkout", isLink: false },
     { number: 3, label: "Payment", path: "/payment-result", isLink: false },
   ];
 

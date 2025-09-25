@@ -10,6 +10,7 @@ export interface IOrder {
   _id?: string;
   orderId?: string;
   user?: string; // optional for guests
+  cartId?: string;
   name: string;
   email: string;
   phone?: string;

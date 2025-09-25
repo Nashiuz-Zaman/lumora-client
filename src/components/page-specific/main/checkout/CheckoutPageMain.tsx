@@ -13,8 +13,6 @@ export const CheckoutPageMain = () => {
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { createOrderFromCart } = useOrderActions();
-
-  // RTK mutation
   const [placeOrder] = usePlaceOrderMutation();
 
   useEffect(() => {
@@ -24,6 +22,7 @@ export const CheckoutPageMain = () => {
   }, [cart, isCartLoading, router]);
 
   const handleSubmit = async (data: CustomerInfoFormValues) => {
+    console.log(data);
     if (!cart) return;
 
     setIsSubmitting(true);
