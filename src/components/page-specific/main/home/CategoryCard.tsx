@@ -5,6 +5,7 @@ import { GridCard, IGridCardImage, LinkBtnTrans } from "@/components/shared";
 export type TCategoryCardProps = {
   heading: string;
   linkText: string;
+  linkUrl: string;
   images: IGridCardImage[];
   className?: string;
 };
@@ -12,6 +13,7 @@ export type TCategoryCardProps = {
 export const CategoryCard = ({
   heading,
   linkText,
+  linkUrl,
   images,
   className = "",
 }: TCategoryCardProps) => {
@@ -24,7 +26,7 @@ export const CategoryCard = ({
       <GridCard images={images} className="mb-8" />
 
       {/* Bottom Link */}
-      <LinkBtnTrans className="linkClasses transition-all">
+      <LinkBtnTrans href={linkUrl} className="linkClasses transition-all">
         {linkText}
       </LinkBtnTrans>
     </div>

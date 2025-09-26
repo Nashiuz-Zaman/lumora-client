@@ -21,4 +21,4 @@ export * from "./useProductCollectionModalQueries";
 export * from "./useCollectionProductsQueries";
 export * from "./useDebouncedCallback";
 export * from "./useProductSearchParamsManagement";
-export * from "./useSearchbar";
+

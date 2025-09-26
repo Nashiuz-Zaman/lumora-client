@@ -5,10 +5,12 @@ import Link from "next/link";
 import { Ref } from "react";
 
 // Components
-import { InnerContainer } from "@/components/shared";
-import UserAvatarMenu from "@/components/shared/UserAvatarMenu";
+import { InnerContainer, ThreeDotMenu } from "@/components/shared";
+import { useAuthMethods } from "@/hooks";
 
 export const AdminHeader = ({ ref }: { ref: Ref<HTMLElement> }) => {
+  const { logout } = useAuthMethods();
+
   return (
     <header
       ref={ref}
@@ -27,7 +29,7 @@ export const AdminHeader = ({ ref }: { ref: Ref<HTMLElement> }) => {
 
         {/* User menu */}
         <div className="flex items-center gap-5">
-          <UserAvatarMenu className="border rounded-full" />
+          <ThreeDotMenu logoutFunction={logout} />
         </div>
       </InnerContainer>
     </header>

@@ -47,3 +47,5 @@ export * from "./SortDropdown";
 export * from "./SearchbarProductCard";
 export * from "./VariantSelector";
 export * from "./QuantitySelector";
+export * from "./ThreeDotMenu";
+export * from "./UnderDev";

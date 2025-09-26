@@ -14,6 +14,7 @@ export const ProductCategories = () => {
             key={`key-${i}i`}
             heading={card.heading}
             linkText={card.linkText}
+            linkUrl={card.linkUrl}
             images={card.images}
           />
         ))}

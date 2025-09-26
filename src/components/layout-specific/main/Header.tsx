@@ -1,6 +1,5 @@
 "use client";
 
-// component
 import {
   InnerContainer,
   ExpandableSearchPortal,
@@ -9,28 +8,31 @@ import {
   CartBtn,
   UserAvatarMenu,
   SearchbarProductCard,
+  ThreeDotMenu, // import this
 } from "../../shared";
 
 import { IMegaMenuProps, MegaMenu } from "./MegaMenu";
 import Link from "next/link";
 
-// types
 import { MobileMegaMenu } from "./MobileMegaMenu";
 import {
   BREAKPOINTS,
   useAuthMethods,
+  useAuthState,
   useCartState,
   useMediaQuery,
 } from "@/hooks";
 import { useEffect, useState } from "react";
 import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { UserRoles } from "@/constants/user"; // import roles
 
 type THeaderProps = IMegaMenuProps;
 
 const Header = ({ categories }: THeaderProps) => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const { logout } = useAuthMethods();
+  const { user } = useAuthState();
   const { cart } = useCartState();
 
   // search hook
@@ -46,7 +48,7 @@ const Header = ({ categories }: THeaderProps) => {
 
   if (!isClient) return null;
 
-  // simple renderer for results (can be customized)
+  // simple renderer for results
   const renderResult = (
     item: ISearchbarResultProduct,
     _index: number,
@@ -62,28 +64,30 @@ const Header = ({ categories }: THeaderProps) => {
     );
   };
 
+  // role checks
+  const role = user?.role?.name;
+  const isAdminRole = role === UserRoles.admin || role === UserRoles.superAdmin;
+  const isCustomer = role === UserRoles.customer;
+
   return (
     <header className="relative z-[200]">
       {/* Top promo / links bar */}
       <InnerContainer className="bg-white text-sm xl:text-base py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
-          {/* Left column: promotional text */}
           <p className="text-center md:text-left">
             Free shipping on orders over $2000! Limited time offer.
           </p>
 
-          {/* Right column: quick links */}
           <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
-            <a href="/faq">FAQ</a>
-            <a href="/returns">Returns</a>
-            <a href="/support">Support</a>
-            <a href="/support">About</a>
+            <Link href="/faq">FAQ</Link>
+            <Link href="/returns">Returns</Link>
+            <Link href="/about">About</Link>
           </div>
         </div>
       </InnerContainer>
 
       {/* Main header content */}
-      <div className="bg-gradient-to-r from-primary to-primary-dark">
+      <div className="bg-gradient-to-tl from-primary to-primary-dark">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
           {/* logo */}
           <BrandLogo className="mr-6" />
@@ -110,24 +114,27 @@ const Header = ({ categories }: THeaderProps) => {
                 renderResult={renderResult}
                 trigger={triggerSearch}
                 modalClassName="productSearchbarModal"
-                
               />
             )}
 
-            {/* header nav options */}
-            {!false && (
+            {/* If no user: show login/signup */}
+            {!user && (
               <div className="flex gap-4 font-semibold text-white">
                 <Link href="/auth/login">Login</Link>
                 <Link href="/auth/signup">Sign Up</Link>
               </div>
             )}
 
-            {/* shopping cart link */}
+            {/* shopping cart */}
             <CartBtn quantity={cart?.totalItemQty} />
 
-            {false && (
+            {/* role-based menu */}
+            {user && (
               <div className="flex items-center gap-4">
-                <UserAvatarMenu logoutFunction={logout} />
+                {isAdminRole && <ThreeDotMenu className="[&_.three-dot-icon]:text-white [&_.three-dot-icon]:hover:text-primary" logoutFunction={logout} />}
+                {isCustomer && (
+                  <UserAvatarMenu userData={user} logoutFunction={logout} />
+                )}
               </div>
             )}
           </div>

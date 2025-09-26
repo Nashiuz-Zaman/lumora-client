@@ -33,7 +33,7 @@ export const RightSideDetails = ({
   const [quantity, setQuantity] = useState(1);
   const [isClient, setIsClient] = useState(false);
 
-  const { addRemoveProductToCart, isCartUpdating } = useCartActions();
+  const { addRemoveProductToCart, isCartLoading } = useCartActions();
 
   useEffect(() => {
     setIsClient(true);
@@ -131,7 +131,7 @@ export const RightSideDetails = ({
         {/* Add to Cart */}
         <ButtonBtn
           onClick={handleAddToCart}
-          isLoading={isCartUpdating}
+          isLoading={isCartLoading}
           isDisabled={isAddToCartDisabled || !curProductVariant}
           className="successClasses !py-2.5 !rounded-full"
         >

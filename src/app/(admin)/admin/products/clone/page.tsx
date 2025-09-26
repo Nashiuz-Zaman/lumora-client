@@ -39,7 +39,7 @@ const CloneProductPage = async ({
   }
 
   if (response?.success) {
-    product = stripIdsAndResetSku(response.data) as IProduct;
+    product = stripIdsAndResetSku(response.data as IProduct);
   }
 
   return <CloneProductMain product={product} />;

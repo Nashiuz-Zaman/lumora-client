@@ -1,6 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import {
   TrashcanIcon,
   ButtonBtnTrans,
@@ -9,24 +8,17 @@ import {
 } from "@/components/shared";
 import { ConfirmationModal } from "@/components/modals";
 import AdminProductCard from "../shared/AdminProductCard";
-import {
-  useSelectable,
-  useModal,
-  useCollectionProductsQueries,
-} from "@/hooks";
+import { useSelectable, useModal, useCollectionProductsQueries } from "@/hooks";
 
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { NoData } from "@/components/shared/NoData";
-import { showToast, catchAsyncGeneral } from "@/utils";
 
 export const ProductCollectionMain = ({
   productCollectionSlug,
 }: {
   productCollectionSlug: string;
 }) => {
-  const router = useRouter();
-
-  const { queryMeta, changePage, collectionProducts, isFetching, refetch } =
+  const { queryMeta, changePage, collectionProducts, isFetching } =
     useCollectionProductsQueries(productCollectionSlug);
 
   const productsWithoutSerial = collectionProducts?.map(
@@ -39,7 +31,6 @@ export const ProductCollectionMain = ({
     toggleSelectAll,
     checkIfSelected,
     isAllSelected,
-    setSelected,
   } = useSelectable(productsWithoutSerial, "_id");
 
   const { isModalOpen, openModal, closeModal } = useModal();

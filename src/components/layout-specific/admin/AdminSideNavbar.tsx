@@ -28,12 +28,6 @@ const navSections: INavSection[] = [
     heading: "Database",
     items: [
       {
-        name: "Users",
-        icon: "fa-solid:users",
-        path: "/admin/users",
-        exact: true,
-      },
-      {
         name: "Products",
         icon: "fluent-mdl2:product-variant",
         path: "/admin/products",
@@ -44,11 +38,6 @@ const navSections: INavSection[] = [
   {
     heading: "Orders",
     items: [
-      {
-        name: "Quotation Pending",
-        icon: "material-symbols:pending-actions-rounded",
-        path: "/admin/orders/quotation-pending",
-      },
       {
         name: "Confirmed",
         icon: "charm:tick",
@@ -63,67 +52,6 @@ const navSections: INavSection[] = [
         name: "Cancelled",
         icon: "line-md:cancel",
         path: "/admin/orders/cancelled",
-      },
-      {
-        name: "Abandoned",
-        icon: "material-symbols:bedtime-outline-rounded",
-        path: "/admin/orders/abandoned",
-      },
-      {
-        name: "Returns",
-        icon: "streamline:return-2-remix",
-        path: "/admin/orders/returned",
-      },
-      {
-        name: "Manual Requests",
-        icon: "fluent-mdl2:product-release",
-        path: "/admin/orders/manual-requests",
-      },
-      {
-        name: "Create Order",
-        icon: "gridicons:create",
-        path: "/admin/orders/create-order",
-      },
-    ],
-  },
-  {
-    heading: "Return Requests",
-    items: [
-      {
-        name: "All Requests",
-        icon: "octicon:package-dependencies-24",
-        path: "/admin/return-requests",
-      },
-    ],
-  },
-  {
-    heading: "Payments",
-    items: [
-      {
-        name: "All Payments",
-        icon: "fluent:payment-48-filled",
-        path: "/admin/payments",
-      },
-    ],
-  },
-  {
-    heading: "Reviews",
-    items: [
-      {
-        name: "All Reviews",
-        icon: "material-symbols:reviews-rounded",
-        path: "/admin/reviews",
-      },
-    ],
-  },
-  {
-    heading: "Coupons",
-    items: [
-      {
-        name: "All Coupons",
-        icon: "tdesign:coupon-filled",
-        path: "/admin/coupons",
-        exact: true,
       },
     ],
   },

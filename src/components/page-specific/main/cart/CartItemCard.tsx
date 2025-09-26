@@ -24,7 +24,7 @@ export const CartItemCard = ({
   updateQuantity,
   removeItem,
 }: ICartItemCardProps) => {
-  const { isCartUpdating } = useCartActions();
+  const { isCartLoading } = useCartActions();
 
   const excludedKeys = [
     "_id",
@@ -86,7 +86,7 @@ export const CartItemCard = ({
                   if (!item?.product?._id || !item?.variant?._id) return;
                   updateQuantity(item.product._id, item.variant._id, -1);
                 }}
-                disabled={item.quantity <= 1 || isCartUpdating}
+                disabled={item.quantity <= 1 || isCartLoading}
               >
                 −
               </button>
@@ -102,7 +102,7 @@ export const CartItemCard = ({
                   updateQuantity(item.product._id, item.variant._id, 1);
                 }}
                 disabled={
-                  item.quantity >= item.variant.stock! || isCartUpdating
+                  item.quantity >= item.variant.stock! || isCartLoading
                 }
               >
                 +

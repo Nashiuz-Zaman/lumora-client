@@ -21,8 +21,6 @@ const HomePage = async () => {
         {/* pass the fetched tree into ProductCategories */}
         <ProductCategories />
 
-        
-
         {!isErrorWithCategory && (
           <div className="space-y-14 my-14">
             {/* Top Selling stays unchanged */}
@@ -37,6 +35,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="fashion-accessories"
               collectionSlug="fashion-accessories-homepage"
               title="Fashion & Accessories"
               categoryTree={result.categoryTree}
@@ -48,6 +47,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="gaming-entertainment"
               collectionSlug="gaming-entertainment-homepage"
               title="Gaming & Entertainment"
               categoryTree={result.categoryTree}
@@ -59,6 +59,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="mobile-phones-electronics"
               collectionSlug="mobile-phones-electronics-homepage"
               title="Mobile Phones & Electronics"
               categoryTree={result.categoryTree}
@@ -70,6 +71,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="food-snacks"
               collectionSlug="food-snacks-homepage"
               title="Food & Snacks"
               categoryTree={result.categoryTree}
@@ -81,6 +83,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="kitchen-essentials"
               collectionSlug="kitchen-essentials-homepage"
               title="Kitchen Essentials"
               categoryTree={result.categoryTree}
@@ -92,6 +95,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="home-appliances-essentials"
               collectionSlug="home-appliances-essentials-homepage"
               title="Home Appliances & Essentials"
               categoryTree={result.categoryTree}
@@ -103,6 +107,7 @@ const HomePage = async () => {
             />
 
             <ProductsFromCollection
+              id="health-wellness"
               collectionSlug="health-wellness-homepage"
               title="Health & Wellness"
               categoryTree={result.categoryTree}

@@ -3,7 +3,7 @@
 import { useEffect, useState, ReactNode, MouseEvent } from "react";
 import { LoadingIcon } from "../icons";
 
-type ButtonBtnProps = {
+interface IButtonBtnProps {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
@@ -13,7 +13,7 @@ type ButtonBtnProps = {
   title?: string;
   isLoading?: boolean;
   iconClassName?: string;
-};
+}
 
 export const ButtonBtn = ({
   children,
@@ -21,11 +21,11 @@ export const ButtonBtn = ({
   className = "",
   isDisabled = false,
   id,
-  type = "submit",
+  type = "button",
   title = "",
   isLoading = false,
   iconClassName = "",
-}: ButtonBtnProps) => {
+}: IButtonBtnProps) => {
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => setIsClient(true), []);

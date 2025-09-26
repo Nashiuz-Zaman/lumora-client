@@ -4,16 +4,12 @@ import { useEffect, useState, MouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { TUserRoleValue, UserRoles } from "@/constants/user";
+import { UserRoles } from "@/constants/user";
 import { useClickOutside } from "@/hooks";
+import { TUserPopulated } from "@/types";
 
 type TUserAvatarMenuProps = {
-  userData?: {
-    _id: string;
-    name: string;
-    image?: string;
-    role: { name?: TUserRoleValue };
-  };
+  userData?: Partial<TUserPopulated>;
   logoutFunction?: () => void;
   className?: string;
 };

@@ -8,9 +8,7 @@ import {
   SetStateAction,
   Dispatch,
 } from "react";
-
 import { Inputfield } from "./Inputfield";
-
 import { DownCaretIcon } from "./icons";
 import { ButtonBtn } from "./buttons";
 import { OptionsDropdown } from "./OptionsDropdown";
@@ -101,6 +99,7 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
             </ButtonBtn>
 
             <OptionsDropdown
+              toggleBtnIdentifier="params-filter-form"
               className="z-[200]"
               setShow={setIsSortOpen}
               show={isSortOpen}

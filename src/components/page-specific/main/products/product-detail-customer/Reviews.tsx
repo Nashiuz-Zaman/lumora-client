@@ -48,7 +48,7 @@ export const Reviews = ({
     page === 1
       ? initialReviews
       : reviewsData?.success
-      ? reviewsData?.data?.reviews
+      ? (reviewsData?.data?.reviews as IReview[])
       : [];
 
   const queryMeta: IQueryMeta | undefined =

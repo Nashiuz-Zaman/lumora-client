@@ -1,32 +1,56 @@
 "use client";
 
-// core
 import Image from "next/image";
-
-// components
 import { InnerContainer } from "@/components/shared";
 import LogoSocials from "./LogoSocials";
-import NavAddress from "./NavAddress";
+import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categoryApiSlice";
 
-// data
 import { socialMediaLinks } from "@/static-data/footerData";
+import { useProductSearchParamsManagement } from "@/hooks";
 
 const Footer = () => {
   const curYear = new Date().getFullYear();
+  const { data: categoryTree, isLoading, isError } = useGetCategoryTreeQuery();
+  const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <footer className="bg-gradient-to-t from-primary-dark to-purple-500 text-white mt-auto">
+    <footer className="bg-gradient-to-br from-primary-dark to-primary-dark-2 text-white mt-auto">
       <InnerContainer>
-        {/* Top grid: logo/socials + navigation/address */}
         <div className="grid grid-cols-1 gap-8 py-8 lg:pt-14 lg:pb-6 xl:grid-cols-[1fr_1.3fr]">
           {/* Logo + socials */}
           <div className="flex flex-col gap-6">
             <LogoSocials socialMediaLinks={socialMediaLinks} />
           </div>
 
-          {/* Navigation + address */}
-          <div className="flex flex-col gap-6 md:gap-8">
-            <NavAddress />
+          {/* Category navigation */}
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8">
+            {isLoading && <p>Loading categories...</p>}
+            {isError && <p>Failed to load categories</p>}
+            {categoryTree &&
+              categoryTree.map((item) => (
+                <div key={item.topCategory._id}>
+                  <h4 className="font-semibold mb-2">
+                    {item.topCategory.title}
+                  </h4>
+                  <ul className="space-y-1 text-sm">
+                    {item.subCategories.map((sub) => (
+                      <li key={sub._id}>
+                        <button
+                          onClick={() => {
+                            handleCategoryClick({
+                              type: "subs",
+                              subSlugs: [sub.slug],
+                            });
+                          }}
+                          className="hover:underline cursor-pointer"
+                        >
+                          {sub.title}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
           </div>
         </div>
 

@@ -2,6 +2,7 @@ export const cardsData = [
   {
     heading: "Fashion & Accessories",
     linkText: "Shop Fashion",
+    linkUrl: "#fashion-accessories",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757080347/lumora/top-categories/fashion-1_1_xtzuvw.webp",
@@ -24,6 +25,7 @@ export const cardsData = [
   {
     heading: "Gaming & Entertainment",
     linkText: "Level Up",
+    linkUrl: "#gaming-entertainment",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757080480/lumora/top-categories/entertainment-1_ogxlmo.webp",
@@ -34,6 +36,7 @@ export const cardsData = [
   {
     heading: "Food & Snacks",
     linkText: "Taste Now",
+    linkUrl: "#food-snacks",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757080550/lumora/top-categories/food-1_dxurgc.webp",
@@ -56,6 +59,7 @@ export const cardsData = [
   {
     heading: "Kitchen Essentials",
     linkText: "Cook Smarter",
+    linkUrl: "#kitchen-essentials",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757080778/lumora/top-categories/kitchen-1_1_ta3vaw.webp",
@@ -78,6 +82,7 @@ export const cardsData = [
   {
     heading: "Home Appliances & Essentials",
     linkText: "Upgrade Home",
+    linkUrl: "#home-appliances-essentials",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757080886/lumora/top-categories/home-1_qclzjx.webp",
@@ -88,6 +93,7 @@ export const cardsData = [
   {
     heading: "Health & Wellness",
     linkText: "Stay Healthy",
+    linkUrl: "#health-wellness",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757082267/lumora/top-categories/health-1_2_hmfjbq.webp",
@@ -106,6 +112,7 @@ export const cardsData = [
   {
     heading: "Mobile Phones & Electronics",
     linkText: "Get Gadgets",
+    linkUrl: "#mobile-phones-electronics",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757091587/lumora/top-categories/mobile-1_1_ynn7zr.webp",
@@ -116,6 +123,7 @@ export const cardsData = [
   {
     heading: "Outdoors",
     linkText: "Get your camping gears",
+    linkUrl: "#outdoors",
     images: [
       {
         src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757260940/lumora/top-categories/outdoor-1_amgxnj.webp",
