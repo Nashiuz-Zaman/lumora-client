@@ -13,7 +13,7 @@ import {
   useGetUserCartQuery,
   useGetGuestCartQuery,
 } from "@/libs/redux/apiSlices/cart/cartApiSlice";
-import { emptyCart, UserRoles } from "@/constants";
+import { emptyCart } from "@/constants";
 import { TPopulatedCart } from "@/types/cart";
 
 export interface ICartStateContext {
@@ -37,12 +37,12 @@ const CartStateProvider = ({ children }: ICartStateProviderProps) => {
   const [isCartLoading, setIsCartLoading] = useState(false);
   const [cart, setCart] = useState<TPopulatedCart>({ ...emptyCart });
 
-  const isCustomer = user?.role?.name === UserRoles.customer;
   const isGuest = !user;
 
   const { data: userCartData, isFetching: userCartLoading } =
     useGetUserCartQuery(undefined, {
-      skip: isUserLoading || !isCustomer,
+      skip: isUserLoading || !user,
+      refetchOnMountOrArgChange: true,
     });
 
   const { data: guestCartData, isFetching: guestCartLoading } =
@@ -57,12 +57,12 @@ const CartStateProvider = ({ children }: ICartStateProviderProps) => {
 
   // Sync fetched cart data into state
   useEffect(() => {
-    if (isCustomer && userCartData?.data?.cart) {
+    if (user?._id && userCartData?.data?.cart) {
       setCart(userCartData.data.cart);
     } else if (isGuest && guestCartData?.data?.cart) {
       setCart(guestCartData.data.cart);
     }
-  }, [isCustomer, isGuest, userCartData, guestCartData]);
+  }, [user?._id, isGuest, userCartData, guestCartData]);
 
   const value: ICartStateContext = {
     cart,

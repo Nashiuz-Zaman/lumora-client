@@ -1,5 +1,3 @@
-"use client";
-
 import { IProduct } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { setBackdropOpen } from "../backdrop/backdropSlice";

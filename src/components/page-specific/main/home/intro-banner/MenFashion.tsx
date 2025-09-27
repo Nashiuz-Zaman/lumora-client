@@ -7,15 +7,15 @@ import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 const data = [
   {
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757092717/lumora/intro-banner/men-fashion-3_2_1_aeduyr.webp",
+    buttonText: "Men's Fashion",
+  },
+  {
     src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757094100/lumora/intro-banner/33e4d7a6de54db071d46421250ccc951_1_fkqjbb.webp",
     buttonText: "Men's Fashion",
   },
   {
     src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757093918/lumora/intro-banner/05ca2ecadd39a3b9d4a07ad85c371039_1_q1q7vs.webp",
-    buttonText: "Men's Fashion",
-  },
-  {
-    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1757092717/lumora/intro-banner/men-fashion-3_2_1_aeduyr.webp",
     buttonText: "Men's Fashion",
   },
   {

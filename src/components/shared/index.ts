@@ -49,3 +49,4 @@ export * from "./VariantSelector";
 export * from "./QuantitySelector";
 export * from "./ThreeDotMenu";
 export * from "./UnderDev";
+export * from "./FadeSlider";

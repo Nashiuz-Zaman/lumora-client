@@ -1,7 +1,7 @@
 "use client";
 
 import { TopBannerIntro } from "../TopBannerIntro";
-import WomenFashion from "./WomenFashion";
+import { WomenFashion } from "./WomenFashion";
 import { MenFashion } from "./MenFashion";
 import { Food } from "./Food";
 import { Laptop } from "./Laptop";
@@ -30,7 +30,7 @@ export const IntroBanner = () => {
           {/* Mobile phones */}
           <Smartphones />
 
-          {/* Washing machines */} 
+          {/* Washing machines */}
           <Food />
 
           {/* Man in a suit */}

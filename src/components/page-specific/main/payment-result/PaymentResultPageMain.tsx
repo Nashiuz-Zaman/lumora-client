@@ -58,20 +58,22 @@ const PaymentResultPageMain = () => {
     <div className="h-full grid place-content-center">
       <InnerContainer>
         <div className="flex flex-col items-center gap-6">
-          <IcfyIcon
-            icon={icons[typedStatus].name}
-            className={`text-4xl ${icons[typedStatus].color}`}
-          />
-
           <div className="text-center space-y-2">
-            <p className="text-2xl font-semibold capitalize">
-              Payment{" "}
-              {typedStatus === "success"
-                ? "Successful"
-                : typedStatus === "fail"
-                ? "Failed"
-                : "Cancelled"}
-            </p>
+            <div className="flex items-center gap-2 justify-center">
+              <IcfyIcon
+                icon={icons[typedStatus].name}
+                className={`text-4xl ${icons[typedStatus].color}`}
+              />
+              <p className="text-2xl font-semibold capitalize">
+                Payment{" "}
+                {typedStatus === "success"
+                  ? "Successful"
+                  : typedStatus === "fail"
+                  ? "Failed"
+                  : "Cancelled"}
+              </p>
+            </div>
+
             <p className="text-lg !mb-3">{descriptions[typedStatus]}</p>
 
             <p className="text-3xl font-bold">
@@ -80,7 +82,7 @@ const PaymentResultPageMain = () => {
           </div>
 
           {typedStatus === "success" && (
-            <LinkBtn className="!primaryClasses">Go to Home</LinkBtn>
+            <LinkBtn href="/track-order" className="!primaryClasses">Track your Order</LinkBtn>
           )}
 
           {typedStatus === "fail" && (

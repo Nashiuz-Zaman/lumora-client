@@ -1,23 +1,48 @@
 "use client";
 
-import {
-  ButtonBtn,
-  DesignerVideo,
-  SlideInOutWrapperX,
-} from "@/components/shared";
+import { SlideInOutWrapperX, ButtonBtn, FadeSlider } from "@/components/shared";
 import { useRef } from "react";
 import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
-export const WomenFashion = () => {
+const data = [
+  {
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-1_dadqrl.webp",
+    buttonText: "Women's Fashion & Accessories",
+  },
+  {
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-2_a6omny.webp",
+    buttonText: "Women's Fashion & Accessories",
+  },
+  {
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-4_aq8orc.webp",
+    buttonText: "Women's Fashion & Accessories",
+  },
+  {
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-3_kwuyxe.webp",
+    buttonText: "Women's Fashion & Accessories",
+  },
+];
+
+interface ICardProps {
+  src: string;
+  buttonText: string;
+}
+
+const Card = ({ src, buttonText }: ICardProps) => {
   const parentRef = useRef<HTMLDivElement>(null);
   const parent = useGetRefAsState(parentRef);
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <div ref={parentRef} className="relative h-[60%] overflow-hidden">
-      <DesignerVideo src="https://res.cloudinary.com/diwzuhlc3/video/upload/v1756840501/lumora/videos/20250903_0112_video_ljzjmz.mp4" />
-
+    <div
+      aria-label={buttonText}
+      ref={parentRef}
+      className="relative bg-cover bg-center w-full h-full"
+      style={{
+        backgroundImage: `url("${src}")`,
+      }}
+    >
       <SlideInOutWrapperX
         className={`y-center ${slideInOutBtnGradient}`}
         parent={parent}
@@ -40,7 +65,7 @@ export const WomenFashion = () => {
             }
             className={btnClasses}
           >
-            Women&apos;s Fashion & Accessories
+            {buttonText}
           </ButtonBtn>
         </div>
       </SlideInOutWrapperX>
@@ -48,4 +73,17 @@ export const WomenFashion = () => {
   );
 };
 
-export default WomenFashion;
+export const WomenFashion = ({ className }: { className?: string }) => {
+  return (
+    <section className={`relative h-[60%] overflow-hidden ${className}`}>
+      <FadeSlider
+      autoPlayInterval={3400}
+        data={data}
+        slideSwitcher={true}
+        renderItem={(item, i) => (
+          <Card key={`key-${i}`} src={item.src} buttonText={item.buttonText} />
+        )}
+      />
+    </section>
+  );
+};

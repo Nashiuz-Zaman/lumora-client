@@ -1,5 +1,3 @@
-"use client";
-
 // Imports
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
