@@ -11,6 +11,7 @@ import AuthStateProvider from "@/providers/AuthStateProvider";
 import CartStateProvider from "@/providers/CartStateProvider";
 import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 import { Metadata } from "next";
+import RefsProvider from "@/providers/RefProvider";
 
 export const metadata: Metadata = {
   title: "Lumora | Products from top brands all in one place for you",
@@ -36,23 +37,25 @@ export default async function RootLayout({
         <ReduxProvider initialCategoryTree={categoryTree}>
           <AuthStateProvider>
             <CartStateProvider>
-              <ToastContainer
-                position="top-center"
-                autoClose={2000}
-                transition={Slide}
-                hideProgressBar
-                newestOnTop
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
+              <RefsProvider>
+                <ToastContainer
+                  position="top-center"
+                  autoClose={2000}
+                  transition={Slide}
+                  hideProgressBar
+                  newestOnTop
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+                />
 
-              <Backdrop />
-              <ProductQuickViewModal />
-              {children}
+                <Backdrop />
+                <ProductQuickViewModal />
+                {children}
+              </RefsProvider>
             </CartStateProvider>
           </AuthStateProvider>
         </ReduxProvider>

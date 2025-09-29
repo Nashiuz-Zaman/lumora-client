@@ -113,6 +113,8 @@ export const ProductForm = ({
           if (existingProduct) {
             router.push("/admin/products/all-products");
           }
+        } else if (mode === "edit") {
+          router.refresh();
         }
       }
     },
@@ -127,7 +129,7 @@ export const ProductForm = ({
         onSubmit={handleSubmit(async (data) => await onSubmit({ data }))}
         className="space-y-6"
       >
-        <div className="grid grid-cols-[1.25fr_1fr] gap-5 max-w-full lg:max-w-[90%]">
+        <div className="grid grid-cols-1 2md:grid-cols-[1.25fr_1fr] gap-5 max-w-full lg:max-w-[90%]">
           <div className="space-y-6">
             {/* No props needed anymore */}
             <ProductBasicInfo />

@@ -7,11 +7,11 @@ import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 const data = [
   {
-    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-1_dadqrl.webp",
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759059154/lumora/intro-banner/woman-1_1_zeb0m9.webp",
     buttonText: "Women's Fashion & Accessories",
   },
   {
-    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-2_a6omny.webp",
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759059201/lumora/intro-banner/woman-2_2_or7mly.webp",
     buttonText: "Women's Fashion & Accessories",
   },
   {
@@ -75,9 +75,9 @@ const Card = ({ src, buttonText }: ICardProps) => {
 
 export const WomenFashion = ({ className }: { className?: string }) => {
   return (
-    <section className={`relative h-[60%] overflow-hidden ${className}`}>
+    <section className={`relative h-[66%] overflow-hidden ${className}`}>
       <FadeSlider
-      autoPlayInterval={3400}
+        autoPlayInterval={3400}
         data={data}
         slideSwitcher={true}
         renderItem={(item, i) => (

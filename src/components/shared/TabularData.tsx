@@ -36,11 +36,13 @@ interface ITabularDataProps<T extends Record<string, any>> {
   isAllSelected?: boolean;
   bordered?: "full" | "divider" | "none";
   dataKey?: string;
+  maxBodyHeight?: string;
+  headerHeight?: string;
 }
 
 export const TabularData = <T extends Record<string, any>>({
   headings,
-  data,
+  data = [],
   rowClassesForBoth = "",
   classNameObj = {},
   renderRow,
@@ -52,6 +54,8 @@ export const TabularData = <T extends Record<string, any>>({
   isAllSelected,
   bordered = "full",
   dataKey = "_id",
+  maxBodyHeight = "40rem",
+  headerHeight = "3.5rem",
 }: ITabularDataProps<T>) => {
   const [isClient, setIsClient] = useState(false);
 
@@ -74,6 +78,7 @@ export const TabularData = <T extends Record<string, any>>({
       >
         <thead className="w-full">
           <tr
+            style={{ height: headerHeight }}
             className={`
               bg-neutral-100 w-full text-base 2xl:text-lg 
               grid
@@ -83,7 +88,7 @@ export const TabularData = <T extends Record<string, any>>({
                   : ""
               }
               ${rowClassesForBoth} ${classNameObj.headingRow || ""}
-              px-2 sm:px-3 md:px-4 lg:px-5 py-3 lg:py-4
+              px-2 sm:px-3 md:px-4 lg:px-5 
             `}
           >
             {headings.map((heading, i) =>
@@ -114,8 +119,9 @@ export const TabularData = <T extends Record<string, any>>({
         </thead>
 
         <tbody
+          style={{ maxHeight: maxBodyHeight }}
           className={`
-            w-full grow flex flex-col
+            w-full h-full overflow-y-auto
             ${
               bordered === "divider" && data?.length > 0
                 ? "divide-y divide-neutral-200"

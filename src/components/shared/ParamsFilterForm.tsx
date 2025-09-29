@@ -60,7 +60,7 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
   return (
     <form
       onSubmit={onSubmit}
-      className="py-3 px-4 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between"
+      className="h-20  px-4 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between"
     >
       <Inputfield
         onChange={handleSearchChange}

@@ -21,6 +21,8 @@ import {
   useModal,
   useProductsQueries,
   IProductQueriesParams,
+  useRefState,
+  useSetElementText,
 } from "@/hooks";
 import { MouseEvent } from "react";
 import { IProduct } from "@/types";
@@ -43,6 +45,10 @@ export const productsTableRowClasses =
 export const AllProductsMain = () => {
   const router = useRouter();
 
+  // set the page heading below
+  const { refs } = useRefState();
+  useSetElementText(refs?.titleRef?.current, "All Products");
+
   const {
     queryMeta,
     changePage,
@@ -64,7 +70,6 @@ export const AllProductsMain = () => {
   } = useSelectable(products, "_id");
 
   const { isModalOpen, openModal, closeModal } = useModal();
-
   const [bulkDeleteProducts] = useBulkDeleteProductsMutation();
 
   const handleRowClick = (_: MouseEvent<HTMLTableRowElement>, id: string) => {
@@ -91,7 +96,7 @@ export const AllProductsMain = () => {
   });
 
   return (
-    <div className="grow flex flex-col">
+    <div className="flex flex-col !h-full">
       {/* Top params form */}
       <ProductsTopParamsForm<IProductQueriesParams>
         sortOptions={[...ProductSortOptions]}
@@ -104,7 +109,7 @@ export const AllProductsMain = () => {
       {/* Delete action button */}
       <ButtonBtnTrans
         onClick={openModal}
-        className="text-red-600 font-inherit my-1 xl:my-4 ml-auto px-4"
+        className="text-red-600 font-inherit ml-auto px-4 h-15 shrink-0"
         isDisabled={selected.length < 1}
       >
         <TrashcanIcon />

@@ -2,20 +2,16 @@
 
 // Core
 import Link from "next/link";
-import { Ref } from "react";
 
 // Components
 import { InnerContainer, ThreeDotMenu } from "@/components/shared";
 import { useAuthMethods } from "@/hooks";
 
-export const AdminHeader = ({ ref }: { ref: Ref<HTMLElement> }) => {
+export const AdminHeader = () => {
   const { logout } = useAuthMethods();
 
   return (
-    <header
-      ref={ref}
-      className="h-[5rem] xl:h-[7rem] bg-white border-b border-neutral-200 flex items-center"
-    >
+    <header className="h-[5rem] xl:h-[7rem] bg-white border-b border-neutral-200 flex items-center shrink-0">
       <InnerContainer className="flex justify-between items-center">
         {/* Mobile nav button placeholder */}
         <div id="mobile-button-portal" className="xl:hidden" />
