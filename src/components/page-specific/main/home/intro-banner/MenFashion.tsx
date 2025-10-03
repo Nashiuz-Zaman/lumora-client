@@ -1,6 +1,6 @@
 "use client";
 
-import { Slider, SlideInOutWrapperX, ButtonBtn } from "@/components/shared";
+import { SlideInOutWrapperX, ButtonBtn, FadeSlider } from "@/components/shared";
 import { useRef } from "react";
 import { btnClasses, slideInOutBtnGradient } from "./Sneakers";
 import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
@@ -75,7 +75,8 @@ const Card = ({ src, buttonText }: ICardProps) => {
 export const MenFashion = ({ className }: { className?: string }) => {
   return (
     <section className={className}>
-      <Slider
+      <FadeSlider
+        autoPlayInterval={3200}
         data={data}
         slideSwitcher={true}
         renderItem={(item, i) => (

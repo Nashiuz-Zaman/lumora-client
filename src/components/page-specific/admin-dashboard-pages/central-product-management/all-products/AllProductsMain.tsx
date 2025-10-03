@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { ProductSortOptions } from "@/constants/product";
 
 import ProductsTopParamsForm from "../shared/ProductsTopParamsForm";
-import ProductRow from "../shared/ProductRow";
+import ProductRow from "./ProductRow";
 import {
   TrashcanIcon,
   ButtonBtnTrans,
@@ -15,7 +15,7 @@ import { ConfirmationModal } from "@/components/modals";
 
 import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/product/productApiSlice";
 
-import { showToast, catchAsyncGeneral } from "@/utils";
+import { showToast, catchAsyncGeneral, getHeight } from "@/utils";
 import {
   useSelectable,
   useModal,
@@ -23,8 +23,10 @@ import {
   IProductQueriesParams,
   useRefState,
   useSetElementText,
+  useResizeObserver,
+  useScreenSize,
 } from "@/hooks";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { IProduct } from "@/types";
 
 export const productsTableHeadings: string[] = [
@@ -40,14 +42,35 @@ export const productsTableHeadings: string[] = [
 ];
 
 export const productsTableRowClasses =
-  "grid grid-cols-[auto_0.3fr_0.1fr_0.1fr_0.15fr_0.1fr_0.1fr_0.2fr_0.15fr] gap-4 !px-4 items-center";
+  "grid grid-cols-[auto_3.5fr_0.5fr_1fr_0.7fr_0.5fr_1fr_1.5fr_0.5fr]";
 
 export const AllProductsMain = () => {
   const router = useRouter();
+  const [tableHeight, setTableHeight] = useState<number | null>(null);
+  const { height } = useScreenSize();
 
   // set the page heading below
   const { refs } = useRefState();
   useSetElementText(refs?.titleRef?.current, "All Products");
+
+  const paramsFilterFormEntry = useResizeObserver<HTMLFormElement>(
+    refs.paramsFilterForm
+  );
+  const topPanelEntry = useResizeObserver<HTMLDivElement>(refs.topPanelRef);
+  const adminHeaderEntry = useResizeObserver<HTMLElement>(refs.adminHeader);
+
+  // calculate dynamic height for table
+  useEffect(() => {
+    if (height && paramsFilterFormEntry && adminHeaderEntry && topPanelEntry) {
+      const paramsHeight = getHeight(paramsFilterFormEntry);
+      const headerHeight = getHeight(adminHeaderEntry);
+      const topPanelHeight = getHeight(topPanelEntry);
+
+      setTableHeight(
+        height - paramsHeight - headerHeight - topPanelHeight - 50 - 56
+      );
+    }
+  }, [paramsFilterFormEntry, adminHeaderEntry, height, topPanelEntry]);
 
   const {
     queryMeta,
@@ -76,8 +99,15 @@ export const AllProductsMain = () => {
     router.push(`/admin/products/edit/${id}`);
   };
 
-  const renderRow = ({ data }: { data: IProduct }) => (
+  const renderRow = ({
+    data,
+    isLastEl,
+  }: {
+    data: IProduct;
+    isLastEl: boolean;
+  }) => (
     <ProductRow
+      isLastEl={isLastEl}
       productData={data}
       isSelected={checkIfSelected(data)}
       toggleSelectOne={toggleSelectOne}
@@ -96,7 +126,7 @@ export const AllProductsMain = () => {
   });
 
   return (
-    <div className="flex flex-col !h-full">
+    <div className="grow flex flex-col">
       {/* Top params form */}
       <ProductsTopParamsForm<IProductQueriesParams>
         sortOptions={[...ProductSortOptions]}
@@ -109,7 +139,7 @@ export const AllProductsMain = () => {
       {/* Delete action button */}
       <ButtonBtnTrans
         onClick={openModal}
-        className="text-red-600 font-inherit ml-auto px-4 h-15 shrink-0"
+        className="text-red-600 font-inherit ml-auto px-4 !h-[50px] shrink-0"
         isDisabled={selected.length < 1}
       >
         <TrashcanIcon />
@@ -119,11 +149,11 @@ export const AllProductsMain = () => {
       {/* Products table */}
       {products && (
         <TabularData
-          rowClassesForBoth={productsTableRowClasses}
+          style={{ height: `${tableHeight}px` }}
+          gridClasses={productsTableRowClasses}
           classNameObj={{
-            containerDiv: "!grow-0 !min-h-[50vh]",
-            headingRow: "bg-white border-y border-x-0 border-neutral-200",
-            dataRow: "hover:bg-neutral-100 hover:cursor-pointer",
+            containerDiv: `overflow-y-auto`,
+            dataRow: "hover:cursor-pointer",
           }}
           toggleSelectAll={toggleSelectAll}
           isAllSelected={isAllSelected}
@@ -138,12 +168,13 @@ export const AllProductsMain = () => {
 
       {/* Pagination */}
       {queryMeta?.totalPages > 0 && (
-        <Pagination
-          className="mt-auto pt-10 mb-10"
-          totalPages={queryMeta?.totalPages}
-          currentPage={queryMeta?.page}
-          setCurrentPage={changePage}
-        />
+        <div className="!h-[56px] !shrink-0 border-t border-neutral-200 mt-auto flex items-center justify-center">
+          <Pagination
+            totalPages={queryMeta?.totalPages}
+            currentPage={queryMeta?.page}
+            setCurrentPage={changePage}
+          />
+        </div>
       )}
 
       {/* Delete confirmation modal */}

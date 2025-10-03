@@ -47,6 +47,8 @@ export const useProductsQueries = () => {
     [searchParams]
   );
 
+  console.log(rawQueryParams.status);
+
   // Normalize params safely
   const finalQueryParams: IProductQueriesParams = useMemo(
     () => ({
@@ -54,9 +56,7 @@ export const useProductsQueries = () => {
       sort:
         (rawQueryParams.sort as string) || "-" + ProductSortOptions[1].value,
       search: (rawQueryParams.search as string) || "",
-      status: rawQueryParams.status
-        ? cleanStatusParam(rawQueryParams.status as string)
-        : undefined,
+      status: cleanStatusParam(rawQueryParams.status),
       topCategory: rawQueryParams.topCategory
         ? (rawQueryParams.topCategory as string)
         : undefined,
@@ -104,6 +104,7 @@ export const useProductsQueries = () => {
     () =>
       cleanObject({
         ...finalQueryParams,
+        limit: 20,
         limitFields:
           "defaultImage,title,status,brand,defaultPrice,totalVariants,totalStock,updatedAt",
       }),

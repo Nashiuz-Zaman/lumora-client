@@ -22,22 +22,26 @@ interface IProductRowProps {
   productData: IProduct;
   isSelected: boolean;
   toggleSelectOne?: TUseSelectableReturn<IProduct, "_id">["toggleSelectOne"];
+  isLastEl?: boolean;
 }
 
 const ProductRow = ({
   productData,
   isSelected,
   toggleSelectOne,
+  isLastEl,
 }: IProductRowProps) => {
   // common tailwind classes
-  const cellClasses = "font-medium text-sm";
+  const cellClasses = `font-medium text-sm px-4 py-2 flex items-center ${
+    !isLastEl ? "border-b border-neutral-200" : ""
+  }`;
 
   if (!productData) return null;
 
   return (
     <>
       {/* Checkbox */}
-      <td className={cellClasses + " w-[1.6rem]"}>
+      <td className={cellClasses + " !pl-4 !pr-2"}>
         <InputCheckbox
           checked={isSelected}
           onChange={() => toggleSelectOne?.(productData)}
@@ -109,13 +113,13 @@ const ProductRow = ({
       </td>
 
       {/* Actions */}
-      <td className="flex h-max items-center gap-4">
+      <td className={cellClasses}>
         <div title="View Preview" onClick={(e) => e.stopPropagation()}>
           <LinkBtnTrans
             target="_blank"
             href={`/products/preview/${productData._id}`}
           >
-            <IcfyIcon className="text-xl" icon="ri:eye-fill" />
+            <IcfyIcon className="text-xl text-primary" icon="ri:eye-fill" />
           </LinkBtnTrans>
         </div>
       </td>

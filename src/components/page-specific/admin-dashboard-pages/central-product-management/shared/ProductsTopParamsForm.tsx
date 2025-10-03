@@ -23,8 +23,8 @@ const ProductsTopParamsForm = <T extends Record<string, any>>({
 }: IProductTopParamsFormProps<T>) => {
   const statusOptions: TParamsFilterFormOptions = [
     { label: "All", value: "all" },
-    { label: "Active", value: "1" },
-    { label: "Draft", value: "0" },
+    { label: "Active", value: 1 },
+    { label: "Draft", value: 0 },
   ];
 
   return (

@@ -23,7 +23,9 @@ export const InputCheckbox = ({
 }: TInputCheckboxProps) => {
   return (
     <label
-      className={`flex items-center w-max gap-2 cursor-pointer select-none ${
+      className={`${
+        labelText || icon ? "flex gap-2 items-center" : "inline-block"
+      }  w-max cursor-pointer select-none ${
         invertIconPosition ? "flex-row-reverse" : ""
       } ${className}`}
     >
@@ -31,7 +33,7 @@ export const InputCheckbox = ({
 
       <input
         type="checkbox"
-        className={`appearance-auto accent-primary cursor-pointer ${checkboxClassName}`}
+        className={`appearance-auto shrink-0 aspect-square w-3 accent-primary cursor-pointer ${checkboxClassName}`}
         {...props}
       />
 

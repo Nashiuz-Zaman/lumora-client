@@ -5,16 +5,16 @@ export const getQueryParamsFromSearchParams = (
   const result: Record<string, string | number | boolean> = {};
 
   for (const key of keys) {
-    const value = searchParams.get(key);
+    const value = searchParams.get(key)?.trim() ?? "";
 
     if (value === "true") {
       result[key] = true;
     } else if (value === "false") {
       result[key] = false;
-    } else if (value !== null && value !== "" && !isNaN(Number(value))) {
+    } else if (value !== "" && Number.isFinite(Number(value))) {
       result[key] = Number(value);
     } else {
-      result[key] = value ?? "";
+      result[key] = value;
     }
   }
 

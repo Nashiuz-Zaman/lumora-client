@@ -1,7 +1,7 @@
 export * from "./useClickOutside";
 export * from "./useActiveLink";
 export * from "./useModal";
-export * from "./useElementHeight";
+export * from "./useResizeObserver";
 export * from "./usePortalTarget";
 export * from "./useSelectable";
 export * from "./useProductsQueries";
@@ -23,3 +23,4 @@ export * from "./useDebouncedCallback";
 export * from "./useProductSearchParamsManagement";
 export * from "./useRefState";
 export * from "./useSetElementText";
+export * from "./useScreenSize";

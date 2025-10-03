@@ -4,12 +4,23 @@ import { ProductStatus } from "@/constants/product";
 import { ReturnRequestStatus } from "@/constants/returnRequest";
 import { ReviewStatus } from "@/constants/review";
 
-type StatusCode = number | string | undefined;
-
 // --- Utility to clean a query param for status ---
-export function cleanStatusParam(statusParam: StatusCode): number | "all" {
-  if (statusParam === "" || isNaN(Number(statusParam))) return "all";
-  return Number(statusParam);
+export function cleanStatusParam(statusParam: unknown): number | "all" {
+  if (typeof statusParam === "boolean") return "all";
+
+  if (typeof statusParam === "number") return statusParam;
+
+  if (typeof statusParam === "string") {
+    const trimmed = statusParam.trim();
+    if (trimmed === "") return "all";
+
+    const num = Number(trimmed);
+    if (Number.isFinite(num)) return num;
+
+    return "all";
+  }
+
+  return "all";
 }
 
 // --- Coupon Status ---

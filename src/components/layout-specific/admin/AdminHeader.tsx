@@ -5,13 +5,27 @@ import Link from "next/link";
 
 // Components
 import { InnerContainer, ThreeDotMenu } from "@/components/shared";
-import { useAuthMethods } from "@/hooks";
+import { useAuthMethods, useRefState } from "@/hooks";
+import { useEffect, useRef } from "react";
 
 export const AdminHeader = () => {
   const { logout } = useAuthMethods();
+  const ref = useRef(null);
+  const { setRefs } = useRefState();
+
+  useEffect(() => {
+    setRefs((prev) =>
+      !prev.adminHeader ? { ...prev, adminHeader: ref } : prev
+    );
+
+    return () => setRefs((prev) => ({ ...prev, adminHeader: null }));
+  }, [setRefs]);
 
   return (
-    <header className="h-[5rem] xl:h-[7rem] bg-white border-b border-neutral-200 flex items-center shrink-0">
+    <header
+      ref={ref}
+      className="h-16 xl:h-28 bg-white border-b border-neutral-200 flex items-center shrink-0"
+    >
       <InnerContainer className="flex justify-between items-center">
         {/* Mobile nav button placeholder */}
         <div id="mobile-button-portal" className="xl:hidden" />

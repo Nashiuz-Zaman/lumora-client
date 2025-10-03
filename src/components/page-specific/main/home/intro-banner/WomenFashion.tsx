@@ -7,7 +7,7 @@ import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 const data = [
   {
-    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759059154/lumora/intro-banner/woman-1_1_zeb0m9.webp",
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759499740/lumora/intro-banner/woman-1-1_hi4pkf.webp",
     buttonText: "Women's Fashion & Accessories",
   },
   {

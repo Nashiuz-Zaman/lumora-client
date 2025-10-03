@@ -18,14 +18,14 @@ interface IClassNameObj {
 
 interface IRenderRowProps<T> {
   data: T;
-  serial: number;
+  isLastEl: boolean;
   [key: string]: unknown;
 }
 
 interface ITabularDataProps<T extends Record<string, any>> {
   headings: string[];
   data: T[];
-  rowClassesForBoth?: string;
+  gridClasses?: string;
   classNameObj?: IClassNameObj;
   renderRow?: (props: IRenderRowProps<T>) => ReactNode;
   skip?: number;
@@ -34,28 +34,23 @@ interface ITabularDataProps<T extends Record<string, any>> {
   noDataText?: string;
   toggleSelectAll?: TUseSelectableReturn<T, keyof T>["toggleSelectAll"];
   isAllSelected?: boolean;
-  bordered?: "full" | "divider" | "none";
   dataKey?: string;
-  maxBodyHeight?: string;
-  headerHeight?: string;
+  [key: string]: any;
 }
 
 export const TabularData = <T extends Record<string, any>>({
   headings,
   data = [],
-  rowClassesForBoth = "",
+  gridClasses = "",
   classNameObj = {},
   renderRow,
-  skip = 0,
   dataLoading = false,
   onRowClick,
   noDataText,
   toggleSelectAll,
   isAllSelected,
-  bordered = "full",
   dataKey = "_id",
-  maxBodyHeight = "40rem",
-  headerHeight = "3.5rem",
+  ...props
 }: ITabularDataProps<T>) => {
   const [isClient, setIsClient] = useState(false);
 
@@ -67,47 +62,40 @@ export const TabularData = <T extends Record<string, any>>({
 
   return (
     <div
-      className={`w-full overflow-x-auto flex flex-col grow bg-white border-b border-neutral-200 ${
+      {...props}
+      className={`overflow-auto w-full h-full bg-white  relative ${
         classNameObj.containerDiv || ""
       }`}
     >
       <table
-        className={`min-w-[80rem] max-w-full grow flex flex-col ${
+        className={`min-w-[80rem] w-full ${gridClasses} ${
           classNameObj.mainTable || ""
         }`}
       >
-        <thead className="w-full">
+        {/* table head */}
+        <thead className="contents">
           <tr
-            style={{ height: headerHeight }}
-            className={`
-              bg-neutral-100 w-full text-base 2xl:text-lg 
-              grid
-              ${
-                bordered === "full" || bordered === "divider"
-                  ? "border border-neutral-200"
-                  : ""
-              }
-              ${rowClassesForBoth} ${classNameObj.headingRow || ""}
-              px-2 sm:px-3 md:px-4 lg:px-5 
-            `}
+            className={`contents w-full text-base 2xl:text-lg ${
+              classNameObj.headingRow || ""
+            }`}
           >
             {headings.map((heading, i) =>
               heading?.toLowerCase() === "checkbox" ? (
                 <th
                   key={i}
-                  className={`text-left block w-6 ${
+                  className={`text-left first:pl-4 sticky top-0 capitalize border-y bg-neutral-100  border-neutral-200 pl-4 pr-2 h-14 flex items-center justify-start ${
                     classNameObj.heading || ""
                   }`}
                 >
                   <InputCheckbox
                     onChange={toggleSelectAll}
-                    checked={isAllSelected}
+                    checked={!!isAllSelected}
                   />
                 </th>
               ) : (
                 <th
                   key={i}
-                  className={`text-left block capitalize font-semibold ${
+                  className={`text-left sticky top-0 h-14 flex items-center bg-neutral-100  border-neutral-200 px-4 capitalize font-semibold border-y ${
                     classNameObj.heading || ""
                   }`}
                 >
@@ -118,70 +106,45 @@ export const TabularData = <T extends Record<string, any>>({
           </tr>
         </thead>
 
-        <tbody
-          style={{ maxHeight: maxBodyHeight }}
-          className={`
-            w-full h-full overflow-y-auto
-            ${
-              bordered === "divider" && data?.length > 0
-                ? "divide-y divide-neutral-200"
-                : ""
-            }
-            ${classNameObj.tableBody || ""}
-          `}
-        >
-          {/* No data */}
-          {data?.length < 1 && !dataLoading && (
-            <tr className="grow flex flex-col">
-              <td className="flex flex-col gap-2 w-full text-center items-center justify-center grow">
-                <NoData text={noDataText} className={classNameObj.noData} />
-              </td>
-            </tr>
-          )}
-
-          {/* Loading */}
-          {dataLoading && (
-            <tr className="grow flex flex-col w-full">
-              <td className="grow grid place-content-center w-full">
-                <LoadingSpinner className="!static !py-20" />
-              </td>
-            </tr>
-          )}
-
-          {/* Render Data Rows */}
+        {/* table body */}
+        <tbody className={`contents`}>
+          {/* Data rows */}
           {data?.length > 0 &&
             !dataLoading &&
-            data.map((rowData, i) => {
-              const serialNumber = skip + i + 1;
-
+            data.map((rowData, i, arr) => {
+              const isLastEl = i === arr.length - 1;
               return (
                 <tr
+                  key={i}
                   onClick={(e) => {
                     if ((e.target as HTMLInputElement)?.type !== "checkbox") {
                       onRowClick?.(e, String(rowData[dataKey]));
                     }
                   }}
-                  key={i}
-                  className={`
-                    w-full grid text-xs sm:text-sm md:text-base lg:text-lg
-                    px-2 sm:px-3 md:px-4 lg:px-5 py-1 sm:py-1.5 md:py-2 lg:py-2.5
-                    ${onRowClick ? "cursor-pointer" : ""}
-                    ${
-                      bordered === "full"
-                        ? "!border-x !border-b border-neutral-200"
-                        : ""
-                    }
-                    ${rowClassesForBoth} ${classNameObj.dataRow || ""}
-                  `}
+                  className={`contents ${onRowClick ? "cursor-pointer" : ""} ${
+                    classNameObj.dataRow || ""
+                  }`}
                 >
                   {renderRow &&
                     rowData &&
-                    renderRow({ data: rowData, serial: serialNumber })}
+                    renderRow({ data: rowData, isLastEl })}
                 </tr>
               );
             })}
         </tbody>
       </table>
+
+      {data?.length < 1 && !dataLoading && (
+        <div className="absolute inset-0 z-10 pointer-events-none">
+          <NoData centered={true} text={noDataText} />
+        </div>
+      )}
+
+      {dataLoading && (
+        <div className="absolute inset-0 z-10 pointer-events-none bg-white/70">
+          <LoadingSpinner centered />
+        </div>
+      )}
     </div>
   );
 };

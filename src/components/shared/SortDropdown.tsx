@@ -15,7 +15,7 @@ export interface ISortDropdownProps {
   buttonClassName?: string;
   className?: string;
 }
-
+ 
 export const SortDropdown = ({
   buttonLabel,
   selected,
@@ -27,7 +27,7 @@ export const SortDropdown = ({
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <div className={`relative ml-auto w-max ${className}`}>
+    <div className={`relative w-max ${className}`}>
       <ButtonBtn
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}

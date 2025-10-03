@@ -6,7 +6,7 @@ import { usePortalTarget } from "@/hooks";
 import AddToProductCollectionModal from "@/components/modals/AddToProductCollectionModal";
 
 // Shared components
-import { TopPanel } from "../../../page-specific/admin-dashboard-pages/shared/TopPanel";
+import { TopPanel } from "@/components/page-specific";
 import { LinkBtn } from "@/components/shared";
 
 export const AdminProductsLayoutMain = ({
@@ -23,7 +23,7 @@ export const AdminProductsLayoutMain = ({
     /^\/admin\/products\/product-collection\/[^\/]+$/;
 
   return (
-    <div className="max-h-[calc(100vh-7rem)] h-full flex flex-col">
+    <div className="h-full flex flex-col">
       {/* Reusable top panel */}
       <TopPanel
         actions={
@@ -46,7 +46,7 @@ export const AdminProductsLayoutMain = ({
       {slug && <AddToProductCollectionModal target={target} slug={slug} />}
 
       {/* Main content */}
-      <div className="grow overflow-y-auto">{children}</div>
+      <div className="grow flex flex-col overflow-y-auto">{children}</div>
     </div>
   );
 };

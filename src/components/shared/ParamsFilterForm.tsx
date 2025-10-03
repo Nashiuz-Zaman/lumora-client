@@ -2,17 +2,17 @@
 
 import {
   useCallback,
-  useState,
   ChangeEvent,
   FormEvent,
   SetStateAction,
   Dispatch,
+  useEffect,
+  useRef,
 } from "react";
 import { Inputfield } from "./Inputfield";
-import { DownCaretIcon } from "./icons";
-import { ButtonBtn } from "./buttons";
-import { OptionsDropdown } from "./OptionsDropdown";
-import SortOptionsMenu from "./SortOptionsMenu";
+import { ButtonBtn, ButtonBtnTrans } from "./buttons";
+import { SortDropdown } from "./SortDropdown";
+import { useRefState } from "@/hooks";
 
 export type TParamsFilterFormOptions = {
   label: string;
@@ -40,11 +40,23 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
   statusOptions = [],
   roleLabel = "",
 }: IParamsFilterFormProps<T>) => {
-  const [isSortOpen, setIsSortOpen] = useState(false);
-
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setParams((prev) => ({ ...prev, search: e.target.value }));
   };
+  const ref = useRef<HTMLFormElement>(null);
+  const { setRefs } = useRefState();
+
+  useEffect(() => {
+    setRefs((prev) => {
+      if (!prev.paramsFilterForm) {
+        return { ...prev, paramsFilterForm: ref };
+      }
+
+      return prev;
+    });
+
+    return () => setRefs((prev) => ({ ...prev, paramsFilterForm: null }));
+  }, [setRefs]);
 
   const handleSortChange = useCallback(
     (value: string | number) => {
@@ -59,8 +71,9 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
 
   return (
     <form
+      ref={ref}
       onSubmit={onSubmit}
-      className="h-20  px-4 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between"
+      className="px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between"
     >
       <Inputfield
         onChange={handleSearchChange}
@@ -72,45 +85,33 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
 
       <div className="flex flex-col xs:flex-row items-center justify-between w-full gap-4 xl:ml-4">
         {showStatusFilter && (
-          <div className="flex items-center justify-center flex-wrap gap-2 xs:justify-start">
+          <div className="flex items-center justify-center flex-wrap gap-5 xs:justify-start">
             {statusOptions.map(({ label, value }) => (
-              <ButtonBtn
+              <ButtonBtnTrans
                 key={value}
                 type="button"
                 onClick={() => handleStatusChange(value)}
-                className={`!py-2 !px-3 ${
-                  params.status === value ? "!primaryClasses" : ""
+                className={`${
+                  params.status === value
+                    ? "text-primary text-shadow-primary"
+                    : ""
                 }`}
               >
                 {label}
-              </ButtonBtn>
+              </ButtonBtnTrans>
             ))}
           </div>
         )}
 
         <div className="flex items-center gap-4 justify-center xs:ml-auto">
-          <div className="relative ml-auto">
-            <ButtonBtn
-              type="button"
-              onClick={() => setIsSortOpen((prev) => !prev)}
-              className="!systemClasses !px-3 !py-2"
-            >
-              Sort <DownCaretIcon />
-            </ButtonBtn>
-
-            <OptionsDropdown
-              toggleBtnIdentifier="params-filter-form"
-              className="z-[200]"
-              setShow={setIsSortOpen}
-              show={isSortOpen}
-            >
-              <SortOptionsMenu
-                selected={String(params.sort)}
-                onUpdate={handleSortChange}
-                options={sortOptions}
-              />
-            </OptionsDropdown>
-          </div>
+          <SortDropdown
+            buttonLabel="Sort"
+            selected={String(params.sort)}
+            options={sortOptions}
+            onUpdate={handleSortChange}
+            buttonClassName="!systemClasses !px-3 !py-2"
+            className="ml-auto"
+          />
 
           <ButtonBtn type="submit" className="!successClasses !py-2 !px-3">
             Search

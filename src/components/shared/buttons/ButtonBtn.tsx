@@ -42,7 +42,7 @@ export const ButtonBtn = ({
   };
 
   const allClasses = `
-    focus:outline-none flex items-center justify-center w-max
+    focus:outline-none border border-transparent flex items-center justify-center w-max
     transition-all rounded-md text-center
     cursor-pointer active:scale-95
     disabled:opacity-60 disabled:scale-100 disabled:cursor-not-allowed

@@ -17,3 +17,4 @@ export * from "./generateAvatar";
 export * from "./setSearchFilters";
 export * from "./compression";
 export * from "./csvUtils";
+export * from "./getHeight";
