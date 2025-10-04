@@ -2,25 +2,33 @@
 import { RefObject, useEffect, useState } from "react";
 
 export const useResizeObserver = <T extends HTMLElement>(
-  ref: RefObject<T> | null
+  refs: RefObject<T>[]
 ) => {
-  const [entry, setEntry] = useState<ResizeObserverEntry | null>(null);
+  const [entries, setEntries] = useState<(ResizeObserverEntry | null)[]>(
+    Array(refs.length).fill(null)
+  );
 
   useEffect(() => {
-    const element = ref?.current;
-    if (!element) return;
+    // extract current elements only
+    const elements = refs.map((r) => r?.current).filter(Boolean) as T[];
+    if (!elements.length) return;
 
-    const observer = new ResizeObserver((entries) => {
-      // only one entry for the observed element
-      if (entries[0]) setEntry(entries[0]);
+    const observer = new ResizeObserver((obsEntries) => {
+      setEntries((prev) => {
+        const copy = [...prev];
+        obsEntries.forEach((entry) => {
+          const index = refs.findIndex((ref) => ref.current === entry.target);
+          if (index !== -1) copy[index] = entry;
+        });
+        return copy;
+      });
     });
 
-    observer.observe(element);
+    elements.forEach((el) => observer.observe(el));
 
-    return () => {
-      observer.disconnect();
-    };
-  }, [ref]);
+    return () => observer.disconnect();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [refs.every((ref) => !!ref?.current)]);
 
-  return entry;
+  return entries;
 };

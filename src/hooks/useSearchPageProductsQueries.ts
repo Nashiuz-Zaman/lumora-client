@@ -38,7 +38,6 @@ export const useSearchPageProductsQueries = () => {
   const path = usePathname();
   const router = useRouter();
   const [isClient, setIsClient] = useState(false);
-
   const { buildSearchQueryParams } = useProductSearchParamsManagement();
 
   useEffect(() => {

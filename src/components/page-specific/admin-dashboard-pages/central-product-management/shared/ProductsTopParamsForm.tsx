@@ -16,7 +16,7 @@ interface IProductTopParamsFormProps<T> {
 
 const ProductsTopParamsForm = <T extends Record<string, any>>({
   params,
-  setParams,
+  setParams, 
   onSubmit,
   sortOptions,
   showStatusFilter = false,

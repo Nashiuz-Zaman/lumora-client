@@ -24,3 +24,4 @@ export * from "./useProductSearchParamsManagement";
 export * from "./useRefState";
 export * from "./useSetElementText";
 export * from "./useScreenSize";
+export * from "./useOrderQueries";

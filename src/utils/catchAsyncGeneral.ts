@@ -29,7 +29,8 @@ export type TPossibleEvent = { preventDefault: () => void } | Event;
 // any kind of object with possible "e" Event key
 export type TWithEvent = {
   e?: TPossibleEvent;
-} & Record<string, unknown>;
+  [key: string]: any;
+};
 
 export const catchAsyncGeneral = <T extends TWithEvent = TWithEvent>(
   fn: (args?: T) => Promise<void>,

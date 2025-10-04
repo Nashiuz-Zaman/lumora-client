@@ -16,18 +16,22 @@ interface IClassNameObj {
   noData?: string;
 }
 
-interface IRenderRowProps<T> {
+export type TRenderTableRowProps<T> = {
   data: T;
   isLastEl: boolean;
   [key: string]: unknown;
-}
+};
+
+export type TTableColumn = {
+  columnTitle: string;
+  width: string; // Tailwind col size
+};
 
 interface ITabularDataProps<T extends Record<string, any>> {
-  headings: string[];
+  columns: TTableColumn[];
   data: T[];
-  gridClasses?: string;
   classNameObj?: IClassNameObj;
-  renderRow?: (props: IRenderRowProps<T>) => ReactNode;
+  renderRow: (props: TRenderTableRowProps<T>) => ReactNode;
   skip?: number;
   dataLoading?: boolean;
   onRowClick?: (e: MouseEvent<HTMLTableRowElement>, id: string) => void;
@@ -39,9 +43,8 @@ interface ITabularDataProps<T extends Record<string, any>> {
 }
 
 export const TabularData = <T extends Record<string, any>>({
-  headings,
+  columns,
   data = [],
-  gridClasses = "",
   classNameObj = {},
   renderRow,
   dataLoading = false,
@@ -68,9 +71,11 @@ export const TabularData = <T extends Record<string, any>>({
       }`}
     >
       <table
-        className={`min-w-[80rem] w-full ${gridClasses} ${
-          classNameObj.mainTable || ""
-        }`}
+        style={{
+          display: "grid",
+          gridTemplateColumns: columns.map((col) => col.width).join(" "),
+        }}
+        className={`min-w-[80rem] w-full ${classNameObj.mainTable || ""}`}
       >
         {/* table head */}
         <thead className="contents">
@@ -79,8 +84,8 @@ export const TabularData = <T extends Record<string, any>>({
               classNameObj.headingRow || ""
             }`}
           >
-            {headings.map((heading, i) =>
-              heading?.toLowerCase() === "checkbox" ? (
+            {columns.map((col, i) =>
+              col?.columnTitle?.toLowerCase() === "checkbox" ? (
                 <th
                   key={i}
                   className={`text-left first:pl-4 sticky top-0 capitalize border-y bg-neutral-100  border-neutral-200 pl-4 pr-2 h-14 flex items-center justify-start ${
@@ -99,7 +104,7 @@ export const TabularData = <T extends Record<string, any>>({
                     classNameObj.heading || ""
                   }`}
                 >
-                  {heading}
+                  {col.columnTitle}
                 </th>
               )
             )}
@@ -121,9 +126,9 @@ export const TabularData = <T extends Record<string, any>>({
                       onRowClick?.(e, String(rowData[dataKey]));
                     }
                   }}
-                  className={`contents ${onRowClick ? "cursor-pointer" : ""} ${
-                    classNameObj.dataRow || ""
-                  }`}
+                  className={`contents ${
+                    onRowClick ? "cursor-pointer" : ""
+                  } group ${classNameObj.dataRow || ""}`}
                 >
                   {renderRow &&
                     rowData &&

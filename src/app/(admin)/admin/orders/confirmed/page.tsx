@@ -1,10 +1,10 @@
-import { UnderDev } from "@/components/shared";
+import ConfirmedOrdersMain from "@/components/page-specific/admin-dashboard-pages/orders/confirmed-orders/ConfirmedOrderMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Orders | Admin Panel",
+  title: "Confirmed Orders | Admin Panel",
 };
 
-const ConfirmedOrdersPage = () => <UnderDev />;
+const ConfirmedOrdersPage = () => <ConfirmedOrdersMain />;
 
 export default ConfirmedOrdersPage;

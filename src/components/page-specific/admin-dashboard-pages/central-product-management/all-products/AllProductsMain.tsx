@@ -10,12 +10,14 @@ import {
   ButtonBtnTrans,
   TabularData,
   Pagination,
+  TRenderTableRowProps,
+  TTableColumn,
 } from "@/components/shared";
 import { ConfirmationModal } from "@/components/modals";
 
 import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/product/productApiSlice";
 
-import { showToast, catchAsyncGeneral, getHeight } from "@/utils";
+import { showToast, catchAsyncGeneral } from "@/utils";
 import {
   useSelectable,
   useModal,
@@ -23,54 +25,34 @@ import {
   IProductQueriesParams,
   useRefState,
   useSetElementText,
-  useResizeObserver,
-  useScreenSize,
 } from "@/hooks";
-import { MouseEvent, useEffect, useState } from "react";
+import { MouseEvent } from "react";
 import { IProduct } from "@/types";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
 
-export const productsTableHeadings: string[] = [
-  "checkbox",
-  "Product",
-  "Status",
-  "Brand",
-  "Price",
-  "Variants",
-  "Inventory",
-  "Last modified",
-  "Actions",
+const productsTableColumns: TTableColumn[] = [
+  { columnTitle: "checkbox", width: "auto" },
+  { columnTitle: "Product", width: "3fr" },
+  { columnTitle: "Status", width: "0.5fr" },
+  { columnTitle: "Brand", width: "1fr" },
+  { columnTitle: "Price", width: "0.7fr" },
+  { columnTitle: "Variants", width: "0.5fr" },
+  { columnTitle: "Inventory", width: "1fr" },
+  { columnTitle: "Last modified", width: "1.5fr" },
+  { columnTitle: "Actions", width: "1fr" },
 ];
-
-export const productsTableRowClasses =
-  "grid grid-cols-[auto_3.5fr_0.5fr_1fr_0.7fr_0.5fr_1fr_1.5fr_0.5fr]";
 
 export const AllProductsMain = () => {
   const router = useRouter();
-  const [tableHeight, setTableHeight] = useState<number | null>(null);
-  const { height } = useScreenSize();
 
   // set the page heading below
   const { refs } = useRefState();
   useSetElementText(refs?.titleRef?.current, "All Products");
 
-  const paramsFilterFormEntry = useResizeObserver<HTMLFormElement>(
-    refs.paramsFilterForm
-  );
-  const topPanelEntry = useResizeObserver<HTMLDivElement>(refs.topPanelRef);
-  const adminHeaderEntry = useResizeObserver<HTMLElement>(refs.adminHeader);
-
-  // calculate dynamic height for table
-  useEffect(() => {
-    if (height && paramsFilterFormEntry && adminHeaderEntry && topPanelEntry) {
-      const paramsHeight = getHeight(paramsFilterFormEntry);
-      const headerHeight = getHeight(adminHeaderEntry);
-      const topPanelHeight = getHeight(topPanelEntry);
-
-      setTableHeight(
-        height - paramsHeight - headerHeight - topPanelHeight - 50 - 56
-      );
-    }
-  }, [paramsFilterFormEntry, adminHeaderEntry, height, topPanelEntry]);
+  const height = useDynamicHeight({
+    refElements: [refs.paramsFilterForm, refs.topPanelRef, refs.adminHeader],
+    fixedHeights: [50, 56],
+  });
 
   const {
     queryMeta,
@@ -99,13 +81,7 @@ export const AllProductsMain = () => {
     router.push(`/admin/products/edit/${id}`);
   };
 
-  const renderRow = ({
-    data,
-    isLastEl,
-  }: {
-    data: IProduct;
-    isLastEl: boolean;
-  }) => (
+  const renderRow = ({ data, isLastEl }: TRenderTableRowProps<IProduct>) => (
     <ProductRow
       isLastEl={isLastEl}
       productData={data}
@@ -147,24 +123,20 @@ export const AllProductsMain = () => {
       </ButtonBtnTrans>
 
       {/* Products table */}
-      {products && (
-        <TabularData
-          style={{ height: `${tableHeight}px` }}
-          gridClasses={productsTableRowClasses}
-          classNameObj={{
-            containerDiv: `overflow-y-auto`,
-            dataRow: "hover:cursor-pointer",
-          }}
-          toggleSelectAll={toggleSelectAll}
-          isAllSelected={isAllSelected}
-          headings={productsTableHeadings}
-          data={products}
-          onRowClick={handleRowClick}
-          renderRow={renderRow}
-          dataLoading={isFetching}
-          noDataText="No products"
-        />
-      )}
+      <TabularData
+        style={{ height: `${height}px` }}
+        classNameObj={{
+          containerDiv: `overflow-y-auto`,
+        }}
+        toggleSelectAll={toggleSelectAll}
+        isAllSelected={isAllSelected}
+        columns={productsTableColumns}
+        data={products}
+        onRowClick={handleRowClick}
+        renderRow={renderRow}
+        dataLoading={isFetching}
+        noDataText="No products"
+      />
 
       {/* Pagination */}
       {queryMeta?.totalPages > 0 && (

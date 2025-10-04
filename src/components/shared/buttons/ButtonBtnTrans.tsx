@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, ReactNode, MouseEvent } from "react";
+import { useEffect, useState, ReactNode, MouseEvent, Ref } from "react";
 import { LoadingIcon } from "../icons";
 
 interface IButtonBtnTransProps {
@@ -14,6 +14,7 @@ interface IButtonBtnTransProps {
   ariaLabel?: string;
   title?: string;
   iconModifyClasses?: string;
+  ref?: Ref<HTMLButtonElement>;
 }
 
 export const ButtonBtnTrans = ({
@@ -27,6 +28,7 @@ export const ButtonBtnTrans = ({
   ariaLabel = "button",
   title,
   iconModifyClasses = "",
+  ref,
 }: IButtonBtnTransProps) => {
   const [isClient, setIsClient] = useState(false);
 
@@ -40,7 +42,6 @@ export const ButtonBtnTrans = ({
     onClick?.();
   };
 
-  // 🔑 Use native Tailwind spacing and text classes
   const allClasses = `
     relative focus:outline-none gap-2 w-max capitalize
     transition-all duration-default text-center
@@ -51,6 +52,7 @@ export const ButtonBtnTrans = ({
 
   return (
     <button
+      ref={ref}
       {...(title ? { title } : {})}
       {...(id ? { id } : {})}
       type={type}

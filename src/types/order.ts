@@ -32,3 +32,15 @@ export interface IOrder {
   createdAt?: string;
   updatedAt?: string;
 }
+
+export type IMarkOrderShippedArgs = FormData & {
+  shippingTrackingNumber: string;
+  shippingCarrier: string;
+  estimatedDelivery: string;
+  orderId: string;
+}
+
+export interface ICancelOrdersAdminArgs {
+  cancelIds: string[];
+  reason: string;
+}

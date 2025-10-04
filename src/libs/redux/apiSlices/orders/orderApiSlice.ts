@@ -1,3 +1,4 @@
+import { IApiResponse, ICancelOrdersAdminArgs } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
 
 export const orderApiSlice = baseApiSlice.injectEndpoints({
@@ -32,14 +33,14 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    getAdminOrders: builder.query({
+    getOrdersPrivate: builder.query({
       query: (params) => ({
         url: "/orders",
         method: "GET",
         params: {
-          ...params,
           limitFields:
-            "orderId,name,email,updatedAt,orderTotal,status,estimatedDelivery",
+            "orderId,name,email,phone,updatedAt,total,status,estimatedDelivery",
+          ...params,
         },
       }),
     }),
@@ -52,7 +53,7 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    markOrderShipped: builder.mutation({
+    markOrderShipped: builder.mutation<IApiResponse, FormData>({
       query: (data) => ({
         url: `/orders/shipping-details`,
         method: "PATCH",
@@ -60,7 +61,7 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    cancelOrderAdmin: builder.mutation({
+    cancelOrdersAdmin: builder.mutation<IApiResponse, ICancelOrdersAdminArgs>({
       query: (data) => ({
         url: `/orders/admin-cancel`,
         method: "PATCH",
@@ -91,10 +92,10 @@ export const {
   useGetCustomerRecentOrdersQuery,
   useGetCustomerOrderHistoryQuery,
   useGetCustomerOrderStatsQuery,
-  useGetAdminOrdersQuery,
+  useGetOrdersPrivateQuery,
   useInitiateSslPaymentMutation,
   useMarkOrderShippedMutation,
-  useCancelOrderAdminMutation,
+  useCancelOrdersAdminMutation,
   useDeleteOrdersAdminMutation,
   useTrackOrderQuery,
 } = orderApiSlice;

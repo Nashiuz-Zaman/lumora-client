@@ -7,7 +7,7 @@ import { useGetRefAsState, useProductSearchParamsManagement } from "@/hooks";
 
 const data = [
   {
-    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759499740/lumora/intro-banner/woman-1-1_hi4pkf.webp",
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759517595/lumora/intro-banner/woman-1-1_1_sxg6yr.webp",
     buttonText: "Women's Fashion & Accessories",
   },
   {
@@ -15,7 +15,7 @@ const data = [
     buttonText: "Women's Fashion & Accessories",
   },
   {
-    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759009109/lumora/intro-banner/woman-4_aq8orc.webp",
+    src: "https://res.cloudinary.com/diwzuhlc3/image/upload/v1759510761/lumora/intro-banner/wedding_1_r2agls.webp",
     buttonText: "Women's Fashion & Accessories",
   },
   {

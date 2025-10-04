@@ -9,62 +9,67 @@ import {
   getQueryParamsFromSearchParams,
   cleanObject,
   buildUrlWithParams,
-  cleanStatusParam,
 } from "@/utils";
 import isEqual from "lodash/isEqual";
 
 // Constants
-import { ProductSortOptions } from "@/constants/product";
+import { OrderSortOptions } from "@/constants/order";
 
 // API Hooks
-import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
-import { IQueryMeta } from "@/types";
+import { useGetOrdersPrivateQuery } from "@/libs/redux/apiSlices/orders/orderApiSlice";
 
 // Types
-export interface IProductQueriesParams {
+import { TOrderStatusValue } from "@/constants";
+import { IQueryMeta } from "@/types";
+
+export interface IOrderQueriesParams {
   page: number;
   sort: string;
   search: string;
-  status?: number | "all";
-  topCategory?: string;
+  status: TOrderStatusValue;
 }
 
-export const useProductsQueries = () => {
+export interface IUseOrderQueriesArgs {
+  orderStatus: TOrderStatusValue;
+  isPrivate?: boolean;
+  limit?: number;
+}
+
+export const useOrdersQueries = ({
+  orderStatus,
+  isPrivate = false,
+  limit = 20,
+}: IUseOrderQueriesArgs) => {
   const searchParams = useSearchParams();
   const path = usePathname();
   const router = useRouter();
+  const [isClient, setIsClient] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   // Memoize raw query params
   const rawQueryParams = useMemo(
     () =>
-      getQueryParamsFromSearchParams(searchParams, [
-        "page",
-        "search",
-        "sort",
-        "status",
-        "topCategory",
-      ]),
+      getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
     [searchParams]
   );
 
   // Normalize params safely
-  const finalQueryParams: IProductQueriesParams = useMemo(
+  const finalQueryParams: IOrderQueriesParams = useMemo(
     () => ({
       page: Number(rawQueryParams.page) || 1,
-      sort:
-        (rawQueryParams.sort as string) || "-" + ProductSortOptions[1].value,
+      sort: (rawQueryParams.sort as string) || "-" + OrderSortOptions[2].value,
       search: (rawQueryParams.search as string) || "",
-      status: cleanStatusParam(rawQueryParams.status),
-      topCategory: rawQueryParams.topCategory
-        ? (rawQueryParams.topCategory as string)
-        : undefined,
+      status: orderStatus,
     }),
-    [rawQueryParams]
+    [rawQueryParams, orderStatus]
   );
 
   // Controlled form params
   const [formParams, setFormParams] =
-    useState<IProductQueriesParams>(finalQueryParams);
+    useState<IOrderQueriesParams>(finalQueryParams);
 
   // Sync state only when query params truly change
   useEffect(() => {
@@ -97,26 +102,28 @@ export const useProductsQueries = () => {
     }
   };
 
-  // Fetch products
+  // Build query args
   const queryArgs = useMemo(
     () =>
       cleanObject({
         ...finalQueryParams,
-        limit: 20,
-        limitFields:
-          "defaultImage,title,status,brand,defaultPrice,totalVariants,totalStock,updatedAt",
+        limit,
       }),
-    [finalQueryParams]
+    [finalQueryParams, limit]
   );
 
-  const query = useGetProductsAdminQuery(queryArgs);
+  // Fetch orders
+  const query = useGetOrdersPrivateQuery(queryArgs, {
+    refetchOnMountOrArgChange: true,
+    skip: !isClient || !isPrivate,
+  });
 
   return {
     formParams,
     setFormParams,
     handleSubmit,
     changePage,
-    products: query?.data?.data?.products ?? [],
+    orders: query?.data?.data?.orders ?? [],
     queryMeta: query?.data?.data?.queryMeta as IQueryMeta,
     isFetching: query?.isFetching,
     refetch: query.refetch,
