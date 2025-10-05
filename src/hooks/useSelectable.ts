@@ -8,7 +8,7 @@ export const useSelectable = <T extends Record<string, any>, K extends keyof T>(
   keyField: K
 ) => {
   const [selected, setSelected] = useState<T[K][]>([]);
-  const [single, setSingle] = useState<T[K] | null>(null);
+  const [single, setSingle] = useState<T[K]>();
 
   const dataKeys = useMemo(
     () => data.map((item) => item[keyField]),
@@ -40,7 +40,7 @@ export const useSelectable = <T extends Record<string, any>, K extends keyof T>(
     setSelected((prev) => (prev.length === dataKeys.length ? [] : dataKeys));
   };
 
-  const removeSingle = () => setSingle(null);
+  const removeSingle = () => setSingle(undefined);
 
   const selectedData = useMemo(
     () => data.filter((item) => selected.includes(item[keyField])),

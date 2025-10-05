@@ -14,7 +14,7 @@ export const ReturnRequestSortOptions = Object.freeze([
   { label: "Customer", value: "name" },
   { label: "Email", value: "email" },
   { label: "Order ID", value: "orderId" },
-  { label: "Order Total", value: "orderTotal" },
+  { label: "Order Total", value: "total" },
   { label: "Status", value: "status" },
 ] as const);
 

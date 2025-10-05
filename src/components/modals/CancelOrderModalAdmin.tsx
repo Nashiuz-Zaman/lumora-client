@@ -43,11 +43,13 @@ export const CancelOrderModalAdmin = ({
           defaultValue={defaultValues.reason || ""}
         />
 
-        <div className="flex justify-end gap-4 pt-2">
-          <ButtonBtnTrans type="button" onClick={onClose}>
-            Cancel
-          </ButtonBtnTrans>
-          <ButtonBtn className="!primaryClasses" isLoading={isLoading}>
+        <div className="flex justify-end gap-4 pt-2 items-center">
+          <ButtonBtnTrans onClick={onClose}>Cancel</ButtonBtnTrans>
+          <ButtonBtn
+            type="submit"
+            className="!primaryClasses"
+            isLoading={isLoading}
+          >
             Confirm Cancel
           </ButtonBtn>
         </div>

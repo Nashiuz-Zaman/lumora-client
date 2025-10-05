@@ -17,7 +17,7 @@ export const useResizeObserver = <T extends HTMLElement>(
       setEntries((prev) => {
         const copy = [...prev];
         obsEntries.forEach((entry) => {
-          const index = refs.findIndex((ref) => ref.current === entry.target);
+          const index = refs.findIndex((ref) => ref?.current === entry.target);
           if (index !== -1) copy[index] = entry;
         });
         return copy;

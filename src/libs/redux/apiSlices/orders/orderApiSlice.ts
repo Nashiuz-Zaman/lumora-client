@@ -1,4 +1,8 @@
-import { IApiResponse, ICancelOrdersAdminArgs } from "@/types";
+import {
+  IApiResponse,
+  ICancelOrdersAdminArgs,
+  IMarkOrderShippedArgs,
+} from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
 
 export const orderApiSlice = baseApiSlice.injectEndpoints({
@@ -53,7 +57,7 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    markOrderShipped: builder.mutation<IApiResponse, FormData>({
+    markOrderShipped: builder.mutation<IApiResponse, IMarkOrderShippedArgs>({
       query: (data) => ({
         url: `/orders/shipping-details`,
         method: "PATCH",

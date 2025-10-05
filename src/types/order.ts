@@ -26,18 +26,18 @@ export interface IOrder {
   activities: IOrderActivity[];
   shippingTrackingNumber?: string;
   shippingCarrier?: string;
-  estimatedDelivery?: Date;
+  estimatedDelivery?: string;
   cancellationReason?: string;
   invoice?: string;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export type IMarkOrderShippedArgs = FormData & {
+export type IMarkOrderShippedArgs = {
   shippingTrackingNumber: string;
   shippingCarrier: string;
   estimatedDelivery: string;
-  orderId: string;
+  _id: string;
 }
 
 export interface ICancelOrdersAdminArgs {

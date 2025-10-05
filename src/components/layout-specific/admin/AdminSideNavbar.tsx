@@ -49,6 +49,11 @@ const navSections: INavSection[] = [
         path: "/admin/orders/shipped",
       },
       {
+        name: "Delivered",
+        icon: "solar:delivery-bold",
+        path: "/admin/orders/delivered",
+      },
+      {
         name: "Cancelled",
         icon: "line-md:cancel",
         path: "/admin/orders/cancelled",

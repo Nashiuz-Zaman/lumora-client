@@ -11,7 +11,11 @@ import {
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
 import { ConfirmedOrderRow } from "./ConfirmedOrderRow";
-import { CancelOrderModalAdmin, ShippingModal } from "@/components/modals";
+import {
+  CancelOrderModalAdmin,
+  IShippingFormValues,
+  ShippingModal,
+} from "@/components/modals";
 import {
   useOrdersQueries,
   useModal,
@@ -23,20 +27,21 @@ import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
 import { catchAsyncGeneral, showToast } from "@/utils";
 
 // Types
-import { ICancelOrdersAdminArgs, IOrder } from "@/types";
+import { ICancelOrdersAdminArgs, IMarkOrderShippedArgs, IOrder } from "@/types";
 import {
   useCancelOrdersAdminMutation,
   useMarkOrderShippedMutation,
 } from "@/libs/redux/apiSlices/orders/orderApiSlice";
 import { useRef } from "react";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { UseFormReset } from "react-hook-form";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },
-  { columnTitle: "Order ID", width: "0.2fr" },
+  { columnTitle: "Order ID", width: "0.3fr" },
   { columnTitle: "Customer", width: "0.4fr" },
-  { columnTitle: "Phone", width: "0.3fr" }, // added phone
-  { columnTitle: "Email", width: "0.6fr" },
+  { columnTitle: "Phone", width: "0.4fr" },
+  { columnTitle: "Email", width: "0.5fr" },
   { columnTitle: "Confirmed at", width: "0.5fr" },
   { columnTitle: "Total", width: "0.2fr" },
   { columnTitle: "Actions", width: "0.4fr" },
@@ -68,7 +73,7 @@ const ConfirmedOrdersMain = () => {
     single,
     removeSingle,
     setSingle,
-  } = useSelectable(orders, "orderId");
+  } = useSelectable<IOrder, "_id">(orders, "_id");
 
   // Shipping modal
   const {
@@ -81,18 +86,16 @@ const ConfirmedOrdersMain = () => {
     useMarkOrderShippedMutation();
 
   const handleMarkAsShipped = catchAsyncGeneral(async (args) => {
-    const e = args?.e as React.FormEvent<HTMLFormElement>;
-    const formData = new FormData(e.currentTarget);
-    if (single) {
-      formData.append("orderId", single);
-    }
+    const data = args?.data as IShippingFormValues;
+    const reset = args?.reset as UseFormReset<IShippingFormValues>;
+    const dataWithId: IMarkOrderShippedArgs = { ...data, _id: single! };
 
-    const res = await markOrderShipped(formData).unwrap();
+    const res = await markOrderShipped(dataWithId).unwrap();
     if (res?.success) {
       showToast({ message: res.message });
       removeSingle();
+      reset();
       closeShippingModal();
-      e.currentTarget.reset();
       refetch();
     }
   });
@@ -112,7 +115,7 @@ const ConfirmedOrdersMain = () => {
     const form = e.currentTarget;
 
     const data: ICancelOrdersAdminArgs = {
-      cancelIds: single ? [single] : selected,
+      cancelIds: single ? ([single] as string[]) : (selected as string[]),
       reason: form.reason.value,
     };
 

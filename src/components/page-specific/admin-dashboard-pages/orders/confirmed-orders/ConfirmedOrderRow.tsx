@@ -3,12 +3,15 @@
 // components
 import { ButtonBtnTrans, InputCheckbox } from "@/components/shared";
 import { TruckIcon, WarningIcon } from "@/components/shared";
+
+// hooks
 import { TUseSelectableReturn } from "@/hooks";
+
+// types
 import { IOrder } from "@/types";
 
 // utils
-import { formatDateTime } from "@/utils/formatDateTime";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatDateTime, formatPrice } from "@/utils";
 
 interface IConfirmedOrderRowProps {
   orderData: IOrder;
@@ -31,7 +34,7 @@ export const ConfirmedOrderRow = ({
   functions = {},
   isLastEl,
 }: IConfirmedOrderRowProps) => {
-  const cellClasses = `font-medium text-sm px-4 py-2 flex items-center ${
+  const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
     !isLastEl ? "border-b border-neutral-200" : ""
   }`;
 
@@ -73,7 +76,7 @@ export const ConfirmedOrderRow = ({
       <td className={cellClasses + " flex h-max items-center gap-4"}>
         <ButtonBtnTrans
           onClick={() => {
-            setSingle(orderData.orderId);
+            setSingle(orderData._id);
             functions?.openShippingModal?.();
           }}
           title="Ship Order"
@@ -84,11 +87,11 @@ export const ConfirmedOrderRow = ({
 
         <ButtonBtnTrans
           onClick={() => {
-            setSingle(orderData.orderId);
+            setSingle(orderData._id);
             functions?.openCancelModal?.();
           }}
           title="Cancel Order"
-          className="text-red-500 text-2xl"
+          className="text-red-500 text-xl"
         >
           <WarningIcon />
         </ButtonBtnTrans>
