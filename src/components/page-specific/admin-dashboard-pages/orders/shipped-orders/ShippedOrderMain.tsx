@@ -27,6 +27,8 @@ import { IOrder } from "@/types";
 
 import { useRef } from "react";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { catchAsyncGeneral, showToast } from "@/utils";
+import { useMarkOrdersDeliveredMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },
@@ -54,7 +56,11 @@ export const ShippedOrdersMain = () => {
     setFormParams,
     handleSubmit,
     changePage,
+    refetch,
   } = useOrdersQueries({ orderStatus: OrderStatus.Shipped, isPrivate: true });
+
+  const [markOrdersDelivered, { isLoading: isMarking }] =
+    useMarkOrdersDeliveredMutation();
 
   const {
     selected,
@@ -62,7 +68,7 @@ export const ShippedOrdersMain = () => {
     toggleSelectAll,
     checkIfSelected,
     isAllSelected,
-  } = useSelectable(orders, "orderId");
+  } = useSelectable(orders, "_id");
 
   const renderRow = ({ data, isLastEl }: TRenderTableRowProps<IOrder>) => (
     <ShippedOrderRow
@@ -84,11 +90,15 @@ export const ShippedOrdersMain = () => {
   });
 
   // confirm action for modal
-  const handleConfirmDeliver = () => {
-    console.log("Marking selected orders as delivered:", selected);
-    // TODO: call API or redux action here
+  const handleMarkDelivered = catchAsyncGeneral(async () => {
     closeModal();
-  };
+    const res = await markOrdersDelivered({ _ids: selected }).unwrap();
+
+    if (res?.success) {
+      showToast({ message: res.message });
+      refetch();
+    }
+  });
 
   return (
     <ProtectedRouteProvider allowedRoles={[admin, superAdmin]}>
@@ -103,6 +113,7 @@ export const ShippedOrdersMain = () => {
         <ButtonBtnTrans
           ref={tableActionsBlockRef}
           onClick={openModal}
+          isLoading={isMarking}
           className="text-primary font-inherit ml-auto px-4 !h-[50px] shrink-0"
           isDisabled={selected.length < 1}
         >
@@ -136,7 +147,7 @@ export const ShippedOrdersMain = () => {
         <ConfirmationModal
           show={isModalOpen}
           message={`Mark ${selected.length} order(s) as delivered?`}
-          onConfirm={handleConfirmDeliver}
+          onConfirm={handleMarkDelivered}
           onCancel={closeModal}
           isAnimated
         />

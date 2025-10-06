@@ -1,6 +1,6 @@
 import { showToast } from "./showToast";
 
-type HandleErrorOption = "toast" | "function" | "throw";
+type THandleErrorOption = "toast" | "function" | "throw";
 
 // Matches what axiosBaseQuery throws
 interface IAxiosQueryError {
@@ -9,7 +9,7 @@ interface IAxiosQueryError {
 }
 
 interface ICatchAsyncOptions<T> {
-  handleError?: HandleErrorOption;
+  handleError?: THandleErrorOption;
   onFinally?: ((args?: T) => void) | null;
   onError?: ((error: unknown, args?: T, message?: string) => void) | null;
   autoPrevent?: boolean;
@@ -23,18 +23,15 @@ function isAxiosQueryError(error: unknown): error is IAxiosQueryError {
   );
 }
 
-// possible events
-export type TPossibleEvent = { preventDefault: () => void } | Event;
-
 // any kind of object with possible "e" Event key
 export type TWithEvent = {
-  e?: TPossibleEvent;
+  e?: { preventDefault: () => void } | Event;
   [key: string]: any;
 };
 
-export const catchAsyncGeneral = <T extends TWithEvent = TWithEvent>(
-  fn: (args?: T) => Promise<void>,
-  options: ICatchAsyncOptions<T> = {}
+export const catchAsyncGeneral = (
+  fn: (args?: TWithEvent) => Promise<void>,
+  options: ICatchAsyncOptions<TWithEvent> = {}
 ) => {
   const {
     handleError = "toast",
@@ -43,9 +40,9 @@ export const catchAsyncGeneral = <T extends TWithEvent = TWithEvent>(
     autoPrevent = true,
   } = options;
 
-  return async (args?: T) => {
+  return async (args?: TWithEvent) => {
     // Narrow to any event-like object safely
-    const possibleEvent = args?.e as TPossibleEvent | undefined;
+    const possibleEvent = args?.e as TWithEvent["e"];
 
     if (autoPrevent && possibleEvent?.preventDefault) {
       possibleEvent.preventDefault();

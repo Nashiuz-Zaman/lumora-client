@@ -9,7 +9,7 @@ import {
   RefObject,
 } from "react";
 
-export type TRefs = Record<string, RefObject<any | null>>;
+export type TRefs = Record<string, RefObject<any> | null>;
 
 export interface IRefsContext {
   refs: TRefs;

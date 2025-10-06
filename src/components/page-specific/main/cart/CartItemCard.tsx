@@ -40,10 +40,10 @@ export const CartItemCard = ({
   );
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-200 p-6 transition-all duration-300">
+    <div className="bg-white rounded-xl border border-neutral-100 p-6 transition-all duration-300 shadow-sm">
       <div className="grid grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
         {/* Thumbnail */}
-        <div className="w-24 h-24 rounded-2xl overflow-hidden flex items-center justify-center bg-neutral-100 shadow-lg">
+        <div className="w-24 h-24 overflow-hidden flex items-center justify-center">
           {item.product.defaultImage ? (
             <Image
               src={item.product.defaultImage}

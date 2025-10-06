@@ -2,15 +2,15 @@
 import { RefObject, useEffect, useState } from "react";
 
 export const useResizeObserver = <T extends HTMLElement>(
-  refs: RefObject<T>[]
+  refs: (RefObject<T> | null)[]
 ) => {
   const [entries, setEntries] = useState<(ResizeObserverEntry | null)[]>(
-    Array(refs.length).fill(null)
+    Array(refs?.length).fill(null)
   );
 
   useEffect(() => {
     // extract current elements only
-    const elements = refs.map((r) => r?.current).filter(Boolean) as T[];
+    const elements = refs?.map((r) => r?.current).filter(Boolean) as T[];
     if (!elements.length) return;
 
     const observer = new ResizeObserver((obsEntries) => {
@@ -28,7 +28,7 @@ export const useResizeObserver = <T extends HTMLElement>(
 
     return () => observer.disconnect();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refs.every((ref) => !!ref?.current)]);
+  }, [refs?.every((ref) => !!ref?.current)]);
 
   return entries;
 };

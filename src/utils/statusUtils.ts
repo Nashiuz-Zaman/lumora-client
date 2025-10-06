@@ -5,7 +5,7 @@ import { ReturnRequestStatus } from "@/constants/returnRequest";
 import { ReviewStatus } from "@/constants/review";
 
 // --- Utility to clean a query param for status ---
-export function cleanStatusParam(statusParam: unknown): number | "all" {
+export const cleanStatusParam = (statusParam: unknown): number | "all" => {
   if (typeof statusParam === "boolean") return "all";
 
   if (typeof statusParam === "number") return statusParam;
@@ -21,17 +21,17 @@ export function cleanStatusParam(statusParam: unknown): number | "all" {
   }
 
   return "all";
-}
+};
 
 // --- Coupon Status ---
-export function getCouponStatusLabel(statusCode: number): string {
+export const getCouponStatusLabel = (statusCode: number): string => {
   const entry = Object.entries(CouponStatus).find(
     ([, value]) => value === statusCode
   );
   return entry ? entry[0] : "Unknown";
-}
+};
 
-export function getCouponStatusTextColor(code: number): string {
+export const getCouponStatusTextColor = (code: number): string => {
   switch (code) {
     case CouponStatus.Deleted:
       return "text-red-600";
@@ -42,36 +42,36 @@ export function getCouponStatusTextColor(code: number): string {
     default:
       return "text-gray-700";
   }
-}
+};
 
 // --- Order Status ---
-export function getOrderStatusLabel(status: number): string {
-  return (
-    Object.entries(OrderStatus).find(([, value]) => value === status)?.[0] ??
-    "Unknown"
-  );
-}
+export const getOrderStatusLabel = (status: number): string =>
+  Object.entries(OrderStatus).find(([, value]) => value === status)?.[0] ??
+  "Unknown";
 
-export function getOrderStatusTextColor(code: number): string {
+export const getOrderStatusTextColor = (code: number): string => {
   switch (code) {
-    case OrderStatus.Cancelled:
-      return "text-red-600";
+    case OrderStatus.Pending:
+      return "text-amber-600";
     case OrderStatus.Confirmed:
-      return "text-blue-600";
+      return "text-green-600";
     case OrderStatus.Shipped:
       return "text-indigo-600";
     case OrderStatus.Delivered:
       return "text-green-600";
-    case OrderStatus.Deleted:
+    case OrderStatus.Cancelled:
+      return "text-red-600";
     case OrderStatus.Returned:
+      return "text-gray-500";
+    case OrderStatus.Deleted:
       return "text-gray-500";
     default:
       return "text-gray-700";
   }
-}
+};
 
 // --- Product Status ---
-export function getProductStatusTextColor(code: number): string {
+export const getProductStatusTextColor = (code: number): string => {
   switch (code) {
     case ProductStatus.Active:
       return "text-green-600";
@@ -82,21 +82,18 @@ export function getProductStatusTextColor(code: number): string {
     default:
       return "text-gray-600";
   }
-}
+};
 
 // Generic helper to get status label from any status object
-export function getStatusLabel(
+export const getStatusLabel = (
   status: number,
   statusObj: Record<string, number>
-): string {
-  return (
-    Object.entries(statusObj).find(([, value]) => value === status)?.[0] ??
-    "Unknown"
-  );
-}
+): string =>
+  Object.entries(statusObj).find(([, value]) => value === status)?.[0] ??
+  "Unknown";
 
 // --- Review Status ---
-export function getReviewStatusLabel(status: number): string {
+export const getReviewStatusLabel = (status: number): string => {
   switch (status) {
     case ReviewStatus.Deleted:
       return "Deleted";
@@ -107,9 +104,9 @@ export function getReviewStatusLabel(status: number): string {
     default:
       return "Unknown";
   }
-}
+};
 
-export function getReviewStatusTextColor(status: number): string {
+export const getReviewStatusTextColor = (status: number): string => {
   switch (status) {
     case ReviewStatus.Deleted:
       return "text-red-600";
@@ -120,10 +117,10 @@ export function getReviewStatusTextColor(status: number): string {
     default:
       return "text-gray-700";
   }
-}
+};
 
 // --- Return Request Status ---
-export function getReturnRequestStatusLabel(status: number): string {
+export const getReturnRequestStatusLabel = (status: number): string => {
   switch (status) {
     case ReturnRequestStatus.Rejected:
       return "Rejected";
@@ -134,9 +131,9 @@ export function getReturnRequestStatusLabel(status: number): string {
     default:
       return "Unknown";
   }
-}
+};
 
-export function getReturnRequestStatusTextColor(status: number): string {
+export const getReturnRequestStatusTextColor = (status: number): string => {
   switch (status) {
     case ReturnRequestStatus.Rejected:
       return "text-red-600";
@@ -147,4 +144,4 @@ export function getReturnRequestStatusTextColor(status: number): string {
     default:
       return "text-gray-700";
   }
-}
+};

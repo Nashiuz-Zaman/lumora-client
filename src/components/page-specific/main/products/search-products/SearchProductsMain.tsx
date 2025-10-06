@@ -68,6 +68,7 @@ const SearchProductsMain = () => {
             selected={watchedValues.sort}
             options={[...ProductSortOptions]}
             buttonLabel="Sort Products"
+            className="ml-auto"
           />
 
           <div className="flex flex-col gap-4">

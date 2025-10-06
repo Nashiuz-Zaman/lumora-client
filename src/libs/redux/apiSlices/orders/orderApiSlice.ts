@@ -65,6 +65,14 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
+    markOrdersDelivered: builder.mutation<IApiResponse, { _ids: string[] }>({
+      query: (data) => ({
+        url: "/orders/delivered",
+        method: "PATCH",
+        data,
+      }),
+    }),
+
     cancelOrdersAdmin: builder.mutation<IApiResponse, ICancelOrdersAdminArgs>({
       query: (data) => ({
         url: `/orders/admin-cancel`,
@@ -101,5 +109,6 @@ export const {
   useMarkOrderShippedMutation,
   useCancelOrdersAdminMutation,
   useDeleteOrdersAdminMutation,
+  useMarkOrdersDeliveredMutation,
   useTrackOrderQuery,
 } = orderApiSlice;

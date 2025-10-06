@@ -8,7 +8,7 @@ import {
   CartBtn,
   UserAvatarMenu,
   SearchbarProductCard,
-  ThreeDotMenu, // import this
+  ThreeDotMenu,
 } from "../../shared";
 
 import { IMegaMenuProps, MegaMenu } from "./MegaMenu";
@@ -25,7 +25,7 @@ import {
 import { useEffect, useState } from "react";
 import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
-import { UserRoles } from "@/constants/user"; // import roles
+import { UserRoles } from "@/constants/user"; 
 
 type THeaderProps = IMegaMenuProps;
 
@@ -70,7 +70,7 @@ const Header = ({ categories }: THeaderProps) => {
   const isCustomer = role === UserRoles.customer;
 
   return (
-    <header className="relative z-[200]">
+    <header className="relative top-0 z-[200]">
       {/* Top promo / links bar */}
       <InnerContainer className="bg-white text-sm xl:text-base py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
@@ -131,7 +131,12 @@ const Header = ({ categories }: THeaderProps) => {
             {/* role-based menu */}
             {user && (
               <div className="flex items-center gap-4">
-                {isAdminRole && <ThreeDotMenu className="[&_.three-dot-icon]:text-white [&_.three-dot-icon]:hover:text-primary" logoutFunction={logout} />}
+                {isAdminRole && (
+                  <ThreeDotMenu
+                    className="[&_.three-dot-icon]:text-white [&_.three-dot-icon]:hover:text-primary"
+                    logoutFunction={logout}
+                  />
+                )}
                 {isCustomer && (
                   <UserAvatarMenu userData={user} logoutFunction={logout} />
                 )}

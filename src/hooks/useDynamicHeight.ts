@@ -5,7 +5,7 @@ import { useResizeObserver, useScreenSize } from "./";
 import { getHeight } from "@/utils";
 
 interface IUseDynamicHeightOptions {
-  refElements?: RefObject<HTMLElement>[];
+  refElements?: (RefObject<HTMLElement> | null)[];
   fixedHeights?: number[];
 }
 
@@ -18,7 +18,7 @@ export const useDynamicHeight = ({
   const entries = useResizeObserver(refElements);
 
   useEffect(() => {
-    if (!screenHeight || entries.some((entry) => entry === null)) return;
+    if (!screenHeight || entries.includes(null)) return;
 
     const refsHeight = entries
       .filter((entry): entry is ResizeObserverEntry => entry !== null)

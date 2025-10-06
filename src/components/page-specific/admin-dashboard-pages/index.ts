@@ -6,3 +6,5 @@ export * from "./central-product-management/clone-product/CloneProductMain";
 export * from "./central-product-management/product-collection/ProductCollectionMain";
 export * from "./shared/TopPanel";
 export * from "./orders/confirmed-orders/ConfirmedOrderMain";
+export * from "./orders/shipped-orders/ShippedOrderMain";
+export * from "./orders/delivered-orders/DeliveredOrdersMain";

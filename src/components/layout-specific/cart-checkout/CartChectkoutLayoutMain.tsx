@@ -46,7 +46,7 @@ const CartCheckoutLayoutMain = ({
         </div>
 
         {/* Layout */}
-        <div className="grid grid-cols-1 xl:grid-cols-[3fr_1.25fr] gap-8 !items-start">
+        <div className="grid gap-5 grid-cols-1 lg:grid-cols-[1.5fr_1fr] xl:grid-cols-[3fr_1.25fr] xl:gap-8 !items-start">
           {/* Dynamic left-side content */}
           {children}
 

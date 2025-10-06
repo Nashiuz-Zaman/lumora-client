@@ -11,6 +11,7 @@ interface IOrdersTopParamsFormProps<T> {
   setParams: Dispatch<SetStateAction<T>>;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   sortOptions: TParamsFilterFormOptions;
+  className?: string;
 }
 
 export const OrdersTopParamsForm = <T extends Record<string, any>>({
@@ -18,6 +19,7 @@ export const OrdersTopParamsForm = <T extends Record<string, any>>({
   setParams,
   onSubmit,
   sortOptions,
+  className,
 }: IOrdersTopParamsFormProps<T>) => {
   return (
     <ParamsFilterForm<T>
@@ -28,6 +30,7 @@ export const OrdersTopParamsForm = <T extends Record<string, any>>({
       placeholder="Search Orders"
       showStatusFilter={false}
       roleLabel="Product"
+      className={className}
     />
   );
 };

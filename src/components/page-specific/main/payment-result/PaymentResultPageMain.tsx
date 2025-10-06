@@ -46,10 +46,10 @@ const PaymentResultPageMain = () => {
   const icons: Record<PaymentStatus, { name: string; color: string }> = {
     success: {
       name: "clarity:success-standard-solid",
-      color: "text-green-600",
+      color: "text-green-500",
     },
-    fail: { name: "ic:round-error", color: "text-red-600" },
-    cancel: { name: "mdi:cancel", color: "text-yellow-600" },
+    fail: { name: "ic:round-error", color: "text-red-500" },
+    cancel: { name: "mdi:cancel", color: "text-red-500" },
   };
 
   const typedStatus = status as PaymentStatus;
@@ -57,7 +57,7 @@ const PaymentResultPageMain = () => {
   return (
     <div className="h-full grid place-content-center">
       <InnerContainer>
-        <div className="flex flex-col items-center gap-6">
+        <div className="border border-neutral-200 shadow-md rounded-2xl p-10 bg-white flex flex-col items-center gap-6 max-w-lg mx-auto">
           <div className="text-center space-y-2">
             <div className="flex items-center gap-2 justify-center">
               <IcfyIcon
@@ -82,13 +82,15 @@ const PaymentResultPageMain = () => {
           </div>
 
           {typedStatus === "success" && (
-            <LinkBtn href="/track-order" className="!primaryClasses">Track your Order</LinkBtn>
+            <LinkBtn href="/track-order" className="!primaryClasses">
+              Track your Order
+            </LinkBtn>
           )}
 
           {typedStatus === "fail" && (
             <LinkBtn
-              href={`/order-payment?orderId=${orderId}`}
-              className="!primaryClasses"
+              href={`/checkout`}
+              className="!primaryClasses !rounded-full"
             >
               Try Again
             </LinkBtn>
@@ -96,9 +98,9 @@ const PaymentResultPageMain = () => {
 
           {typedStatus === "cancel" && (
             <RedirectCountdown
-              href="/"
-              after={4000}
-              text="Redirecting to homepage"
+              href="/cart"
+              after={5000}
+              text="Redirecting To Cart"
               modifyClasses="text-center mt-2 text-muted-foreground"
             />
           )}

@@ -1,4 +1,4 @@
-import { ShippedOrdersMain } from "@/components/page-specific/admin-dashboard-pages/orders/shipped-orders/ShippedOrderMain";
+import { ShippedOrdersMain } from "@/components/page-specific";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

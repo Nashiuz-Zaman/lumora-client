@@ -5,8 +5,6 @@ export const metadata: Metadata = {
   title: "Your Cart - Lumora.com",
 };
 
-const CartPage = () => {
-  return <CartPageMain />;
-};
+const CartPage = () => <CartPageMain />;
 
 export default CartPage;

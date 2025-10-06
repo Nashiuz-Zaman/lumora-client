@@ -112,7 +112,6 @@ export const PromoCode = ({ discount, appliedCode }: IPromoCodeProps) => {
             />
             <ButtonBtn
               onClick={handleApply}
-              type="button"
               className="!secondaryClasses"
               isLoading={isApplying}
             >

@@ -28,6 +28,7 @@ interface IParamsFilterFormProps<T> {
   showStatusFilter?: boolean;
   statusOptions?: TParamsFilterFormOptions;
   roleLabel?: string;
+  className?: string;
 }
 
 export const ParamsFilterForm = <T extends Record<string, any>>({
@@ -39,6 +40,7 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
   showStatusFilter = false,
   statusOptions = [],
   roleLabel = "",
+  className = "",
 }: IParamsFilterFormProps<T>) => {
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setParams((prev) => ({ ...prev, search: e.target.value }));
@@ -73,7 +75,7 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
     <form
       ref={ref}
       onSubmit={onSubmit}
-      className="px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between"
+      className={`px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
     >
       <Inputfield
         onChange={handleSearchChange}

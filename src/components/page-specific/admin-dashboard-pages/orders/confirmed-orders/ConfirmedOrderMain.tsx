@@ -85,7 +85,7 @@ const ConfirmedOrdersMain = () => {
   const [markOrderShipped, { isLoading: isMarkingOrderShipped }] =
     useMarkOrderShippedMutation();
 
-  const handleMarkAsShipped = catchAsyncGeneral(async (args) => {
+  const handleMarkShipped = catchAsyncGeneral(async (args) => {
     const data = args?.data as IShippingFormValues;
     const reset = args?.reset as UseFormReset<IShippingFormValues>;
     const dataWithId: IMarkOrderShippedArgs = { ...data, _id: single! };
@@ -202,7 +202,7 @@ const ConfirmedOrdersMain = () => {
         isLoading={isMarkingOrderShipped}
         isOpen={isShippingModalOpen}
         onClose={closeShippingModal}
-        onSubmit={handleMarkAsShipped}
+        onSubmit={handleMarkShipped}
       />
 
       {/* Cancel Order Modal */}
