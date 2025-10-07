@@ -6,6 +6,7 @@ import { ReactNode } from "react";
 // Components
 import { AdminHeader } from "./AdminHeader";
 import { AdminSideNavbar } from "./AdminSideNavbar";
+import { MobileAdminSideNavbar } from "./MobileAdminSideNavbar";
 
 export const AdminLayoutMain = ({ children }: { children: ReactNode }) => {
   return (
@@ -14,6 +15,7 @@ export const AdminLayoutMain = ({ children }: { children: ReactNode }) => {
 
       <main className="grow grid grid-cols-1 xl:grid-cols-[19rem_1fr] items-stretch relative lg:static">
         {/* Sm screen drawer navbar */}
+        <MobileAdminSideNavbar />
 
         {/* Lg screen Navbar */}
         <div className="overflow-y-auto w-full hidden xl:block border-r border-neutral-200 pr-2 py-2">

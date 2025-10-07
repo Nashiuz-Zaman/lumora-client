@@ -1,14 +1,16 @@
 "use client";
 
 import { MouseEvent } from "react";
-import { HamburgerIcon } from "../icons";
+import { CloseIcon, HamburgerIcon } from "../icons";
 
 export const MobileMenuBtn = ({
   onClick,
   className = "",
+  isMenuOpen = false,
 }: {
   onClick?: (e: MouseEvent<HTMLButtonElement>) => void;
   className?: string;
+  isMenuOpen: boolean;
 }) => {
   return (
     <button
@@ -16,7 +18,11 @@ export const MobileMenuBtn = ({
       className={`block ${className}`}
       onClick={onClick}
     >
-      <HamburgerIcon />
+      {isMenuOpen ? (
+        <CloseIcon className="text-3xl" />
+      ) : (
+        <HamburgerIcon className="text-3xl" />
+      )}
     </button>
   );
 };
