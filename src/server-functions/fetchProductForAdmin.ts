@@ -19,6 +19,8 @@ export const fetchProductForAdmin = catchAsyncServer(
       credentials: "include",
     });
 
+    console.log(res);
+
     if (!res.ok) throw new Error("Failed to fetch product data");
 
     return (await res.json()) as IApiResponse<IProduct>;
