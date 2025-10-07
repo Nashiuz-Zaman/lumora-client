@@ -1,20 +1,21 @@
-import { IApiResponse, IProductWithReviewsStats } from "@/types";
+import { IApiResponse, IProduct, IProductWithReviewsStats } from "@/types";
 import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
-interface GetProductOptions {
-  limitFields?: string;
+interface IGetProductOptions {
+  limitFields?: (keyof IProduct)[];
   populate?: string;
   reviewStats?: boolean;
 }
 
 export const fetchProductForCustomer = catchAsyncServer(
-  async (slug: string, options?: GetProductOptions) => {
+  async (slug: string, options?: IGetProductOptions) => {
     if (!slug) throw new Error("Slug is required");
 
     const apiUrl = getBaseApiUrl();
     const params = new URLSearchParams();
 
-    if (options?.limitFields) params.append("limitFields", options.limitFields);
+    if (options?.limitFields)
+      params.append("limitFields", options.limitFields.join(","));
     if (options?.populate) params.append("populate", options.populate);
     if (options?.reviewStats) params.append("reviewStats", "true");
 
@@ -23,7 +24,7 @@ export const fetchProductForCustomer = catchAsyncServer(
     }`;
 
     const res = await fetch(url, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 18000 },
     });
 
     if (!res.ok) throw new Error("Failed to fetch product data");

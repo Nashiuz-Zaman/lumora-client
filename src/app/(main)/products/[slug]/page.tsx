@@ -11,7 +11,17 @@ export async function generateMetadata(props: {
   params: TParams;
 }): Promise<Metadata> {
   const { slug } = await props.params;
-  const result = await fetchProductForCustomer(slug);
+  const result = await fetchProductForCustomer(slug, {
+    limitFields: [
+      "title",
+      "seoTitle",
+      "seoDescription",
+      "canonicalUrl",
+      "subtitle",
+      "metaKeywords",
+    ],
+    reviewStats: false,
+  });
 
   if (!result || "isError" in result) {
     return {

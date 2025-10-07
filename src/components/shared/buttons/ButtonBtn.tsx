@@ -46,7 +46,7 @@ export const ButtonBtn = ({
     transition-all rounded-md text-center
     cursor-pointer active:scale-95
     disabled:opacity-60 disabled:scale-100 disabled:cursor-not-allowed
-    relative
+    relative gap-2
     px-8 py-3
     ${className}
   `;
