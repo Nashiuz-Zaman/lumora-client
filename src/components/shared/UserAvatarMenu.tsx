@@ -4,7 +4,6 @@ import { useEffect, useState, MouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { UserRoles } from "@/constants/user";
 import { useClickOutside } from "@/hooks";
 import { TUserPopulated } from "@/types";
 
@@ -34,14 +33,11 @@ export const UserAvatarMenu = ({
 
   const name = userData?.name;
   const photo = userData?.image;
-  const role = userData?.role?.name;
 
   const optionsClasses =
     "flex font-semibold text-neutral-500 items-center gap-2 hover:text-primary transition-all duration-200";
 
-  const isAdminRole = role === UserRoles.admin || role === UserRoles.superAdmin;
-
-  const dashboardLink = `/${isAdminRole ? "admin" : "customer"}`;
+  const dashboardLink = "/customer";
 
   return (
     <div className={`h-8 md:h-10 xl:h-14 cursor-pointer relative ${className}`}>
