@@ -67,7 +67,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <small className="block text-center mb-6 text-xs sm:text-sm text-white px-4">
-          © {curYear} | All Rights Reserved
+          © {curYear} | Developed by Nashiuz Zaman
         </small>
       </InnerContainer>
     </footer>

@@ -45,9 +45,14 @@ export const getCouponStatusTextColor = (code: number): string => {
 };
 
 // --- Order Status ---
-export const getOrderStatusLabel = (status: number): string =>
-  Object.entries(OrderStatus).find(([, value]) => value === status)?.[0] ??
-  "Unknown";
+export const getOrderStatusLabel = (status: number): string => {
+  const label =
+    Object.entries(OrderStatus).find(([, value]) => value === status)?.[0] ??
+    "Unknown";
+
+  if (label === "Deleted") return "Archived";
+  else return label;
+};
 
 export const getOrderStatusTextColor = (code: number): string => {
   switch (code) {

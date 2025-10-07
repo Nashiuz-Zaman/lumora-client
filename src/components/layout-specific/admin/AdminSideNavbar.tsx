@@ -59,12 +59,12 @@ const navSections: INavSection[] = [
         path: "/admin/orders/cancelled",
       },
       {
-        name: "Returned",
-        icon: "hugeicons:delivery-return-01",
-        path: "/admin/orders/returned",
+        name: "Archived",
+        icon: "mdi:archive-lock",
+        path: "/admin/orders/archived",
       },
     ],
-  }, 
+  },
 ];
 
 interface IAdminSideNavbarProps {

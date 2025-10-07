@@ -1,6 +1,5 @@
 "use client";
 
-import { InputCheckbox } from "@/components/shared";
 import { IOrder } from "@/types";
 import {
   getOrderStatusLabel,
@@ -11,20 +10,13 @@ import {
 
 interface IDeliveredOrderRowProps {
   orderData: IOrder;
-  isSelected: boolean;
-  functions: {
-    toggleSelectOne?: (order: IOrder) => void;
-  };
   isLastEl?: boolean;
 }
 
 export const DeliveredOrderRow = ({
   orderData,
-  isSelected,
-  functions,
   isLastEl,
 }: IDeliveredOrderRowProps) => {
-  const { toggleSelectOne } = functions;
   if (!orderData) return null;
 
   const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
@@ -33,14 +25,6 @@ export const DeliveredOrderRow = ({
 
   return (
     <>
-      {/* Checkbox */}
-      <td className={cellClasses + " !pl-4 !pr-2"}>
-        <InputCheckbox
-          checked={isSelected}
-          onChange={() => toggleSelectOne?.(orderData)}
-        />
-      </td>
-
       {/* Order ID */}
       <td className={cellClasses}>
         <p>{orderData.orderId}</p>
