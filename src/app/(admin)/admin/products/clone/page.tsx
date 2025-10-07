@@ -9,7 +9,7 @@ import { stripIdsAndResetSku } from "@/utils";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Create A Product | Admin Panel",
+  title: "Clone A Product | Admin Panel",
 };
 
 const CloneProductPage = async ({

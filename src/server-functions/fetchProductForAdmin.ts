@@ -16,6 +16,7 @@ export const fetchProductForAdmin = catchAsyncServer(
       headers: {
         Cookie: cookieHeader, // forward cookies
       },
+      credentials: "include",
     });
 
     if (!res.ok) throw new Error("Failed to fetch product data");
