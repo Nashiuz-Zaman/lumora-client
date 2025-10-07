@@ -1,12 +1,8 @@
-import { AdminOrdersLayoutMain } from "@/components/layout-specific/admin";
 import { ReactNode } from "react";
+import { AdminOrdersLayoutMain } from "@/components/layout-specific/admin";
 
-const Layout = ({ children }: { children: ReactNode }) => {
-  return (
-
-      <AdminOrdersLayoutMain>{children}</AdminOrdersLayoutMain>
-   
-  );
-};
+const Layout = ({ children }: { children: ReactNode }) => (
+  <AdminOrdersLayoutMain>{children}</AdminOrdersLayoutMain>
+);
 
 export default Layout;

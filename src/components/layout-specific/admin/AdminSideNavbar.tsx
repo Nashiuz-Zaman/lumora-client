@@ -9,7 +9,7 @@ interface INavItem {
   name: string;
   icon: string;
   path: string;
-  exact?: boolean;
+  checkSubstr?: boolean;
 }
 
 interface INavSection {
@@ -31,7 +31,7 @@ const navSections: INavSection[] = [
         name: "Products",
         icon: "fluent-mdl2:product-variant",
         path: "/admin/products",
-        exact: true,
+        checkSubstr: true,
       },
     ],
   },
@@ -65,6 +65,36 @@ const navSections: INavSection[] = [
       },
     ],
   },
+  {
+    heading: "Payments",
+    items: [
+      {
+        name: "Successful",
+        icon: "material-symbols:paid",
+        path: "/admin/payments/successful",
+      },
+      {
+        name: "Failed",
+        icon: "material-symbols:cancel-outline",
+        path: "/admin/payments/failed",
+      },
+    ],
+  },
+  {
+    heading: "Coupons",
+    items: [
+      {
+        name: "Active",
+        icon: "nrk:live-activity-active",
+        path: "/admin/coupons/active",
+      },
+      {
+        name: "Expired",
+        icon: "bi:exclamation-triangle-fill",
+        path: "/admin/coupons/expired",
+      },
+    ],
+  },
 ];
 
 interface IAdminSideNavbarProps {
@@ -93,7 +123,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
                 <Link
                   href={item.path}
                   className={`${linkClasses} ${
-                    checkIfActive(item.path, item.exact || false)
+                    checkIfActive(item.path, item.checkSubstr ?? false)
                       ? activeClasses
                       : ""
                   }`}
