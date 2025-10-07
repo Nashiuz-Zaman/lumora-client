@@ -34,7 +34,7 @@ export const MobileAdminSideNavbar = () => {
         animationDuration={300}
         show={showDrawer}
         attachedToViewPort={false}
-        className="h-full w-full md:w-max z-1000 shadow-2xl"
+        className="h-full w-full xs:w-max z-1000 shadow-2xl"
       >
         <AdminSideNavbar className="w-full" />
       </Drawer>
