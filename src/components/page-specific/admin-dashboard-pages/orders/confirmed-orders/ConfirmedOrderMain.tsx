@@ -1,5 +1,6 @@
 "use client";
 
+// Components
 import {
   Pagination,
   TabularData,
@@ -9,31 +10,43 @@ import {
   TTableColumn,
 } from "@/components/shared";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
 import { ConfirmedOrderRow } from "./ConfirmedOrderRow";
 import {
   CancelOrderModalAdmin,
   IShippingFormValues,
   ShippingModal,
 } from "@/components/modals";
+
+// Providers
+import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+
+// Hooks
 import {
   useOrdersQueries,
   useModal,
   useSelectable,
   useRefState,
   useSetElementText,
+  useDynamicHeight,
 } from "@/hooks";
+import { useRef } from "react";
+
+// Constants
 import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
+
+// Utilities
 import { catchAsyncGeneral, showToast } from "@/utils";
 
 // Types
 import { ICancelOrdersAdminArgs, IMarkOrderShippedArgs, IOrder } from "@/types";
+
+// Redux / API
 import {
-  useCancelOrdersAdminMutation,
+  useCancelOrdersMutation,
   useMarkOrderShippedMutation,
 } from "@/libs/redux/apiSlices/orders/orderApiSlice";
-import { useRef } from "react";
-import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+
+// React Hook Form
 import { UseFormReset } from "react-hook-form";
 
 const columns: TTableColumn[] = [
@@ -107,19 +120,18 @@ const ConfirmedOrdersMain = () => {
     closeModal: closeCancelModal,
   } = useModal();
 
-  const [cancelOrderAdmin, { isLoading: isCancelling }] =
-    useCancelOrdersAdminMutation();
+  const [cancelOrders, { isLoading: isCancelling }] = useCancelOrdersMutation();
 
   const handleAdminCancel = catchAsyncGeneral(async (args) => {
     const e = args?.e as React.FormEvent<HTMLFormElement>;
     const form = e.currentTarget;
 
     const data: ICancelOrdersAdminArgs = {
-      cancelIds: single ? ([single] as string[]) : (selected as string[]),
+      _ids: single ? ([single] as string[]) : (selected as string[]),
       reason: form.reason.value,
     };
 
-    const res = await cancelOrderAdmin(data).unwrap();
+    const res = await cancelOrders(data).unwrap();
 
     if (res?.success) {
       showToast({ message: res.message });

@@ -2,12 +2,13 @@ import {
   IApiResponse,
   ICancelOrdersAdminArgs,
   IMarkOrderShippedArgs,
+  IOrder,
 } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
 
 export const orderApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    placeOrder: builder.mutation({
+    placeOrder: builder.mutation<IApiResponse<{ paymentUrl: string }>, IOrder>({
       query: (orderData) => ({
         url: `/orders/`,
         method: "POST",
@@ -42,8 +43,7 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
         url: "/orders",
         method: "GET",
         params: {
-          limitFields:
-            "orderId,name,email,phone,updatedAt,total,status,estimatedDelivery",
+          
           ...params,
         },
       }),
@@ -73,17 +73,17 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    cancelOrdersAdmin: builder.mutation<IApiResponse, ICancelOrdersAdminArgs>({
+    cancelOrders: builder.mutation<IApiResponse, ICancelOrdersAdminArgs>({
       query: (data) => ({
-        url: `/orders/admin-cancel`,
+        url: `/orders/cancel`,
         method: "PATCH",
         data,
       }),
     }),
 
-    deleteOrdersAdmin: builder.mutation({
+    archiveOrders: builder.mutation<IApiResponse, { _ids: string[] }>({
       query: (data) => ({
-        url: "/orders/admin-delete",
+        url: "/orders/archive",
         method: "PATCH",
         data,
       }),
@@ -107,8 +107,8 @@ export const {
   useGetOrdersPrivateQuery,
   useInitiateSslPaymentMutation,
   useMarkOrderShippedMutation,
-  useCancelOrdersAdminMutation,
-  useDeleteOrdersAdminMutation,
+  useCancelOrdersMutation,
+  useArchiveOrdersMutation,
   useMarkOrdersDeliveredMutation,
   useTrackOrderQuery,
 } = orderApiSlice;

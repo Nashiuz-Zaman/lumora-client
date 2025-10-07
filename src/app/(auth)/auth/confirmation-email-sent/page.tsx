@@ -7,7 +7,7 @@ export const metadata = {
 
 const ConfirmationEmailSentPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense>
       <div className="flex items-center justify-center w-full h-full ">
         <ConfirmationEmailSentMain />
       </div>

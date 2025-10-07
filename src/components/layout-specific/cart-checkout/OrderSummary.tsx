@@ -27,23 +27,30 @@ export const OrderSummary = () => {
       <div className="px-6 py-6 space-y-6">
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
-            <span className="text-neutral-600">Subtotal</span>
+            <span className="text-neutral-500">Subtotal</span>
             <span className="font-medium">{formatPrice(subtotal)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-neutral-600">Shipping</span>
+            <span className="text-neutral-500">Shipping</span>
             <span className="font-medium text-secondary">
               {formatPrice(shippingFee)}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-neutral-600">Tax</span>
+            <span className="text-neutral-500">Tax</span>
             <span className="font-medium">{formatPrice(tax)}</span>
+          </div>
+
+          <div className="flex justify-between">
+            <span className="text-neutral-500">Discount</span>
+            <span className="font-medium text-green-600">
+              -{formatPrice(discount)}
+            </span>
           </div>
         </div>
 
         {/* Promo Code */}
-        <PromoCode discount={discount} appliedCode={couponCode} />
+        <PromoCode appliedCode={couponCode} />
 
         <div className="border-t border-neutral-200 pt-4">
           <div className="flex justify-between items-center mb-4">

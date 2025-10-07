@@ -87,7 +87,7 @@ const Header = ({ categories }: THeaderProps) => {
       </InnerContainer>
 
       {/* Main header content */}
-      <div className="bg-gradient-to-tl from-primary to-primary-dark">
+      <div className="bg-gradient-to-r from-primary to-primary-light">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
           {/* logo */}
           <BrandLogo className="mr-6" />

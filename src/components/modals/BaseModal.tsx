@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useRef } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { useClickOutside } from "@/hooks";
 import { CloseBtn } from "../shared";
 import gsap from "gsap";
@@ -29,6 +29,18 @@ export const BaseModal = ({
 }: IBaseModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
 
+  // Disable background scroll when modal is open
+  useEffect(() => {
+    if (condition) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [condition]);
+
   // Close modal when clicked outside
   useClickOutside(allowCloseOnOutsideClick && condition, (e: MouseEvent) => {
     if (
@@ -51,12 +63,12 @@ export const BaseModal = ({
       nodeRef={modalRef}
       onEnter={() => {
         if (isAnimated && modalRef.current) {
-          gsap.to(modalRef.current, {
-            opacity: 1,
-            scale: 1,
-            duration,
-            ease: "power2.out",
-          });
+          modalRef.current.getBoundingClientRect();
+          gsap.fromTo(
+            modalRef.current,
+            { opacity: 0, scale: 0.8 },
+            { opacity: 1, scale: 1, duration, ease: "power2.out" }
+          );
         }
       }}
       onExit={() => {
@@ -72,7 +84,7 @@ export const BaseModal = ({
     >
       <div
         ref={modalRef}
-        className={`modal-focus fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[100] w-max scale-[0.8] opacity-0 ${className}`}
+        className={`modal-focus fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-max !z-300 ${className}`}
       >
         {!noCloseBtn && <CloseBtn onClick={closeFunction} />}
         {children}

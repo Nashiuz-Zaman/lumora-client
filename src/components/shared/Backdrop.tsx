@@ -31,10 +31,11 @@ export const Backdrop = ({
       nodeRef={backdropRef}
       onEnter={() => {
         if (isAnimated && backdropRef.current) {
-          gsap.to(
-            backdropRef.current,
-            { opacity: 1, duration, ease: "power2.out" }
-          );
+          gsap.to(backdropRef.current, {
+            opacity: 1,
+            duration,
+            ease: "power2.out",
+          });
         }
       }}
       onExit={() => {
@@ -49,7 +50,7 @@ export const Backdrop = ({
     >
       <div
         ref={backdropRef}
-        className={`fixed w-full h-screen opacity-0 bg-black/40 backdrop-blur-xs`}
+        className={`fixed w-full h-screen opacity-0 bg-black/40 backdrop-blur-xs !z-300`}
         style={{ zIndex }}
       />
     </Transition>

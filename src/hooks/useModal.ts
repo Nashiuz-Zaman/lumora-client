@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { TAppDispatch } from "@/libs/redux/store";
@@ -19,18 +19,6 @@ export const useModal = () => {
     dispatch(setBackdropOpen(false));
     setIsModalOpen(false);
   };
-
-  //  Stop background scroll when modal is open
-  useEffect(() => {
-    if (isModalOpen) {
-      const originalOverflow = document.body.style.overflow;
-      document.body.style.overflow = "hidden";
-
-      return () => {
-        document.body.style.overflow = originalOverflow;
-      };
-    }
-  }, [isModalOpen]);
 
   return { openModal, closeModal, isModalOpen };
 };

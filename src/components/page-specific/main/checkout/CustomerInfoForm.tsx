@@ -1,9 +1,14 @@
 "use client";
 
-import { useForm, SubmitHandler } from "react-hook-form";
-import { IcfyIcon, Inputfield, ButtonBtn } from "@/components/shared";
+import { useForm, UseFormSetError } from "react-hook-form";
+import {
+  IcfyIcon,
+  Inputfield,
+  ButtonBtn,
+  ErrorMessage,
+} from "@/components/shared";
 
-export interface CustomerInfoFormValues {
+export interface ICustomerInfoFormValues {
   name: string;
   email: string;
   phone: string;
@@ -12,13 +17,16 @@ export interface CustomerInfoFormValues {
   deliveryAddress: string;
 }
 
-interface ICustomerInfoFormProps {
-  defaultValues?: Partial<CustomerInfoFormValues>;
+export interface ICustomerInfoFormProps {
+  defaultValues?: Partial<ICustomerInfoFormValues>;
   isSubmitting?: boolean;
-  onSubmit: SubmitHandler<CustomerInfoFormValues>;
+  onSubmit: (args: {
+    data: ICustomerInfoFormValues;
+    setError: UseFormSetError<ICustomerInfoFormValues>;
+  }) => void;
 }
 
-const CustomerInfoForm = ({
+export const CustomerInfoForm = ({
   defaultValues,
   isSubmitting,
   onSubmit,
@@ -27,15 +35,25 @@ const CustomerInfoForm = ({
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<CustomerInfoFormValues>({
+    setError,
+  } = useForm<ICustomerInfoFormValues>({
     defaultValues,
   });
 
+  const handleFormSubmit = (data: ICustomerInfoFormValues) => {
+    onSubmit({ data, setError });
+  };
+
   return (
     <form
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(handleFormSubmit)}
       className="max-w-[55rem] bg-neutral-50 p-7 rounded-xl"
     >
+      {/* Root-level error */}
+      {errors.root?.message && (
+        <ErrorMessage className="mb-3" text={errors.root?.message} />
+      )}
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 mb-10">
         <Inputfield
           {...register("name", { required: "Name is required" })}
@@ -119,5 +137,3 @@ const CustomerInfoForm = ({
     </form>
   );
 };
-
-export default CustomerInfoForm;

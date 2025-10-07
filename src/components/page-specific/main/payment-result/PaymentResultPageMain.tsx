@@ -82,7 +82,10 @@ const PaymentResultPageMain = () => {
           </div>
 
           {typedStatus === "success" && (
-            <LinkBtn href="/track-order" className="!primaryClasses">
+            <LinkBtn
+              href="/track-order"
+              className="!successClasses !rounded-full"
+            >
               Track your Order
             </LinkBtn>
           )}

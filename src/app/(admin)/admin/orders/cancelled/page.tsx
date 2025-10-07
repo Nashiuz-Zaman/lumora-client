@@ -1,10 +1,10 @@
-import { UnderDev } from "@/components/shared";
+import { CancelledOrdersMain } from "@/components/page-specific";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Orders | Admin Panel",
 };
 
-const CancelledOrdersPage = () => <UnderDev />;
+const CancelledOrdersPage = () => <CancelledOrdersMain />;
 
 export default CancelledOrdersPage;

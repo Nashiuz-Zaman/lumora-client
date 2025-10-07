@@ -43,7 +43,7 @@ export const CartItemList = () => {
     <div className="space-y-4 h-full flex flex-col">
       <div className="grow flex flex-col">
         {!cartItems.length && (
-          <div className="grow flex items-center justify-center">
+          <div className="grow bg-neutral-100 p-5 rounded-xl flex items-center justify-center">
             <div>
               <NoData text="Cart is empty" className="!py-0 !my-0 !mb-4" />
               <LinkBtn className="!primaryClasses">

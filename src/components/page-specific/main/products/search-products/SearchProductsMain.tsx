@@ -9,7 +9,7 @@ import {
   SortDropdown,
 } from "@/components/shared";
 import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categoryApiSlice";
-import { MobileSearchFilter } from "./MobileSearchFilter";
+import { MobileSearchFilters } from "./MobileSearchFilter";
 import { useEffect } from "react";
 
 import { ProductSortOptions } from "@/constants";
@@ -50,7 +50,7 @@ const SearchProductsMain = () => {
           handleSubmit={handleSubmit}
         />
 
-        <MobileSearchFilter
+        <MobileSearchFilters
           categories={categories}
           brands={brands}
           watchedValues={watchedValues}
@@ -72,6 +72,7 @@ const SearchProductsMain = () => {
           />
 
           <div className="flex flex-col gap-4">
+            {/* ------------------- */}
             {/* Results Summary */}
             <div className="text-sm">
               <h2 className="text-2xl font-semibold mb-2">Results</h2>
@@ -86,10 +87,11 @@ const SearchProductsMain = () => {
                   : "No products found"}
               </p>
             </div>
+
             {/* Products Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-4 gap-y-10 xl:gap-y-16 mt-12 mb-8">
               {isFetching
-                ? Array.from({ length: 6 }).map((_, i) => (
+                ? Array.from({ length: 8 }).map((_, i) => (
                     <div
                       key={i}
                       className="h-48 bg-neutral-200 animate-pulse rounded"
@@ -99,6 +101,8 @@ const SearchProductsMain = () => {
                     <ProductCard key={product._id} data={product} />
                   ))}
             </div>
+
+            {/* Pagination */}
             {(queryMeta?.totalPages as number) > 0 && (
               <Pagination
                 currentPage={queryMeta?.page ?? 1}

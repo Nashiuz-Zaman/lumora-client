@@ -21,12 +21,12 @@ export const HomeClientWrapper = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const isReady = useDelay(1100);
+  const isReady = useDelay(500);
   const isAboveLg = useMediaQuery(BREAKPOINTS.min.lg!);
 
   if (!isReady) {
     return (
-      <div className="h-[100vh] flex items-center justify-center relative">
+      <div className="h-screen flex items-center justify-center relative">
         <LoadingSpinner />
       </div>
     );

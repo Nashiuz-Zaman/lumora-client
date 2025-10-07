@@ -133,7 +133,7 @@ export const RightSideDetails = ({
           onClick={handleAddToCart}
           isLoading={isCartLoading}
           isDisabled={isAddToCartDisabled || !curProductVariant}
-          className="successClasses !py-2.5 !rounded-full"
+          className="successClasses !py-2.5 !rounded-full !gap-2"
         >
           <CartIcon className="text-2xl" /> Add to cart
         </ButtonBtn>

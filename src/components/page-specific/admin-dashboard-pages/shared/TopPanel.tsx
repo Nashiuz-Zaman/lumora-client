@@ -13,8 +13,7 @@ interface ITopPanelProps {
 export const TopPanel = ({ actions, className = "" }: ITopPanelProps) => {
   const titleRef = useRef(null);
   const topPanelRef = useRef(null);
-  const { refs, setRefs } = useRefState();
-  console.log(refs);
+  const { setRefs } = useRefState();
 
   useEffect(() => {
     setRefs((prev) => ({ ...prev, titleRef, topPanelRef }));

@@ -55,11 +55,16 @@ const navSections: INavSection[] = [
       },
       {
         name: "Cancelled",
-        icon: "line-md:cancel",
+        icon: "material-symbols:cancel-outline",
         path: "/admin/orders/cancelled",
       },
+      {
+        name: "Returned",
+        icon: "hugeicons:delivery-return-01",
+        path: "/admin/orders/returned",
+      },
     ],
-  },
+  }, 
 ];
 
 interface IAdminSideNavbarProps {

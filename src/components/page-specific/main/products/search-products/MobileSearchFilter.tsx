@@ -20,7 +20,7 @@ interface IMobileSearchFiltersProps {
   handleSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 
-export const MobileSearchFilter = ({
+export const MobileSearchFilters = ({
   categories,
   brands,
   watchedValues,

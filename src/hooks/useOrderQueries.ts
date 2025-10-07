@@ -20,7 +20,7 @@ import { useGetOrdersPrivateQuery } from "@/libs/redux/apiSlices/orders/orderApi
 
 // Types
 import { TOrderStatusValue } from "@/constants";
-import { IQueryMeta } from "@/types";
+import { IOrder, IQueryMeta } from "@/types";
 
 export interface IOrderQueriesParams {
   page: number;
@@ -33,12 +33,14 @@ export interface IUseOrderQueriesArgs {
   orderStatus: TOrderStatusValue;
   isPrivate?: boolean;
   limit?: number;
+  extraLimitFields?: (keyof IOrder)[];
 }
 
 export const useOrdersQueries = ({
   orderStatus,
   isPrivate = false,
   limit = 20,
+  extraLimitFields = [],
 }: IUseOrderQueriesArgs) => {
   const searchParams = useSearchParams();
   const path = usePathname();
@@ -103,14 +105,24 @@ export const useOrdersQueries = ({
   };
 
   // Build query args
-  const queryArgs = useMemo(
-    () =>
-      cleanObject({
-        ...finalQueryParams,
-        limit,
-      }),
-    [finalQueryParams, limit]
-  );
+  const queryArgs = useMemo(() => {
+    const limitFields = [
+      "orderId",
+      "name",
+      "email",
+      "phone",
+      "updatedAt",
+      "total",
+      "status",
+      "estimatedDelivery",
+      ...extraLimitFields,
+    ];
+    return cleanObject({
+      ...finalQueryParams,
+      limit,
+      limitFields: limitFields.join(","),
+    });
+  }, [finalQueryParams, limit, extraLimitFields]);
 
   // Fetch orders
   const query = useGetOrdersPrivateQuery(queryArgs, {

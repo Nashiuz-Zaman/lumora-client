@@ -38,9 +38,9 @@ export type IMarkOrderShippedArgs = {
   shippingCarrier: string;
   estimatedDelivery: string;
   _id: string;
-}
+};
 
 export interface ICancelOrdersAdminArgs {
-  cancelIds: string[];
-  reason: string;
+  _ids: string[];
+  reason?: string;
 }

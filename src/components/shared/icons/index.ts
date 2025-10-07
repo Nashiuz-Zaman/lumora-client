@@ -34,3 +34,4 @@ export * from "./CaretLeftIcon";
 export * from "./LockIcon";
 export * from "./ThreeDotIcon";
 export * from "./DeliverIcon";
+export * from "./ArchiveIcon";

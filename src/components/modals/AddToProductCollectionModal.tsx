@@ -17,7 +17,7 @@ import {
 } from "../shared";
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { IProduct } from "@/types";
-import AdminProductCard from "../page-specific/admin-dashboard-pages/central-product-management/shared/AdminProductCard";
+import AdminProductCard from "../page-specific/admin-dashboard-pages/products/shared/AdminProductCard";
 import { useAddProductsToProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection/productCollectionApiSlice";
 
 interface IAddToProductCollectionModalProps {
@@ -115,7 +115,7 @@ const AddToProductCollectionModal = ({
         {/* Products container */}
         <div className="w-full grow overflow-y-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 py-7 px-5 gap-4 bg-neutral-100">
           {isFetching ? (
-            <LoadingSpinner />
+            <LoadingSpinner centered={true} />
           ) : products.length === 0 ? (
             <NoData centered={true} text="No products found" />
           ) : (

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ButtonBtn, ErrorMessage, Inputfield } from "@/components/shared";
-import { formatPrice } from "@/utils";
+import { catchAsyncGeneral } from "@/utils";
 import { useAuthState, useCartState } from "@/hooks";
 import {
   useApplyCouponToUserCartMutation,
@@ -12,15 +12,14 @@ import {
 } from "@/libs/redux/apiSlices/cart/cartApiSlice";
 
 interface IPromoCodeProps {
-  discount: number;
   appliedCode: string | null;
 }
 
-export const PromoCode = ({ discount, appliedCode }: IPromoCodeProps) => {
-  const { user, isCustomer } = useAuthState() || {};
+export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
+  const { user } = useAuthState() || {};
   const { cart } = useCartState() || {};
   const [couponCode, setCouponCode] = useState("");
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   // RTK Mutations with isLoading state
   const [applyUserCoupon, { isLoading: applyingUser }] =
@@ -32,55 +31,61 @@ export const PromoCode = ({ discount, appliedCode }: IPromoCodeProps) => {
   const [removeGuestCoupon, { isLoading: removingGuest }] =
     useRemoveCouponFromGuestCartMutation();
 
-  const handleApply = async () => {
-    setErrorMessage(null);
+  const handleApply = catchAsyncGeneral(
+    async () => {
+      setErrorMessage("");
 
-    if (!cart?._id) {
-      setErrorMessage(
-        "Please add a product to your cart before applying a coupon."
-      );
-      return;
-    }
+      if (!cart?._id) {
+        setErrorMessage(
+          "Please add a product to your cart before applying a coupon."
+        );
+        return;
+      }
 
-    if (!couponCode.trim()) return;
+      if (!couponCode.trim()) return;
 
-    try {
-      if (user && isCustomer) {
+      if (user) {
         await applyUserCoupon(couponCode).unwrap();
       } else {
         await applyGuestCoupon(couponCode).unwrap();
       }
 
       setCouponCode(""); // reset input
-    } catch (err) {
-      console.error("Failed to apply coupon:", err);
-      setErrorMessage("Failed to apply coupon. Please try again.");
+    },
+    {
+      handleError: "function",
+      onError(_error, _args, message) {
+        setErrorMessage(message ?? "Failed to apply coupon. Please try again");
+      },
     }
-  };
+  );
 
-  const handleRemove = async () => {
-    setErrorMessage(null);
+  const handleRemove = catchAsyncGeneral(
+    async () => {
+      setErrorMessage("");
 
-    if (!cart?._id) {
-      setErrorMessage(
-        "There is no cart to remove a coupon from. Please add a product first."
-      );
-      return;
-    }
+      if (!cart?._id) {
+        setErrorMessage(
+          "There is no cart to remove a coupon from. Please add a product first."
+        );
+        return;
+      }
 
-    if (!appliedCode) return;
+      if (!appliedCode) return;
 
-    try {
-      if (user && isCustomer) {
+      if (user) {
         await removeUserCoupon(undefined).unwrap();
       } else {
         await removeGuestCoupon(undefined).unwrap();
       }
-    } catch (err) {
-      console.error("Failed to remove coupon:", err);
-      setErrorMessage("Failed to remove coupon. Please try again.");
+    },
+    {
+      handleError: "function",
+      onError(_error, _args, message) {
+        setErrorMessage(message ?? "Failed to apply coupon. Please try again");
+      },
     }
-  };
+  );
 
   const isApplying = applyingUser || applyingGuest;
   const isRemoving = removingUser || removingGuest;
@@ -121,24 +126,13 @@ export const PromoCode = ({ discount, appliedCode }: IPromoCodeProps) => {
         ) : (
           <button
             onClick={handleRemove}
-            className="px-4 py-2 bg-red-50 text-red-600 rounded-lg text-sm font-medium hover:bg-red-100 transition-colors"
+            className="px-4 py-2 bg-red-100 cursor-pointer text-red-600 rounded-lg text-sm font-medium transition-colors border border-red-100 hover:border-red-200"
             disabled={isRemoving}
           >
             {isRemoving ? "Removing..." : "Remove"}
           </button>
         )}
       </div>
-
-      {appliedCode && discount > 0 && (
-        <div className="flex justify-between items-center mt-3 text-sm">
-          <span className="text-neutral-600">
-            Discount ({appliedCode.toUpperCase()})
-          </span>
-          <span className="font-medium text-green-600">
-            -{formatPrice(discount)}
-          </span>
-        </div>
-      )}
     </div>
   );
 };

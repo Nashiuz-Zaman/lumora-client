@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { ReduxProvider } from "@/providers";
 import { Backdrop } from "@/components/shared";
-import { ProductQuickViewModal } from "@/components/modals";
+import { DemoNoticeModal, ProductQuickViewModal } from "@/components/modals";
 import AuthStateProvider from "@/providers/AuthStateProvider";
 import CartStateProvider from "@/providers/CartStateProvider";
 import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
@@ -53,7 +53,9 @@ export default async function RootLayout({
                 />
 
                 <Backdrop />
+                <DemoNoticeModal />
                 <ProductQuickViewModal />
+
                 {children}
               </RefsProvider>
             </CartStateProvider>

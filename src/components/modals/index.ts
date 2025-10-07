@@ -6,3 +6,4 @@ export * from "./AddToProductCollectionModal";
 export * from "./ProductQuickViewModal";
 export * from "./ShippingModal";
 export * from "./CancelOrderModalAdmin";
+export * from "./DemoNoticeModal";
