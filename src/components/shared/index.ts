@@ -51,3 +51,4 @@ export * from "./ThreeDotMenu";
 export * from "./UnderDev";
 export * from "./FadeSlider";
 export * from "./Drawer";
+export * from "./ProductSwiper";

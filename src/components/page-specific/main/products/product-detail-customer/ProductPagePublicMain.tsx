@@ -2,16 +2,24 @@ import { InnerContainer, NoData } from "@/components/shared";
 import { ProductImages } from "./ProductImages";
 import { RightSideDetails } from "./RightSideDetails";
 import { ProductDetailsTabs } from "./ProductDetailsTab";
-// import YouMayAlsoLike from "./YouMayAlsoLike";
-import { IProductWithReviewsStats } from "@/types/product";
+import { IProduct, IProductWithFullReviewsStats } from "@/types/product";
 import { Reviews } from "./Reviews";
+import { RelatedProducts } from "./RelatedProducts/RelatedProducts";
 
 interface IProductPagePublicMainProps {
-  productWithReviewsAndStats?: IProductWithReviewsStats;
+  productWithReviewsAndStats?: IProductWithFullReviewsStats;
+  relatedProductsResult:
+    | IProduct[]
+    | {
+        isError: boolean;
+        errorMessage: string;
+      }
+    | undefined;
 }
 
 export const ProductPagePublicMain = ({
   productWithReviewsAndStats,
+  relatedProductsResult,
 }: IProductPagePublicMainProps) => {
   if (!productWithReviewsAndStats) {
     return (
@@ -46,12 +54,16 @@ export const ProductPagePublicMain = ({
         </div>
       </InnerContainer>
 
-      <InnerContainer className="mt-16">
-        <h2 className="text-2xl font-semibold mb-6 text-center 2md:text-left">
-          You may also like
-        </h2>
-        {/* <YouMayAlsoLike tags={productData.tags} /> */}
-      </InnerContainer>
+      {!relatedProductsResult || "isError" in relatedProductsResult ? null : (
+        <RelatedProducts
+          className="mt-16"
+          products={relatedProductsResult}
+          navigation={{
+            nextEl: ".related-products-next",
+            prevEl: ".related-products-prev",
+          }}
+        />
+      )}
     </div>
   );
 };

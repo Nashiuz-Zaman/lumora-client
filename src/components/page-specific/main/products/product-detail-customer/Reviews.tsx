@@ -15,12 +15,12 @@ import {
 
 import { useGetProductReviewsAndStatsQuery } from "@/libs/redux/apiSlices/reviews/reviewsApiSlice";
 import { IReview, IReviewStats } from "@/types/review";
-import { IProductWithReviewsStats, IQueryMeta } from "@/types";
+import { IProductWithFullReviewsStats, IQueryMeta } from "@/types";
 
 export const Reviews = ({
   initialData,
 }: {
-  initialData: IProductWithReviewsStats;
+  initialData: IProductWithFullReviewsStats;
 }) => {
   const [page, setPage] = useState<number>(1);
 

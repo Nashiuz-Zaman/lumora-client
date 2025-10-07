@@ -12,13 +12,13 @@ import {
 import { AboutProduct } from "./AboutProduct";
 
 // types
-import { IVariant, IProductWithReviewsStats } from "@/types/product";
+import { IVariant, IProductWithFullReviewsStats } from "@/types/product";
 import { VariantSelector } from "./VariantSelector";
 import { ICartAction } from "@/types/cart";
 import { useCartActions } from "@/hooks";
 
 interface IRightSideDetailsProps {
-  data: IProductWithReviewsStats;
+  data: IProductWithFullReviewsStats;
   isAddToCartDisabled?: boolean;
 }
 

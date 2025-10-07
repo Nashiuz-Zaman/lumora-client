@@ -2,13 +2,13 @@ import {
   CenterContainer,
   InnerContainer,
   TCustomSwiperProps,
+  ProductSwiper,
 } from "@/components/shared";
 import { fetchCollectionProducts } from "@/server-functions/fetchCollectionProducts";
 import {
   ICategoryTreeItem,
   TPopulatedProductInCollectionWithReviewStats,
 } from "@/types";
-import { ProductCollectionSwiper } from "./ProductCollectionSwiper";
 import { ProductsFromCollectionHeader } from "./ProductsFromCollectionHeader";
 
 interface IProductsFromCollectionProps {
@@ -67,10 +67,7 @@ export const ProductsFromCollection = async ({
           categoryTree={categoryTree}
         />
 
-        <ProductCollectionSwiper
-          navigation={navigation}
-          products={mergedProducts}
-        />
+        <ProductSwiper navigation={navigation} products={mergedProducts} />
       </section>
     </CenterContainer>
   );

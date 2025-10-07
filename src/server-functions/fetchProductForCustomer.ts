@@ -1,4 +1,4 @@
-import { IApiResponse, IProduct, IProductWithReviewsStats } from "@/types";
+import { IApiResponse, IProduct, IProductWithFullReviewsStats } from "@/types";
 import { catchAsyncServer, getBaseApiUrl } from "@/utils";
 
 interface IGetProductOptions {
@@ -29,7 +29,7 @@ export const fetchProductForCustomer = catchAsyncServer(
 
     if (!res.ok) throw new Error("Failed to fetch product data");
 
-    const result: IApiResponse<IProductWithReviewsStats> = await res.json();
+    const result: IApiResponse<IProductWithFullReviewsStats> = await res.json();
 
     return result?.data;
   }

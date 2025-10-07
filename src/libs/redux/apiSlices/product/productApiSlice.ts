@@ -9,7 +9,7 @@ import {
   TProductWithMinimalReviewStats,
   TQueryDataWithQueryMeta,
   ISearchbarResultProduct,
-  IProductWithReviewsStats,
+  IProductWithFullReviewsStats,
 } from "@/types";
 
 // --- API slice ---
@@ -93,7 +93,7 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     getProductForCustomer: builder.query<
-      IApiResponse<Partial<IProductWithReviewsStats>>,
+      IApiResponse<Partial<IProductWithFullReviewsStats>>,
       {
         slug: string;
         limitFields?: string;

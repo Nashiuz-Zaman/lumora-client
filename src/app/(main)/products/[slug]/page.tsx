@@ -1,7 +1,10 @@
 // app/products/[slug]/page.tsx
 import { Metadata } from "next";
 import { ProductPagePublicMain } from "@/components/page-specific";
-import { fetchProductForCustomer } from "@/server-functions";
+import {
+  fetchProductForCustomer,
+  fetchRelatedProductsForCustomer,
+} from "@/server-functions";
 import { InnerContainer, LinkBtn } from "@/components/shared";
 
 type TParams = Promise<{ slug: string }>;
@@ -66,7 +69,19 @@ const ProductPagePublic = async (props: { params: TParams }) => {
     );
   }
 
-  return <ProductPagePublicMain productWithReviewsAndStats={result} />;
+  const product = result.product;
+
+  const relatedProductsResult = await fetchRelatedProductsForCustomer(
+    product._id!,
+    product.topCategory!
+  );
+
+  return (
+    <ProductPagePublicMain
+      relatedProductsResult={relatedProductsResult}
+      productWithReviewsAndStats={result}
+    />
+  );
 };
 
 export default ProductPagePublic;

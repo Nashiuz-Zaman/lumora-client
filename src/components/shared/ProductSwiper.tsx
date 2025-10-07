@@ -5,18 +5,15 @@ import {
   ProductCard,
   TCustomSwiperProps,
 } from "@/components/shared";
-import { IProduct } from "@/types";
+import { TProductWithMinimalReviewStats } from "@/types";
 
 interface IProductCollectionSwiperProps {
-  products: (IProduct & {
-    totalReviews: number;
-    averageRating: number;
-  })[];
+  products: TProductWithMinimalReviewStats[];
   className?: string;
   navigation: TCustomSwiperProps<any>["navigation"];
 }
 
-export const ProductCollectionSwiper = ({
+export const ProductSwiper = ({
   products = [],
   className = "",
   navigation = {

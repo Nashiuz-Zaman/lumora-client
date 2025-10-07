@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { ButtonBtn } from "./buttons";
 import { formatPrice } from "@/utils";
-import { IProduct } from "@/types";
+import { TProductWithMinimalReviewStats } from "@/types";
 import { CartIcon } from "./icons";
 import { RatingStars } from "./RatingStars";
 import Link from "next/link";
@@ -14,10 +14,7 @@ import {
 } from "@/libs/redux/features/productQuickView/productQuickViewSlice";
 import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 
-type TProductCardData = Partial<IProduct> & {
-  averageRating?: number;
-  totalReviews?: number;
-};
+type TProductCardData = TProductWithMinimalReviewStats;
 
 interface IProductCardProps {
   data: TProductCardData;
