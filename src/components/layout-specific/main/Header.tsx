@@ -25,7 +25,7 @@ import {
 import { useEffect, useState } from "react";
 import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
-import { UserRoles } from "@/constants/user"; 
+import { UserRoles } from "@/constants/user";
 
 type THeaderProps = IMegaMenuProps;
 
@@ -75,7 +75,7 @@ const Header = ({ categories }: THeaderProps) => {
       <InnerContainer className="bg-white text-sm xl:text-base py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <p className="text-center md:text-left">
-            Free shipping on orders over $2000! Limited time offer.
+            Shop now and enjoy free shipping to West Coast states!
           </p>
 
           <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
