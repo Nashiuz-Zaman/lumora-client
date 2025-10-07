@@ -6,7 +6,7 @@ export const fetchMegaMenuData = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();
   const res = await fetch(`${apiUrl}/products/mega-menu`, {
     next: {
-      revalidate: 36000,
+      revalidate: 3600,
     },
   });
 
