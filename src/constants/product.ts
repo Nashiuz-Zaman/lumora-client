@@ -1,3 +1,6 @@
+import { IProduct } from "@/types";
+import { TSortOptions } from "@/types/generic";
+
 // Product status object (frozen for runtime immutability)
 export const ProductStatus = Object.freeze({
   Deleted: -1,
@@ -14,7 +17,7 @@ export const ProductSortOptions = Object.freeze([
   { label: "Product Name", value: "title" },
   { label: "Price", value: "defaultPrice" },
   { label: "Updated", value: "updatedAt" },
-] as const);
+] as const satisfies TSortOptions<IProduct>);
 
 // Optional type for product sort values
 export type TProductSortOptionValue =

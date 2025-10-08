@@ -33,8 +33,6 @@ export const getCouponStatusLabel = (statusCode: number): string => {
 
 export const getCouponStatusTextColor = (code: number): string => {
   switch (code) {
-    case CouponStatus.Deleted:
-      return "text-red-600";
     case CouponStatus.Expired:
       return "text-yellow-500";
     case CouponStatus.Active:

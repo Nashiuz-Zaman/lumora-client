@@ -1,3 +1,6 @@
+import { IOrder } from "@/types";
+import { TSortOptions } from "@/types/generic";
+
 export const OrderStatus = Object.freeze({
   Pending: 0,
   Confirmed: 1,
@@ -17,7 +20,7 @@ export const OrderSortOptions = Object.freeze([
   { label: "Email", value: "email" },
   { label: "Updated", value: "updatedAt" },
   { label: "Order Total", value: "total" },
-] as const);
+] as const satisfies TSortOptions<IOrder>);
 
 // Optional type for order sort values
 export type TOrderSortOptionValue = (typeof OrderSortOptions)[number]["value"];

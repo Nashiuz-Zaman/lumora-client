@@ -1,6 +1,8 @@
+import { ICoupon } from "@/types/coupon";
+import { TSortOptions } from "@/types/generic";
+
 // Coupon status object (frozen for runtime immutability)
 export const CouponStatus = Object.freeze({
-  Deleted: -1,
   Expired: 0,
   Active: 1,
 } as const);
@@ -13,4 +15,4 @@ export const CouponSortOptions = Object.freeze([
   { label: "Code", value: "code" },
   { label: "Amount", value: "discountValue" },
   { label: "Created", value: "createdAt" },
-] as const);
+] as const satisfies TSortOptions<ICoupon>);
