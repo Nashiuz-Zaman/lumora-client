@@ -13,25 +13,35 @@ import { Inputfield } from "./Inputfield";
 import { ButtonBtn, ButtonBtnTrans } from "./buttons";
 import { SortDropdown } from "./SortDropdown";
 import { useRefState } from "@/hooks";
+import { TSortOptions } from "@/types/generic";
 
-export type TParamsFilterFormOptions = {
+
+
+
+export type TStatusOptions<K extends Record<string, any>> = {
   label: string;
-  value: string | number;
+  value: "all" | K["status"];
 }[];
 
-interface IParamsFilterFormProps<T> {
-  params: T;
-  setParams: Dispatch<SetStateAction<T>>;
+export interface IParamsFilterFormProps<
+  Params extends Record<string, any>,
+  Resource extends Record<string, any>
+> {
+  params: Params;
+  setParams: Dispatch<SetStateAction<Params>>;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  sortOptions: TParamsFilterFormOptions;
+  sortOptions: TSortOptions<Resource>;
   placeholder?: string;
   showStatusFilter?: boolean;
-  statusOptions?: TParamsFilterFormOptions;
+  statusOptions?: TStatusOptions<Resource>;
   roleLabel?: string;
   className?: string;
 }
 
-export const ParamsFilterForm = <T extends Record<string, any>>({
+export const ParamsFilterForm = <
+  Params extends Record<string, any>,
+  Resource extends Record<string, any>
+>({
   params,
   setParams,
   onSubmit,
@@ -41,7 +51,7 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
   statusOptions = [],
   roleLabel = "",
   className = "",
-}: IParamsFilterFormProps<T>) => {
+}: IParamsFilterFormProps<Params, Resource>) => {
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setParams((prev) => ({ ...prev, search: e.target.value }));
   };
@@ -88,11 +98,11 @@ export const ParamsFilterForm = <T extends Record<string, any>>({
       <div className="flex flex-col xs:flex-row items-center justify-between w-full gap-4 xl:ml-4">
         {showStatusFilter && (
           <div className="flex items-center justify-center flex-wrap gap-5 xs:justify-start">
-            {statusOptions.map(({ label, value }) => (
+            {statusOptions.map(({ label, value }, i) => (
               <ButtonBtnTrans
-                key={value}
+                key={`key-${i}`}
                 type="button"
-                onClick={() => handleStatusChange(value)}
+                onClick={() => handleStatusChange(value as string)}
                 className={`${
                   params.status === value
                     ? "text-primary text-shadow-primary"

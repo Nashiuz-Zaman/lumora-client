@@ -1,6 +1,7 @@
 import { TPaymentStatus } from "@/constants";
 
 export interface IPayment {
+  _id?: string;
   order: string;
   orderId: string;
   name: string;
@@ -13,4 +14,10 @@ export interface IPayment {
   createdAt?: string;
   updatedAt?: string;
   cardType?: string;
+  refundReason?: string;
+}
+
+export interface IRefundPaymentArgs {
+  _id: string;
+  reason: string;
 }

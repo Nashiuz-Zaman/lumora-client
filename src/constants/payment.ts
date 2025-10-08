@@ -16,8 +16,8 @@ export const PaymentSortOptions = Object.freeze([
   { label: "Amount", value: "amount" },
   { label: "Email", value: "email" },
   { label: "Type", value: "cardType" },
-  { label: "Updated", value: 'updatedAt' },
-] as const satisfies TSortOptions<IPayment>)
+  { label: "Updated", value: "updatedAt" },
+] as const satisfies TSortOptions<IPayment>);
 
 // Optional type for payment sort values
 export type TPaymentSortOptionValue =

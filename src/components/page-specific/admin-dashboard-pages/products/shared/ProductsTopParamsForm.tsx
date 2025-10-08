@@ -1,39 +1,32 @@
 "use client";
 
-import { Dispatch, FormEvent, SetStateAction } from "react";
 import {
+  IParamsFilterFormProps,
   ParamsFilterForm,
-  TParamsFilterFormOptions,
+  TStatusOptions,
 } from "@/components/shared";
+import { IProduct } from "@/types";
+import { IProductQueriesParams } from "@/hooks";
 
-interface IProductTopParamsFormProps<T> {
-  params: T;
-  setParams: Dispatch<SetStateAction<T>>;
-  onSubmit: (e: FormEvent<HTMLFormElement>) => void;
-  sortOptions: TParamsFilterFormOptions;
-  showStatusFilter?: boolean;
-}
-
-const ProductsTopParamsForm = <T extends Record<string, any>>({
+const ProductsTopParamsForm = ({
   params,
-  setParams, 
+  setParams,
   onSubmit,
   sortOptions,
   showStatusFilter = false,
-}: IProductTopParamsFormProps<T>) => {
-  const statusOptions: TParamsFilterFormOptions = [
+}: IParamsFilterFormProps<IProductQueriesParams, IProduct>) => {
+  const statusOptions: TStatusOptions<IProduct> = [
     { label: "All", value: "all" },
     { label: "Active", value: 1 },
     { label: "Draft", value: 0 },
   ];
 
   return (
-    <ParamsFilterForm<T>
+    <ParamsFilterForm
       params={params}
       setParams={setParams}
       onSubmit={onSubmit}
       sortOptions={sortOptions}
-      placeholder="Search Products"
       showStatusFilter={showStatusFilter}
       statusOptions={showStatusFilter ? statusOptions : undefined}
       roleLabel="Product"

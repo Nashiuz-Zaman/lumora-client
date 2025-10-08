@@ -1,6 +1,6 @@
 import { TProductStatusValue } from "@/constants/product";
 import { IReview } from "./review";
-import { IQueryMeta } from "./api";
+import { IQueryMeta } from "./generic";
 
 export interface IVariant {
   _id?: string;

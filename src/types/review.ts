@@ -1,7 +1,7 @@
 import { TReviewStatus } from "@/constants";
 import { IUser } from "./user";
 import { IProduct } from "./product";
-import { IQueryMeta } from "./api";
+import { IQueryMeta } from "./generic";
 
 export interface IReview {
   _id?: string;

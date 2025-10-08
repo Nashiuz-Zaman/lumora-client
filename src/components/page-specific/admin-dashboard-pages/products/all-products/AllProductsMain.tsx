@@ -22,7 +22,6 @@ import {
   useSelectable,
   useModal,
   useProductsQueries,
-  IProductQueriesParams,
   useRefState,
   useSetElementText,
 } from "@/hooks";
@@ -104,7 +103,7 @@ export const AllProductsMain = () => {
   return (
     <div className="grow flex flex-col">
       {/* Top params form */}
-      <ProductsTopParamsForm<IProductQueriesParams>
+      <ProductsTopParamsForm
         sortOptions={[...ProductSortOptions]}
         params={formParams}
         onSubmit={handleSubmit}

@@ -4,14 +4,14 @@ import React from "react";
 
 export interface IRadioOption {
   label: string;
-  value: string | number ;
+  value: string;
 }
 
 interface IRadioButtonGroupProps {
   options?: IRadioOption[];
   name: string;
   selectedValue: string;
-  onChange: (value: string | number) => void;
+  onChange: (value: string) => void;
   className?: string;
 }
 

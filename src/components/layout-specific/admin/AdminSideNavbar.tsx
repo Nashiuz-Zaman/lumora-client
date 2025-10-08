@@ -69,14 +69,14 @@ const navSections: INavSection[] = [
     heading: "Payments",
     items: [
       {
-        name: "Successful",
+        name: "Paid",
         icon: "material-symbols:paid",
-        path: "/admin/payments/successful",
+        path: "/admin/payments/paid",
       },
       {
-        name: "Failed",
+        name: "Refunded",
         icon: "material-symbols:cancel-outline",
-        path: "/admin/payments/failed",
+        path: "/admin/payments/refunded",
       },
     ],
   },
@@ -128,7 +128,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
                       : ""
                   }`}
                 >
-                  <IcfyIcon className="text-lg" icon={item.icon} />
+                  <IcfyIcon className="text-lg shrink-0" icon={item.icon} />
                   {item.name}
                 </Link>
               </li>

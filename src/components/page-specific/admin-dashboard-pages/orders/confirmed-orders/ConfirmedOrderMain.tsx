@@ -52,8 +52,8 @@ import { UseFormReset } from "react-hook-form";
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },
   { columnTitle: "Order ID", width: "0.3fr" },
-  { columnTitle: "Customer", width: "0.4fr" },
-  { columnTitle: "Phone", width: "0.4fr" },
+  { columnTitle: "Customer", width: "0.35fr" },
+  { columnTitle: "Phone", width: "0.3fr" },
   { columnTitle: "Email", width: "0.5fr" },
   { columnTitle: "Confirmed at", width: "0.5fr" },
   { columnTitle: "Total", width: "0.2fr" },

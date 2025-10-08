@@ -43,7 +43,6 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
         url: "/orders",
         method: "GET",
         params: {
-          
           ...params,
         },
       }),

@@ -1,16 +1,16 @@
 "use client";
 
 import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared";
-import { IOrderQueriesParams } from "@/hooks";
-import { IOrder } from "@/types";
+import { IPaymentQueriesParams } from "@/hooks/usePaymentQueries";
+import { IPayment } from "@/types/payment";
 
-export const OrdersTopParamsForm = ({
+export const PaymentsTopParamsForm = ({
   params,
   setParams,
   onSubmit,
   sortOptions,
   className,
-}: IParamsFilterFormProps<IOrderQueriesParams, IOrder>) => {
+}: IParamsFilterFormProps<IPaymentQueriesParams, IPayment>) => {
   return (
     <ParamsFilterForm
       params={params}
@@ -18,7 +18,7 @@ export const OrdersTopParamsForm = ({
       onSubmit={onSubmit}
       sortOptions={sortOptions}
       showStatusFilter={false}
-      roleLabel="Order"
+      roleLabel="Payment"
       className={className}
     />
   );

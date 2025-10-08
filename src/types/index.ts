@@ -1,6 +1,5 @@
 export * from "./product";
 export * from "./category";
-export * from "./api";
 export * from "./user";
 export * from "./admin";
 export * from "./customer";
@@ -9,3 +8,5 @@ export * from "./cart";
 export * from "./order";
 export * from "./review";
 export * from "./productCollection";
+export * from "./generic";
+export * from "./payment";
