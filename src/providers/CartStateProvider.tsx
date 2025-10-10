@@ -37,32 +37,45 @@ const CartStateProvider = ({ children }: ICartStateProviderProps) => {
   const [isCartLoading, setIsCartLoading] = useState(false);
   const [cart, setCart] = useState<TPopulatedCart>({ ...emptyCart });
 
-  const isGuest = !user;
+  const {
+    data: userCartData,
+    isFetching: userCartLoading,
+    refetch: refetchUserCart,
+  } = useGetUserCartQuery(undefined, {
+    skip: isUserLoading || !user,
+  });
 
-  const { data: userCartData, isFetching: userCartLoading } =
-    useGetUserCartQuery(undefined, {
-      skip: isUserLoading || !user,
-      refetchOnMountOrArgChange: true,
-    });
-
-  const { data: guestCartData, isFetching: guestCartLoading } =
-    useGetGuestCartQuery(undefined, {
-      skip: isUserLoading || !isGuest,
-    });
+  const {
+    data: guestCartData,
+    isFetching: guestCartLoading,
+    refetch: refetchGuestCart,
+  } = useGetGuestCartQuery(undefined, {
+    skip: isUserLoading || !!user,
+  });
 
   // Track loading state
   useEffect(() => {
     setIsCartLoading(userCartLoading || guestCartLoading);
   }, [userCartLoading, guestCartLoading]);
 
+  useEffect(() => {
+    if (user && userCartData) {
+      if (refetchUserCart) refetchUserCart();
+    } else if (!user && guestCartData) {
+      if (refetchGuestCart) refetchGuestCart();
+    }
+  }, [user, refetchGuestCart, refetchUserCart, userCartData, guestCartData]);
+
   // Sync fetched cart data into state
   useEffect(() => {
-    if (user?._id && userCartData?.data?.cart) {
+    if (user && userCartData?.data?.cart) {
       setCart(userCartData.data.cart);
-    } else if (isGuest && guestCartData?.data?.cart) {
+    } else if (!user && guestCartData?.data?.cart) {
       setCart(guestCartData.data.cart);
+    } else {
+      setCart({ ...emptyCart });
     }
-  }, [user?._id, isGuest, userCartData, guestCartData]);
+  }, [user, userCartData, guestCartData]);
 
   const value: ICartStateContext = {
     cart,
