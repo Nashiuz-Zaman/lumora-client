@@ -8,3 +8,4 @@ export * from "./ShippingModal";
 export * from "./CancelOrderModalAdmin";
 export * from "./DemoNoticeModal";
 export * from "./RefundModal";
+export * from "./CreateCouponModal";
