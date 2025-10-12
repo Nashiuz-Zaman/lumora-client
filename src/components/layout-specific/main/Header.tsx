@@ -72,7 +72,7 @@ const Header = ({ categories }: THeaderProps) => {
   return (
     <header className="relative top-0 z-[200]">
       {/* Top promo / links bar */}
-      <InnerContainer className="bg-white text-sm xl:text-base py-3">
+      <InnerContainer className="bg-neutral-200 text-sm xl:text-base py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <p className="text-center md:text-left">
             Shop now and enjoy free shipping to West Coast states!
@@ -87,7 +87,7 @@ const Header = ({ categories }: THeaderProps) => {
       </InnerContainer>
 
       {/* Main header content */}
-      <div className="bg-gradient-to-r from-primary to-primary-light">
+      <div className="bg-neutral-800">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
           {/* logo */}
           <BrandLogo className="mr-6" />

@@ -55,14 +55,14 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
         </span>
       </h1>
       {/* Subtitle */}
-      <p className="text-lg px-4 lg:px-0 lg:w-[85%] lg:mx-auto text-neutral-600 text-center mb-4 xl:mb-6">
+      <p className="text-lg px-4 lg:px-0 lg:w-[85%] lg:mx-auto text-neutral-500 text-center mb-4 xl:mb-6">
         From tech gadgets to gourmet food, fashion to home essentials — discover
         everything you need in one place.
       </p>
 
       <LinkBtn
         href="#all-product-categories"
-        className="mx-auto primaryClasses !rounded-full"
+        className="mx-auto blackOutlinedToPrimaryClasses !rounded-full"
       >
         <CartIcon className="text-2xl" /> Start Shopping
       </LinkBtn>

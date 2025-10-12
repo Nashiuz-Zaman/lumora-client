@@ -80,14 +80,10 @@ export const useAuthMethods = () => {
           message: res?.message,
         });
 
-        console.log(userData)
+        console.log(userData);
 
         router.push(
-          `/${
-            userData?.role.name === customer
-              ? `customer?id=${userData?.id}`
-              : "admin"
-          }`
+          `/${userData?.role.name === customer ? "customer" : "admin"}`
         );
       }
     },

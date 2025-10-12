@@ -31,9 +31,7 @@ export const ProductsFromCollectionHeader = ({
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <div
-      className={`mb-6 flex items-start text-left ${className}`}
-    >
+    <div className={`mb-6 flex items-start text-left ${className}`}>
       <div>
         <SectionHeading>{title}</SectionHeading>
         {tagline && <SectionTagline className="mt-2">{tagline}</SectionTagline>}
@@ -59,7 +57,7 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.prevEl.replace(
             ".",
             ""
-          )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary-dark cursor-pointer shadow-md transition`}
+          )} w-10 h-10 flex items-center justify-center rounded-full bg-neutral-200 hover:bg-neutral-300 cursor-pointer scaleOnHover shadow-md transition-all`}
         >
           <CaretLeftIcon />
         </button>
@@ -67,7 +65,7 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.nextEl.replace(
             ".",
             ""
-          )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary-dark cursor-pointer shadow-md transition`}
+          )} w-10 h-10 flex items-center justify-center rounded-full bg-neutral-200 hover:bg-neutral-300 scaleOnHover cursor-pointer shadow-md transition-all`}
         >
           <CaretRightIcon />
         </button>

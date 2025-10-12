@@ -113,7 +113,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           <ButtonBtn
             onClick={handleClick}
             title="Add the item to redux"
-            className="!primaryOutlinedClasses !rounded-full !py-2 mx-auto !gap-2"
+            className="!blackOutlinedToPrimaryClasses !rounded-full !py-2 mx-auto !gap-2"
           >
             <CartIcon className="text-xl" /> Add to Cart
           </ButtonBtn>

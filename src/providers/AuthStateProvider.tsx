@@ -11,7 +11,6 @@ import {
 import { UserRoles } from "@/constants";
 import { useGetCurrentUserQuery } from "@/libs/redux/apiSlices/auth/authApiSlice";
 import { TUserPopulated } from "@/types";
-// import useSocket from "@/hooks/useSocket";
 
 export interface IAuthStateContext {
   user: Partial<TUserPopulated> | null;
@@ -22,6 +21,7 @@ export interface IAuthStateContext {
   isAdmin: boolean;
   isCustomer: boolean;
   isSuperAdmin: boolean;
+  hasFetched: boolean;
 }
 
 export const AuthStateContext = createContext<IAuthStateContext | null>(null);
@@ -30,7 +30,6 @@ const AuthStateProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<Partial<TUserPopulated> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasFetched, setHasFetched] = useState(false);
-  // const { socket } = useSocket();
 
   const {
     data,
@@ -65,18 +64,6 @@ const AuthStateProvider = ({ children }: { children: ReactNode }) => {
   const isAdmin = role === UserRoles.admin;
   const isSuperAdmin = role === UserRoles.superAdmin;
 
-  // useEffect(() => {
-  //   if (socket && socket.connected) {
-  //     if (role) {
-  //       if (role === UserRoles.admin || role === UserRoles.superAdmin) {
-  //         socket.emit("log-in-admin", user?._id);
-  //       } else {
-  //         socket.emit("log-in-customer", user?._id);
-  //       }
-  //     }
-  //   }
-  // }, [role, user?._id, socket]);
-
   const value: IAuthStateContext = {
     user,
     isLoading,
@@ -86,6 +73,7 @@ const AuthStateProvider = ({ children }: { children: ReactNode }) => {
     isAdmin,
     isCustomer,
     isSuperAdmin,
+    hasFetched,
   };
 
   return <AuthStateContext value={value}>{children}</AuthStateContext>;

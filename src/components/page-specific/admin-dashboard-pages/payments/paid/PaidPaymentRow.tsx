@@ -46,7 +46,7 @@ export const PaidPaymentRow = ({
 
       {/* Received at */}
       <td className={cellClasses}>
-        {paymentData.updatedAt && formatDateTime(paymentData.createdAt!)}
+        {paymentData.createdAt && formatDateTime(paymentData.createdAt!)}
       </td>
 
       {/* Amount */}

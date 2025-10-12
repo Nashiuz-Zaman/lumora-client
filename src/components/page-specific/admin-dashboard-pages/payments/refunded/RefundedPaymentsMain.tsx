@@ -30,13 +30,13 @@ import { IPayment } from "@/types";
 import { RefundedPaymentRow } from "./RefundedPaymentRow";
 
 const columns: TTableColumn[] = [
-  { columnTitle: "Order ID", width: "0.2fr" },
-  { columnTitle: "Customer", width: "0.25fr" },
-  { columnTitle: "Email", width: "0.35fr" },
-  { columnTitle: "Received at", width: "0.3fr" },
-  { columnTitle: "Amount", width: "0.2fr" },
+  { columnTitle: "Order ID", width: "0.15fr" },
+  { columnTitle: "Customer", width: "0.2fr" },
+  { columnTitle: "Email", width: "0.3fr" },
+  { columnTitle: "Refunded at", width: "0.2fr" },
+  { columnTitle: "Amount", width: "0.15fr" },
   { columnTitle: "Type", width: "0.2fr" },
-  { columnTitle: "Refund Reason", width: "0.25fr" },
+  { columnTitle: "Refund Reason", width: "0.4fr" },
 ];
 
 export const RefundedPaymentsMain = () => {

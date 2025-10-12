@@ -34,19 +34,19 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { IPayment, IRefundPaymentArgs } from "@/types";
 
 // Redux / API
+import { useRefundPaymentMutation } from "@/libs/redux/apiSlices/payment/paymentApiSlice";
 
 // React Hook Form
 import { UseFormReset } from "react-hook-form";
 import { PaidPaymentRow } from "./PaidPaymentRow";
-import { useRefundPaymentMutation } from "@/libs/redux/apiSlices/payment/paymentApiSlice";
 
 const columns: TTableColumn[] = [
-  { columnTitle: "Order ID", width: "0.3fr" },
-  { columnTitle: "Customer", width: "0.3fr" },
-  { columnTitle: "Email", width: "0.4fr" },
-  { columnTitle: "Received at", width: "0.4fr" },
-  { columnTitle: "Amount", width: "0.25fr" },
-  { columnTitle: "Type", width: "0.3fr" },
+  { columnTitle: "Order ID", width: "0.15fr" },
+  { columnTitle: "Customer", width: "0.2fr" },
+  { columnTitle: "Email", width: "0.3fr" },
+  { columnTitle: "Received at", width: "0.2fr" },
+  { columnTitle: "Amount", width: "0.15fr" },
+  { columnTitle: "Type", width: "0.2fr" },
   { columnTitle: "Actions", width: "0.4fr" },
 ];
 

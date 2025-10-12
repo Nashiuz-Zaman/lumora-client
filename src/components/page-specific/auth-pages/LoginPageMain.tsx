@@ -1,7 +1,7 @@
 "use client";
 
 import { AuthForm, IAuthForm } from "@/components/page-specific";
-import { useAuthMethods } from "@/hooks/useAuthMethods"; // adjust path if needed
+import { useAuthMethods } from "@/hooks/useAuthMethods"; 
 import { UseFormSetError } from "react-hook-form";
 
 export const LoginPageMain = () => {

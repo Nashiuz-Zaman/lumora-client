@@ -53,11 +53,22 @@ html {
   }
 }
 
+@utility scaleOnHover {
+  @apply active:scale-120 lg:hover:scale-120
+}
+
 @utility primaryClasses {
   @apply bg-primary border border-primary text-white
          active:bg-primary-dark active:border-primary-dark
          lg:hover:bg-primary-dark lg:hover:border-primary-dark
          disabled:hover:bg-primary disabled:hover:border-primary disabled:hover:text-white;
+}
+
+@utility blackOutlinedToPrimaryClasses {
+  @apply bg-transparent border border-neutral-600
+         active:bg-primary lg:hover:bg-primary lg:hover:text-white
+         active:text-white lg:hover:border-primary active:border-primary
+         disabled:hover:bg-transparent disabled:hover:border-neutral-600;
 }
 
 @utility primaryOutlinedClasses {
