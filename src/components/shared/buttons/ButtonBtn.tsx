@@ -62,7 +62,7 @@ export const ButtonBtn = ({
       className={allClasses}
     >
       <span
-        className={`w-full capitalize bg-transparent flex items-center justify-center gap-[inherit] ${
+        className={`w-full capitalize bg-transparent flex items-center justify-center gap-[inherit] [font-weight:inherit] ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       >

@@ -112,8 +112,8 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           {/* Add to Cart Button */}
           <ButtonBtn
             onClick={handleClick}
-            title="Add the item to redux"
-            className="!blackOutlinedToPrimaryClasses !rounded-full !py-2 mx-auto !gap-2"
+            title="Add Item To Cart"
+            className="!blackOutlinedToPrimaryClasses !rounded-full !py-2 mx-auto !gap-2 !font-medium"
           >
             <CartIcon className="text-xl" /> Add to Cart
           </ButtonBtn>
