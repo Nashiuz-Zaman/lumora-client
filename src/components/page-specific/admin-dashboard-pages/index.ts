@@ -12,4 +12,4 @@ export * from "./orders/cancelled-orders/CancelledOrderMain";
 export * from "./orders/archived-orders/ArchivedOrdersMain";
 export * from "./welcome-page/WelcomePageMain";
 export * from "./payments/paid/PaidPaymentsMain";
-export * from "./payments/refunded/RefundedPaymentsMain";
+export * from "./payments/shared/RefundedPaymentsMain";

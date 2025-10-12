@@ -123,7 +123,7 @@ export const PaidPaymentsMain = () => {
           classNameObj={{ headingRow: "bg-white" }}
           columns={columns}
           data={payments}
-          noDataText="No orders found"
+          noDataText="No payments found"
           renderRow={renderRow}
           dataLoading={isFetching}
         />

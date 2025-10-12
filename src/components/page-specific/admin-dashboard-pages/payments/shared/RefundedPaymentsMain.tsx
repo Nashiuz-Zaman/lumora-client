@@ -7,7 +7,7 @@ import {
   TRenderTableRowProps,
   TTableColumn,
 } from "@/components/shared";
-import { PaymentsTopParamsForm } from "../shared/PaymentsTopParamsForm";
+import { PaymentsTopParamsForm } from "./PaymentsTopParamsForm";
 
 // Providers
 import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
@@ -21,7 +21,12 @@ import {
 } from "@/hooks";
 
 // Constants
-import { UserRoles, PaymentSortOptions, PaymentStatus } from "@/constants";
+import {
+  UserRoles,
+  PaymentSortOptions,
+  PaymentStatus,
+  TPaymentStatus,
+} from "@/constants";
 
 // Types
 import { IPayment } from "@/types";
@@ -39,9 +44,16 @@ const columns: TTableColumn[] = [
   { columnTitle: "Refund Reason", width: "0.4fr" },
 ];
 
-export const RefundedPaymentsMain = () => {
+export interface IRefundedPaymentsMainProps {
+  pageTitle?: string;
+  status?: TPaymentStatus;
+}
+export const RefundedPaymentsMain = ({
+  pageTitle = "Refunded Payments",
+  status = PaymentStatus.Refunded,
+}: IRefundedPaymentsMainProps) => {
   const { refs } = useRefState();
-  useSetElementText(refs?.titleRef?.current, "Refunded Payments");
+  useSetElementText(refs?.titleRef?.current, pageTitle);
   const { admin, superAdmin } = UserRoles;
 
   const {
@@ -53,7 +65,7 @@ export const RefundedPaymentsMain = () => {
     handleSubmit,
     changePage,
   } = usePaymentQueries({
-    paymentStatus: PaymentStatus.Refunded,
+    paymentStatus: status,
     extraLimitFields: ["refundReason", "updatedAt"],
   });
 
@@ -82,7 +94,7 @@ export const RefundedPaymentsMain = () => {
           classNameObj={{ headingRow: "bg-white" }}
           columns={columns}
           data={payments}
-          noDataText="No orders found"
+          noDataText="No payments found"
           renderRow={renderRow}
           dataLoading={isFetching}
         />
