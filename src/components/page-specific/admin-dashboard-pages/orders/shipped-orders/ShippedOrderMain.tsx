@@ -14,7 +14,7 @@ import { ShippedOrderRow } from "./ShippedOrderRow";
 import { ConfirmationModal } from "@/components/modals";
 
 import {
-  useOrdersQueries,
+  useOrderQueries,
   useSelectable,
   useRefState,
   useSetElementText,
@@ -57,7 +57,7 @@ export const ShippedOrdersMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = useOrdersQueries({ orderStatus: OrderStatus.Shipped, isPrivate: true });
+  } = useOrderQueries({ orderStatus: OrderStatus.Shipped, isPrivate: true });
 
   const [markOrdersDelivered, { isLoading: isMarking }] =
     useMarkOrdersDeliveredMutation();

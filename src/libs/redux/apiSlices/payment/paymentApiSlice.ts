@@ -30,5 +30,8 @@ export const paymentApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: "throw",
 });
 
+// ----------
+// Exports
+// ----------
 export const { useGetPaymentsQuery, useRefundPaymentMutation } =
   paymentApiSlice;

@@ -103,6 +103,9 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: "throw",
 });
 
+// ----------
+// Exports
+// ----------
 export const {
   useGetCustomerProfileDataQuery,
   useUpdateCustomerBasicInfoMutation,

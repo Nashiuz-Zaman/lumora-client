@@ -13,4 +13,7 @@ export const emailApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: false,
 });
 
+// ----------
+// Exports
+// ----------
 export const { useResendConfirmationEmailMutation } = emailApiSlice;

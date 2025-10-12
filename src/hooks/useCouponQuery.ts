@@ -12,68 +12,61 @@ import {
 } from "@/utils";
 import isEqual from "lodash/isEqual";
 
-// Constants
-import { OrderSortOptions } from "@/constants/order";
-
 // API Hooks
-import { useGetOrdersPrivateQuery } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { useGetCouponsQuery } from "@/libs/redux/apiSlices/coupon/couponApiSlice";
 
 // Types
-import { TOrderStatusValue } from "@/constants";
-import { IOrder, IQueryMeta } from "@/types";
+import { ICoupon, IQueryMeta } from "@/types";
+import { CouponSortOptions, TCouponStatus } from "@/constants";
 
-export interface IOrderQueriesParams {
+export interface ICouponQueryParams {
   page: number;
   sort: string;
   search: string;
-  status: TOrderStatusValue;
+  status?: TCouponStatus;
 }
 
-export interface IUseOrderQueriesArgs {
-  orderStatus: TOrderStatusValue;
-  isPrivate?: boolean;
+export interface IUseCouponQueryArgs {
+  couponStatus?: TCouponStatus;
   limit?: number;
-  extraLimitFields?: (keyof IOrder)[];
+  extraLimitFields?: (keyof ICoupon)[];
 }
 
-export const useOrderQueries = ({
-  orderStatus,
-  isPrivate = false,
+export const useCouponQuery = ({
+  couponStatus,
   limit = 20,
   extraLimitFields = [],
-}: IUseOrderQueriesArgs) => {
+}: IUseCouponQueryArgs) => {
   const searchParams = useSearchParams();
   const path = usePathname();
   const router = useRouter();
-  const [isClient, setIsClient] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  useEffect(() => setIsClient(true), []);
 
-  // Memoize raw query params
+  // Extract page/search/sort from URL
   const rawQueryParams = useMemo(
     () =>
       getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
     [searchParams]
   );
 
-  // Normalize params safely
-  const finalQueryParams: IOrderQueriesParams = useMemo(
+  // Normalize query params
+  const finalQueryParams: ICouponQueryParams = useMemo(
     () => ({
-      page: Number(rawQueryParams.page) || 1,
-      sort: (rawQueryParams.sort as string) || "-" + OrderSortOptions[2].value,
-      search: (rawQueryParams.search as string) || "",
-      status: orderStatus,
+      page: Number(rawQueryParams?.page) || 1,
+      sort: (rawQueryParams?.sort as string) || "-" + CouponSortOptions[0],
+      search: (rawQueryParams?.search as string) || "",
+      status: couponStatus,
     }),
-    [rawQueryParams, orderStatus]
+    [rawQueryParams, couponStatus]
   );
 
   // Controlled form params
   const [formParams, setFormParams] =
-    useState<IOrderQueriesParams>(finalQueryParams);
+    useState<ICouponQueryParams>(finalQueryParams);
 
-  // Sync state only when query params truly change
+  // Keep state in sync with URL
   useEffect(() => {
     if (!isEqual(formParams, finalQueryParams)) {
       setFormParams(finalQueryParams);
@@ -91,32 +84,33 @@ export const useOrderQueries = ({
     );
   };
 
-  // Handle filter form submission
+  // Submit filter form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateQueryParams(1);
   };
 
-  // Handle pagination
+  // Change page
   const changePage = (page: number) => {
-    if (page !== formParams.page) {
-      updateQueryParams(page);
-    }
+    if (page !== formParams.page) updateQueryParams(page);
   };
 
-  // Build query args
+  // Build query args for API
   const queryArgs = useMemo(() => {
-    const limitFields = [
-      "orderId",
-      "name",
-      "email",
-      "phone",
+    const limitFields: (keyof ICoupon)[] = [
+      "code",
+      "discountType",
+      "discountValue",
+      "startDate",
+      "expiryDate",
+      "usageLimit",
+      "usedCount",
+      "minimumOrderAmount",
+      "createdAt",
       "updatedAt",
-      "total",
-      "status",
-      "estimatedDelivery",
       ...extraLimitFields,
     ];
+
     return cleanObject({
       ...finalQueryParams,
       limit,
@@ -124,10 +118,10 @@ export const useOrderQueries = ({
     });
   }, [finalQueryParams, limit, extraLimitFields]);
 
-  // Fetch orders
-  const query = useGetOrdersPrivateQuery(queryArgs, {
+  // Fetch coupons
+  const query = useGetCouponsQuery(queryArgs, {
     refetchOnMountOrArgChange: true,
-    skip: !isClient || !isPrivate,
+    skip: !isClient,
   });
 
   return {
@@ -135,7 +129,7 @@ export const useOrderQueries = ({
     setFormParams,
     handleSubmit,
     changePage,
-    orders: query?.data?.data?.orders ?? [],
+    coupons: query?.data?.data?.coupons ?? [],
     queryMeta: query?.data?.data?.queryMeta as IQueryMeta,
     isFetching: query?.isFetching,
     refetch: query.refetch,

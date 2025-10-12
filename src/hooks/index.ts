@@ -28,3 +28,4 @@ export * from "./useOrderQueries";
 export * from "./useDynamicHeight";
 export * from "./useDrawer";
 export * from "./usePaymentQueries";
+export * from "./useCouponQuery";

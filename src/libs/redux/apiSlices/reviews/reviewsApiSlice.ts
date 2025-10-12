@@ -40,7 +40,7 @@ export const reviewApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    // ✅ Bulk Approve Reviews
+    //  Bulk Approve Reviews
     bulkApproveReviews: builder.mutation({
       query: (ids) => ({
         url: `/reviews/bulk-approve`,
@@ -49,7 +49,7 @@ export const reviewApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    // ❌ Bulk Delete Reviews
+    //  Bulk Delete Reviews
     bulkDeleteReviews: builder.mutation({
       query: (ids) => ({
         url: `/reviews/bulk-delete`,
@@ -61,6 +61,9 @@ export const reviewApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: false,
 });
 
+// ----------
+// Exports
+// ----------
 export const {
   useGetProductReviewsAndStatsQuery,
   usePostReviewMutation,

@@ -48,14 +48,6 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    initiateSslPayment: builder.mutation({
-      query: (data) => ({
-        url: "/orders/initiate-payment",
-        method: "POST",
-        data,
-      }),
-    }),
-
     markOrderShipped: builder.mutation<IApiResponse, IMarkOrderShippedArgs>({
       query: (data) => ({
         url: `/orders/shipping-details`,
@@ -98,13 +90,15 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: "throw",
 });
 
+// ----------
+// Exports
+// ----------
 export const {
   usePlaceOrderMutation,
   useGetCustomerRecentOrdersQuery,
   useGetCustomerOrderHistoryQuery,
   useGetCustomerOrderStatsQuery,
   useGetOrdersPrivateQuery,
-  useInitiateSslPaymentMutation,
   useMarkOrderShippedMutation,
   useCancelOrdersMutation,
   useArchiveOrdersMutation,

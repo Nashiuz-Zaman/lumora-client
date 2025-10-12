@@ -1,9 +1,9 @@
-import { UnderDev } from "@/components/shared";
+import { ExpiredCouponsMain } from "@/components/page-specific";
 
 export const metadata = {
   title: "Expired Coupons | Admin Panel",
 };
 
-const ExpiredCouponsPage= () => <UnderDev />;
+const ExpiredCouponsPage = () => <ExpiredCouponsMain />;
 
 export default ExpiredCouponsPage;

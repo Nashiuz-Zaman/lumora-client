@@ -19,4 +19,7 @@ export const categoryApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: false,
 });
 
+// ----------
+// Exports
+// ----------
 export const { useGetCategoryTreeQuery } = categoryApiSlice;

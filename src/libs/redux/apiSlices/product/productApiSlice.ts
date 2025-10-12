@@ -142,6 +142,9 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
   overrideExisting: "throw",
 });
 
+// ----------
+// Exports
+// ----------
 export const {
   useGetProductsAdminQuery,
   useGetOneProductAdminQuery,
@@ -152,5 +155,5 @@ export const {
   useSearchProductsQuery,
   useLazySearchInSearchbarQuery,
   useGetProductForCustomerQuery,
-  useLazyGetProductForCustomerQuery
+  useLazyGetProductForCustomerQuery,
 } = productsApiSlice;

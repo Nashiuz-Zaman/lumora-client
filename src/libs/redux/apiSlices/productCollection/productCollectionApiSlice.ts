@@ -42,6 +42,9 @@ export const productCollectionApi = baseApiSlice.injectEndpoints({
   overrideExisting: "throw",
 });
 
+// ----------
+// Exports
+// ----------
 export const {
   useGetAllProductCollectionsQuery,
   useAddProductsToProductCollectionMutation,

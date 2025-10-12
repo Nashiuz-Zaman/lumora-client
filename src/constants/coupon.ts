@@ -12,7 +12,10 @@ export type TCouponStatus = (typeof CouponStatus)[keyof typeof CouponStatus];
 
 // Coupon sort options (frozen for immutability)
 export const CouponSortOptions = Object.freeze([
-  { label: "Code", value: "code" },
-  { label: "Amount", value: "discountValue" },
   { label: "Created", value: "createdAt" },
+  { label: "Code", value: "code" },
+  { label: "Discount Type", value: "discountType" },
+  { label: "Expiry", value: "expiryDate" },
+  { label: "Used", value: "usedCount" },
+  { label: "Amount", value: "discountValue" },
 ] as const satisfies TSortOptions<ICoupon>);

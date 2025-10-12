@@ -22,7 +22,7 @@ import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
 
 // Hooks
 import {
-  useOrdersQueries,
+  useOrderQueries,
   useModal,
   useSelectable,
   useRefState,
@@ -75,7 +75,7 @@ const ConfirmedOrdersMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = useOrdersQueries({ orderStatus: OrderStatus.Confirmed, isPrivate: true });
+  } = useOrderQueries({ orderStatus: OrderStatus.Confirmed, isPrivate: true });
 
   const {
     selected,

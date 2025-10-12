@@ -13,7 +13,7 @@ import { DeliveredOrderRow } from "./ArchivedOrderRow";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
 import { useRefState, useSetElementText } from "@/hooks";
 import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
-import { useOrdersQueries } from "@/hooks";
+import { useOrderQueries } from "@/hooks";
 import { IOrder } from "@/types";
 
 const columns: TTableColumn[] = [
@@ -39,7 +39,7 @@ export const ArchivedOrdersMain = () => {
     setFormParams,
     handleSubmit,
     changePage,
-  } = useOrdersQueries({ orderStatus: OrderStatus.Deleted, isPrivate: true });
+  } = useOrderQueries({ orderStatus: OrderStatus.Deleted, isPrivate: true });
 
   const height = useDynamicHeight({
     refElements: [refs.paramsFilterForm, refs.topPanelRef, refs.adminHeader],

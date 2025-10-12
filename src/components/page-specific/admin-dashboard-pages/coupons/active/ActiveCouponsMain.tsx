@@ -1,52 +1,63 @@
 "use client";
 
+// Components
 import {
   Pagination,
   TabularData,
+  WarningIcon,
   ButtonBtnTrans,
   TRenderTableRowProps,
   TTableColumn,
-  ArchiveIcon,
 } from "@/components/shared";
-import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
+import { CouponTopParamsForm } from "../shared/CouponTopParamsForm";
+import { ActiveCouponRow } from "./ActiveCouponRow";
 import { ConfirmationModal } from "@/components/modals";
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
-import { DeliveredOrderRow } from "./DeliveredOrderRow";
 
+// Providers
+import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+
+// Hooks
 import {
-  useDynamicHeight,
+  useModal,
+  useSelectable,
   useRefState,
   useSetElementText,
-  useOrderQueries,
-  useSelectable,
-  useModal,
+  useDynamicHeight,
+  useCouponQuery,
 } from "@/hooks";
 import { useRef } from "react";
-import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
+
+// Constants
+import { UserRoles, CouponStatus, CouponSortOptions } from "@/constants";
+
+// Utilities
 import { catchAsyncGeneral, showToast } from "@/utils";
-import { IOrder } from "@/types";
-import { useArchiveOrdersMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+
+// Types
+import { ICoupon } from "@/types";
+
+// Redux / API
+import { useExpireCouponMutation } from "@/libs/redux/apiSlices/coupon/couponApiSlice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },
-  { columnTitle: "Order ID", width: "0.25fr" },
-  { columnTitle: "Customer", width: "0.3fr" },
-  { columnTitle: "Phone", width: "0.3fr" },
-  { columnTitle: "Email", width: "0.4fr" },
-  { columnTitle: "Shipped At", width: "0.4fr" },
-  { columnTitle: "Status", width: "0.3fr" },
-  { columnTitle: "Total", width: "0.3fr" },
+  { columnTitle: "Code", width: "0.3fr" },
+  { columnTitle: "Discount Type", width: "0.3fr" },
+  { columnTitle: "Discount Value", width: "0.3fr" },
+  { columnTitle: "Start Date", width: "0.4fr" },
+  { columnTitle: "Expiry Date", width: "0.4fr" },
+  { columnTitle: "Usage Limit", width: "0.3fr" },
+  { columnTitle: "Used Count", width: "0.3fr" },
 ];
 
-export const DeliveredOrdersMain = () => {
-  const { refs } = useRefState();
+export const ActiveCouponsMain = () => {
   const tableActionsBlockRef = useRef(null);
-  useSetElementText(refs?.titleRef?.current, "Delivered Orders");
+  const { refs } = useRefState();
+  useSetElementText(refs?.titleRef?.current, "Active Coupons");
   const { admin, superAdmin } = UserRoles;
-  const { closeModal, openModal, isModalOpen } = useModal();
 
   const {
-    orders,
+    coupons,
     queryMeta,
     isFetching,
     formParams,
@@ -54,10 +65,7 @@ export const DeliveredOrdersMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = useOrderQueries({ orderStatus: OrderStatus.Delivered, isPrivate: true });
-
-  const [archiveOrders, { isLoading: isArchiving }] =
-    useArchiveOrdersMutation();
+  } = useCouponQuery({ couponStatus: CouponStatus.Active });
 
   const {
     selected,
@@ -65,13 +73,28 @@ export const DeliveredOrdersMain = () => {
     toggleSelectAll,
     checkIfSelected,
     isAllSelected,
-  } = useSelectable(orders, "_id");
+  } = useSelectable(coupons, "_id");
 
-  const renderRow = ({ data, isLastEl }: TRenderTableRowProps<IOrder>) => (
-    <DeliveredOrderRow
-      orderData={data}
+  // Confirmation modal (for expiring coupons)
+  const { isModalOpen, openModal, closeModal } = useModal();
+
+  const [expireCoupon, { isLoading: isExpiring }] = useExpireCouponMutation();
+
+  const handleExpireCoupons = catchAsyncGeneral(async () => {
+    closeModal();
+    const res = await expireCoupon({ _ids: selected as string[] }).unwrap();
+
+    if (res?.success) {
+      showToast({ message: res.message });
+      refetch();
+    }
+  });
+
+  const renderRow = ({ data, isLastEl }: TRenderTableRowProps<ICoupon>) => (
+    <ActiveCouponRow
+      couponData={data}
       isSelected={checkIfSelected(data)}
-      functions={{ toggleSelectOne }}
+      toggleSelectOne={toggleSelectOne}
       isLastEl={isLastEl}
     />
   );
@@ -86,50 +109,43 @@ export const DeliveredOrdersMain = () => {
     fixedHeights: [queryMeta?.totalPages > 1 ? 56 : 0],
   });
 
-  const handleArchiveOrders = catchAsyncGeneral(async () => {
-    closeModal();
-    const res = await archiveOrders({ _ids: selected as string[] }).unwrap();
-
-    if (res?.success) {
-      showToast({ message: res.message });
-      refetch();
-    }
-  });
-
   return (
     <ProtectedRouteProvider allowedRoles={[admin, superAdmin]}>
       <div className="grow flex flex-col">
-        <OrdersTopParamsForm
+        {/* Filter and sorting form */}
+        <CouponTopParamsForm
           params={formParams}
-          sortOptions={[...OrderSortOptions]}
+          sortOptions={[...CouponSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
-          className="!border-b-0"
         />
 
+        {/* Expire selected button */}
         <ButtonBtnTrans
           ref={tableActionsBlockRef}
           onClick={openModal}
-          isLoading={isArchiving}
-          className="text-red-500 font-inherit ml-auto px-4 !h-[50px] shrink-0"
+          isLoading={isExpiring}
+          className="text-red-600 font-inherit ml-auto px-4 !h-[50px] shrink-0"
           isDisabled={selected.length < 1}
         >
-          <ArchiveIcon className="text-2xl" />
-          Archive Selected
+          <WarningIcon />
+          Expire Selected
         </ButtonBtnTrans>
 
-        <TabularData<IOrder>
+        {/* Table */}
+        <TabularData<ICoupon>
           style={{ height: `${height}px` }}
           classNameObj={{ headingRow: "bg-white" }}
           columns={columns}
-          data={orders}
-          noDataText="No orders found"
+          data={coupons}
+          noDataText="No coupons found"
           renderRow={renderRow}
           dataLoading={isFetching}
           isAllSelected={isAllSelected}
           toggleSelectAll={toggleSelectAll}
         />
 
+        {/* Pagination */}
         {queryMeta?.totalPages > 1 && (
           <div className="!h-[56px] border-t border-neutral-200 mt-auto flex items-center justify-center">
             <Pagination
@@ -140,10 +156,11 @@ export const DeliveredOrdersMain = () => {
           </div>
         )}
 
+        {/* Confirmation Modal */}
         <ConfirmationModal
           show={isModalOpen}
-          message={`Archive ${selected.length} delivered order(s)?`}
-          onConfirm={handleArchiveOrders}
+          message={`Expire ${selected.length} active coupon(s)?`}
+          onConfirm={handleExpireCoupons}
           onCancel={closeModal}
           isAnimated
         />

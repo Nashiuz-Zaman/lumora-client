@@ -20,7 +20,7 @@ import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
 
 // Hooks
 import {
-  useOrdersQueries,
+  useOrderQueries,
   useSelectable,
   useRefState,
   useSetElementText,
@@ -68,7 +68,7 @@ export const CancelledOrdersMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = useOrdersQueries({
+  } = useOrderQueries({
     orderStatus: OrderStatus.Cancelled,
     isPrivate: true,
     extraLimitFields: ["cancellationReason"],

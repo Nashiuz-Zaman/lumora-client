@@ -1,9 +1,9 @@
-import { UnderDev } from "@/components/shared";
+import { ActiveCouponsMain } from "@/components/page-specific";
 
 export const metadata = {
   title: "Active Coupons | Admin Panel",
 };
 
-const ActiveCouponsPage= () => <UnderDev />;
+const ActiveCouponsPage = () => <ActiveCouponsMain />;
 
 export default ActiveCouponsPage;
