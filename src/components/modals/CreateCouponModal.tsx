@@ -1,7 +1,7 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { BaseModal } from "./BaseModal";
 import {
   ButtonBtn,
@@ -11,21 +11,12 @@ import {
   Inputfield,
 } from "../shared";
 import { useModal } from "@/hooks";
+import { catchAsyncGeneral, showToast } from "@/utils";
+import { ICoupon } from "@/types";
+import { useCreateCouponMutation } from "@/libs/redux/apiSlices/coupon/couponApiSlice";
 
 interface ICreateCouponModalProps {
   target?: HTMLElement | null; // where the trigger button will render
-}
-
-interface IFormInputs {
-  code: string;
-  description?: string;
-  discountType: "percentage" | "flat";
-  discountValue: number;
-  minimumOrderAmount?: number;
-  usageLimit?: number;
-  startDate: string;
-  expiryDate: string;
-  status: number | string;
 }
 
 export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
@@ -34,21 +25,37 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
-  } = useForm<IFormInputs>();
+    watch,
+    setError,
+  } = useForm<Partial<ICoupon>>({
+    defaultValues: { discountType: "percentage", expiryDate: "" },
+  });
 
-  const onSubmit: SubmitHandler<IFormInputs> = async (data) => {
-    try {
-      // TODO: API call to create coupon
-      console.log("Form Data:", data);
+  const startDate = watch("startDate");
+  const discountType = watch("discountType");
+  const [createCoupon, { isLoading }] = useCreateCouponMutation();
 
-      closeModal();
-      reset();
-    } catch (err) {
-      console.error(err);
+  const onSubmit = catchAsyncGeneral(
+    async (args) => {
+      const data = args?.data as Partial<ICoupon>;
+
+      const res = await createCoupon(data).unwrap();
+
+      if (res.success) {
+        showToast({ message: res.message });
+        reset();
+        closeModal();
+      }
+    },
+    {
+      handleError: "function",
+      onError: (_error, _args, message) => {
+        setError("root", { message: message });
+      },
     }
-  };
+  );
 
   return (
     <>
@@ -71,13 +78,14 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
         closeFunction={closeModal}
         allowCloseOnOutsideClick={false}
       >
-        <form className="space-y-4" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          className="space-y-4"
+          onSubmit={handleSubmit((data) => onSubmit({ data }))}
+        >
           <h2 className="text-xl font-semibold mb-4">Create New Coupon</h2>
 
           {/* Root error message */}
-          {Object.keys(errors).length > 0 && (
-            <ErrorMessage text="Please fix the errors below before submitting." />
-          )}
+          {errors.root && <ErrorMessage text={errors.root.message} />}
 
           {/* Coupon Code */}
           <Inputfield
@@ -115,7 +123,12 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
               placeholder="e.g. 10"
               {...register("discountValue", {
                 required: "Discount value is required",
+                min: { value: 1, message: "Value must be at least 1" },
                 valueAsNumber: true,
+                validate: (value) =>
+                  discountType === "percentage" && (value as number) > 100
+                    ? "Invalid percentage"
+                    : true,
               })}
               error={errors.discountValue?.message}
             />
@@ -150,19 +163,23 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
               type="datetime-local"
               {...register("expiryDate", {
                 required: "Expiry date is required",
+                validate: (value) =>
+                  !startDate || new Date(value as string) >= new Date(startDate)
+                    ? true
+                    : "Expiry date cannot be earlier than start date",
               })}
               error={errors.expiryDate?.message}
             />
           </div>
 
           {/* Action buttons */}
-          <div className="flex justify-end gap-4 pt-6">
+          <div className="flex justify-end gap-4 pt-6  items-center">
             <ButtonBtnTrans type="button" onClick={closeModal}>
               Cancel
             </ButtonBtnTrans>
             <ButtonBtn
               type="submit"
-              isLoading={isSubmitting}
+              isLoading={isLoading}
               className="!primaryClasses"
             >
               Create

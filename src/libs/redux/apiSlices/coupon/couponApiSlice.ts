@@ -13,14 +13,16 @@ export const couponApiSlice = baseApiSlice.injectEndpoints({
         method: "GET",
         params,
       }),
+      providesTags: ["Coupons"],
     }),
 
-    createCoupon: builder.mutation<IApiResponse<{ coupon: ICoupon }>, ICoupon>({
+    createCoupon: builder.mutation<IApiResponse, Partial<ICoupon>>({
       query: (data) => ({
         url: "/coupons",
         method: "POST",
         data,
       }),
+      invalidatesTags: ["Coupons"],
     }),
 
     expireCoupon: builder.mutation<IApiResponse, { _ids: string[] }>({
@@ -29,6 +31,7 @@ export const couponApiSlice = baseApiSlice.injectEndpoints({
         method: "PATCH",
         data,
       }),
+      invalidatesTags: ["Coupons"],
     }),
 
     deleteCoupons: builder.mutation<IApiResponse, { _ids: string[] }>({
@@ -37,6 +40,7 @@ export const couponApiSlice = baseApiSlice.injectEndpoints({
         method: "PATCH",
         data,
       }),
+      invalidatesTags: ["Coupons"],
     }),
   }),
   overrideExisting: "throw",

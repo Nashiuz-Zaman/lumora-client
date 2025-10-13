@@ -16,6 +16,7 @@ export const baseApiSlice = createApi({
     "CategoryTree",
     "CustomerSettingsData",
     "CustomerProfileData",
+    'Coupons',
     "GuestCartData",
     "UserCartData",
     "ProductCollectionsAdmin",

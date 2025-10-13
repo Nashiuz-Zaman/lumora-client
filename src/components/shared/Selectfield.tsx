@@ -54,9 +54,7 @@ export const SelectField = ({
   return (
     <label className={`block w-full ${className}`}>
       {labelText && (
-        <div
-          className={`mb-2 ${labelContainerClassName}`}
-        >
+        <div className={`mb-2 ${labelContainerClassName}`}>
           <span className={`${labelTextClassName}`}>{labelText}</span>
         </div>
       )}
@@ -66,14 +64,22 @@ export const SelectField = ({
       >
         <select
           {...props}
-          ref={selectRef}
+          ref={(el) => {
+            // connect both refs
+            selectRef.current = el;
+            if (typeof props.ref === "function") props.ref(el);
+            else if (props.ref)
+              (props.ref as React.RefObject<HTMLSelectElement | null>).current =
+                el;
+          }}
           onClick={() => setIsOpen((prev) => !prev)}
-          onBlur={() => setIsOpen(false)}
+          onBlur={(e) => {
+            setIsOpen(false);
+            if (props.onBlur) props.onBlur(e);
+          }}
           className="appearance-none w-full bg-transparent py-3 px-4 rounded-lg cursor-pointer"
         >
-          <option value="" disabled>
-            {placeholder}
-          </option>
+          <option value="">{placeholder}</option>
           {options.map(({ text, value }) => (
             <option key={value} value={value}>
               {text}
