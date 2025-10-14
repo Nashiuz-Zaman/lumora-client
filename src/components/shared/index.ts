@@ -52,3 +52,4 @@ export * from "./UnderDev";
 export * from "./FadeSlider";
 export * from "./Drawer";
 export * from "./ProductSwiper";
+export * from "./FileUploadField";

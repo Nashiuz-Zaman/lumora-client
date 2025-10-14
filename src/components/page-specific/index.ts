@@ -4,3 +4,5 @@ export * from "./auth-pages";
 export * from "./main/confirmation-email-sent/ConfirmationEmailSentMain";
 export * from "./main/products/search-products/SearchProductsMain";
 export * from "./main/products/product-detail-customer/ProductPagePublicMain";
+export * from "./main/returns/ReturnProcessSteps";
+export * from "./main/returns/ReturnRequestForm";
