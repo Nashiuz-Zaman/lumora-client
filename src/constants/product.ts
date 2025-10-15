@@ -18,7 +18,3 @@ export const ProductSortOptions = Object.freeze([
   { label: "Price", value: "defaultPrice" },
   { label: "Updated", value: "updatedAt" },
 ] as const satisfies TSortOptions<IProduct>);
-
-// Optional type for product sort values
-export type TProductSortOptionValue =
-  (typeof ProductSortOptions)[number]["value"];

@@ -1,3 +1,5 @@
+import { IReturnRequest, TSortOptions } from "@/types";
+
 // Return request status (frozen)
 export const ReturnRequestStatus = Object.freeze({
   Rejected: -1,
@@ -15,12 +17,8 @@ export const ReturnRequestSortOptions = Object.freeze([
   { label: "Email", value: "email" },
   { label: "Order ID", value: "orderId" },
   { label: "Order Total", value: "total" },
-  { label: "Status", value: "status" },
-] as const);
-
-// Type for sort option values
-export type TReturnRequestSortOptionValue =
-  (typeof ReturnRequestSortOptions)[number]["value"];
+  { label: "Reason", value: "reason" },
+] as const satisfies TSortOptions<IReturnRequest>);
 
 // Return reasons (frozen)
 export const ReturnReasons = Object.freeze([

@@ -66,6 +66,26 @@ const navSections: INavSection[] = [
     ],
   },
   {
+    heading: "Returns",
+    items: [
+      {
+        name: "Pending",
+        icon: "ion:hourglass-outline",
+        path: "/admin/returns/pending",
+      },
+      {
+        name: "Approved",
+        icon: "charm:tick",
+        path: "/admin/returns/approved",
+      },
+      {
+        name: "Rejected",
+        icon: "material-symbols:cancel-outline",
+        path: "/admin/returns/rejected",
+      },
+    ],
+  },
+  {
     heading: "Payments",
     items: [
       {

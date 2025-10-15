@@ -16,7 +16,3 @@ export const ReviewSortOptions = Object.freeze([
   { label: "Status", value: "status" },
   { label: "Updated", value: "updatedAt" },
 ] as const);
-
-// Type for sort option values
-export type TReviewSortOptionValue =
-  (typeof ReviewSortOptions)[number]["value"];

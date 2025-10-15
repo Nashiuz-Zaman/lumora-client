@@ -1,8 +1,8 @@
 "use client";
 
-// React & Next.js
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import isEqual from "lodash/isEqual";
 
 // Utils
 import {
@@ -10,69 +10,66 @@ import {
   cleanObject,
   buildUrlWithParams,
 } from "@/utils";
-import isEqual from "lodash/isEqual";
 
-// Constants
-import { OrderSortOptions } from "@/constants/order";
-
-// API Hooks
-import { useGetPaymentsQuery } from "@/libs/redux/apiSlices/payment/paymentApiSlice";
+// API Hook
+import { useGetReturnRequestsQuery } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
 
 // Types
-import { TPaymentStatus } from "@/constants";
-import { IQueryMeta } from "@/types";
-import { IPayment } from "@/types/payment";
+import { IQueryMeta, IReturnRequest } from "@/types";
+import { ReturnRequestSortOptions, TReturnRequestStatus } from "@/constants";
 
-export interface IPaymentQueriesParams {
+export interface IReturnRequestQueriesParams {
   page: number;
   sort: string;
   search: string;
-  status: TPaymentStatus;
+  status: TReturnRequestStatus;
 }
 
-export interface IUsePaymentQueriesArgs {
-  paymentStatus: TPaymentStatus;
+export interface IUseReturnRequestQueriesArgs {
+  requestStatus: TReturnRequestStatus;
   limit?: number;
-  extraLimitFields?: (keyof IPayment)[];
+  extraLimitFields?: (keyof IReturnRequest)[];
 }
 
-export const usePaymentQueries = ({
-  paymentStatus,
+export const useReturnRequestQueries = ({
+  requestStatus,
   limit = 20,
   extraLimitFields = [],
-}: IUsePaymentQueriesArgs) => {
+}: IUseReturnRequestQueriesArgs) => {
   const searchParams = useSearchParams();
   const path = usePathname();
   const router = useRouter();
-  const [isClient, setIsClient] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Memoize raw query params
+  // Extract URL params
   const rawQueryParams = useMemo(
     () =>
       getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
     [searchParams]
   );
 
-  // Normalize params safely
-  const finalQueryParams: IPaymentQueriesParams = useMemo(
+  // Normalize query params
+  const finalQueryParams: IReturnRequestQueriesParams = useMemo(
     () => ({
       page: Number(rawQueryParams.page) || 1,
-      sort: (rawQueryParams.sort as string) || "-" + OrderSortOptions[2].value,
+      sort:
+        (rawQueryParams.sort as string) ||
+        "-" + ReturnRequestSortOptions[2].value,
       search: (rawQueryParams.search as string) || "",
-      status: paymentStatus,
+      status: requestStatus,
     }),
-    [rawQueryParams, paymentStatus]
+    [rawQueryParams, requestStatus]
   );
 
-  // Controlled form params
+  // Controlled form state
   const [formParams, setFormParams] =
-    useState<IPaymentQueriesParams>(finalQueryParams);
+    useState<IReturnRequestQueriesParams>(finalQueryParams);
 
-  // Sync state only when query params truly change
+  // Sync with URL params
   useEffect(() => {
     if (!isEqual(formParams, finalQueryParams)) {
       setFormParams(finalQueryParams);
@@ -90,39 +87,42 @@ export const usePaymentQueries = ({
     );
   };
 
-  // Handle filter form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     updateQueryParams(1);
   };
 
-  // Handle pagination
   const changePage = (page: number) => {
-    if (page !== formParams.page) {
-      updateQueryParams(page);
-    }
+    if (page !== formParams.page) updateQueryParams(page);
   };
 
   // Build query args
   const queryArgs = useMemo(() => {
-    const limitFields = [
+    const limitFields: (keyof IReturnRequest)[] = [
+      "_id",
       "orderId",
       "name",
       "email",
+      "phone",
+      "total",
+      "reason",
+      "status",
       "createdAt",
-      "amount",
-      "cardType",
+      "updatedAt",
+      "invoice",
       ...extraLimitFields,
     ];
+
     return cleanObject({
       ...finalQueryParams,
       limit,
+      sort: "-createdAt",
       limitFields: limitFields.join(","),
     });
   }, [finalQueryParams, limit, extraLimitFields]);
 
-  // Fetch orders
-  const query = useGetPaymentsQuery(queryArgs, {
+  // Fetch data
+  const query = useGetReturnRequestsQuery(queryArgs, {
     refetchOnMountOrArgChange: true,
     skip: !isClient,
   });
@@ -132,7 +132,7 @@ export const usePaymentQueries = ({
     setFormParams,
     handleSubmit,
     changePage,
-    payments: query?.data?.data?.payments ?? [],
+    returnRequests: query?.data?.data?.returnRequests ?? [],
     queryMeta: query?.data?.data?.queryMeta as IQueryMeta,
     isFetching: query?.isFetching,
     refetch: query.refetch,

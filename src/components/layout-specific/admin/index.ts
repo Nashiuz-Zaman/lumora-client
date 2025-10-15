@@ -5,3 +5,4 @@ export * from "./products/AdminProductsLayoutMain";
 export * from "./orders/AdminOrdersLayoutMain";
 export * from "./payments/AdminPaymentsLayoutMain";
 export * from "./coupons/AdminCouponsLayoutMain";
+export * from "./returns/ReturnsLayoutMain";

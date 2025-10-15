@@ -11,3 +11,4 @@ export * from "./productCollection";
 export * from "./generic";
 export * from "./payment";
 export * from "./coupon";
+export * from "./returnRequest";

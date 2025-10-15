@@ -1,3 +1,5 @@
+import { IUser, TSortOptions } from "@/types";
+
 // User roles (frozen)
 export const UserRoles = Object.freeze({
   customer: "customer",
@@ -23,7 +25,4 @@ export const UserSortOptions = Object.freeze([
   { label: "Name", value: "name" },
   { label: "Joined", value: "createdAt" },
   { label: "Email", value: "email" },
-] as const);
-
-// Type for user sort option values
-export type TUserSortOptionValue = (typeof UserSortOptions)[number]["value"];
+] as const satisfies TSortOptions<IUser>);

@@ -24,8 +24,8 @@ export interface IProductCollection<T = IProductInCollection> {
   slug: string;
   page?: string;
   products: T[];
-  createdAt: string; // ISO date string
-  updatedAt: string; // ISO date string
+  createdAt: string;
+  updatedAt: string;
 }
 
 export type TPopulatedProductCollection =
