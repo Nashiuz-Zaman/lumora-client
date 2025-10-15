@@ -41,7 +41,6 @@ export const Inputfield = ({
   passwordField = false,
   invertIconPosition = false,
   error,
-
   ...props
 }: TInputfieldProps) => {
   const [passHidden, setPassHidden] = useState(true);

@@ -60,7 +60,7 @@ export const SelectField = ({
       )}
 
       <div
-        className={`relative w-full bg-white border border-neutral-300 rounded-lg transition-all duration-200 ${selectClassName}`}
+        className={`relative w-full bg-white border border-neutral-200 rounded-lg transition-all duration-200 ${selectClassName}`}
       >
         <select
           {...props}

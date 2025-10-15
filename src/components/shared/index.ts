@@ -22,7 +22,6 @@ export * from "./DnD-Kit/Draggable";
 export * from "./DnD-Kit/Droppable";
 export * from "./NoData";
 export * from "./FormSectionHeading";
-export * from "./Selectfield";
 export * from "./Pagination";
 export * from "./TabularData";
 export * from "./ColorBadge";
@@ -53,3 +52,4 @@ export * from "./FadeSlider";
 export * from "./Drawer";
 export * from "./ProductSwiper";
 export * from "./FileUploadField";
+export * from './SelectField'

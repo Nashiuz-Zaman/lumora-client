@@ -3,7 +3,7 @@
 import React, { ReactNode } from "react";
 
 interface IFileInputButtonProps {
-  text: string;
+  buttonText: string;
   accept?: string;
   multiple?: boolean;
   className?: string;
@@ -12,7 +12,7 @@ interface IFileInputButtonProps {
 }
 
 export const FileInputButton = ({
-  text,
+  buttonText,
   accept,
   multiple = false,
   className = "",
@@ -24,7 +24,7 @@ export const FileInputButton = ({
       className={`flex items-center gap-2 cursor-pointer px-4 py-2 border border-neutral-200 bg-neutral-100 rounded-lg hover:bg-neutral-200 transition w-fit ${className}`}
     >
       {children}
-      <span className="text-sm">{text}</span>
+      <span className="text-sm">{buttonText}</span>
 
       <input
         type="file"

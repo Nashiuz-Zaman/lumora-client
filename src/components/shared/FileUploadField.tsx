@@ -6,40 +6,40 @@ import { FileInputButton } from "./buttons";
 import { Icon } from "@iconify/react";
 
 interface IFileUploadFieldProps {
-  label: string;
-  text: string;
+  labelText: string;
+  buttonText: string;
   icon: string;
-  register: any;
   accept?: string;
   multiple?: boolean;
   files?: FileList;
   error?: FieldError;
   className?: string;
+  [key: string]: any;
 }
 
 export const FileUploadField = ({
-  label,
-  text,
+  labelText,
+  buttonText,
   icon,
-  register,
   accept,
   multiple = false,
   files,
   error,
   className = "",
+  ...props
 }: IFileUploadFieldProps) => {
   return (
     <div className={`space-y-2 w-full ${className}`}>
       {/* Field label */}
       <div className="flex items-center justify-between">
-        <label className="block font-semibold">{label}</label>
+        <label className="block font-semibold">{labelText}</label>
 
         {/* Reusable button with children icon */}
         <FileInputButton
-          text={text}
+          buttonText={buttonText}
           accept={accept}
           multiple={multiple}
-          {...register}
+          {...props}
         >
           <Icon icon={icon} className="text-xl" />
         </FileInputButton>
@@ -49,14 +49,16 @@ export const FileUploadField = ({
       {files && files.length > 0 && (
         <ul className="list-disc ml-4 text-sm text-neutral-500 space-y-1">
           {Array.from(files).map((file, idx) => (
-            <li className="break-all" key={idx}>{file.name}</li>
+            <li className="break-all" key={idx}>
+              {file.name}
+            </li>
           ))}
         </ul>
       )}
 
       {/* Error message */}
       {error?.message && (
-        <p className="text-red-500 text-sm">{error.message}</p>
+        <p className="text-red-600 text-sm">* {error.message}</p>
       )}
     </div>
   );

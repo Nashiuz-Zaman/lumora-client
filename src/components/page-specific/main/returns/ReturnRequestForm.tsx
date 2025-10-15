@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import {
   Inputfield,
   SelectField,
@@ -10,7 +10,7 @@ import {
   ErrorMessage,
   FileUploadField,
 } from "@/components/shared";
-import { showToast, uploadFileWithSignedUrl } from "@/utils";
+import { catchAsyncGeneral, showToast, uploadFileWithSignedUrl } from "@/utils";
 import { ReturnReasons } from "@/constants/returnRequest";
 import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
 import { useCreateReturnRequestMutation } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
@@ -19,12 +19,12 @@ type TFormValues = {
   orderId: string;
   reason: string;
   description: string;
-  invoice: FileList;
-  files?: FileList;
+  invoiceFile: FileList;
+  proofFiles?: FileList;
 };
 
 export const ReturnRequestForm = () => {
-  const [submitReturnRequest, { isLoading }] = useCreateReturnRequestMutation();
+  const [submitReturnRequest] = useCreateReturnRequestMutation();
   const [getSignedUrl] = useLazyGetSignedUrlQuery();
   const [isUploading, setIsUploading] = useState(false);
 
@@ -37,24 +37,19 @@ export const ReturnRequestForm = () => {
     formState: { errors },
   } = useForm<TFormValues>();
 
-  const invoiceFile = watch("invoice");
-  const imageFiles = watch("files");
+  const invoiceFile = watch("invoiceFile");
+  const imageFiles = watch("proofFiles");
 
-  const onSubmit: SubmitHandler<TFormValues> = async (data) => {
-    try {
+  const onSubmit = catchAsyncGeneral(
+    async (args) => {
+      const data = args?.data as TFormValues;
       setIsUploading(true);
 
-      const {
-        orderId,
-        reason,
-        description,
-        invoice: invoiceFile,
-        files: imageFiles,
-      } = data;
+      const { orderId, reason, description, invoiceFile, proofFiles } = data;
       const invoice = invoiceFile?.[0];
 
       if (!invoice) {
-        setError("invoice", { message: "Invoice file is required" });
+        setError("invoiceFile", { message: "Invoice file is required" });
         return;
       }
 
@@ -62,26 +57,24 @@ export const ReturnRequestForm = () => {
       const invoiceUrl = await uploadFileWithSignedUrl(invoice, getSignedUrl);
 
       // Upload optional images (if any)
-      let photoUrls: string[] = [];
-      if (imageFiles && imageFiles.length > 0) {
-        const uploads = await Promise.allSettled(
-          Array.from(imageFiles).map((f) =>
-            uploadFileWithSignedUrl(f, getSignedUrl)
+      let proofFileUrls: string[] = [];
+
+      if (proofFiles && proofFiles?.length > 0) {
+        const uploads = await Promise.all(
+          Array.from(proofFiles).map(
+            async (f) => await uploadFileWithSignedUrl(f, getSignedUrl)
           )
         );
-        photoUrls = uploads
-          .filter(
-            (r): r is PromiseFulfilledResult<string> => r.status === "fulfilled"
-          )
-          .map((r) => r.value);
+
+        proofFileUrls = uploads as string[];
       }
 
       const payload = {
         orderId,
         reason,
         description,
-        invoiceUrl,
-        photoUrls,
+        invoice: invoiceUrl,
+        files: proofFileUrls,
       };
 
       const res = await submitReturnRequest(payload).unwrap();
@@ -89,18 +82,23 @@ export const ReturnRequestForm = () => {
         showToast({ message: res.message });
         reset();
       }
-    } catch (err: any) {
-      setError("root", {
-        message:
-          err?.data?.message || "Something went wrong. Please try again.",
-      });
-    } finally {
-      setIsUploading(false);
+    },
+    {
+      handleError: "function",
+      onError(_error, _args, message) {
+        setError("root", { message });
+      },
+      onFinally() {
+        setIsUploading(false);
+      },
     }
-  };
+  );
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form
+      onSubmit={handleSubmit((data) => onSubmit({ data }))}
+      className="space-y-6"
+    >
       {/* Global Error */}
       {errors.root?.message && <ErrorMessage text={errors.root.message} />}
 
@@ -134,36 +132,36 @@ export const ReturnRequestForm = () => {
 
       {/* Invoice File */}
       <FileUploadField
-        label="Upload Invoice"
-        text="Choose File"
+        labelText="Upload Invoice"
+        buttonText="Choose File"
         icon="mdi:paperclip"
         accept=".pdf,.jpg,.png,.jpeg"
-        register={register("invoice", {
+        {...register("invoiceFile", {
           required: "Invoice file is required",
           validate: (files) =>
             files?.[0]?.size < 5 * 1024 * 1024 ||
             "File must be smaller than 5MB",
         })}
         files={invoiceFile}
-        error={errors.invoice}
+        error={errors.invoiceFile}
       />
 
       {/* Optional Photos */}
       <FileUploadField
-        label="Upload Photos (optional)"
-        text="Choose Images"
+        labelText="Upload Photos (optional)"
+        buttonText="Choose Images"
         icon="mdi:image-multiple-outline"
         accept="image/*"
         multiple
-        register={register("files")}
+        {...register("proofFiles")}
         files={imageFiles}
-        error={errors.files}
+        error={errors.proofFiles}
         className="!mb-10"
       />
 
       <ButtonBtn
         type="submit"
-        isLoading={isLoading || isUploading}
+        isLoading={isUploading}
         className="!primaryClasses ml-auto"
       >
         Submit Return Request
