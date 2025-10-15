@@ -1,6 +1,6 @@
 import { IApiResponse, TQueryDataWithQueryMeta } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
-import { IReturnRequest } from "@/types/returnRequest";
+import { IReturnRequest, TPopulatedReturnRequest } from "@/types/returnRequest";
 
 export const returnRequestApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -29,7 +29,7 @@ export const returnRequestApiSlice = baseApiSlice.injectEndpoints({
 
     // GET: Fetch single return request by ID
     getReturnRequest: builder.query<
-      IApiResponse<{ returnRequest: Partial<IReturnRequest> }>,
+      IApiResponse<{ returnRequest: Partial<TPopulatedReturnRequest> }>,
       { id: string; limitFields?: string; populate?: string }
     >({
       query: ({ id, limitFields, populate }) => ({

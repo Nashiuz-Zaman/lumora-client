@@ -15,7 +15,7 @@ export const PendingRequestRow = ({
   requestData,
   isLastEl,
 }: IPendingRequestRowProps) => {
-  const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
+  const cellClasses = `font-medium text-sm px-4 py-3 flex items-center group-hover:bg-neutral-100 ${
     !isLastEl ? "border-b border-neutral-200" : ""
   }`;
 
@@ -47,6 +47,7 @@ export const PendingRequestRow = ({
       <td className={cellClasses}>
         {requestData.invoice ? (
           <a
+            onClick={(e) => e.stopPropagation()}
             href={requestData.invoice}
             target="_blank"
             rel="noopener noreferrer"

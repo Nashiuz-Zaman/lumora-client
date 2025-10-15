@@ -4,6 +4,7 @@ import productQuickViewReducer from "./features/productQuickView/productQuickVie
 import { baseApiSlice } from "./apiSlices/baseApiSlice";
 import categoriesReducer from "./features/categories/categoriesSlice";
 import { ICategoryTreeItem } from "@/types";
+import returnRequestReducer from "./features/returnRequest/returnRequest";
 
 export const makeStore = (preloadedCategories?: ICategoryTreeItem[]) =>
   configureStore({
@@ -11,6 +12,7 @@ export const makeStore = (preloadedCategories?: ICategoryTreeItem[]) =>
       backdrop: backdropReducer,
       productQuickView: productQuickViewReducer,
       categories: categoriesReducer,
+      returnRequest: returnRequestReducer,
       [baseApiSlice.reducerPath]: baseApiSlice.reducer,
     },
     middleware: (getDefaultMiddleware) =>

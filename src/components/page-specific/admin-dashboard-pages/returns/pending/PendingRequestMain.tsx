@@ -26,6 +26,13 @@ import {
 
 // Types
 import { IReturnRequest } from "@/types";
+import { MouseEvent } from "react";
+import { useDispatch } from "react-redux";
+import {
+  setIsRequestModalOpen,
+  setRequestId,
+} from "@/libs/redux/features/returnRequest/returnRequest";
+import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "Order ID", width: "0.2fr" },
@@ -42,6 +49,7 @@ export const PendingRequestMain = () => {
   const { refs } = useRefState();
   useSetElementText(refs?.titleRef?.current, "Pending Return Requests");
   const { admin, superAdmin } = UserRoles;
+  const dispatch = useDispatch();
 
   const {
     returnRequests,
@@ -65,6 +73,12 @@ export const PendingRequestMain = () => {
     fixedHeights: [queryMeta?.totalPages > 1 ? 56 : 0],
   });
 
+  const handleRowClick = (_: MouseEvent<HTMLTableRowElement>, id: string) => {
+    dispatch(setRequestId(id));
+    dispatch(setBackdropOpen(true));
+    dispatch(setIsRequestModalOpen(true));
+  };
+
   return (
     <ProtectedRouteProvider allowedRoles={[admin, superAdmin]}>
       <div className="grow flex flex-col">
@@ -83,6 +97,7 @@ export const PendingRequestMain = () => {
           noDataText="No requests found"
           renderRow={renderRow}
           dataLoading={isFetching}
+          onRowClick={handleRowClick}
         />
 
         {queryMeta?.totalPages > 1 && (

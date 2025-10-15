@@ -1,6 +1,5 @@
 import { IProduct } from "@/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { setBackdropOpen } from "../backdrop/backdropSlice";
 
 interface IProductQuickViewState {
   quickViewModalData: Partial<IProduct> | null;
@@ -27,7 +26,6 @@ const productQuickViewSlice = createSlice({
       action: PayloadAction<IProductQuickViewState["isModalOpen"]>
     ) => {
       state.isModalOpen = action.payload;
-      setBackdropOpen(action.payload);
     },
   },
 });
