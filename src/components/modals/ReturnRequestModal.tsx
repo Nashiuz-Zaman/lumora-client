@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect, ChangeEvent } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 
 // Components
 import { BaseModal } from "@/components/modals";
@@ -28,59 +29,78 @@ import { formatPrice } from "@/utils";
 import { ReturnRequestStatus } from "@/constants";
 import type { TRootState } from "@/libs/redux/store";
 
+interface IRefundForm {
+  refundAmount: number;
+}
+
 export const ReturnRequestModal = () => {
   const dispatch = useDispatch();
   const { requestId, isRequestModalOpen } = useSelector(
     (state: TRootState) => state.returnRequest
   );
 
-  const [refundAmount, setRefundAmount] = useState("");
   const [issueFullRefund, setIssueFullRefund] = useState(true);
 
   const { data, isFetching, isError } = useGetReturnRequestQuery(
     { id: requestId as string, populate: "order" },
-    { skip: !isRequestModalOpen || !requestId }
+    { skip: !isRequestModalOpen || !requestId, refetchOnMountOrArgChange: true }
   );
 
   const request = data?.success ? data.data?.returnRequest : undefined;
+  const orderTotal = request?.order?.total ?? 0;
 
-  // Set full refund amount automatically
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
+  } = useForm<IRefundForm>({
+    defaultValues: { refundAmount: +orderTotal },
+  });
+
+  // Autofill full refund when toggled
   useEffect(() => {
-    if (isRequestModalOpen && request?.order?.total && issueFullRefund) {
-      setRefundAmount(String(request?.order?.total));
+    if (isRequestModalOpen && orderTotal && issueFullRefund) {
+      setValue("refundAmount", orderTotal);
+    } else if (!issueFullRefund) {
+      setValue("refundAmount", 0);
     }
-  }, [isRequestModalOpen, request, issueFullRefund]);
+
+    return () => {
+      if (issueFullRefund === false) setIssueFullRefund(true);
+    };
+  }, [isRequestModalOpen, orderTotal, issueFullRefund, setValue]);
 
   const closeFunction = () => {
     dispatch(setIsRequestModalOpen(false));
     dispatch(setRequestId(null));
     dispatch(setBackdropOpen(false));
+    reset();
   };
 
-  const handleApprove = () => {
-    if (!request) return;
+  const handleApprove = handleSubmit((data) => {
+    const amount = issueFullRefund ? orderTotal : Number(data.refundAmount);
 
-    const amount = issueFullRefund
-      ? request?.order?.total
-      : Number(refundAmount);
+    console.log("✅ Approved refund for:", amount);
+    // Dispatch approve mutation here
+  });
 
-    // handle approve logic (dispatch action / mutation)
-    console.log("Approved refund for:", amount);
+  const handleReject = () => {
+    console.log("❌ Request rejected for ID:", requestId);
+    // Dispatch reject mutation here
   };
 
   return (
     <BaseModal
-      className="max-h-[50rem] min-h-[30rem] max-w-[60rem] !w-full bg-white p-10 rounded-xl flex flex-col gap-6"
+      className="max-h-[90vh] overflow-y-auto min-h-[30rem] max-w-[60rem] !w-full bg-white p-10 rounded-xl flex flex-col gap-6"
       condition={isRequestModalOpen}
       closeFunction={closeFunction}
     >
-      {isFetching && <LoadingSpinner centered={true} />}
+      {isFetching && <LoadingSpinner centered />}
 
       {!isFetching && (isError || !request) && (
-        <ErrorMessage
-          centered={true}
-          text="Failed to load return request details."
-        />
+        <ErrorMessage centered text="Failed to load return request details." />
       )}
 
       {!isFetching && request && (
@@ -104,9 +124,7 @@ export const ReturnRequestModal = () => {
 
             <div>
               <h4 className="font-semibold mb-1">Order Total</h4>
-              <p className="text-neutral-700">
-                {formatPrice(request?.order?.total as number)}
-              </p>
+              <p className="text-neutral-700">{formatPrice(orderTotal)}</p>
             </div>
 
             <div>
@@ -146,7 +164,10 @@ export const ReturnRequestModal = () => {
           </div>
 
           {request?.status === ReturnRequestStatus.Pending && (
-            <div className="border-t border-neutral-200 pt-6 mt-4 flex flex-col gap-4">
+            <form
+              onSubmit={handleApprove}
+              className="border-t border-neutral-200 pt-6 mt-4 flex flex-col gap-4"
+            >
               <label className="flex items-center gap-3">
                 <input
                   type="checkbox"
@@ -160,26 +181,42 @@ export const ReturnRequestModal = () => {
               {!issueFullRefund && (
                 <Inputfield
                   labelText="Refund Amount"
-                  type="number"
-                  name="refundAmount"
                   placeholder="Enter amount to refund"
-                  value={refundAmount}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                    setRefundAmount(e.target.value)
-                  }
-                  min={0}
-                  max={request?.order?.total as number}
-                  required={true}
+                  {...register("refundAmount", {
+                    required: "Refund amount is required",
+                    valueAsNumber: true,
+                    min: {
+                      value: 1,
+                      message: "Amount must be greater than 0",
+                    },
+                    max: {
+                      value: orderTotal,
+                      message: `Cannot exceed order total (${formatPrice(
+                        orderTotal
+                      )})`,
+                    },
+                  })}
+                  error={errors.refundAmount?.message}
                 />
               )}
 
-              <ButtonBtn
-                onClick={handleApprove}
-                className="!rounded-full !primaryClasses ml-auto mt-4"
-              >
-                Approve Request
-              </ButtonBtn>
-            </div>
+              <div className="flex items-center justify-end gap-3 mt-4">
+                <ButtonBtn
+                  type="button"
+                  onClick={handleReject}
+                  className="!rounded-full bg-red-500 text-white hover:bg-red-600"
+                >
+                  Reject
+                </ButtonBtn>
+
+                <ButtonBtn
+                  type="submit"
+                  className="!rounded-full !primaryClasses"
+                >
+                  Approve
+                </ButtonBtn>
+              </div>
+            </form>
           )}
         </>
       )}
