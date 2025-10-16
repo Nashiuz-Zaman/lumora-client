@@ -59,6 +59,11 @@ const navSections: INavSection[] = [
         path: "/admin/orders/cancelled",
       },
       {
+        name: "Returned",
+        icon: "material-symbols:assignment-return",
+        path: "/admin/orders/returned",
+      },
+      {
         name: "Archived",
         icon: "mdi:archive-lock",
         path: "/admin/orders/archived",

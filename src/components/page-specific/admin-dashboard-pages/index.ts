@@ -18,3 +18,4 @@ export * from "./coupons/expired/ExpiredCouponsMain";
 export * from "./returns/pending/PendingRequestsMain";
 export * from "./returns/approved/ApprovedRequestsMain";
 export * from "./returns/rejected/RejectedRequestsMain";
+export * from "./orders/returned/ReturnedOrdersMain";
