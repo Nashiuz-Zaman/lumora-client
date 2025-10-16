@@ -45,7 +45,7 @@ const columns: TTableColumn[] = [
   { columnTitle: "Total", width: "0.2fr" },
 ];
 
-export const PendingRequestMain = () => {
+export const PendingRequestsMain = () => {
   const { refs } = useRefState();
   useSetElementText(refs?.titleRef?.current, "Pending Return Requests");
   const { admin, superAdmin } = UserRoles;

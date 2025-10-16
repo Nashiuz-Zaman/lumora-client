@@ -1,4 +1,4 @@
-import { IUseCouponQueryArgs } from "@/hooks";
+import { IUseCouponQueriesArgs } from "@/hooks";
 import { baseApiSlice } from "../baseApiSlice";
 import { IApiResponse, ICoupon, TQueryDataWithQueryMeta } from "@/types";
 
@@ -6,7 +6,7 @@ export const couponApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getCoupons: builder.query<
       IApiResponse<TQueryDataWithQueryMeta<{ coupons: ICoupon[] }>>,
-      IUseCouponQueryArgs
+      IUseCouponQueriesArgs
     >({
       query: (params) => ({
         url: "/coupons",
@@ -25,7 +25,7 @@ export const couponApiSlice = baseApiSlice.injectEndpoints({
       invalidatesTags: ["Coupons"],
     }),
 
-    expireCoupon: builder.mutation<IApiResponse, { _ids: string[] }>({
+    expireCoupon: builder.mutation<IApiResponse, { ids: string[] }>({
       query: (data) => ({
         url: `/coupons/expire`,
         method: "PATCH",
@@ -34,7 +34,7 @@ export const couponApiSlice = baseApiSlice.injectEndpoints({
       invalidatesTags: ["Coupons"],
     }),
 
-    deleteCoupons: builder.mutation<IApiResponse, { _ids: string[] }>({
+    deleteCoupons: builder.mutation<IApiResponse, { ids: string[] }>({
       query: (data) => ({
         url: `/coupons/delete`,
         method: "PATCH",

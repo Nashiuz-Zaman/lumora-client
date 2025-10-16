@@ -1,7 +1,7 @@
 "use client";
 
 import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared";
-import { ICouponQueryParams } from "@/hooks";
+import { ICouponQueriesParams } from "@/hooks";
 import { ICoupon } from "@/types";
 
 export const CouponTopParamsForm = ({
@@ -10,7 +10,7 @@ export const CouponTopParamsForm = ({
   onSubmit,
   sortOptions,
   className,
-}: IParamsFilterFormProps<ICouponQueryParams, ICoupon>) => {
+}: IParamsFilterFormProps<ICouponQueriesParams, ICoupon>) => {
   return (
     <ParamsFilterForm
       params={params}

@@ -19,24 +19,24 @@ import { useGetCouponsQuery } from "@/libs/redux/apiSlices/coupon/couponApiSlice
 import { ICoupon, IQueryMeta } from "@/types";
 import { CouponSortOptions, TCouponStatus } from "@/constants";
 
-export interface ICouponQueryParams {
+export interface ICouponQueriesParams {
   page: number;
   sort: string;
   search: string;
   status?: TCouponStatus;
 }
 
-export interface IUseCouponQueryArgs {
+export interface IUseCouponQueriesArgs {
   couponStatus?: TCouponStatus;
   limit?: number;
   extraLimitFields?: (keyof ICoupon)[];
 }
 
-export const useCouponQuery = ({
+export const useCouponQueries = ({
   couponStatus,
   limit = 20,
   extraLimitFields = [],
-}: IUseCouponQueryArgs) => {
+}: IUseCouponQueriesArgs) => {
   const searchParams = useSearchParams();
   const path = usePathname();
   const router = useRouter();
@@ -52,7 +52,7 @@ export const useCouponQuery = ({
   );
 
   // Normalize query params
-  const finalQueryParams: ICouponQueryParams = useMemo(
+  const finalQueryParams: ICouponQueriesParams = useMemo(
     () => ({
       page: Number(rawQueryParams?.page) || 1,
       sort: (rawQueryParams?.sort as string) || "-" + CouponSortOptions[0],
@@ -64,7 +64,7 @@ export const useCouponQuery = ({
 
   // Controlled form params
   const [formParams, setFormParams] =
-    useState<ICouponQueryParams>(finalQueryParams);
+    useState<ICouponQueriesParams>(finalQueryParams);
 
   // Keep state in sync with URL
   useEffect(() => {

@@ -15,4 +15,6 @@ export * from "./payments/paid/PaidPaymentsMain";
 export * from "./payments/shared/RefundedPaymentsMain";
 export * from "./coupons/active/ActiveCouponsMain";
 export * from "./coupons/expired/ExpiredCouponsMain";
-export * from "./returns/pending/PendingRequestMain";
+export * from "./returns/pending/PendingRequestsMain";
+export * from "./returns/approved/ApprovedRequestsMain";
+export * from "./returns/rejected/RejectedRequestsMain";

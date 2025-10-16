@@ -37,16 +37,18 @@ export const ButtonBtnTrans = ({
   if (!isClient) return null;
 
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation(); // Prevent triggering Link
-    e.preventDefault(); // Prevent Link navigation
-    onClick?.();
+    if (type !== "submit") {
+      e.preventDefault();
+      e.stopPropagation();
+
+      if (onClick) onClick();
+    }
   };
 
   const allClasses = `
     relative focus:outline-none gap-2 w-max capitalize
-    transition-all duration-default text-center
-    active:scale-98 disabled:opacity-50 disabled:scale-100 disabled:cursor-not-allowed
-    hover:cursor-pointer h-max
+    transition-all duration-default text-center disabled:opacity-50 disabled:cursor-not-allowed
+    cursor-pointer h-max
     ${className}
   `;
 

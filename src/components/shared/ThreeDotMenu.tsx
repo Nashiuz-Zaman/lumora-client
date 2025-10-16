@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState, MouseEvent } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 
 import { TUserRoleValue } from "@/constants/user";
 import { useClickOutside } from "@/hooks";
 import { ThreeDotIcon } from "./icons";
+import { ButtonBtnTrans } from "./buttons";
 
 type TUserMenuProps = {
   userData?: {
@@ -55,23 +56,31 @@ export const ThreeDotMenu = ({
         <div className="three-dot-dropdown rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
           {name && <p className="font-bold text-black md:text-lg">{name}</p>}
 
-          <Link href="/" className={optionClasses}>
+          <Link
+            onClick={() => setShowMenu(false)}
+            href="/"
+            className={optionClasses}
+          >
             <span>Home</span>
           </Link>
 
-          <Link href={"/admin"} className={optionClasses}>
+          <Link
+            onClick={() => setShowMenu(false)}
+            href={"/admin"}
+            className={optionClasses}
+          >
             <span>Dashboard</span>
           </Link>
 
-          <button
-            onClick={(e: MouseEvent<HTMLButtonElement>) => {
-              e.preventDefault();
+          <ButtonBtnTrans
+            className={optionClasses}
+            onClick={() => {
               logoutFunction?.();
+              setShowMenu(false);
             }}
-            className={optionClasses + ' cursor-pointer'}
           >
-            <span>Sign Out</span>
-          </button>
+            Sign Out
+          </ButtonBtnTrans>
         </div>
       )}
     </div>

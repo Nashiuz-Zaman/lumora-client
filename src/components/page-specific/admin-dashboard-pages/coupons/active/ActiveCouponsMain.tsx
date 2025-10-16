@@ -23,7 +23,7 @@ import {
   useRefState,
   useSetElementText,
   useDynamicHeight,
-  useCouponQuery,
+  useCouponQueries,
 } from "@/hooks";
 import { useRef } from "react";
 
@@ -65,7 +65,7 @@ export const ActiveCouponsMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = useCouponQuery({ couponStatus: CouponStatus.Active });
+  } = useCouponQueries({ couponStatus: CouponStatus.Active });
 
   const {
     selected,
@@ -82,7 +82,7 @@ export const ActiveCouponsMain = () => {
 
   const handleExpireCoupons = catchAsyncGeneral(async () => {
     closeModal();
-    const res = await expireCoupon({ _ids: selected as string[] }).unwrap();
+    const res = await expireCoupon({ ids: selected as string[] }).unwrap();
 
     if (res?.success) {
       showToast({ message: res.message });

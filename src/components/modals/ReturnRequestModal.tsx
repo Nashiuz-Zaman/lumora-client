@@ -22,10 +22,14 @@ import {
 import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 
 // Hooks
-import { useGetReturnRequestQuery } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
+import {
+  useApproveReturnRequestMutation,
+  useGetReturnRequestQuery,
+  useRejectReturnRequestMutation,
+} from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
 
 // Utils
-import { formatPrice } from "@/utils";
+import { catchAsyncGeneral, formatPrice, showToast } from "@/utils";
 import { ReturnRequestStatus } from "@/constants";
 import type { TRootState } from "@/libs/redux/store";
 
@@ -38,6 +42,11 @@ export const ReturnRequestModal = () => {
   const { requestId, isRequestModalOpen } = useSelector(
     (state: TRootState) => state.returnRequest
   );
+
+  const [approveRequest, { isLoading: isApproving }] =
+    useApproveReturnRequestMutation();
+  const [rejectReturnRequest, { isLoading: isRejecting }] =
+    useRejectReturnRequestMutation();
 
   const [issueFullRefund, setIssueFullRefund] = useState(true);
 
@@ -79,17 +88,32 @@ export const ReturnRequestModal = () => {
     reset();
   };
 
-  const handleApprove = handleSubmit((data) => {
+  const handleApprove = catchAsyncGeneral(async (args) => {
+    const data = args?.data as IRefundForm;
+
     const amount = issueFullRefund ? orderTotal : Number(data.refundAmount);
 
-    console.log("✅ Approved refund for:", amount);
-    // Dispatch approve mutation here
+    const res = await approveRequest({
+      id: requestId as string,
+      refundAmount: amount,
+    }).unwrap();
+
+    if (res.success) {
+      showToast({ message: res.message });
+      closeFunction();
+    }
   });
 
-  const handleReject = () => {
-    console.log("❌ Request rejected for ID:", requestId);
-    // Dispatch reject mutation here
-  };
+  const handleReject = catchAsyncGeneral(async () => {
+    const res = await rejectReturnRequest({
+      id: requestId as string,
+    }).unwrap();
+
+    if (res.success) {
+      showToast({ message: res.message });
+      closeFunction();
+    }
+  });
 
   return (
     <BaseModal
@@ -165,7 +189,7 @@ export const ReturnRequestModal = () => {
 
           {request?.status === ReturnRequestStatus.Pending && (
             <form
-              onSubmit={handleApprove}
+              onSubmit={handleSubmit((data) => handleApprove({ data }))}
               className="border-t border-neutral-200 pt-6 mt-4 flex flex-col gap-4"
             >
               <label className="flex items-center gap-3">
@@ -202,6 +226,8 @@ export const ReturnRequestModal = () => {
 
               <div className="flex items-center justify-end gap-3 mt-4">
                 <ButtonBtn
+                  isLoading={isRejecting}
+                  isDisabled={isApproving}
                   type="button"
                   onClick={handleReject}
                   className="!rounded-full bg-red-500 text-white hover:bg-red-600"
@@ -210,6 +236,8 @@ export const ReturnRequestModal = () => {
                 </ButtonBtn>
 
                 <ButtonBtn
+                  isDisabled={isRejecting}
+                  isLoading={isApproving}
                   type="submit"
                   className="!rounded-full !primaryClasses"
                 >

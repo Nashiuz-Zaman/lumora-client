@@ -1,10 +1,10 @@
-import { PendingRequestMain } from "@/components/page-specific";
+import { PendingRequestsMain } from "@/components/page-specific";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Pending Return Requests | Admin Panel",
 };
 
-const PendingRequestsPage = () => <PendingRequestMain />;
+const PendingRequestsPage = () => <PendingRequestsMain />;
 
 export default PendingRequestsPage;
