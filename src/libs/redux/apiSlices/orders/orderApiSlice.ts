@@ -3,8 +3,10 @@ import {
   ICancelOrdersAdminArgs,
   IMarkOrderShippedArgs,
   IOrder,
+  TQueryDataWithQueryMeta,
 } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
+import { IOrderQueriesParams } from "@/hooks";
 
 export const orderApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -38,7 +40,10 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    getOrdersPrivate: builder.query({
+    getOrdersPrivate: builder.query<
+      IApiResponse<TQueryDataWithQueryMeta<{ orders: IOrder[] }>>,
+      Partial<IOrderQueriesParams>
+    >({
       query: (params) => ({
         url: "/orders",
         method: "GET",

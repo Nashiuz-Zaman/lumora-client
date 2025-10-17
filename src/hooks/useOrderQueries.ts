@@ -26,11 +26,13 @@ export interface IOrderQueriesParams {
   page: number;
   sort: string;
   search: string;
-  status: TOrderStatusValue;
+  status?: TOrderStatusValue;
+  isArchived: boolean;
 }
 
 export interface IUseOrderQueriesArgs {
-  orderStatus: TOrderStatusValue;
+  orderStatus?: TOrderStatusValue;
+  isArchived?: boolean;
   isPrivate?: boolean;
   limit?: number;
   extraLimitFields?: (keyof IOrder)[];
@@ -38,6 +40,7 @@ export interface IUseOrderQueriesArgs {
 
 export const useOrderQueries = ({
   orderStatus,
+  isArchived = false,
   isPrivate = false,
   limit = 20,
   extraLimitFields = [],
@@ -65,8 +68,9 @@ export const useOrderQueries = ({
       sort: (rawQueryParams.sort as string) || "-" + OrderSortOptions[2].value,
       search: (rawQueryParams.search as string) || "",
       status: orderStatus,
+      isArchived,
     }),
-    [rawQueryParams, orderStatus]
+    [rawQueryParams, orderStatus, isArchived]
   );
 
   // Controlled form params
@@ -117,6 +121,7 @@ export const useOrderQueries = ({
       "estimatedDelivery",
       ...extraLimitFields,
     ];
+
     return cleanObject({
       ...finalQueryParams,
       limit,

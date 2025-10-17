@@ -66,8 +66,6 @@ export const getOrderStatusTextColor = (code: number): string => {
       return "text-red-600";
     case OrderStatus.Returned:
       return "text-gray-500";
-    case OrderStatus.Deleted:
-      return "text-gray-500";
     default:
       return "text-gray-700";
   }

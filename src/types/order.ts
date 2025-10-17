@@ -18,6 +18,7 @@ export interface IOrder {
   subtotal: number;
   total: number;
   shippingFee?: number;
+  isArchived: boolean;
   discount?: number;
   tax?: number;
   items: TPopulatedCartItem[];

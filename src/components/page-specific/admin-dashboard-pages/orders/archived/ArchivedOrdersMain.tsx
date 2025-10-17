@@ -12,7 +12,7 @@ import { DeliveredOrderRow } from "./ArchivedOrderRow";
 
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
 import { useRefState, useSetElementText } from "@/hooks";
-import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
+import { UserRoles, OrderSortOptions } from "@/constants";
 import { useOrderQueries } from "@/hooks";
 import { IOrder } from "@/types";
 
@@ -39,7 +39,7 @@ export const ArchivedOrdersMain = () => {
     setFormParams,
     handleSubmit,
     changePage,
-  } = useOrderQueries({ orderStatus: OrderStatus.Deleted, isPrivate: true });
+  } = useOrderQueries({ isArchived: true, isPrivate: true });
 
   const height = useDynamicHeight({
     refElements: [refs.paramsFilterForm, refs.topPanelRef, refs.adminHeader],
