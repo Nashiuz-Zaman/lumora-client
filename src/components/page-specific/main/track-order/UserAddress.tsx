@@ -16,7 +16,7 @@ interface UserAddressProps {
 
 export const UserAddress = ({ data }: UserAddressProps) => {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3 px-4 md:px-6 lg:px-8 py-6">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 px-4 md:px-6 lg:px-8 py-6">
       {/* Billing Address */}
       <div className="border border-neutral-200 rounded-md p-4 text-sm space-y-3">
         <h2 className="text-base lg:text-lg font-semibold mb-2">
@@ -48,14 +48,6 @@ export const UserAddress = ({ data }: UserAddressProps) => {
         <p>
           <span className="font-medium">Email:</span>{" "}
           <span className="text-neutral-600">{data?.email || "N/A"}</span>
-        </p>
-      </div>
-
-      {/* Order Notes */}
-      <div className="border border-neutral-200 rounded-md p-4 text-sm space-y-3">
-        <h2 className="text-base lg:text-lg font-semibold mb-2">Order Notes</h2>
-        <p className="text-neutral-600">
-          {data?.additionalNotes || "No notes provided."}
         </p>
       </div>
     </div>

@@ -53,7 +53,7 @@ export const OrderActivity = ({ activities }: IOrderActivityProps) => {
   );
 
   return (
-    <section className="px-4 md:px-6 lg:px-8 py-6 lg:py-8 border-t border-b border-neutral-200">
+    <section className="px-4 md:px-6 lg:px-8 py-6 lg:py-8 border-t border-neutral-200">
       <h2 className="text-base lg:text-lg font-semibold mb-5">
         Order Activity
       </h2>

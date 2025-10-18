@@ -66,7 +66,7 @@ export const TabularData = <T extends Record<string, any>>({
   return (
     <div
       {...props}
-      className={`overflow-auto w-full h-full bg-white  relative ${
+      className={`overflow-auto w-full h-full bg-white relative ${
         classNameObj.containerDiv || ""
       }`}
     >

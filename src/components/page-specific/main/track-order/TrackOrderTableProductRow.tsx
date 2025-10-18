@@ -1,9 +1,6 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
-
-// utils
 import { formatPrice } from "@/utils";
 import { TPopulatedCartItem } from "@/types";
 
@@ -16,7 +13,7 @@ export const TrackOrderTableProductRow = ({
   data,
   isLastEl,
 }: ITrackOrderTableProductRowProps) => {
-  const cellClasses = `w-full text-2xs 2md:text-xs py-3 ${
+  const cellClasses = `text-sm font-medium px-4 py-3 flex items-center ${
     !isLastEl ? "border-b border-neutral-200" : ""
   }`;
 
@@ -25,21 +22,21 @@ export const TrackOrderTableProductRow = ({
   return (
     <>
       {/* Product Info */}
-      <td className={cellClasses + " flex items-center gap-4 xs:pr-5 lg:pr-12"}>
+      <td className={cellClasses + " gap-4"}>
         <Image
           src={data.product.defaultImage!}
-          alt="product photo"
-          width={120}
-          height={120}
-          className="w-[2.4rem] aspect-square md:w-12 object-contain lg:w-20"
+          alt={data.product.title || "Product image"}
+          width={80}
+          height={80}
+          className="w-12 md:w-16 lg:w-20 aspect-square object-contain rounded-md border border-neutral-200"
         />
 
         <div>
-          <p className="[font-size:inherit] font-semibold mb-1">
+          <p className="font-semibold text-neutral-800">
             {data.product.title}
           </p>
           {data.product.subtitle && (
-            <p className="[font-size:inherit] text-neutral-600">
+            <p className="text-neutral-600 text-xs mt-1">
               {data.product.subtitle}
             </p>
           )}
@@ -47,13 +44,17 @@ export const TrackOrderTableProductRow = ({
       </td>
 
       {/* Price */}
-      <td className={cellClasses}>{formatPrice(data.variant.price!)}</td>
+      <td className={cellClasses + " text-neutral-700"}>
+        {formatPrice(data.variant.price!)}
+      </td>
 
       {/* Quantity */}
-      <td className={cellClasses}>x{data.quantity}</td>
+      <td className={cellClasses + " text-neutral-700"}>
+        x{data.quantity}
+      </td>
 
       {/* Subtotal */}
-      <td className={cellClasses + " font-semibold lg:text-sm"}>
+      <td className={cellClasses + " font-semibold text-neutral-900"}>
         {formatPrice(data.variant.price! * data.quantity)}
       </td>
     </>

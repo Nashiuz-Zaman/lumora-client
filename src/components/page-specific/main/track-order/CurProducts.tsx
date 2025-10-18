@@ -31,12 +31,7 @@ const renderRow = ({
 
 export const CurProducts = ({ data }: ICurProductsProps) => {
   return (
-    <div className="md:border-b border-neutral-200 mb-12 pt-5 pb-10">
-      <h2 className="md:px-3 lg:!px-6 text-sm lg:text-lg !leading-[1.5rem] font-medium mb-5 ml-5">
-        Product{" "}
-        <span className="font-normal text-neutral-500">({data?.length})</span>
-      </h2>
-
+    <div className="md:border-b border-neutral-200 mb-12">
       <TabularData<TPopulatedCartItem>
         columns={columns}
         data={data}
@@ -45,5 +40,3 @@ export const CurProducts = ({ data }: ICurProductsProps) => {
     </div>
   );
 };
-
-
