@@ -107,7 +107,7 @@ export const CancelledOrdersMain = () => {
   // confirm action for modal
   const handleArchiveOrders = catchAsyncGeneral(async () => {
     closeModal();
-    const res = await archiveOrders({ _ids: selected }).unwrap();
+    const res = await archiveOrders({ _ids: selected as string[] }).unwrap();
 
     if (res?.success) {
       showToast({ message: res.message });
