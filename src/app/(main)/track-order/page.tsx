@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { InnerContainer } from "@/components/shared";
 import { OrderTrackingFormAndPanel } from "@/components/page-specific";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title:
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 const TrackOrderPage = () => {
   return (
-    <>
+    <Suspense>
       <div
         style={{
           backgroundImage: `url(https://res.cloudinary.com/diwzuhlc3/image/upload/v1760734464/lumora/track-order/track-order_vf3i6o.webp)`,
@@ -26,7 +27,7 @@ const TrackOrderPage = () => {
 
         <OrderTrackingFormAndPanel />
       </InnerContainer>
-    </>
+    </Suspense>
   );
 };
 

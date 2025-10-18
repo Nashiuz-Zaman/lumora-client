@@ -92,7 +92,9 @@ export const ShippedOrdersMain = () => {
   // confirm action for modal
   const handleMarkDelivered = catchAsyncGeneral(async () => {
     closeModal();
-    const res = await markOrdersDelivered({ _ids: selected }).unwrap();
+    const res = await markOrdersDelivered({
+      _ids: selected as string[],
+    }).unwrap();
 
     if (res?.success) {
       showToast({ message: res.message });

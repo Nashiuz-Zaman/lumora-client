@@ -29,10 +29,12 @@ export const useOrderActions = () => {
         items: cart.items,
         couponCode: cart.couponCode ?? "",
         status: OrderStatus.Pending,
+        isArchived: false,
         activities: [
           {
-            time: new Date(),
+            time: new Date().toISOString(),
             status: OrderStatus.Pending,
+            isArchived: false,
           },
         ],
       };
