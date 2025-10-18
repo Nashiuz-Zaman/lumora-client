@@ -85,9 +85,12 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    trackOrder: builder.query({
-      query: (orderId) => ({
-        url: `/orders/track/${orderId}`,
+    trackOrder: builder.query<
+      IApiResponse<{ order: IOrder }>,
+      { orderId: string }
+    >({
+      query: (data) => ({
+        url: `/orders/track/${data.orderId}`,
         method: "GET",
       }),
     }),

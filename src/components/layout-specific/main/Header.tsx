@@ -79,9 +79,9 @@ const Header = ({ categories }: THeaderProps) => {
           </p>
 
           <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
+            <Link href="/track-order">Track Your Order</Link>
             <Link href="/faq">FAQ</Link>
             <Link href="/returns">Returns</Link>
-            <Link href="/about">About</Link>
           </div>
         </div>
       </InnerContainer>

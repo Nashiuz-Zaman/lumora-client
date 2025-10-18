@@ -2,8 +2,9 @@ import { TOrderStatusValue } from "@/constants";
 import { TPopulatedCartItem } from "./cart";
 
 export interface IOrderActivity {
-  time: Date;
+  time: string;
   status: TOrderStatusValue;
+  isArchived: boolean;
 }
 
 export interface IOrder {
