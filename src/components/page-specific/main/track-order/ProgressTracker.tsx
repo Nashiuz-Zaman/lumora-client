@@ -1,7 +1,15 @@
 "use client";
 
-import React from "react";
 import { Icon } from "@iconify/react";
+
+export const OrderStatus = Object.freeze({
+  Pending: 0,
+  Confirmed: 1,
+  Shipped: 2,
+  Delivered: 3,
+  Cancelled: 4,
+  Returned: 5,
+} as const);
 
 interface IProgressTrackerProps {
   stage?: number;
@@ -9,7 +17,7 @@ interface IProgressTrackerProps {
 }
 
 export const ProgressTracker = ({
-  stage = 1,
+  stage = OrderStatus.Pending,
   className = "",
 }: IProgressTrackerProps) => {
   const stageTextClasses = "text-2xs lg:text-sm font-medium text-textDark";
@@ -27,21 +35,27 @@ export const ProgressTracker = ({
     <Icon icon="solar:check-bold" className="w-3 h-3 text-white" />
   );
 
+  const isCancelled = stage === OrderStatus.Cancelled;
+  const isReturned = stage === OrderStatus.Returned;
+
+  const getOpacity = (step: number) =>
+    stage >= step && stage < OrderStatus.Cancelled
+      ? "opacity-100"
+      : "opacity-30";
+
   const renderStep = (step: number, label: string, iconName: string) => (
     <div className="flex flex-col items-center relative z-50 translate-x-0">
       <div
         className={`${progressCircleClasses} ${
-          stage >= step ? activeClasses : inActiveClasses
+          stage >= step && stage < OrderStatus.Cancelled
+            ? activeClasses
+            : inActiveClasses
         }`}
       >
-        {stage === step && checkmarkIcon}
+        {stage === step && stage < OrderStatus.Cancelled && checkmarkIcon}
       </div>
 
-      <div
-        className={`flex flex-col items-center ${
-          stage >= step ? "opacity-100" : "opacity-30"
-        }`}
-      >
+      <div className={`flex flex-col items-center ${getOpacity(step)}`}>
         <Icon icon={iconName} className={iconClass} />
         <p className={stageTextClasses}>{label}</p>
       </div>
@@ -57,24 +71,24 @@ export const ProgressTracker = ({
     <div className={`${stageMainClasses} z-[${zIndex}]`}>
       <div
         className={`${progressBarClasses} ${
-          stage >= step ? "opacity-100" : "opacity-30"
+          stage >= step && stage < OrderStatus.Cancelled
+            ? "opacity-100"
+            : "opacity-30"
         }`}
       />
 
       <div className={progressMainClasses}>
         <div
           className={`${progressCircleClasses} ${
-            stage >= step ? activeClasses : inActiveClasses
+            stage >= step && stage < OrderStatus.Cancelled
+              ? activeClasses
+              : inActiveClasses
           }`}
         >
-          {stage === step && checkmarkIcon}
+          {stage === step && stage < OrderStatus.Cancelled && checkmarkIcon}
         </div>
 
-        <div
-          className={`flex flex-col items-center ${
-            stage >= step ? "opacity-100" : "opacity-30"
-          }`}
-        >
+        <div className={`flex flex-col items-center ${getOpacity(step)}`}>
           <Icon icon={iconName} className={iconClass} />
           <p className={stageTextClasses}>{label}</p>
         </div>
@@ -83,22 +97,51 @@ export const ProgressTracker = ({
   );
 
   return (
-    <div className={`w-full flex md:ml-4 lg:ml-8 ${className}`}>
-      {/* Stage 1: Quotation Sent */}
-      {renderStep(1, "Quotation Sent", "solar:document-text-bold")}
+    <div
+      className={`w-full flex md:ml-4 lg:ml-8 relative ${
+        isCancelled || isReturned ? "opacity-50" : ""
+      } ${className}`}
+    >
+      {/* Stage 0: Pending */}
+      {renderStep(OrderStatus.Pending, "Pending", "solar:clock-circle-bold")}
 
-      {/* Stage 2: Confirmed */}
-      {renderProgressStep(2, "Confirmed", "mdi:marker-tick", 40)}
-
-      {/* Stage 3: On The Road */}
-      {renderProgressStep(3, "Shipped", "ic:baseline-local-shipping", 30)}
-
-      {/* Stage 4: Delivered */}
+      {/* Stage 1: Confirmed */}
       {renderProgressStep(
-        4,
+        OrderStatus.Confirmed,
+        "Confirmed",
+        "mdi:marker-tick",
+        40
+      )}
+
+      {/* Stage 2: Shipped */}
+      {renderProgressStep(
+        OrderStatus.Shipped,
+        "Shipped",
+        "ic:baseline-local-shipping",
+        30
+      )}
+
+      {/* Stage 3: Delivered */}
+      {renderProgressStep(
+        OrderStatus.Delivered,
         "Delivered",
         "mdi:package-variant-closed-delivered",
         20
+      )}
+
+      {/* Special cases */}
+      {isCancelled && (
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-red-500">
+          <Icon icon="mdi:cancel-bold" className="w-5 h-5" />
+          <span className="text-sm font-medium">Order Cancelled</span>
+        </div>
+      )}
+
+      {isReturned && (
+        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-amber-500">
+          <Icon icon="mdi:package-variant-return" className="w-5 h-5" />
+          <span className="text-sm font-medium">Order Returned</span>
+        </div>
       )}
     </div>
   );

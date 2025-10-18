@@ -9,7 +9,7 @@ export const OrderHeaderTrackingPage = ({ order }: { order: IOrder }) => {
   return (
     <div className="border-b border-neutral-200 px-4 py-5 md:px-6 md:py-8 space-y-5">
       {/* Order Summary Card */}
-      <div className="grid gap-4 md:grid-cols-2 md:items-center border border-yellow-300 bg-yellow-100 rounded-md px-4 py-5">
+      <div className="grid gap-4 md:grid-cols-2 md:items-center border border-blue-200 bg-blue-50 rounded-md px-4 py-5">
         {/* Order ID & Details */}
         <div>
           <p className="text-lg lg:text-2xl font-semibold text-neutral-800">
@@ -26,7 +26,7 @@ export const OrderHeaderTrackingPage = ({ order }: { order: IOrder }) => {
 
         {/* Total Price */}
         <div className="text-end md:text-right">
-          <p className="text-blue-500 text-xl lg:text-3xl font-bold">
+          <p className="text-teal-600 text-xl lg:text-3xl font-bold">
             {formatPrice(order.total)}
           </p>
         </div>
@@ -36,7 +36,9 @@ export const OrderHeaderTrackingPage = ({ order }: { order: IOrder }) => {
       <div>
         <p className="text-sm md:text-base font-medium text-neutral-700">
           <span className="text-gray-600 font-normal">Expected Arrival:</span>{" "}
-          {order.estimatedDelivery || "—"}
+          <span className="text-blue-600">
+            {order.estimatedDelivery || "—"}
+          </span>
         </p>
       </div>
     </div>
