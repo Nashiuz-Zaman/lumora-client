@@ -41,7 +41,7 @@ export const FAQItem = ({ faq }: IFAQItemProps) => {
 
         <CaretDownIcon
           className={`text-neutral-500 text-lg transition-transform duration-200 ${
-            open ? "rotate-[-180deg]" : ""
+            open ? "-rotate-180" : ""
           }`}
         />
       </button>
