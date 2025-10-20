@@ -21,9 +21,9 @@ export const OrderTrackingFormAndPanel = () => {
   const order = data?.success ? data.data?.order : undefined;
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-[25rem_auto] gap-10">
+    <div className="grid grid-cols-1 xl:grid-cols-[25rem_auto] gap-10 min-h-80">
       <OrderTrackingForm />
-      <OrderTrackingPanel order={order} isLoading={isFetching} />
+      <OrderTrackingPanel orderData={order} isLoading={isFetching} />
     </div>
   );
 };

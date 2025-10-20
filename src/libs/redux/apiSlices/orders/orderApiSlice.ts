@@ -86,7 +86,7 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
     }),
 
     trackOrder: builder.query<
-      IApiResponse<{ order: IOrder }>,
+      IApiResponse<{ order: IOrder & { billingAddress: string } }>,
       { orderId: string }
     >({
       query: (data) => ({

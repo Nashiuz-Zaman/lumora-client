@@ -79,6 +79,7 @@ export const TabularData = <T extends Record<string, any>>({
       >
         {/* table head */}
         <thead className="contents">
+          {/* ---- Heading Row ----*/}
           <tr
             className={`contents w-full text-base 2xl:text-lg ${
               classNameObj.headingRow || ""
@@ -113,12 +114,12 @@ export const TabularData = <T extends Record<string, any>>({
 
         {/* table body */}
         <tbody className={`contents`}>
-          {/* Data rows */}
           {data?.length > 0 &&
             !dataLoading &&
             data.map((rowData, i, arr) => {
               const isLastEl = i === arr.length - 1;
               return (
+                // ---- Data row ----
                 <tr
                   key={i}
                   onClick={(e) => {

@@ -46,3 +46,5 @@ export interface ICancelOrdersAdminArgs {
   _ids: string[];
   reason?: string;
 }
+
+export type TTrackOrderData = IOrder & { billingAddress: string };

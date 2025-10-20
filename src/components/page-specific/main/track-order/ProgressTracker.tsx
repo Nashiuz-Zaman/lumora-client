@@ -1,148 +1,107 @@
 "use client";
 
+import { OrderStatus, TOrderStatusValue } from "@/constants";
 import { Icon } from "@iconify/react";
 
-export const OrderStatus = Object.freeze({
-  Pending: 0,
-  Confirmed: 1,
-  Shipped: 2,
-  Delivered: 3,
-  Cancelled: 4,
-  Returned: 5,
-} as const);
-
 interface IProgressTrackerProps {
-  stage?: number;
+  status?: TOrderStatusValue;
   className?: string;
 }
 
 export const ProgressTracker = ({
-  stage = OrderStatus.Pending,
+  status = OrderStatus.Pending,
   className = "",
 }: IProgressTrackerProps) => {
-  const stageTextClasses = "text-2xs lg:text-sm font-medium text-textDark";
-  const stageMainClasses = "w-[27%] relative -translate-x-10";
-  const progressBarClasses = "h-2 w-full mt-2 bg-secondary";
-  const progressCircleClasses =
-    "w-6 aspect-square flex justify-center items-center rounded-full mb-6 border-2";
-  const activeClasses = "bg-secondary border-white";
-  const inActiveClasses = "bg-white border-secondary";
-  const progressMainClasses =
-    "flex flex-col items-center w-max absolute top-0 right-0 translate-x-1/2";
-  const iconClass = "w-5 h-5 lg:w-8 lg:h-8 mb-3";
+  const isCancelled = status === OrderStatus.Cancelled;
+  const isReturned = status === OrderStatus.Returned;
 
-  const checkmarkIcon = (
-    <Icon icon="solar:check-bold" className="w-3 h-3 text-white" />
-  );
+  // Early return for Cancelled / Returned
+  if (isCancelled || isReturned) {
+    const label = isCancelled ? "Order Cancelled" : "Order Returned";
 
-  const isCancelled = stage === OrderStatus.Cancelled;
-  const isReturned = stage === OrderStatus.Returned;
-
-  const getOpacity = (step: number) =>
-    stage >= step && stage < OrderStatus.Cancelled
-      ? "opacity-100"
-      : "opacity-30";
-
-  const renderStep = (step: number, label: string, iconName: string) => (
-    <div className="flex flex-col items-center relative z-50 translate-x-0">
+    return (
       <div
-        className={`${progressCircleClasses} ${
-          stage >= step && stage < OrderStatus.Cancelled
-            ? activeClasses
-            : inActiveClasses
-        }`}
+        className={`w-full flex justify-center items-center gap-2 bg-neutral-50 text-neutral-400 py-16`}
       >
-        {stage === step && stage < OrderStatus.Cancelled && checkmarkIcon}
+        <span className="text-2xl font-medium">{label}</span>
       </div>
+    );
+  }
 
-      <div className={`flex flex-col items-center ${getOpacity(step)}`}>
-        <Icon icon={iconName} className={iconClass} />
-        <p className={stageTextClasses}>{label}</p>
-      </div>
-    </div>
-  );
-
-  const renderProgressStep = (
-    step: number,
-    label: string,
-    iconName: string,
-    zIndex: number
-  ) => (
-    <div className={`${stageMainClasses} z-[${zIndex}]`}>
-      <div
-        className={`${progressBarClasses} ${
-          stage >= step && stage < OrderStatus.Cancelled
-            ? "opacity-100"
-            : "opacity-30"
-        }`}
-      />
-
-      <div className={progressMainClasses}>
-        <div
-          className={`${progressCircleClasses} ${
-            stage >= step && stage < OrderStatus.Cancelled
-              ? activeClasses
-              : inActiveClasses
-          }`}
-        >
-          {stage === step && stage < OrderStatus.Cancelled && checkmarkIcon}
-        </div>
-
-        <div className={`flex flex-col items-center ${getOpacity(step)}`}>
-          <Icon icon={iconName} className={iconClass} />
-          <p className={stageTextClasses}>{label}</p>
-        </div>
-      </div>
-    </div>
-  );
+  // Normal progress states
+  const stages = [
+    {
+      key: OrderStatus.Pending,
+      label: "Pending",
+      icon: "solar:clock-circle-bold",
+    },
+    { key: OrderStatus.Confirmed, label: "Confirmed", icon: "mdi:marker-tick" },
+    {
+      key: OrderStatus.Shipped,
+      label: "Shipped",
+      icon: "ic:baseline-local-shipping",
+    },
+    {
+      key: OrderStatus.Delivered,
+      label: "Delivered",
+      icon: "mdi:package-variant-closed-delivered",
+    },
+  ];
 
   return (
-    <div
-      className={`w-full flex md:ml-4 lg:ml-8 relative ${
-        isCancelled || isReturned ? "opacity-50" : ""
-      } ${className}`}
-    >
-      {/* Stage 0: Pending */}
-      {renderStep(OrderStatus.Pending, "Pending", "solar:clock-circle-bold")}
+    <div className={`w-full flex flex-col items-center ${className}`}>
+      {/* Progress bar line */}
+      <div className="relative w-full flex justify-between items-center max-w-3xl">
+        {/* Background bar */}
+        <div className="absolute top-1/2 left-0 w-full h-[3px] bg-neutral-300 -translate-y-1/2" />
 
-      {/* Stage 1: Confirmed */}
-      {renderProgressStep(
-        OrderStatus.Confirmed,
-        "Confirmed",
-        "mdi:marker-tick",
-        40
-      )}
+        {/* Active progress */}
+        <div
+          className="absolute top-1/2 left-0 h-[3px] bg-secondary -translate-y-1/2 transition-all duration-500"
+          style={{
+            width: `${(status / (stages.length - 1)) * 100}%`,
+          }}
+        />
 
-      {/* Stage 2: Shipped */}
-      {renderProgressStep(
-        OrderStatus.Shipped,
-        "Shipped",
-        "ic:baseline-local-shipping",
-        30
-      )}
-
-      {/* Stage 3: Delivered */}
-      {renderProgressStep(
-        OrderStatus.Delivered,
-        "Delivered",
-        "mdi:package-variant-closed-delivered",
-        20
-      )}
-
-      {/* Special cases */}
-      {isCancelled && (
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-red-500">
-          <Icon icon="mdi:cancel-bold" className="w-5 h-5" />
-          <span className="text-sm font-medium">Order Cancelled</span>
-        </div>
-      )}
-
-      {isReturned && (
-        <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 text-amber-500">
-          <Icon icon="mdi:package-variant-return" className="w-5 h-5" />
-          <span className="text-sm font-medium">Order Returned</span>
-        </div>
-      )}
+        {/* Steps */}
+        {stages.map((s) => {
+          const isActive = status >= s.key;
+          return (
+            <div
+              key={s.key}
+              className="flex flex-col items-center text-center z-10 w-[25%]"
+            >
+              <div
+                className={`w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full border-2 ${
+                  isActive
+                    ? "bg-secondary border-secondary"
+                    : "bg-white border-neutral-300"
+                }`}
+              >
+                {isActive && status === s.key ? (
+                  <Icon
+                    icon="solar:check-bold"
+                    className="w-3.5 h-3.5 text-white"
+                  />
+                ) : null}
+              </div>
+              <Icon
+                icon={s.icon}
+                className={`w-5 h-5 sm:w-6 sm:h-6 mt-3 ${
+                  isActive ? "opacity-100" : "opacity-40"
+                }`}
+              />
+              <p
+                className={`text-xs sm:text-sm font-medium mt-1 ${
+                  isActive ? "text-textDark" : "text-neutral-400"
+                }`}
+              >
+                {s.label}
+              </p>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };

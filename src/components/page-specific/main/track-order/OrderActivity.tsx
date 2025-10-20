@@ -26,17 +26,17 @@ const statusDesignMap: Record<
   [OrderStatus.Shipped]: {
     icon: "mdi:truck-delivery",
     text: "Your order has been shipped.",
-    color: "text-green-500",
+    color: "text-green-600",
   },
   [OrderStatus.Delivered]: {
-    icon: "solar:handshake-bold",
+    icon: "mdi:package-delivered",
     text: "Your order has been delivered. Thank you for shopping with us!",
-    color: "text-green-700",
+    color: "text-green-600",
   },
   [OrderStatus.Cancelled]: {
-    icon: "solar:close-circle-bold",
+    icon: "ix:cancelled",
     text: "Your order was cancelled.",
-    color: "text-red-600",
+    color: "text-red-500",
   },
   [OrderStatus.Returned]: {
     icon: "solar:refresh-circle-bold",

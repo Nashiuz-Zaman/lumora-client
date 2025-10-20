@@ -1,7 +1,5 @@
 "use client";
 
-import React from "react";
-
 // core
 import {
   TabularData,
@@ -32,7 +30,11 @@ const renderRow = ({
 export const CurProducts = ({ data }: ICurProductsProps) => {
   return (
     <div className="md:border-b border-neutral-200 mb-12">
-      <TabularData<TPopulatedCartItem>
+      <TabularData
+        classNameObj={{
+          heading:
+            "first:!pl-4 first:md:!pl-6 first:lg:!pl-8 last:!pr-4 last:md:!pr-6 last:lg:!pr-8",
+        }}
         columns={columns}
         data={data}
         renderRow={renderRow}

@@ -7,3 +7,4 @@ export * from "./main/products/product-detail-customer/ProductPagePublicMain";
 export * from "./main/returns/ReturnProcessSteps";
 export * from "./main/returns/ReturnRequestForm";
 export * from "./main/track-order/OrderTrackingFormAndPanel";
+export * from "./main/faq/FAQSection";

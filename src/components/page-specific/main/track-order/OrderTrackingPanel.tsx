@@ -1,37 +1,34 @@
 "use client";
 
 import React from "react";
-import { LoadingSpinner } from "@/components/shared";
+import { LoadingSpinner, NoData } from "@/components/shared";
 import { CurProducts } from "./CurProducts";
 import { OrderActivity } from "./OrderActivity";
 import { OrderHeaderTrackingPage } from "./OrderHeaderTrackingPage";
 import { ProgressTracker } from "./ProgressTracker";
-import { UserAddress } from "./UserAddress";
-import { IOrder } from "@/types";
+import { TTrackOrderData } from "@/types";
 
-interface OrderTrackingPanelProps {
-  order?: IOrder;
+interface IOrderTrackingPanelProps {
+  orderData?: TTrackOrderData;
   isLoading?: boolean;
 }
 
 export const OrderTrackingPanel = ({
-  order,
+  orderData,
   isLoading = false,
-}: OrderTrackingPanelProps) => {
+}: IOrderTrackingPanelProps) => {
   if (isLoading) {
     return (
-      <div className="h-80 relative">
+      <div className="h-full relative">
         <LoadingSpinner centered />
       </div>
     );
   }
 
-  if (!order) {
+  if (!orderData) {
     return (
-      <div className="h-80 grid place-content-center bg-neutral-100">
-        <p className="text-neutral-400 text-lg text-center">
-          Search for an order to show progress
-        </p>
+      <div className="h-full bg-neutral-50 relative">
+        <NoData centered />
       </div>
     );
   }
@@ -39,19 +36,16 @@ export const OrderTrackingPanel = ({
   return (
     <div className="w-full overflow-hidden border border-neutral-200 rounded-md bg-white">
       {/* Header */}
-      <OrderHeaderTrackingPage order={order} />
+      <OrderHeaderTrackingPage order={orderData} />
 
       {/* Progress Tracker */}
-      <ProgressTracker stage={order.status} className="mt-20 mb-6" />
-
-      {/* Order Activity */}
-      <OrderActivity activities={order.activities} />
+      <ProgressTracker status={orderData.status} className="mt-20 mb-6" />
 
       {/* Ordered Products */}
-      <CurProducts data={order.items} />
+      <CurProducts data={orderData.items} />
 
-      {/* Address Info */}
-      <UserAddress data={order} />
+      {/* Order Activity */}
+      <OrderActivity activities={orderData.activities} />
     </div>
   );
 };

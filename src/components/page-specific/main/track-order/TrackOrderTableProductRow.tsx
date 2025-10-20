@@ -22,7 +22,7 @@ export const TrackOrderTableProductRow = ({
   return (
     <>
       {/* Product Info */}
-      <td className={cellClasses + " gap-4"}>
+      <td className={cellClasses + " gap-4 first:!pl-4 first:md:!pl-6 first:lg:!pl-8"}>
         <Image
           src={data.product.defaultImage!}
           alt={data.product.title || "Product image"}
@@ -32,29 +32,18 @@ export const TrackOrderTableProductRow = ({
         />
 
         <div>
-          <p className="font-semibold text-neutral-800">
-            {data.product.title}
-          </p>
-          {data.product.subtitle && (
-            <p className="text-neutral-600 text-xs mt-1">
-              {data.product.subtitle}
-            </p>
-          )}
+          <p className="font-semibold">{data.product.title}</p>
         </div>
       </td>
 
       {/* Price */}
-      <td className={cellClasses + " text-neutral-700"}>
-        {formatPrice(data.variant.price!)}
-      </td>
+      <td className={cellClasses}>{formatPrice(data.variant.price!)}</td>
 
       {/* Quantity */}
-      <td className={cellClasses + " text-neutral-700"}>
-        x{data.quantity}
-      </td>
+      <td className={cellClasses}>x{data.quantity}</td>
 
       {/* Subtotal */}
-      <td className={cellClasses + " font-semibold text-neutral-900"}>
+      <td className={cellClasses + ' last:!pr-4 last:md:!pr-6 last:lg:!pr-8'}>
         {formatPrice(data.variant.price! * data.quantity)}
       </td>
     </>

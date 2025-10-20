@@ -54,7 +54,7 @@ html {
 }
 
 @utility scaleOnHover {
-  @apply active:scale-120 lg:hover:scale-120
+  @apply active:scale-120 lg:hover:scale-120;
 }
 
 @utility primaryClasses {
@@ -161,14 +161,6 @@ html {
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-}
-
-::selection {
-  @apply bg-primary;
-}
-
-input::selection {
-  @apply bg-[#111] text-white;
 }
 
 button::selection {

@@ -17,11 +17,12 @@ const TrackOrderPage = () => {
         }}
         className="w-full aspect-[16/4] !bg-[50%_60%] !bg-cover"
       ></div>
-      <InnerContainer className="min-h-[40rem] my-20">
-        <h2 className="text-2xl font-semibold mb-3 text-primary">
+      <InnerContainer className="pt-10 mb-16">
+        <h2 className="text-2xl lg:text-4xl font-semibold mb-3">
           Track Your Order
         </h2>
-        <p className="mb-10 text-lg text-center md:text-left text-neutral-500">
+
+        <p className="mb-10 text-lg text-center md:text-left text-neutral-400">
           Efficient and transparent order monitoring at your fingertips.
         </p>
 
