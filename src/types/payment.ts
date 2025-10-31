@@ -1,4 +1,9 @@
-import { TPaymentStatus } from "@/constants";
+import { TPaymentType } from "@/constants";
+
+export interface IRefundPaymentArgs {
+  _id: string;
+  reason: string;
+}
 
 export interface IPayment {
   _id?: string;
@@ -6,18 +11,20 @@ export interface IPayment {
   orderId: string;
   name: string;
   email: string;
-  status: TPaymentStatus;
-  transactionId: string;
+  type: TPaymentType;
+  transactionId?: string;
   amount: number;
-  currency: "BDT";
-  gateway: "sslcommerz";
+  details?: Record<string, any>;
   createdAt?: string;
   updatedAt?: string;
   cardType?: string;
   refundReason?: string;
 }
 
-export interface IRefundPaymentArgs {
-  _id: string;
-  reason: string;
+export interface IRefundOptions {
+  refundAmount: number;
+  refundReason: string;
+  bankTranId: string;
+  refundTransId: string;
+  refeId: string;
 }

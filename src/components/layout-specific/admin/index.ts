@@ -6,3 +6,4 @@ export * from "./orders/AdminOrdersLayoutMain";
 export * from "./payments/AdminPaymentsLayoutMain";
 export * from "./coupons/AdminCouponsLayoutMain";
 export * from "./returns/ReturnsLayoutMain";
+export * from "./analytics/AdminAnalyticsLayoutMain";

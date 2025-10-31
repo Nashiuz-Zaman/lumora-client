@@ -1,14 +1,12 @@
 import { TSortOptions } from "@/types/generic";
 import { IPayment } from "@/types/payment";
 
-// Payment status object (frozen for runtime immutability)
-export const PaymentStatus = Object.freeze({
-  Paid: 1,
-  "Partially Refunded": 0,
-  Refunded: -1,
+export const PaymentType = Object.freeze({
+  payment: "payment",
+  refund: "refund",
 } as const);
 
-export type TPaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus];
+export type TPaymentType = (typeof PaymentType)[keyof typeof PaymentType];
 
 // Payment sort options (frozen for immutability)
 export const PaymentSortOptions = Object.freeze([

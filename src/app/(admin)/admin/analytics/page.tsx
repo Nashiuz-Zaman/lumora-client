@@ -1,9 +1,9 @@
-import { UnderDev } from "@/components/shared";
+import { AnalyticsOverviewMain } from "@/components/page-specific";
 
 export const metadata = {
-  title: "Analytics | Admin Panel",
+  title: "Overview | Admin Panel",
 };
 
-const AdminAnalyticsPage = () => <UnderDev />;
+const AdminAnalyticsPage = () => <AnalyticsOverviewMain />;
 
 export default AdminAnalyticsPage;

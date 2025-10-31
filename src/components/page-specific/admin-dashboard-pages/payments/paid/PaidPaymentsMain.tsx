@@ -25,7 +25,7 @@ import {
 } from "@/hooks";
 
 // Constants
-import { UserRoles, PaymentSortOptions, PaymentStatus } from "@/constants";
+import { UserRoles, PaymentSortOptions, PaymentType } from "@/constants";
 
 // Utilities
 import { catchAsyncGeneral, showToast } from "@/utils";
@@ -64,7 +64,7 @@ export const PaidPaymentsMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = usePaymentQueries({ paymentStatus: PaymentStatus.Paid });
+  } = usePaymentQueries({ transactionType: PaymentType.payment });
 
   const { single, removeSingle, setSingle } = useSelectable<IPayment, "_id">(
     payments,

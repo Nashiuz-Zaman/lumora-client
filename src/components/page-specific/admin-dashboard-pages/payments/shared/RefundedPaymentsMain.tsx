@@ -21,12 +21,7 @@ import {
 } from "@/hooks";
 
 // Constants
-import {
-  UserRoles,
-  PaymentSortOptions,
-  PaymentStatus,
-  TPaymentStatus,
-} from "@/constants";
+import { UserRoles, PaymentSortOptions, PaymentType } from "@/constants";
 
 // Types
 import { IPayment } from "@/types";
@@ -46,11 +41,9 @@ const columns: TTableColumn[] = [
 
 export interface IRefundedPaymentsMainProps {
   pageTitle?: string;
-  status?: TPaymentStatus;
 }
 export const RefundedPaymentsMain = ({
   pageTitle = "Refunded Payments",
-  status = PaymentStatus.Refunded,
 }: IRefundedPaymentsMainProps) => {
   const { refs } = useRefState();
   useSetElementText(refs?.titleRef?.current, pageTitle);
@@ -65,7 +58,7 @@ export const RefundedPaymentsMain = ({
     handleSubmit,
     changePage,
   } = usePaymentQueries({
-    paymentStatus: status,
+    transactionType: PaymentType.refund,
     extraLimitFields: ["refundReason", "updatedAt"],
   });
 

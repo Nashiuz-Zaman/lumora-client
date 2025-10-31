@@ -18,6 +18,7 @@
   --color-primary-light-2: #ca89ff;
   --color-secondary: #f6339a;
   --color-secondary-dark: #e60076;
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
 html {

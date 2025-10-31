@@ -19,25 +19,25 @@ import { OrderSortOptions } from "@/constants/order";
 import { useGetPaymentsQuery } from "@/libs/redux/apiSlices/payment/paymentApiSlice";
 
 // Types
-import { TPaymentStatus } from "@/constants";
 import { IQueryMeta } from "@/types";
 import { IPayment } from "@/types/payment";
+import { TPaymentType } from "@/constants";
 
 export interface IPaymentQueriesParams {
   page: number;
   sort: string;
   search: string;
-  status: TPaymentStatus;
+  type: TPaymentType;
 }
 
 export interface IUsePaymentQueriesArgs {
-  paymentStatus: TPaymentStatus;
+  transactionType: TPaymentType;
   limit?: number;
   extraLimitFields?: (keyof IPayment)[];
 }
 
 export const usePaymentQueries = ({
-  paymentStatus,
+  transactionType,
   limit = 20,
   extraLimitFields = [],
 }: IUsePaymentQueriesArgs) => {
@@ -63,9 +63,9 @@ export const usePaymentQueries = ({
       page: Number(rawQueryParams.page) || 1,
       sort: (rawQueryParams.sort as string) || "-" + OrderSortOptions[2].value,
       search: (rawQueryParams.search as string) || "",
-      status: paymentStatus,
+      type: transactionType,
     }),
-    [rawQueryParams, paymentStatus]
+    [rawQueryParams, transactionType]
   );
 
   // Controlled form params

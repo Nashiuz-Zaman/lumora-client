@@ -52,4 +52,9 @@ export * from "./FadeSlider";
 export * from "./Drawer";
 export * from "./ProductSwiper";
 export * from "./FileUploadField";
-export * from './SelectField'
+export * from "./SelectField";
+export * from "./AreaChart";
+export * from "./LineChart";
+export * from "./ColumnChart";
+export * from "./ColumnChartDual";
+export * from "./DonutChart";

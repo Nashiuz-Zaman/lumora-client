@@ -67,15 +67,15 @@ export const SelectField = ({
           ref={(el) => {
             // connect both refs
             selectRef.current = el;
-            if (typeof props.ref === "function") props.ref(el);
-            else if (props.ref)
-              (props.ref as React.RefObject<HTMLSelectElement | null>).current =
+            if (typeof props?.ref === "function") props?.ref(el);
+            else if (props?.ref)
+              (props?.ref as React.RefObject<HTMLSelectElement | null>).current =
                 el;
           }}
           onClick={() => setIsOpen((prev) => !prev)}
           onBlur={(e) => {
             setIsOpen(false);
-            if (props.onBlur) props.onBlur(e);
+            if (props?.onBlur) props?.onBlur(e);
           }}
           className="appearance-none w-full bg-transparent py-3 px-4 rounded-lg cursor-pointer"
         >

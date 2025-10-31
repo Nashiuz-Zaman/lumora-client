@@ -99,11 +99,6 @@ const navSections: INavSection[] = [
         path: "/admin/payments/paid",
       },
       {
-        name: "Partial Refund",
-        icon: "radix-icons:half-2",
-        path: "/admin/payments/partially-refunded",
-      },
-      {
         name: "Refunded",
         icon: "material-symbols:cancel-outline",
         path: "/admin/payments/refunded",

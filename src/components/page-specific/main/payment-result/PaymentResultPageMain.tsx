@@ -12,7 +12,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const VALID_STATUSES = ["success", "fail", "cancel"] as const;
-type PaymentStatus = (typeof VALID_STATUSES)[number];
+type TPaymentStatus = (typeof VALID_STATUSES)[number];
 
 const PaymentResultPageMain = () => {
   const router = useRouter();
@@ -28,22 +28,22 @@ const PaymentResultPageMain = () => {
     if (
       !status ||
       !orderId ||
-      !VALID_STATUSES.includes(status as PaymentStatus)
+      !VALID_STATUSES.includes(status as TPaymentStatus)
     ) {
       router.replace("/");
     }
   }, [status, orderId, router]);
 
-  if (!status || !orderId || !VALID_STATUSES.includes(status as PaymentStatus))
+  if (!status || !orderId || !VALID_STATUSES.includes(status as TPaymentStatus))
     return null;
 
-  const descriptions: Record<PaymentStatus, string> = {
+  const descriptions: Record<TPaymentStatus, string> = {
     success: "Your payment was successful and your order has been placed.",
     fail: "Unfortunately, the payment did not go through.",
     cancel: "You cancelled the payment before it was completed.",
   };
 
-  const icons: Record<PaymentStatus, { name: string; color: string }> = {
+  const icons: Record<TPaymentStatus, { name: string; color: string }> = {
     success: {
       name: "clarity:success-standard-solid",
       color: "text-green-500",
@@ -52,7 +52,7 @@ const PaymentResultPageMain = () => {
     cancel: { name: "mdi:cancel", color: "text-red-500" },
   };
 
-  const typedStatus = status as PaymentStatus;
+  const typedStatus = status as TPaymentStatus;
 
   return (
     <div className="h-full grid place-content-center">

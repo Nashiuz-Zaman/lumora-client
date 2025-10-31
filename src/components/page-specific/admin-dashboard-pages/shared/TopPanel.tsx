@@ -26,14 +26,17 @@ export const TopPanel = ({ actions, className = "" }: ITopPanelProps) => {
   return (
     <div
       ref={topPanelRef}
-      className={`bg-white border-b py-3 border-neutral-200 flex items-center shrink-0 ${className}`}
+      className={`bg-white border-b py-4 border-neutral-200 flex items-center shrink-0 ${className}`}
     >
-      <InnerContainer className="flex items-center h-full justify-between gap-4 !px-4">
+      <InnerContainer className="flex flex-col items-center sm:flex-row h-full justify-between gap-4 !px-2 sm:!px-4">
         {/* Left side: Title */}
-        <h2 ref={titleRef} className="text-lg font-semibold"></h2>
+        <h2
+          ref={titleRef}
+          className="text-base sm:text-lg font-semibold w-full sm:w-auto truncate text-center sm:text-left"
+        ></h2>
 
         {/* Right side: Actions */}
-        <div className="flex items-center gap-3">{actions}</div>
+        <div className="flex items-center gap-2 sm:gap-3">{actions}</div>
       </InnerContainer>
     </div>
   );
