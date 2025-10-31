@@ -174,7 +174,9 @@ export const SearchFilters = ({
       )}
 
       {/* Apply Filters Button */}
-      <ButtonBtn className="!primaryClasses">Apply Filters</ButtonBtn>
+      <ButtonBtn type="submit" className="!primaryClasses">
+        Apply Filters
+      </ButtonBtn>
     </form>
   );
 };

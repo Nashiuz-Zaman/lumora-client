@@ -197,7 +197,7 @@ export const MobileSearchFilters = ({
           </div>
 
           {/* Apply Button */}
-          <ButtonBtn className="!primaryClasses w-full">
+          <ButtonBtn type="submit" className="!primaryClasses w-full">
             Apply Filters
           </ButtonBtn>
         </form>
