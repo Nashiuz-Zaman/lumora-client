@@ -3,7 +3,6 @@
 import { LineChart } from "@/components/shared";
 import { useGetCustomerGrowthQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
 import { IAnalyticDateParams } from "@/types";
-import { generateChartTitle } from "@/utils";
 
 interface ICustomerTrendsChartProps {
   dateParams: IAnalyticDateParams;
