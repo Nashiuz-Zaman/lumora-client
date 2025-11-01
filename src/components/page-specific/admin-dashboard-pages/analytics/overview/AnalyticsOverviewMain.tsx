@@ -33,7 +33,7 @@ export const AnalyticsOverviewMain = () => {
   }, [sanitizedMonth, sanitizedYear]);
 
   return (
-    <div className="grow px-4 py-7 bg-neutral-50 space-y-16">
+    <div className="grow px-4 pt-7 pb-12 bg-neutral-50 space-y-16 overflow-x-hidden">
       {/* Order Stats */}
       <section className="grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 gap-5 items-stretch">
         <div>
@@ -70,7 +70,7 @@ export const AnalyticsOverviewMain = () => {
       </section>
 
       {/* Customer Stats */}
-      <section>
+      <section className="flex flex-col h-[350px]">
         <AnalyticsHeading text="Customer Growth" />
         <CustomerTrendsChart dateParams={dateParams} />
       </section>

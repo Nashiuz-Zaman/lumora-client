@@ -1,14 +1,12 @@
 "use client";
 
-import { AreaChart } from "@/components/shared";
+import { LineChart } from "@/components/shared";
 import { useGetCustomerGrowthQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
 import { IAnalyticDateParams } from "@/types";
-
 import { generateDynamicTitle } from "@/utils";
 
 interface ICustomerTrendsChartProps {
   dateParams: IAnalyticDateParams;
-  className?: string;
 }
 
 interface ICustomerData {
@@ -18,7 +16,6 @@ interface ICustomerData {
 
 export const CustomerTrendsChart = ({
   dateParams,
-  className = "",
 }: ICustomerTrendsChartProps) => {
   const { data, isLoading } = useGetCustomerGrowthQuery(dateParams, {
     refetchOnMountOrArgChange: true,
@@ -30,12 +27,11 @@ export const CustomerTrendsChart = ({
   const values = rawChartData.map((item) => item.totalCustomers || 0);
 
   return (
-    <AreaChart
+    <LineChart
       title={generateDynamicTitle("Customers Joined", dateParams)}
       categories={categories}
       data={values}
-      color="#22C55E" // Emerald green with darker gradient
-      className={className}
+      className="grow border border-neutral-200"
       tooltipUnit=""
       isLoading={isLoading}
       seriesName="Customers"

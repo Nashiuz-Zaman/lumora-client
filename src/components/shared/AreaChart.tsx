@@ -100,7 +100,7 @@ export const AreaChart = ({
   );
 
   return (
-    <div className={`bg-white p-3 rounded-xl relative h-[330px] ${className}`}>
+    <div className={`bg-white p-3 rounded-xl relative ${className}`}>
       {isLoading && <LoadingSpinner centered />}
 
       <ReactApexChart
