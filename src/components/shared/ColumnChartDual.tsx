@@ -101,7 +101,7 @@ export const ColumnChartDual = ({
     <div className={`bg-white p-3 rounded-xl relative h-[330px] ${className}`}>
       {isLoading && <LoadingSpinner centered />}
 
-      {!isLoading && (
+      {!isLoading && Array.isArray(series) && (
         <ReactApexChart
           options={options}
           series={series}

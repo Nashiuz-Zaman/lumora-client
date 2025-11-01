@@ -96,7 +96,8 @@ export const DonutChart = ({
   return (
     <div className={`bg-white p-3 rounded-xl relative h-[330px] ${className}`}>
       {isLoading && <LoadingSpinner centered />}
-      {!isLoading && (
+
+      {!isLoading && data && options && (
         <ReactApexChart
           options={options}
           series={data}

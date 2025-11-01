@@ -54,7 +54,7 @@ export const AnalyticsOverviewMain = () => {
       </section>
 
       {/* Payments stats */}
-      <section className="grid lg:grid-cols-[1.6fr_2fr] gap-5  items-start">
+      <section className="grid lg:grid-cols-[1.25fr_2fr] gap-5  items-start">
         <div>
           <AnalyticsHeading text="Transactions" />
           <PaymentStats dateParams={dateParams} />
@@ -63,7 +63,7 @@ export const AnalyticsOverviewMain = () => {
         <div className="flex flex-col h-full">
           <AnalyticsHeading text="Revenue Growth" />
           <RevenueTrendsChart
-            className="min-h-[20rem] sm:min-h-[24rem] lg:min-h-[revert] !grow border border-neutral-200"
+            className="h-[350px] !grow border border-neutral-200"
             dateParams={dateParams}
           />
         </div>

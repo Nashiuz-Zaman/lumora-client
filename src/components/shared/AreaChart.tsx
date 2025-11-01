@@ -103,12 +103,14 @@ export const AreaChart = ({
     <div className={`bg-white p-3 rounded-xl relative ${className}`}>
       {isLoading && <LoadingSpinner centered />}
 
-      <ReactApexChart
-        options={options}
-        series={series}
-        type="area"
-        height={320}
-      />
+      {!isLoading && options && series && (
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="area"
+          height={320}
+        />
+      )}
     </div>
   );
 };
