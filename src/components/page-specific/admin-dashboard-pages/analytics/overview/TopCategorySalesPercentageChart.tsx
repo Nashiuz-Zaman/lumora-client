@@ -1,8 +1,18 @@
 import { DonutChart } from "@/components/shared";
 import { useGetTopCategorySalesPercentageQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { IAnalyticDateParams } from "@/types";
 
-export const TopCategorySalesPercentageChart = () => {
-  const { data, isLoading } = useGetTopCategorySalesPercentageQuery();
+export const TopCategorySalesPercentageChart = ({
+  dateParams,
+}: {
+  dateParams: IAnalyticDateParams;
+}) => {
+  const { data, isLoading } = useGetTopCategorySalesPercentageQuery(
+    dateParams,
+    {
+      refetchOnMountOrArgChange: true,
+    }
+  );
 
   const chartData = data?.data ?? [];
 

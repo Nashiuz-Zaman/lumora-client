@@ -44,7 +44,7 @@ export const AnalyticsOverviewMain = () => {
         <div className="flex flex-col h-full lg:h-[340px] 2xl:h-full">
           <AnalyticsHeading text="Sales by Product Categories" />
 
-          <TopCategorySalesPercentageChart />
+          <TopCategorySalesPercentageChart dateParams={dateParams} />
         </div>
       </section>
 

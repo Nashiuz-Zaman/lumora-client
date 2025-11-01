@@ -29,7 +29,6 @@ export const OrderStats = ({
 }: IOrderStatsProps) => {
   const { data, isFetching, error } = useGetOrderStatsQuery(dateParams, {
     refetchOnMountOrArgChange: true,
-    refetchOnFocus: true,
   });
 
   const orderData: IOrderData | undefined = data?.success

@@ -101,11 +101,12 @@ export const analyticsApiSlice = baseApiSlice.injectEndpoints({
           percentage: number;
         }[]
       >,
-      void
+      IAnalyticDateParams
     >({
-      query: () => ({
+      query: (params) => ({
         url: "/analytics/top-category-sales-percentage",
         method: "GET",
+        params,
       }),
       keepUnusedDataFor: 0,
     }),
@@ -180,5 +181,5 @@ export const {
   useGetLowTotalStockProductsQuery,
   useGetLowVariantStockProductsQuery,
   useGetRecentPaymentsQuery,
-  useGetOrderTrendsCombinedQuery
+  useGetOrderTrendsCombinedQuery,
 } = analyticsApiSlice;
