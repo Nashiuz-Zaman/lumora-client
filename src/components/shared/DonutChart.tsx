@@ -55,7 +55,7 @@ export const DonutChart = ({
         show: showLegend,
         position: "left",
         fontSize: "12px",
-        itemMargin: { vertical: 3},
+        itemMargin: { vertical: 3 },
         fontFamily: "inherit",
         offsetY: 20,
       },
@@ -108,8 +108,8 @@ export const DonutChart = ({
         />
       )}
 
-      {!isLoading && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-neutral-400">
+      {!isLoading && !data && (
+        <div className="absolute y-center left-[55%] flex flex-col items-center justify-center text-neutral-400">
           <span className="text-sm font-medium">No data available</span>
         </div>
       )}
