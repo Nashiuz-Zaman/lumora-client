@@ -1,6 +1,7 @@
 import { DonutChart } from "@/components/shared";
 import { useGetTopCategorySalesPercentageQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
 import { IAnalyticDateParams } from "@/types";
+import { generateDynamicTitle } from "@/utils";
 
 export const TopCategorySalesPercentageChart = ({
   dateParams,
@@ -29,6 +30,7 @@ export const TopCategorySalesPercentageChart = ({
     <DonutChart
       className="border border-neutral-200 w-full grow"
       data={values}
+      title={generateDynamicTitle("Sales", dateParams)}
       labels={categories}
       tooltipUnit="%"
       isLoading={isLoading}

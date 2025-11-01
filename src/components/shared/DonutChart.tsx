@@ -55,7 +55,9 @@ export const DonutChart = ({
         show: showLegend,
         position: "left",
         fontSize: "12px",
+        itemMargin: { vertical: 3},
         fontFamily: "inherit",
+        offsetY: 20,
       },
       dataLabels: {
         enabled: true,
@@ -93,13 +95,11 @@ export const DonutChart = ({
     [labels, colors, title, tooltipUnit, showLegend]
   );
 
-  const hasData = data.some((value) => value > 0);
-
   return (
     <div className={`bg-white p-3 rounded-xl relative h-[330px] ${className}`}>
       {isLoading && <LoadingSpinner centered />}
 
-      {!isLoading && hasData && (
+      {!isLoading && (
         <ReactApexChart
           options={options}
           series={data}
@@ -108,8 +108,8 @@ export const DonutChart = ({
         />
       )}
 
-      {!isLoading && !hasData && (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-gray-400">
+      {!isLoading && (
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-neutral-400">
           <span className="text-sm font-medium">No data available</span>
         </div>
       )}
