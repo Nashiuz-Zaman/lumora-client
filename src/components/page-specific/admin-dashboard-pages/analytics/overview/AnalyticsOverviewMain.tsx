@@ -12,6 +12,7 @@ import { useMemo } from "react";
 import { IAnalyticDateParams } from "@/types";
 import { useRefState, useSetElementText } from "@/hooks";
 import { TopCategorySalesPercentageChart } from "./TopCategorySalesPercentageChart";
+import { generateChartTitle } from "@/utils";
 
 export const AnalyticsOverviewMain = () => {
   const { refs } = useRefState();
@@ -37,31 +38,37 @@ export const AnalyticsOverviewMain = () => {
       {/* Order Stats */}
       <section className="grid grid-rows-2 lg:grid-rows-1 lg:grid-cols-2 gap-5 items-stretch">
         <div>
-          <AnalyticsHeading text="Orders" />
+          <AnalyticsHeading text={generateChartTitle("Orders ", dateParams)} />
           <OrderStats dateParams={dateParams} />
         </div>
 
         <div className="flex flex-col h-full lg:h-[340px] 2xl:h-full">
-          <AnalyticsHeading text="Sales by Product Categories" />
+          <AnalyticsHeading
+            text={generateChartTitle("Sales by Product Categories", dateParams)}
+          />
 
           <TopCategorySalesPercentageChart dateParams={dateParams} />
         </div>
       </section>
 
       <section>
-        <AnalyticsHeading text="Orders Placed vs Cancelled" />
+        <AnalyticsHeading
+          text={generateChartTitle("Order Placed vs Cancelled ", dateParams)}
+        />
         <OrderCombinedTrendsChart dateParams={dateParams} />
       </section>
 
       {/* Payments stats */}
       <section className="grid lg:grid-cols-[1.25fr_2fr] gap-5  items-start">
         <div>
-          <AnalyticsHeading text="Transactions" />
+          <AnalyticsHeading
+            text={generateChartTitle("Transactions ", dateParams)}
+          />
           <PaymentStats dateParams={dateParams} />
         </div>
 
         <div className="flex flex-col h-full">
-          <AnalyticsHeading text="Revenue Growth" />
+          <AnalyticsHeading text={generateChartTitle("Rev. Growth", dateParams)} />
           <RevenueTrendsChart
             className="h-[350px] !grow border border-neutral-200"
             dateParams={dateParams}
@@ -71,7 +78,7 @@ export const AnalyticsOverviewMain = () => {
 
       {/* Customer Stats */}
       <section className="flex flex-col h-[350px]">
-        <AnalyticsHeading text="Customer Growth" />
+        <AnalyticsHeading text={generateChartTitle("Customer Growth ", dateParams)}/>
         <CustomerTrendsChart dateParams={dateParams} />
       </section>
     </div>

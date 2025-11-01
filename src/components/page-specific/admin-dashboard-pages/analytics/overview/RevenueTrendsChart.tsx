@@ -3,7 +3,6 @@
 import { AreaChart } from "@/components/shared";
 import { useGetRevenueTrendsQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
 import { IAnalyticDateParams } from "@/types";
-import { generateDynamicTitle } from "@/utils";
 
 interface IRevenueTrendsChartProps {
   dateParams: IAnalyticDateParams;
@@ -27,7 +26,6 @@ export const RevenueTrendsChart = ({
 
   return (
     <AreaChart
-      title={generateDynamicTitle("Revenue generated", dateParams)}
       categories={categories}
       data={values}
       color="#22C55E"

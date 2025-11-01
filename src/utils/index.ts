@@ -19,4 +19,4 @@ export * from "./compression";
 export * from "./csvUtils";
 export * from "./getHeight";
 export * from "./uploadFileWithSignedUrls";
-export * from "./generateDynamicTitle";
+export * from "./generateChartTitle";

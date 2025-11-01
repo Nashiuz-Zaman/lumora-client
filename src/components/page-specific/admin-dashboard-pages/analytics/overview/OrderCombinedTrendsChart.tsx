@@ -3,7 +3,6 @@
 import { ColumnChartDual } from "@/components/shared";
 import { useGetOrderTrendsCombinedQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
 import { IAnalyticDateParams } from "@/types";
-import { generateDynamicTitle } from "@/utils/generateDynamicTitle";
 
 interface IOrderTrendsChartProps {
   dateParams: IAnalyticDateParams;
@@ -36,11 +35,10 @@ export const OrderCombinedTrendsChart = ({
 
   return (
     <ColumnChartDual
-      title={generateDynamicTitle("Order Trends", dateParams)}
       labels={categories}
       series={series}
-      colors={["#22C55E", "#EF4444"]} 
-      className='border border-neutral-200'
+      colors={["#22C55E", "#EF4444"]}
+      className="border border-neutral-200"
       isLoading={isLoading}
     />
   );

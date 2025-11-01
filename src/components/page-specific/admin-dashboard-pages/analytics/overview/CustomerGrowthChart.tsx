@@ -3,7 +3,7 @@
 import { LineChart } from "@/components/shared";
 import { useGetCustomerGrowthQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
 import { IAnalyticDateParams } from "@/types";
-import { generateDynamicTitle } from "@/utils";
+import { generateChartTitle } from "@/utils";
 
 interface ICustomerTrendsChartProps {
   dateParams: IAnalyticDateParams;
@@ -28,7 +28,6 @@ export const CustomerTrendsChart = ({
 
   return (
     <LineChart
-      title={generateDynamicTitle("Customers Joined", dateParams)}
       categories={categories}
       data={values}
       className="grow border border-neutral-200"
