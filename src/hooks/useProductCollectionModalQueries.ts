@@ -34,7 +34,6 @@ export const useProductCollectionModalQueries = (
     {
       skip: !(isModalOpen && topCategorySlug),
       refetchOnMountOrArgChange: true,
-      refetchOnFocus: true,
     }
   );
 

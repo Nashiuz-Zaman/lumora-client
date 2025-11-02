@@ -17,7 +17,7 @@ interface IOrderDataField {
 
 interface IOrderData {
   totalOrders?: IOrderDataField;
-  confirmedOrders?: IOrderDataField;
+  completedOrders?: IOrderDataField;
   cancelledOrders?: IOrderDataField;
   returnedOrders?: IOrderDataField;
   comparisonText?: string;
@@ -52,9 +52,9 @@ export const OrderStats = ({
         className="border border-neutral-200"
       />
       <StatsCard
-        label="Confirmed Orders"
-        value={orderData?.confirmedOrders?.current}
-        comparison={orderData?.confirmedOrders?.comparison}
+        label="Completed Orders"
+        value={orderData?.completedOrders?.current}
+        comparison={orderData?.completedOrders?.comparison}
         comparisonText={orderData?.comparisonText}
         isLoading={isFetching}
         className="border border-neutral-200"
