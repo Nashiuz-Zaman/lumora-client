@@ -54,9 +54,10 @@ const columns: TTableColumn[] = [
   { columnTitle: "Order ID", width: "0.3fr" },
   { columnTitle: "Customer", width: "0.35fr" },
   { columnTitle: "Phone", width: "0.3fr" },
-  { columnTitle: "Email", width: "0.5fr" },
-  { columnTitle: "Confirmed at", width: "0.5fr" },
+  { columnTitle: "Email", width: "0.4fr" },
+  { columnTitle: "Confirmed at", width: "0.35fr" },
   { columnTitle: "Total", width: "0.2fr" },
+  { columnTitle: "Invoice", width: "0.2fr" },
   { columnTitle: "Actions", width: "0.4fr" },
 ];
 
@@ -174,6 +175,7 @@ const ConfirmedOrdersMain = () => {
           sortOptions={[...OrderSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
+          className="!border-b-0"
         />
 
         <ButtonBtnTrans

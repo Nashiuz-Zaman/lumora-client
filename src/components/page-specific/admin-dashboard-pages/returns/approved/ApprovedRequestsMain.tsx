@@ -141,6 +141,7 @@ export const ApprovedRequestsMain = () => {
           sortOptions={[...ReturnRequestSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
+          className="!border-b-0"
         />
 
         {/* Delete selected button */}

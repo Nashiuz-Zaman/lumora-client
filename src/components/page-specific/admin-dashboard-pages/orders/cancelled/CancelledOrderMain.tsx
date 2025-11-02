@@ -48,8 +48,9 @@ const columns: TTableColumn[] = [
   { columnTitle: "Phone", width: "0.3fr" },
   { columnTitle: "Email", width: "0.4fr" },
   { columnTitle: "Total", width: "0.25fr" },
+  { columnTitle: "Invoice", width: "0.2fr" },
   { columnTitle: "Cancelled At", width: "0.3fr" },
-  { columnTitle: "Reason", width: "0.5fr" },
+  { columnTitle: "Reason", width: "0.4fr" },
 ];
 
 export const CancelledOrdersMain = () => {
@@ -123,6 +124,7 @@ export const CancelledOrdersMain = () => {
           sortOptions={[...OrderSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
+          className="!border-b-0"
         />
 
         <ButtonBtnTrans

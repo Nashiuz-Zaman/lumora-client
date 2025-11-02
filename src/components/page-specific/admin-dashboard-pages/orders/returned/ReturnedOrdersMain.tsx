@@ -35,6 +35,7 @@ const columns: TTableColumn[] = [
   { columnTitle: "Email", width: "0.4fr" },
   { columnTitle: "Shipped At", width: "0.4fr" },
   { columnTitle: "Status", width: "0.3fr" },
+  { columnTitle: "Invoice", width: "0.2fr" },
   { columnTitle: "Total", width: "0.3fr" },
 ];
 

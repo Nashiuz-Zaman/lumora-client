@@ -38,7 +38,8 @@ const columns: TTableColumn[] = [
   { columnTitle: "Email", width: "0.4fr" },
   { columnTitle: "Shipped At", width: "0.4fr" },
   { columnTitle: "Estimated Delivery", width: "0.4fr" },
-  { columnTitle: "Total", width: "0.3fr" },
+  { columnTitle: "Invoice", width: "0.2fr" },
+  { columnTitle: "Total", width: "0.2fr" },
 ];
 
 export const ShippedOrdersMain = () => {
@@ -110,6 +111,7 @@ export const ShippedOrdersMain = () => {
           sortOptions={[...OrderSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
+          className="!border-b-0"
         />
 
         <ButtonBtnTrans

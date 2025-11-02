@@ -91,15 +91,15 @@ const navSections: INavSection[] = [
     ],
   },
   {
-    heading: "Payments",
+    heading: "Finance",
     items: [
       {
-        name: "Paid",
+        name: "Payments",
         icon: "material-symbols:paid",
         path: "/admin/payments/paid",
       },
       {
-        name: "Refunded",
+        name: "Refunds",
         icon: "material-symbols:cancel-outline",
         path: "/admin/payments/refunded",
       },

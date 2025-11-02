@@ -55,7 +55,24 @@ export const CancelledOrderRow = ({
       <td className={cellClasses + " break-all"}>{orderData.email}</td>
       {/* Order Total */}
       <td className={cellClasses}>{formatPrice(orderData.total)}</td>
-      
+
+      {/* Invoice */}
+      <td className={cellClasses}>
+        {orderData.invoice ? (
+          <a
+            onClick={(e) => e.stopPropagation()}
+            href={orderData.invoice}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 font-semibold underline"
+          >
+            View
+          </a>
+        ) : (
+          "-"
+        )}
+      </td>
+
       {/* Cancelled Time */}
       <td className={cellClasses}>
         {orderData.updatedAt && formatDateTime(orderData.updatedAt)}

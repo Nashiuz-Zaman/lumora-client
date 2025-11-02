@@ -118,6 +118,7 @@ export const ActiveCouponsMain = () => {
           sortOptions={[...CouponSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
+          className="!border-b-0"
         />
 
         {/* Expire selected button */}

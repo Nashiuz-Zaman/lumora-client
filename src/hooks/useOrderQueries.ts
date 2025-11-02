@@ -118,6 +118,7 @@ export const useOrderQueries = ({
       "updatedAt",
       "total",
       "status",
+      "invoice",
       "estimatedDelivery",
       ...extraLimitFields,
     ];

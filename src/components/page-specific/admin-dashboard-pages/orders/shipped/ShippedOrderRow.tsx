@@ -65,6 +65,23 @@ export const ShippedOrderRow = ({
           formatDateTime(orderData.estimatedDelivery)}
       </td>
 
+      {/* Invoice */}
+      <td className={cellClasses}>
+        {orderData.invoice ? (
+          <a
+            onClick={(e) => e.stopPropagation()}
+            href={orderData.invoice}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 font-semibold underline"
+          >
+            View
+          </a>
+        ) : (
+          "-"
+        )}
+      </td>
+
       {/* Order Total */}
       <td className={cellClasses}>{formatPrice(orderData.total)}</td>
     </>

@@ -72,6 +72,23 @@ export const ConfirmedOrderRow = ({
       {/* Order Total */}
       <td className={cellClasses}>{formatPrice(orderData.total)}</td>
 
+      {/* Invoice */}
+      <td className={cellClasses}>
+        {orderData.invoice ? (
+          <a
+            onClick={(e) => e.stopPropagation()}
+            href={orderData.invoice}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500 font-semibold underline"
+          >
+            View
+          </a>
+        ) : (
+          "-"
+        )}
+      </td>
+
       {/* Actions */}
       <td className={cellClasses + " flex h-max items-center gap-4"}>
         <ButtonBtnTrans

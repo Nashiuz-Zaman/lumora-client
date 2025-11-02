@@ -87,7 +87,7 @@ export const DonutChart = ({
           breakpoint: 768,
           options: {
             chart: { width: "100%" },
-            legend: { position: "bottom" },
+            legend: { position: "bottom", offsetY: 0 },
           },
         },
       ],

@@ -23,6 +23,7 @@ const columns: TTableColumn[] = [
   { columnTitle: "Email", width: "0.4fr" },
   { columnTitle: "Archived At", width: "0.35fr" },
   { columnTitle: "Status", width: "0.25fr" },
+  { columnTitle: "Invoice", width: "0.2fr" },
   { columnTitle: "Total", width: "0.3fr" },
 ];
 
