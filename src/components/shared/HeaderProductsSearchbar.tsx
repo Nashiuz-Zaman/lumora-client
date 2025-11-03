@@ -22,7 +22,7 @@ interface ISearchbarProps<T> {
   ) => React.ReactNode;
 }
 
-export const Searchbar = <T,>({
+export const HeaderProductsSearchbar = <T,>({
   className = "",
   showIcon = true,
   modalClassName = "",
@@ -100,11 +100,11 @@ export const Searchbar = <T,>({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-[35rem] 4xl:max-w-[50rem] ${className}`}
+      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-[35rem] 4xl:max-w-[50rem] text-neutral-400 bg-white ${className}`}
     >
       <form
         onSubmit={handleSubmit}
-        className="flex w-full rounded overflow-hidden border border-white/30 bg-white/10 backdrop-blur items-center"
+        className="flex w-full rounded overflow-hidden border items-center [color:inherit] [border-color:inherit] [background-color:inherit]"
       >
         <input
           type="text"
@@ -112,12 +112,12 @@ export const Searchbar = <T,>({
           value={searchText}
           placeholder="Search for products"
           onChange={handleChange}
-          className="w-full px-3 py-2 sm:py-2.5 md:py-3 text-white placeholder-white/70 bg-transparent focus:outline-none focus:ring-2 focus:ring-white/50 text-sm md:text-base"
+          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base [color:inherit] [border-color:inherit] [background-color:inherit]"
         />
 
         {showIcon && (
-          <ButtonBtnTrans type="submit">
-            <SearchIcon className="px-3 text-white 2md:text-2xl" />
+          <ButtonBtnTrans type="submit" className="[color:inherit]">
+            <SearchIcon className="px-3 2md:text-2xl" />
           </ButtonBtnTrans>
         )}
       </form>

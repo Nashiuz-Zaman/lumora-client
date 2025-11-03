@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { ButtonBtnTrans } from "./buttons";
 import { CloseIcon, SearchIcon } from "./icons";
-import { Searchbar } from "./Searchbar";
+import { HeaderProductsSearchbar } from "./HeaderProductsSearchbar";
 import { AccordionHorizontal } from "./AccordionHorizontal";
 import { AccordionVertical } from "./AccordionVertical";
 
@@ -115,7 +115,7 @@ export const ExpandableSearchPortal = <T,>({
               duration={accordionDuration}
               className={horizontalAccordionClasses}
             >
-              <Searchbar<T>
+              <HeaderProductsSearchbar<T>
                 className={searchbarClasses}
                 results={results}
                 renderResult={renderResult}

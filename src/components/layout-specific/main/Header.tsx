@@ -4,11 +4,12 @@ import {
   InnerContainer,
   ExpandableSearchPortal,
   BrandLogo,
-  Searchbar,
+  HeaderProductsSearchbar,
   CartBtn,
   UserAvatarMenu,
   SearchbarProductCard,
   ThreeDotMenu,
+  CompanyLogoBtn,
 } from "../../shared";
 
 import { IMegaMenuProps, MegaMenu } from "./MegaMenu";
@@ -34,13 +35,13 @@ const Header = ({ categories }: THeaderProps) => {
   const { logout } = useAuthMethods();
   const { user } = useAuthState();
   const { cart } = useCartState();
+  const isSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
 
   // search hook
   const [triggerSearch, { data, isFetching, isSuccess }] =
     useLazySearchInSearchbarQuery();
 
   const results = (!isFetching && isSuccess && data?.data?.products) || [];
-  const isSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
 
   useEffect(() => {
     setIsClient(true);
@@ -72,7 +73,7 @@ const Header = ({ categories }: THeaderProps) => {
   return (
     <header className="relative top-0 z-[200]">
       {/* Top promo / links bar */}
-      <InnerContainer className="bg-neutral-200 text-sm xl:text-base py-3">
+      <InnerContainer className="text-sm xl:text-base py-3">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <p className="text-center md:text-left">
             Shop now and enjoy free shipping to West Coast states!
@@ -87,18 +88,19 @@ const Header = ({ categories }: THeaderProps) => {
       </InnerContainer>
 
       {/* Main header content */}
-      <div className="bg-neutral-800">
+      <div className="bg-white border-y border-b-neutral-100 border-t-neutral-100">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
-          {/* logo */}
-          <BrandLogo className="mr-6" />
+          {/* Logo */}
+          <CompanyLogoBtn className="mr-6" />
 
           {/* Desktop search bar */}
           {isSm && (
-            <Searchbar<ISearchbarResultProduct>
+            <HeaderProductsSearchbar<ISearchbarResultProduct>
               results={results}
               renderResult={renderResult}
               showIcon
               trigger={triggerSearch}
+              className="border-neutral-300"
               modalClassName="productSearchbarModal"
             />
           )}
@@ -113,30 +115,33 @@ const Header = ({ categories }: THeaderProps) => {
                 results={results}
                 renderResult={renderResult}
                 trigger={triggerSearch}
+                searchbarClasses="border-neutral-300"
                 modalClassName="productSearchbarModal"
               />
             )}
 
             {/* If no user: show login/signup */}
             {!user && (
-              <div className="flex gap-4 font-semibold text-white">
-                <Link href="/auth/login">Login</Link>
-                <Link href="/auth/signup">Sign Up</Link>
+              <div className="flex gap-4 font-medium">
+                <Link className="hover:underline" href="/auth/login">
+                  Login
+                </Link>
+                <Link className="hover:underline" href="/auth/signup">
+                  Sign Up
+                </Link>
               </div>
             )}
 
             {/* shopping cart */}
-            <CartBtn quantity={cart?.totalItemQty} />
+            <CartBtn itemsQty={cart?.totalItemQty} />
 
             {/* role-based menu */}
             {user && (
               <div className="flex items-center gap-4">
-                {isAdminRole && (
-                  <ThreeDotMenu
-                    className="[&_.three-dot-icon]:text-white [&_.three-dot-icon]:hover:text-primary"
-                    logoutFunction={logout}
-                  />
-                )}
+                {/* admin menu btn if user is admin */}
+                {isAdminRole && <ThreeDotMenu logoutFunction={logout} />}
+
+                {/* or customer menu btn for customers */}
                 {isCustomer && (
                   <UserAvatarMenu userData={user} logoutFunction={logout} />
                 )}

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { TUserRoleValue } from "@/constants/user";
 import { useClickOutside } from "@/hooks";
 import { ThreeDotIcon } from "./icons";
-import { ButtonBtnTrans } from "./buttons";
 
 type TUserMenuProps = {
   userData?: {
@@ -39,7 +38,7 @@ export const ThreeDotMenu = ({
   const name = userData?.name;
 
   const optionClasses =
-    "flex font-semibold text-neutral-500 items-center gap-2 hover:text-primary transition-all duration-200";
+    "flex font-semibold text-neutral-500 items-center gap-2 hover:text-primary transition-all duration-200 cursor-pointer";
 
   return (
     <div className={`relative ${className}`}>
@@ -72,7 +71,7 @@ export const ThreeDotMenu = ({
             <span>Dashboard</span>
           </Link>
 
-          <ButtonBtnTrans
+          <button
             className={optionClasses}
             onClick={() => {
               logoutFunction?.();
@@ -80,7 +79,7 @@ export const ThreeDotMenu = ({
             }}
           >
             Sign Out
-          </ButtonBtnTrans>
+          </button>
         </div>
       )}
     </div>

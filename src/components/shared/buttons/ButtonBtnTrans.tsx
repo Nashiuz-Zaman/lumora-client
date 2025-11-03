@@ -47,7 +47,7 @@ export const ButtonBtnTrans = ({
 
   const allClasses = `
     relative focus:outline-none gap-2 w-max capitalize
-    transition-all duration-default text-center disabled:opacity-50 disabled:cursor-not-allowed
+    transition-color text-center disabled:opacity-50 disabled:cursor-not-allowed
     cursor-pointer h-max
     ${className}
   `;

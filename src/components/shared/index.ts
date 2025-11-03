@@ -5,7 +5,7 @@ export * from "./GridBanner";
 export * from "./GridCard";
 export * from "./CustomMarquee";
 export * from "./ExpandableSearchPortal";
-export * from "./Searchbar";
+export * from "./HeaderProductsSearchbar";
 export * from "./UserAvatarMenu";
 export * from "./containers/CenterContainer";
 export * from "./containers/InnerContainer";
