@@ -7,7 +7,6 @@ import { useState, ChangeEvent } from "react";
 interface IQueryParams {
   page: number;
   search: string;
-  topCategory?: string;
   sort?: string;
 }
 
@@ -20,7 +19,6 @@ export const useProductCollectionModalQueries = (
   const [params, setParams] = useState<IQueryParams>({
     page: 1,
     search: "",
-    ...(isTopSelling ? {} : { topCategory: topCategorySlug }),
   });
 
   const query = useGetProductsAdminQuery(
@@ -29,10 +27,9 @@ export const useProductCollectionModalQueries = (
       limit: isTopSelling ? 50 : 25,
       limitFields:
         "defaultImage,defaultPrice,title,totalVariants,totalStock,slug",
-      ...(isTopSelling ? { topCategory: undefined } : {}),
     },
     {
-      skip: !(isModalOpen && topCategorySlug),
+      skip: !isModalOpen,
       refetchOnMountOrArgChange: true,
     }
   );

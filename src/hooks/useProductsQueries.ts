@@ -104,7 +104,7 @@ export const useProductsQueries = () => {
         ...finalQueryParams,
         limit: 20,
         limitFields:
-          "defaultImage,title,status,brand,defaultPrice,totalVariants,totalStock,updatedAt",
+          "defaultImage,title,status,brand,defaultPrice,totalVariants,totalStock,updatedAt,slug",
       }),
     [finalQueryParams]
   );

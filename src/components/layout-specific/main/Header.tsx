@@ -100,7 +100,7 @@ const Header = ({ categories }: THeaderProps) => {
               renderResult={renderResult}
               showIcon
               trigger={triggerSearch}
-              className="border-neutral-300"
+              className="border-neutral-200"
               modalClassName="productSearchbarModal"
             />
           )}
@@ -115,7 +115,7 @@ const Header = ({ categories }: THeaderProps) => {
                 results={results}
                 renderResult={renderResult}
                 trigger={triggerSearch}
-                searchbarClasses="border-neutral-300"
+                searchbarClasses="border-neutral-200"
                 modalClassName="productSearchbarModal"
               />
             )}

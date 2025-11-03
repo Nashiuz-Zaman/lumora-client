@@ -114,11 +114,8 @@ const ProductRow = ({
 
       {/* Actions */}
       <td className={cellClasses}>
-        <div title="View Preview" onClick={(e) => e.stopPropagation()}>
-          <LinkBtnTrans
-            target="_blank"
-            href={`/products/preview/${productData._id}`}
-          >
+        <div title="View Product" onClick={(e) => e.stopPropagation()}>
+          <LinkBtnTrans target="_blank" href={`/products/${productData.slug}`}>
             <IcfyIcon className="text-xl text-primary" icon="ri:eye-fill" />
           </LinkBtnTrans>
         </div>

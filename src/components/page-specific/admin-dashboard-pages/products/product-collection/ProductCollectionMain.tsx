@@ -12,13 +12,15 @@ import { useSelectable, useModal, useCollectionProductsQueries } from "@/hooks";
 
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { NoData } from "@/components/shared/NoData";
+import { useRemoveProductsFromProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection/productCollectionApiSlice";
+import { catchAsyncGeneral, showToast } from "@/utils";
 
 export const ProductCollectionMain = ({
   productCollectionSlug,
 }: {
   productCollectionSlug: string;
 }) => {
-  const { queryMeta, changePage, collectionProducts, isFetching } =
+  const { queryMeta, changePage, collectionProducts, isFetching, refetch } =
     useCollectionProductsQueries(productCollectionSlug);
 
   const productsWithoutSerial = collectionProducts?.map(
@@ -35,10 +37,28 @@ export const ProductCollectionMain = ({
 
   const { isModalOpen, openModal, closeModal } = useModal();
 
+  const [removeProducts, { isLoading: isRemoving }] =
+    useRemoveProductsFromProductCollectionMutation();
+
+  const handleRemove = catchAsyncGeneral(async () => {
+    if (!selected.length) return;
+
+    const res = await removeProducts({
+      slug: productCollectionSlug,
+      productIds: selected as string[],
+    }).unwrap();
+
+    if (res.success) {
+      showToast({ message: res.message });
+      closeModal();
+      await refetch?.();
+    }
+  });
+
   return (
     <div className="flex flex-col grow bg-white relative">
       {/* Overlay spinner */}
-      {isFetching && <LoadingSpinner />}
+      {(isFetching || isRemoving) && <LoadingSpinner centered={true} />}
 
       <InnerContainer className="mt-4 mb-10 grow">
         {/* Action buttons */}
@@ -74,7 +94,7 @@ export const ProductCollectionMain = ({
             ))}
           </div>
         ) : (
-          !isFetching && <NoData centered />
+          !isFetching && <NoData centered text="No products" />
         )}
 
         {/* Pagination */}
@@ -91,8 +111,8 @@ export const ProductCollectionMain = ({
       {/* Delete confirmation modal */}
       <ConfirmationModal
         show={isModalOpen}
-        message={`Are you sure you want to delete ${selected.length} product(s)?`}
-        onConfirm={() => {}}
+        message={`Are you sure you want to remove ${selected.length} product(s) from this collection?`}
+        onConfirm={handleRemove}
         onCancel={closeModal}
       />
     </div>
