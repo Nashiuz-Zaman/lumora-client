@@ -15,11 +15,11 @@ export const CartBtn = ({
 }) => {
   return (
     <div
-    title="Go To Cart Page"
-      className={`relative text-3xl 2xl:text-5xl ${className}`}
+      title="Go To Cart Page"
+      className={`relative text-3xl 2xl:text-4xl ${className}`}
     >
       {itemsQty > 0 && (
-        <p className="absolute w-6.5 xl:w-7 grid place-content-center aspect-square -top-3 text-sm -right-3 bg-red-500 rounded-full text-white">
+        <p className="absolute p-1 h-6 min-w-6 grid place-content-center -top-3 text-xs left-full -translate-x-3 bg-red-500 rounded-full text-white">
           {itemsQty}
         </p>
       )}
