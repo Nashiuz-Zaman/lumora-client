@@ -4,7 +4,7 @@ import { IProduct } from "./product";
 // A product reference inside a collection
 export interface IProductInCollection<P = string> {
   product: P;
-  serial: number;
+  serial: number; 
 }
 
 export type TPopulatedProductInCollection = IProductInCollection<IProduct>;
