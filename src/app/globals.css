@@ -66,7 +66,7 @@ html {
 }
 
 @utility blackOutlinedToPrimaryClasses {
-  @apply bg-transparent border border-neutral-600
+  @apply bg-transparent border border-neutral-400
          active:bg-primary lg:hover:bg-primary lg:hover:text-white
          active:text-white lg:hover:border-primary active:border-primary
          disabled:hover:bg-transparent disabled:hover:border-neutral-600;

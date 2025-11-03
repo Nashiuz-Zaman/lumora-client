@@ -128,15 +128,6 @@ export const AuthForm = ({
         {mode === "login" && (
           <>
             <p className="text-center text-sm text-neutral-500">
-              <Link
-                href="/auth/forgot-password"
-                className="text-purple-600 font-medium"
-              >
-                Forgot password?
-              </Link>
-            </p>
-
-            <p className="text-center text-sm text-neutral-500">
               Don’t have an account?{" "}
               <Link href="/auth/signup" className="text-purple-600 font-medium">
                 Create one
