@@ -8,16 +8,13 @@ import {
   TTableColumn,
 } from "@/components/shared";
 import { PaymentsTopParamsForm } from "../shared/PaymentsTopParamsForm";
-
-import { IRefundFormValues, RefundModal } from "@/components/modals";
+import { PaymentRow } from "./PaymentRow";
 
 // Providers
 import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
 
 // Hooks
 import {
-  useModal,
-  useSelectable,
   useRefState,
   useSetElementText,
   useDynamicHeight,
@@ -27,18 +24,8 @@ import {
 // Constants
 import { UserRoles, PaymentSortOptions, PaymentType } from "@/constants";
 
-// Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
-
 // Types
-import { IPayment, IRefundPaymentArgs } from "@/types";
-
-// Redux / API
-import { useRefundPaymentMutation } from "@/libs/redux/apiSlices/payment/paymentApiSlice";
-
-// React Hook Form
-import { UseFormReset } from "react-hook-form";
-import { PaidPaymentRow } from "./PaidPaymentRow";
+import { IPayment } from "@/types";
 
 const columns: TTableColumn[] = [
   { columnTitle: "Order ID", width: "0.15fr" },
@@ -47,12 +34,11 @@ const columns: TTableColumn[] = [
   { columnTitle: "Received at", width: "0.2fr" },
   { columnTitle: "Amount", width: "0.15fr" },
   { columnTitle: "Type", width: "0.2fr" },
-  { columnTitle: "Actions", width: "0.4fr" },
 ];
 
-export const PaidPaymentsMain = () => {
+export const PaymentsMain = () => {
   const { refs } = useRefState();
-  useSetElementText(refs?.titleRef?.current, "Paid Payments");
+  useSetElementText(refs?.titleRef?.current, "Payments");
   const { admin, superAdmin } = UserRoles;
 
   const {
@@ -63,43 +49,10 @@ export const PaidPaymentsMain = () => {
     setFormParams,
     handleSubmit,
     changePage,
-    refetch,
   } = usePaymentQueries({ transactionType: PaymentType.payment });
 
-  const { single, removeSingle, setSingle } = useSelectable<IPayment, "_id">(
-    payments,
-    "_id"
-  );
-
-  // Shipping modal
-  const { isModalOpen, openModal, closeModal } = useModal();
-
-  const [issueRefund, { isLoading: isRefunding }] = useRefundPaymentMutation();
-
-  const handleRefundPayment = catchAsyncGeneral(async (args) => {
-    const data = args?.data as IRefundFormValues;
-    const reset = args?.reset as UseFormReset<IRefundFormValues>;
-    const dataWithId: IRefundPaymentArgs = { ...data, _id: single! };
-
-    const res = await issueRefund(dataWithId).unwrap();
-    if (res?.success) {
-      showToast({ message: res.message });
-      removeSingle();
-      reset();
-      closeModal();
-      refetch();
-    }
-  });
-
   const renderRow = ({ data, isLastEl }: TRenderTableRowProps<IPayment>) => (
-    <PaidPaymentRow
-      paymentData={data}
-      setSingle={setSingle}
-      isLastEl={isLastEl}
-      functions={{
-        openRefundModal: openModal,
-      }}
-    />
+    <PaymentRow paymentData={data} isLastEl={isLastEl} />
   );
 
   const height = useDynamicHeight({
@@ -138,14 +91,6 @@ export const PaidPaymentsMain = () => {
           </div>
         )}
       </div>
-
-      {/* Shipping Modal */}
-      <RefundModal
-        isRefunding={isRefunding}
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        onSubmit={handleRefundPayment}
-      />
     </ProtectedRouteProvider>
   );
 };

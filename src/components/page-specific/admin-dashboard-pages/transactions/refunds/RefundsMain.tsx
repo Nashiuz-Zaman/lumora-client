@@ -7,7 +7,6 @@ import {
   TRenderTableRowProps,
   TTableColumn,
 } from "@/components/shared";
-import { PaymentsTopParamsForm } from "./PaymentsTopParamsForm";
 
 // Providers
 import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
@@ -27,7 +26,8 @@ import { UserRoles, PaymentSortOptions, PaymentType } from "@/constants";
 import { IPayment } from "@/types";
 
 // Rows
-import { RefundedPaymentRow } from "./RefundedPaymentRow";
+import { RefundRow } from "./RefundRow";
+import { PaymentsTopParamsForm } from "../shared/PaymentsTopParamsForm";
 
 const columns: TTableColumn[] = [
   { columnTitle: "Order ID", width: "0.15fr" },
@@ -39,14 +39,9 @@ const columns: TTableColumn[] = [
   { columnTitle: "Refund Reason", width: "0.4fr" },
 ];
 
-export interface IRefundedPaymentsMainProps {
-  pageTitle?: string;
-}
-export const RefundedPaymentsMain = ({
-  pageTitle = "Refunded Payments",
-}: IRefundedPaymentsMainProps) => {
+export const RefundsMain = () => {
   const { refs } = useRefState();
-  useSetElementText(refs?.titleRef?.current, pageTitle);
+  useSetElementText(refs?.titleRef?.current, "Refunds");
   const { admin, superAdmin } = UserRoles;
 
   const {
@@ -63,7 +58,7 @@ export const RefundedPaymentsMain = ({
   });
 
   const renderRow = ({ data, isLastEl }: TRenderTableRowProps<IPayment>) => (
-    <RefundedPaymentRow paymentData={data} isLastEl={isLastEl} />
+    <RefundRow paymentData={data} isLastEl={isLastEl} />
   );
 
   const height = useDynamicHeight({

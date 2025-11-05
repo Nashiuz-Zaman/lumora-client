@@ -1,30 +1,20 @@
 "use client";
 
-// components
-import { ButtonBtnTrans } from "@/components/shared";
-import { RefundIcon } from "@/components/shared";
-
 // types
 import { IPayment } from "@/types";
 
 // utils
 import { formatDateTime, formatPrice } from "@/utils";
 
-interface IPaidPaymentRowProps {
+interface IPaymentRowProps {
   paymentData: IPayment;
-  setSingle: (id: IPayment["_id"]) => void;
-  functions?: {
-    openRefundModal?: () => void;
-  };
   isLastEl?: boolean;
 }
 
-export const PaidPaymentRow = ({
+export const PaymentRow = ({
   paymentData,
-  setSingle,
-  functions = {},
   isLastEl,
-}: IPaidPaymentRowProps) => {
+}: IPaymentRowProps) => {
   const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
     !isLastEl ? "border-b border-neutral-200" : ""
   }`;
@@ -54,21 +44,6 @@ export const PaidPaymentRow = ({
 
       {/* Type */}
       <td className={cellClasses}>{paymentData.cardType ?? "-"}</td>
-
-      {/* Actions */}
-      <td className={cellClasses + " flex h-max items-center gap-4"}>
-        <ButtonBtnTrans
-          onClick={() => {
-            setSingle(paymentData._id);
-            functions?.openRefundModal?.();
-          }}
-          title="Refund Payment"
-          className="text-blue-500"
-        >
-          <RefundIcon className="text-xl" />
-          Refund
-        </ButtonBtnTrans>
-      </td>
     </>
   );
 };

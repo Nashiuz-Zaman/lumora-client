@@ -6,15 +6,15 @@ import { IPayment } from "@/types";
 // utils
 import { formatDateTime, formatPrice } from "@/utils";
 
-interface IRefundedPaymentRowProps {
+interface IRefundRowProps {
   paymentData: IPayment;
   isLastEl?: boolean;
 }
 
-export const RefundedPaymentRow = ({
+export const RefundRow = ({
   paymentData,
   isLastEl,
-}: IRefundedPaymentRowProps) => {
+}: IRefundRowProps) => {
   const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
     !isLastEl ? "border-b border-neutral-200" : ""
   }`;
@@ -46,7 +46,7 @@ export const RefundedPaymentRow = ({
       <td className={cellClasses}>{paymentData.cardType ?? "-"}</td>
 
       {/* Refund Reason */}
-      <td className={cellClasses}>{paymentData.refundReason || "---"}</td>
+      <td className={cellClasses}>{paymentData.refundReason || "-"}</td>
     </>
   );
 };
