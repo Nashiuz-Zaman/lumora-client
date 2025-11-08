@@ -17,14 +17,6 @@ export const paymentApiSlice = baseApiSlice.injectEndpoints({
         },
       }),
     }),
-
-    refundPayment: builder.mutation<IApiResponse, IRefundPaymentArgs>({
-      query: ({ _id, reason }) => ({
-        url: `/payments/refund/${_id}`,
-        method: "PATCH",
-        data: { reason },
-      }),
-    }),
   }),
 
   overrideExisting: "throw",
@@ -33,5 +25,4 @@ export const paymentApiSlice = baseApiSlice.injectEndpoints({
 // ----------
 // Exports
 // ----------
-export const { useGetPaymentsQuery, useRefundPaymentMutation } =
-  paymentApiSlice;
+export const { useGetPaymentsQuery } = paymentApiSlice;
