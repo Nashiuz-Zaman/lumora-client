@@ -20,6 +20,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { ButtonBtn } from "@/components/shared";
 import cloneDeep from "lodash/cloneDeep";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 const defaultVariant = {
   sku: "",
@@ -61,22 +62,24 @@ export const ProductForm = ({
         },
   });
   const [getSignedUrl] = useLazyGetSignedUrlQuery();
-  const [createProduct, { isLoading: isCreating }] = useCreateProductMutation();
-  const [updateProduct, { isLoading: isUpdating }] = useUpdateProductMutation();
+  const [createProduct] = useCreateProductMutation();
+  const [updateProduct] = useUpdateProductMutation();
   const { handleSubmit, reset } = formInstance;
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = catchAsyncGeneral(
     async (args) => {
+      setIsLoading(true);
       const data = args?.data as Partial<IProduct>;
       const images = data?.images || [];
-      const newImages: string[] = [];
+      const processedImages: string[] = [];
 
       for (const image of images) {
         if (image instanceof File) {
           const url = await uploadFileWithSignedUrl(image, getSignedUrl);
-          if (url) newImages.push(url);
+          if (url) processedImages.push(url);
         } else {
-          newImages.push(image);
+          processedImages.push(image);
         }
       }
 
@@ -90,7 +93,7 @@ export const ProductForm = ({
 
       const newData = {
         ...data,
-        images: newImages,
+        images: processedImages,
       };
 
       let res: IApiResponse;
@@ -119,6 +122,9 @@ export const ProductForm = ({
       }
     },
     {
+      onFinally() {
+        setIsLoading(false);
+      },
       handleError: "toast",
     }
   );
@@ -149,7 +155,7 @@ export const ProductForm = ({
         </div>
 
         <ButtonBtn
-          isLoading={isCreating || isUpdating}
+          isLoading={isLoading}
           type="submit"
           className="!successClasses"
         >
