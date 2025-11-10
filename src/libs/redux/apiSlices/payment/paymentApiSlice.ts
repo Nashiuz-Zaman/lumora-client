@@ -1,6 +1,6 @@
 import { IApiResponse, TQueryDataWithQueryMeta } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
-import { IPayment, IRefundPaymentArgs } from "@/types/payment";
+import { IPayment } from "@/types/payment";
 
 export const paymentApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({

@@ -7,27 +7,27 @@ import Image from "next/image";
 import { useClickOutside } from "@/hooks";
 import { TUserPopulated } from "@/types";
 
-type TUserAvatarMenuProps = {
-  userData?: Partial<TUserPopulated>;
+type TUserMenuWithAvatarProps = {
+  userData: Partial<TUserPopulated>;
   logoutFunction?: () => void;
   className?: string;
 };
 
-export const UserAvatarMenu = ({
+export const UserMenuWithAvatar = ({
   userData,
   logoutFunction,
   className = "",
-}: TUserAvatarMenuProps) => {
+}: TUserMenuWithAvatarProps) => {
   const [isClient, setIsClient] = useState(false);
-  const [showInfoPanel, setShowInfoPanel] = useState(false);
+  const [showMenu, setShowMenu] = useState(false);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  const handleShowInfoPanel = () => setShowInfoPanel((prev) => !prev);
-
-  useClickOutside(showInfoPanel, () => setShowInfoPanel(false));
+  useEffect(() => setIsClient(true), []);
+  useClickOutside(showMenu, (e) => {
+    const target = e.target as HTMLElement | null;
+    if (!target?.closest(".menu")) {
+      setShowMenu(false);
+    }
+  });
 
   if (!isClient) return null;
 
@@ -43,7 +43,7 @@ export const UserAvatarMenu = ({
     <div className={`h-8 md:h-10 xl:h-14 cursor-pointer relative ${className}`}>
       {/* Profile image container */}
       <div
-        onClick={handleShowInfoPanel}
+        onClick={() => setShowMenu((prev) => !prev)}
         className="w-full h-full aspect-square bg-white rounded-full overflow-hidden"
       >
         {photo && (
@@ -58,8 +58,8 @@ export const UserAvatarMenu = ({
       </div>
 
       {/* User menu panel */}
-      {showInfoPanel && (
-        <div className="rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 bottom-0 right-2 translate-y-[102%] space-y-5 text-left cursor-default userpanel-focus">
+      {showMenu && (
+        <div className="menu rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 bottom-0 right-2 translate-y-[102%] space-y-5 text-left cursor-default userpanel-focus">
           {name && <p className="font-bold text-black md:text-lg">{name}</p>}
 
           <Link href="/" className={optionsClasses}>

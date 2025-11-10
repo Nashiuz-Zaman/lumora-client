@@ -3,39 +3,30 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { TUserRoleValue } from "@/constants/user";
 import { useClickOutside } from "@/hooks";
 import { ThreeDotIcon } from "./icons";
 
-type TUserMenuProps = {
-  userData?: {
-    _id: string;
-    name: string;
-    role: { name?: TUserRoleValue };
-  };
+type TUserMenuWithoutAvatarProps = {
   logoutFunction?: () => void;
   className?: string;
 };
 
-export const ThreeDotMenu = ({
-  userData,
+export const UserMenuWithoutAvatar = ({
   logoutFunction,
   className = "",
-}: TUserMenuProps) => {
+}: TUserMenuWithoutAvatarProps) => {
   const [isClient, setIsClient] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => setIsClient(true), []);
   useClickOutside(showMenu, (e) => {
     const target = e.target as HTMLElement | null;
-    if (!target?.closest(".three-dot-dropdown")) {
+    if (!target?.closest(".menu")) {
       setShowMenu(false);
     }
   });
 
   if (!isClient) return null;
-
-  const name = userData?.name;
 
   const optionClasses =
     "flex font-semibold text-neutral-500 items-center gap-2 hover:text-primary transition-all duration-200 cursor-pointer";
@@ -52,9 +43,7 @@ export const ThreeDotMenu = ({
 
       {/* Dropdown menu */}
       {showMenu && (
-        <div className="three-dot-dropdown rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
-          {name && <p className="font-bold text-black md:text-lg">{name}</p>}
-
+        <div className="menu rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
           <Link
             onClick={() => setShowMenu(false)}
             href="/"

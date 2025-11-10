@@ -3,12 +3,11 @@
 import {
   InnerContainer,
   ExpandableSearchPortal,
-  BrandLogo,
   HeaderProductsSearchbar,
   CartBtn,
-  UserAvatarMenu,
+  UserMenuWithAvatar,
   SearchbarProductCard,
-  ThreeDotMenu,
+  UserMenuWithoutAvatar,
   CompanyLogoBtn,
 } from "../../shared";
 
@@ -139,11 +138,11 @@ const Header = ({ categories }: THeaderProps) => {
             {user && (
               <div className="flex items-center gap-4">
                 {/* admin menu btn if user is admin */}
-                {isAdminRole && <ThreeDotMenu logoutFunction={logout} />}
+                {isAdminRole && <UserMenuWithoutAvatar logoutFunction={logout} />}
 
                 {/* or customer menu btn for customers */}
                 {isCustomer && (
-                  <UserAvatarMenu userData={user} logoutFunction={logout} />
+                  <UserMenuWithAvatar userData={user} logoutFunction={logout} />
                 )}
               </div>
             )}

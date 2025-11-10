@@ -117,6 +117,18 @@ const HomePage = async () => {
                 prevEl: ".health-wellness-homepage-prev",
               }}
             />
+
+            <ProductsFromCollection
+              id="outdoors"
+              collectionSlug="outdoors-homepage"
+              title="Outdoors"
+              categoryTree={result.categoryTree}
+              topCategorySlug="outdoors"
+              navigation={{
+                nextEl: ".outdoors-homepage-next",
+                prevEl: ".outdoors-homepage-prev",
+              }}
+            />
           </div>
         )}
       </HomeClientWrapper>

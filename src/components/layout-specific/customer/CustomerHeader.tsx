@@ -4,14 +4,15 @@
 import {
   CompanyLogoBtn,
   InnerContainer,
-  UserMenuWithoutAvatar,
+  UserMenuWithAvatar,
 } from "@/components/shared";
-import { useAuthMethods, useRefState } from "@/hooks";
+import { useAuthMethods, useAuthState, useRefState } from "@/hooks";
 import { useEffect, useRef } from "react";
 
-export const AdminHeader = () => {
+export const CustomerHeader = () => {
   const { logout } = useAuthMethods();
   const adminHeaderRef = useRef(null);
+  const { user } = useAuthState();
   const mobileBtnPlaceholdrRef = useRef(null);
   const { setRefs } = useRefState();
 
@@ -51,7 +52,7 @@ export const AdminHeader = () => {
 
         {/* User menu */}
         <div className="flex items-center gap-5">
-          <UserMenuWithoutAvatar logoutFunction={logout} />
+          {user && <UserMenuWithAvatar userData={user} logoutFunction={logout} />}
         </div>
       </InnerContainer>
     </header>
