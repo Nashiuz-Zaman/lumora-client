@@ -131,8 +131,9 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
 
   const activeClasses =
     "!bg-primary !text-white hover:!bg-primary hover:!text-white";
+  // nav-link class is only for Mobile Side Nav functionality
   const linkClasses =
-    "mobile-nav-link flex items-center transition-colors px-4 py-2 hover:text-primary rounded-full gap-2 font-medium";
+    "nav-link flex items-center transition-colors px-4 py-2 hover:text-primary rounded-full gap-2 font-medium";
   const linkSublistClasses = "mb-7 space-y-1";
 
   return (

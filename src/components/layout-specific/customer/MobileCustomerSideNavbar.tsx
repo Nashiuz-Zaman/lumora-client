@@ -20,10 +20,10 @@ export const MobileCustomerSideNavbar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refs?.mobileBtnPlaceholder?.current]);
 
+  // this is for only mobile nav
   useClickOutside(showDrawer, (e: MouseEvent) => {
-    // Type-safe event handling
     const target = e.target as HTMLElement;
-    if (target.closest(".mobile-nav-link")) {
+    if (target.closest(".nav-link")) {
       closeDrawer();
     }
   });
@@ -39,7 +39,7 @@ export const MobileCustomerSideNavbar = () => {
         <CustomerSideNavbar className="w-full" />
       </Drawer>
 
-      {/* Portal-rendered hamburger button */}
+      {/* Portal-rendered mobile menu button */}
       {portalContainer &&
         createPortal(
           <MobileMenuBtn
@@ -51,3 +51,5 @@ export const MobileCustomerSideNavbar = () => {
     </>
   );
 };
+
+export default MobileCustomerSideNavbar;

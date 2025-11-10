@@ -23,7 +23,7 @@ export const MobileAdminSideNavbar = () => {
   useClickOutside(showDrawer, (e: MouseEvent) => {
     // Type-safe event handling
     const target = e.target as HTMLElement;
-    if (target.closest(".mobile-nav-link")) {
+    if (target.closest(".nav-link")) {
       closeDrawer();
     }
   });
