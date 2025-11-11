@@ -10,7 +10,7 @@ export * from "./orders/shipped/ShippedOrderMain";
 export * from "./orders/delivered/DeliveredOrdersMain";
 export * from "./orders/cancelled/CancelledOrderMain";
 export * from "./orders/archived/ArchivedOrdersMain";
-export * from "./welcome-page/WelcomePageMain";
+export * from "./welcome-page/AdminWelcomePageMain";
 export * from "./transactions/payments/PaymentsMain";
 export * from "./transactions/refunds/RefundsMain";
 export * from "./coupons/active/ActiveCouponsMain";

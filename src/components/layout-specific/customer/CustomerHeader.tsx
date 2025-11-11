@@ -2,17 +2,24 @@
 
 // Components
 import {
+  CartBtn,
   CompanyLogoBtn,
   InnerContainer,
   UserMenuWithAvatar,
 } from "@/components/shared";
-import { useAuthMethods, useAuthState, useRefState } from "@/hooks";
+import {
+  useAuthMethods,
+  useAuthState,
+  useCartState,
+  useRefState,
+} from "@/hooks";
 import { useEffect, useRef } from "react";
 
 export const CustomerHeader = () => {
   const { logout } = useAuthMethods();
   const adminHeaderRef = useRef(null);
   const { user } = useAuthState();
+  const { cart } = useCartState();
   const mobileBtnPlaceholdrRef = useRef(null);
   const { setRefs } = useRefState();
 
@@ -52,7 +59,11 @@ export const CustomerHeader = () => {
 
         {/* User menu */}
         <div className="flex items-center gap-5">
-          {user && <UserMenuWithAvatar userData={user} logoutFunction={logout} />}
+          {/* shopping cart */}
+          <CartBtn itemsQty={cart?.totalItemQty} />
+          {user && (
+            <UserMenuWithAvatar userData={user} logoutFunction={logout} />
+          )}
         </div>
       </InnerContainer>
     </header>

@@ -1,4 +1,4 @@
-import { IComparison } from "@/components/page-specific/admin-dashboard-pages/analytics/shared/StatsCard";
+import { IComparison } from "@/components/page-specific/admin/analytics/shared/StatsCard";
 
 interface IPaymentComparison {
   current: number;

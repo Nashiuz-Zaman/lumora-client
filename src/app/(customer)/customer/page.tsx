@@ -1,9 +1,9 @@
-import { UnderDev } from "@/components/shared";
+import { CustomerWelcomePageMain } from "@/components/page-specific";
 
 export const metadata = {
   title: "Welcome | Customer Panel",
 };
 
-const CustomerWelcomePage = () => <UnderDev />;
+const CustomerWelcomePage = () => <CustomerWelcomePageMain />;
 
 export default CustomerWelcomePage;

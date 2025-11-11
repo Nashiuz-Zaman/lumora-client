@@ -1,9 +1,9 @@
 import {
   ProductCategories,
   ProductsFromCollection,
-} from "@/components/page-specific/main/home";
+  HomeClientWrapper,
+} from "@/components/page-specific";
 
-import { HomeClientWrapper } from "@/components/page-specific/main/home/HomeClientWrapper";
 import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 
 export const metadata = {

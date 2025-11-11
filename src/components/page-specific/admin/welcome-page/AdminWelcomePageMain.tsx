@@ -1,4 +1,4 @@
-export const WelcomePageMain = () => {
+export const AdminWelcomePageMain = () => {
   return (
     <div className="min-h-full grid place-content-center">
       <p className="text-2xl text-center">

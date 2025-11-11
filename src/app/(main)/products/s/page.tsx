@@ -1,4 +1,4 @@
-import SearchProductsMain from "@/components/page-specific/main/products/search-products/SearchProductsMain";
+import { SearchProductsMain } from "@/components/page-specific/main/products/search-products/SearchProductsMain";
 import { Metadata } from "next";
 import { Suspense } from "react";
 

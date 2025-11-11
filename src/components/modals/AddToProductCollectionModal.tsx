@@ -17,7 +17,7 @@ import {
 } from "../shared";
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { IProduct } from "@/types";
-import AdminProductCard from "../page-specific/admin-dashboard-pages/products/shared/AdminProductCard";
+import AdminProductCard from "../page-specific/admin/products/shared/AdminProductCard";
 import { useAddProductsToProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection/productCollectionApiSlice";
 
 interface IAddToProductCollectionModalProps {

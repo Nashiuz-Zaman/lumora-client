@@ -14,7 +14,7 @@ import { useEffect } from "react";
 
 import { ProductSortOptions } from "@/constants";
 
-const SearchProductsMain = () => {
+export const SearchProductsMain = () => {
   const { data: categories } = useGetCategoryTreeQuery();
   const {
     handleSubmit,
@@ -117,5 +117,3 @@ const SearchProductsMain = () => {
     </InnerContainer>
   );
 };
-
-export default SearchProductsMain;

@@ -1,4 +1,4 @@
-import ConfirmedOrdersMain from "@/components/page-specific/admin-dashboard-pages/orders/confirmed/ConfirmedOrderMain";
+import ConfirmedOrdersMain from "@/components/page-specific/admin/orders/confirmed/ConfirmedOrderMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -21,13 +21,25 @@ const navSections: INavSection[] = [
     items: [
       { name: "Welcome", icon: "mdi:human-greeting", path: "/customer" },
       {
+        name: "Browse Products",
+        icon: "mdi:shopping-search",
+        path: "/products/s",
+      },
+      {
         name: "My Orders",
-        icon: "lsicon:order-filled",
+        icon: "mdi:package-variant-closed",
         path: "/customer/my-orders",
+        checkSubstr: true,
+      },
+      {
+        name: "Track Order",
+        icon: "mdi:location-outline",
+        path: "/track-order",
+        checkSubstr: true,
       },
       {
         name: "Settings",
-        icon: "material-symbols:settings-rounded",
+        icon: "mdi:settings",
         path: "/customer/settings",
       },
     ],
@@ -43,11 +55,11 @@ export const CustomerSideNavbar = ({
 }: ICustomerSideNavbarProps) => {
   const { checkIfActive } = useActiveLink();
 
-  const activeClasses = "!border-neutral-50";
+  const activeClasses = "!bg-neutral-50 text-primary font-semibold";
 
   // nav-link class is only for Mobile Side Nav functionality
   const linkClasses =
-    "nav-link flex items-center px-4 py-2 rounded-lg gap-2 font-medium text-neutral-50 border border-transparent";
+    "nav-link flex items-center px-4 py-2 rounded-full gap-2 font-medium text-neutral-50";
   const linkSublistClasses = "mb-7 space-y-1";
 
   return (

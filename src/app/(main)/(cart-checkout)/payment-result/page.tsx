@@ -1,4 +1,4 @@
-import PaymentResultPageMain from "@/components/page-specific/main/payment-result/PaymentResultPageMain";
+import { PaymentResultPageMain } from "@/components/page-specific/main/payment-result/PaymentResultPageMain";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
