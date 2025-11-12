@@ -3,8 +3,8 @@ export interface ICategory {
   title: string;
   slug: string;
   parentCategory?: string | null;
-  createdAt?: Date;
-  updatedAt?: Date;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface ICategoryTreeItem {

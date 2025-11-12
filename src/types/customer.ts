@@ -1,3 +1,5 @@
+import { IUser } from "./user";
+
 export interface ICustomerAddress {
   address?: string;
   country?: string;
@@ -9,6 +11,17 @@ export interface ICustomerAddress {
 export interface ICustomer {
   id?: string;
   userId: string;
+  billingAddress?: ICustomerAddress;
+  shippingAddress?: ICustomerAddress;
+}
+
+export interface ICustomerProfile {
+  name: IUser["name"];
+  email: IUser["email"];
+  phone: IUser["phone"];
+  image?: IUser["image"];
+  lastLoginAt?: IUser["lastLoginAt"];
+  createdAt?: IUser["createdAt"];
   billingAddress?: ICustomerAddress;
   shippingAddress?: ICustomerAddress;
 }

@@ -18,9 +18,9 @@ export interface IUser {
   customerProfile?: ICustomer;
   adminProfile?: IAdmin;
 
-  lastLoginAt?: Date;
-  createdAt?: Date;
-  updatedAt?: Date;
+  lastLoginAt?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export type TUserPopulated = IUser & {

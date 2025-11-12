@@ -1,3 +1,4 @@
+import { IApiResponse, ICustomerProfile } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
 
 export interface ICustomerListQueryParams {
@@ -17,9 +18,12 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    getCustomerProfileData: builder.query({
-      query: (id) => ({
-        url: `/users/me/customer-profile/${id}`,
+    getCustomerProfileData: builder.query<
+      IApiResponse<{ customerProfileData: ICustomerProfile }>,
+      undefined
+    >({
+      query: () => ({
+        url: `/customers/profile`,
         method: "GET",
       }),
       providesTags: ["CustomerProfileData"],

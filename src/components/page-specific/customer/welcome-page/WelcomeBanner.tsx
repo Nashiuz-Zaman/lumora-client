@@ -1,0 +1,26 @@
+import Image from "next/image";
+
+interface IWelcomeBannerProps {
+  name?: string;
+  subtitle?: string;
+}
+
+export const WelcomeBanner = ({ name, subtitle }: IWelcomeBannerProps) => (
+  <div className="relative overflow-hidden rounded-2xl flex items-center justify-between bg-gradient-to-r from-primary to-primary/80 text-white shadow-md hover:shadow-lg transition-all min-h-[160px]">
+    <div className="absolute right-0 top-0 h-full w-[35%]">
+      <Image
+        src="/auth-images/auth-2.webp"
+        alt="Welcome banner"
+        fill
+        className="object-cover object-center"
+        priority
+      />
+      <div className="absolute inset-0 bg-gradient-to-l from-black/25 to-transparent" />
+    </div>
+
+    <div className="relative z-10 w-full px-6 py-8 sm:px-10 md:px-12">
+      <h3 className="text-2xl font-semibold mb-1">Hello, {name || "there"}</h3>
+      <p className="text-sm sm:text-base text-white/90 max-w-md">{subtitle}</p>
+    </div>
+  </div>
+);
