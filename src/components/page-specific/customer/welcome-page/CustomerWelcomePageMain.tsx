@@ -1,12 +1,15 @@
 "use client";
 
+// Shared Components
 import { InnerContainer } from "@/components/shared";
 
+// Local Page Components
 import { LinkCard } from "./LinkCard";
 import { AddressCard } from "./AddressCard";
 import { WelcomeBanner } from "./WelcomeBanner";
 import { ProfileCard } from "./ProfileCard";
 
+// Redux Queries
 import { useGetCustomerProfileDataQuery } from "@/libs/redux/apiSlices/customer/customerApiSlice";
 
 export const CustomerWelcomePageMain = () => {

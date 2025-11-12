@@ -18,7 +18,7 @@ export const WelcomeBanner = ({ name, subtitle }: IWelcomeBannerProps) => (
       <div className="absolute inset-0 bg-gradient-to-l from-black/25 to-transparent" />
     </div>
 
-    <div className="relative z-10 w-full px-6 py-8 sm:px-10 md:px-12">
+    <div className="relative z-10 px-6 py-8 sm:px-10 md:px-12 w-[65%]">
       <h3 className="text-2xl font-semibold mb-1">Hello, {name || "there"}</h3>
       <p className="text-sm sm:text-base text-white/90 max-w-md">{subtitle}</p>
     </div>
