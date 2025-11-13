@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { Icon } from "@iconify/react";
 
-type TInputfieldProps = {
-  labelText?: string;
+type TInputFieldProps = {
+  labelText?: string | ReactNode;
   type?: string;
   placeholder?: string;
   passwordField?: boolean;
@@ -24,7 +24,7 @@ type TInputfieldProps = {
   [key: string]: unknown;
 };
 
-export const Inputfield = ({
+export const InputField = ({
   labelText,
   type = "text",
   placeholder = "No placeholder provided",
@@ -42,7 +42,7 @@ export const Inputfield = ({
   invertIconPosition = false,
   error,
   ...props
-}: TInputfieldProps) => {
+}: TInputFieldProps) => {
   const [passHidden, setPassHidden] = useState(true);
 
   return (
