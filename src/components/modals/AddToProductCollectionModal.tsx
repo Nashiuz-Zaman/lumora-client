@@ -11,7 +11,7 @@ import {
   ButtonBtn,
   ButtonBtnTrans,
   LoadingSpinner,
-  Inputfield,
+  InputField,
   NoData,
   Pagination,
 } from "../shared";
@@ -85,7 +85,7 @@ const AddToProductCollectionModal = ({
         closeFunction={closeModal}
       >
         {/* Search bar */}
-        <Inputfield
+        <InputField
           placeholder="Search products by title or SKU"
           icon="material-symbols:search"
           name="search"

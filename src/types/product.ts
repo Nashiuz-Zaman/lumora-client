@@ -1,6 +1,6 @@
 import { TProductStatusValue } from "@/constants/product";
 import { IReview } from "./review";
-import { IQueryMeta } from "./generic";
+import { IQueryMeta, TImage } from "./generic";
 
 export interface IVariant {
   _id?: string;
@@ -16,8 +16,6 @@ export interface IVideo {
   _id?: string;
   url: string;
 }
-
-export type TImage = string | File;
 
 export interface IProduct {
   _id?: string;

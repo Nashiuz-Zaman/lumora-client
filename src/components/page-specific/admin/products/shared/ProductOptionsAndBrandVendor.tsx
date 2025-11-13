@@ -6,7 +6,7 @@ import { IProduct } from "@/types";
 import {
   FormSectionHeading,
   InputCheckbox,
-  Inputfield,
+  InputField,
 } from "@/components/shared";
 import { ProductStatus } from "@/constants";
 import { ChangeEvent } from "react";
@@ -49,7 +49,7 @@ export const ProductOptionsAndBrandVendor = ({
 
       {/* Brand & Vendor */}
       <div className="bg-white rounded-xl p-5 border border-neutral-200">
-        <Inputfield
+        <InputField
           {...register("brand")}
           labelText="Brand"
           labelTextClassName="font-medium"

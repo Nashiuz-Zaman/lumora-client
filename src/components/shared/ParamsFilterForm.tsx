@@ -9,7 +9,7 @@ import {
   useEffect,
   useRef,
 } from "react";
-import { Inputfield } from "./Inputfield";
+import { InputField } from "./InputField";
 import { ButtonBtn, ButtonBtnTrans } from "./buttons";
 import { SortDropdown } from "./SortDropdown";
 import { useRefState } from "@/hooks";
@@ -87,7 +87,7 @@ export const ParamsFilterForm = <
       onSubmit={onSubmit}
       className={`px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
     >
-      <Inputfield
+      <InputField
         onChange={handleSearchChange}
         value={params.search}
         placeholder={placeholder || `Search ${roleLabel}s`}

@@ -1,9 +1,9 @@
-import { UnderDev } from "@/components/shared";
+import { SettingsMain } from "@/components/page-specific";
 
 export const metadata = {
   title: "My Settings | Customer Panel",
 };
 
-const CustomerSettingsPage = () => <UnderDev />;
+const CustomerSettingsPage = () => <SettingsMain />;
 
 export default CustomerSettingsPage;

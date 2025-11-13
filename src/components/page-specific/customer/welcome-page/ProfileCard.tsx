@@ -11,7 +11,7 @@ interface IProfileCardProps {
 
 export const ProfileCard = ({ user }: IProfileCardProps) => {
   return (
-    <div className="relative text-center">
+    <div className="relative text-center border border-neutral-100 rounded-2xl bg-white p-10 shadow-sm">
       <div className="mx-auto mb-5 w-30 aspect-square overflow-hidden rounded-full bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center ring-2 ring-white">
         {user?.image ? (
           <Image

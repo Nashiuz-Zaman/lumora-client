@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ButtonBtn, ErrorMessage, Inputfield } from "@/components/shared";
+import { ButtonBtn, ErrorMessage, InputField } from "@/components/shared";
 import { catchAsyncGeneral } from "@/utils";
 import { useAuthState, useCartState } from "@/hooks";
 import {
@@ -106,7 +106,7 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
       <div className="flex space-x-2">
         {!appliedCode ? (
           <>
-            <Inputfield
+            <InputField
               type="text"
               placeholder="Enter coupon code"
               value={couponCode}

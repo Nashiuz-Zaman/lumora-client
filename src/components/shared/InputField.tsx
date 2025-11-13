@@ -70,7 +70,7 @@ export const InputField = ({
                 e.preventDefault();
                 setPassHidden((prev) => !prev);
               }}
-              className={`flex items-center gap-1 ml-auto mr-1 text-inherit ${passwordShowIconBoxClassName}`}
+              className={`flex cursor-pointer items-center gap-1 ml-auto mr-1 text-inherit ${passwordShowIconBoxClassName}`}
             >
               <Icon
                 icon={passHidden ? "mdi:eye" : "el:eye-close"}

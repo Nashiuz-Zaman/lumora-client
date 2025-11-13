@@ -25,3 +25,5 @@ export interface IQueryMeta {
 export type TQueryDataWithQueryMeta<T extends Record<string, any>> = T & {
   queryMeta: IQueryMeta;
 };
+
+export type TImage = string | File;

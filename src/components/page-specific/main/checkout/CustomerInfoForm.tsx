@@ -3,7 +3,7 @@
 import { useForm, UseFormSetError } from "react-hook-form";
 import {
   IcfyIcon,
-  Inputfield,
+  InputField,
   ButtonBtn,
   ErrorMessage,
 } from "@/components/shared";
@@ -55,7 +55,7 @@ export const CustomerInfoForm = ({
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 mb-10">
-        <Inputfield
+        <InputField
           {...register("name", { required: "Name is required" })}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
@@ -67,7 +67,7 @@ export const CustomerInfoForm = ({
           error={errors.name?.message}
         />
 
-        <Inputfield
+        <InputField
           {...register("email", { required: "Email is required" })}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
@@ -78,7 +78,7 @@ export const CustomerInfoForm = ({
           error={errors.email?.message}
         />
 
-        <Inputfield
+        <InputField
           {...register("phone", { required: "Phone is required" })}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
@@ -89,7 +89,7 @@ export const CustomerInfoForm = ({
           error={errors.phone?.message}
         />
 
-        <Inputfield
+        <InputField
           {...register("city")}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
@@ -100,7 +100,7 @@ export const CustomerInfoForm = ({
           error={errors.city?.message}
         />
 
-        <Inputfield
+        <InputField
           {...register("zipCode")}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
@@ -111,7 +111,7 @@ export const CustomerInfoForm = ({
           error={errors.zipCode?.message}
         />
 
-        <Inputfield
+        <InputField
           {...register("deliveryAddress", {
             required: "Delivery address is required",
           })}

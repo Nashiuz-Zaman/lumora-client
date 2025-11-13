@@ -17,7 +17,7 @@ import { useEffect, useRef } from "react";
 
 export const CustomerHeader = () => {
   const { logout } = useAuthMethods();
-  const adminHeaderRef = useRef(null);
+  const customerHeaderRef = useRef(null);
   const { user } = useAuthState();
   const { cart } = useCartState();
   const mobileBtnPlaceholdrRef = useRef(null);
@@ -25,10 +25,12 @@ export const CustomerHeader = () => {
 
   useEffect(() => {
     setRefs((prev) =>
-      !prev.adminHeader ? { ...prev, adminHeader: adminHeaderRef } : prev
+      !prev.customerHeader
+        ? { ...prev, customerHeader: customerHeaderRef }
+        : prev
     );
 
-    return () => setRefs((prev) => ({ ...prev, adminHeader: null }));
+    return () => setRefs((prev) => ({ ...prev, customerHeader: null }));
   }, [setRefs]);
 
   useEffect(() => {
@@ -43,7 +45,7 @@ export const CustomerHeader = () => {
 
   return (
     <header
-      ref={adminHeaderRef}
+      ref={customerHeaderRef}
       className="h-16 xl:h-28 bg-white border-b border-neutral-200 flex items-center shrink-0"
     >
       <InnerContainer className="flex justify-between items-center">

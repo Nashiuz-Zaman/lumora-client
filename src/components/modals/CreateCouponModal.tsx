@@ -8,7 +8,7 @@ import {
   ButtonBtnTrans,
   SelectField,
   ErrorMessage,
-  Inputfield,
+  InputField,
 } from "../shared";
 import { useModal } from "@/hooks";
 import { catchAsyncGeneral, showToast } from "@/utils";
@@ -88,7 +88,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
           {errors.root && <ErrorMessage text={errors.root.message} />}
 
           {/* Coupon Code */}
-          <Inputfield
+          <InputField
             labelText="Coupon Code"
             placeholder="E.g. WELCOME10"
             {...register("code", { required: "Coupon code is required" })}
@@ -96,7 +96,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
           />
 
           {/* Description */}
-          <Inputfield
+          <InputField
             labelText="Description"
             placeholder="Optional description"
             {...register("description")}
@@ -117,7 +117,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
               error={errors.discountType?.message}
             />
 
-            <Inputfield
+            <InputField
               labelText="Discount Value"
               type="number"
               placeholder="e.g. 10"
@@ -136,13 +136,13 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
 
           {/* Minimum Order Amount & Usage Limit */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Inputfield
+            <InputField
               labelText="Minimum Order Amount"
               type="number"
               placeholder="Optional"
               {...register("minimumOrderAmount", { valueAsNumber: true })}
             />
-            <Inputfield
+            <InputField
               labelText="Usage Limit"
               type="number"
               placeholder="Optional"
@@ -152,13 +152,13 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
 
           {/* Start Date & Expiry Date */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <Inputfield
+            <InputField
               labelText="Start Date"
               type="datetime-local"
               {...register("startDate", { required: "Start date is required" })}
               error={errors.startDate?.message}
             />
-            <Inputfield
+            <InputField
               labelText="Expiry Date"
               type="datetime-local"
               {...register("expiryDate", {

@@ -17,7 +17,7 @@ import {
   ButtonBtn,
   ButtonBtnTrans,
   TextArea,
-  Inputfield,
+  InputField,
   ErrorMessage,
 } from "@/components/shared";
 
@@ -142,14 +142,14 @@ export const AddReviewModal = ({
             </div>
 
             {/* Title */}
-            <Inputfield
+            <InputField
               labelText="Review Title"
               placeholder="Enter a headline for your review"
               {...register("title", { required: "Title is required" })}
             />
 
             {/* Name */}
-            <Inputfield
+            <InputField
               labelText="Your Name"
               placeholder="Enter your name"
               {...register("name", { required: "Name is required" })}

@@ -16,7 +16,7 @@ export const LinkCard = ({
   return (
     <Link
       href={href}
-      className="group bg-white rounded-2xl border border-neutral-100 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all p-8 flex flex-col items-center text-center"
+      className="group bg-white rounded-2xl border border-neutral-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all p-8 flex flex-col items-center text-center"
     >
       <div className="w-14 h-14 flex items-center justify-center rounded-2xl bg-neutral-100 text-primary mb-4 transition-transform group-hover:scale-110">
         <Icon icon={icon} className="text-3xl" />

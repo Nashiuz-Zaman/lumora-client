@@ -12,7 +12,7 @@ import {
 } from "@/libs/redux/apiSlices/auth/authApiSlice";
 
 import useFirebaseMethods from "./useFirebaseMethods";
-import { useSignupUserMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
 import { IAuthForm } from "@/components/page-specific";
 import { UseFormSetError } from "react-hook-form";
 
@@ -26,7 +26,7 @@ export const useAuthMethods = () => {
   const [login, { isLoading: isLocalLoginLoading }] = useLocalLoginMutation();
   const [logoutTrigger, { isLoading: isLogoutLoading }] = useLogoutMutation();
 
-  const [signup, { isLoading: isSignupUserLoading }] = useSignupUserMutation();
+  const [signup, { isLoading: isSignupUserLoading }] = useSignupCustomerMutation();
   const [socialLogin, { isLoading: isSocialLoginLoading }] =
     useSocialLoginMutation();
 

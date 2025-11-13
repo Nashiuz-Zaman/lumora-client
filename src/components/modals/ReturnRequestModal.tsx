@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { BaseModal } from "@/components/modals";
 import {
   ButtonBtn,
-  Inputfield,
+  InputField,
   LoadingSpinner,
   ErrorMessage,
 } from "@/components/shared";
@@ -203,7 +203,7 @@ export const ReturnRequestModal = () => {
               </label>
 
               {!issueFullRefund && (
-                <Inputfield
+                <InputField
                   labelText="Refund Amount"
                   placeholder="Enter amount to refund"
                   {...register("refundAmount", {

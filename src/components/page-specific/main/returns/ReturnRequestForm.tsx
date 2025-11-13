@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
-  Inputfield,
+  InputField,
   SelectField,
   ButtonBtn,
   TextArea,
@@ -103,7 +103,7 @@ export const ReturnRequestForm = () => {
       {errors.root?.message && <ErrorMessage text={errors.root.message} />}
 
       {/* Order ID */}
-      <Inputfield
+      <InputField
         labelText="Order ID"
         labelTextClassName="font-semibold"
         placeholder="Enter your order ID"

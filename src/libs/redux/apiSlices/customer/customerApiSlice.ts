@@ -1,16 +1,10 @@
-import { IApiResponse, ICustomerProfile } from "@/types";
+import { IApiResponse, ICustomerAddress, ICustomerProfile } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
-
-export interface ICustomerListQueryParams {
-  page?: number;
-  limit?: number;
-  search?: string;
-  [key: string]: unknown;
-}
+import { TBasicInfoFormValues } from "@/components/page-specific/customer/settings/BasicInfoForm";
 
 export const customerApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    signupUser: builder.mutation({
+    signupCustomer: builder.mutation({
       query: (data) => ({
         url: "/customers/",
         method: "POST",
@@ -29,39 +23,31 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
       providesTags: ["CustomerProfileData"],
     }),
 
-    getCustomerSettingsData: builder.query({
-      query: () => ({
-        url: "/customers/settings-data",
-        method: "GET",
-      }),
-      providesTags: ["CustomerSettingsData"],
-    }),
-
-    updateCustomerBasicInfo: builder.mutation({
+    updateCustomerBasicInfo: builder.mutation<
+      IApiResponse,
+      TBasicInfoFormValues
+    >({
       query: (data) => ({
-        url: "/customers/settings-data/basic-info",
+        url: "/customers/basic-info",
         method: "PATCH",
         data,
       }),
-      invalidatesTags: ["CustomerSettingsData"],
+      invalidatesTags: ["CustomerProfileData"],
     }),
 
-    updateBillingAddress: builder.mutation({
-      query: (data) => ({
-        url: "/customers/settings-data/billing-address",
+    updateCustomerAddress: builder.mutation<
+      IApiResponse,
+      { type: "billing" | "shipping"; addressData: ICustomerAddress }
+    >({
+      query: ({ type, addressData }) => ({
+        url:
+          type === "billing"
+            ? "/customers/settings/billing"
+            : "/customers/settings/shipping",
         method: "PATCH",
-        data,
+        data: addressData,
       }),
-      invalidatesTags: ["CustomerSettingsData"],
-    }),
-
-    updateShippingAddress: builder.mutation({
-      query: (data) => ({
-        url: "/customers/settings-data/shipping-address",
-        method: "PATCH",
-        data,
-      }),
-      invalidatesTags: ["CustomerSettingsData"],
+      invalidatesTags: ["CustomerProfileData"],
     }),
 
     updateCustomerPasswordFromSettings: builder.mutation({
@@ -113,11 +99,9 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
 export const {
   useGetCustomerProfileDataQuery,
   useUpdateCustomerBasicInfoMutation,
-  useGetCustomerSettingsDataQuery,
-  useUpdateBillingAddressMutation,
-  useUpdateShippingAddressMutation,
+  useUpdateCustomerAddressMutation,
   useUpdateCustomerPasswordFromSettingsMutation,
-  useSignupUserMutation,
+  useSignupCustomerMutation,
   useGetCustomerListQuery,
   useBlockCustomerMutation,
   useUnblockCustomerMutation,

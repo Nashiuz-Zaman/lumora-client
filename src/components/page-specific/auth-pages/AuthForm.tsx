@@ -7,7 +7,7 @@ import {
   UseFormSetError,
 } from "react-hook-form";
 import Link from "next/link";
-import { ButtonBtn, GoogleIcon, Inputfield } from "@/components/shared";
+import { ButtonBtn, GoogleIcon, InputField } from "@/components/shared";
 
 export interface IAuthForm {
   name?: string;
@@ -63,7 +63,7 @@ export const AuthForm = ({
         )}
 
         {mode === "signup" && (
-          <Inputfield
+          <InputField
             labelText="Name"
             placeholder="Enter your full name"
             {...register("name", { required: "Name is required" })}
@@ -72,7 +72,7 @@ export const AuthForm = ({
           />
         )}
 
-        <Inputfield
+        <InputField
           labelText="Email"
           type="email"
           placeholder="Enter your email"
@@ -81,7 +81,7 @@ export const AuthForm = ({
           inputClassName="rounded-md"
         />
 
-        <Inputfield
+        <InputField
           passwordField={true}
           labelText="Password"
           placeholder="Enter your password"
@@ -94,7 +94,7 @@ export const AuthForm = ({
         />
 
         {mode === "signup" && (
-          <Inputfield
+          <InputField
             passwordField={true}
             labelText="Confirm Password"
             placeholder="Confirm your password"

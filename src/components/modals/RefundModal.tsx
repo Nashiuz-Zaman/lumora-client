@@ -1,7 +1,7 @@
 "use client";
 
 import { BaseModal } from "./BaseModal";
-import { Inputfield, ButtonBtn, ButtonBtnTrans } from "../shared";
+import { InputField, ButtonBtn, ButtonBtnTrans } from "../shared";
 import { useForm, SubmitHandler, UseFormReset } from "react-hook-form";
 
 export interface IRefundFormValues {
@@ -58,7 +58,7 @@ export const RefundModal = ({
       >
         <h2 className="text-xl font-semibold">Issue Refund</h2>
 
-        <Inputfield
+        <InputField
           labelText="Refund Reason"
           placeholder="Enter the reason for refund"
           {...register("reason", { required: "Refund reason is required" })}

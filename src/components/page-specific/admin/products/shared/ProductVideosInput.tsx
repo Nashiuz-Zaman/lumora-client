@@ -2,7 +2,7 @@
 
 import {
   ButtonBtnTrans,
-  Inputfield,
+  InputField,
   NoData,
   PlusIcon,
   TrashcanIcon,
@@ -78,7 +78,7 @@ const ProductVideosInput = ({
                 <TrashcanIcon />
               </button>
 
-              <Inputfield
+              <InputField
                 {...register(`videos.${i}.url` as const, {
                   required: "Video URL is required",
                   pattern: {

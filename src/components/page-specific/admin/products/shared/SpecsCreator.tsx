@@ -6,7 +6,7 @@ import { ElementType } from "react";
 import { IProduct } from "@/types";
 import {
   ButtonBtnTrans,
-  Inputfield,
+  InputField,
   NoData,
   PlusIcon,
   TrashcanIcon,
@@ -78,7 +78,7 @@ const SpecsCreator = ({
               <TrashcanIcon />
             </button>
 
-            <Inputfield
+            <InputField
               {...register(`specifications.${i}.key` as const, {
                 required: "Specification name is required",
               })}
@@ -87,7 +87,7 @@ const SpecsCreator = ({
             />
           </div>
 
-          <Inputfield
+          <InputField
             {...register(`specifications.${i}.value` as const, {
               required: "Specification value is required",
             })}

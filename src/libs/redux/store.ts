@@ -5,6 +5,7 @@ import { baseApiSlice } from "./apiSlices/baseApiSlice";
 import categoriesReducer from "./features/categories/categoriesSlice";
 import { ICategoryTreeItem } from "@/types";
 import returnRequestReducer from "./features/returnRequest/returnRequest";
+import customerReducer from "./features/customer/customerSlice";
 import analyticsReducer from "./features/analytics/analyticsSlice";
 
 export const makeStore = (preloadedCategories?: ICategoryTreeItem[]) =>
@@ -14,6 +15,7 @@ export const makeStore = (preloadedCategories?: ICategoryTreeItem[]) =>
       productQuickView: productQuickViewReducer,
       categories: categoriesReducer,
       returnRequest: returnRequestReducer,
+      customer: customerReducer,
       analytics: analyticsReducer,
       [baseApiSlice.reducerPath]: baseApiSlice.reducer,
     },

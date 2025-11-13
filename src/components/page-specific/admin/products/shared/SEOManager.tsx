@@ -3,7 +3,7 @@
 import { useFormContext } from "react-hook-form";
 
 import { IProduct } from "@/types";
-import { Inputfield, TextArea, FormSectionHeading } from "@/components/shared";
+import { InputField, TextArea, FormSectionHeading } from "@/components/shared";
 
 type TSEOManagerProps = {
   heading?: string;
@@ -18,7 +18,7 @@ const SEOManager = ({ heading = "SEO", className = "" }: TSEOManagerProps) => {
       <FormSectionHeading tag="h4" text={heading} />
       <div className="space-y-4">
         {/* SEO Title */}
-        <Inputfield
+        <InputField
           {...register("seoTitle")}
           labelText="Title"
           labelTextClassName="font-medium"
@@ -45,7 +45,7 @@ const SEOManager = ({ heading = "SEO", className = "" }: TSEOManagerProps) => {
         />
 
         {/* Tags */}
-        <Inputfield
+        <InputField
           {...register("tags")}
           labelText="Tags (Comma separated)"
           labelTextClassName="font-medium"
@@ -54,7 +54,7 @@ const SEOManager = ({ heading = "SEO", className = "" }: TSEOManagerProps) => {
         />
 
         {/* Canonical URL */}
-        <Inputfield
+        <InputField
           {...register("canonicalUrl")}
           labelText="Canonical URL"
           labelTextClassName="font-medium"

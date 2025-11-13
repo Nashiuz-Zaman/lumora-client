@@ -64,7 +64,7 @@ export const CustomerSideNavbar = ({
 
   return (
     <nav
-      className={`block w-full xs:w-[17.5rem] xl:w-full h-full overflow-y-auto bg-primary-light py-10 px-8 ${className}`}
+      className={`block w-full xs:w-[17.5rem] xl:w-full h-full overflow-y-auto bg-primary-light-2 py-10 px-8 ${className}`}
     >
       {navSections.map((section, i) => (
         <div key={i}>

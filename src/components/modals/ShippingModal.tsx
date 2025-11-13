@@ -1,7 +1,7 @@
 "use client";
 
 import { BaseModal } from "./BaseModal";
-import { Inputfield, ButtonBtn, ButtonBtnTrans } from "../shared";
+import { InputField, ButtonBtn, ButtonBtnTrans } from "../shared";
 import { useForm, SubmitHandler, UseFormReset } from "react-hook-form";
 
 export interface IShippingFormValues {
@@ -47,7 +47,7 @@ export const ShippingModal = ({
       <form className="space-y-4" onSubmit={handleSubmit(submitHandler)}>
         <h2 className="text-xl font-semibold mb-4">Shipping Details</h2>
 
-        <Inputfield
+        <InputField
           labelText="Tracking Number"
           placeholder="Enter tracking number"
           {...register("shippingTrackingNumber", {
@@ -56,14 +56,14 @@ export const ShippingModal = ({
           error={errors.shippingTrackingNumber?.message}
         />
 
-        <Inputfield
+        <InputField
           labelText="Carrier"
           placeholder="Enter carrier name"
           {...register("shippingCarrier", { required: "Carrier is required" })}
           error={errors.shippingCarrier?.message}
         />
 
-        <Inputfield
+        <InputField
           labelText="Estimated Delivery Date"
           type="datetime-local"
           {...register("estimatedDelivery", {

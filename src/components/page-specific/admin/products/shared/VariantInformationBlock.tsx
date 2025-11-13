@@ -3,7 +3,7 @@
 import { useState, ChangeEvent, useEffect } from "react";
 import {
   ButtonBtnTrans,
-  Inputfield,
+  InputField,
   PlusIcon,
   TrashcanIcon,
 } from "@/components/shared";
@@ -75,7 +75,7 @@ export const VariantInformationBlock = ({
               key={key}
               className="flex flex-col sm:flex-row sm:items-end gap-2 sm:gap-4 w-full"
             >
-              <Inputfield
+              <InputField
                 inputClassName="rounded-md"
                 labelText={toLabel(key)}
                 labelTextClassName="font-medium text-sm sm:text-base"
@@ -122,7 +122,7 @@ export const VariantInformationBlock = ({
 
       {/* New key input */}
       <div className="flex flex-col sm:flex-row gap-2 items-center">
-        <Inputfield
+        <InputField
           placeholder="New property name"
           inputClassName="rounded-md"
           value={newKeyInput}

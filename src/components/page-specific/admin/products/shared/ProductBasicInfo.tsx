@@ -1,7 +1,7 @@
 "use client";
 
 import { useFormContext, Controller } from "react-hook-form";
-import { Inputfield } from "@/components/shared";
+import { InputField } from "@/components/shared";
 import RichTextEditor from "@/components/shared/RichTextEditor/RichTextEditor";
 import { IProduct } from "@/types";
 import { CategorySelector } from "./CategorySelector";
@@ -17,7 +17,7 @@ export const ProductBasicInfo = () => {
     <div className="bg-white p-5 border border-neutral-200 rounded-xl">
       {/* Title & Subtitle */}
       <div className="mb-12">
-        <Inputfield
+        <InputField
           labelText="Product Title"
           labelTextClassName="font-semibold text-xl"
           {...register("title", { required: "Title is required" })}
@@ -27,7 +27,7 @@ export const ProductBasicInfo = () => {
           placeholder="Title"
         />
 
-        <Inputfield
+        <InputField
           labelText="Subtitle"
           labelTextClassName="font-semibold text-xl"
           {...register("subtitle")}

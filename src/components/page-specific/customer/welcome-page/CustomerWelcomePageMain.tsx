@@ -1,5 +1,8 @@
 "use client";
 
+import { useSelector } from "react-redux";
+import { TRootState } from "@/libs/redux/store";
+
 // Shared Components
 import { InnerContainer } from "@/components/shared";
 
@@ -9,16 +12,11 @@ import { AddressCard } from "./AddressCard";
 import { WelcomeBanner } from "./WelcomeBanner";
 import { ProfileCard } from "./ProfileCard";
 
-// Redux Queries
-import { useGetCustomerProfileDataQuery } from "@/libs/redux/apiSlices/customer/customerApiSlice";
-
 export const CustomerWelcomePageMain = () => {
-  const { data } = useGetCustomerProfileDataQuery(undefined, {
-    refetchOnMountOrArgChange: true,
-  });
-
-  const user = data?.data?.customerProfileData;
-
+  const { customerProfileData } = useSelector(
+    (state: TRootState) => state.customer
+  );
+  
   const cards = [
     {
       icon: "mdi:shopping-search",
@@ -40,21 +38,21 @@ export const CustomerWelcomePageMain = () => {
     },
   ];
 
-  if (!user) return null;
+  if (!customerProfileData) return null;
 
   return (
     <InnerContainer className="py-14">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Sidebar/Profile */}
         <aside className="md:col-span-1 flex flex-col gap-6">
-          <ProfileCard user={user} />
+          <ProfileCard user={customerProfileData} />
         </aside>
 
         {/* Main Content */}
         <main className="md:col-span-2 flex flex-col gap-6">
           {/* Welcome Banner */}
           <WelcomeBanner
-            name={user?.name}
+            name={customerProfileData?.name}
             subtitle="Manage your account, orders, and preferences in one place."
           />
 
@@ -62,12 +60,12 @@ export const CustomerWelcomePageMain = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <AddressCard
               label="Billing Address"
-              address={user?.billingAddress}
+              address={customerProfileData?.billingAddress}
               btnText="Edit Billing Address"
             />
             <AddressCard
               label="Shipping Address"
-              address={user?.shippingAddress}
+              address={customerProfileData?.shippingAddress}
               btnText="Edit Shipping Address"
             />
           </div>
