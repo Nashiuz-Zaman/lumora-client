@@ -42,8 +42,8 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
       query: ({ type, addressData }) => ({
         url:
           type === "billing"
-            ? "/customers/settings/billing"
-            : "/customers/settings/shipping",
+            ? "/customers/billing-address"
+            : "/customers/shipping-address",
         method: "PATCH",
         data: addressData,
       }),
