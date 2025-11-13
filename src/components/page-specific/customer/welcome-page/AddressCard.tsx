@@ -25,7 +25,7 @@ export const AddressCard = ({
     <article className="relative h-full rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm">
       <div className="flex h-full flex-col justify-between">
         <div>
-          <h4 className="mb-2 text-lg font-medium">{label}</h4>
+          <h4 className="mb-2 text-lg font-medium text-primary-dark-2">{label}</h4>
 
           {hasAddress ? (
             <address className="space-y-1 not-italic text-sm text-neutral-600 sm:text-base">

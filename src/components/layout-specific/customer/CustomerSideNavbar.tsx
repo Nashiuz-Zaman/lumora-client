@@ -55,16 +55,16 @@ export const CustomerSideNavbar = ({
 }: ICustomerSideNavbarProps) => {
   const { checkIfActive } = useActiveLink();
 
-  const activeClasses = "!bg-neutral-50 text-primary font-semibold";
+  const activeClasses = "!bg-neutral-50 text-primary-light font-semibold";
 
   // nav-link class is only for Mobile Side Nav functionality
   const linkClasses =
-    "nav-link flex items-center px-4 py-2 rounded-full gap-2 font-medium text-neutral-50";
+    "nav-link flex items-center px-4 py-2 rounded-full gap-2 font-medium text-neutral-50 hover:underline hover:underline-offset-4";
   const linkSublistClasses = "mb-7 space-y-1";
 
   return (
     <nav
-      className={`block w-full xs:w-[17.5rem] xl:w-full h-full overflow-y-auto bg-gradient-to-br from-primary to-secondary py-10 px-8 ${className}`}
+      className={`block w-full xs:w-[17.5rem] xl:w-full h-full overflow-y-auto bg-primary-light py-10 px-8 ${className}`}
     >
       {navSections.map((section, i) => (
         <div key={i}>
