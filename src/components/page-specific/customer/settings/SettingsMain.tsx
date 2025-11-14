@@ -19,8 +19,6 @@ export const SettingsMain = () => {
 
   return (
     <InnerContainer className="py-10">
-      <h2 className="text-xl font-semibold mb-7">Settings</h2>
-
       {/* Basic Information Form */}
       <BasicInfoForm className="mb-10" data={customerProfileData} />
 

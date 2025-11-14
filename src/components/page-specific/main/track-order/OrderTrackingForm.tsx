@@ -24,7 +24,7 @@ export const OrderTrackingForm = () => {
   };
 
   return (
-    <div className="bg-white border shadow-sm rounded-lg h-max border-neutral-200 p-8">
+    <div className="bg-white border shadow-lg rounded-lg h-max border-neutral-100 p-8">
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputField
           labelText="Order ID"
