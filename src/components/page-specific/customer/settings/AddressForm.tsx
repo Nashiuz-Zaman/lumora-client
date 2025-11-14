@@ -21,6 +21,7 @@ interface IAddressFormProps {
   headingText?: string;
   className?: string;
   type: "billing" | "shipping";
+  [key: string]: any;
 }
 
 export const AddressForm = ({
@@ -28,6 +29,7 @@ export const AddressForm = ({
   headingText = "",
   className,
   type,
+  ...props
 }: IAddressFormProps) => {
   const [updateAddress, { isLoading }] = useUpdateCustomerAddressMutation();
 
@@ -58,7 +60,8 @@ export const AddressForm = ({
 
   return (
     <div
-      className={`max-w-xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl border border-neutral-100 p-6 md:p-8 transition-all duration-300 hover:shadow-xl ${
+      {...props}
+      className={`max-w-xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8 ${
         className || ""
       }`}
     >

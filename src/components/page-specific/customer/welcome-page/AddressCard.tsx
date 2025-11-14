@@ -1,31 +1,29 @@
 import { LinkBtn } from "@/components/shared";
-
-interface IAddress {
-  address?: string;
-  country?: string;
-  city?: string;
-  state?: string;
-  zipCode?: string;
-}
+import { ICustomerAddress } from "@/types";
+import { isEmpty } from "lodash";
 
 interface IAddressCardProps {
   label: string;
-  address?: IAddress;
+  address?: ICustomerAddress;
   btnText?: string;
+  href?: string;
 }
 
 export const AddressCard = ({
   label,
   address,
   btnText = "Edit Address",
+  href = "/customer/settings",
 }: IAddressCardProps) => {
-  const hasAddress = Boolean(address?.address);
+  const hasAddress = isEmpty(address) === false;
 
   return (
-    <article className="relative h-full rounded-2xl border border-neutral-100 bg-white p-6 shadow-sm">
+    <article className="relative h-full rounded-2xl border border-neutral-100 bg-white p-6 shadow-md">
       <div className="flex h-full flex-col justify-between">
         <div>
-          <h4 className="mb-2 text-lg font-medium text-primary-dark-2">{label}</h4>
+          <h4 className="mb-2 text-lg font-medium text-primary-dark-2">
+            {label}
+          </h4>
 
           {hasAddress ? (
             <address className="space-y-1 not-italic text-sm text-neutral-600 sm:text-base">
@@ -46,10 +44,7 @@ export const AddressCard = ({
           )}
         </div>
 
-        <LinkBtn
-          href="/customer/settings"
-          className="mt-5 !rounded-lg !primaryClasses !py-2"
-        >
+        <LinkBtn href={href} className="mt-5 !rounded-lg !primaryClasses !py-2">
           {btnText}
         </LinkBtn>
       </div>

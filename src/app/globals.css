@@ -21,6 +21,10 @@
   --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
+* {
+  scroll-margin-top: 25px !important;
+}
+
 html {
   font-size: 75% !important;
   scroll-behavior: smooth;

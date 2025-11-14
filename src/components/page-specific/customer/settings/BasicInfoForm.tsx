@@ -70,15 +70,15 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
 
   return (
     <div
-      className={`max-w-3xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl border border-neutral-100 p-6 md:p-8 transition-all duration-300 hover:shadow-xl ${
+      className={`max-w-3xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8 ${
         className || ""
       }`}
     >
       <div className="flex items-center gap-2 mb-6">
-        <Heading text="Basic Information" />
+        <Heading text="Basic Information" className="!pl-0" />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5">
         {/* Profile Image Section */}
         <div className="flex flex-col items-center gap-4 rounded-2xl p-6 bg-white/60">
           <ProfilePhotoChanger
@@ -99,7 +99,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
           onSubmit={handleSubmit((data) => onSubmit({ data }))}
           className="flex flex-col justify-between space-y-6"
         >
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+          <div className="grid grid-cols-1 gap-4 md:gap-6">
             <InputField
               labelText="Name"
               labelTextClassName="text-sm font-medium text-neutral-700 mb-1"
@@ -132,7 +132,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
           <ButtonBtn
             type="submit"
             isLoading={isLoading}
-            className="w-full md:w-auto !text-sm font-semibold tracking-wide bg-primary !rounded-full text-white hover:bg-primary/90 px-6 py-2.5 transition-all duration-200 uppercase"
+            className="w-full md:w-auto !text-sm tracking-wide bg-primary !rounded-full text-white hover:bg-primary/90 px-6 py-2.5 transition-all duration-200 uppercase"
           >
             Save Changes
           </ButtonBtn>

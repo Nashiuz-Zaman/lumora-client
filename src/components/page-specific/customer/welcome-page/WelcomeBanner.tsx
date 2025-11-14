@@ -6,7 +6,7 @@ interface IWelcomeBannerProps {
 }
 
 export const WelcomeBanner = ({ name, subtitle }: IWelcomeBannerProps) => (
-  <div className="relative overflow-hidden rounded-2xl flex items-center justify-between bg-gradient-to-r from-primary-light-2 to-primary text-white shadow-md hover:shadow-lg transition-all min-h-[160px]">
+  <div className="relative overflow-hidden rounded-2xl flex items-center justify-between bg-gradient-to-r from-primary-light-2 to-primary text-white shadow-md">
     <div className="absolute right-0 top-0 h-full w-[35%]">
       <Image
         src="/auth-images/auth-2.webp"

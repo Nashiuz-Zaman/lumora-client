@@ -59,7 +59,7 @@ export const PasswordForm = () => {
   });
 
   return (
-    <div className="max-w-xl bg-white/80 backdrop-blur-md shadow-lg rounded-2xl border border-neutral-100 p-6 md:p-8 transition-all duration-300 hover:shadow-xl">
+    <div className="max-w-xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8">
       <div className="flex items-center gap-2 mb-6">
         <Icon icon="mdi:lock-outline" className="text-xl text-primary" />
         <Heading text="Change Password" />

@@ -16,7 +16,7 @@ export const CustomerWelcomePageMain = () => {
   const { customerProfileData } = useSelector(
     (state: TRootState) => state.customer
   );
-  
+
   const cards = [
     {
       icon: "mdi:shopping-search",
@@ -41,7 +41,7 @@ export const CustomerWelcomePageMain = () => {
   if (!customerProfileData) return null;
 
   return (
-    <InnerContainer className="py-14">
+    <InnerContainer className="py-10">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Sidebar/Profile */}
         <aside className="md:col-span-1 flex flex-col gap-6">
@@ -62,11 +62,13 @@ export const CustomerWelcomePageMain = () => {
               label="Billing Address"
               address={customerProfileData?.billingAddress}
               btnText="Edit Billing Address"
+              href="/customer/settings#billing-address"
             />
             <AddressCard
               label="Shipping Address"
               address={customerProfileData?.shippingAddress}
               btnText="Edit Shipping Address"
+              href="/customer/settings#shipping-address"
             />
           </div>
 

@@ -6,7 +6,7 @@ interface IHeadingProps {
 export const Heading: React.FC<IHeadingProps> = ({ text, className = "" }) => {
   return (
     <h2
-      className={`text-sm py-4 text-center pl-2 font-medium uppercase ${className}`}
+      className={`text py-4 text-center pl-1 font-semibold underline underline-offset-3 ${className}`}
     >
       {text}
     </h2>

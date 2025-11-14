@@ -25,9 +25,10 @@ export const SettingsMain = () => {
       <BasicInfoForm className="mb-10" data={customerProfileData} />
 
       {/* Address Forms */}
-      <div className="flex gap-5 mb-10">
+      <div className="flex flex-col 2md:flex-row gap-5 mb-10">
         {/* billing address form */}
         <AddressForm
+          id="billing-address"
           type="billing"
           data={customerProfileData?.billingAddress}
           headingText="Billing Address"
@@ -35,6 +36,7 @@ export const SettingsMain = () => {
 
         {/* shipping address form */}
         <AddressForm
+          id="shipping-address"
           type="shipping"
           data={customerProfileData?.shippingAddress}
           headingText="Shipping Address"
