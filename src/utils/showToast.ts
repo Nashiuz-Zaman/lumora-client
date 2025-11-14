@@ -6,7 +6,7 @@ interface IShowToastProps {
   type?: TypeOptions; // 'success' | 'info' | 'warning' | 'error' | 'default'
   position?: ToastPosition; // 'top-right' | 'top-center' | 'top-left' | 'bottom-right' | 'bottom-center' | 'bottom-left'
   autoClose?: number; // in milliseconds
-  modifyClasses?: string;
+  className?: string;
 }
 
 export const showToast = ({
@@ -14,12 +14,12 @@ export const showToast = ({
   type = "success",
   position = "top-center",
   autoClose = 2500,
-  modifyClasses = "",
+  className = "",
 }: IShowToastProps) => {
   toast(message ?? "No message provided", {
     position,
     autoClose,
     type,
-    className: modifyClasses,
+    className,
   });
 };

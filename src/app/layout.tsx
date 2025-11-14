@@ -1,7 +1,7 @@
 import "./globals.css";
 import { poppins } from "./fonts";
 
-import { ToastContainer, Slide } from "react-toastify";
+import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { ReduxProvider } from "@/providers";
@@ -41,7 +41,7 @@ export default async function RootLayout({
                 <ToastContainer
                   position="top-center"
                   autoClose={2000}
-                  transition={Slide}
+                  transition={Zoom}
                   hideProgressBar
                   newestOnTop
                   closeOnClick

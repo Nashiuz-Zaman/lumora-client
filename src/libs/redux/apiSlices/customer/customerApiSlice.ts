@@ -50,9 +50,12 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
       invalidatesTags: ["CustomerProfileData"],
     }),
 
-    updateCustomerPasswordFromSettings: builder.mutation({
+    updateCustomerPasswordFromSettings: builder.mutation<
+      IApiResponse,
+      { currentPassword: string; newPassword: string }
+    >({
       query: (data) => ({
-        url: "/customers/settings-data/change-password",
+        url: "/customers/settings/change-password",
         method: "PATCH",
         data,
       }),

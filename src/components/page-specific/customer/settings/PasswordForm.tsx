@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Icon } from "@iconify/react";
 
@@ -23,12 +22,13 @@ interface IPasswordFormData {
 export const PasswordForm = () => {
   const [updateCustomerPasswordFromSettings, { isLoading }] =
     useUpdateCustomerPasswordFromSettingsMutation();
-  const [passwordMatchError, setPasswordMatchError] = useState<string>("");
 
   const {
     register,
     handleSubmit,
     reset,
+    setError,
+    watch,
     formState: { errors },
   } = useForm<IPasswordFormData>({
     defaultValues: {
@@ -38,25 +38,27 @@ export const PasswordForm = () => {
     },
   });
 
-  const onSubmit = catchAsyncGeneral(async (args) => {
-    const data = args?.data as IPasswordFormData;
-    setPasswordMatchError("");
+  const onSubmit = catchAsyncGeneral(
+    async (args) => {
+      const data = args?.data as IPasswordFormData;
 
-    if (data.newPassword !== data.confirmPassword) {
-      setPasswordMatchError("Passwords do not match");
-      return;
+      const result = await updateCustomerPasswordFromSettings({
+        currentPassword: data.currentPassword,
+        newPassword: data.newPassword,
+      }).unwrap();
+
+      if (result?.success) {
+        showToast({ message: result.message });
+        reset();
+      }
+    },
+    {
+      handleError: "function",
+      onError(_, __, message) {
+        setError("root", { message });
+      },
     }
-
-    const result = await updateCustomerPasswordFromSettings({
-      currentPassword: data.currentPassword,
-      newPassword: data.newPassword,
-    }).unwrap();
-
-    if (result?.success) {
-      showToast({ message: result.message });
-      reset();
-    }
-  });
+  );
 
   return (
     <div className="max-w-xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8">
@@ -103,8 +105,10 @@ export const PasswordForm = () => {
             placeholder="Re-enter new password"
             {...register("confirmPassword", {
               required: "Please confirm your new password",
+              validate: (value) =>
+                value === watch("newPassword") || "Passwords do not match",
             })}
-            error={passwordMatchError || errors.confirmPassword?.message}
+            error={errors.confirmPassword?.message}
             inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
             labelTextClassName="text-[0.9rem] text-neutral-700 font-medium"
           />
