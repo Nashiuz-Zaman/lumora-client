@@ -45,7 +45,20 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       Partial<IOrderQueriesParams>
     >({
       query: (params) => ({
-        url: "/orders",
+        url: "/orders/admin",
+        method: "GET",
+        params: {
+          ...params,
+        },
+      }),
+    }),
+
+    getOrdersForCustomer: builder.query<
+      IApiResponse<TQueryDataWithQueryMeta<{ orders: IOrder[] }>>,
+      Partial<IOrderQueriesParams>
+    >({
+      query: (params) => ({
+        url: "/orders/customers",
         method: "GET",
         params: {
           ...params,
@@ -105,6 +118,7 @@ export const {
   usePlaceOrderMutation,
   useGetCustomerRecentOrdersQuery,
   useGetCustomerOrderHistoryQuery,
+  useGetOrdersForCustomerQuery,
   useGetCustomerOrderStatsQuery,
   useGetOrdersPrivateQuery,
   useMarkOrderShippedMutation,

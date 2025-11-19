@@ -16,7 +16,10 @@ import isEqual from "lodash/isEqual";
 import { OrderSortOptions } from "@/constants/order";
 
 // API Hooks
-import { useGetOrdersPrivateQuery } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import {
+  useGetOrdersForCustomerQuery,
+  useGetOrdersPrivateQuery,
+} from "@/libs/redux/apiSlices/orders/orderApiSlice";
 
 // Types
 import { TOrderStatusValue } from "@/constants";
@@ -28,6 +31,7 @@ export interface IOrderQueriesParams {
   search: string;
   status?: TOrderStatusValue;
   isArchived: boolean;
+  user?: string;
 }
 
 export interface IUseOrderQueriesArgs {
@@ -36,6 +40,7 @@ export interface IUseOrderQueriesArgs {
   isPrivate?: boolean;
   limit?: number;
   extraLimitFields?: (keyof IOrder)[];
+  user?: string;
 }
 
 export const useOrderQueries = ({
@@ -44,6 +49,7 @@ export const useOrderQueries = ({
   isPrivate = false,
   limit = 20,
   extraLimitFields = [],
+  user,
 }: IUseOrderQueriesArgs) => {
   const searchParams = useSearchParams();
   const path = usePathname();
@@ -69,8 +75,9 @@ export const useOrderQueries = ({
       search: (rawQueryParams.search as string) || "",
       status: orderStatus,
       isArchived,
+      user,
     }),
-    [rawQueryParams, orderStatus, isArchived]
+    [rawQueryParams, orderStatus, isArchived, user]
   );
 
   // Controlled form params
@@ -131,10 +138,17 @@ export const useOrderQueries = ({
   }, [finalQueryParams, limit, extraLimitFields]);
 
   // Fetch orders
-  const query = useGetOrdersPrivateQuery(queryArgs, {
+  const adminQuery = useGetOrdersPrivateQuery(queryArgs, {
     refetchOnMountOrArgChange: true,
     skip: !isClient || !isPrivate,
   });
+
+  const customerQuery = useGetOrdersForCustomerQuery(queryArgs, {
+    refetchOnMountOrArgChange: true,
+    skip: !isClient || isPrivate,
+  });
+
+  const query = isPrivate ? adminQuery : customerQuery;
 
   return {
     formParams,

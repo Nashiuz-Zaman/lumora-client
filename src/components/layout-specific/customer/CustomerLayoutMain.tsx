@@ -50,7 +50,7 @@ export const CustomerLayoutMain = ({ children }: { children: ReactNode }) => {
         </div>
 
         {/* Page content */}
-        <div className="max-h-full overflow-y-auto">{children}</div>
+        <div className="h-full overflow-y-auto">{children}</div>
       </main>
     </div>
   );
