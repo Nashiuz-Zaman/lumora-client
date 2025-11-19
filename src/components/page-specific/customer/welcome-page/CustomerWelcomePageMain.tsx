@@ -28,7 +28,7 @@ export const CustomerWelcomePageMain = () => {
       icon: "mdi:package-variant-closed",
       title: "Your Orders",
       description: "Track, manage, and reorder with ease.",
-      href: "/customer/orders",
+      href: "/customer/my-orders",
     },
     {
       icon: "mdi:account-cog",

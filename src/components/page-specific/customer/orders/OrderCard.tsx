@@ -2,6 +2,7 @@ import React from "react";
 import { IOrder } from "@/types";
 import { formatDateTime, formatPrice } from "@/utils";
 import Image from "next/image";
+import { LinkBtn } from "@/components/shared";
 
 interface IOrderCardProps {
   order: IOrder;
@@ -18,9 +19,8 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
           </h2>
 
           <p className="text-sm text-neutral-500">
-            Placed on{" "}
-            {formatDateTime(order.createdAt!)}{" "}
-            • {order.items.length} items
+            Placed on {formatDateTime(order.createdAt!)} • {order.items.length}{" "}
+            items
           </p>
         </div>
 
@@ -110,9 +110,12 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
 
       {/* ---------------- ACTION BUTTONS ---------------- */}
       <div className="flex space-x-3 w-max ml-auto">
-        <button className="px-6 py-2 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+        <LinkBtn
+          href={`/track-order?id=${order.orderId}`}
+          className="primaryClasses !py-2 !rounded-full"
+        >
           Track Order
-        </button>
+        </LinkBtn>
 
         <button className="px-6 py-2 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-200 focus:ring-offset-2">
           Cancel

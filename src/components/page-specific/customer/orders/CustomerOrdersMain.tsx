@@ -28,7 +28,6 @@ export const CustomerOrdersMain = () => {
     changePage,
     refetch,
   } = useOrderQueries({
-    isArchived: true,
     isPrivate: false,
     limit: 5,
     user: user?._id,
