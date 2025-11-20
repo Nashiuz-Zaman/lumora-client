@@ -127,7 +127,7 @@ export const ActiveCouponsMain = () => {
           onClick={openModal}
           isLoading={isExpiring}
           className="text-red-600 font-inherit ml-auto px-4 !h-[50px] shrink-0"
-          isDisabled={selected.length < 1}
+          disabled={selected.length < 1}
         >
           <WarningIcon />
           Expire Selected

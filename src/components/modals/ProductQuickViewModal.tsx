@@ -177,7 +177,7 @@ export const ProductQuickViewModal = () => {
                 <ButtonBtn
                   onClick={handleAddToCart}
                   isLoading={isCartLoading}
-                  isDisabled={!curProductVariant}
+                  disabled={!curProductVariant}
                   className="!successClasses !rounded-full !px-5 !py-2 !gap-2"
                 >
                   <CartIcon className="text-2xl" />

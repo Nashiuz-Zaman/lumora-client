@@ -145,7 +145,7 @@ const AddToProductCollectionModal = ({
             isLoading={isAdding}
             onClick={handleAddToCollection}
             className="mx-auto sm:mr-0 sm:ml-auto !primaryClasses"
-            isDisabled={selected.length === 0}
+            disabled={selected.length === 0}
           >
             Add to Collection
           </ButtonBtn>

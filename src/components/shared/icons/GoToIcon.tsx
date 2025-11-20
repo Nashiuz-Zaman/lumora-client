@@ -1,4 +1,4 @@
-export const GoToIcon = ({ className = "" }: { className: string }) => {
+export const GoToIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

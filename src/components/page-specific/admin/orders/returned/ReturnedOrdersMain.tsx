@@ -113,7 +113,7 @@ export const ReturnedOrdersMain = () => {
           onClick={openModal}
           isLoading={isArchiving}
           className="text-red-500 font-inherit ml-auto px-4 !h-[50px] shrink-0"
-          isDisabled={selected.length < 1}
+          disabled={selected.length < 1}
         >
           <ArchiveIcon className="text-2xl" />
           Archive Selected

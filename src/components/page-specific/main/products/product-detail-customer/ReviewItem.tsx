@@ -87,7 +87,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
             alreadyMarked ? "successClasses" : "hover:successClasses"
           }`}
           title={alreadyMarked ? "You found this helpful" : "Mark as helpful"}
-          isDisabled={!isCustomer || alreadyMarked}
+          disabled={!isCustomer || alreadyMarked}
         >
           <ThumbIconFilledIcon /> Helpful
         </ButtonBtn>

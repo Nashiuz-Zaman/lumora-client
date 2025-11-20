@@ -1,4 +1,4 @@
-export const LoadingIcon = ({ className = "" }: { className: string }) => {
+export const LoadingIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

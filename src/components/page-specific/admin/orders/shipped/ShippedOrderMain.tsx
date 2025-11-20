@@ -119,7 +119,7 @@ export const ShippedOrdersMain = () => {
           onClick={openModal}
           isLoading={isMarking}
           className="text-primary font-inherit ml-auto px-4 !h-[50px] shrink-0"
-          isDisabled={selected.length < 1}
+          disabled={selected.length < 1}
         >
           <DeliverIcon className="text-2xl" />
           Mark as delivered

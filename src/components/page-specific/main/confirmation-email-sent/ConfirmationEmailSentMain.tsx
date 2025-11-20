@@ -106,7 +106,7 @@ export const ConfirmationEmailSentMain = () => {
         isLoading={isLoading}
         onClick={resendEmail}
         className="!primaryClasses !rounded-full mx-auto"
-        isDisabled={isCooldown}
+        disabled={isCooldown}
       >
         Resend Email
       </ButtonBtn>

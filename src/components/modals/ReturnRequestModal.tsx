@@ -227,7 +227,7 @@ export const ReturnRequestModal = () => {
               <div className="flex items-center justify-end gap-3 mt-4">
                 <ButtonBtn
                   isLoading={isRejecting}
-                  isDisabled={isApproving}
+                  disabled={isApproving}
                   type="button"
                   onClick={handleReject}
                   className="!rounded-full bg-red-500 text-white hover:bg-red-600"
@@ -236,7 +236,7 @@ export const ReturnRequestModal = () => {
                 </ButtonBtn>
 
                 <ButtonBtn
-                  isDisabled={isRejecting}
+                  disabled={isRejecting}
                   isLoading={isApproving}
                   type="submit"
                   className="!rounded-full !primaryClasses"

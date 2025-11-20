@@ -64,7 +64,7 @@ export const ProductCollectionMain = ({
         {/* Action buttons */}
         <div className="flex justify-center gap-4 mb-4 sm:justify-end">
           <ButtonBtnTrans
-            isDisabled={collectionProducts.length === 0}
+            disabled={collectionProducts.length === 0}
             onClick={() => toggleSelectAll()}
             className="font-inherit text-lg"
           >
@@ -74,7 +74,7 @@ export const ProductCollectionMain = ({
           <ButtonBtnTrans
             onClick={openModal}
             className="text-red-600 font-inherit text-lg !gap-1"
-            isDisabled={selected.length < 1}
+            disabled={selected.length < 1}
           >
             <TrashcanIcon className="mr-1" />
             Remove Selected
