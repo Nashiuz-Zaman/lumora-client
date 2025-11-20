@@ -1,48 +1,30 @@
 "use client";
 
-import { useEffect, useState, ReactNode, MouseEvent, Ref } from "react";
+import { ReactNode, MouseEvent } from "react";
 import { LoadingIcon } from "../icons";
 
-interface IButtonBtnTransProps {
+interface IButtonBtnTransProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  onClick?: () => void;
-  className?: string;
-  isDisabled?: boolean;
   isLoading?: boolean;
-  id?: string;
-  type?: "button" | "submit" | "reset";
-  ariaLabel?: string;
-  title?: string;
   iconModifyClasses?: string;
-  ref?: Ref<HTMLButtonElement>;
+  ref?: React.Ref<HTMLButtonElement>;
 }
 
 export const ButtonBtnTrans = ({
   children,
   onClick,
   className = "",
-  isDisabled = false,
+  disabled = false,
   isLoading = false,
-  id,
   type = "button",
-  ariaLabel = "button",
-  title,
   iconModifyClasses = "",
-  ref,
+  ...props
 }: IButtonBtnTransProps) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => setIsClient(true), []);
-
-  if (!isClient) return null;
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    if (type !== "submit") {
-      e.preventDefault();
-      e.stopPropagation();
-
-      if (onClick) onClick();
-    }
+    e.stopPropagation();
+    if (type !== "submit") e.preventDefault();
+    onClick?.(e);
   };
 
   const allClasses = `
@@ -54,15 +36,12 @@ export const ButtonBtnTrans = ({
 
   return (
     <button
-      ref={ref}
-      {...(title ? { title } : {})}
-      {...(id ? { id } : {})}
       type={type}
-      style={{ backfaceVisibility: "hidden" }}
-      disabled={isDisabled || isLoading}
-      onClick={handleClick}
+      onClick={!disabled && !isLoading ? handleClick : undefined}
+      disabled={disabled || isLoading}
       className={allClasses}
-      aria-label={ariaLabel}
+      style={{ backfaceVisibility: "hidden" }}
+      {...props}
     >
       {/* Text Content */}
       <span

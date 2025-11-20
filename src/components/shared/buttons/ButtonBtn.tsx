@@ -7,6 +7,7 @@ interface IButtonBtnProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   isLoading?: boolean;
+  ref?: React.Ref<HTMLButtonElement>;
   iconClassName?: string;
 }
 

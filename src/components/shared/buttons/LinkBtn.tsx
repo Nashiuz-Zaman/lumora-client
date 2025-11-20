@@ -1,17 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode, MouseEvent, AnchorHTMLAttributes } from "react";
+import { MouseEvent, AnchorHTMLAttributes } from "react";
 
 interface ILinkBtnProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
-  children: ReactNode;
-  href: string;
   isExternal?: boolean;
+  onClick?: (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
 }
 
 export const LinkBtn = ({
   children,
-  href,
+  href = "/",
   className = "",
   target,
   onClick,
@@ -24,7 +23,9 @@ export const LinkBtn = ({
     px-8 py-3 active:scale-98 ${className}
   `;
 
-  const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = (
+    e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
+  ) => {
     e.stopPropagation();
     onClick?.(e);
   };
@@ -44,7 +45,7 @@ export const LinkBtn = ({
     );
   }
 
-  // Internal link 
+  // Internal link
   return (
     <Link
       href={href}

@@ -6,7 +6,7 @@ export const SearchBox = () => {
   return (
     <form
       // TODO: add onSubmit logic later
-      className="w-full flex items-center gap-2 bg-white border border-neutral-200 rounded-xl px-4 py-3 shadow-sm"
+      className="w-full flex items-center gap-2 bg-white border border-neutral-200 rounded-xl px-4 py-3 lg:w-[50%]"
     >
       <Icon icon="mdi:magnify" className="text-neutral-500 text-xl shrink-0" />
 

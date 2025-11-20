@@ -1,17 +1,40 @@
-import React from "react";
 import { IOrder } from "@/types";
-import { formatDateTime, formatPrice } from "@/utils";
-import Image from "next/image";
-import { LinkBtn } from "@/components/shared";
+import {
+  formatDateTime,
+  formatPrice,
+  getOrderStatusLabel,
+  getOrderStatusTextColor,
+} from "@/utils";
+import { useRouter } from "next/navigation";
+
+import {
+  ButtonBtn,
+  GoToIcon,
+  LinkBtn,
+  LinkBtnTrans,
+  LocationIcon,
+  WarningIcon,
+} from "@/components/shared";
+import { OrderStatus } from "@/constants";
+import { OrderItemCard } from "./OrderItemCard";
 
 interface IOrderCardProps {
   order: IOrder;
 }
 
 export const OrderCard = ({ order }: IOrderCardProps) => {
+  const router = useRouter();
+
+  const goToOrderDetails = () => {
+    router.push(`/customer/my-orders/${order.orderId}`);
+  };
+
   return (
-    <div className="bg-white border border-neutral-100 rounded-lg shadow-md p-6 my-8">
-      {/* ---------------- HEADER ---------------- */}
+    <div
+      onClick={goToOrderDetails}
+      className="bg-white border cursor-pointer border-neutral-100 rounded-lg shadow-md p-6"
+    >
+      {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div>
           <h2 className="text-xl font-semibold text-neutral-800">
@@ -24,56 +47,33 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
           </p>
         </div>
 
-        <span className="bg-neutral-100 text-neutral-700 text-xs font-medium px-3 py-1 rounded-full">
-          {order.status}
-        </span>
+        <p className={`text-xs font-medium px-3 py-1 rounded-full`}>
+          Status:{" "}
+          <span className={getOrderStatusTextColor(order.status)}>
+            {getOrderStatusLabel(order.status)}
+          </span>
+        </p>
       </div>
 
-      {/* ---------------- ITEMS ---------------- */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-        {order.items.map((item, i) => (
-          <div
-            key={`key-order-item-${i}`}
-            className="flex items-center p-4 bg-neutral-50 rounded-lg border border-neutral-200"
-          >
-            <div className="flex-shrink-0 mr-4">
-              <div className="w-10 h-10 bg-neutral-200 rounded-full flex items-center justify-center overflow-hidden relative">
-                {item.product?.defaultImage && (
-                  <Image
-                    src={item.product.defaultImage}
-                    alt={item.product.title || "Product Image"}
-                    fill
-                    className="object-cover rounded-full"
-                    sizes="40px" // optional, since the container is 40x40
-                  />
-                )}
-              </div>
-            </div>
-            <div>
-              <p className="font-medium text-neutral-700">
-                {item.product?.title}
-              </p>
-              {/* {item.variant && (
-                <p className="text-sm text-neutral-500">
-                  {item.variant.color} • {item.variant.name}
-                </p>
-              )} */}
-              <p className="font-semibold text-neutral-800">
-                {formatPrice(item.variant.price!)}
-              </p>
-            </div>
-          </div>
-        ))}
+      {/* Items */}
+      <div className="grid grid-cols-1 2md:grid-cols-[2fr_1fr] gap-5 mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 h-[220px] overflow-y-auto">
+          {order.items.map((item, i) => (
+            <OrderItemCard key={i} item={item} />
+          ))}
+        </div>
 
-        {/* ---------------- ORDER SUMMARY ---------------- */}
-        <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-200">
+        {/* Order summary */}
+        <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-100 h-max">
           <h3 className="font-semibold text-neutral-800 mb-3">Order Summary</h3>
 
+          {/* Subtotal */}
           <div className="flex justify-between text-sm text-neutral-700 mb-1">
             <span>Subtotal</span>
             <span>{formatPrice(order.subtotal)}</span>
           </div>
 
+          {/* Shipping */}
           {order.shippingFee !== undefined && (
             <div className="flex justify-between text-sm text-neutral-700 mb-1">
               <span>Shipping</span>
@@ -85,6 +85,7 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
             </div>
           )}
 
+          {/* Tax */}
           {order.tax !== undefined && (
             <div className="flex justify-between text-sm text-neutral-700 mb-1">
               <span>Tax</span>
@@ -92,7 +93,8 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
             </div>
           )}
 
-          {order.discount !== undefined && order.discount > 0 && (
+          {/* Discount */}
+          {order.discount !== undefined && (
             <div className="flex justify-between text-sm text-neutral-700 mb-1">
               <span>Discount</span>
               <span className="text-red-600">
@@ -101,6 +103,7 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
             </div>
           )}
 
+          {/* Total */}
           <div className="flex justify-between font-bold text-lg text-neutral-800 mt-3">
             <span>Total</span>
             <span>{formatPrice(order.total)}</span>
@@ -108,18 +111,34 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
         </div>
       </div>
 
-      {/* ---------------- ACTION BUTTONS ---------------- */}
-      <div className="flex space-x-3 w-max ml-auto">
-        <LinkBtn
-          href={`/track-order?id=${order.orderId}`}
-          className="primaryClasses !py-2 !rounded-full"
+      {/* Action buttons */}
+      <div className="flex items-center justify-between">
+        {/* View invoice link */}
+        <LinkBtnTrans
+          href={order.invoice!}
+          target="_blank"
+          isExternal={true}
+          className="text-primary font-medium hover:underline"
         >
-          Track Order
-        </LinkBtn>
+          View Invoice <GoToIcon />
+        </LinkBtnTrans>
 
-        <button className="px-6 py-2 border border-neutral-300 text-neutral-700 font-medium rounded-lg hover:bg-neutral-50 focus:outline-none focus:ring-2 focus:ring-neutral-200 focus:ring-offset-2">
-          Cancel
-        </button>
+        {/* Right side buttons */}
+        <div className="flex space-x-3">
+          <LinkBtn
+            href={`/track-order?id=${order.orderId}`}
+            className="primaryClasses !py-2 !rounded-full !px-4"
+          >
+            <LocationIcon />
+            Track Order
+          </LinkBtn>
+
+          {order?.status < OrderStatus.Shipped && (
+            <ButtonBtn className="dangerClasses !rounded-full !px-4 !py-2">
+              <WarningIcon /> Cancel
+            </ButtonBtn>
+          )}
+        </div>
       </div>
     </div>
   );

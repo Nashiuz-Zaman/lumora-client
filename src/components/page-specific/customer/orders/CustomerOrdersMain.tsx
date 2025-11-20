@@ -1,6 +1,6 @@
 "use client";
 
-import { InnerContainer, NoData } from "@/components/shared";
+import { InnerContainer, LoadingSpinner, NoData } from "@/components/shared";
 import { OrderCard } from "./OrderCard";
 import { PageSection } from "./PageSection";
 import { SearchBox } from "./SearchBox";
@@ -33,14 +33,13 @@ export const CustomerOrdersMain = () => {
     user: user?._id,
   });
 
-  console.log(orders, queryMeta);
+  // console.log(orders, queryMeta);
 
   return (
     <InnerContainer className="h-full">
       <div className="w-full h-full px-4 py-6 flex flex-col">
         {/* Search */}
         <PageSection title="Search Orders">
-          {/* TODO: add search functionality later */}
           <SearchBox />
         </PageSection>
 
@@ -51,15 +50,20 @@ export const CustomerOrdersMain = () => {
         </PageSection>
 
         {/* Orders List */}
-        {/* Orders List */}
         <PageSection title="Your Orders" className="relative grow">
-          <div className="grid gap-4">
-            {orders?.length === 0 ? (
-              <NoData text="You have no orders" centered />
-            ) : (
-              orders?.map((order, idx) => <OrderCard key={idx} order={order} />)
-            )}
-          </div>
+          {isFetching ? (
+            <LoadingSpinner centered />
+          ) : (
+            <div className="grid gap-4">
+              {orders?.length === 0 ? (
+                <NoData text="You have no orders" centered />
+              ) : (
+                orders?.map((order, idx) => (
+                  <OrderCard key={idx} order={order} />
+                ))
+              )}
+            </div>
+          )}
         </PageSection>
       </div>
     </InnerContainer>

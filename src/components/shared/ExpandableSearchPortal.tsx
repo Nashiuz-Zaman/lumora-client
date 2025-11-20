@@ -90,7 +90,7 @@ export const ExpandableSearchPortal = <T,>({
       <ButtonBtnTrans
         onClick={showVertical ? handleClose : handleOpen}
         className={`text-white ${buttonClasses}`}
-        ariaLabel="Toggle Search"
+        aria-label="Toggle Search"
         title="Toggle Search"
       >
         {isOpen ? (

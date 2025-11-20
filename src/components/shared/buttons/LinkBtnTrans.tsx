@@ -1,7 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { ReactNode, MouseEvent } from "react";
+import { MouseEvent, AnchorHTMLAttributes } from "react";
+
+interface ILinkBtnTransProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  onClick?: (e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => void;
+  isExternal?: boolean;
+}
 
 export const LinkBtnTrans = ({
   children,
@@ -10,14 +15,8 @@ export const LinkBtnTrans = ({
   target,
   onClick,
   isExternal = false,
-}: {
-  children: ReactNode;
-  href?: string;
-  className?: string;
-  target?: string;
-  onClick?: () => void;
-  isExternal?: boolean;
-}) => {
+  ...props
+}: ILinkBtnTransProps) => {
   const allClasses = `
     flex items-center gap-2 w-max capitalize transition-all text-center font-medium h-max
     ${className}
@@ -27,7 +26,7 @@ export const LinkBtnTrans = ({
     e: MouseEvent<HTMLAnchorElement | HTMLButtonElement>
   ) => {
     e.stopPropagation();
-    if (onClick) onClick();
+    onClick?.(e);
   };
 
   if (isExternal) {
@@ -37,19 +36,22 @@ export const LinkBtnTrans = ({
         className={allClasses}
         target={target || "_blank"}
         rel="noopener noreferrer"
-        onClick={onClick ? handleClick : undefined}
+        onClick={handleClick}
+        {...props}
       >
         {children}
       </a>
     );
   }
 
+  // Internal Link
   return (
     <Link
       href={href}
       className={allClasses}
-      onClick={onClick ? handleClick : undefined}
-      {...(target ? { target } : {})}
+      target={target}
+      onClick={handleClick}
+      {...props}
     >
       {children}
     </Link>
