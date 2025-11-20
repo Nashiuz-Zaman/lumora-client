@@ -1,16 +1,11 @@
 "use client";
 
-import { useEffect, useState, ReactNode, MouseEvent } from "react";
+import { ReactNode, MouseEvent } from "react";
 import { LoadingIcon } from "../icons";
 
-interface IButtonBtnProps {
+interface IButtonBtnProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  onClick?: () => void;
-  className?: string;
-  isDisabled?: boolean;
-  id?: string;
-  type?: "submit" | "button" | "reset";
-  title?: string;
   isLoading?: boolean;
   iconClassName?: string;
 }
@@ -19,26 +14,18 @@ export const ButtonBtn = ({
   children,
   onClick,
   className = "",
-  isDisabled = false,
-  id,
-  type = "button",
-  title = "",
   isLoading = false,
   iconClassName = "",
+  type = "button",
+  disabled,
+  ...props
 }: IButtonBtnProps) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => setIsClient(true), []);
-
-  if (!isClient) return null;
-
   const handleClick = (e: MouseEvent<HTMLButtonElement>) => {
-    if (type !== "submit") {
-      e.preventDefault();
-      e.stopPropagation();
+    e.stopPropagation();
 
-      if (onClick) onClick();
-    }
+    if (type !== "submit") e.preventDefault();
+
+    onClick?.(e);
   };
 
   const allClasses = `
@@ -53,16 +40,15 @@ export const ButtonBtn = ({
 
   return (
     <button
-      title={title}
-      {...(id ? { id } : {})}
       type={type}
-      style={{ backfaceVisibility: "hidden" }}
-      disabled={isDisabled || isLoading}
-      onClick={handleClick}
+      onClick={!disabled && !isLoading ? handleClick : undefined}
+      disabled={disabled || isLoading}
       className={allClasses}
+      style={{ backfaceVisibility: "hidden" }}
+      {...props}
     >
       <span
-        className={`w-full capitalize bg-transparent flex items-center justify-center gap-[inherit] [font-weight:inherit] ${
+        className={`w-full capitalize flex items-center justify-center gap-[inherit] ${
           isLoading ? "opacity-0" : "opacity-100"
         }`}
       >
