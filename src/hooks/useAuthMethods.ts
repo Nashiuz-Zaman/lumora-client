@@ -37,6 +37,7 @@ export const useAuthMethods = () => {
   const { customer } = UserRoles;
   const { loginGoogle } = useFirebaseMethods();
 
+  // Sign up using email
   const signupUser = catchAsyncGeneral(
     async (args) => {
       const data = args?.data;
@@ -66,6 +67,7 @@ export const useAuthMethods = () => {
     }
   );
 
+  // Login using email
   const localLogin = catchAsyncGeneral(
     async (args) => {
       const data = args?.data as ILocalLoginRequest;
@@ -100,6 +102,7 @@ export const useAuthMethods = () => {
     }
   );
 
+  //  Login using google
   const loginWithGoogle = catchAsyncGeneral(async () => {
     const result = await loginGoogle();
 
