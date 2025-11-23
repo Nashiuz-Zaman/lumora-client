@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useState } from "react";
+import { isValidElement, ReactNode, useState } from "react";
 import { Icon } from "@iconify/react";
 
 type TInputFieldProps = {
@@ -12,7 +12,7 @@ type TInputFieldProps = {
   inputClassName?: string;
   className?: string;
   labelContainerClassName?: string;
-  icon?: string | null;
+  icon?: string | ReactNode;
   iconClassName?: string;
   passwordShowIconClassName?: string;
   passwordShowIconBoxClassName?: string;
@@ -32,7 +32,7 @@ export const InputField = ({
   inputClassName = "",
   className = "",
   labelContainerClassName = "",
-  icon = null,
+  icon,
   iconClassName = "",
   passwordShowIconClassName = "",
   passwordShowIconBoxClassName = "",
@@ -44,6 +44,37 @@ export const InputField = ({
   ...props
 }: TInputFieldProps) => {
   const [passHidden, setPassHidden] = useState(true);
+
+  const renderIcon = () => {
+    if (!icon) return null;
+
+    // If string → iconify style
+    if (typeof icon === "string") {
+      return (
+        <Icon
+          icon={icon}
+          className={`block w-max text-inherit ${
+            invertIconPosition ? "order-1 mr-3" : "order-2"
+          } ${iconClassName}`}
+        />
+      );
+    }
+
+    // If React element, render component
+    if (isValidElement(icon)) {
+      return (
+        <span
+          className={`block w-max text-inherit ${
+            invertIconPosition ? "order-1 mr-3" : "order-2"
+          } ${iconClassName}`}
+        >
+          {icon}
+        </span>
+      );
+    }
+
+    return null;
+  };
 
   return (
     <label
@@ -101,14 +132,7 @@ export const InputField = ({
           } ${placeholderClassName}`}
           {...props}
         />
-        {icon && (
-          <Icon
-            icon={icon}
-            className={`block my-1 mx-3 w-max text-inherit ${
-              invertIconPosition ? "order-1" : "order-2"
-            } ${iconClassName}`}
-          />
-        )}
+        {renderIcon()}
       </div>
 
       {error && (
