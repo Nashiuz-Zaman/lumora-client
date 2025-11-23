@@ -2,6 +2,9 @@ import { TReturnReason, TReturnRequestStatus } from "@/constants";
 import { IOrder } from "./order";
 import { IPayment } from "./payment";
 
+// ---------------------------------------------------------
+// RETURN REQUEST MODEL
+// ---------------------------------------------------------
 export interface IReturnRequest<O = string, P = string> {
   _id?: string;
   order: O;
@@ -15,9 +18,12 @@ export interface IReturnRequest<O = string, P = string> {
   description: string;
   invoice: string;
   files?: string[];
+  status: TReturnRequestStatus;
   createdAt?: string;
   updatedAt?: string;
-  status: TReturnRequestStatus;
 }
 
+// ---------------------------------------------------------
+// POPULATED RETURN REQUEST
+// ---------------------------------------------------------
 export type TPopulatedReturnRequest = IReturnRequest<IOrder, IPayment>;

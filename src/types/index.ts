@@ -13,3 +13,4 @@ export * from "./payment";
 export * from "./coupon";
 export * from "./returnRequest";
 export * from "./analytics";
+export * from "./shared";

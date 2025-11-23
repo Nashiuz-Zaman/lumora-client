@@ -1,5 +1,9 @@
 import { IUser } from "./user";
 
+// ---------------------------------------------------------
+// CUSTOMER ADDRESS
+// Represents a customer's address (billing or shipping)
+// ---------------------------------------------------------
 export interface ICustomerAddress {
   address?: string;
   country?: string;
@@ -8,20 +12,34 @@ export interface ICustomerAddress {
   zipCode?: string;
 }
 
+// ---------------------------------------------------------
+// CUSTOMER MODEL
+// Links a user to their billing and shipping addresses
+// ---------------------------------------------------------
 export interface ICustomer {
   id?: string;
-  userId: string;
-  billingAddress?: ICustomerAddress;
-  shippingAddress?: ICustomerAddress;
+  userId: IUser["_id"];
+  billingAddress: ICustomerAddress;
+  shippingAddress: ICustomerAddress;
 }
 
+// ---------------------------------------------------------
+// CUSTOMER PROFILE
+// Full customer profile, including optional metadata
+// ---------------------------------------------------------
 export interface ICustomerProfile {
   name: IUser["name"];
   email: IUser["email"];
   phone: IUser["phone"];
-  image?: IUser["image"];
-  lastLoginAt?: IUser["lastLoginAt"];
-  createdAt?: IUser["createdAt"];
-  billingAddress?: ICustomerAddress;
-  shippingAddress?: ICustomerAddress;
+  billingAddress: ICustomer["billingAddress"];
+  shippingAddress: ICustomer["billingAddress"];
+  image: IUser["image"];
+  lastLoginAt: IUser["lastLoginAt"];
+  createdAt: IUser["createdAt"];
+}
+
+declare module "./user" {
+  interface IUserPopulated {
+    customerDetails?: ICustomer;
+  }
 }

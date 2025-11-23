@@ -1,14 +1,21 @@
-// product
+// ---------------------------------------------------------
+// IMPORTS
+// ---------------------------------------------------------
 import { IProduct } from "./product";
 
-// A product reference inside a collection
+// ---------------------------------------------------------
+// PRODUCT IN COLLECTION
+// Represents a product reference inside a collection
+// ---------------------------------------------------------
 export interface IProductInCollection<P = string> {
   product: P;
-  serial: number; 
+  serial: number;
 }
 
+// Populated version: product object instead of just ID
 export type TPopulatedProductInCollection = IProductInCollection<IProduct>;
 
+// Populated version with review statistics
 export type TPopulatedProductInCollectionWithReviewStats =
   TPopulatedProductInCollection & {
     reviewStats: {
@@ -17,7 +24,10 @@ export type TPopulatedProductInCollectionWithReviewStats =
     };
   };
 
-// collection
+// ---------------------------------------------------------
+// PRODUCT COLLECTION
+// Represents a collection of products
+// ---------------------------------------------------------
 export interface IProductCollection<T = IProductInCollection> {
   _id: string;
   title: string;
@@ -28,9 +38,14 @@ export interface IProductCollection<T = IProductInCollection> {
   updatedAt: string;
 }
 
+// Populated collection with full product objects
 export type TPopulatedProductCollection =
   IProductCollection<TPopulatedProductInCollection>;
 
+// ---------------------------------------------------------
+// PRODUCT COLLECTIONS BY PAGE
+// Groups collections by page, including product counts
+// ---------------------------------------------------------
 export interface IProductCollectionsByPage {
   _id: string;
   productCollections: {

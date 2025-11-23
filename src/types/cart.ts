@@ -1,36 +1,52 @@
 import { CartActions } from "@/constants";
 import { IProduct, IVariant } from "./product";
+import { ICoupon } from "./coupon";
+import { TCartTotalsShape } from "./shared";
 
+// ---------------------------------------------------------
+// CART ITEM (Generic)
+// ---------------------------------------------------------
 export interface ICartItem<P = string, V = string> {
   product: P;
   variant: V;
   quantity: number;
 }
 
-// unpopulated cart item:
+// ---------------------------------------------------------
+// UNPOPULATED CART ITEM (DB Stored)
+// ---------------------------------------------------------
 export type TDatabaseCartItem = ICartItem<string, string>;
 
-// Populated cart item:
+// ---------------------------------------------------------
+// POPULATED CART ITEM (Returned to client)
+// ---------------------------------------------------------
 export type TPopulatedCartItem = ICartItem<
   Partial<IProduct>,
   Partial<IVariant>
 >;
 
-export interface ICart<C> {
+// ---------------------------------------------------------
+// CART TOTALS (Shared total fields)
+// subtotal, total, tax, discount, shippingFee, etc.
+// ---------------------------------------------------------
+export type TCartTotals = Partial<TCartTotalsShape>;
+
+// ---------------------------------------------------------
+// MAIN CART MODEL
+// ---------------------------------------------------------
+export interface ICart<C = TDatabaseCartItem> extends TCartTotals {
   _id?: string;
   user: string | "guest";
   items: C[];
-  couponCode?: string;
-  discount?: number;
-  tax?: number;
-  shippingFee?: number;
+  couponCode?: ICoupon["code"];
   createdAt?: string;
   updatedAt?: string;
-  subtotal?: number;
   totalItemQty?: number;
-  total?: number;
 }
 
+// ---------------------------------------------------------
+// CART ACTION PAYLOAD
+// ---------------------------------------------------------
 export interface ICartAction {
   product: string;
   variant: string;
@@ -38,5 +54,7 @@ export interface ICartAction {
   quantity: number;
 }
 
-export type TDatabaseCart = ICart<TDatabaseCartItem>;
+// ---------------------------------------------------------
+// POPULATED CART MODEL
+// ---------------------------------------------------------
 export type TPopulatedCart = ICart<TPopulatedCartItem>;

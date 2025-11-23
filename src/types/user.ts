@@ -1,8 +1,9 @@
 import { TUserStatusValue } from "@/constants";
-import { ICustomer } from "./customer";
-import { IAdmin } from "./admin";
 import { IRole } from "./role";
 
+// ---------------------------------------------------------
+// USER MODEL
+// ---------------------------------------------------------
 export interface IUser {
   _id?: string;
   displayName?: string;
@@ -15,16 +16,15 @@ export interface IUser {
   status: TUserStatusValue;
 
   role: string | IRole;
-  customerProfile?: ICustomer;
-  adminProfile?: IAdmin;
 
   lastLoginAt?: string;
   createdAt?: string;
   updatedAt?: string;
 }
 
-export type TUserPopulated = IUser & {
-  customerProfile?: ICustomer;
-  adminProfile?: IAdmin;
+// ---------------------------------------------------------
+// POPULATED USER MODEL
+// ---------------------------------------------------------
+export interface IUserPopulated extends IUser {
   role: IRole;
-};
+}

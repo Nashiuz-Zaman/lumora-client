@@ -1,3 +1,5 @@
+import { TCouponStatus } from "@/constants";
+
 export interface ICoupon {
   _id?: string;
   code: string;
@@ -9,7 +11,7 @@ export interface ICoupon {
   usageLimit?: number;
   usedCount?: number;
   minimumOrderAmount?: number;
-  status: number;
+  status: TCouponStatus;
   createdAt?: string;
   updatedAt?: string;
 }

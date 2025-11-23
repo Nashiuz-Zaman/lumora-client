@@ -3,6 +3,9 @@ import { IUser } from "./user";
 import { IProduct } from "./product";
 import { IQueryMeta } from "./generic";
 
+// ---------------------------------------------------------
+// REVIEW MODEL
+// ---------------------------------------------------------
 export interface IReview {
   _id?: string;
   user: string | Partial<IUser>;
@@ -17,6 +20,9 @@ export interface IReview {
   updatedAt?: string;
 }
 
+// ---------------------------------------------------------
+// REVIEW STATS
+// ---------------------------------------------------------
 export interface IReviewStats {
   averageRating: number;
   totalReviews: number;
@@ -24,12 +30,18 @@ export interface IReviewStats {
   ratingPercentages: Record<number, number>;
 }
 
+// ---------------------------------------------------------
+// PRODUCT REVIEWS WITH STATS
+// ---------------------------------------------------------
 export interface IProductReviewsWithStats {
   stats: IReviewStats;
   reviews: IReview[];
   queryMeta: IQueryMeta;
 }
 
+// ---------------------------------------------------------
+// WRITE REVIEW INPUT
+// ---------------------------------------------------------
 export interface IWriteReviewInput {
   name: string;
   title: string;
