@@ -1,17 +1,17 @@
 import { useCallback } from "react";
 import { OrderStatus } from "@/constants";
-import { ICart, IOrder, TPopulatedCartItem } from "@/types";
+import {
+  ICart,
+  ICustomerInfoFormValues,
+  IOrder,
+  TPopulatedCartItem,
+} from "@/types";
 
 export const useOrderActions = () => {
   const createOrderFromCart = useCallback(
     (
       cart: ICart<TPopulatedCartItem>,
-      customerInfo: {
-        name: string;
-        email: string;
-        phone?: string;
-        deliveryAddress: string;
-      }
+      customerInfo: ICustomerInfoFormValues
     ): IOrder => {
       return {
         cartId: cart._id as string,
@@ -20,7 +20,8 @@ export const useOrderActions = () => {
         // backend will check if there is a customer by this email if there is user will be set to that person
         email: customerInfo.email,
         phone: customerInfo.phone,
-        deliveryAddress: customerInfo.deliveryAddress,
+        shippingAddress: customerInfo.shippingAddress,
+        billingAddress: customerInfo.shippingAddress,
         subtotal: cart.subtotal ?? 0,
         total: cart.total ?? 0,
         shippingFee: cart.shippingFee ?? 0,

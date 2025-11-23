@@ -8,23 +8,49 @@ import {
 } from "react-hook-form";
 import Link from "next/link";
 import { ButtonBtn, GoogleIcon, InputField } from "@/components/shared";
+import { IUser } from "@/types";
 
-export interface IAuthForm {
-  name?: string;
-  email: string;
+// =========================
+// TYPES
+// =========================
+
+interface IAuthFormBase {
+  email: IUser["email"];
   password: string;
-  confirmPassword?: string;
+  mode: "signup" | "login"; // discriminant
 }
+
+interface IAuthFormSignup extends IAuthFormBase {
+  mode: "signup";
+  name: NonNullable<IUser["name"]>;
+  confirmPassword: string;
+}
+
+interface IAuthFormLogin extends IAuthFormBase {
+  mode: "login";
+  name?: never;
+  confirmPassword?: never;
+}
+
+export type TAuthForm = IAuthFormSignup | IAuthFormLogin;
+
+// =========================
+// COMPONENT PROPS
+// =========================
 
 interface IAuthFormProps {
   mode: "signup" | "login";
   onSubmit: (
-    data: IAuthForm,
-    setError: UseFormSetError<IAuthForm>
+    data: TAuthForm,
+    setError: UseFormSetError<TAuthForm>
   ) => Promise<void>;
   onGoogleLogin?: () => void;
   isLoading?: boolean;
 }
+
+// =========================
+// COMPONENT
+// =========================
 
 export const AuthForm = ({
   mode,
@@ -32,7 +58,12 @@ export const AuthForm = ({
   onGoogleLogin,
   isLoading,
 }: IAuthFormProps) => {
-  const formInstance = useForm<IAuthForm>();
+  const formInstance = useForm<TAuthForm>({
+    defaultValues: {
+      mode,
+    } as TAuthForm,
+  });
+
   const {
     handleSubmit,
     register,
@@ -43,7 +74,7 @@ export const AuthForm = ({
 
   const passwordValue = watch("password");
 
-  const handleFormSubmit: SubmitHandler<IAuthForm> = async (data) => {
+  const handleFormSubmit: SubmitHandler<TAuthForm> = async (data) => {
     await onSubmit(data, setError);
   };
 
@@ -53,34 +84,43 @@ export const AuthForm = ({
         onSubmit={handleSubmit(handleFormSubmit)}
         className="w-full max-w-md space-y-6"
       >
+        {/* 🔥 Hidden discriminant field (required for narrowing) */}
+        <input type="hidden" value={mode} {...register("mode")} />
+
         <h2 className="text-3xl font-bold text-center">
           {mode === "signup" ? "Create an Account" : "Login"}
         </h2>
 
-        {/* Root-level error */}
         {errors.root?.message && (
           <p className="text-red-500 text-center mt-2">{errors.root.message}</p>
         )}
 
+        {/* Name (signup only) */}
         {mode === "signup" && (
           <InputField
             labelText="Name"
             placeholder="Enter your full name"
-            {...register("name", { required: "Name is required" })}
+            {...register("name", {
+              required: "Name is required",
+            })}
             error={errors.name?.message}
             inputClassName="rounded-md"
           />
         )}
 
+        {/* Email */}
         <InputField
           labelText="Email"
           type="email"
           placeholder="Enter your email"
-          {...register("email", { required: "Email is required" })}
+          {...register("email", {
+            required: "Email is required",
+          })}
           error={errors.email?.message}
           inputClassName="rounded-md"
         />
 
+        {/* Password */}
         <InputField
           passwordField={true}
           labelText="Password"
@@ -93,6 +133,7 @@ export const AuthForm = ({
           inputClassName="rounded-md"
         />
 
+        {/* Confirm Password (signup only) */}
         {mode === "signup" && (
           <InputField
             passwordField={true}
@@ -116,27 +157,25 @@ export const AuthForm = ({
           {mode === "signup" ? "Sign Up" : "Login"}
         </ButtonBtn>
 
-        {mode === "signup" && (
+        {/* Auth Links */}
+        {mode === "signup" ? (
           <p className="text-center text-sm text-neutral-500">
             Already have an account?{" "}
             <Link href="/auth/login" className="text-purple-600 font-medium">
               Login
             </Link>
           </p>
+        ) : (
+          <p className="text-center text-sm text-neutral-500">
+            Don’t have an account?{" "}
+            <Link href="/auth/signup" className="text-purple-600 font-medium">
+              Create one
+            </Link>
+          </p>
         )}
 
+        {/* Google OAuth (signup only) */}
         {mode === "login" && (
-          <>
-            <p className="text-center text-sm text-neutral-500">
-              Don’t have an account?{" "}
-              <Link href="/auth/signup" className="text-purple-600 font-medium">
-                Create one
-              </Link>
-            </p>
-          </>
-        )}
-
-        {mode === "signup" && (
           <>
             <div className="flex items-center justify-center gap-2 text-neutral-400">
               <span>or</span>
@@ -148,7 +187,7 @@ export const AuthForm = ({
               className="flex items-center justify-center gap-2 !rounded-full !w-full !whiteGrayClasses !font-medium"
             >
               <GoogleIcon />
-              Sign up with Google
+              continue with Google
             </ButtonBtn>
           </>
         )}

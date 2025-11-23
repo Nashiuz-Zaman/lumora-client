@@ -1,4 +1,4 @@
-export const SearchIcon = ({ className = "" }: { className: string }) => {
+export const SearchIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

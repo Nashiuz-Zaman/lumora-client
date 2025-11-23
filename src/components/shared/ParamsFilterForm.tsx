@@ -14,9 +14,7 @@ import { ButtonBtn, ButtonBtnTrans } from "./buttons";
 import { SortDropdown } from "./SortDropdown";
 import { useRefState } from "@/hooks";
 import { TSortOptions } from "@/types/generic";
-
-
-
+import { SearchIcon } from "./icons";
 
 export type TStatusOptions<K extends Record<string, any>> = {
   label: string;
@@ -88,6 +86,8 @@ export const ParamsFilterForm = <
       className={`px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
     >
       <InputField
+        icon={<SearchIcon />}
+        invertIconPosition
         onChange={handleSearchChange}
         value={params.search}
         placeholder={placeholder || `Search ${roleLabel}s`}

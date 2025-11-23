@@ -13,20 +13,22 @@ import {
 
 import useFirebaseMethods from "./useFirebaseMethods";
 import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
-import { IAuthForm } from "@/components/page-specific";
+import { TAuthForm } from "@/components/page-specific";
 import { UseFormSetError } from "react-hook-form";
+import { IUser } from "@/types";
 
 export interface IGoogleUser {
-  name: string | null;
-  email: string | null;
-  image: string | null;
+  name: IUser["name"];
+  email: IUser["email"];
+  image: IUser["image"];
 }
 
 export const useAuthMethods = () => {
   const [login, { isLoading: isLocalLoginLoading }] = useLocalLoginMutation();
   const [logoutTrigger, { isLoading: isLogoutLoading }] = useLogoutMutation();
 
-  const [signup, { isLoading: isSignupUserLoading }] = useSignupCustomerMutation();
+  const [signup, { isLoading: isSignupUserLoading }] =
+    useSignupCustomerMutation();
   const [socialLogin, { isLoading: isSocialLoginLoading }] =
     useSocialLoginMutation();
 
@@ -54,7 +56,7 @@ export const useAuthMethods = () => {
     {
       handleError: "function",
       onError: (_, args, message) => {
-        const setError = args?.setError as UseFormSetError<IAuthForm>;
+        const setError = args?.setError as UseFormSetError<TAuthForm>;
 
         setError("root", {
           type: "manual",
@@ -80,8 +82,6 @@ export const useAuthMethods = () => {
           message: res?.message,
         });
 
-        console.log(userData);
-
         router.push(
           `/${userData?.role.name === customer ? "customer" : "admin"}`
         );
@@ -90,7 +90,7 @@ export const useAuthMethods = () => {
     {
       handleError: "function",
       onError: (_, args, message) => {
-        const setError = args?.setError as UseFormSetError<IAuthForm>;
+        const setError = args?.setError as UseFormSetError<TAuthForm>;
 
         setError("root", {
           type: "manual",
@@ -105,9 +105,9 @@ export const useAuthMethods = () => {
 
     if (result.user) {
       const googleUser: IGoogleUser = {
-        name: result.user.displayName,
-        email: result.user.email,
-        image: result.user.photoURL,
+        name: result.user.displayName!,
+        email: result.user.email!,
+        image: result.user.photoURL!,
       };
 
       const res = await socialLogin(googleUser).unwrap();

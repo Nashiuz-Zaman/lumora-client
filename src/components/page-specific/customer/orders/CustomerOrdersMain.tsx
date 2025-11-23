@@ -1,11 +1,17 @@
 "use client";
 
-import { InnerContainer, LoadingSpinner, NoData } from "@/components/shared";
+import {
+  InnerContainer,
+  LoadingSpinner,
+  NoData,
+  Pagination,
+} from "@/components/shared";
 import { OrderCard } from "./OrderCard";
 import { PageSection } from "./PageSection";
-import { SearchBox } from "./SearchBox";
-import { StatusTabs } from "./StatusTabs";
+
 import { useAuthState, useOrderQueries } from "@/hooks";
+import { CustomerDashboardFilterForm } from "../shared/CustomerDashboardFilterForm";
+import { IOrder, TSortOptions } from "@/types";
 
 const STATUSES = [
   "All",
@@ -33,21 +39,26 @@ export const CustomerOrdersMain = () => {
     user: user?._id,
   });
 
-  // console.log(orders, queryMeta);
+  const SORT_OPTIONS = Object.freeze([
+    { label: "Placed On", value: "createdAt" },
+    { label: "Updated", value: "updatedAt" },
+    { label: "Order Total", value: "total" },
+  ] as const satisfies TSortOptions<IOrder>);
 
   return (
     <InnerContainer className="h-full">
       <div className="w-full h-full px-4 py-6 flex flex-col">
-        {/* Search */}
-        <PageSection title="Search Orders">
-          <SearchBox />
-        </PageSection>
-
-        {/* Status Tabs */}
-        <PageSection title="Order Status">
-          {/* TODO: add tab API logic later */}
-          <StatusTabs statuses={STATUSES} />
-        </PageSection>
+        <CustomerDashboardFilterForm
+          searchTitle="Search Orders"
+          statusTitle="Order Status"
+          formParams={formParams}
+          setFormParams={setFormParams}
+          onSubmit={handleSubmit}
+          sortOptions={[...SORT_OPTIONS]}
+          statusOptions={STATUSES}
+          placeholder="Search Orders by Order ID"
+          roleLabel="Order"
+        />
 
         {/* Orders List */}
         <PageSection title="Your Orders" className="relative grow">
@@ -65,6 +76,16 @@ export const CustomerOrdersMain = () => {
             </div>
           )}
         </PageSection>
+
+        {queryMeta?.totalPages && (
+          <div className="mt-8">
+            <Pagination
+              totalPages={queryMeta?.totalPages}
+              currentPage={queryMeta?.page}
+              setCurrentPage={changePage}
+            />
+          </div>
+        )}
       </div>
     </InnerContainer>
   );

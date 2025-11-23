@@ -5,10 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useClickOutside } from "@/hooks";
-import { TUserPopulated } from "@/types";
+import { IUserPopulated } from "@/types";
 
 type TUserMenuWithAvatarProps = {
-  userData: Partial<TUserPopulated>;
+  userData: Partial<IUserPopulated>;
   logoutFunction?: () => void;
   className?: string;
 };

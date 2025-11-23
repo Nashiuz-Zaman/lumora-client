@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation";
 import { useCartState, useOrderActions } from "@/hooks";
 
 // Components
-import { ICustomerInfoFormValues, CustomerInfoForm } from "./CustomerInfoForm";
+import { CustomerInfoForm } from "./CustomerInfoForm";
 
 // Redux
 import { usePlaceOrderMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
@@ -18,6 +18,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 
 // Types
 import { UseFormSetError } from "react-hook-form";
+import { ICustomerInfoFormValues } from "@/types";
 
 export const CheckoutPageMain = () => {
   const { cart, isCartLoading } = useCartState();
@@ -35,19 +36,23 @@ export const CheckoutPageMain = () => {
   const handlePlaceOrder = catchAsyncGeneral(
     async (args) => {
       if (!args || !cart) return;
+
       const data = args.data as ICustomerInfoFormValues;
       setIsSubmitting(true);
 
-      // Create order payload using your hook
+      // Build order payload
       const orderPayload = createOrderFromCart(cart, data);
 
-      // Send to API via RTK mutation
+      // Send to backend
       const res = await placeOrder(orderPayload).unwrap();
 
       const paymentUrl = res?.data?.paymentUrl;
 
       if (!paymentUrl)
-        return showToast({ message: "Something went wrong", type: "error" });
+        return showToast({
+          message: "Something went wrong",
+          type: "error",
+        });
 
       window.location.href = paymentUrl;
     },
@@ -57,7 +62,7 @@ export const CheckoutPageMain = () => {
         if (!args) return;
         const setError =
           args.setError as UseFormSetError<ICustomerInfoFormValues>;
-        setError("root", { message: message });
+        setError("root", { message });
       },
       onFinally() {
         setIsSubmitting(false);

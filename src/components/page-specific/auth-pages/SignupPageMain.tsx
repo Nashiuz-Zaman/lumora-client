@@ -1,6 +1,6 @@
 "use client";
 
-import { AuthForm, IAuthForm } from "@/components/page-specific";
+import { AuthForm, TAuthForm } from "@/components/page-specific";
 import { useAuthMethods } from "@/hooks/useAuthMethods"; // adjust path if needed
 import { UseFormSetError } from "react-hook-form";
 
@@ -13,8 +13,8 @@ export const SignupPageMain = () => {
   } = useAuthMethods();
 
   const handleSignup = async (
-    data: IAuthForm,
-    setError: UseFormSetError<IAuthForm>
+    data: TAuthForm,
+    setError: UseFormSetError<TAuthForm>
   ) => {
     await signupUser({
       data,

@@ -10,12 +10,12 @@ import {
 } from "react";
 import { UserRoles } from "@/constants";
 import { useGetCurrentUserQuery } from "@/libs/redux/apiSlices/auth/authApiSlice";
-import { TUserPopulated } from "@/types";
+import { IUserPopulated } from "@/types";
 
 export interface IAuthStateContext {
-  user: Partial<TUserPopulated> | null;
+  user: Partial<IUserPopulated> | null;
   isLoading: boolean;
-  setUser: Dispatch<SetStateAction<Partial<TUserPopulated> | null>>;
+  setUser: Dispatch<SetStateAction<Partial<IUserPopulated> | null>>;
   setIsLoading: Dispatch<SetStateAction<boolean>>;
   role?: string;
   isAdmin: boolean;
@@ -27,7 +27,7 @@ export interface IAuthStateContext {
 export const AuthStateContext = createContext<IAuthStateContext | null>(null);
 
 const AuthStateProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<Partial<TUserPopulated> | null>(null);
+  const [user, setUser] = useState<Partial<IUserPopulated> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasFetched, setHasFetched] = useState(false);
 

@@ -7,15 +7,7 @@ import {
   ButtonBtn,
   ErrorMessage,
 } from "@/components/shared";
-
-export interface ICustomerInfoFormValues {
-  name: string;
-  email: string;
-  phone: string;
-  city: string;
-  zipCode: string;
-  deliveryAddress: string;
-}
+import { ICustomerInfoFormValues } from "@/types";
 
 export interface ICustomerInfoFormProps {
   defaultValues?: Partial<ICustomerInfoFormValues>;
@@ -55,6 +47,7 @@ export const CustomerInfoForm = ({
       )}
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-7 mb-10">
+        {/* Customer name */}
         <InputField
           {...register("name", { required: "Name is required" })}
           labelContainerClassName="mb-2"
@@ -66,7 +59,7 @@ export const CustomerInfoForm = ({
           placeholder="Your Name"
           error={errors.name?.message}
         />
-
+        {/* Email */}
         <InputField
           {...register("email", { required: "Email is required" })}
           labelContainerClassName="mb-2"
@@ -77,7 +70,7 @@ export const CustomerInfoForm = ({
           placeholder="Your Email"
           error={errors.email?.message}
         />
-
+        {/* Phone */}
         <InputField
           {...register("phone", { required: "Phone is required" })}
           labelContainerClassName="mb-2"
@@ -88,41 +81,41 @@ export const CustomerInfoForm = ({
           placeholder="Your Phone"
           error={errors.phone?.message}
         />
-
+        {/* Delivery Address City */}
         <InputField
-          {...register("city")}
+          {...register("shippingAddress.city")}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
           inputClassName="!rounded-md"
-          name="city"
+          name="shippingAddress.city"
           labelText="City"
           placeholder="Your City"
-          error={errors.city?.message}
+          error={errors.shippingAddress?.city?.message}
         />
-
+        {/* Delivery Address Zip */}
         <InputField
-          {...register("zipCode")}
+          {...register("shippingAddress.zipCode")}
           labelContainerClassName="mb-2"
           labelTextClassName="font-semibold"
           inputClassName="!rounded-md"
-          name="zipCode"
+          name="shippingAddress.zipCode"
           labelText="Postal Code"
           placeholder="Your Postal Code"
-          error={errors.zipCode?.message}
+          error={errors.shippingAddress?.zipCode?.message}
         />
-
+        {/* Full Address Text */}dd
         <InputField
-          {...register("deliveryAddress", {
+          {...register("shippingAddress.address", {
             required: "Delivery address is required",
           })}
           className="sm:col-span-2"
           labelContainerClassName="mb-2"
           inputClassName="!rounded-md"
           labelTextClassName="font-semibold"
-          name="deliveryAddress"
+          name="shippingAddress.address"
           labelText="Delivery Address"
           placeholder="Your Delivery Address"
-          error={errors.deliveryAddress?.message}
+          error={errors.shippingAddress?.address?.message}
         />
       </div>
 

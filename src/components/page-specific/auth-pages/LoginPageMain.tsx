@@ -1,15 +1,15 @@
 "use client";
 
-import { AuthForm, IAuthForm } from "@/components/page-specific";
-import { useAuthMethods } from "@/hooks/useAuthMethods"; 
+import { AuthForm, TAuthForm } from "@/components/page-specific";
+import { useAuthMethods } from "@/hooks/useAuthMethods";
 import { UseFormSetError } from "react-hook-form";
 
 export const LoginPageMain = () => {
   const { localLogin, isLocalLoginLoading } = useAuthMethods();
 
   const handleLogin = async (
-    data: IAuthForm,
-    setError: UseFormSetError<IAuthForm>
+    data: TAuthForm,
+    setError: UseFormSetError<TAuthForm>
   ) => {
     await localLogin({
       data,
