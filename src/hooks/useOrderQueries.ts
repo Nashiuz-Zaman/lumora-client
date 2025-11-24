@@ -9,6 +9,7 @@ import {
   getQueryParamsFromSearchParams,
   cleanObject,
   buildUrlWithParams,
+  cleanStatusParam,
 } from "@/utils";
 import isEqual from "lodash/isEqual";
 
@@ -25,17 +26,19 @@ import {
 import { TOrderStatusValue } from "@/constants";
 import { IOrder, IQueryMeta } from "@/types";
 
+type TStatusValue = TOrderStatusValue | "all";
+
 export interface IOrderQueriesParams {
   page: number;
   sort: string;
   search: string;
-  status?: TOrderStatusValue;
+  status?: TStatusValue;
   isArchived: boolean;
   user?: string;
 }
 
 export interface IUseOrderQueriesArgs {
-  orderStatus?: TOrderStatusValue;
+  orderStatus?: TStatusValue;
   isArchived?: boolean;
   isPrivate?: boolean;
   limit?: number;
@@ -63,7 +66,12 @@ export const useOrderQueries = ({
   // Memoize raw query params
   const rawQueryParams = useMemo(
     () =>
-      getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
+      getQueryParamsFromSearchParams(searchParams, [
+        "page",
+        "search",
+        "sort",
+        "status",
+      ]),
     [searchParams]
   );
 
@@ -73,11 +81,13 @@ export const useOrderQueries = ({
       page: Number(rawQueryParams.page) || 1,
       sort: (rawQueryParams.sort as string) || "-" + OrderSortOptions[2].value,
       search: (rawQueryParams.search as string) || "",
-      status: orderStatus,
+      status:
+        orderStatus ??
+        (cleanStatusParam(rawQueryParams.status) as TStatusValue),
       isArchived,
       user,
     }),
-    [rawQueryParams, orderStatus, isArchived, user]
+    [rawQueryParams, isArchived, user, orderStatus]
   );
 
   // Controlled form params

@@ -1,6 +1,5 @@
 "use client";
 import { UserRoles } from "@/constants";
-
 import { showToast, catchAsyncGeneral } from "@/utils";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "./useAuthState";
@@ -10,7 +9,6 @@ import {
   useSocialLoginMutation,
   useLogoutMutation,
 } from "@/libs/redux/apiSlices/auth/authApiSlice";
-
 import useFirebaseMethods from "./useFirebaseMethods";
 import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
 import { TAuthForm } from "@/components/page-specific";

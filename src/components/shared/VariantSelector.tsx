@@ -7,7 +7,7 @@ import {
   getVariantOptionValues,
   findMatchedVariant,
   buildVariantLabel,
-} from "@/utils/variantUtils";
+} from "@/utils/productVariantUtils";
 
 export const VariantSelector = ({
   variants,

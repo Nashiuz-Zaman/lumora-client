@@ -5,7 +5,6 @@ import {
   getOrderStatusLabel,
   getOrderStatusTextColor,
 } from "@/utils";
-import { useRouter } from "next/navigation";
 
 import {
   ButtonBtn,
@@ -23,20 +22,11 @@ interface IOrderCardProps {
 }
 
 export const OrderCard = ({ order }: IOrderCardProps) => {
-  const router = useRouter();
-
-  const goToOrderDetails = () => {
-    router.push(`/customer/my-orders/${order.orderId}`);
-  };
-
   return (
-    <div
-      onClick={goToOrderDetails}
-      className="bg-white border cursor-pointer border-neutral-100 rounded-lg shadow-md p-6"
-    >
+    <div className="bg-white border border-neutral-100 rounded-lg shadow-md p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
-        <div>
+        <div onClick={(e) => e.stopPropagation()}>
           <h2 className="text-xl font-semibold text-neutral-800">
             Order #{order.orderId}
           </h2>

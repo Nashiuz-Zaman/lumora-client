@@ -11,26 +11,28 @@ import { InputField } from "@/components/shared";
 import { ButtonBtn } from "@/components/shared/buttons";
 import { SortDropdown } from "@/components/shared/SortDropdown";
 import { SearchIcon } from "@/components/shared/icons";
-import { StatusTabs } from "../orders/StatusTabs";
+import { StatusTabs, TStatusOptions } from "../orders/StatusTabs";
 import { TSortOptions } from "@/types/generic";
 
 export interface ICustomerDashboardFilterFormProps<
-  Params extends Record<string, any>
+  Params extends Record<string, any>,
+  Resource extends Record<string, any>
 > {
   formParams: Params;
   setFormParams: Dispatch<SetStateAction<Params>>;
   onSubmit: (e: FormEvent<HTMLFormElement>) => void;
   sortOptions: TSortOptions<any>;
-  statusOptions?: string[];
+  statusOptions?: TStatusOptions<Resource>;
   placeholder?: string;
-  roleLabel?: string; // optional label for placeholder
+  roleLabel?: string;
   className?: string;
   searchTitle?: string;
   statusTitle?: string;
 }
 
 export const CustomerDashboardFilterForm = <
-  Params extends Record<string, any>
+  Params extends Record<string, any>,
+  StatusResource extends Record<string, any>
 >({
   formParams,
   setFormParams,
@@ -42,7 +44,7 @@ export const CustomerDashboardFilterForm = <
   className = "",
   searchTitle = "Search",
   statusTitle = "Status",
-}: ICustomerDashboardFilterFormProps<Params>) => {
+}: ICustomerDashboardFilterFormProps<Params, StatusResource>) => {
   // Search input change
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormParams((prev) => ({ ...prev, search: e.target.value }));
@@ -84,9 +86,9 @@ export const CustomerDashboardFilterForm = <
               {statusTitle}
             </h2>
             <div className="flex items-center justify-center flex-wrap gap-5 xs:justify-start">
-              <StatusTabs
+              <StatusTabs<StatusResource>
                 statuses={statusOptions}
-                activeStatus={formParams.status || "All"}
+                activeStatus={formParams.status}
                 onStatusChange={handleStatusChange}
               />
             </div>

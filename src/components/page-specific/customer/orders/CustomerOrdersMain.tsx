@@ -9,21 +9,26 @@ import {
 import { OrderCard } from "./OrderCard";
 import { PageSection } from "./PageSection";
 
-import { useAuthState, useOrderQueries } from "@/hooks";
+import { useOrderQueries } from "@/hooks";
 import { CustomerDashboardFilterForm } from "../shared/CustomerDashboardFilterForm";
 import { IOrder, TSortOptions } from "@/types";
+import { OrderStatus } from "@/constants";
 
 const STATUSES = [
-  "All",
-  "Active",
-  "Shipped",
-  "Delivered",
-  "Cancelled",
-  "Returned",
+  { label: "All", value: "all" }, // special UI "all"
+  ...Object.entries(OrderStatus).map(([label, value]) => ({
+    label,
+    value,
+  })),
 ];
 
+const SORT_OPTIONS = Object.freeze([
+  { label: "Placed On", value: "createdAt" },
+  { label: "Updated", value: "updatedAt" },
+  { label: "Order Total", value: "total" },
+] as const satisfies TSortOptions<IOrder>);
+
 export const CustomerOrdersMain = () => {
-  const { user } = useAuthState();
   const {
     orders,
     queryMeta,
@@ -36,14 +41,7 @@ export const CustomerOrdersMain = () => {
   } = useOrderQueries({
     isPrivate: false,
     limit: 5,
-    user: user?._id,
   });
-
-  const SORT_OPTIONS = Object.freeze([
-    { label: "Placed On", value: "createdAt" },
-    { label: "Updated", value: "updatedAt" },
-    { label: "Order Total", value: "total" },
-  ] as const satisfies TSortOptions<IOrder>);
 
   return (
     <InnerContainer className="h-full">

@@ -21,7 +21,7 @@ import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 import { useEffect, useRef, useState } from "react";
 
 import { VariantSelector } from "@/components/shared";
-import { IVariant } from "@/utils/variantUtils";
+import { IVariant } from "@/utils/productVariantUtils";
 import { QuantitySelector } from "@/components/shared/QuantitySelector";
 import { ICartAction } from "@/types";
 import { useCartActions } from "@/hooks";
