@@ -1,6 +1,7 @@
 import {
   IApiResponse,
   ICancelOrdersAdminArgs,
+  ICancelOrdersCustomerArgs,
   IMarkOrderShippedArgs,
   IOrder,
   TQueryDataWithQueryMeta,
@@ -82,9 +83,20 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    cancelOrders: builder.mutation<IApiResponse, ICancelOrdersAdminArgs>({
+    cancelOrdersAdmin: builder.mutation<IApiResponse, ICancelOrdersAdminArgs>({
       query: (data) => ({
-        url: `/orders/cancel`,
+        url: `/orders/admin/cancel`,
+        method: "PATCH",
+        data,
+      }),
+    }),
+
+    cancelOrdersCustomer: builder.mutation<
+      IApiResponse,
+      ICancelOrdersCustomerArgs
+    >({
+      query: (data) => ({
+        url: `/orders/customer/cancel`,
         method: "PATCH",
         data,
       }),
@@ -122,7 +134,8 @@ export const {
   useGetCustomerOrderStatsQuery,
   useGetOrdersPrivateQuery,
   useMarkOrderShippedMutation,
-  useCancelOrdersMutation,
+  useCancelOrdersAdminMutation,
+  useCancelOrdersCustomerMutation,
   useArchiveOrdersMutation,
   useMarkOrdersDeliveredMutation,
   useTrackOrderQuery,

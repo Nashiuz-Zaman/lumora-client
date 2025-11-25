@@ -6,10 +6,16 @@ interface IPageSectionProps {
   className?: string;
 }
 
-export const PageSection = ({ title, children, className = "" }: IPageSectionProps) => {
+export const PageSection = ({
+  title,
+  children,
+  className = "",
+}: IPageSectionProps) => {
   return (
     <section className={`mb-8 ${className}`}>
-      <h2 className="text-xl font-semibold text-neutral-800 mb-3">{title}</h2>
+      <h2 className="text-xl font-semibold text-neutral-800 mb-7 border-b border-neutral-200 pb-4">
+        {title}
+      </h2>
       {children}
     </section>
   );

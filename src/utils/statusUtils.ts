@@ -4,13 +4,33 @@ import { ProductStatus } from "@/constants/product";
 import { ReturnRequestStatus } from "@/constants/returnRequest";
 import { ReviewStatus } from "@/constants/review";
 
-// --- Utility to clean a query param for status in filter forms ---
-export const cleanStatusParam = (statusParam: unknown): number | "all" => {
-  if (statusParam === "all") return "all";
+//////////////////////////////////////////////////////////////
+// Utility to clean a query param for status in filter forms
+//////////////////////////////////////////////////////////////
+export const cleanStatusParam = (
+  statusParam: unknown,
+  allowedParams?: number[]
+): number | "all" => {
+  // Boolean → all
+  if (typeof statusParam === "boolean") return "all";
 
-  const num = Number(statusParam);
+  // Number input
+  if (typeof statusParam === "number") {
+    return allowedParams?.includes(statusParam) ? statusParam : "all";
+  }
 
-  return Number.isFinite(num) ? num : "all";
+  // String input
+  if (typeof statusParam === "string") {
+    const trimmed = statusParam.trim();
+    if (trimmed === "") return "all";
+
+    const num = Number(trimmed);
+
+    return Number.isFinite(num) && allowedParams?.includes(num) ? num : "all";
+  }
+
+  // Everything else → all
+  return "all";
 };
 
 // --- Coupon Status ---

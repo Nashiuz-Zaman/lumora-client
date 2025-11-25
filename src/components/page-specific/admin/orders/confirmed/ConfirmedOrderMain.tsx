@@ -42,7 +42,7 @@ import { ICancelOrdersAdminArgs, IMarkOrderShippedArgs, IOrder } from "@/types";
 
 // Redux / API
 import {
-  useCancelOrdersMutation,
+  useCancelOrdersAdminMutation,
   useMarkOrderShippedMutation,
 } from "@/libs/redux/apiSlices/orders/orderApiSlice";
 
@@ -121,7 +121,7 @@ const ConfirmedOrdersMain = () => {
     closeModal: closeCancelModal,
   } = useModal();
 
-  const [cancelOrders, { isLoading: isCancelling }] = useCancelOrdersMutation();
+  const [cancelOrders, { isLoading: isCancelling }] = useCancelOrdersAdminMutation();
 
   const handleAdminCancel = catchAsyncGeneral(async (args) => {
     const e = args?.e as React.FormEvent<HTMLFormElement>;
@@ -209,7 +209,7 @@ const ConfirmedOrdersMain = () => {
             />
           </div>
         )}
-      </div>
+      </div> 
 
       {/* Shipping Modal */}
       <ShippingModal

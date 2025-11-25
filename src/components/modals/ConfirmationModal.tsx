@@ -1,5 +1,6 @@
 "use client";
 
+import { ButtonBtn } from "../shared";
 import { BaseModal } from "./BaseModal";
 
 interface IConfirmationModalProps {
@@ -8,6 +9,7 @@ interface IConfirmationModalProps {
   onConfirm: () => void;
   onCancel: () => void;
   isAnimated?: boolean;
+  isLoading?: boolean;
 }
 
 export const ConfirmationModal = ({
@@ -16,6 +18,7 @@ export const ConfirmationModal = ({
   onConfirm,
   onCancel,
   isAnimated,
+  isLoading = false,
 }: IConfirmationModalProps) => {
   return (
     <BaseModal
@@ -34,12 +37,14 @@ export const ConfirmationModal = ({
         >
           No
         </button>
-        <button
+
+        <ButtonBtn
+          isLoading={isLoading}
+          className="!dangerClasses !px-4 !py-2 !rounded-md"
           onClick={onConfirm}
-          className="px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition"
         >
           Yes
-        </button>
+        </ButtonBtn>
       </div>
     </BaseModal>
   );

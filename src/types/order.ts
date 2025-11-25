@@ -71,6 +71,13 @@ export interface ICancelOrdersAdminArgs {
 }
 
 // ---------------------------------------------------------
+// CANCEL ORDERS (Customer)
+// ---------------------------------------------------------
+export interface ICancelOrdersCustomerArgs {
+  _ids: NonNullable<IOrder["_id"]>[];
+}
+
+// ---------------------------------------------------------
 // TRACK ORDER RESPONSE
 // ---------------------------------------------------------
 export type TTrackOrderData = IOrder & { billingAddress: string };

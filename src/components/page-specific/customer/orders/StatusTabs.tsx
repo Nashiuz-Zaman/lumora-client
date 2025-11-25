@@ -17,7 +17,7 @@ export const StatusTabs = <K extends Record<string, any>>({
   onStatusChange,
 }: IStatusTabsProps<K>) => {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto pb-1">
+    <div className="flex items-center gap-2 overflow-x-auto">
       {statuses.map(({ label, value }) => {
         const isActive = activeStatus === value;
 

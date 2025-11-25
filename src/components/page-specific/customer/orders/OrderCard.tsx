@@ -19,9 +19,10 @@ import { OrderItemCard } from "./OrderItemCard";
 
 interface IOrderCardProps {
   order: IOrder;
+  onClick: (_id: string) => void;
 }
 
-export const OrderCard = ({ order }: IOrderCardProps) => {
+export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
   return (
     <div className="bg-white border border-neutral-100 rounded-lg shadow-md p-6">
       {/* Header */}
@@ -124,7 +125,10 @@ export const OrderCard = ({ order }: IOrderCardProps) => {
           </LinkBtn>
 
           {order?.status < OrderStatus.Shipped && (
-            <ButtonBtn className="dangerClasses !rounded-full !px-4 !py-2">
+            <ButtonBtn
+              onClick={() => onClick(order._id as string)}
+              className="dangerClasses !rounded-full !px-4 !py-2"
+            >
               <WarningIcon /> Cancel
             </ButtonBtn>
           )}

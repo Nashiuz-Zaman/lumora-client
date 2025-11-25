@@ -65,9 +65,11 @@ export const CustomerDashboardFilterForm = <
 
   return (
     <form onSubmit={onSubmit} className={`mb-12 ${className}`}>
+      {/* heading */}
       <h2 className="text-xl font-semibold text-neutral-800 mb-3">
         {searchTitle}
       </h2>
+
       <InputField
         icon={<SearchIcon />}
         invertIconPosition
@@ -78,31 +80,29 @@ export const CustomerDashboardFilterForm = <
         className="w-full lg:!max-w-[40%] mb-8"
       />
 
-      <div className="flex flex-col xs:flex-row items-end w-full gap-4 ">
+      <div className="flex flex-col xs:flex-row flex-wrap items-end w-full">
         {/* Status Tabs */}
+
         {statusOptions.length > 0 && (
-          <div>
-            <h2 className="text-xl font-semibold text-neutral-800 mb-3">
-              {statusTitle}
-            </h2>
-            <div className="flex items-center justify-center flex-wrap gap-5 xs:justify-start">
-              <StatusTabs<StatusResource>
-                statuses={statusOptions}
-                activeStatus={formParams.status}
-                onStatusChange={handleStatusChange}
-              />
-            </div>
-          </div>
+          <h2 className="w-full text-xl font-semibold text-neutral-800 mb-4">
+            {statusTitle}
+          </h2>
         )}
 
         {/* Sort + Search button */}
-        <div className="flex items-center gap-4 justify-center xs:ml-6 xl:ml-10">
+        <div className="flex items-center gap-4 justify-center">
+          <StatusTabs<StatusResource>
+            statuses={statusOptions}
+            activeStatus={formParams.status}
+            onStatusChange={handleStatusChange}
+          />
+
           <SortDropdown
             buttonLabel="Sort"
             selected={String(formParams.sort || "")}
             options={sortOptions}
             onUpdate={handleSortChange}
-            buttonClassName="!systemClasses !px-3 !py-2"
+            buttonClassName="!systemClasses !px-3 !py-2 xs:ml-6 xl:ml-10"
             className="ml-auto"
           />
 

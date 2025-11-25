@@ -14,7 +14,7 @@ import {
 import isEqual from "lodash/isEqual";
 
 // Constants
-import { OrderSortOptions } from "@/constants/order";
+import { OrderSortOptions, OrderStatus } from "@/constants/order";
 
 // API Hooks
 import {
@@ -26,7 +26,7 @@ import {
 import { TOrderStatusValue } from "@/constants";
 import { IOrder, IQueryMeta } from "@/types";
 
-type TStatusValue = TOrderStatusValue | "all";
+export type TStatusValue = TOrderStatusValue | "all";
 
 export interface IOrderQueriesParams {
   page: number;
@@ -83,7 +83,10 @@ export const useOrderQueries = ({
       search: (rawQueryParams.search as string) || "",
       status:
         orderStatus ??
-        (cleanStatusParam(rawQueryParams.status) as TStatusValue),
+        (cleanStatusParam(
+          rawQueryParams.status,
+          Object.values(OrderStatus)
+        ) as TStatusValue),
       isArchived,
       user,
     }),
