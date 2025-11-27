@@ -2,7 +2,7 @@
 
 import { GridCard, IGridCardImage, LinkBtnTrans } from "@/components/shared";
 
-export type TCategoryCardProps = {
+export interface IMegaMenuCategoryCard {
   heading: string;
   linkText: string;
   linkUrl: string;
@@ -10,13 +10,13 @@ export type TCategoryCardProps = {
   className?: string;
 };
 
-export const CategoryCard = ({
+export const MegaMenuCategoryCard = ({
   heading,
   linkText,
   linkUrl,
   images,
   className = "",
-}: TCategoryCardProps) => {
+}: IMegaMenuCategoryCard) => {
   return (
     <div className={`bg-white p-5 pb-4 shadow-xs ${className}`}>
       {/* Top Heading */}

@@ -7,6 +7,7 @@ export interface ICategory {
   title: string;
   slug: string;
   parentCategory?: string | null;
+  categoryImages?: string[];
   createdAt?: string;
   updatedAt?: string;
 }

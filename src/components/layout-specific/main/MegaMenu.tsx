@@ -3,12 +3,13 @@
 // Types
 import { ICategoryTreeItem, TProductWithMinimalReviewStats } from "@/types";
 
-// Static Data
-import { cardsData } from "@/static-data/productCategoryCards";
-
 // Components - Shared
-import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
-import { ButtonBtn, ButtonBtnTrans, InnerContainer } from "@/components/shared";
+import {
+  ButtonBtn,
+  ButtonBtnTrans,
+  InnerContainer,
+  GridCard,
+} from "@/components/shared";
 
 // Components - Local
 import { FeaturedProductCard } from "./FeaturedProductCard";
@@ -29,6 +30,8 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
+  console.log(categories);
+
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -41,15 +44,6 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
         <div className="flex items-center justify-center gap-6 relative">
           {categories.map(
             ({ topCategory, subCategories, featuredProducts = [] }) => {
-              const cardData = cardsData.find((c) => c.heading === topCategory.title);
-
-              const images: IGridCardImage[] = cardData
-                ? cardData?.images?.map((img) => ({
-                    src: img?.src,
-                    alt: img?.alt,
-                  }))
-                : [];
-
               return (
                 <div key={topCategory._id} className="group">
                   <p className="cursor-pointer transition-colors duration-200 hover:text-primary font-medium text-xs 2xl:text-sm 3xl:text-base py-3 2xl:py-4">
@@ -61,7 +55,15 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                       {/* Left column: Grid card */}
                       <div className="bg-neutral-100 rounded-lg p-6 flex items-center justify-center">
                         <div className="w-[90%]">
-                          <GridCard images={images} className="!w-full" />
+                          <GridCard
+                            images={
+                              topCategory.categoryImages?.map((el) => ({
+                                src: el,
+                                alt: "Product category image",
+                              })) || []
+                            }
+                            className="!w-full"
+                          />
 
                           <ButtonBtnTrans
                             onClick={() => {

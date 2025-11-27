@@ -20,3 +20,4 @@ export * from "./csvUtils";
 export * from "./getHeight";
 export * from "./uploadFileWithSignedUrls";
 export * from "./generateChartTitle";
+export * from "./viewDetailedLog";
