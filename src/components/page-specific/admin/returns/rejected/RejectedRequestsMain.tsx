@@ -13,7 +13,7 @@ import { ConfirmationModal } from "@/components/modals";
 import { ReturnsTopParamsForm } from "../shared/ReturnsTopParamsForm";
 
 // Providers
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
 import {

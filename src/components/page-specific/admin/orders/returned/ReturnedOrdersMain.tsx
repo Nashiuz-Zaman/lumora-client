@@ -10,7 +10,7 @@ import {
 } from "@/components/shared";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import { ConfirmationModal } from "@/components/modals";
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 import { ReturnedOrderRow } from "./ReturnedOrderRow";
 
 import {

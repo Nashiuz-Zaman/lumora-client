@@ -11,7 +11,7 @@ import { PaymentsTopParamsForm } from "../shared/PaymentsTopParamsForm";
 import { PaymentRow } from "./PaymentRow";
 
 // Providers
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
 import {

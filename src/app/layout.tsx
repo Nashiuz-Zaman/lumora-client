@@ -1,17 +1,44 @@
+// ---------------------------------------------------------
+// GLOBAL STYLES
+// ---------------------------------------------------------
 import "./globals.css";
+
+// ---------------------------------------------------------
+// GLOBAL FONTS
+// ---------------------------------------------------------
 import { poppins } from "./fonts";
 
+// ---------------------------------------------------------
+// UI LIBRARIES
+// ---------------------------------------------------------
 import { ToastContainer, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import { ReduxProvider } from "@/providers";
+// ---------------------------------------------------------
+// PROVIDERS
+// ---------------------------------------------------------
+import {
+  ReduxProvider,
+  AuthStateProvider,
+  CartStateProvider,
+  RefsProvider,
+} from "@/providers";
+
+// ---------------------------------------------------------
+// COMPONENTS
+// ---------------------------------------------------------
 import { Backdrop } from "@/components/shared";
 import { DemoNoticeModal, ProductQuickViewModal } from "@/components/modals";
-import AuthStateProvider from "@/providers/AuthStateProvider";
-import CartStateProvider from "@/providers/CartStateProvider";
+
+// ---------------------------------------------------------
+// SERVER / DATABASE
+// ---------------------------------------------------------
 import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
+
+// ---------------------------------------------------------
+// TYPES
+// ---------------------------------------------------------
 import { Metadata } from "next";
-import RefsProvider from "@/providers/RefProvider";
 
 export const metadata: Metadata = {
   title: "Lumora | Products from top brands all in one place for you",

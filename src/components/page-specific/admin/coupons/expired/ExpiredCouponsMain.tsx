@@ -14,7 +14,7 @@ import { ExpiredCouponRow } from "./ExpiredCouponRow";
 import { ConfirmationModal } from "@/components/modals";
 
 // Providers
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
 import {

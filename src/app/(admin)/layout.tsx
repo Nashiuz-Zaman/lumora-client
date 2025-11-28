@@ -1,6 +1,6 @@
 import { AdminLayoutMain } from "@/components/layout-specific/admin";
 import { UserRoles } from "@/constants";
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import { ProtectedRouteProvider } from "@/providers";
 import { Suspense } from "react";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {

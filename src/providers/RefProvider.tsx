@@ -23,7 +23,10 @@ export interface IRefsProviderProps {
   initialValue?: TRefs;
 }
 
-const RefsProvider = ({ children, initialValue = {} }: IRefsProviderProps) => {
+export const RefsProvider = ({
+  children,
+  initialValue = {},
+}: IRefsProviderProps) => {
   const [refs, setRefs] = useState<TRefs>(initialValue);
 
   const value: IRefsContext = {
@@ -33,5 +36,3 @@ const RefsProvider = ({ children, initialValue = {} }: IRefsProviderProps) => {
 
   return <RefsContext value={value}>{children}</RefsContext>;
 };
-
-export default RefsProvider;

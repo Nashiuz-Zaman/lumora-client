@@ -13,7 +13,7 @@ interface IProtectedRouteProviderProps {
   allowedRoles?: string[];
 }
 
-const ProtectedRouteProvider = ({
+export const ProtectedRouteProvider = ({
   children,
   allowedRoles = [],
 }: IProtectedRouteProviderProps) => {
@@ -67,5 +67,3 @@ const ProtectedRouteProvider = ({
 
   return <>{children}</>;
 };
-
-export default ProtectedRouteProvider;

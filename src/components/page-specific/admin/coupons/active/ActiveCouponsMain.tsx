@@ -14,7 +14,7 @@ import { ActiveCouponRow } from "./ActiveCouponRow";
 import { ConfirmationModal } from "@/components/modals";
 
 // Providers
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
 import {

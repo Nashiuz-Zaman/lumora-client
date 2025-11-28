@@ -26,7 +26,7 @@ export interface IAuthStateContext {
 
 export const AuthStateContext = createContext<IAuthStateContext | null>(null);
 
-const AuthStateProvider = ({ children }: { children: ReactNode }) => {
+export const AuthStateProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<Partial<IUserPopulated> | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [hasFetched, setHasFetched] = useState(false);
@@ -78,5 +78,3 @@ const AuthStateProvider = ({ children }: { children: ReactNode }) => {
 
   return <AuthStateContext value={value}>{children}</AuthStateContext>;
 };
-
-export default AuthStateProvider;

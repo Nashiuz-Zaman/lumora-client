@@ -2,7 +2,6 @@
 import Footer from "@/components/layout-specific/main/Footer/Footer";
 import Header from "@/components/layout-specific/main/Header";
 import { TMegaMenuItem } from "@/components/layout-specific/main/MegaMenu";
-
 import { NoData } from "@/components/shared";
 import { fetchMegaMenuData } from "@/server-functions";
 import { ReactNode } from "react";

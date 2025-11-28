@@ -11,7 +11,7 @@ import { ReturnsTopParamsForm } from "../shared/ReturnsTopParamsForm";
 import { PendingRequestRow } from "./PendingRequestRow";
 
 // Providers
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
 import { useRefState, useSetElementText, useDynamicHeight } from "@/hooks";

@@ -7,7 +7,7 @@ import {
   TTableColumn,
 } from "@/components/shared";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 import { DeliveredOrderRow } from "./ArchivedOrderRow";
 
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";

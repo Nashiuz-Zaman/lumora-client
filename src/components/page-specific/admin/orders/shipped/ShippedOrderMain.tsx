@@ -9,7 +9,7 @@ import {
   DeliverIcon,
 } from "@/components/shared";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
-import ProtectedRouteProvider from "@/providers/ProtectedRouteProvider";
+import {ProtectedRouteProvider} from "@/providers";
 import { ShippedOrderRow } from "./ShippedOrderRow";
 import { ConfirmationModal } from "@/components/modals";
 

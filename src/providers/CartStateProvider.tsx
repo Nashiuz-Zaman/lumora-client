@@ -32,7 +32,7 @@ export interface ICartStateProviderProps {
   children: ReactNode;
 }
 
-const CartStateProvider = ({ children }: ICartStateProviderProps) => {
+export const CartStateProvider = ({ children }: ICartStateProviderProps) => {
   const { user, isLoading: isUserLoading } = useAuthState();
   const [isCartLoading, setIsCartLoading] = useState(false);
   const [cart, setCart] = useState<TPopulatedCart>({ ...emptyCart });
@@ -87,4 +87,4 @@ const CartStateProvider = ({ children }: ICartStateProviderProps) => {
   return <CartStateContext value={value}>{children}</CartStateContext>;
 };
 
-export default CartStateProvider;
+
