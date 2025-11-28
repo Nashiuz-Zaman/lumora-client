@@ -62,7 +62,7 @@ export const GridBanner = ({
         />
         {/* Block 5 - Right */}
         <div
-          className={`banner-grid-block opacity-0 rounded-xl bg-cover col-start-2 col-span-1 sm:col-start-4 sm:col-span-2 row-start-3 row-span-2 sm:row-start-1 sm:row-span-4 translate-x-[100px] bg-[80%_50%] ${
+          className={`banner-grid-block opacity-0 rounded-xl bg-cover col-start-2 col-span-1 sm:col-start-4 sm:col-span-2 row-start-3 row-span-2 sm:row-start-1 sm:row-span-4 translate-x-[100px] bg-position-[80%_50%] ${
             blocks[4].extraClasses || ""
           }`}
           style={{ backgroundImage: `url('${blocks[4].src}')` }}

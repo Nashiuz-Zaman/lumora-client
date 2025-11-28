@@ -15,7 +15,7 @@ const TrackOrderPage = () => {
         style={{
           backgroundImage: `url(https://res.cloudinary.com/diwzuhlc3/image/upload/v1760734464/lumora/track-order/track-order_vf3i6o.webp)`,
         }}
-        className="w-full aspect-[16/4] !bg-[50%_60%] !bg-cover"
+        className="w-full aspect-16/4 bg-position-[50%_60%]! bg-cover!"
       ></div>
       <InnerContainer className="pt-10 mb-16">
         <h2 className="text-2xl lg:text-4xl font-semibold mb-3">
