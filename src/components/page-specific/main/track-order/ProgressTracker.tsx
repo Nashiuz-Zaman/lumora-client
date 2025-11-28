@@ -1,106 +1,153 @@
 "use client";
 
-import { OrderStatus, TOrderStatusValue } from "@/constants";
+// ----------------------------- Imports -----------------------------
 import { Icon } from "@iconify/react";
+import React, { ReactNode } from "react";
 
-interface IProgressTrackerProps {
-  status?: TOrderStatusValue;
+// ----------------------------- Types -----------------------------
+export interface IProgressStage {
+  id: number;
+  title: string;
+  icon: string | ReactNode;
+}
+
+export interface IProgressTrackerProps {
+  stages: IProgressStage[];
+  activeId: number;
   className?: string;
 }
 
+// ----------------------------- Component -----------------------------
 export const ProgressTracker = ({
-  status = OrderStatus.Pending,
+  stages,
+  activeId,
   className = "",
 }: IProgressTrackerProps) => {
-  const isCancelled = status === OrderStatus.Cancelled;
-  const isReturned = status === OrderStatus.Returned;
+  const total = Math.max(1, stages?.length - 1);
+  const progressPercent = ((activeId - 1) / total) * 100;
 
-  // Early return for Cancelled / Returned
-  if (isCancelled || isReturned) {
-    const label = isCancelled ? "Order Cancelled" : "Order Returned";
-
-    return (
-      <div
-        className={`w-full flex justify-center items-center gap-2 bg-neutral-50 text-neutral-400 py-16`}
-      >
-        <span className="text-2xl font-medium">{label}</span>
-      </div>
-    );
-  }
-
-  // Normal progress states
-  const stages = [
-    {
-      key: OrderStatus.Pending,
-      label: "Pending",
-      icon: "solar:clock-circle-bold",
-    },
-    { key: OrderStatus.Confirmed, label: "Confirmed", icon: "mdi:marker-tick" },
-    {
-      key: OrderStatus.Shipped,
-      label: "Shipped",
-      icon: "ic:baseline-local-shipping",
-    },
-    {
-      key: OrderStatus.Delivered,
-      label: "Delivered",
-      icon: "mdi:package-variant-closed-delivered",
-    },
-  ];
+  const renderIcon = (icon: string | ReactNode) =>
+    typeof icon === "string" ? <Icon icon={icon} className="w-6 h-6" /> : icon;
 
   return (
-    <div className={`w-full flex flex-col items-center ${className}`}>
-      {/* Progress bar line */}
-      <div className="relative w-full flex justify-between items-center max-w-3xl">
-        {/* Background bar */}
-        <div className="absolute top-1/2 left-0 w-full h-[3px] bg-neutral-300 -translate-y-1/2" />
+    <div className={`${className}`}>
+      {/* --------------------------------------------------------
+          MAIN BAR (Horizontal on sm+)
+      --------------------------------------------------------- */}
+      <div className="hidden sm:block relative mb-10 w-[90%] mx-auto">
+        <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-linear-to-r from-primary to-secondary rounded-full transition-all duration-500"
+            style={{ width: `${progressPercent}%` }}
+          />
+        </div>
 
-        {/* Active progress */}
-        <div
-          className="absolute top-1/2 left-0 h-[3px] bg-secondary -translate-y-1/2 transition-all duration-500"
-          style={{
-            width: `${(status / (stages.length - 1)) * 100}%`,
-          }}
-        />
+        {/* --------------------------------------------------------
+            STAGE MARKERS
+        --------------------------------------------------------- */}
+        <div className="relative w-full mt-6" style={{ height: 90 }}>
+          {stages?.map((stage, index) => {
+            const left = (index / total) * 100;
+            const isCompleted = stage.id <= activeId;
 
-        {/* Steps */}
-        {stages.map((s) => {
-          const isActive = status >= s.key;
-          return (
-            <div
-              key={s.key}
-              className="flex flex-col items-center text-center z-10 w-[25%]"
-            >
+            return (
               <div
-                className={`w-6 h-6 sm:w-8 sm:h-8 flex items-center justify-center rounded-full border-2 ${
-                  isActive
-                    ? "bg-secondary border-secondary"
-                    : "bg-white border-neutral-300"
-                }`}
+                key={stage.id}
+                className="absolute flex flex-col items-center"
+                style={{
+                  left: `${left}%`,
+                  transform: "translateX(-50%)",
+                }}
               >
-                {isActive && status === s.key ? (
-                  <Icon
-                    icon="solar:check-bold"
-                    className="w-3.5 h-3.5 text-white"
-                  />
-                ) : null}
+                {/* ✔️ Checkmark above icon IF completed */}
+
+                <div
+                  className={`mb-2 w-6 h-6 rounded-full bg-green-600 flex items-center justify-center ${
+                    isCompleted ? "opacity-100" : "opacity-0"
+                  }`}
+                >
+                  <Icon icon="mdi:check" className="w-4 h-4 text-white" />
+                </div>
+
+                {/* icon + title */}
+                <div className="flex flex-col items-center">
+                  <div
+                    className={
+                      "w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600"
+                    }
+                  >
+                    {renderIcon(stage.icon)}
+                  </div>
+                  <span className="text-sm mt-1 text-neutral-700 text-center">
+                    {stage.title}
+                  </span>
+                </div>
               </div>
-              <Icon
-                icon={s.icon}
-                className={`w-5 h-5 sm:w-6 sm:h-6 mt-3 ${
-                  isActive ? "opacity-100" : "opacity-40"
-                }`}
-              />
-              <p
-                className={`text-xs sm:text-sm font-medium mt-1 ${
-                  isActive ? "text-textDark" : "text-neutral-400"
-                }`}
+            );
+          })}
+        </div>
+      </div>
+
+      {/* --------------------------------------------------------
+          VERTICAL VERSION (mobile)
+      --------------------------------------------------------- */}
+
+      <div className="block sm:hidden w-full max-w-[12rem] mx-auto my-4">
+        <div className="relative ml-6" style={{ height: stages.length * 90 }}>
+          {/* Vertical bar */}
+          <div className="absolute left-0 top-0 h-full w-2 bg-neutral-200 rounded-full overflow-hidden">
+            <div
+              className="w-full bg-linear-to-b from-primary to-secondary rounded-full transition-all duration-500"
+              style={{
+                height: `${progressPercent}%`,
+              }}
+            />
+          </div>
+
+          {/* STAGE MARKERS BASED ON PERCENTAGE */}
+          {stages?.map((stage, index) => {
+            const total = Math.max(1, stages.length - 1);
+            const top = (index / total) * 100;
+            const isCompleted = stage.id <= activeId;
+
+            return (
+              <div
+                key={stage.id}
+                className="absolute flex items-center gap-4"
+                style={{
+                  top: `${top}%`,
+                  left: "24px",
+                  transform: "translateY(-50%)",
+                }}
               >
-                {s.label}
-              </p>
-            </div>
-          );
-        })}
+                {/* milestone dot */}
+                <div
+                  className={`w-4 h-4 rounded-full border-2 ${
+                    isCompleted
+                      ? "bg-green-600 border-green-600"
+                      : "bg-white border-neutral-300"
+                  }`}
+                />
+
+                <div className="flex flex-col">
+                  <div
+                    className={`w-10 h-10 flex items-center justify-center rounded-full mb-1 ${
+                      isCompleted
+                        ? "bg-green-50 text-green-700"
+                        : "bg-neutral-100 text-neutral-600"
+                    }`}
+                  >
+                    {renderIcon(stage.icon)}
+                  </div>
+
+                  <span className="text-sm text-neutral-700">
+                    {stage.title}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

@@ -13,6 +13,29 @@ interface IOrderTrackingPanelProps {
   isLoading?: boolean;
 }
 
+export const orderProgressSteps = [
+  {
+    id: 1,
+    title: "Pending",
+    icon: "material-symbols:hourglass-empty",
+  },
+  {
+    id: 2,
+    title: "Confirmed",
+    icon: "mdi:check-circle-outline",
+  },
+  {
+    id: 3,
+    title: "Shipped",
+    icon: "mdi:truck-fast-outline",
+  },
+  {
+    id: 4,
+    title: "Delivered",
+    icon: "mdi:package-variant-closed-check",
+  },
+];
+
 export const OrderTrackingPanel = ({
   orderData,
   isLoading = false,
@@ -39,7 +62,11 @@ export const OrderTrackingPanel = ({
       <OrderHeaderTrackingPage order={orderData} />
 
       {/* Progress Tracker */}
-      <ProgressTracker status={orderData.status} className="mt-20 mb-6" />
+      <ProgressTracker
+        stages={orderProgressSteps}
+        activeId={orderData.status}
+        className="my-14 mx-auto"
+      />
 
       {/* Ordered Products */}
       <CurProducts data={orderData.items} />
