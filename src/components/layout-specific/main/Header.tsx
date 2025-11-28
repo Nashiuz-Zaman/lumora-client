@@ -34,7 +34,7 @@ const Header = ({ categories }: THeaderProps) => {
   const { logout } = useAuthMethods();
   const { user } = useAuthState();
   const { cart } = useCartState();
-  const isSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
+  const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
 
   // search hook
   const [triggerSearch, { data, isFetching, isSuccess }] =
@@ -93,7 +93,7 @@ const Header = ({ categories }: THeaderProps) => {
           <CompanyLogoBtn className="mr-6" />
 
           {/* Desktop search bar */}
-          {isSm && (
+          {isMinSm && (
             <HeaderProductsSearchbar<ISearchbarResultProduct>
               results={results}
               renderResult={renderResult}
@@ -106,7 +106,7 @@ const Header = ({ categories }: THeaderProps) => {
 
           <div className="ml-auto flex items-center gap-4">
             {/* Mobile expandable search */}
-            {!isSm && (
+            {!isMinSm && (
               <ExpandableSearchPortal
                 portalTargetId="header-search-mobile-screen"
                 buttonClasses="text-xl"
