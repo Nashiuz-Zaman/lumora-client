@@ -9,15 +9,19 @@ interface IStatusTabsProps<K extends Record<string, any>> {
   statuses: TStatusOptions<K>;
   activeStatus: TStatusOptions<K>[number]["value"];
   onStatusChange: (value: TStatusOptions<K>[number]["value"]) => void;
+  className?: string;
 }
 
 export const StatusTabs = <K extends Record<string, any>>({
   statuses,
   activeStatus,
   onStatusChange,
+  className = "",
 }: IStatusTabsProps<K>) => {
   return (
-    <div className="flex items-center gap-2 overflow-x-auto">
+    <div
+      className={`flex flex-wrap items-center gap-2 overflow-x-auto ${className}`}
+    >
       {statuses.map(({ label, value }) => {
         const isActive = activeStatus === value;
 

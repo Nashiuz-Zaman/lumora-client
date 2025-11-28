@@ -77,7 +77,7 @@ export const CustomerDashboardFilterForm = <
         value={formParams.search || ""}
         placeholder={placeholder || `Search ${roleLabel}s`}
         inputClassName="rounded-md"
-        className="w-full lg:!max-w-[40%] mb-8"
+        className="w-full lg:max-w-[40%]! mb-8"
       />
 
       <div className="flex flex-col xs:flex-row flex-wrap items-end w-full">
@@ -90,11 +90,12 @@ export const CustomerDashboardFilterForm = <
         )}
 
         {/* Sort + Search button */}
-        <div className="flex items-center gap-4 justify-center">
+        <div className="flex flex-wrap items-center gap-4">
           <StatusTabs<StatusResource>
             statuses={statusOptions}
             activeStatus={formParams.status}
             onStatusChange={handleStatusChange}
+            className="w-full md:w-max"
           />
 
           <SortDropdown
@@ -102,11 +103,10 @@ export const CustomerDashboardFilterForm = <
             selected={String(formParams.sort || "")}
             options={sortOptions}
             onUpdate={handleSortChange}
-            buttonClassName="!systemClasses !px-3 !py-2 xs:ml-6 xl:ml-10"
-            className="ml-auto"
+            buttonClassName="!systemClasses !px-3 !py-2 md:ml-6 xl:ml-10"
           />
 
-          <ButtonBtn type="submit" className="!successClasses !py-2 !px-3">
+          <ButtonBtn type="submit" className="successClasses! py-2! px-3!">
             Search
           </ButtonBtn>
         </div>
