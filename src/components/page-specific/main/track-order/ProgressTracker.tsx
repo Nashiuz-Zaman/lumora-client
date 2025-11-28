@@ -24,7 +24,7 @@ export const ProgressTracker = ({
   className = "",
 }: IProgressTrackerProps) => {
   const total = Math.max(1, stages?.length - 1);
-  const progressPercent = ((activeId - 1) / total) * 100;
+  const progressPercent = (activeId / total) * 100;
 
   const renderIcon = (icon: string | ReactNode) =>
     typeof icon === "string" ? <Icon icon={icon} className="w-6 h-6" /> : icon;

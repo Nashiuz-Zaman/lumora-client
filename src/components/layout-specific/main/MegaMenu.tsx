@@ -30,8 +30,6 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
   const [isClient, setIsClient] = useState<boolean>(false);
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
-  console.log(categories);
-
   useEffect(() => {
     setIsClient(true);
   }, []);

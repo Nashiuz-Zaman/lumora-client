@@ -7,6 +7,7 @@ import { OrderActivity } from "./OrderActivity";
 import { OrderHeaderTrackingPage } from "./OrderHeaderTrackingPage";
 import { ProgressTracker } from "./ProgressTracker";
 import { TTrackOrderData } from "@/types";
+import { OrderStatus } from "@/constants";
 
 interface IOrderTrackingPanelProps {
   orderData?: TTrackOrderData;
@@ -15,22 +16,22 @@ interface IOrderTrackingPanelProps {
 
 export const orderProgressSteps = [
   {
-    id: 1,
+    id: OrderStatus.Pending,
     title: "Pending",
     icon: "material-symbols:hourglass-empty",
   },
   {
-    id: 2,
+    id: OrderStatus.Confirmed,
     title: "Confirmed",
     icon: "mdi:check-circle-outline",
   },
   {
-    id: 3,
+    id: OrderStatus.Shipped,
     title: "Shipped",
     icon: "mdi:truck-fast-outline",
   },
   {
-    id: 4,
+    id: OrderStatus.Delivered,
     title: "Delivered",
     icon: "mdi:package-variant-closed-check",
   },
