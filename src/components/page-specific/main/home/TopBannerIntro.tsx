@@ -35,7 +35,7 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
       {/* Headline */}
       <h1 className="text-4xl 2xl:text-6xl font-semibold capitalize !leading-[1] mb-2 xl:mb-4 text-center lg:text-left">
         <span
-          className="opacity-0 inline-block bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent translate-y-[-200px]"
+          className="opacity-0 inline-block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent translate-y-[-200px]"
           id="shop-more-part"
         >
           Shop More

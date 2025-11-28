@@ -22,7 +22,7 @@ export const MetricCard = ({
       <span
         className={`text-3xl inline-block font-medium ${
           gradientText
-            ? "bg-gradient-to-r from-purple-500 via-pink-500 to-orange-300 bg-clip-text text-transparent"
+            ? "bg-linear-to-r from-purple-500 via-pink-500 to-orange-300 bg-clip-text text-transparent"
             : ""
         }`}
       >

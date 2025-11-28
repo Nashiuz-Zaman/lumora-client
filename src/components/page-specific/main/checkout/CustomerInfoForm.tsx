@@ -92,6 +92,16 @@ export const CustomerInfoForm = ({
           placeholder="Your City"
           error={errors.shippingAddress?.city?.message}
         />
+        {/* Delivery Address State */}
+        <InputField
+          {...register("shippingAddress.state")}
+          labelContainerClassName="mb-2"
+          labelTextClassName="font-semibold"
+          inputClassName="!rounded-md"
+          labelText="State"
+          placeholder="Your State"
+          error={errors.shippingAddress?.state?.message}
+        />
         {/* Delivery Address Zip */}
         <InputField
           {...register("shippingAddress.zipCode")}
@@ -103,7 +113,19 @@ export const CustomerInfoForm = ({
           placeholder="Your Postal Code"
           error={errors.shippingAddress?.zipCode?.message}
         />
-        {/* Full Address Text */}dd
+
+        {/* Delivery Address Country */}
+        <InputField
+          {...register("shippingAddress.country")}
+          labelContainerClassName="mb-2"
+          labelTextClassName="font-semibold"
+          inputClassName="!rounded-md"
+          labelText="Country"
+          placeholder="Your Country"
+          error={errors.shippingAddress?.country?.message}
+        />
+
+        {/* Full Address Text */}
         <InputField
           {...register("shippingAddress.address", {
             required: "Delivery address is required",
@@ -113,8 +135,8 @@ export const CustomerInfoForm = ({
           inputClassName="!rounded-md"
           labelTextClassName="font-semibold"
           name="shippingAddress.address"
-          labelText="Delivery Address"
-          placeholder="Your Delivery Address"
+          labelText="Shipping Address"
+          placeholder="Your Shipping Address"
           error={errors.shippingAddress?.address?.message}
         />
       </div>
@@ -122,7 +144,7 @@ export const CustomerInfoForm = ({
       <ButtonBtn
         isLoading={isSubmitting}
         type="submit"
-        className="!successClasses ml-auto gap-2 !rounded-full"
+        className="successClasses! ml-auto gap-2 rounded-full!"
       >
         <IcfyIcon className="text-3xl" icon="cib:samsung-pay" />
         Pay for order

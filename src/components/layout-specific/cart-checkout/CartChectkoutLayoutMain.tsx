@@ -37,7 +37,9 @@ const CartCheckoutLayoutMain = ({
                 ) : null}
               </div>
 
-              {isCartLoading && <LoadingSpinner className="!py-0 !my-0 !static" />}
+              {isCartLoading && (
+                <LoadingSpinner className="py-0! my-0! static!" />
+              )}
             </div>
             <div className="hidden md:block">
               <StepIndicator />
@@ -46,7 +48,7 @@ const CartCheckoutLayoutMain = ({
         </div>
 
         {/* Layout */}
-        <div className="grid gap-5 grid-cols-1 lg:grid-cols-[1.5fr_1fr] xl:grid-cols-[3fr_1.25fr] xl:gap-8 !items-start">
+        <div className="grid gap-5 grid-cols-1 lg:grid-cols-[1.5fr_1fr] xl:grid-cols-[3fr_1.25fr] xl:gap-8 items-start!">
           {/* Dynamic left-side content */}
           {children}
 

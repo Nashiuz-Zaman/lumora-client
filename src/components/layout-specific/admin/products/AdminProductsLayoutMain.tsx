@@ -31,7 +31,7 @@ export const AdminProductsLayoutMain = ({
             {path !== "/admin/products/create" && (
               <LinkBtn
                 href="/admin/products/create"
-                className="!primaryClasses !py-2 !px-5 !rounded-full"
+                className="primaryClasses! py-2! px-5! rounded-full!"
               >
                 +<span>New Product</span>
               </LinkBtn>

@@ -19,7 +19,7 @@ export const OrderSummary = () => {
 
   return (
     <div className="bg-white rounded-xl shadow-sm border border-neutral-100 sticky top-6 overflow-hidden">
-      <div className="bg-gradient-to-br from-primary to-purple-500 px-6 py-6 text-white">
+      <div className="bg-linear-to-br from-primary to-purple-500 px-6 py-6 text-white">
         <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
         <p className="text-white text-sm">Review your purchase</p>
       </div>
