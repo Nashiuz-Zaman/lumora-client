@@ -10,9 +10,9 @@ import Link from "next/link";
 import { ButtonBtn, GoogleIcon, InputField } from "@/components/shared";
 import { IUser } from "@/types";
 
-// =========================
+// -------------------------
 // TYPES
-// =========================
+// -------------------------
 
 interface IAuthFormBase {
   email: IUser["email"];
@@ -34,9 +34,9 @@ interface IAuthFormLogin extends IAuthFormBase {
 
 export type TAuthForm = IAuthFormSignup | IAuthFormLogin;
 
-// =========================
+// -------------------------
 // COMPONENT PROPS
-// =========================
+// -------------------------
 
 interface IAuthFormProps {
   mode: "signup" | "login";
@@ -48,9 +48,9 @@ interface IAuthFormProps {
   isLoading?: boolean;
 }
 
-// =========================
+// -------------------------
 // COMPONENT
-// =========================
+// -------------------------
 
 export const AuthForm = ({
   mode,

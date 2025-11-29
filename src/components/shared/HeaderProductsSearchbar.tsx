@@ -5,14 +5,13 @@ import { ButtonBtnTrans } from "./buttons";
 import { SearchIcon } from "./icons";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 import { useClickOutside } from "@/hooks/useClickOutside";
+import { useRouter } from "next/navigation";
 
 interface ISearchbarProps<T> {
   className?: string;
   showIcon?: boolean;
   modalClassName?: string;
   debounceDelay?: number;
-  onSubmit?: (text: string) => void;
-  onChange?: (text: string) => void;
   trigger?: (text: string) => void; // RTK query trigger function
   results?: T[];
   renderResult?: (
@@ -26,14 +25,13 @@ export const HeaderProductsSearchbar = <T,>({
   className = "",
   showIcon = true,
   modalClassName = "",
-  onSubmit = () => {},
-  onChange = () => {},
   debounceDelay = 350,
   trigger,
   results: parentResults,
   renderResult,
 }: ISearchbarProps<T>) => {
   const [searchText, setSearchText] = useState("");
+  const router = useRouter();
   const [results, setResults] = useState<T[]>(parentResults || []);
   const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -65,22 +63,19 @@ export const HeaderProductsSearchbar = <T,>({
         return;
       }
 
-      onChange?.(value);
       setIsResultModalOpen(true);
       debouncedTrigger(value);
     },
-    [debouncedTrigger, onChange]
+    [debouncedTrigger]
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    cancelDebounced();
 
-    const form = e.currentTarget;
-    const searchText = (
-      form.elements.namedItem("searchText") as HTMLInputElement
-    ).value;
-
-    onSubmit?.(searchText);
+    router.push("/products/s?search=" + searchText);
+    setIsResultModalOpen(false);
+    setResults([]);
   };
 
   // Sync with parent results if provided
@@ -100,11 +95,11 @@ export const HeaderProductsSearchbar = <T,>({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-[35rem] 4xl:max-w-[50rem] text-neutral-400 bg-white ${className}`}
+      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-140 4xl:max-w-200 text-neutral-400 bg-white ${className}`}
     >
       <form
         onSubmit={handleSubmit}
-        className="flex w-full rounded overflow-hidden border items-center [color:inherit] [border-color:inherit] [background-color:inherit]"
+        className="flex w-full rounded overflow-hidden border items-center text-inherit border-inherit bg-inherit"
       >
         <input
           type="text"
@@ -112,11 +107,11 @@ export const HeaderProductsSearchbar = <T,>({
           value={searchText}
           placeholder="Search for products"
           onChange={handleChange}
-          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base [color:inherit] [border-color:inherit] [background-color:inherit]"
+          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base text-inherit border-inherit bg-inherit"
         />
 
         {showIcon && (
-          <ButtonBtnTrans type="submit" className="[color:inherit]">
+          <ButtonBtnTrans type="submit" className="text-inherit">
             <SearchIcon className="px-3 2md:text-2xl" />
           </ButtonBtnTrans>
         )}

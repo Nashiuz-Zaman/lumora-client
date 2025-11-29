@@ -15,15 +15,13 @@ interface IExpandableSearchPortalProps<T> {
   buttonClasses?: string;
   searchbarClasses?: string;
   accordionDuration?: string;
-  trigger?: (text: string) => void; // RTK query trigger function
-  onSubmit?: (text: string) => void;
+  trigger?: (text: string) => void;
   results?: T[];
   renderResult?: (
     item: T,
     index: number,
     onClick: () => void
   ) => React.ReactNode;
-  onChange?: (value: string) => void;
   modalClassName?: string;
 }
 
@@ -34,8 +32,6 @@ export const ExpandableSearchPortal = <T,>({
   buttonClasses = "",
   searchbarClasses = "",
   accordionDuration = "250ms",
-  onSubmit,
-  onChange,
   results,
   renderResult,
   modalClassName = "",
@@ -120,8 +116,6 @@ export const ExpandableSearchPortal = <T,>({
                 results={results}
                 renderResult={renderResult}
                 trigger={trigger}
-                onChange={onChange}
-                onSubmit={onSubmit}
                 showIcon
                 modalClassName={modalClassName}
               />

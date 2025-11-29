@@ -78,7 +78,7 @@ export const InputField = ({
 
   return (
     <label
-      className={`block w-full !rounded-[inherit] [color:inherit] ${className}`}
+      className={`block w-full rounded-[inherit]! text-inherit ${className}`}
     >
       {(labelText || passwordField) && (
         <div
@@ -87,9 +87,7 @@ export const InputField = ({
           } text-inherit ${labelContainerClassName}`}
         >
           {labelText && (
-            <p
-              className={`[color:inherit] mb-2 capitalize ${labelTextClassName}`}
-            >
+            <p className={`text-inherit mb-2 capitalize ${labelTextClassName}`}>
               {labelText}
             </p>
           )}
@@ -97,6 +95,7 @@ export const InputField = ({
           {passwordField && (
             <button
               type="button"
+              tabIndex={-1}
               onClick={(e) => {
                 e.preventDefault();
                 setPassHidden((prev) => !prev);
@@ -127,7 +126,7 @@ export const InputField = ({
         <input
           type={passwordField ? (passHidden ? "password" : "text") : type}
           placeholder={placeholder}
-          className={`block [color:inherit] [fontSize:inherit] [background-color:inherit] [lineHeight:inherit] w-full focus:outline-none ${
+          className={`block text-inherit [fontSize:inherit] bg-inherit [lineHeight:inherit] w-full focus:outline-none ${
             invertIconPosition ? "order-2" : "order-1"
           } ${placeholderClassName}`}
           {...props}
