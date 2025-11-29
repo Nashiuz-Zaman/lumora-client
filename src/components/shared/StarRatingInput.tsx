@@ -23,7 +23,7 @@ export const StarRatingInput = ({ value, onChange }: IStarRatingInputProps) => {
             onClick={() => onChange(star)}
             onMouseEnter={() => setHovered(star)}
             onMouseLeave={() => setHovered(0)}
-            className="focus:outline-none transition-colors"
+            className="focus:outline-none transition-colors text-yellow-400"
             aria-label={`Rate ${star} star${star > 1 ? "s" : ""}`}
           >
             {isActive ? <StarFullIcon /> : <StarEmptyIcon />}

@@ -37,7 +37,7 @@ export const ReviewBreakdown = ({
       <div className="flex items-center gap-3">
         <RatingStars
           rating={averageRating}
-          className="text-2xl !gap-0 !text-orange-400"
+          className="text-2xl gap-0! text-yellow-400!"
         />
         <span className="font-semibold text-lg">{averageRating} / 5</span>
         <span className="text-neutral-400 text-sm">
@@ -46,7 +46,7 @@ export const ReviewBreakdown = ({
       </div>
 
       {/* Star breakdown */}
-      <div className="!space-y-4">
+      <div className="space-y-4!">
         {[5, 4, 3, 2, 1].map((star) => {
           const percentage = ratingPercentages[star];
           const count = ratingCounts[star] || 0;
