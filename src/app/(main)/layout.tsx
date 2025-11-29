@@ -10,7 +10,7 @@ const MainLayout = async ({ children }: { children: ReactNode }) => {
   const result = await fetchMegaMenuData();
 
   return (
-    <div className="min-h-screen relative flex flex-col max-w-480 mx-auto">``
+    <div className="min-h-screen relative flex flex-col max-w-480 mx-auto">
       {"isError" in result || !result ? (
         <NoData
           text="Error in Megamenu data fetch"

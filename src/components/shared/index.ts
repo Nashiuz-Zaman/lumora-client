@@ -60,3 +60,4 @@ export * from "./ColumnChartDual";
 export * from "./DonutChart";
 export * from "./ProfilePhotoChanger";
 export * from "./ProductCategoryCard";
+export * from "./PriceDisplay";

@@ -23,7 +23,7 @@ export const ProductPagePublicMain = ({
 }: IProductPagePublicMainProps) => {
   if (!productWithReviewsAndStats) {
     return (
-      <InnerContainer className="!h-screen relative">
+      <InnerContainer className="h-screen! relative">
         <NoData
           centered
           className="text-xl"

@@ -9,6 +9,9 @@ import {
   CartIcon,
   ErrorMessage,
   LoadingSpinner,
+  PriceDisplay,
+  VariantSelector,
+  QuantitySelector
 } from "@/components/shared";
 import { useLazyGetProductForCustomerQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -19,13 +22,10 @@ import {
 import { TRootState } from "@/libs/redux/store";
 import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 import { useEffect, useRef, useState } from "react";
-
-import { VariantSelector } from "@/components/shared";
-import { IVariant } from "@/utils/productVariantUtils";
-import { QuantitySelector } from "@/components/shared/QuantitySelector";
 import { ICartAction } from "@/types";
 import { useCartActions } from "@/hooks";
 import { CartActions } from "@/constants";
+import { IVariant } from "@/utils";
 
 export const ProductQuickViewModal = () => {
   const router = useRouter();
@@ -146,6 +146,18 @@ export const ProductQuickViewModal = () => {
             >
               {quickViewModalData.title}
             </h2>
+
+            {/* Price */}
+            <PriceDisplay
+              price={
+                curProductVariant
+                  ? curProductVariant.price
+                  : (quickViewModalData.defaultPrice as number)
+              }
+              oldPrice={curProductVariant?.oldPrice}
+              discountPercentage={curProductVariant?.discountPercentage}
+              className="my-3"
+            />
 
             {/* Variants with selector */}
             {quickViewModalData.variants.length > 0 && (

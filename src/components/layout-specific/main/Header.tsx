@@ -22,19 +22,66 @@ import {
   useCartState,
   useMediaQuery,
 } from "@/hooks";
-import { useEffect, useState } from "react";
+import { useRef } from "react";
 import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import { UserRoles } from "@/constants/user";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+gsap.registerPlugin(useGSAP);
 
+// ---------------------------------------
+// Header prop type
+// ---------------------------------------
 type THeaderProps = IMegaMenuProps;
 
 const Header = ({ categories }: THeaderProps) => {
-  const [isClient, setIsClient] = useState<boolean>(false);
   const { logout } = useAuthMethods();
   const { user } = useAuthState();
   const { cart } = useCartState();
   const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
+  const headerRef = useRef<HTMLHeadElement>(null);
+  const lastScrollY = useRef(0);
+
+  // ---------------------------------------
+  // GSAP scroll logic
+  // ---------------------------------------
+  useGSAP(
+    () => {
+      const header = headerRef.current;
+      let isHidden = false;
+
+      const onScroll = () => {
+        const current = window.scrollY;
+
+        // scrolling down → hide
+        if (current > lastScrollY.current && !isHidden) {
+          isHidden = true;
+          gsap.to(header, {
+            y: "-100%",
+            duration: 0.35,
+            ease: "power3.out",
+          });
+        }
+
+        // scrolling up → show
+        if (current < lastScrollY.current && isHidden) {
+          isHidden = false;
+          gsap.to(header, {
+            y: "0%",
+            duration: 0.35,
+            ease: "power3.out",
+          });
+        }
+
+        lastScrollY.current = current;
+      };
+
+      window.addEventListener("scroll", onScroll);
+      return () => window.removeEventListener("scroll", onScroll);
+    },
+    { dependencies: [] }
+  );
 
   // search hook
   const [triggerSearch, { data, isFetching, isSuccess }] =
@@ -42,11 +89,47 @@ const Header = ({ categories }: THeaderProps) => {
 
   const results = (!isFetching && isSuccess && data?.data?.products) || [];
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  // ---------------------------------------
+  // GSAP scroll logic
+  // ---------------------------------------
+  useGSAP(
+    () => {
+      if (!headerRef.current) return;
 
-  if (!isClient) return null;
+      const header = headerRef.current;
+      let isHidden = false;
+
+      const onScroll = () => {
+        const current = window.scrollY;
+
+        // scrolling down → hide
+        if (current > lastScrollY.current && !isHidden) {
+          isHidden = true;
+          gsap.to(header, {
+            y: "-100%",
+            duration: 0.35,
+            ease: "power3.out",
+          });
+        }
+
+        // scrolling up → show
+        if (current < lastScrollY.current && isHidden) {
+          isHidden = false;
+          gsap.to(header, {
+            y: 0,
+            duration: 0.35,
+            ease: "power3.out",
+          });
+        }
+
+        lastScrollY.current = current;
+      };
+
+      window.addEventListener("scroll", onScroll);
+      return () => window.removeEventListener("scroll", onScroll);
+    },
+    { dependencies: [] }
+  );
 
   // simple renderer for results
   const renderResult = (
@@ -70,9 +153,9 @@ const Header = ({ categories }: THeaderProps) => {
   const isCustomer = role === UserRoles.customer;
 
   return (
-    <header className="relative top-0 z-[200]">
+    <header ref={headerRef} className="sticky top-0 z-2000">
       {/* Top promo / links bar */}
-      <InnerContainer className="text-sm xl:text-base py-3">
+      <InnerContainer className="text-sm xl:text-base py-3 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <p className="text-center md:text-left">
             Shop now and enjoy free shipping to West Coast states!
@@ -138,7 +221,9 @@ const Header = ({ categories }: THeaderProps) => {
             {user && (
               <div className="flex items-center gap-4">
                 {/* admin menu btn if user is admin */}
-                {isAdminRole && <UserMenuWithoutAvatar logoutFunction={logout} />}
+                {isAdminRole && (
+                  <UserMenuWithoutAvatar logoutFunction={logout} />
+                )}
 
                 {/* or customer menu btn for customers */}
                 {isCustomer && (

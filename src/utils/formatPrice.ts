@@ -8,7 +8,7 @@ export function formatPrice(
   return num.toLocaleString("en-US", {
     style: includeCurrencySymbol ? "currency" : "decimal",
     currency: "USD",
-    currencyDisplay: "narrowSymbol", 
+    currencyDisplay: "narrowSymbol",
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   });

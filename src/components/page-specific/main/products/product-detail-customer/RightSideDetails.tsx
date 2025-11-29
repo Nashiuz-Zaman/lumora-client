@@ -8,6 +8,7 @@ import {
   ButtonBtn,
   RatingStars,
   QuantitySelector,
+  PriceDisplay,
 } from "@/components/shared";
 import { AboutProduct } from "./AboutProduct";
 
@@ -16,6 +17,7 @@ import { IVariant, IProductWithFullReviewsStats } from "@/types/product";
 import { VariantSelector } from "./VariantSelector";
 import { ICartAction } from "@/types/cart";
 import { useCartActions } from "@/hooks";
+import { formatPrice } from "@/utils";
 
 interface IRightSideDetailsProps {
   data: IProductWithFullReviewsStats;
@@ -88,6 +90,18 @@ export const RightSideDetails = ({
         </span>
       </div>
 
+      {/* Price */}
+      <PriceDisplay
+        price={
+          curProductVariant
+            ? curProductVariant.price
+            : (product.defaultPrice as number)
+        }
+        oldPrice={curProductVariant?.oldPrice}
+        discountPercentage={curProductVariant?.discountPercentage}
+        className="my-3"
+      />
+
       {/* Variant selector */}
       {product?.variants?.length > 0 && (
         <VariantSelector
@@ -133,7 +147,7 @@ export const RightSideDetails = ({
           onClick={handleAddToCart}
           isLoading={isCartLoading}
           disabled={isAddToCartDisabled || !curProductVariant}
-          className="successClasses !py-2.5 !rounded-full !gap-2"
+          className="successClasses py-2.5! gap-2!"
         >
           <CartIcon className="text-2xl" /> Add to cart
         </ButtonBtn>
