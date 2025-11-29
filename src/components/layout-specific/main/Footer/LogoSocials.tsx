@@ -1,5 +1,6 @@
 "use client";
 
+import { CompanyLogoBtn } from "@/components/shared";
 // core
 import Image from "next/image";
 import Link from "next/link";
@@ -16,15 +17,9 @@ type LogoSocialsProps = {
 
 const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
   return (
-    <div className="xl:pr-14 2xl:pr-[8.6425rem] mb-8">
+    <div className="xl:pr-14 2xl:pr-[8.6425rem]">
       {/* Logo */}
-      <Image
-        width={128}
-        height={70}
-        src="/logos/website/logo-white.png"
-        alt="website-logo"
-        className="block mb-4 w-[3.95rem] h-auto xl:w-32"
-      />
+      <CompanyLogoBtn isBgDark={true} className="mb-6"/>
 
       {/* Description */}
       <p className="text-white text-sm sm:text-base leading-relaxed max-w-[32rem] mb-6">

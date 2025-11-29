@@ -29,39 +29,6 @@ export const socialMediaLinks: ISocialMediaLink[] = [
   },
 ];
 
-export interface INavOptionItem {
-  text: string;
-  href: string;
-}
-
-export interface INavOptionGroup {
-  heading: string;
-  options: INavOptionItem[];
-}
-
-export const navOptions: INavOptionGroup[] = [
-  {
-    heading: "Product Category",
-    options: [
-      { text: "Electronics", href: "/" },
-      { text: "Fashion", href: "/" },
-      { text: "Makeup", href: "/" },
-      { text: "Watches", href: "/" },
-      { text: "Food Items", href: "/" },
-    ],
-  },
-  {
-    heading: "Useful links",
-    options: [
-      { text: "Home", href: "/" },
-      { text: "Order Returns", href: "/returns" },
-      { text: "Products", href: "/products" },
-      { text: "Contact us", href: "/contact" },
-      { text: "FAQ", href: "/faq" },
-    ],
-  },
-];
-
 export interface IAddressItem {
   heading: string;
   description: ReactNode;

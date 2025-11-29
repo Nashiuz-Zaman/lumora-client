@@ -7,6 +7,7 @@ import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categor
 
 import { socialMediaLinks } from "@/static-data/footerData";
 import { useProductSearchParamsManagement } from "@/hooks";
+import NavAddress from "./NavAddress";
 
 const Footer = () => {
   const curYear = new Date().getFullYear();
@@ -14,12 +15,14 @@ const Footer = () => {
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <footer className="bg-primary-dark-2 text-white mt-auto">
+    <footer className="bg-linear-to-br from-primary-dark-2 to-primary-dark text-white mt-auto">
       <InnerContainer>
         <div className="grid grid-cols-1 gap-8 py-8 lg:pt-14 lg:pb-6 xl:grid-cols-[1fr_1.3fr]">
           {/* Logo + socials */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-10 mb-12">
             <LogoSocials socialMediaLinks={socialMediaLinks} />
+
+            <NavAddress />
           </div>
 
           {/* Category navigation */}
@@ -61,7 +64,7 @@ const Footer = () => {
             alt="Payment options"
             width={598}
             height={63}
-            className="w-[12rem] sm:w-[14rem] md:w-[18rem] lg:w-[24rem] xl:w-[32rem] 2xl:w-[37rem] h-auto my-6 lg:my-10"
+            className="w-48 sm:w-56 md:w-[18rem] lg:w-[24rem] xl:w-[32rem] 2xl:w-[37rem] h-auto my-6 lg:my-10"
           />
         </div>
 
