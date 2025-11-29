@@ -5,7 +5,7 @@ export const fetchCategoryTree = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();
   const res = await fetch(`${apiUrl}/categories/tree`, {
     next: {
-      revalidate: 10, // 2 days
+      revalidate: 172800, // 2 days
     },
   });
 
