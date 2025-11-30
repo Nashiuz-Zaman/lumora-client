@@ -54,7 +54,9 @@ const Header = ({ categories }: THeaderProps) => {
       const onScroll = () => {
         const current = window.scrollY;
 
-        // scrolling down → hide
+        // -----------------------------
+        // Slide in out logic
+        // -----------------------------
         if (current > lastScrollY.current && !isHidden) {
           isHidden = true;
           gsap.to(header, {
@@ -70,6 +72,23 @@ const Header = ({ categories }: THeaderProps) => {
           gsap.to(header, {
             y: "0%",
             duration: 0.35,
+            ease: "power3.out",
+          });
+        }
+
+        // -----------------------------
+        // Box shadow logic
+        // -----------------------------
+        if (current < lastScrollY.current && current > 100) {
+          gsap.to(header, {
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+            duration: 0.3,
+            ease: "power3.out",
+          });
+        } else {
+          gsap.to(header, {
+            boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
+            duration: 0.3,
             ease: "power3.out",
           });
         }
