@@ -57,7 +57,7 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.prevEl.replace(
             ".",
             ""
-          )} w-10 h-10 flex items-center justify-center rounded-full bg-neutral-200 hover:bg-neutral-300 cursor-pointer scaleOnHover shadow-md transition-all`}
+          )} w-10 h-10 flex items-center justify-center rounded-full primaryLightClasses cursor-pointer scaleOnHover shadow-md transition-all`}
         >
           <CaretLeftIcon />
         </button>
@@ -65,7 +65,7 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.nextEl.replace(
             ".",
             ""
-          )} w-10 h-10 flex items-center justify-center rounded-full bg-neutral-200 hover:bg-neutral-300 scaleOnHover cursor-pointer shadow-md transition-all`}
+          )} w-10 h-10 flex items-center justify-center rounded-full primaryLightClasses scaleOnHover cursor-pointer shadow-md transition-all`}
         >
           <CaretRightIcon />
         </button>
