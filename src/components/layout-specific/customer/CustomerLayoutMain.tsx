@@ -46,11 +46,11 @@ export const CustomerLayoutMain = ({ children }: { children: ReactNode }) => {
 
         {/* Lg screen Navbar */}
         <div className="h-full w-full hidden xl:block relative">
-          <CustomerSideNavbar className="!rounded-4xl !h-1/2 !w-[90%] overflow-hidden absolute top-10 left-[10%] shadow-lg !border-0" />
+          <CustomerSideNavbar className="rounded-4xl! h-1/2! w-[90%]! overflow-hidden absolute top-10 left-[10%] shadow-lg border-0!" />
         </div>
 
         {/* Page content */}
-        <div className="h-full overflow-y-auto">{children}</div>
+        <div className="h-full flex flex-col overflow-y-auto">{children}</div>
       </main>
     </div>
   );

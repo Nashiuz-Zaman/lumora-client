@@ -77,7 +77,7 @@ export const CustomerOrdersMain = () => {
   });
 
   return (
-    <InnerContainer className="py-10">
+    <InnerContainer className="py-10 grow">
       <div className="w-full h-full flex flex-col">
         <CustomerDashboardFilterForm
           searchTitle="Search Orders"
@@ -104,7 +104,7 @@ export const CustomerOrdersMain = () => {
         {/* Orders List */}
         <PageSection title="Your Orders" className="relative grow">
           {isFetching ? (
-            <LoadingSpinner centered />
+            <LoadingSpinner centered={true} />
           ) : (
             <div className="grid gap-4">
               {orders?.length === 0 ? (

@@ -18,7 +18,7 @@ export const LoadingSpinner = ({
       } flex items-center justify-center text-primary text-6xl ${className}`}
     >
       <IcfyIcon
-        className="[color:inherit] [font-size:inherit]"
+        className="text-inherit [font-size:inherit]"
         icon="line-md:loading-twotone-loop"
       />
     </div>

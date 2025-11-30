@@ -68,7 +68,7 @@ export const OrderSummary = () => {
           <>
             <LinkBtn
               href="/checkout"
-              className="!primaryClasses !rounded-full mx-auto mt-4"
+              className="primaryClasses! rounded-full! mx-auto mt-4"
             >
               Secure Checkout
             </LinkBtn>

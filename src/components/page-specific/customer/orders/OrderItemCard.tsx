@@ -9,8 +9,8 @@ interface IOrderItemCardProps {
 export const OrderItemCard = ({ item }: IOrderItemCardProps) => {
   return (
     <div className="flex items-center p-4">
-      <div className="flex-shrink-0 mr-4">
-        <div className="w-16 aspect-square rounded-full flex items-center justify-center overflow-hidden">
+      <div className="shrink-0 mr-4">
+        <div className="w-16 aspect-square flex items-center justify-center overflow-hidden">
           {item.product?.defaultImage && (
             <Image
               src={item.product.defaultImage}
