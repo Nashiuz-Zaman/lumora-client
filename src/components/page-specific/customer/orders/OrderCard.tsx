@@ -38,7 +38,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
           </p>
         </div>
 
-        <p className={`text-xs font-medium px-3 py-1 rounded-full`}>
+        <p className={`text-sm font-medium px-3 py-1 rounded-full`}>
           Status:{" "}
           <span className={getOrderStatusTextColor(order.status)}>
             {getOrderStatusLabel(order.status)}
@@ -46,9 +46,9 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
         </p>
       </div>
 
-      {/* Items */}
       <div className="grid grid-cols-1 2md:grid-cols-[2fr_1fr] gap-5 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 h-[220px] overflow-y-auto">
+        {/* Items */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3 h-[220px] overflow-y-auto">
           {order.items.map((item, i) => (
             <OrderItemCard key={i} item={item} />
           ))}

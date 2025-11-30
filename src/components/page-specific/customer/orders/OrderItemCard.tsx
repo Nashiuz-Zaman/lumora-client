@@ -8,22 +8,20 @@ interface IOrderItemCardProps {
 
 export const OrderItemCard = ({ item }: IOrderItemCardProps) => {
   return (
-    <div className="flex items-center p-4">
-      <div className="shrink-0 mr-4">
-        <div className="w-16 aspect-square flex items-center justify-center overflow-hidden">
-          {item.product?.defaultImage && (
-            <Image
-              src={item.product.defaultImage}
-              alt={item.product.title || "Product Image"}
-              width={100}
-              height={100}
-              className="object-contain w-full h-full"
-            />
-          )}
-        </div>
+    <div className="grid grid-cols-[1.2fr_4fr] gap-4 items-center p-4">
+      <div className="w-full aspect-square flex items-center justify-center overflow-hidden">
+        {item.product?.defaultImage && (
+          <Image
+            src={item.product.defaultImage}
+            alt={item.product.title || "Product Image"}
+            width={100}
+            height={100}
+            className="object-contain w-full h-full"
+          />
+        )}
       </div>
 
-      <div>
+      <div className="w-full wrap-anywhere">
         <p
           title={item.product?.title}
           className="font-medium text-neutral-700 line-clamp-2"
