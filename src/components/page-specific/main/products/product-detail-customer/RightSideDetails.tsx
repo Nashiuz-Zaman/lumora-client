@@ -17,7 +17,6 @@ import { IVariant, IProductWithFullReviewsStats } from "@/types/product";
 import { VariantSelector } from "./VariantSelector";
 import { ICartAction } from "@/types/cart";
 import { useCartActions } from "@/hooks";
-import { formatPrice } from "@/utils";
 
 interface IRightSideDetailsProps {
   data: IProductWithFullReviewsStats;

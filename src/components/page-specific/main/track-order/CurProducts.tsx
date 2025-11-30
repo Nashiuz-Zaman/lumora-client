@@ -34,9 +34,10 @@ export const CurProducts = ({ data }: ICurProductsProps) => {
         classNameObj={{
           heading:
             "first:!pl-4 first:md:!pl-6 first:lg:!pl-8 last:!pr-4 last:md:!pr-6 last:lg:!pr-8",
+            containerDiv: 'min-h-[17rem]'
         }}
         columns={columns}
-        data={data}
+        data={data ?? []}
         renderRow={renderRow}
       />
     </div>

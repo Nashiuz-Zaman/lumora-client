@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { LoadingSpinner, NoData } from "@/components/shared";
+import { LoadingSpinner } from "@/components/shared";
 import { CurProducts } from "./CurProducts";
 import { OrderActivity } from "./OrderActivity";
-import { OrderHeaderTrackingPage } from "./OrderHeaderTrackingPage";
+import { OrderTrackingHeader } from "./OrderTrackingHeader";
 import { ProgressTracker } from "./ProgressTracker";
 import { TTrackOrderData } from "@/types";
 import { OrderStatus } from "@/constants";
@@ -49,31 +49,23 @@ export const OrderTrackingPanel = ({
     );
   }
 
-  if (!orderData) {
-    return (
-      <div className="h-full bg-neutral-50 relative">
-        <NoData centered />
-      </div>
-    );
-  }
-
   return (
     <div className="w-full overflow-hidden border border-neutral-200 rounded-md bg-white">
       {/* Header */}
-      <OrderHeaderTrackingPage order={orderData} />
+      <OrderTrackingHeader order={orderData} />
 
       {/* Progress Tracker */}
       <ProgressTracker
         stages={orderProgressSteps}
-        activeId={orderData.status}
+        activeId={orderData?.status ?? 0}
         className="my-14 mx-auto"
       />
 
       {/* Ordered Products */}
-      <CurProducts data={orderData.items} />
+      <CurProducts data={orderData?.items ?? []} />
 
       {/* Order Activity */}
-      <OrderActivity activities={orderData.activities} />
+      <OrderActivity activities={orderData?.activities ?? []} />
     </div>
   );
 };

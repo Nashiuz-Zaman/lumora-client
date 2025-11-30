@@ -22,7 +22,7 @@ export const TrackOrderTableProductRow = ({
   return (
     <>
       {/* Product Info */}
-      <td className={cellClasses + " gap-4 first:!pl-4 first:md:!pl-6 first:lg:!pl-8"}>
+      <td className={cellClasses + " gap-4 first:pl-4! first:md:pl-6! first:lg:pl-8!"}>
         <Image
           src={data.product.defaultImage!}
           alt={data.product.title || "Product image"}
@@ -43,7 +43,7 @@ export const TrackOrderTableProductRow = ({
       <td className={cellClasses}>x{data.quantity}</td>
 
       {/* Subtotal */}
-      <td className={cellClasses + ' last:!pr-4 last:md:!pr-6 last:lg:!pr-8'}>
+      <td className={cellClasses + ' last:pr-4! last:md:pr-6! last:lg:pr-8!'}>
         {formatPrice(data.variant.price! * data.quantity)}
       </td>
     </>
