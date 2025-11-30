@@ -91,7 +91,7 @@ export const Variants = ({
         <ButtonBtn
           onClick={handleAddVariant}
           type="button"
-          className="!primaryClasses !px-3 !py-1"
+          className="primaryClasses! px-3! py-1!"
         >
           <PlusIcon className="text-lg" />
           New Variant
@@ -114,7 +114,7 @@ export const Variants = ({
               <ButtonBtnTrans
                 type="button"
                 onClick={() => handleRemoveVariant(index)}
-                className="text-red-600 !px-4 !py-1 mt-4"
+                className="text-red-600 px-4! py-1! mt-4"
               >
                 <TrashcanIcon className="text-sm" />
                 Remove Variant

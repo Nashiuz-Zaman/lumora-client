@@ -38,7 +38,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
 
   return (
     <nav className="hidden xl:block w-full bg-white border-b border-neutral-100">
-      <InnerContainer className="!relative">
+      <InnerContainer className="relative!">
         <div className="flex items-center justify-center gap-6 relative">
           {categories.map(
             ({ topCategory, subCategories, featuredProducts = [] }) => {
@@ -48,7 +48,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                     {topCategory.title}
                   </p>
 
-                  <div className="absolute mt-[1px] flex left-0 top-full opacity-0 collapse group-hover:transition-all group-hover:duration-350 group-hover:delay-[150ms] group-hover:ease group-hover:opacity-100 group-hover:visible w-full justify-center z-[5000] text-xs 3xl:text-base">
+                  <div className="absolute mt-px flex left-0 top-full opacity-0 collapse group-hover:transition-all group-hover:duration-350 group-hover:delay-150 group-hover:ease group-hover:opacity-100 group-hover:visible w-full justify-center z-5000 text-xs 3xl:text-base">
                     <div className="w-full grid grid-cols-[1fr_1fr_2fr] gap-6 p-6 rounded-b-2xl shadow-lg items-start bg-white border border-neutral-100 border-t-0">
                       {/* Left column: Grid card */}
                       <div className="bg-neutral-100 rounded-lg p-6 flex items-center justify-center">
@@ -60,7 +60,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                                 alt: "Product category image",
                               })) || []
                             }
-                            className="!w-full"
+                            className="w-full!"
                           />
 
                           <ButtonBtnTrans
@@ -119,7 +119,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                               categories,
                             });
                           }}
-                          className="!primaryClasses !w-full !py-1"
+                          className="primaryClasses! w-full! py-1!"
                         >
                           View all products
                         </ButtonBtn>

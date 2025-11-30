@@ -157,7 +157,7 @@ export const ProductForm = ({
         <ButtonBtn
           isLoading={isLoading}
           type="submit"
-          className="!successClasses"
+          className="successClasses!"
         >
           {mode === "create" ? "Create Product" : "Update Product"}
         </ButtonBtn>

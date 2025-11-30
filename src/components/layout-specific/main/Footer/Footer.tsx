@@ -15,7 +15,7 @@ const Footer = () => {
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <footer className="bg-linear-to-br from-primary-dark-2 to-primary-dark text-white mt-auto">
+    <footer className="bg-neutral-900 text-white mt-auto">
       <InnerContainer>
         <div className="grid grid-cols-1 gap-8 py-8 lg:pt-14 lg:pb-6 xl:grid-cols-[1fr_1.3fr]">
           {/* Logo + socials */}
