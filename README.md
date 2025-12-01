@@ -1,4 +1,4 @@
-# 🌙 Lumora
+# Lumora
 
 A full modern eCommerce platform built with a **Next.js 15 + React 19** frontend and a **Node.js/Express + TypeScript + MongoDB** backend — powered by **Redux Toolkit**, **TailwindCSS 4**, **Firebase Authentication**, **Cloudinary**, **JWT auth**, **Nodemailer**, and **SSLCommerz payments**.
 
