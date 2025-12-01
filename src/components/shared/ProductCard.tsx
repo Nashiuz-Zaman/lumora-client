@@ -47,7 +47,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
   return (
     <Link href={`/products/${slug}`}>
       <div
-        className={`group relative flex flex-col p-4 !h-full cursor-pointer hover:-translate-y-1 transition-transform duration-300 ${className}`}
+        className={`group relative flex flex-col p-4 h-full! cursor-pointer hover:-translate-y-1 transition-transform duration-300 ${className}`}
       >
         {/* Discount badge */}
         {savings > 0 && (
@@ -57,7 +57,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
         )}
 
         {/* Product Image */}
-        <div className="mx-auto mt-3 mb-3.5 w-[7rem] h-[7rem]">
+        <div className="mx-auto mt-3 mb-3.5 w-28 aspect-square">
           {defaultImage && (
             <Image
               src={defaultImage}
@@ -113,7 +113,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           <ButtonBtn
             onClick={handleClick}
             title="Add Item To Cart"
-            className="!blackOutlinedToPrimaryClasses !rounded-full !py-2 mx-auto !gap-2 !font-medium"
+            className="blackOutlinedToPrimaryClasses! rounded-full! py-2! mx-auto gap-2! font-medium!"
           >
             <CartIcon className="text-xl" /> Add to Cart
           </ButtonBtn>
