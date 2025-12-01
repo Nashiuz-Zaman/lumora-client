@@ -24,7 +24,7 @@ Jump to: [Client Setup](#client-how-to-run) |
 
 ### Backend
 
-- **Node.js + Express**
+- **Express**
 - **TypeScript**
 - **MongoDB (Mongoose)**
 - **JWT Authentication**
