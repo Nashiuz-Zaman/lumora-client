@@ -95,6 +95,8 @@ Jump to: [Client Setup](#client-how-to-run) |
 
 # Client How to run
 
+[Back to top](#-lumora)
+
 ## ⚙️ Getting Started
 
 ### 1️⃣ Clone the repository
@@ -148,6 +150,8 @@ Open your browser:
 ---
 
 # Server How to run
+
+[Back to top](#-lumora)
 
 ## ⚙️ Getting Started
 
@@ -240,3 +244,5 @@ npm start
 ## 💻 Author
 
 Developed by **Nashiuz Zaman**
+
+[Back to top](#-lumora)
