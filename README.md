@@ -7,7 +7,6 @@ Engineered for performance, scalability, and a smooth, fluid user experience.
 Jump to: [Client Setup](#client-how-to-run) |
 [Server Setup](#server-how-to-run)
 
----
 
 ## 🚀 Tech Stack
 
@@ -32,7 +31,6 @@ Jump to: [Client Setup](#client-how-to-run) |
 - **Nodemailer** for emails
 - **SSLCommerz** for payment gateway
 
----
 
 ## 🧩 Features
 
