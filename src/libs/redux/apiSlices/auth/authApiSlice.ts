@@ -26,7 +26,7 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    getCurrentUser: builder.query({
+    getCurrentUser: builder.query<IApiResponse, void>({
       query: () => ({
         url: "/auth/me",
         method: "GET",

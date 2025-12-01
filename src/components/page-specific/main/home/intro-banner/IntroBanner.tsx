@@ -6,6 +6,7 @@ import { TopBannerIntro } from "../TopBannerIntro";
 
 const sliderImages = [
   "https://res.cloudinary.com/diwzuhlc3/image/upload/v1764184789/lumora/intro-banner/home-2_rguud2.webp",
+  "https://res.cloudinary.com/dngidsew4/image/upload/v1764550428/adidas-ad_gywhds.webp",
   "https://res.cloudinary.com/diwzuhlc3/image/upload/v1764184788/lumora/intro-banner/home-1_ptqptr.webp",
   "https://res.cloudinary.com/diwzuhlc3/image/upload/v1764183134/lumora/intro-banner/home-4_xnexof.webp",
   "https://res.cloudinary.com/diwzuhlc3/image/upload/v1764233369/lumora/intro-banner/home-4_mgwyo5.webp",

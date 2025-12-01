@@ -12,7 +12,7 @@ export const fetchCollectionProducts = catchAsyncServer(
     const apiUrl = getBaseApiUrl();
     const res = await fetch(
       `${apiUrl}/products/product-collection/${collectionSlug}`,
-      { next: { revalidate: 600 } }
+      { next: { revalidate: 400 } }
     );
 
     if (!res.ok)

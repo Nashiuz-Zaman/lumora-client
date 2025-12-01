@@ -3,7 +3,9 @@ import {
   ProductsFromCollection,
   IntroBanner,
 } from "@/components/page-specific";
+import { DesignerVideo } from "@/components/shared";
 import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
+import Image from "next/image";
 
 export const metadata = {
   title: "Lumora | Products from top brands all in one place for you",
