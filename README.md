@@ -4,7 +4,8 @@ A full modern eCommerce platform built with a **Next.js 15 + React 19** frontend
 
 Engineered for performance, scalability, and a smooth, fluid user experience.
 
-Jump to: [Client Setup](#client-–-how-to-run) | [Server Setup](#server-–-how-to-run)
+Jump to: [Client Setup](#client-how-to-run) |
+[Server Setup](#server-how-to-run)
 
 ---
 
@@ -92,7 +93,7 @@ Jump to: [Client Setup](#client-–-how-to-run) | [Server Setup](#server-–-how
 
 ---
 
-# Client - How to run
+# Client How to run
 
 ## ⚙️ Getting Started
 
@@ -146,7 +147,7 @@ Open your browser:
 
 ---
 
-# Server - How to run
+# Server How to run
 
 ## ⚙️ Getting Started
 
