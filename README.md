@@ -1,7 +1,6 @@
 # 🌙 Lumora Client
 
-A modern eCommerce frontend built with **Next.js**, **Redux Toolkit**, **Firebase**, and **TailwindCSS**.
-Designed for performance, clean code, and smooth UI animations.
+A modern eCommerce frontend built with **Next.js**, **Redux Toolkit**, **Firebase**, and **TailwindCSS** — designed for performance, scalability, and a clean, fluid UI experience.
 
 ---
 
@@ -11,10 +10,65 @@ Designed for performance, clean code, and smooth UI animations.
 - **React 19**
 - **Redux Toolkit**
 - **TailwindCSS 4**
-- **Firebase**
+- **Firebase Authentication**
 - **GSAP** for animations
-- **React Hook Form** for form handling
+- **React Hook Form** for powerful form handling
 - **Axios** for API communication
+
+---
+
+## 🧩 Features
+
+### ✅ Customer Features
+
+- Email & social authentication (Local and Firebase Both)
+- Manage profile information & shipping and billing addresses
+- View all products and categories
+- Filter & search products
+- Detailed product pages with reviews & related products
+- Add to cart & place orders
+- Cancel orders, request returns
+- Write reviews on products
+- Customer dashboard with:
+  - Order history
+  - Filter & search own orders
+  - Order tracking
+  - Invoice download
+
+---
+
+### 🛠️ Admin Features
+
+- Admin dashboard
+- **Advanced analytics**, including:
+- Total Revenue
+- Average Order Total
+- Total Customers
+- Total Products Sold
+- Completed / Cancelled / Returned orders breakdown
+- Sales Breakdown by Category
+- Placed vs Cancelled Orders Chart
+- Payment vs Refund Comparison
+- Revenue Growth
+- Customer Growth
+- **Payment & Refund Management**
+- Issue full or partial refunds
+- View transaction history (payments & refunds)
+- **Product Management**
+- Create new products
+- Edit existing products
+- Manage variations
+- Clone products
+- Manage product collections on homepage (CMS)
+- **Coupon System**
+- Create & edit coupons
+- Percentage or flat discount
+- Expiration date
+- Usage limits
+- **Order Management**
+- Manage all orders
+- Update order statuses (Processing → Shipped → Delivered → Returned → Cancelled)
+- Review customer order requests and accept or reject based on admin judgment
 
 ---
 
@@ -35,7 +89,7 @@ npm install
 
 ### 3️⃣ Set up environment variables
 
-Create a file named `.env.local` in the project root and add the following:
+Create `.env.local` in the project root:
 
 ```env
 # API Server
@@ -58,15 +112,16 @@ NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=YOUR_OWN_VALUE
 npm run dev
 ```
 
-Then open your browser and go to:
-🔗 [http://localhost:3000](http://localhost:3000)
+Open your browser:  
+🔗 **http://localhost:3000**
 
 ---
 
 ## 📝 Notes
 
-This project connects to the **Lumora backend API** (`NEXT_PUBLIC_SERVER`) and uses **Firebase for social authentication**.
-Make sure your `.env.local` file is properly configured before starting.
+- This project connects to the **Lumora backend API** (`NEXT_PUBLIC_SERVER`).
+- Firebase handles **Google & social logins**.
+- Ensure your `.env.local` is properly configured before running the app.
 
 ---
 
