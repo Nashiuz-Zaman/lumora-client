@@ -57,7 +57,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
         )}
 
         {/* Product Image */}
-        <div className="mx-auto mt-3 mb-3.5 w-28 aspect-square">
+        <div className="mx-auto mt-3 mb-3.5 h-28! aspect-square!">
           {defaultImage && (
             <Image
               src={defaultImage}
