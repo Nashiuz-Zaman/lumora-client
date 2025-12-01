@@ -72,7 +72,7 @@ Jump to: [Client Setup](#client-how-to-run) |
 ### ✅ Customer Features
 
 - Email & social authentication (Local and Firebase Both)
-- Manage profile information & shipping and billing addresses
+- Manage profile information including shipping and billing addresses
 - View all products and categories
 - Filter & search products
 - Detailed product pages with reviews & related products
