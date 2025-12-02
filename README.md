@@ -17,7 +17,8 @@ Jump to: [Features](#-features) | [Client Setup](#client-how-to-run) |
 - **Firebase Authentication**
 - **GSAP** 
 - **React Hook Form** 
-- **Axios** 
+- **Axios**
+- **DND-Kit** 
 
 ### Backend
 
