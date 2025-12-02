@@ -67,7 +67,7 @@ export const CustomSwiper = <T,>({
       >
         <Swiper
           onSwiper={(swiper) => (swiperRef.current = swiper)}
-          className="[&_.swiper-wrapper]:!h-full !overflow-visible"
+          className="[&_.swiper-wrapper]:h-full! overflow-visible!"
           modules={[Autoplay, Navigation, A11y]}
           loop={loop}
           autoplay={autoplay}
@@ -81,7 +81,7 @@ export const CustomSwiper = <T,>({
           {...props}
         >
           {data.map((item, i) => (
-            <SwiperSlide className="!h-auto" key={`key-${i}`}>
+            <SwiperSlide className="h-auto!" key={`key-${i}`}>
               {renderItem(item, i)}
             </SwiperSlide>
           ))}
