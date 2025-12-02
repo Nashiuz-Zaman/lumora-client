@@ -29,7 +29,7 @@ export const DemoNoticeModal = () => {
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Important Notice</h2>
         <p className="text-neutral-600 leading-relaxed mb-3">
-          This is a <strong>demo project</strong>. Product data displayed here
+          Please note this is a <strong>demo project</strong>. Product data displayed here
           is <strong>entirely fictional</strong> except for the{" "}
           <strong>product names</strong> and <strong>images</strong>. Products
           within the same top or subcategory may share similar variant labels
