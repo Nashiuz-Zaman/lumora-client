@@ -34,7 +34,6 @@ export const IntroBanner = () => {
                 width={1500}
                 height={680}
                 fetchPriority="high"
-                loading="eager"
                 className="object-cover w-full h-full"
               />
             </div>
