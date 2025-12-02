@@ -33,7 +33,8 @@ export const IntroBanner = () => {
                 alt="Slide"
                 width={1500}
                 height={680}
-                loading="lazy"
+                fetchPriority="high"
+                loading="eager"
                 className="object-cover w-full h-full"
               />
             </div>
