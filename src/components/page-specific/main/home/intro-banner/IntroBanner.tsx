@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { Slider } from "@/components/shared";
 import { TopBannerIntro } from "../TopBannerIntro";
+import { Suspense } from "react";
 
 const sliderImages = [
   "https://res.cloudinary.com/diwzuhlc3/image/upload/v1764184789/lumora/intro-banner/home-2_rguud2.webp",
@@ -20,23 +21,25 @@ export const IntroBanner = () => {
         <TopBannerIntro />
       </div>
 
-      <Slider
-        data={sliderImages}
-        slideSwitcher={true}
-        autoPlayInterval={4000}
-        renderItem={(src: string) => (
-          <div className="w-full h-[22rem] overflow-hidden lg:h-full">
-            <Image
-              src={src}
-              alt="Slide"
-              width={2000}
-              height={1000}
-              priority
-              className="object-cover  w-full h-full"
-            />
-          </div>
-        )}
-      />
+      <Suspense>
+        <Slider
+          data={sliderImages}
+          slideSwitcher={true}
+          autoPlayInterval={4000}
+          renderItem={(src: string) => (
+            <div className="w-full h-[22rem] overflow-hidden lg:h-full">
+              <Image
+                src={src}
+                alt="Slide"
+                width={1500}
+                height={680}
+                loading="lazy"
+                className="object-cover w-full h-full"
+              />
+            </div>
+          )}
+        />
+      </Suspense>
     </section>
   );
 };
