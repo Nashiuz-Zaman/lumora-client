@@ -38,10 +38,38 @@ import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 // ---------------------------------------------------------
 // TYPES
 // ---------------------------------------------------------
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
+// ---------------------------------------------------------
+// METADATA
+// ---------------------------------------------------------
 export const metadata: Metadata = {
   title: "Lumora | Products from top brands all in one place for you",
+  description:
+    "A modern full-stack eCommerce platform built with Next.js, Express, MongoDB and TypeScript.",
+  openGraph: {
+    title: "Lumora | Products from top brands all in one place for you",
+    description:
+      "A modern full-stack eCommerce platform built with Next.js, Express, MongoDB and TypeScript.",
+    url: "https://lumora-client.vercel.app/",
+    siteName: "Lumora",
+    images: [
+      {
+        url: "https://lumora-client.vercel.app/og-image.webp",
+        width: 1200,
+        height: 630,
+        alt: "Lumora OG Image",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Lumora | Products from top brands all in one place for you",
+    description: "A modern full-stack eCommerce platform.",
+    images: ["https://lumora-client.vercel.app/og-image.webp"],
+  },
 };
 
 export default async function RootLayout({
