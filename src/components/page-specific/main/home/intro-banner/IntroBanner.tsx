@@ -49,6 +49,7 @@ export const IntroBanner = () => {
                     alt="Slide"
                     width={1500}
                     height={680}
+                    fetchPriority="high"
                     loading="lazy"
                     className="object-cover w-full h-full"
                   />
