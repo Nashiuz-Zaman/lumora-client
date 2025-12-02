@@ -26,18 +26,36 @@ export const IntroBanner = () => {
           data={sliderImages}
           slideSwitcher={true}
           autoPlayInterval={4000}
-          renderItem={(src: string) => (
-            <div className="w-full h-[22rem] overflow-hidden lg:h-full">
-              <Image
-                src={src}
-                alt="Slide"
-                width={1500}
-                height={680}
-                fetchPriority="high"
-                className="object-cover w-full h-full"
-              />
-            </div>
-          )}
+          renderItem={(src: string, i) => {
+            if (i === 0) {
+              return (
+                <div className="w-full h-[22rem] overflow-hidden lg:h-full">
+                  <Image
+                    src={src}
+                    alt="Slide"
+                    width={1500}
+                    height={680}
+                    fetchPriority="high"
+                    loading="eager"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              );
+            } else {
+              return (
+                <div className="w-full h-[22rem] overflow-hidden lg:h-full">
+                  <Image
+                    src={src}
+                    alt="Slide"
+                    width={1500}
+                    height={680}
+                    loading="lazy"
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              );
+            }
+          }}
         />
       </Suspense>
     </section>
