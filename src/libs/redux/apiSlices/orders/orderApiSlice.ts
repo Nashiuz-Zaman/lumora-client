@@ -19,28 +19,6 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
       }),
     }),
 
-    getCustomerRecentOrders: builder.query({
-      query: () => ({
-        url: "/orders/my/recent",
-        method: "GET",
-      }),
-    }),
-
-    getCustomerOrderHistory: builder.query({
-      query: (params) => ({
-        url: "/orders/my",
-        method: "GET",
-        params,
-      }),
-    }),
-
-    getCustomerOrderStats: builder.query({
-      query: () => ({
-        url: "/orders/my/stats",
-        method: "GET",
-      }),
-    }),
-
     getOrdersPrivate: builder.query<
       IApiResponse<TQueryDataWithQueryMeta<{ orders: IOrder[] }>>,
       Partial<IOrderQueriesParams>
@@ -128,10 +106,7 @@ export const orderApiSlice = baseApiSlice.injectEndpoints({
 // ----------
 export const {
   usePlaceOrderMutation,
-  useGetCustomerRecentOrdersQuery,
-  useGetCustomerOrderHistoryQuery,
   useGetOrdersForCustomerQuery,
-  useGetCustomerOrderStatsQuery,
   useGetOrdersPrivateQuery,
   useMarkOrderShippedMutation,
   useCancelOrdersAdminMutation,
