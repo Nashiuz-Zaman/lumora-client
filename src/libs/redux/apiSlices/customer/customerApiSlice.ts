@@ -1,10 +1,14 @@
 import { IApiResponse, ICustomerAddress, ICustomerProfile } from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
 import { TBasicInfoFormValues } from "@/components/page-specific/customer/settings/BasicInfoForm";
+import { IAuthFormSignup } from "@/components/page-specific";
 
 export const customerApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    signupCustomer: builder.mutation({
+    signupCustomer: builder.mutation<
+      IApiResponse<{ email: string }>,
+      IAuthFormSignup
+    >({
       query: (data) => ({
         url: "/customers/",
         method: "POST",
@@ -60,38 +64,6 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
         data,
       }),
     }),
-
-    blockCustomer: builder.mutation({
-      query: (userId) => ({
-        url: `/customers/block/${userId}`,
-        method: "PATCH",
-      }),
-    }),
-
-    unblockCustomer: builder.mutation({
-      query: (userId) => ({
-        url: `/customers/unblock/${userId}`,
-        method: "PATCH",
-      }),
-    }),
-
-    deleteCustomer: builder.mutation({
-      query: (userId) => ({
-        url: `/customers/${userId}`,
-        method: "DELETE",
-      }),
-    }),
-
-    getCustomerList: builder.query({
-      query: (params) => ({
-        url: `/customers`,
-        method: "GET",
-        params: {
-          ...params,
-          limitFields: "userId,name,email,phone,status,createdAt,id",
-        },
-      }),
-    }),
   }),
   overrideExisting: "throw",
 });
@@ -105,8 +77,4 @@ export const {
   useUpdateCustomerAddressMutation,
   useUpdateCustomerPasswordFromSettingsMutation,
   useSignupCustomerMutation,
-  useGetCustomerListQuery,
-  useBlockCustomerMutation,
-  useUnblockCustomerMutation,
-  useDeleteCustomerMutation,
 } = customerApiSlice;

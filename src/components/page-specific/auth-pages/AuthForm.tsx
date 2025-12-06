@@ -20,7 +20,7 @@ interface IAuthFormBase {
   mode: "signup" | "login"; // discriminant
 }
 
-interface IAuthFormSignup extends IAuthFormBase {
+export interface IAuthFormSignup extends IAuthFormBase {
   mode: "signup";
   name: NonNullable<IUser["name"]>;
   confirmPassword: string;
