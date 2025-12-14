@@ -174,7 +174,7 @@ export const AuthForm = ({
           </p>
         )}
 
-        {/* Google OAuth (signup only) */}
+        {/* Google OAuth */}
         {mode === "login" && (
           <>
             <div className="flex items-center justify-center gap-2 text-neutral-400">
