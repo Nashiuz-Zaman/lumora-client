@@ -1,4 +1,9 @@
-import { IApiResponse, ICustomerAddress, ICustomerProfile } from "@/types";
+import {
+  IApiResponse,
+  ICustomerAddress,
+  ICustomerProfile,
+  TPaginatedCustomers,
+} from "@/types";
 import { baseApiSlice } from "../baseApiSlice";
 import { TBasicInfoFormValues } from "@/components/page-specific/customer/settings/BasicInfoForm";
 import { IAuthFormSignup } from "@/components/page-specific";
@@ -64,6 +69,17 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
         data,
       }),
     }),
+
+    getCustomerList: builder.query<
+      IApiResponse<TPaginatedCustomers>,
+      Record<string, any> | void
+    >({
+      query: (params) => ({
+        url: "/customers",
+        method: "GET",
+        params,
+      }),
+    }),
   }),
   overrideExisting: "throw",
 });
@@ -77,4 +93,5 @@ export const {
   useUpdateCustomerAddressMutation,
   useUpdateCustomerPasswordFromSettingsMutation,
   useSignupCustomerMutation,
+  useGetCustomerListQuery,
 } = customerApiSlice;

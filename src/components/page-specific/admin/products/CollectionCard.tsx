@@ -10,14 +10,14 @@ export const CollectionCard = ({
   noDeleteBtn = false,
   href = "/",
   className = "",
-  productCount,
+  count,
 }: {
   title: string;
   onDelete?: () => void;
   noDeleteBtn?: boolean;
   href: string;
   className?: string;
-  productCount?: number;
+  count?: number;
 }) => {
   return (
     <Link href={href}>
@@ -38,9 +38,9 @@ export const CollectionCard = ({
           )}
         </div>
 
-        {typeof productCount === "number" && (
+        {typeof count === "number" && (
           <p className="mt-2 text-sm text-neutral-500 transition-colors group-hover:text-white">
-            {productCount} {productCount === 1 ? "product" : "products"}
+            {count} {count === 1 ? "product" : "products"}
           </p>
         )}
       </div>

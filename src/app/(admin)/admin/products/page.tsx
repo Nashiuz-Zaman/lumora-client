@@ -47,7 +47,7 @@ const AdminCentralProductManagementPage = async () => {
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {group.productCollections.map((collection) => (
                   <CollectionCard
-                    productCount={collection.productCount}
+                    count={collection.productCount}
                     key={collection.slug}
                     href={`/admin/products/product-collection/${collection.slug}`}
                     title={collection.title}

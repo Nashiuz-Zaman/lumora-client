@@ -23,7 +23,7 @@ export interface IUser {
 }
 
 // ---------------------------------------------------------
-// POPULATED USER MODEL
+// POPULATED USER 
 // ---------------------------------------------------------
 export interface IUserPopulated extends IUser {
   role: IRole;

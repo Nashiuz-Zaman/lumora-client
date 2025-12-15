@@ -20,3 +20,4 @@ export * from "./returns/approved/ApprovedRequestsMain";
 export * from "./returns/rejected/RejectedRequestsMain";
 export * from "./orders/returned/ReturnedOrdersMain";
 export * from "./analytics/overview/AnalyticsOverviewMain";
+export * from "./users/customers/active/ActiveCustomersMain";

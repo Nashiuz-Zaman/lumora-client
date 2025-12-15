@@ -12,9 +12,9 @@ export type TUserRoleValue = (typeof UserRoles)[keyof typeof UserRoles];
 
 // User status (frozen)
 export const UserStatus = Object.freeze({
-  active: "active",
-  blocked: "blocked",
-  deleted: "deleted",
+  active: 1,
+  blocked: 0,
+  deleted: -1,
 } as const);
 
 // Type for user status values

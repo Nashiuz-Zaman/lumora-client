@@ -30,3 +30,4 @@ export * from "./useDrawer";
 export * from "./usePaymentQueries";
 export * from "./useCouponQueries";
 export * from "./useReturnRequestQueries";
+export * from "./useCustomersQueries";
