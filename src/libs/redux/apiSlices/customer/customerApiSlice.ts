@@ -80,6 +80,33 @@ export const customerApiSlice = baseApiSlice.injectEndpoints({
         params,
       }),
     }),
+
+    // ----------------------------- Block Customers -----------------------------
+    blockCustomers: builder.mutation<IApiResponse, { _ids: string[] }>({
+      query: (data) => ({
+        url: "/customers/block",
+        method: "PATCH",
+        data,
+      }),
+    }),
+
+    // ----------------------------- Unblock Customers -----------------------------
+    unblockCustomers: builder.mutation<IApiResponse, { _ids: string[] }>({
+      query: (data) => ({
+        url: "/customers/unblock",
+        method: "PATCH",
+        data,
+      }),
+    }),
+
+    // ----------------------------- Delete Customers -----------------------------
+    deleteCustomers: builder.mutation<IApiResponse, { _ids: string[] }>({
+      query: (data) => ({
+        url: "/customers/delete",
+        method: "PATCH",
+        data,
+      }),
+    }),
   }),
   overrideExisting: "throw",
 });
@@ -94,4 +121,7 @@ export const {
   useUpdateCustomerPasswordFromSettingsMutation,
   useSignupCustomerMutation,
   useGetCustomerListQuery,
+  useBlockCustomersMutation,
+  useUnblockCustomersMutation,
+  useDeleteCustomersMutation,
 } = customerApiSlice;

@@ -1,4 +1,4 @@
-export const SuccessIcon = ({ className = "" }: { className: string }) => {
+export const SuccessIcon = ({ className = "" }: { className?: string }) => {
   return (
     <div className={className}>
       <svg

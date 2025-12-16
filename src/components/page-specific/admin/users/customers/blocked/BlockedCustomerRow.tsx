@@ -26,7 +26,7 @@ interface IActiveCustomerRowProps {
   isLastEl?: boolean;
 }
 
-export const ActiveCustomerRow = ({
+export const BlockedCustomerRow = ({
   customer,
   isSelected,
   toggleSelectOne,

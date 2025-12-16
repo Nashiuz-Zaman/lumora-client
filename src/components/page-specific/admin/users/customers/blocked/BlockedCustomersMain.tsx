@@ -4,13 +4,13 @@
 import {
   Pagination,
   TabularData,
-  WarningIcon,
   ButtonBtnTrans,
   TRenderTableRowProps,
   TTableColumn,
+  SuccessIcon,
 } from "@/components/shared";
 import { CustomersTopParamsForm } from "../../shared/CustomersTopParamsForm";
-import { ActiveCustomerRow } from "./ActiveCustomerRow";
+import { BlockedCustomerRow } from "./BlockedCustomerRow";
 import { ConfirmationModal } from "@/components/modals";
 
 // Providers
@@ -35,10 +35,9 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 
 // Types
 import { IPaginatedCustomer } from "@/types";
+import { useUnblockCustomersMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
 
 // Redux / API
-import { useBlockCustomersMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
-
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" }, // checkbox only
   { columnTitle: "Avatar", width: "auto" }, // avatar image
@@ -49,10 +48,10 @@ const columns: TTableColumn[] = [
   { columnTitle: "Last Login", width: "0.35fr" },
 ];
 
-export const ActiveCustomersMain = () => {
+export const BlockedCustomersMain = () => {
   const tableActionsBlockRef = useRef(null);
   const { refs } = useRefState();
-  useSetElementText(refs?.titleRef?.current, "Active Customers");
+  useSetElementText(refs?.titleRef?.current, "Blocked Customers");
   const { admin, superAdmin } = UserRoles;
 
   const {
@@ -64,7 +63,7 @@ export const ActiveCustomersMain = () => {
     handleSubmit,
     changePage,
     refetch,
-  } = useCustomersQueries({ status: UserStatus.active });
+  } = useCustomersQueries({ status: UserStatus.blocked });
 
   const {
     selected,
@@ -81,10 +80,10 @@ export const ActiveCustomersMain = () => {
     closeModal: closeConfirmModal,
   } = useModal();
 
-  const [blockCustomers, { isLoading }] = useBlockCustomersMutation();
+  const [unblockCustomers, { isLoading }] = useUnblockCustomersMutation();
 
-  const handleBlockCustomers = catchAsyncGeneral(async () => {
-    const res = await blockCustomers({
+  const handleUnblockCustomers = catchAsyncGeneral(async () => {
+    const res = await unblockCustomers({
       _ids: (selected as string[]) ?? [],
     }).unwrap();
 
@@ -99,7 +98,7 @@ export const ActiveCustomersMain = () => {
     data,
     isLastEl,
   }: TRenderTableRowProps<IPaginatedCustomer>) => (
-    <ActiveCustomerRow
+    <BlockedCustomerRow
       customer={data}
       isSelected={checkIfSelected(data)}
       toggleSelectOne={toggleSelectOne}
@@ -131,11 +130,11 @@ export const ActiveCustomersMain = () => {
         <ButtonBtnTrans
           ref={tableActionsBlockRef}
           onClick={() => openConfirmModal()}
-          className="text-red-600 font-inherit ml-auto px-4 !h-[50px] shrink-0"
+          className="text-green-600 font-inherit ml-auto px-4 !h-[50px] shrink-0"
           disabled={selected.length < 1}
         >
-          <WarningIcon />
-          Block Selected
+          <SuccessIcon />
+          Unblock Selected
         </ButtonBtnTrans>
 
         <TabularData<IPaginatedCustomer>
@@ -165,12 +164,11 @@ export const ActiveCustomersMain = () => {
       <ConfirmationModal
         show={isConfirmModalOpen}
         isLoading={isLoading}
-        message={`Block ${selected.length} customer(s)?`}
-        onConfirm={handleBlockCustomers}
+        message={`Unblock ${selected.length} customer(s)?`}
+        onConfirm={handleUnblockCustomers}
         onCancel={closeConfirmModal}
         isAnimated
       />
     </ProtectedRouteProvider>
   );
 };
-

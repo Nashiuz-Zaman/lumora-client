@@ -1,4 +1,4 @@
-import ActiveCustomersMain from "@/components/page-specific/admin/users/customers/active/ActiveCustomersMain";
+import { ActiveCustomersMain } from "@/components/page-specific/admin";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
