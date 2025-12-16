@@ -181,7 +181,6 @@ a:visited::selection {
 /* Entire scrollbar */
 * {
   scrollbar-width: thin; /* auto | thin | none */
-  scrollbar-color: var(--color-primary-light-2) #f1f1f1;
 }
 
 /* @media (prefers-color-scheme: dark) {
