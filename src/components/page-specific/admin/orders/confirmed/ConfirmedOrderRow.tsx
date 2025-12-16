@@ -43,7 +43,7 @@ export const ConfirmedOrderRow = ({
   return (
     <>
       {/* Checkbox */}
-      <td className={cellClasses + " !pl-4 !pr-2 w-[1.6rem]"}>
+      <td className={cellClasses + " !pl-4 !pr-2"}>
         <InputCheckbox
           checked={isSelected}
           onChange={() => toggleSelectOne?.(orderData)}
@@ -90,7 +90,7 @@ export const ConfirmedOrderRow = ({
       </td>
 
       {/* Actions */}
-      <td className={cellClasses + " flex h-max items-center gap-4"}>
+      <td className={cellClasses + " flex items-center gap-4"}>
         <ButtonBtnTrans
           onClick={() => {
             setSingle(orderData._id);
