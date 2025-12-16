@@ -15,10 +15,10 @@ Jump to: [Features](#-features) | [Client Setup](#client-how-to-run) |
 - **Redux Toolkit**
 - **TailwindCSS 4**
 - **Firebase Authentication**
-- **GSAP** 
-- **React Hook Form** 
+- **GSAP**
+- **React Hook Form**
 - **Axios**
-- **DND-Kit** 
+- **DND-Kit**
 
 ### Backend
 
@@ -28,9 +28,9 @@ Jump to: [Features](#-features) | [Client Setup](#client-how-to-run) |
 - **Mongoose**
 - **JWT Authentication**
 - **Puppeteer**
-- **Cloudinary** 
-- **Nodemailer** 
-- **SSLCommerz** 
+- **Cloudinary**
+- **Nodemailer**
+- **SSLCommerz**
 
 ## 🧩 Features
 
@@ -212,6 +212,27 @@ SSL_STORE_PASS=YOUR_OWN_VALUE
 ```bash
 npm run dev
 ```
+
+---
+
+### 💡 Initial Data Seeding
+
+When running in **development**, the **superadmin** and **demo admin** accounts are automatically seeded.
+
+Other initial data, such as **categories, product collections, and backup collections**, need to be seeded manually using the CLI scripts:
+
+```bash
+# Seed categories
+npm run seed:categories
+
+# Seed product collections
+npm run seed:productCollections
+
+# Seed backup product collections
+npm run seed:backupProductCollections
+```
+
+> ⚠️ **Note:** In production, seeding is not automatic. Only run these scripts intentionally to avoid overwriting live data.
 
 ---
 
