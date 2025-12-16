@@ -10,3 +10,4 @@ export * from "./DemoNoticeModal";
 export * from "./RefundModal";
 export * from "./CreateCouponModal";
 export * from "./ReturnRequestModal";
+export * from "./DummyPaymentGuideModal";

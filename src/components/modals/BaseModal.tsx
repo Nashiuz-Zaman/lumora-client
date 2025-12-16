@@ -84,7 +84,7 @@ export const BaseModal = ({
     >
       <div
         ref={modalRef}
-        className={`modal-focus fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-max !z-300 ${className}`}
+        className={`modal-focus fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-max z-5001! ${className}`}
       >
         {!noCloseBtn && <CloseBtn onClick={closeFunction} />}
         {children}

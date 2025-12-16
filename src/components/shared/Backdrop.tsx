@@ -50,7 +50,7 @@ export const Backdrop = ({
     >
       <div
         ref={backdropRef}
-        className={`fixed w-full h-screen opacity-0 bg-black/15 backdrop-blur-xs !z-300`}
+        className={`fixed w-full h-screen opacity-0 bg-black/15 backdrop-blur-xs z-5000!`}
         style={{ zIndex }}
       />
     </Transition>

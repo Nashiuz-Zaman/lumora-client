@@ -10,6 +10,7 @@ export const OrderSummary = () => {
   const { cart } = useCartState();
   const pathname = usePathname();
 
+  const hasItems = (cart?.items?.length ?? 0) > 0;
   const subtotal = cart?.subtotal ?? 0;
   const shippingFee = cart?.shippingFee ?? 0;
   const tax = cart?.tax ?? 0;
@@ -64,8 +65,8 @@ export const OrderSummary = () => {
         </div>
 
         {/* Show checkout button only if not already on /checkout */}
-        {pathname === "/cart" && (
-          <>
+        {pathname === "/cart" && hasItems && (
+          <div>
             <LinkBtn
               href="/checkout"
               className="primaryClasses! rounded-full! mx-auto mt-4"
@@ -73,13 +74,13 @@ export const OrderSummary = () => {
               Secure Checkout
             </LinkBtn>
 
-            <div className="text-center space-y-3 text-xs">
+            <div className="text-center space-y-3 text-xs mt-4">
               <div className="flex items-center justify-center gap-1">
-                <LockIcon className="text-xl" />{" "}
+                <LockIcon className="text-xl" />
                 <span>SSL Secured Checkout</span>
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
     </div>
