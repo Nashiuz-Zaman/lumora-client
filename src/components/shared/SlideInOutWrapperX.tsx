@@ -88,7 +88,7 @@ export const SlideInOutWrapperX = ({
   return (
     <div
       ref={wrapperRef}
-      className={`absolute w-full z-[500] overflow-hidden ${className}`}
+      className={`absolute z-500 overflow-hidden ${className}`}
       style={{
         transform: "scaleX(0) translateX(0)",
         transformOrigin: "left",

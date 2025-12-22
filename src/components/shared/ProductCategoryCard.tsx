@@ -43,7 +43,7 @@ export const ProductCategoryCard = ({
       <GridCard images={images} />
 
       <SlideInOutWrapperX
-        className={`y-center ${slideInOutPanelGradient}`}
+        className={`y-center left-0 right-0 ${slideInOutPanelGradient}`}
         parent={`#${id}`}
       >
         <div className="py-10 flex items-center justify-center">
