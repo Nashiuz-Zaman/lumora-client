@@ -11,7 +11,6 @@ export * from "./containers/CenterContainer";
 export * from "./containers/InnerContainer";
 export * from "./buttons";
 export * from "./IcfyIcon";
-export * from "./BrandLogo";
 export * from "./DashboardPageHeading";
 export * from "./LoadingSpinner";
 export * from "./InputField";

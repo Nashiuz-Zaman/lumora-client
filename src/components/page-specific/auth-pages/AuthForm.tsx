@@ -82,9 +82,9 @@ export const AuthForm = ({
     <FormProvider {...formInstance}>
       <form
         onSubmit={handleSubmit(handleFormSubmit)}
-        className="w-full max-w-md space-y-6"
+        className="w-full space-y-6"
       >
-        {/* 🔥 Hidden discriminant field (required for narrowing) */}
+        {/*  Hidden discriminant field (required for narrowing) */}
         <input type="hidden" value={mode} {...register("mode")} />
 
         <h2 className="text-3xl font-bold text-center">

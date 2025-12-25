@@ -12,13 +12,13 @@ export const CompanyLogoBtn = ({
   isBgDark = false,
 }: ICompanyLogoBtnProps) => {
   return (
-    <Link href="/" className={`block ${className}`}>
+    <Link href="/" className={`inline-block text-2xl ${className}`}>
       <p
-        className={
+        className={`${
           isBgDark
-            ? "text-white text-2xl font-semibold"
-            : "inline-block bg-linear-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent text-2xl"
-        }
+            ? "text-white"
+            : "bg-linear-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"
+        } [font-size:inherit]`}
       >
         Lumora
       </p>
