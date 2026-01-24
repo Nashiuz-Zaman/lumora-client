@@ -88,7 +88,10 @@ export default async function RootLayout({
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${poppins.className} text-neutral-700`}>
+      <body
+        className={`${poppins.className} text-neutral-700`}
+        suppressHydrationWarning
+      >
         <ReduxProvider initialCategoryTree={categoryTree}>
           <AuthStateProvider>
             <CartStateProvider>

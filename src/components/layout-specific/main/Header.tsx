@@ -27,8 +27,9 @@ import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import { UserRoles } from "@/constants/user";
 import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import gsap from "gsap";
-gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 // ---------------------------------------
 // Header prop type
@@ -41,66 +42,6 @@ const Header = ({ categories }: THeaderProps) => {
   const { cart } = useCartState();
   const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
   const headerRef = useRef<HTMLHeadElement>(null);
-  const lastScrollY = useRef(0);
-
-  // ---------------------------------------
-  // GSAP scroll logic
-  // ---------------------------------------
-  useGSAP(
-    () => {
-      const header = headerRef.current;
-      let isHidden = false;
-
-      const onScroll = () => {
-        const current = window.scrollY;
-
-        // -----------------------------
-        // Slide in out logic
-        // -----------------------------
-        if (current > lastScrollY.current && !isHidden) {
-          isHidden = true;
-          gsap.to(header, {
-            y: "-100%",
-            duration: 0.35,
-            ease: "power3.out",
-          });
-        }
-
-        // scrolling up → show
-        if (current < lastScrollY.current && isHidden) {
-          isHidden = false;
-          gsap.to(header, {
-            y: "0%",
-            duration: 0.35,
-            ease: "power3.out",
-          });
-        }
-
-        // -----------------------------
-        // Box shadow logic
-        // -----------------------------
-        if (current < lastScrollY.current && current > 100) {
-          gsap.to(header, {
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-            duration: 0.3,
-            ease: "power3.out",
-          });
-        } else {
-          gsap.to(header, {
-            boxShadow: "0 0 0 rgba(0, 0, 0, 0)",
-            duration: 0.3,
-            ease: "power3.out",
-          });
-        }
-
-        lastScrollY.current = current;
-      };
-
-      window.addEventListener("scroll", onScroll);
-      return () => window.removeEventListener("scroll", onScroll);
-    },
-    { dependencies: [] }
-  );
 
   // search hook
   const [triggerSearch, { data, isFetching, isSuccess }] =
@@ -108,53 +49,60 @@ const Header = ({ categories }: THeaderProps) => {
 
   const results = (!isFetching && isSuccess && data?.data?.products) || [];
 
-  // ---------------------------------------
-  // GSAP scroll logic
-  // ---------------------------------------
   useGSAP(
     () => {
       if (!headerRef.current) return;
 
       const header = headerRef.current;
-      let isHidden = false;
+      let lastScrollY = 0; // track previous scroll
 
-      const onScroll = () => {
-        const current = window.scrollY;
+      ScrollTrigger.create({
+        start: 0,
+        end: "max",
+        onUpdate: (self) => {
+          const current = self.scroll();
 
-        // scrolling down → hide
-        if (current > lastScrollY.current && !isHidden) {
-          isHidden = true;
+          // -------------------------
+          // Hide/show header
+          // -------------------------
+          if (current > lastScrollY) {
+            gsap.to(header, {
+              y: "-100%",
+              duration: 0.4,
+              ease: "power3.out",
+            });
+          } else if (current < lastScrollY) {
+            gsap.to(header, {
+              y: "0%",
+              duration: 0.4,
+              ease: "power3.out",
+            });
+          }
+
+          // -------------------------
+          // Box shadow logic
+          // -------------------------
           gsap.to(header, {
-            y: "-100%",
-            duration: 0.35,
+            boxShadow:
+              current > 100
+                ? "0 4px 12px rgba(0, 0, 0, 0.1)"
+                : "0 0 0 rgba(0, 0, 0, 0)",
+            duration: 0.3,
             ease: "power3.out",
           });
-        }
 
-        // scrolling up → show
-        if (current < lastScrollY.current && isHidden) {
-          isHidden = false;
-          gsap.to(header, {
-            y: 0,
-            duration: 0.35,
-            ease: "power3.out",
-          });
-        }
-
-        lastScrollY.current = current;
-      };
-
-      window.addEventListener("scroll", onScroll);
-      return () => window.removeEventListener("scroll", onScroll);
+          lastScrollY = current;
+        },
+      });
     },
-    { dependencies: [] }
+    { dependencies: [] },
   );
 
   // simple renderer for results
   const renderResult = (
     item: ISearchbarResultProduct,
     _index: number,
-    onClick: () => void
+    onClick: () => void,
   ): React.ReactNode => {
     return (
       <SearchbarProductCard
