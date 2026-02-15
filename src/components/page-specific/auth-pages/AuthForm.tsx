@@ -13,7 +13,6 @@ import { IUser } from "@/types";
 // -------------------------
 // TYPES
 // -------------------------
-
 interface IAuthFormBase {
   email: IUser["email"];
   password: string;
@@ -37,12 +36,11 @@ export type TAuthForm = IAuthFormSignup | IAuthFormLogin;
 // -------------------------
 // COMPONENT PROPS
 // -------------------------
-
 interface IAuthFormProps {
   mode: "signup" | "login";
   onSubmit: (
     data: TAuthForm,
-    setError: UseFormSetError<TAuthForm>
+    setError: UseFormSetError<TAuthForm>,
   ) => Promise<void>;
   onGoogleLogin?: () => void;
   isLoading?: boolean;
@@ -127,7 +125,10 @@ export const AuthForm = ({
           placeholder="Enter your password"
           {...register("password", {
             required: "Password is required",
-            minLength: 6,
+            minLength: {
+              value: 6,
+              message: "Password must be at least 6 characters",
+            },
           })}
           error={errors.password?.message}
           inputClassName="rounded-md"
@@ -152,7 +153,7 @@ export const AuthForm = ({
         <ButtonBtn
           type="submit"
           isLoading={isLoading}
-          className="!primaryClasses !w-full !rounded-full"
+          className="primaryClasses! w-full! rounded-full!"
         >
           {mode === "signup" ? "Sign Up" : "Login"}
         </ButtonBtn>

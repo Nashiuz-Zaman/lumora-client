@@ -10,7 +10,7 @@ export const LoginPageMain = () => {
 
   const handleLogin = async (
     data: TAuthForm,
-    setError: UseFormSetError<TAuthForm>
+    setError: UseFormSetError<TAuthForm>,
   ) => {
     await localLogin({
       data,
