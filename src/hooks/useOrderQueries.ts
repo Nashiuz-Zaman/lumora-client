@@ -37,7 +37,7 @@ export interface IOrderQueriesParams {
   user?: string;
 }
 
-export interface IUseOrderQueriesArgs {
+interface IUseOrderQueriesArgs {
   orderStatus?: TStatusValue;
   isArchived?: boolean;
   isPrivate?: boolean;
@@ -72,7 +72,7 @@ export const useOrderQueries = ({
         "sort",
         "status",
       ]),
-    [searchParams]
+    [searchParams],
   );
 
   // Normalize params safely
@@ -85,12 +85,12 @@ export const useOrderQueries = ({
         orderStatus ??
         (cleanStatusParam(
           rawQueryParams.status,
-          Object.values(OrderStatus)
+          Object.values(OrderStatus),
         ) as TStatusValue),
       isArchived,
       user,
     }),
-    [rawQueryParams, isArchived, user, orderStatus]
+    [rawQueryParams, isArchived, user, orderStatus],
   );
 
   // Controlled form params
@@ -111,7 +111,7 @@ export const useOrderQueries = ({
       buildUrlWithParams(path, {
         ...cleanObject(formParams),
         ...(page ? { page } : {}),
-      })
+      }),
     );
   };
 

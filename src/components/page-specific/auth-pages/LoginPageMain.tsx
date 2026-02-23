@@ -6,7 +6,7 @@ import { useAuthMethods } from "@/hooks/useAuthMethods";
 import { UseFormSetError } from "react-hook-form";
 
 export const LoginPageMain = () => {
-  const { localLogin, isLocalLoginLoading } = useAuthMethods();
+  const { localLogin, isLocalLoginLoading, loginWithGoogle } = useAuthMethods();
 
   const handleLogin = async (
     data: TAuthForm,
@@ -25,6 +25,7 @@ export const LoginPageMain = () => {
       <AuthForm
         mode="login"
         onSubmit={handleLogin}
+        onGoogleLogin={loginWithGoogle}
         isLoading={isLocalLoginLoading}
       />
     </div>
