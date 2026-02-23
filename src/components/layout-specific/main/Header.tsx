@@ -181,23 +181,28 @@ const Header = ({ categories }: THeaderProps) => {
               </div>
             )}
 
-            {/* shopping cart */}
-            <CartBtn itemsQty={cart?.totalItemQty} />
+            <div className="flex items-center gap-7">
+              {/* shopping cart */}
+              <CartBtn itemsQty={cart?.totalItemQty} />
 
-            {/* role-based menu */}
-            {user && (
-              <div className="flex items-center gap-4">
-                {/* admin menu btn if user is admin */}
-                {isAdminRole && (
-                  <UserMenuWithoutAvatar logoutFunction={logout} />
-                )}
+              {/* role-based menu */}
+              {user && (
+                <>
+                  {/* admin menu btn if user is admin */}
+                  {isAdminRole && (
+                    <UserMenuWithoutAvatar logoutFunction={logout} />
+                  )}
 
-                {/* or customer menu btn for customers */}
-                {isCustomer && (
-                  <UserMenuWithAvatar userData={user} logoutFunction={logout} />
-                )}
-              </div>
-            )}
+                  {/* or customer menu btn for customers */}
+                  {isCustomer && (
+                    <UserMenuWithAvatar
+                      userData={user}
+                      logoutFunction={logout}
+                    />
+                  )}
+                </>
+              )}
+            </div>
           </div>
         </InnerContainer>
 

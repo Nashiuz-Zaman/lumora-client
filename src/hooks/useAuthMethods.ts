@@ -62,7 +62,7 @@ export const useAuthMethods = () => {
           message: message,
         });
       },
-    }
+    },
   );
 
   // Login using email
@@ -83,7 +83,7 @@ export const useAuthMethods = () => {
         });
 
         router.push(
-          `/${userData?.role.name === customer ? "customer" : "admin"}`
+          `/${userData?.role.name === customer ? "customer" : "admin"}`,
         );
       }
     },
@@ -97,7 +97,7 @@ export const useAuthMethods = () => {
           message: message,
         });
       },
-    }
+    },
   );
 
   //  Login using google
@@ -119,11 +119,7 @@ export const useAuthMethods = () => {
         showToast({ message: res.message });
 
         router.push(
-          `/${
-            userData?.role.name === customer
-              ? `customer?id=${userData?.id}`
-              : "admin"
-          }`
+          `/${userData?.role.name === customer ? "customer" : "admin"}`,
         );
       }
     }

@@ -43,7 +43,7 @@ export const UserMenuWithoutAvatar = ({
 
       {/* Dropdown menu */}
       {showMenu && (
-        <div className="menu rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
+        <div className="menu rounded-lg w-72.5 bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
           <Link
             onClick={() => setShowMenu(false)}
             href="/"

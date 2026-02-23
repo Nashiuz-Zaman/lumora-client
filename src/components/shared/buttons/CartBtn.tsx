@@ -25,7 +25,7 @@ export const CartBtn = ({
       )}
       <Link
         href={href}
-        className="[color:inherit] aspect-square [font-size:inherit]"
+        className="text-inherit aspect-square [font-size:inherit]"
       >
         <CartIcon className="[font-size:inherit]" />
       </Link>

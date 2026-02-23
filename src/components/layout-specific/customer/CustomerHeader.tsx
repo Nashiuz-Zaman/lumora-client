@@ -23,6 +23,8 @@ export const CustomerHeader = () => {
   const mobileBtnPlaceholdrRef = useRef(null);
   const { setRefs } = useRefState();
 
+  console.log(user)
+
   useEffect(() => {
     setRefs((prev) =>
       !prev.customerHeader
@@ -63,6 +65,7 @@ export const CustomerHeader = () => {
         <div className="flex items-center gap-5">
           {/* shopping cart */}
           <CartBtn itemsQty={cart?.totalItemQty} />
+
           {user && (
             <UserMenuWithAvatar userData={user} logoutFunction={logout} />
           )}

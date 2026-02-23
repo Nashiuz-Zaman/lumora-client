@@ -40,7 +40,7 @@ export const UserMenuWithAvatar = ({
   const dashboardLink = "/customer";
 
   return (
-    <div className={`h-8 md:h-10 xl:h-14 cursor-pointer relative ${className}`}>
+    <div className={`h-8 md:h-10 2xl:h-12 cursor-pointer relative ${className}`}>
       {/* Profile image container */}
       <div
         onClick={() => setShowMenu((prev) => !prev)}
