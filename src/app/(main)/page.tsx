@@ -3,6 +3,7 @@ import {
   ProductsFromCollection,
   IntroBanner,
 } from "@/components/page-specific";
+import { ProductCollectionSkeleton } from "@/components/shared/skeletons/ProductCollectionSkeleton";
 import { Metadata } from "next";
 import { Suspense } from "react";
 
@@ -22,7 +23,7 @@ const HomePage = async () => {
       </Suspense>
 
       <div className="space-y-8 my-8">
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             collectionSlug="top-selling-products-homepage"
             title="Top Selling"
@@ -34,7 +35,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="fashion-accessories"
             collectionSlug="fashion-accessories-homepage"
@@ -47,7 +48,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="gaming-entertainment"
             collectionSlug="gaming-entertainment-homepage"
@@ -60,7 +61,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="mobile-phones-electronics"
             collectionSlug="mobile-phones-electronics-homepage"
@@ -73,7 +74,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="food-snacks"
             collectionSlug="food-snacks-homepage"
@@ -86,7 +87,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="kitchen-essentials"
             collectionSlug="kitchen-essentials-homepage"
@@ -99,7 +100,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="home-appliances-essentials"
             collectionSlug="home-appliances-essentials-homepage"
@@ -112,7 +113,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="health-wellness"
             collectionSlug="health-wellness-homepage"
@@ -125,7 +126,7 @@ const HomePage = async () => {
           />
         </Suspense>
 
-        <Suspense>
+        <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             id="outdoors"
             collectionSlug="outdoors-homepage"

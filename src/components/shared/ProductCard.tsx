@@ -64,6 +64,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
               alt={title as string}
               width={200}
               height={200}
+              priority={false}
               loading="lazy"
               className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
             />
