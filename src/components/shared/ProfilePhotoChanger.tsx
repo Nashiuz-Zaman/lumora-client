@@ -67,7 +67,7 @@ export const ProfilePhotoChanger = ({
 
       {/* Upload button */}
       <label
-        className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-neutral-700 text-white font-semibold text-sm cursor-pointer shadow-sm hover:shadow-md transition-all duration-200 ${buttonClasses}`}
+        className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-neutral-700 text-neutral-50 font-semibold text-sm cursor-pointer shadow-sm hover:shadow-md transition-all duration-200 ${buttonClasses}`}
       >
         <IcfyIcon icon="mdi:camera" />
         <span>{buttonText}</span>

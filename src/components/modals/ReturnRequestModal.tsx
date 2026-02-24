@@ -230,7 +230,7 @@ export const ReturnRequestModal = () => {
                   disabled={isApproving}
                   type="button"
                   onClick={handleReject}
-                  className="!rounded-full bg-red-500 text-white hover:bg-red-600"
+                  className="!rounded-full bg-red-500 text-neutral-50 hover:bg-red-600"
                 >
                   Reject
                 </ButtonBtn>

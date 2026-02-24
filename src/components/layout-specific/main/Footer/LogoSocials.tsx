@@ -22,7 +22,7 @@ const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
       <CompanyLogoBtn isBgDark={true} className="mb-6"/>
 
       {/* Description */}
-      <p className="text-white text-sm sm:text-base leading-relaxed max-w-[32rem] mb-6">
+      <p className="text-neutral-50 text-sm sm:text-base leading-relaxed max-w-[32rem] mb-6">
         Shop premium products from Apple, Nike, Gucci, and more—all delivered
         across the USA. Gadgets, fashion, and gourmet foods in one place.
       </p>

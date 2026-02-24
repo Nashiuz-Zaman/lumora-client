@@ -68,7 +68,7 @@ export const VariantSelector = ({
                     }
                     className={`px-4 py-2 cursor-pointer transition-all rounded-md border ${
                       isSelected
-                        ? "bg-primary text-white border-primary"
+                        ? "bg-primary text-neutral-50 border-primary"
                         : "bg-white text-neutral-700 border-neutral-200"
                     }`}
                   >

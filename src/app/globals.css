@@ -63,50 +63,50 @@ html {
 }
 
 @utility primaryClasses {
-  @apply bg-primary border border-primary text-white
+  @apply bg-primary border border-primary text-neutral-50
          active:bg-primary-dark active:border-primary-dark
          lg:hover:bg-primary-dark lg:hover:border-primary-dark
-         disabled:hover:bg-primary disabled:hover:border-primary disabled:hover:text-white;
+         disabled:hover:bg-primary disabled:hover:border-primary disabled:hover:text-neutral-50;
 }
 
 @utility blackOutlinedToPrimaryClasses {
-  @apply bg-transparent border border-neutral-300
-         active:bg-primary lg:hover:bg-primary lg:hover:text-white
-         active:text-white lg:hover:border-primary active:border-primary
+  @apply bg-transparent border border-neutral-300 text-neutral-500
+         active:bg-primary lg:hover:bg-primary lg:hover:text-neutral-50
+         active:text-neutral-50 lg:hover:border-primary active:border-primary
          disabled:hover:bg-transparent disabled:hover:border-neutral-300;
 }
 
 @utility primaryOutlinedClasses {
   @apply bg-transparent border text-primary border-primary
-         active:bg-primary lg:hover:bg-primary lg:hover:text-white
-         active:text-white lg:hover:border-primary
+         active:bg-primary lg:hover:bg-primary lg:hover:text-neutral-50
+         active:text-neutral-50 lg:hover:border-primary
          disabled:hover:bg-transparent disabled:hover:text-primary disabled:hover:border-primary;
 }
 
 @utility primaryLightClasses {
-  @apply bg-primary-light border border-primary-light text-white
-         active:bg-primary active:border-primary active:text-white
-         lg:hover:bg-primary lg:hover:border-primary lg:hover:text-white
-         disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-white;
+  @apply bg-primary-light border border-primary-light text-neutral-50
+         active:bg-primary active:border-primary active:text-neutral-50
+         lg:hover:bg-primary lg:hover:border-primary lg:hover:text-neutral-50
+         disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-neutral-50;
 }
 
 @utility secondaryClasses {
-  @apply bg-secondary border border-secondary text-white
+  @apply bg-secondary border border-secondary text-neutral-50
          active:bg-secondary-dark active:border-secondary-dark
          lg:hover:bg-secondary-dark lg:hover:border-secondary-dark
-         disabled:hover:bg-secondary disabled:hover:border-secondary disabled:hover:text-white;
+         disabled:hover:bg-secondary disabled:hover:border-secondary disabled:hover:text-neutral-50;
 }
 
 @utility dangerClasses {
-  @apply bg-red-600 border border-red-600 text-white
+  @apply bg-red-600 border border-red-600 text-neutral-50
          hover:bg-red-500 hover:border-red-500
-         disabled:hover:bg-red-600 disabled:hover:border-red-600 disabled:hover:text-white;
+         disabled:hover:bg-red-600 disabled:hover:border-red-600 disabled:hover:text-neutral-50;
 }
 
 @utility successClasses {
-  @apply bg-green-600 border border-green-600 text-white
+  @apply bg-green-600 border border-green-600 text-neutral-50
          hover:bg-green-500 hover:border-green-500
-         disabled:hover:bg-green-600 disabled:hover:border-green-600 disabled:hover:text-white;
+         disabled:hover:bg-green-600 disabled:hover:border-green-600 disabled:hover:text-neutral-50;
 }
 
 @utility systemClasses {
@@ -121,15 +121,15 @@ html {
          disabled:hover:bg-white disabled:hover:border-neutral-200;
 }
 @utility whiteOutlinedClasses {
-  @apply bg-transparent border text-white border-white
+  @apply bg-transparent border text-neutral-50 border-white
          lg:hover:bg-white/20  active:bg-white/20
          disabled:hover:bg-transparent;
 }
 
 @utility blackClasses {
-  @apply bg-neutral-900 border border-neutral-900 text-white
+  @apply bg-neutral-900 border border-neutral-900 text-neutral-50
          hover:bg-neutral-800 hover:border-neutral-800
-         disabled:hover:bg-neutral-900 disabled:hover:border-neutral-900 disabled:hover:text-white;
+         disabled:hover:bg-neutral-900 disabled:hover:border-neutral-900 disabled:hover:text-neutral-50;
 }
 
 @utility linkClasses {

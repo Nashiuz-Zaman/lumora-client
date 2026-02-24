@@ -21,7 +21,7 @@ const StepIndicator = () => {
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors ${
               isActive
-                ? "bg-primary text-white"
+                ? "bg-primary text-neutral-50"
                 : "bg-neutral-200 text-neutral-500"
             }`}
           >

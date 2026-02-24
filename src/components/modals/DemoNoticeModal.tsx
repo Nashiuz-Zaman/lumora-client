@@ -48,7 +48,7 @@ export const DemoNoticeModal = () => {
       <div className="pt-4">
         <ButtonBtn
           onClick={handleClose}
-          className="blackClasses text-white font-medium  mx-auto !rounded-full"
+          className="blackClasses text-neutral-50 font-medium  mx-auto !rounded-full"
         >
           Ok, I understand
         </ButtonBtn>

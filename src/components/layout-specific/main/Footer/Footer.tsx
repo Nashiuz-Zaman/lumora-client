@@ -15,7 +15,7 @@ const Footer = () => {
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <footer className="bg-linear-to-br from-primary-dark-2 via-primary to-primary-light-2 text-white mt-auto">
+    <footer className="bg-linear-to-br from-primary via-primary-dark to-primary-dark-2 text-neutral-50 mt-auto">
       <InnerContainer>
         <div className="grid grid-cols-1 gap-8 py-8 lg:pt-14 lg:pb-6 xl:grid-cols-[1fr_1.3fr]">
           {/* Logo + socials */}
@@ -69,7 +69,7 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <small className="block text-center mb-6 text-xs sm:text-sm text-white px-4">
+        <small className="block text-center mb-6 text-xs sm:text-sm text-neutral-50 px-4">
           © {curYear} | Developed by Nashiuz Zaman
         </small>
       </InnerContainer>

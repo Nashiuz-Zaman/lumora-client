@@ -53,7 +53,7 @@ export const CartItemCard = ({
               className="object-contain w-full h-full"
             />
           ) : (
-            <span className="text-white text-3xl">No Image</span>
+            <span className="text-neutral-50 text-3xl">No Image</span>
           )}
         </div>
 

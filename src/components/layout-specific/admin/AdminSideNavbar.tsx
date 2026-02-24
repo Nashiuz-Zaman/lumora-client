@@ -13,7 +13,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
   const { checkIfActive } = useActiveLink();
 
   const activeClasses =
-    "!bg-linear-to-r !from-primary-light !to-primary !text-white ml-1";
+    "!bg-linear-to-r !from-primary-light !to-primary !text-neutral-50 ml-1";
 
   // nav-link class is only for Mobile Side Nav functionality
   const linkClasses =

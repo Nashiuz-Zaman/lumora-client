@@ -66,7 +66,7 @@ export const ProgressTracker = ({
                     isCompleted ? "opacity-100" : "opacity-0"
                   }`}
                 >
-                  <Icon icon="mdi:check" className="w-4 h-4 text-white" />
+                  <Icon icon="mdi:check" className="w-4 h-4 text-neutral-50" />
                 </div>
 
                 {/* icon + title */}

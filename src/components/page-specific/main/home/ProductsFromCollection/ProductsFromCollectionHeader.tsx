@@ -45,7 +45,7 @@ export const ProductsFromCollectionHeader = ({
                 categories: categoryTree,
               })
             }
-            className="mt-5 underline text-primary"
+            className="mt-5 underline text-neutral-400"
           >
             See All
           </ButtonBtnTrans>
@@ -57,17 +57,17 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.prevEl.replace(
             ".",
             "",
-          )} w-10 h-10 flex items-center justify-center rounded-full primaryLightClasses cursor-pointer scaleOnHover shadow-md transition-all`}
+          )} w-10 h-10 relative rounded-full border border-neutral-300 hover:bg-neutral-100 cursor-pointer shadow-md transition-all duration-300 text-neutral-500 active:scale-75`}
         >
-          <CaretLeftIcon />
+          <CaretLeftIcon className="xy-center absolute" />
         </button>
         <button
           className={`${navigation?.nextEl.replace(
             ".",
             "",
-          )} w-10 h-10 flex items-center justify-center rounded-full primaryLightClasses scaleOnHover cursor-pointer shadow-md transition-all`}
+          )} w-10 h-10 relative rounded-full border border-neutral-300 hover:bg-neutral-100! text-neutral-500 cursor-pointer shadow-md transition-all duration-300 active:scale-75`}
         >
-          <CaretRightIcon />
+          <CaretRightIcon className="xy-center absolute"/>
         </button>
       </div>
     </div>

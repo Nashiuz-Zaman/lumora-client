@@ -51,7 +51,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
       >
         {/* Discount badge */}
         {savings > 0 && (
-          <span className="absolute top-0 left-1 bg-green-600 text-white text-xs font-semibold px-2 py-1 shadow-sm">
+          <span className="absolute top-0 left-1 bg-green-600 text-neutral-50 text-xs font-semibold px-2 py-1 rounded-sm shadow-sm">
             Save {formatPrice(savings)}
           </span>
         )}
@@ -86,7 +86,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           <div className="flex items-center mt-auto justify-center gap-1 text-neutral-500 mb-2">
             <RatingStars
               rating={averageRating ?? 0}
-              className="text-yellow-500"
+              className="text-yellow-400"
             />
             <span>({totalReviews})</span>
           </div>
@@ -115,7 +115,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           <ButtonBtn
             onClick={handleClick}
             title="Add Item To Cart"
-            className="blackOutlinedToPrimaryClasses! rounded-full! py-2! mx-auto gap-2! font-medium!"
+            className="primaryLightClasses py-2! mx-auto gap-2! font-medium!"
           >
             <CartIcon className="text-xl" /> Add to Cart
           </ButtonBtn>

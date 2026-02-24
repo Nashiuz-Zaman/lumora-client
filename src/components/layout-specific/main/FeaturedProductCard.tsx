@@ -37,7 +37,7 @@ export const FeaturedProductCard = ({
     </div>
 
     {/* Price and link */}
-    <div className="flex items-center justify-between mt-auto 4xl:text-sm">
+    <div className="flex flex-col items-start justify-between mt-auto 4xl:text-sm gap-1!">
       <p>{formatPrice(product.defaultPrice!)}</p>
 
       <LinkBtnTrans

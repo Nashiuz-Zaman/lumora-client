@@ -19,7 +19,7 @@ export const CartBtn = ({
       className={`relative text-3xl 2xl:text-4xl ${className}`}
     >
       {itemsQty > 0 && (
-        <p className="absolute p-1 h-6 min-w-6 grid place-content-center -top-3 text-xs left-full -translate-x-3 bg-red-500 rounded-full text-white">
+        <p className="absolute p-1 h-6 min-w-6 grid place-content-center -top-3 text-xs left-full -translate-x-3 bg-red-500 rounded-full text-neutral-50">
           {itemsQty}
         </p>
       )}

@@ -28,7 +28,7 @@ export const ProductDetailsTabs = ({ product }: { product: IProduct }) => {
             className={`px-5 py-2 text-sm font-medium transition-colors rounded-t-lg cursor-pointer -mb-[1px]
               ${
                 activeTab === tab.id
-                  ? "bg-primary border-x border-t border-neutral-200 text-white"
+                  ? "bg-primary border-x border-t border-neutral-200 text-neutral-50"
                   : "text-neutral-500 hover:text-neutral-900"
               }`}
           >

@@ -79,13 +79,13 @@ export const FadeSlider = <T,>({
         <>
           <button
             onClick={prevSlide}
-            className="absolute left-2 y-center bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+            className="absolute left-2 y-center bg-black/50 text-neutral-50 p-2 rounded-full hover:bg-black/70"
           >
             ‹
           </button>
           <button
             onClick={nextSlide}
-            className="absolute right-2 y-center bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+            className="absolute right-2 y-center bg-black/50 text-neutral-50 p-2 rounded-full hover:bg-black/70"
           >
             ›
           </button>

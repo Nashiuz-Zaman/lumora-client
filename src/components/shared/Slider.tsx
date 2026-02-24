@@ -142,13 +142,13 @@ export const Slider = <T,>({
         <>
           <button
             onClick={prevSlide}
-            className="absolute cursor-pointer y-center left-2  bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+            className="absolute cursor-pointer y-center left-2  bg-black/50 text-neutral-50 p-2 rounded-full hover:bg-black/70"
           >
             <CaretLeftIcon />
           </button>
           <button
             onClick={nextSlide}
-            className="absolute cursor-pointer y-center right-2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70"
+            className="absolute cursor-pointer y-center right-2 bg-black/50 text-neutral-50 p-2 rounded-full hover:bg-black/70"
           >
             <CaretRightIcon />
           </button>

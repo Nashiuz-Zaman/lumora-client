@@ -22,7 +22,7 @@ export const CollectionCard = ({
   return (
     <Link href={href}>
       <div
-        className={`p-4 border border-neutral-200 rounded-md bg-white inline-block w-full hover:bg-primary transition-colors hover:text-white hover:border-primary group ${className}`}
+        className={`p-4 border border-neutral-200 rounded-md bg-white inline-block w-full hover:bg-primary transition-colors hover:text-neutral-50 hover:border-primary group ${className}`}
       >
         <div className="flex items-start justify-between">
           <p className="font-semibold text-lg">{title}</p>
@@ -39,7 +39,7 @@ export const CollectionCard = ({
         </div>
 
         {typeof count === "number" && (
-          <p className="mt-2 text-sm text-neutral-500 transition-colors group-hover:text-white">
+          <p className="mt-2 text-sm text-neutral-500 transition-colors group-hover:text-neutral-50">
             {count} {count === 1 ? "product" : "products"}
           </p>
         )}

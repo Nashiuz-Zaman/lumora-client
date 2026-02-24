@@ -68,6 +68,7 @@ export const ProductsFromCollection = async ({
           parentCategorySlug={parentCategorySlug}
           categoryTree={categoryTree} // Now populated locally
         />
+        
         <ProductSwiper navigation={navigation} products={mergedProducts} />
       </section>
     </CenterContainer>

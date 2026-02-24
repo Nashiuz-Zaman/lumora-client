@@ -34,7 +34,7 @@ const Toolbar = ({ editor, className = "" }: IToolbarProps) => {
 
   const buttonClass = (active: boolean) =>
     `w-8 aspect-square rounded-md grid place-content-center ${
-      active ? "bg-primary text-white" : "text-inherit"
+      active ? "bg-primary text-neutral-50" : "text-inherit"
     }`;
 
   return (

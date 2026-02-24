@@ -33,7 +33,7 @@ export const StatusTabs = <K extends Record<string, any>>({
             className={`px-4 cursor-pointer py-2 rounded-full border text-sm font-medium whitespace-nowrap transition
               ${
                 isActive
-                  ? "bg-primary text-white border-primary"
+                  ? "bg-primary text-neutral-50 border-primary"
                   : "bg-white text-neutral-600 border-neutral-200 hover:bg-neutral-100"
               }
             `}

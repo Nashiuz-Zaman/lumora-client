@@ -142,7 +142,7 @@ export const AddressForm = ({
         <ButtonBtn
           type="submit"
           isLoading={isLoading}
-          className="w-full md:w-auto !text-sm tracking-wide bg-primary text-white hover:bg-primary/90 !rounded-full px-6 py-2.5 transition-all duration-200 uppercase"
+          className="w-full md:w-auto !text-sm tracking-wide bg-primary text-neutral-50 hover:bg-primary/90 !rounded-full px-6 py-2.5 transition-all duration-200 uppercase"
         >
           Save Changes
         </ButtonBtn>
