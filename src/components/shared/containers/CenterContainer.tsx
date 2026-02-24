@@ -12,12 +12,12 @@ export const CenterContainer = ({
   return (
     <div className={`w-full ${className}`} {...props}>
       <div
-        className={`max-w-[100rem] w-full mx-auto ${
+        className={`max-w-400 w-full mx-auto ${
           paddingSide === "left"
-            ? "pl-[1rem] md:pl-[1.7rem] 2xl:pl-[3rem]"
+            ? "pl-4 md:pl-[1.7rem] 2xl:pl-12"
             : paddingSide === "right"
-            ? "pr-[1rem] md:pr-[1.7rem] 2xl:pr-[3rem]"
-            : "px-[1rem] md:px-[1.7rem] 2xl:px-[3rem]"
+            ? "pr-4 md:pr-[1.7rem] 2xl:pr-12"
+            : "px-4 md:px-[1.7rem] 2xl:px-12"
         }`}
       >
         {children}
