@@ -16,7 +16,7 @@ export const useHeaderScrollAnim = (
   const {
     triggerStart = 50,
     shadowThreshold = 100,
-    duration = 0.2,
+    duration = 0.25,
     shadowCSS = "0 4px 20px rgba(0, 0, 0, 0.08)",
   } = options;
 
