@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -29,6 +29,7 @@ import {
 import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
 import { UserRoles } from "@/constants/user";
+import { useHeaderScrollAnim } from "@/hooks/useHeaderScrollAnim";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -39,7 +40,8 @@ const Header = ({ categories }: THeaderProps) => {
   const { user } = useAuthState();
   const { cart } = useCartState();
   const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
-  const headerRef = useRef<HTMLHeadElement>(null);
+
+  const headerRef = useHeaderScrollAnim();
 
   const { isAdmin, isCustomer, isAuthenticated } = useMemo(() => {
     const roleName = user?.role?.name;
@@ -61,56 +63,6 @@ const Header = ({ categories }: THeaderProps) => {
   const results = useMemo(
     () => (!isFetching && isSuccess && data?.data?.products) || [],
     [isFetching, isSuccess, data],
-  );
-
-  // GSAP Animation Logic
-  useGSAP(
-    () => {
-      if (!headerRef.current) return;
-
-      const header = headerRef.current;
-      let lastScrollY = 0;
-
-      // FIX: Use a dedicated animation instance for the Y-axis to prevent
-      // "fighting" between different gsap.to calls during rapid scrolling.
-      const showHideAnim = gsap
-        .to(header, {
-          y: "-100%",
-          paused: true,
-          duration: 0.4,
-          ease: "power3.out",
-        })
-        .reversed(true);
-
-      ScrollTrigger.create({
-        start: 50, // FIX: Start after 50px so it doesn't flicker at the very top
-        end: "max",
-        onUpdate: (self) => {
-          const current = self.scroll();
-          const isScrollingDown = current > lastScrollY;
-
-          // Hide/Show logic
-          if (isScrollingDown && current > 200) {
-            showHideAnim.play();
-          } else {
-            showHideAnim.reverse();
-          }
-
-          // Shadow logic
-          gsap.to(header, {
-            boxShadow:
-              current > 100
-                ? "0 4px 12px rgba(0, 0, 0, 0.1)"
-                : "0 0 0 rgba(0, 0, 0, 0)",
-            duration: 0.3,
-            overwrite: "auto", // FIX: Overwrite previous shadow tweens to prevent memory leaks
-          });
-
-          lastScrollY = current;
-        },
-      });
-    },
-    { scope: headerRef }, // Scope helps cleanup and target selection
   );
 
   const renderResult = (
