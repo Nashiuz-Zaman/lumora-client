@@ -9,7 +9,7 @@ export const fetchProductForAdmin = catchAsyncServer(
     const cookieHeader = cookieStore
       .getAll()
       .map((c) => `${c.name}=${c.value}`)
-      .join("; ");
+      .join("; "); 
 
     const res = await fetch(`${apiUrl}/products/${productId}/admin`, {
       method: "GET",

@@ -11,8 +11,8 @@ export const fetchCategoryTree = catchAsyncServer(async () => {
 
   if (!res.ok) throw new Error("Failed to fetch category tree");
 
-  const data: IApiResponse<{ categoryTree: ICategoryTreeItem[] }> =
+  const apiResponse: IApiResponse<{ categoryTree: ICategoryTreeItem[] }> =
     await res.json();
 
-  return data?.data;
+  return apiResponse?.data;
 });
