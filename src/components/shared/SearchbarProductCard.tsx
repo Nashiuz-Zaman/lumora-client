@@ -32,7 +32,7 @@ export const SearchbarProductCard = ({
           className="object-contain w-full h-full rounded"
         />
       </div>
-      <p className="text-sm font-normal line-clamp-2 text-neutral-700">{title}</p>
+      <p className="text-base font-medium line-clamp-2 text-neutral-700">{title}</p>
     </Link>
   );
 };
