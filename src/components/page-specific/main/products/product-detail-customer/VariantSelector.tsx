@@ -1,5 +1,3 @@
-"use client";
-
 import { useState, useMemo, useEffect } from "react";
 import {
   IVariant,
@@ -22,7 +20,7 @@ export const VariantSelector = ({
   // unique values for each option
   const optionValues = useMemo(
     () => getVariantOptionValues(variants, optionKeys),
-    [variants, optionKeys]
+    [variants, optionKeys],
   );
 
   const [selectedOptions, setSelectedOptions] = useState<
@@ -32,7 +30,7 @@ export const VariantSelector = ({
   // find the variant that matches all selected options
   const matchedVariant = useMemo(
     () => findMatchedVariant(variants, optionKeys, selectedOptions),
-    [variants, optionKeys, selectedOptions]
+    [variants, optionKeys, selectedOptions],
   );
 
   // notify parent whenever matched variant changes
@@ -43,7 +41,7 @@ export const VariantSelector = ({
   // readable string like "Black + 128GB"
   const selectedComboLabel = useMemo(
     () => buildVariantLabel(selectedOptions, optionKeys),
-    [selectedOptions, optionKeys]
+    [selectedOptions, optionKeys],
   );
 
   return (
@@ -63,7 +61,7 @@ export const VariantSelector = ({
                       [key]: value,
                     }))
                   }
-                  className={`px-4 py-2 cursor-pointer transition-all rounded-full border ${
+                  className={`px-4 py-2 cursor-pointer transition-all rounded-md border ${
                     isSelected
                       ? "bg-primary text-neutral-50 border-primary"
                       : "bg-white text-neutral-700 border-neutral-200"
