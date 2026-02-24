@@ -15,10 +15,10 @@ const SortOptionsMenu = ({
   onUpdate,
 }: ISortOptionsMenuProps) => {
   const [sortBy, setSortBy] = useState(
-    selected?.includes("-") ? selected.replace("-", "") : selected
+    selected?.includes("-") ? selected.replace("-", "") : selected,
   );
   const [sortOrder, setSortOrder] = useState(
-    selected?.includes("-") ? "-" : ""
+    selected?.includes("-") ? "-" : "",
   );
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const SortOptionsMenu = ({
       onUpdate?.(newSort);
     }
   }, [sortBy, sortOrder, onUpdate, selected]);
-  console.log(selected);
 
   if (!options.length) return null;
 

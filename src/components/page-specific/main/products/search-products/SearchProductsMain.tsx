@@ -62,7 +62,7 @@ export const SearchProductsMain = () => {
         <div>
           <SortDropdown
             onUpdate={(value) => {
-              console.log(value);
+              if (!value) return;
               setValue("sort", value);
             }}
             selected={watchedValues.sort}
@@ -82,7 +82,7 @@ export const SearchProductsMain = () => {
                       ((queryMeta?.page as number) - 1) * queryMeta!.limit + 1
                     }–${Math.min(
                       queryMeta!.page * queryMeta!.limit,
-                      queryMeta!.total
+                      queryMeta!.total,
                     )} of ${queryMeta?.total} products`
                   : "No products found"}
               </p>

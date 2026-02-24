@@ -18,9 +18,7 @@ type TProductOptionsAndBrandVendorProps = {
 export const ProductOptionsAndBrandVendor = ({
   className = "",
 }: TProductOptionsAndBrandVendorProps) => {
-  const { register, watch, control } = useFormContext<IProduct>();
-
-  console.log(watch("status"));
+  const { register, control } = useFormContext<IProduct>();
 
   return (
     <div className={className}>
@@ -39,7 +37,7 @@ export const ProductOptionsAndBrandVendor = ({
               checked={field.value === ProductStatus.Active}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
                 field.onChange(
-                  e.target.checked ? ProductStatus.Active : ProductStatus.Draft
+                  e.target.checked ? ProductStatus.Active : ProductStatus.Draft,
                 )
               }
             />

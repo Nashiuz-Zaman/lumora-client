@@ -44,7 +44,6 @@ const Header = ({ categories }: THeaderProps) => {
   const { isAdmin, isCustomer, isAuthenticated } = useMemo(() => {
     const roleName = user?.role?.name;
 
-    console.log(user);
     const admin =
       roleName === UserRoles.admin || roleName === UserRoles.superAdmin;
     return {
@@ -53,8 +52,6 @@ const Header = ({ categories }: THeaderProps) => {
       isAuthenticated: !!user && !!user._id, // Ensure user has an ID or unique property
     };
   }, [user]);
-
-  console.log(isAdmin, isCustomer, isAuthenticated);
 
   // Search logic
   const [triggerSearch, { data, isFetching, isSuccess }] =

@@ -23,13 +23,11 @@ export const CustomerHeader = () => {
   const mobileBtnPlaceholdrRef = useRef(null);
   const { setRefs } = useRefState();
 
-  console.log(user)
-
   useEffect(() => {
     setRefs((prev) =>
       !prev.customerHeader
         ? { ...prev, customerHeader: customerHeaderRef }
-        : prev
+        : prev,
     );
 
     return () => setRefs((prev) => ({ ...prev, customerHeader: null }));
@@ -39,7 +37,7 @@ export const CustomerHeader = () => {
     setRefs((prev) =>
       !prev.mobileBtnRef
         ? { ...prev, mobileBtnPlaceholder: mobileBtnPlaceholdrRef }
-        : prev
+        : prev,
     );
 
     return () => setRefs((prev) => ({ ...prev, mobileBtnPlaceholder: null }));
