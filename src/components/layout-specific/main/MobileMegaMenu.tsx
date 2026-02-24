@@ -109,7 +109,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
                           categories,
                         })
                       }
-                      className="!primaryClasses !w-full !py-1 mt-2 rounded bg-primary text-white font-medium"
+                      className="primaryClasses! w-full! py-1! mt-2 rounded bg-primary text-white font-medium"
                     >
                       View all products
                     </button>
