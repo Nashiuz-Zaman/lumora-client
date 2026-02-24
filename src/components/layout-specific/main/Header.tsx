@@ -11,7 +11,7 @@ const Header = () => {
       {/* Top promo / links bar */}
       <InnerContainer className="text-sm xl:text-base py-3 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
-          <p className="text-center md:text-left">
+          <p className="text-center text-secondary-dark md:text-left">
             Shop now and enjoy free shipping to West Coast states!
           </p>
           <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
