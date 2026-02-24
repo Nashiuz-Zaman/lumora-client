@@ -33,7 +33,7 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
       className={`w-full select-none text-center lg:text-left ${className}`}
     >
       {/* Headline */}
-      <h1 className="text-4xl 2xl:text-6xl font-semibold capitalize !leading-[1] mb-2 xl:mb-4 text-center lg:text-left">
+      <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-semibold capitalize leading-none! mb-2 xl:mb-4 text-center lg:text-left">
         <span
           className="opacity-0 inline-block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent translate-y-[-200px]"
           id="shop-more-part"
