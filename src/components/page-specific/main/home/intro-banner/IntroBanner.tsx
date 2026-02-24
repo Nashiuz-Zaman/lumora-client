@@ -15,7 +15,7 @@ const sliderImages = [
 
 export const IntroBanner = () => {
   return (
-    <section className="w-full lg:h-[30rem] xl:h-[42rem] grid grid-cols-1 lg:grid-cols-[1.5fr_4fr] gap-2">
+    <section className="w-full lg:h-120 xl:h-168 grid grid-cols-1 lg:grid-cols-[1.5fr_4fr] gap-2">
       {/* Original top banner intro */}
       <div className="lg:h-full py-10 md:py-12 lg:py-0 grid place-content-center px-5 xl:px-5 2xl:px-14">
         <TopBannerIntro />
@@ -27,7 +27,7 @@ export const IntroBanner = () => {
           slideSwitcher={true}
           autoPlayInterval={4000}
           renderItem={(src: string) => (
-            <div className="w-full h-[22rem] overflow-hidden lg:h-full">
+            <div className="w-full h-88 overflow-hidden lg:h-full">
               <Image
                 src={src}
                 alt="Slide"
