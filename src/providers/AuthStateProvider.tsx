@@ -41,6 +41,8 @@ export const AuthStateProvider = ({ children }: { children: ReactNode }) => {
     refetchOnMountOrArgChange: true,
   });
 
+  console.log(data);
+
   useEffect(() => {
     if (!hasFetched) {
       if (data?.data?.user) {
