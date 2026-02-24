@@ -24,7 +24,7 @@ export const DemoNoticeModal = () => {
       closeFunction={handleClose}
       allowCloseOnOutsideClick={false}
       noCloseBtn
-      className="bg-white rounded-2xl shadow-lg max-w-lg w-[90vw] p-8 text-center flex flex-col gap-6 !z-400"
+      className="bg-white rounded-2xl shadow-lg max-w-lg w-[90vw] p-8 text-center flex flex-col gap-6 z-400!"
     >
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Important Notice</h2>

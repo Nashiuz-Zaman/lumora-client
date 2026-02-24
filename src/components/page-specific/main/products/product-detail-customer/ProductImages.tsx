@@ -13,7 +13,7 @@ export const ProductImages = ({ data }: IProductImagesProps) => {
   if (!data || data.length === 0) return null;
 
   return (
-    <section className="grid grid-cols-[1fr_auto] gap-3 xl:gap-6 items-start aspect-[16/13] overflow-hidden">
+    <section className="grid grid-cols-[1fr_auto] gap-3 xl:gap-6 items-start aspect-16/13 overflow-hidden">
       {/* Thumbnails */}
       <div className="overflow-y-auto h-full space-y-2 md:space-y-3 xl:space-y-5 pr-3">
         {data.map((image, i) => (
@@ -24,8 +24,8 @@ export const ProductImages = ({ data }: IProductImagesProps) => {
             onClick={() => setCurrentIndex(i)}
             className={`w-full p-1.5 block cursor-pointer aspect-square rounded-md border transition-all duration-200 focus:outline-none ${
               i === currentIndex
-                ? "border-neutral-400 shadow-md"
-                : "border-transparent hover:border-neutral-200"
+                ? "border-primary/30 shadow-lg"
+                : "border-transparent hover:border-primary/20"
             }`}
           >
             <Image
