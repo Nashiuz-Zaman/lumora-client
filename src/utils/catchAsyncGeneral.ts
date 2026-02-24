@@ -86,7 +86,7 @@ export const catchAsyncGeneral = (
           throw error;
 
         default:
-          console.error("❌ Error in catchAsyncGeneral:", error);
+          // console.error("❌ Error in catchAsyncGeneral:", error);
           return;
       }
     } finally {
