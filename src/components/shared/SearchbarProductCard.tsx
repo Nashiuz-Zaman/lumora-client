@@ -23,7 +23,7 @@ export const SearchbarProductCard = ({
       href={`/products/${slug}`}
       className="flex items-center gap-3 px-3 py-2.5 hover:bg-neutral-100 transition-colors cursor-pointer"
     >
-      <div className="flex-shrink-0 w-12 h-12 relative">
+      <div className="shrink-0 w-12 h-12 relative">
         <Image
           src={src}
           alt={title}
@@ -32,7 +32,7 @@ export const SearchbarProductCard = ({
           className="object-contain w-full h-full rounded"
         />
       </div>
-      <p className="text-sm line-clamp-2">{title}</p>
+      <p className="text-sm font-normal line-clamp-2 text-neutral-700">{title}</p>
     </Link>
   );
 };

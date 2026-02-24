@@ -107,7 +107,7 @@ export const HeaderProductsSearchbar = <T,>({
           value={searchText}
           placeholder="Search for products"
           onChange={handleChange}
-          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base text-inherit border-inherit bg-inherit"
+          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base text-neutral-700 border-inherit bg-inherit"
         />
 
         {showIcon && (
