@@ -1,14 +1,13 @@
 import { CenterContainer, ProductCategoryCard } from "@/components/shared";
-import { ICategoryTreeItem } from "@/types";
+import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 
-export interface IProductCategoriesProps {
-  categories: ICategoryTreeItem[];
-}
+export const ProductCategories = async () => {
+  const categoryResult = await fetchCategoryTree();
 
-export const ProductCategories = async ({
-  categories,
-}: IProductCategoriesProps) => {
-  if (!categories) return null;
+  const categoryTree =
+    categoryResult !== undefined && !("isError" in categoryResult)
+      ? categoryResult.categoryTree
+      : [];
 
   return (
     <CenterContainer
@@ -16,7 +15,7 @@ export const ProductCategories = async ({
       className="bg-linear-to-b from-neutral-200 to-neutral-100 py-5"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-        {categories?.map((category, i) => (
+        {categoryTree?.map((category, i) => (
           <ProductCategoryCard
             id={"homepage-category-card-" + i}
             key={`key-${i}`}

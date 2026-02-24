@@ -2,7 +2,7 @@
 
 import { EditProductMain } from "@/components/page-specific";
 import { InnerContainer, LinkBtn } from "@/components/shared";
-import { fetchProductForAdmin } from "@/server-functions";
+import { fetchProductForAdmin } from "@/server-functions/fetchProductForAdmin";
 import { IProduct } from "@/types";
 import type { Metadata } from "next";
 

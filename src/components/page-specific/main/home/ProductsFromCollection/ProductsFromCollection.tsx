@@ -5,18 +5,16 @@ import {
   ProductSwiper,
 } from "@/components/shared";
 import { fetchCollectionProducts } from "@/server-functions/fetchCollectionProducts";
-import {
-  ICategoryTreeItem,
-  TPopulatedProductInCollectionWithReviewStats,
-} from "@/types";
+import { ICategoryTreeItem } from "@/types";
 import { ProductsFromCollectionHeader } from "./ProductsFromCollectionHeader";
+import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 
 interface IProductsFromCollectionProps {
   collectionSlug: string;
   title: string;
   tagline?: string;
   className?: string;
-  topCategorySlug?: string;
+  parentCategorySlug?: string;
   categoryTree?: ICategoryTreeItem[];
   navigation: TCustomSwiperProps<any>["navigation"];
   [key: string]: any;
@@ -27,31 +25,35 @@ export const ProductsFromCollection = async ({
   title,
   tagline,
   className = "",
-  topCategorySlug,
-  categoryTree,
-  navigation = {
-    nextEl: ".custom-swiper-next",
-    prevEl: ".custom-swiper-prev",
-  },
+  parentCategorySlug,
+  navigation,
   ...props
 }: IProductsFromCollectionProps) => {
   if (!collectionSlug) return null;
-  const result = await fetchCollectionProducts(collectionSlug);
 
-  if (!result || "isError" in result) {
+  // These two requests start in parallel!
+  const [productResult, categoryResult] = await Promise.all([
+    fetchCollectionProducts(collectionSlug),
+    parentCategorySlug ? fetchCategoryTree() : Promise.resolve(undefined),
+  ]);
+
+  if (!productResult || "isError" in productResult) {
     return (
-      <InnerContainer className="h-[12rem] flex items-center justify-center">
-        <p className="text-xl font-semibold">
-          Products couldn&apos;t be fetched
-        </p>
+      <InnerContainer className="h-48 flex items-center justify-center">
+        <p className="text-sm text-gray-500">Products currently unavailable</p>
       </InnerContainer>
     );
   }
 
-  const products = result.data
-    ?.products as TPopulatedProductInCollectionWithReviewStats[];
+  const products = productResult.data?.products || [];
+  const categoryTree =
+    parentCategorySlug &&
+    categoryResult !== undefined &&
+    !("isError" in categoryResult)
+      ? categoryResult.categoryTree
+      : [];
 
-  const mergedProducts = products?.map((p) => ({
+  const mergedProducts = products.map((p: any) => ({
     ...p.product,
     ...p.reviewStats,
   }));
@@ -63,10 +65,9 @@ export const ProductsFromCollection = async ({
           title={title}
           tagline={tagline}
           navigation={navigation}
-          topCategorySlug={topCategorySlug}
-          categoryTree={categoryTree}
+          parentCategorySlug={parentCategorySlug}
+          categoryTree={categoryTree} // Now populated locally
         />
-
         <ProductSwiper navigation={navigation} products={mergedProducts} />
       </section>
     </CenterContainer>

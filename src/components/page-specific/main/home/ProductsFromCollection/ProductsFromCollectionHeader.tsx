@@ -15,7 +15,7 @@ export interface IProductsFromCollectionHeaderProps {
   title: string;
   tagline?: string;
   navigation: TCustomSwiperProps<any>["navigation"];
-  topCategorySlug?: string;
+  parentCategorySlug?: string;
   categoryTree?: ICategoryTreeItem[];
   className?: string;
 }
@@ -24,7 +24,7 @@ export const ProductsFromCollectionHeader = ({
   title,
   tagline,
   navigation,
-  topCategorySlug,
+  parentCategorySlug,
   categoryTree,
   className = "",
 }: IProductsFromCollectionHeaderProps) => {
@@ -36,12 +36,12 @@ export const ProductsFromCollectionHeader = ({
         <SectionHeading>{title}</SectionHeading>
         {tagline && <SectionTagline className="mt-2">{tagline}</SectionTagline>}
 
-        {topCategorySlug && categoryTree && (
+        {parentCategorySlug && categoryTree && (
           <ButtonBtnTrans
             onClick={() =>
               handleCategoryClick({
                 type: "top",
-                topSlug: topCategorySlug,
+                topSlug: parentCategorySlug,
                 categories: categoryTree,
               })
             }
@@ -56,7 +56,7 @@ export const ProductsFromCollectionHeader = ({
         <button
           className={`${navigation?.prevEl.replace(
             ".",
-            ""
+            "",
           )} w-10 h-10 flex items-center justify-center rounded-full primaryLightClasses cursor-pointer scaleOnHover shadow-md transition-all`}
         >
           <CaretLeftIcon />
@@ -64,7 +64,7 @@ export const ProductsFromCollectionHeader = ({
         <button
           className={`${navigation?.nextEl.replace(
             ".",
-            ""
+            "",
           )} w-10 h-10 flex items-center justify-center rounded-full primaryLightClasses scaleOnHover cursor-pointer shadow-md transition-all`}
         >
           <CaretRightIcon />

@@ -1,24 +1,15 @@
-// components/layouts/MainLayout.tsx
+import { ReactNode, Suspense } from "react";
 import Footer from "@/components/layout-specific/main/Footer/Footer";
-import Header from "@/components/layout-specific/main/Header";
-import { TMegaMenuItem } from "@/components/layout-specific/main/MegaMenu";
-import { NoData } from "@/components/shared";
-import { fetchMegaMenuData } from "@/server-functions";
-import { ReactNode } from "react";
+import HeaderServerWrapper from "@/components/layout-specific/main/HeaderServerWrapper";
 
-const MainLayout = async ({ children }: { children: ReactNode }) => {
-  const result = await fetchMegaMenuData();
-
+const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <div className="min-h-screen relative flex flex-col max-w-480 mx-auto">
-      {"isError" in result || !result ? (
-        <NoData
-          text="Error in Megamenu data fetch"
-          className="text-center mx-auto py-10"
-        />
-      ) : (
-        <Header categories={result.data as TMegaMenuItem[]} />
-      )}
+      <Suspense
+        fallback={<div className="h-[100px] w-full bg-white animate-pulse" />}
+      >
+        <HeaderServerWrapper />
+      </Suspense>
 
       <main className="flex flex-col grow">{children}</main>
 

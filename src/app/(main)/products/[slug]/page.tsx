@@ -1,11 +1,10 @@
 // app/products/[slug]/page.tsx
 import { Metadata } from "next";
 import { ProductPagePublicMain } from "@/components/page-specific";
-import {
-  fetchProductForCustomer,
-  fetchRelatedProductsForCustomer,
-} from "@/server-functions";
+
 import { InnerContainer, LinkBtn } from "@/components/shared";
+import { fetchProductForCustomer } from "@/server-functions/fetchProductForCustomer";
+import { fetchRelatedProductsForCustomer } from "@/server-functions/fetchRelatedProductsForCustomer";
 
 type TParams = Promise<{ slug: string }>;
 
@@ -73,7 +72,7 @@ const ProductPagePublic = async (props: { params: TParams }) => {
 
   const relatedProductsResult = await fetchRelatedProductsForCustomer(
     product._id!,
-    product.topCategory!
+    product.topCategory!,
   );
 
   return (
