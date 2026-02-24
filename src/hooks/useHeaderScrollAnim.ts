@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -12,6 +12,7 @@ interface IUseHeaderScrollAnimOptions {
 
 export const useHeaderScrollAnim = (
   options: IUseHeaderScrollAnimOptions = {},
+  selector: string = ".animated-header",
 ) => {
   const {
     triggerStart = 50,
@@ -20,7 +21,6 @@ export const useHeaderScrollAnim = (
     shadowCSS = "0 4px 20px rgba(0, 0, 0, 0.08)",
   } = options;
 
-  const headerRef = useRef<HTMLHeadElement>(null);
   const className = "js-header-scroll-active";
 
   const unifiedEase = "cubic-bezier(0.25, 1, 0.3, 1)";
@@ -44,58 +44,53 @@ export const useHeaderScrollAnim = (
     document.head.appendChild(style);
   }, [shadowCSS, duration, unifiedEase]);
 
-  useGSAP(
-    () => {
-      if (!headerRef.current) return;
+  useGSAP(() => {
+    const header = document.querySelector(selector);
+    if (!header) return;
 
-      const header = headerRef.current;
-      header.classList.add("header-anim-base");
+    header.classList.add("header-anim-base");
 
-      let lastScrollY = window.scrollY;
-      let isShadowActive = false;
+    let lastScrollY = window.scrollY;
+    let isShadowActive = false;
 
-      const showHideAnim = gsap
-        .to(header, {
-          y: "-100%",
-          paused: true,
-          duration: duration,
-          ease: "none",
-        })
-        .reversed(true);
+    const showHideAnim = gsap
+      .to(header, {
+        y: "-100%",
+        paused: true,
+        duration: duration,
+        ease: "none",
+      })
+      .reversed(true);
 
-      const handleScroll = () => {
-        const current = window.scrollY;
-        const delta = current - lastScrollY;
+    const handleScroll = () => {
+      const current = window.scrollY;
+      const delta = current - lastScrollY;
 
-        // Direction detection (1px sensitive)
-        if (delta > 0 && current > triggerStart) {
-          showHideAnim.play(); // hide
-        } else if (delta < 0) {
-          showHideAnim.reverse(); // show
+      // Direction detection (1px sensitive)
+      if (delta > 0 && current > triggerStart) {
+        showHideAnim.play(); // hide
+      } else if (delta < 0) {
+        showHideAnim.reverse(); // show
+      }
+
+      // Shadow toggle
+      if (current > shadowThreshold) {
+        if (!isShadowActive) {
+          header.classList.add(className);
+          isShadowActive = true;
         }
+      } else if (isShadowActive) {
+        header.classList.remove(className);
+        isShadowActive = false;
+      }
 
-        // Shadow toggle
-        if (current > shadowThreshold) {
-          if (!isShadowActive) {
-            header.classList.add(className);
-            isShadowActive = true;
-          }
-        } else if (isShadowActive) {
-          header.classList.remove(className);
-          isShadowActive = false;
-        }
+      lastScrollY = current;
+    };
 
-        lastScrollY = current;
-      };
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
-      window.addEventListener("scroll", handleScroll, { passive: true });
-
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    },
-    { scope: headerRef },
-  );
-
-  return headerRef;
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 };

@@ -1,28 +1,13 @@
-"use client";
-
 import Link from "next/link";
 import { InnerContainer, CompanyLogoBtn } from "../../shared";
-import { IMegaMenuProps, MegaMenu } from "./MegaMenu";
-import { MobileMegaMenu } from "./MobileMegaMenu";
-import { useHeaderScrollAnim } from "@/hooks/useHeaderScrollAnim";
-import { useEffect, useState } from "react";
+
 import { HeaderSearchAvatarAuthOptions } from "./HeaderSearchAvatarAuthOptions";
+import MegaMenuServerWrapper from "./MegamenuServerWrapper";
+import { Suspense } from "react";
 
-type THeaderProps = IMegaMenuProps;
-
-const Header = ({ categories }: THeaderProps) => {
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => setIsClient(true), 0);
-  }, []);
-
-  const headerRef = useHeaderScrollAnim();
-
-  if (!isClient) return;
-
+const Header = () => {
   return (
-    <header ref={headerRef} className="sticky top-0 z-2000 w-full">
+    <header className="sticky animated-header top-0 z-2000 w-full">
       {/* Top promo / links bar */}
       <InnerContainer className="text-sm xl:text-base py-3 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
@@ -52,8 +37,9 @@ const Header = ({ categories }: THeaderProps) => {
         ></div>
       </div>
 
-      <MobileMegaMenu categories={categories} />
-      <MegaMenu categories={categories} />
+      <Suspense>
+        <MegaMenuServerWrapper />
+      </Suspense>
     </header>
   );
 };
