@@ -8,22 +8,20 @@
 export const withRetry = async <T>(
   fn: () => Promise<T>,
   retries: number = 3,
-  delay: number = 1000,
+  delay: number = 1000
 ): Promise<T> => {
   try {
-    // Attempt the function
     return await fn();
   } catch (error) {
-    // If no retries left, throw the final error
-    if (retries <= 1) {
-      throw error;
-    }
+    if (retries <= 1) throw error;
 
-    // Wait for the specified delay
-    await new Promise((resolve) => setTimeout(resolve, delay));
+    // Jitter: a random offset between 0 and 200ms
+    const offset = Math.random() * 200; 
+    const totalDelay = delay + offset;
 
-    // Recursively call with one less retry count
-    console.warn(`Retrying... attempts left: ${retries - 1}`);
+    await new Promise((resolve) => setTimeout(resolve, totalDelay));
+
+    console.warn(`Retrying in ${Math.round(totalDelay)}ms...`);
     return withRetry(fn, retries - 1, delay);
   }
 };
