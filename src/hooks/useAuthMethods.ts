@@ -2,7 +2,6 @@
 import { UserRoles } from "@/constants";
 import { showToast, catchAsyncGeneral } from "@/utils";
 import { useRouter } from "next/navigation";
-import { useAuthState } from "./useAuthState";
 import {
   ILocalLoginRequest,
   useLocalLoginMutation,
@@ -31,7 +30,7 @@ export const useAuthMethods = () => {
     useSocialLoginMutation();
 
   const router = useRouter();
-  const { setUser } = useAuthState();
+
   const { customer } = UserRoles;
   const { loginGoogle } = useFirebaseMethods();
 
@@ -75,7 +74,6 @@ export const useAuthMethods = () => {
 
       if (res?.success) {
         const userData = res?.data?.user;
-        setUser(userData);
         if (onSuccess && typeof onSuccess === "function") onSuccess();
 
         showToast({
@@ -115,7 +113,7 @@ export const useAuthMethods = () => {
 
       if (res?.success) {
         const userData = res?.data?.user;
-        setUser(userData);
+
         showToast({ message: res.message });
 
         router.push(
@@ -129,7 +127,6 @@ export const useAuthMethods = () => {
     const res = await logoutTrigger().unwrap();
 
     if (res.status === "success") {
-      setUser(null);
       router.replace("/");
       showToast({ message: "Signed Out", position: "top-center" });
     }

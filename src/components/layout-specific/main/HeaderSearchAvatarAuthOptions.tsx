@@ -26,13 +26,6 @@ export const HeaderSearchAvatarAuthOptions = () => {
   const { user } = useAuthState();
   const { cart } = useCartState();
   const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsClient(true);
-    }, 0);
-  }, []);
 
   // 1. Auth & Role Logic
   const { isAdmin, isCustomer, isAuthenticated } = useMemo(() => {
@@ -69,38 +62,42 @@ export const HeaderSearchAvatarAuthOptions = () => {
     />
   );
 
-  if (isClient)
-    return (
-      <>
-        {/* Desktop search bar */}
-        {isMinSm && (
-          <HeaderProductsSearchbar<ISearchbarResultProduct>
+  return (
+    <>
+      {/* Desktop search bar */}
+      {isMinSm && (
+        <HeaderProductsSearchbar<ISearchbarResultProduct>
+          results={results}
+          renderResult={renderResult}
+          showIcon
+          trigger={triggerSearch}
+          className="border-neutral-200"
+          modalClassName="productSearchbarModal"
+        />
+      )}
+
+      <div className="ml-auto flex items-center gap-4">
+        {/* Mobile expandable search */}
+        {!isMinSm && (
+          <ExpandableSearchPortal
+            portalTargetId="header-search-mobile-screen"
+            buttonClasses="text-xl"
+            horizontalAccordionClasses="mb-5 xl:pb-6"
             results={results}
             renderResult={renderResult}
-            showIcon
             trigger={triggerSearch}
-            className="border-neutral-200"
+            searchbarClasses="border-neutral-200"
             modalClassName="productSearchbarModal"
           />
         )}
 
-        <div className="ml-auto flex items-center gap-4">
-          {/* Mobile expandable search */}
-          {!isMinSm && (
-            <ExpandableSearchPortal
-              portalTargetId="header-search-mobile-screen"
-              buttonClasses="text-xl"
-              horizontalAccordionClasses="mb-5 xl:pb-6"
-              results={results}
-              renderResult={renderResult}
-              trigger={triggerSearch}
-              searchbarClasses="border-neutral-200"
-              modalClassName="productSearchbarModal"
-            />
-          )}
+        <div className="flex items-center gap-5">
+          {/* Cart always on the left */}
+          <CartBtn itemsQty={cart?.totalItemQty || 0} />
 
+          {/* Auth / User menu */}
           {!isAuthenticated ? (
-            <div className="flex gap-4 font-medium">
+            <div className="flex gap-5 font-medium">
               <Link className="hover:underline" href="/auth/login">
                 Login
               </Link>
@@ -109,17 +106,15 @@ export const HeaderSearchAvatarAuthOptions = () => {
               </Link>
             </div>
           ) : (
-            <div className="flex items-center gap-5">
-              <CartBtn itemsQty={cart?.totalItemQty || 0} />
-
+            <>
               {isAdmin && <UserMenuWithoutAvatar logoutFunction={logout} />}
-
               {isCustomer && user && (
                 <UserMenuWithAvatar userData={user} logoutFunction={logout} />
               )}
-            </div>
+            </>
           )}
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 };
