@@ -99,26 +99,28 @@ export const HeaderSearchAvatarAuthOptions = () => {
             />
           )}
 
-          {!isAuthenticated ? (
-            <div className="flex gap-4 font-medium">
-              <Link className="hover:underline" href="/auth/login">
-                Login
-              </Link>
-              <Link className="hover:underline" href="/auth/signup">
-                Sign Up
-              </Link>
-            </div>
-          ) : (
-            <div className="flex items-center gap-5">
-              <CartBtn itemsQty={cart?.totalItemQty || 0} />
+          <div className="ml-auto flex items-center gap-5">
+            <CartBtn itemsQty={cart?.totalItemQty || 0} />
 
-              {isAdmin && <UserMenuWithoutAvatar logoutFunction={logout} />}
+            {!isAuthenticated ? (
+              <>
+                <Link className="hover:underline" href="/auth/login">
+                  Login
+                </Link>
+                <Link className="hover:underline" href="/auth/signup">
+                  Sign Up
+                </Link>
+              </>
+            ) : (
+              <>
+                {isAdmin && <UserMenuWithoutAvatar logoutFunction={logout} />}
 
-              {isCustomer && user && (
-                <UserMenuWithAvatar userData={user} logoutFunction={logout} />
-              )}
-            </div>
-          )}
+                {isCustomer && user && (
+                  <UserMenuWithAvatar userData={user} logoutFunction={logout} />
+                )}
+              </>
+            )}
+          </div>
         </div>
       </>
     );
