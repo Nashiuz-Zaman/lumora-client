@@ -2,7 +2,7 @@
 
 import { formatPrice } from "@/utils";
 import { MetricCard } from "./MetricCard";
-import { useGetAverageOrderTotalQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { useGetAverageOrderTotalQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
 
 export const AverageOrderTotal = () => {
   const { data, isFetching } = useGetAverageOrderTotalQuery(undefined, {

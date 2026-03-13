@@ -4,18 +4,16 @@ import Image from "next/image";
 import startCase from "lodash/startCase";
 import { TPopulatedCartItem } from "@/types/cart";
 import { formatPrice } from "@/utils";
-import { useCartActions } from "@/hooks";
-
-export type TUpdateQuantity = (
-  product: string,
-  variant: string,
-  change: number
-) => void;
+import {
+  IRemoveCartItemRequest,
+  IUpdateCartQtyRequest,
+} from "@/libs/redux/apiSlices/cart.api.slice";
 
 interface ICartItemCardProps {
   item: TPopulatedCartItem;
-  updateQuantity: TUpdateQuantity;
-  removeItem: (item: TPopulatedCartItem) => void;
+  updateQuantity: (data: IUpdateCartQtyRequest) => Promise<void>;
+  removeItem: (data: IRemoveCartItemRequest) => Promise<void>;
+  isCartMutating: boolean;
 }
 
 // --- COMPONENT ---
@@ -23,9 +21,8 @@ export const CartItemCard = ({
   item,
   updateQuantity,
   removeItem,
+  isCartMutating,
 }: ICartItemCardProps) => {
-  const { isCartLoading } = useCartActions();
-
   const excludedKeys = [
     "_id",
     "id",
@@ -36,7 +33,7 @@ export const CartItemCard = ({
     "stock",
   ];
   const variantSpecs = Object.entries(item.variant).filter(
-    ([key]) => !excludedKeys.includes(key)
+    ([key]) => !excludedKeys.includes(key),
   );
 
   return (
@@ -60,7 +57,7 @@ export const CartItemCard = ({
         {/* Product Info */}
         <div className="min-w-0">
           <h3 className="line-clamp-3 font-semibold mb-2">
-            {item.product.title || "Unnamed Product"}
+            {item.product.title || "Product name not found"}
           </h3>
 
           {/* Variant Details */}
@@ -83,10 +80,12 @@ export const CartItemCard = ({
               <button
                 className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
-                  if (!item?.product?._id || !item?.variant?._id) return;
-                  updateQuantity(item.product._id, item.variant._id, -1);
+                  updateQuantity({
+                    cartItemId: item._id || "",
+                    quantity: item.quantity - 1,
+                  });
                 }}
-                disabled={item.quantity <= 1 || isCartLoading}
+                disabled={item.quantity <= 1 || isCartMutating}
               >
                 −
               </button>
@@ -98,11 +97,13 @@ export const CartItemCard = ({
               <button
                 className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
-                  if (!item?.product?._id || !item?.variant?._id) return;
-                  updateQuantity(item.product._id, item.variant._id, 1);
+                  updateQuantity({
+                    cartItemId: item._id || "",
+                    quantity: item.quantity + 1,
+                  });
                 }}
                 disabled={
-                  item.quantity >= item.variant.stock! || isCartLoading
+                  item.quantity >= item.variant.stock! || isCartMutating
                 }
               >
                 +
@@ -125,7 +126,7 @@ export const CartItemCard = ({
         <button
           title="Remove Product"
           className="w-10 inline-block ml-auto h-10 rounded-full bg-red-50 hover:bg-red-100 text-red-600 items-center justify-center transition-colors cursor-pointer"
-          onClick={() => removeItem(item)}
+          onClick={() => removeItem({ cartItemId: item._id || "" })}
         >
           ✕
         </button>

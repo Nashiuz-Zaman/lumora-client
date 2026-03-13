@@ -11,9 +11,9 @@ import {
   LoadingSpinner,
   PriceDisplay,
   VariantSelector,
-  QuantitySelector
+  QuantitySelector,
 } from "@/components/shared";
-import { useLazyGetProductForCustomerQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useLazyGetProductForCustomerQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setIsModalOpen,
@@ -22,16 +22,16 @@ import {
 import { TRootState } from "@/libs/redux/store";
 import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 import { useEffect, useRef, useState } from "react";
-import { ICartAction } from "@/types";
+
 import { useCartActions } from "@/hooks";
-import { CartActions } from "@/constants";
 import { IVariant } from "@/utils";
+import { IAddItemToCartRequest } from "@/libs/redux/apiSlices/cart.api.slice";
 
 export const ProductQuickViewModal = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { quickViewModalData, isModalOpen } = useSelector(
-    (state: TRootState) => state.productQuickView
+    (state: TRootState) => state.productQuickView,
   );
   const slugRef = useRef<string>("");
   const [fetchProduct, { data, isFetching, isError }] =
@@ -40,7 +40,7 @@ export const ProductQuickViewModal = () => {
   const [curProductVariant, setCurProductVariant] = useState<
     IVariant | undefined
   >();
-  const { addRemoveProductToCart, isCartLoading } = useCartActions();
+  const { addProductToCart, isCartMutating: isCartLoading } = useCartActions();
 
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -63,7 +63,7 @@ export const ProductQuickViewModal = () => {
         setQuickViewModalData({
           ...quickViewModalData,
           variants: data.data?.product?.variants,
-        })
+        }),
       );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -90,14 +90,13 @@ export const ProductQuickViewModal = () => {
   const handleAddToCart = () => {
     if (!curProductVariant) return;
 
-    const cartPayload: ICartAction = {
-      action: CartActions.add,
-      product: quickViewModalData?._id as string,
-      variant: curProductVariant?._id as string,
+    const cartPayload: IAddItemToCartRequest = {
+      productId: quickViewModalData?._id as string,
+      variantId: curProductVariant?._id as string,
       quantity,
     };
 
-    addRemoveProductToCart({ data: cartPayload });
+    addProductToCart({ data: cartPayload });
   };
 
   const handleIncrease = () => {
@@ -111,7 +110,7 @@ export const ProductQuickViewModal = () => {
     <BaseModal
       condition={isModalOpen}
       closeFunction={closeModal}
-      className="!w-full max-w-[22rem] xs:max-w-[30rem] sm:max-w-[40rem] md:max-w-[48rem] min-h-[25rem] max-h-[80vh] bg-white rounded-xl shadow-lg overflow-hidden z-500 p-4 flex flex-col"
+      className="w-full! max-w-88 xs:max-w-120 sm:max-w-160 md:max-w-3xl min-h-100 max-h-[80vh] bg-white rounded-xl shadow-lg overflow-hidden z-500 p-4 flex flex-col"
     >
       {isFetching && (
         <div className="relative w-full grow">
@@ -190,7 +189,7 @@ export const ProductQuickViewModal = () => {
                   onClick={handleAddToCart}
                   isLoading={isCartLoading}
                   disabled={!curProductVariant}
-                  className="!successClasses !rounded-full !px-5 !py-2 !gap-2"
+                  className="successClasses! rounded-full! px-5! py-2! gap-2!"
                 >
                   <CartIcon className="text-2xl" />
                   Add to Cart

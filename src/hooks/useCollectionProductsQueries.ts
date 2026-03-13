@@ -3,12 +3,12 @@
 import { useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { buildUrlWithParams, cleanObject } from "@/utils";
-import { useGetProductsFromProductCollectionQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useGetProductsFromProductCollectionQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 
 export const useCollectionProductsQueries = (
   collectionSlug: string,
-  options: { limit?: number } = {}
+  options: { limit?: number } = {},
 ) => {
   const { limit } = options;
 
@@ -35,12 +35,12 @@ export const useCollectionProductsQueries = (
           "_id,title,serial,defaultPrice,defaultImage,defaultOldPrice,totalVariants,totalStock",
         ...(limit ? { limit } : {}), // add limit only if provided
       }),
-    [page, limit]
+    [page, limit],
   );
 
   const query = useGetProductsFromProductCollectionQuery(
     { slug: collectionSlug ?? "", params },
-    { skip: !collectionSlug }
+    { skip: !collectionSlug },
   );
 
   return {

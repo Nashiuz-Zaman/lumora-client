@@ -4,7 +4,7 @@ import {
   ICustomerProfile,
   TPaginatedCustomers,
 } from "@/types";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import { TBasicInfoFormValues } from "@/components/page-specific/customer/settings/BasicInfoForm";
 import { IAuthFormSignup } from "@/components/page-specific";
 

@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import backdropReducer from "./features/backdrop/backdropSlice";
 import productQuickViewReducer from "./features/productQuickView/productQuickViewSlice";
-import { baseApiSlice } from "./apiSlices/baseApiSlice";
+import { baseApiSlice } from "./apiSlices/base.api.slice";
 import categoriesReducer from "./features/categories/categoriesSlice";
 import { ICategoryTreeItem } from "@/types";
 import returnRequestReducer from "./features/returnRequest/returnRequest";

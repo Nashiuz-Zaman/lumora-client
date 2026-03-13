@@ -20,7 +20,7 @@ import { OrderSortOptions, OrderStatus } from "@/constants/order";
 import {
   useGetOrdersForCustomerQuery,
   useGetOrdersPrivateQuery,
-} from "@/libs/redux/apiSlices/orders/orderApiSlice";
+} from "@/libs/redux/apiSlices/order.api.slice";
 
 // Types
 import { TOrderStatusValue } from "@/constants";

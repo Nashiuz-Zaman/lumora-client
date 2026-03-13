@@ -1,18 +1,15 @@
 import { TPaymentType } from "@/constants";
 import { IOrder } from "./order";
-import { IUser } from "./user";
+import { IUserBasic } from "./shared";
 
 // ---------------------------------------------------------
 // PAYMENT MODEL
 // Represents a payment record for an order
 // ---------------------------------------------------------
-export interface IPayment {
+export interface IPayment extends IUserBasic {
   _id?: string;
   order: NonNullable<IOrder["_id"]>;
   orderId: NonNullable<IOrder["orderId"]>;
-
-  name: IUser["name"];
-  email: IUser["email"];
 
   type: TPaymentType;
   transactionId?: string;

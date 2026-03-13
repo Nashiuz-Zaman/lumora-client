@@ -1,5 +1,5 @@
 import { IApiResponse, TQueryDataWithQueryMeta } from "@/types";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import { IReturnRequest, TPopulatedReturnRequest } from "@/types/returnRequest";
 
 export const returnRequestApiSlice = baseApiSlice.injectEndpoints({

@@ -2,6 +2,7 @@ import { TOrderStatusValue } from "@/constants";
 import { ICart, TPopulatedCartItem } from "./cart";
 import { ICustomer } from "./customer";
 import { IUser } from "./user";
+import { IUserBasic } from "./shared";
 
 export interface IOrderActivity {
   time: string;
@@ -9,16 +10,12 @@ export interface IOrderActivity {
   isArchived: boolean;
 }
 
-export interface IOrder {
+export interface IOrder extends IUserBasic {
   _id?: string;
   orderId?: string;
 
   user: NonNullable<IUser["_id"]>;
   cartId: NonNullable<ICart["_id"]>;
-
-  name: IUser["name"];
-  email: IUser["email"];
-  phone: NonNullable<IUser["phone"]>;
 
   shippingAddress: NonNullable<ICustomer["shippingAddress"]>;
   billingAddress: NonNullable<ICustomer["billingAddress"]>;

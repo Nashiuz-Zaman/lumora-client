@@ -7,9 +7,9 @@ import {
   useLocalLoginMutation,
   useSocialLoginMutation,
   useLogoutMutation,
-} from "@/libs/redux/apiSlices/auth/authApiSlice";
+} from "@/libs/redux/apiSlices/auth.api.slice";
 import useFirebaseMethods from "./useFirebaseMethods";
-import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer.api.slice";
 import { TAuthForm } from "@/components/page-specific";
 import { UseFormSetError } from "react-hook-form";
 import { IUser } from "@/types";
@@ -81,7 +81,7 @@ export const useAuthMethods = () => {
         });
 
         router.push(
-          `/${userData?.role.name === customer ? "customer" : "admin"}`,
+          `/${userData?.role?.name === customer ? "customer" : "admin"}`,
         );
       }
     },
@@ -117,7 +117,7 @@ export const useAuthMethods = () => {
         showToast({ message: res.message });
 
         router.push(
-          `/${userData?.role.name === customer ? "customer" : "admin"}`,
+          `/${userData?.role?.name === customer ? "customer" : "admin"}`,
         );
       }
     }

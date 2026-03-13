@@ -3,53 +3,31 @@
 import { useState } from "react";
 import { ButtonBtn, ErrorMessage, InputField } from "@/components/shared";
 import { catchAsyncGeneral } from "@/utils";
-import { useAuthState, useCartState } from "@/hooks";
-import {
-  useApplyCouponToUserCartMutation,
-  useApplyCouponToGuestCartMutation,
-  useRemoveCouponFromUserCartMutation,
-  useRemoveCouponFromGuestCartMutation,
-} from "@/libs/redux/apiSlices/cart/cartApiSlice";
+import { useCartActions, useCartState } from "@/hooks";
 
 interface IPromoCodeProps {
   appliedCode: string | null;
 }
 
 export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
-  const { user } = useAuthState() || {};
   const { cart } = useCartState() || {};
   const [couponCode, setCouponCode] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>("");
+  const { applyCoupon, removeCoupon, isCartMutating } = useCartActions();
 
   // RTK Mutations with isLoading state
-  const [applyUserCoupon, { isLoading: applyingUser }] =
-    useApplyCouponToUserCartMutation();
-  const [applyGuestCoupon, { isLoading: applyingGuest }] =
-    useApplyCouponToGuestCartMutation();
-  const [removeUserCoupon, { isLoading: removingUser }] =
-    useRemoveCouponFromUserCartMutation();
-  const [removeGuestCoupon, { isLoading: removingGuest }] =
-    useRemoveCouponFromGuestCartMutation();
-
   const handleApply = catchAsyncGeneral(
     async () => {
       setErrorMessage("");
 
       if (!cart?._id) {
-        setErrorMessage(
-          "Please add a product to your cart before applying a coupon."
-        );
+        setErrorMessage("Please add a product first");
         return;
       }
 
       if (!couponCode.trim()) return;
 
-      if (user) {
-        await applyUserCoupon(couponCode).unwrap();
-      } else {
-        await applyGuestCoupon(couponCode).unwrap();
-      }
-
+      await applyCoupon({ data: { couponCode } });
       setCouponCode(""); // reset input
     },
     {
@@ -57,7 +35,7 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
       onError(_error, _args, message) {
         setErrorMessage(message ?? "Failed to apply coupon. Please try again");
       },
-    }
+    },
   );
 
   const handleRemove = catchAsyncGeneral(
@@ -65,30 +43,21 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
       setErrorMessage("");
 
       if (!cart?._id) {
-        setErrorMessage(
-          "There is no cart to remove a coupon from. Please add a product first."
-        );
+        setErrorMessage("Please add a product first");
         return;
       }
 
       if (!appliedCode) return;
 
-      if (user) {
-        await removeUserCoupon(undefined).unwrap();
-      } else {
-        await removeGuestCoupon(undefined).unwrap();
-      }
+      await removeCoupon();
     },
     {
       handleError: "function",
       onError(_error, _args, message) {
-        setErrorMessage(message ?? "Failed to apply coupon. Please try again");
+        setErrorMessage(message ?? "Failed to remove coupon. Please try again");
       },
-    }
+    },
   );
-
-  const isApplying = applyingUser || applyingGuest;
-  const isRemoving = removingUser || removingGuest;
 
   return (
     <div className="bg-neutral-50 rounded-xl p-4">
@@ -113,12 +82,12 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setCouponCode(e.target.value)
               }
-              disabled={isApplying}
+              disabled={isCartMutating}
             />
             <ButtonBtn
               onClick={handleApply}
-              className="!secondaryClasses"
-              isLoading={isApplying}
+              className="secondaryClasses!"
+              isLoading={isCartMutating}
             >
               Apply
             </ButtonBtn>
@@ -127,9 +96,9 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
           <button
             onClick={handleRemove}
             className="px-4 py-2 bg-red-100 cursor-pointer text-red-600 rounded-lg text-sm font-medium transition-colors border border-red-100 hover:border-red-200"
-            disabled={isRemoving}
+            disabled={isCartMutating}
           >
-            {isRemoving ? "Removing..." : "Remove"}
+            {isCartMutating ? "Removing..." : "Remove"}
           </button>
         )}
       </div>

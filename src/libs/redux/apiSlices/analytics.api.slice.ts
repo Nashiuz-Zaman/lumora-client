@@ -1,4 +1,4 @@
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import {
   IAnalyticDateParams,
   IApiResponse,

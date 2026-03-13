@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnChartDual } from "@/components/shared";
-import { useGetOrderTrendsCombinedQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { useGetOrderTrendsCombinedQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 
 interface IOrderTrendsChartProps {

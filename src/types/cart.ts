@@ -1,4 +1,3 @@
-import { CartActions } from "@/constants";
 import { IProduct, IVariant } from "./product";
 import { ICoupon } from "./coupon";
 import { TCartTotalsShape } from "./shared";
@@ -10,6 +9,7 @@ export interface ICartItem<P = string, V = string> {
   product: P;
   variant: V;
   quantity: number;
+  _id?: string;
 }
 
 // ---------------------------------------------------------
@@ -36,22 +36,12 @@ export type TCartTotals = Partial<TCartTotalsShape>;
 // ---------------------------------------------------------
 export interface ICart<C = TDatabaseCartItem> extends TCartTotals {
   _id?: string;
-  user: string | "guest";
+  user: string | null;
   items: C[];
   couponCode?: ICoupon["code"];
   createdAt?: string;
   updatedAt?: string;
   totalItemQty?: number;
-}
-
-// ---------------------------------------------------------
-// CART ACTION PAYLOAD
-// ---------------------------------------------------------
-export interface ICartAction {
-  product: string;
-  variant: string;
-  action: keyof typeof CartActions;
-  quantity: number;
 }
 
 // ---------------------------------------------------------

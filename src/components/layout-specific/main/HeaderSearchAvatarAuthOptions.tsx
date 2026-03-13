@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import {
   HeaderProductsSearchbar,
@@ -18,7 +18,7 @@ import {
   useMediaQuery,
 } from "@/hooks";
 import { ISearchbarResultProduct } from "@/types";
-import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { UserRoles } from "@/constants/user";
 
 export const HeaderSearchAvatarAuthOptions = () => {

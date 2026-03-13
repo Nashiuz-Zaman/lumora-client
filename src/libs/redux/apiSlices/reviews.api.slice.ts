@@ -1,5 +1,5 @@
 import { IApiResponse } from "@/types";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import { IProductReviewsWithStats } from "@/types/review";
 
 export const reviewApiSlice = baseApiSlice.injectEndpoints({

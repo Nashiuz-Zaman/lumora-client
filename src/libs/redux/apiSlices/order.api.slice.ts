@@ -6,7 +6,7 @@ import {
   IOrder,
   TQueryDataWithQueryMeta,
 } from "@/types";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import { IOrderQueriesParams } from "@/hooks";
 
 export const orderApiSlice = baseApiSlice.injectEndpoints({

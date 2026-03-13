@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetPaymentStatsQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { useGetPaymentStatsQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
 import { StatsCard } from "../shared/StatsCard";
 import { formatPrice } from "@/utils/formatPrice";
 import { IAnalyticDateParams } from "@/types";

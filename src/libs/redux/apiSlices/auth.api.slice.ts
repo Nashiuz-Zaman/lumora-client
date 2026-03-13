@@ -1,6 +1,7 @@
 import { IApiResponse, IUserPopulated } from "@/types";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import { IGoogleUser } from "@/hooks";
+import { TAppDispatch } from "../store";
 
 // ----------
 // Types
@@ -16,7 +17,10 @@ type TApiUserResponse = IApiResponse<{
 // ----------
 // Cache Seeder
 // ----------
-const seedCurrentUser = (dispatch: any, user: Partial<IUserPopulated>) => {
+const seedCurrentUser = (
+  dispatch: TAppDispatch,
+  user: Partial<IUserPopulated>,
+) => {
   dispatch(
     authApiSlice.util.upsertQueryData("getCurrentUser", undefined, {
       success: true,
@@ -30,11 +34,14 @@ const seedCurrentUser = (dispatch: any, user: Partial<IUserPopulated>) => {
 // Shared login cache handler
 // ----------
 const handleLoginSuccess = async (
-  _arg: any,
+  _arg: unknown,
   {
     dispatch,
     queryFulfilled,
-  }: { dispatch: any; queryFulfilled: Promise<{ data: IApiResponse }> },
+  }: {
+    dispatch: TAppDispatch;
+    queryFulfilled: Promise<{ data: IApiResponse }>;
+  },
 ) => {
   try {
     const { data } = await queryFulfilled;
@@ -45,7 +52,7 @@ const handleLoginSuccess = async (
       seedCurrentUser(dispatch, user);
     }
   } catch (err) {
-    console.error("Auth cache sync failed:", err);
+    console.log("Auth cache sync failed:", err);
   }
 };
 
@@ -60,8 +67,9 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         method: "POST",
         data,
       }),
-      invalidatesTags: ["UserCartData"],
+
       onQueryStarted: handleLoginSuccess,
+      invalidatesTags: ["Cart"],
     }),
 
     socialLogin: builder.mutation<TApiUserResponse, IGoogleUser>({
@@ -70,8 +78,9 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         method: "POST",
         data,
       }),
-      invalidatesTags: ["UserCartData"],
+
       onQueryStarted: handleLoginSuccess,
+      invalidatesTags: ["Cart"],
     }),
 
     getCurrentUser: builder.query<TApiUserResponse, void>({
@@ -79,6 +88,7 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         url: "/auth/me",
         method: "GET",
       }),
+      providesTags: ["User"],
     }),
 
     logout: builder.mutation<IApiResponse, void>({
@@ -86,7 +96,7 @@ export const authApiSlice = baseApiSlice.injectEndpoints({
         url: "/auth/logout",
         method: "GET",
       }),
-      invalidatesTags: ["GuestCartData"],
+      invalidatesTags: ["User", "Cart"],
       async onQueryStarted(_, { dispatch, queryFulfilled }) {
         try {
           await queryFulfilled;

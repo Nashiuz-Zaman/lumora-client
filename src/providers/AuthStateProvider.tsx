@@ -2,7 +2,7 @@
 
 import { createContext, ReactNode } from "react";
 import { UserRoles } from "@/constants";
-import { useGetCurrentUserQuery } from "@/libs/redux/apiSlices/auth/authApiSlice";
+import { useGetCurrentUserQuery } from "@/libs/redux/apiSlices/auth.api.slice";
 import { IUserPopulated } from "@/types";
 
 export interface IAuthStateContext {

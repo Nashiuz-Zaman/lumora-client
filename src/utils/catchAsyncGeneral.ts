@@ -30,8 +30,8 @@ export type TWithEvent = {
 };
 
 export const catchAsyncGeneral = (
-  fn: (args?: TWithEvent) => Promise<void>,
-  options: ICatchAsyncOptions<TWithEvent> = {}
+  fn: (args?: TWithEvent) => Promise<any>,
+  options: ICatchAsyncOptions<TWithEvent> = {},
 ) => {
   const {
     handleError = "toast",
@@ -86,7 +86,7 @@ export const catchAsyncGeneral = (
           throw error;
 
         default:
-          // console.error("❌ Error in catchAsyncGeneral:", error);
+          console.log("❌ Error in catchAsyncGeneral:", error);
           return;
       }
     } finally {

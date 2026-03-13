@@ -1,51 +1,54 @@
 "use client";
 
 import {
-  useCreateUserCartMutation,
-  useCreateGuestCartMutation,
-  useUpdateUserCartMutation,
-  useUpdateGuestCartMutation,
-} from "@/libs/redux/apiSlices/cart/cartApiSlice";
-import { useCartState } from "./useCartState";
-import { useAuthState } from "./useAuthState";
+  useAddItemToCartMutation,
+  useUpdateCartItemQtyMutation,
+  useRemoveItemFromCartMutation,
+  useClearCartMutation,
+  useAddCouponToCartMutation,
+  useRemoveCouponFromCartMutation,
+  TCartResponse,
+  IAddItemToCartRequest,
+  IUpdateCartQtyRequest,
+  IRemoveCartItemRequest,
+  IAddCouponRequest,
+} from "@/libs/redux/apiSlices/cart.api.slice";
+
 import { catchAsyncGeneral, showToast } from "@/utils";
-import { ICartAction } from "@/types/cart";
 
 export const useCartActions = () => {
-  const { user } = useAuthState();
-  const { cart } = useCartState();
+  /* ---------------- MUTATIONS ---------------- */
 
-  // mutations
-  const [createUserCart, { isLoading: creatingUser }] =
-    useCreateUserCartMutation();
+  const [addItemToCart, { isLoading: adding }] = useAddItemToCartMutation();
 
-  const [createGuestCart, { isLoading: creatingGuest }] =
-    useCreateGuestCartMutation();
+  const [updateCartItemQty, { isLoading: updating }] =
+    useUpdateCartItemQtyMutation();
 
-  const [updateUserCart, { isLoading: updatingUser }] =
-    useUpdateUserCartMutation();
+  const [removeItemFromCart, { isLoading: removing }] =
+    useRemoveItemFromCartMutation();
 
-  const [updateGuestCart, { isLoading: updatingGuest }] =
-    useUpdateGuestCartMutation();
+  const [clearCart, { isLoading: clearing }] = useClearCartMutation();
 
-  // choose correct mutation
-  const mutation = user
-    ? cart?._id
-      ? updateUserCart
-      : createUserCart
-    : cart?._id
-    ? updateGuestCart
-    : createGuestCart;
+  const [addCouponToCart, { isLoading: applyingCoupon }] =
+    useAddCouponToCartMutation();
 
-  // mutation loading state
+  const [removeCouponFromCart, { isLoading: removingCoupon }] =
+    useRemoveCouponFromCartMutation();
+
+  /* ---------------- LOADING STATE ---------------- */
+
   const isCartMutating =
-    creatingUser || creatingGuest || updatingUser || updatingGuest;
+    adding ||
+    updating ||
+    removing ||
+    clearing ||
+    applyingCoupon ||
+    removingCoupon;
 
-  const showCartUpdateSuccessToast = (result: {
-    success: boolean;
-    message: string;
-  }) => {
-    if (result?.success) {
+  /* ---------------- TOAST ---------------- */
+
+  const showCartUpdateSuccessToast = (result: TCartResponse) => {
+    if (result?.success && result?.message) {
       showToast({
         message: result.message,
         position: "top-center",
@@ -53,18 +56,60 @@ export const useCartActions = () => {
     }
   };
 
-  const addRemoveProductToCart = catchAsyncGeneral(async (args) => {
-    const data = args?.data as ICartAction;
+  /* ---------------- ACTIONS ---------------- */
 
-    const result = await mutation(data).unwrap();
-
+  const addProductToCart = catchAsyncGeneral(async (args) => {
+    const data = args?.data as IAddItemToCartRequest;
+    const result = await addItemToCart(data).unwrap();
     showCartUpdateSuccessToast(result);
-
-    return result;
   });
 
+  const updateCartItemQuantity = catchAsyncGeneral(async (args) => {
+    const data = args?.data as IUpdateCartQtyRequest;
+    const result = await updateCartItemQty(data).unwrap();
+    showCartUpdateSuccessToast(result);
+  });
+
+  const removeCartItem = catchAsyncGeneral(async (args) => {
+    const data = args?.data as IRemoveCartItemRequest;
+    const result = await removeItemFromCart(data).unwrap();
+    showCartUpdateSuccessToast(result);
+  });
+
+  const clearUserCart = catchAsyncGeneral(async () => {
+    const result = await clearCart().unwrap();
+    showCartUpdateSuccessToast(result);
+  });
+
+  const applyCoupon = catchAsyncGeneral(
+    async (args) => {
+      const data = args?.data as IAddCouponRequest;
+
+      const result = await addCouponToCart(data).unwrap();
+      showCartUpdateSuccessToast(result);
+    },
+    {
+      handleError: "throw",
+    },
+  );
+
+  const removeCoupon = catchAsyncGeneral(
+    async () => {
+      const result = await removeCouponFromCart().unwrap();
+      showCartUpdateSuccessToast(result);
+    },
+    {
+      handleError: "throw",
+    },
+  );
+
   return {
-    addRemoveProductToCart,
+    addProductToCart,
+    updateCartItemQuantity,
+    removeCartItem,
+    clearUserCart,
+    applyCoupon,
+    removeCoupon,
     isCartMutating,
   };
 };

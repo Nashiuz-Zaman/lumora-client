@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 import { useState, ChangeEvent } from "react";
 
@@ -12,7 +12,7 @@ interface IQueryParams {
 
 export const useProductCollectionModalQueries = (
   isModalOpen: boolean,
-  topCategorySlug: string
+  topCategorySlug: string,
 ) => {
   const isTopSelling = topCategorySlug?.includes("top-selling");
 
@@ -31,7 +31,7 @@ export const useProductCollectionModalQueries = (
     {
       skip: !isModalOpen,
       refetchOnMountOrArgChange: true,
-    }
+    },
   );
 
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
