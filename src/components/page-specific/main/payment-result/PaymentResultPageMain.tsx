@@ -1,11 +1,6 @@
 "use client";
 
-import {
-  InnerContainer,
-  IcfyIcon,
-  LinkBtn,
-  RedirectCountdown,
-} from "@/components/shared";
+import { IcfyIcon, LinkBtn, RedirectCountdown } from "@/components/shared";
 
 import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
 import { useSearchParams, useRouter } from "next/navigation";
@@ -55,60 +50,55 @@ export const PaymentResultPageMain = () => {
   const typedStatus = status as TPaymentStatus;
 
   return (
-    <div className="h-full grid place-content-center">
-      <InnerContainer>
-        <div className="border border-neutral-200 shadow-md rounded-2xl p-10 bg-white flex flex-col items-center gap-6 max-w-lg mx-auto">
-          <div className="text-center space-y-2">
-            <div className="flex items-center gap-2 justify-center">
-              <IcfyIcon
-                icon={icons[typedStatus].name}
-                className={`text-4xl ${icons[typedStatus].color}`}
-              />
-              <p className="text-2xl font-semibold capitalize">
-                Payment{" "}
-                {typedStatus === "success"
-                  ? "Successful"
-                  : typedStatus === "fail"
+    <div className="min-h-85 sm:min-h-100 lg:min-h-auto h-full grid place-content-center">
+      <div className="border border-neutral-200 shadow-md rounded-2xl p-10 bg-white flex flex-col items-center gap-6 max-w-lg mx-auto">
+        <div className="text-center space-y-2">
+          <div className="flex items-center gap-2 justify-center">
+            <IcfyIcon
+              icon={icons[typedStatus].name}
+              className={`text-3xl md:text-4xl ${icons[typedStatus].color}`}
+            />
+            <p className="text-xl md:text-2xl font-semibold text-left capitalize">
+              Payment{" "}
+              {typedStatus === "success"
+                ? "Successful"
+                : typedStatus === "fail"
                   ? "Failed"
                   : "Cancelled"}
-              </p>
-            </div>
-
-            <p className="text-lg !mb-3">{descriptions[typedStatus]}</p>
-
-            <p className="text-3xl font-bold">
-              Order: <span className="font-normal">{orderId}</span>
             </p>
           </div>
 
-          {typedStatus === "success" && (
-            <LinkBtn
-              href={`/track-order?id=${orderId}`}
-              className="!successClasses !rounded-full"
-            >
-              Track your Order
-            </LinkBtn>
-          )}
+          <p className="text-lg mb-3!">{descriptions[typedStatus]}</p>
 
-          {typedStatus === "fail" && (
-            <LinkBtn
-              href={`/checkout`}
-              className="!primaryClasses !rounded-full"
-            >
-              Try Again
-            </LinkBtn>
-          )}
-
-          {typedStatus === "cancel" && (
-            <RedirectCountdown
-              href="/cart"
-              after={5000}
-              text="Redirecting To Cart"
-              modifyClasses="text-center mt-2 text-muted-foreground"
-            />
-          )}
+          <p className="text-3xl font-bold">
+            Order: <span className="font-normal">{orderId}</span>
+          </p>
         </div>
-      </InnerContainer>
+
+        {typedStatus === "success" && (
+          <LinkBtn
+            href={`/track-order?id=${orderId}`}
+            className="successClasses! rounded-full!"
+          >
+            Track your Order
+          </LinkBtn>
+        )}
+
+        {typedStatus === "fail" && (
+          <LinkBtn href={`/checkout`} className="primaryClasses! rounded-full!">
+            Try Again
+          </LinkBtn>
+        )}
+
+        {typedStatus === "cancel" && (
+          <RedirectCountdown
+            href="/cart"
+            after={5000}
+            text="Redirecting To Cart"
+            modifyClasses="text-center mt-2 text-muted-foreground"
+          />
+        )}
+      </div>
     </div>
   );
 };
