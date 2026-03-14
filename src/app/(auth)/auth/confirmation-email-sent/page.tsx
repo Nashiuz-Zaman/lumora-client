@@ -1,6 +1,6 @@
-import { ConfirmationEmailSentMain } from "@/components/page-specific";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { ConfirmationEmailSentMain } from "@page-specific/main/confirmation-email-sent/ConfirmationEmailSentMain";
 
 export const metadata: Metadata = {
   title: "Confirmation Email Sent | Lumora",

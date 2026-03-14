@@ -1,9 +1,9 @@
 "use client";
 
-import { AuthForm, TAuthForm } from "@/components/page-specific";
-import { CompanyLogoBtn } from "@/components/shared";
-import { useAuthMethods } from "@/hooks/useAuthMethods"; 
 import { UseFormSetError } from "react-hook-form";
+import { AuthForm, TAuthForm } from "./AuthForm";
+import { CompanyLogoBtn } from "@/components/shared";
+import { useAuthMethods } from "@/hooks/useAuthMethods";
 
 export const SignupPageMain = () => {
   const {
@@ -15,7 +15,7 @@ export const SignupPageMain = () => {
 
   const handleSignup = async (
     data: TAuthForm,
-    setError: UseFormSetError<TAuthForm>
+    setError: UseFormSetError<TAuthForm>,
   ) => {
     await signupUser({
       data,

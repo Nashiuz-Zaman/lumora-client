@@ -1,6 +1,6 @@
 "use client";
 
-import { LeftColumnContent } from "@/components/page-specific";
+import { LeftColumnContent } from "@page-specific/auth-pages/LeftColumnContent";
 import { ReactNode } from "react";
 
 const authImages = [
@@ -12,7 +12,7 @@ const authImages = [
 
 export const AuthLayoutMain = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="min-h-screen relative flex flex-col max-w-480 mx-auto overflow-x-hidden">
+    <div className="min-h-screen bg-white relative flex flex-col max-w-480 mx-auto overflow-x-hidden">
       <main className="grow grid grid-cols-1 lg:grid-cols-2">
         {/* Left gradient section */}
         <div className="relative hidden lg:flex items-center justify-center bg-linear-to-br from-primary to-pink-500">
