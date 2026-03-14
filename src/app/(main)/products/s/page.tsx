@@ -1,9 +1,9 @@
-import { SearchProductsMain } from "@/components/page-specific/main/products/search-products/SearchProductsMain";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { SearchProductsMain } from "@page-specific/main/products/search-products/SearchProductsMain";
 
 export const metadata: Metadata = {
-  title: "Product Search Results - Lumora.com",
+  title: "Search Products - Lumora.com",
 };
 
 const ProductsSearchPage = async () => {

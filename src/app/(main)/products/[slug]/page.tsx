@@ -1,10 +1,10 @@
-// app/products/[slug]/page.tsx
 import { Metadata } from "next";
-import { ProductPagePublicMain } from "@/components/page-specific";
+import { ProductPagePublicMain } from "@page-specific/main/products/product-detail-customer/ProductPagePublicMain";
 
-import { InnerContainer, LinkBtn } from "@/components/shared";
 import { fetchProductForCustomer } from "@/server-functions/fetchProductForCustomer";
 import { fetchRelatedProductsForCustomer } from "@/server-functions/fetchRelatedProductsForCustomer";
+import { LinkBtn } from "@buttons/LinkBtn";
+import { InnerContainer } from "@containers/InnerContainer";
 
 type TParams = Promise<{ slug: string }>;
 

@@ -1,4 +1,4 @@
-import { CartPageMain } from "@/components/page-specific/main/cart/CartPageMain";
+import { CartPageMain } from "@page-specific/main/cart/CartPageMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
