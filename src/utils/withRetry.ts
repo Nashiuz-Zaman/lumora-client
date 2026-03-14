@@ -8,7 +8,7 @@
 export const withRetry = async <T>(
   fn: () => Promise<T>,
   retries: number = 3,
-  delay: number = 1000
+  delay: number = 1000,
 ): Promise<T> => {
   try {
     return await fn();
@@ -16,7 +16,7 @@ export const withRetry = async <T>(
     if (retries <= 1) throw error;
 
     // Jitter: a random offset between 0 and 200ms
-    const offset = Math.random() * 200; 
+    const offset = Math.random() * 200;
     const totalDelay = delay + offset;
 
     await new Promise((resolve) => setTimeout(resolve, totalDelay));
