@@ -1,6 +1,5 @@
 "use client";
 
-import { InnerContainer } from "@containers/InnerContainer";
 import { IcfyIcon } from "@shared/IcfyIcon";
 import { LinkBtn } from "@buttons/LinkBtn";
 import { RedirectCountdown } from "@shared/RedirectCountdown";
