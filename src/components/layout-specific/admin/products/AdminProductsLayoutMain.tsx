@@ -2,12 +2,12 @@
 
 import { ReactNode } from "react";
 import { useParams, usePathname } from "next/navigation";
-import { usePortalTarget } from "@/hooks";
-import AddToProductCollectionModal from "@/components/modals/AddToProductCollectionModal";
+import { usePortalTarget } from "@/hooks/usePortalTarget";
+import AddToProductCollectionModal from "@modals/AddToProductCollectionModal";
 
 // Shared components
-import { TopPanel } from "@/components/page-specific";
-import { LinkBtn } from "@/components/shared";
+import { TopPanel } from "@page-specific/admin/shared/TopPanel";
+import { LinkBtn } from "@buttons/LinkBtn";
 
 export const AdminProductsLayoutMain = ({
   children,

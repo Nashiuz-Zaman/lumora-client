@@ -1,7 +1,7 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared";
-import { IOrderQueriesParams } from "@/hooks";
+import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared/ParamsFilterForm";
+import { IOrderQueriesParams } from "@/hooks/useOrderQueries";
 import { IOrder } from "@/types";
 
 export const OrdersTopParamsForm = ({

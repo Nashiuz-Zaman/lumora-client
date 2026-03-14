@@ -1,4 +1,4 @@
-import { ExpiredCouponsMain } from "@/components/page-specific";
+import { ExpiredCouponsMain } from "@page-specific/admin/coupons/expired/ExpiredCouponsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

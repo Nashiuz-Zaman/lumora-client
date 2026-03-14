@@ -5,8 +5,8 @@ import {
   TPaginatedCustomers,
 } from "@/types";
 import { baseApiSlice } from "./base.api.slice";
-import { TBasicInfoFormValues } from "@/components/page-specific/customer/settings/BasicInfoForm";
-import { IAuthFormSignup } from "@/components/page-specific";
+import { TBasicInfoFormValues } from "@page-specific/customer/settings/BasicInfoForm";
+import { IAuthFormSignup } from "@page-specific/auth-pages/AuthForm";
 
 export const customerApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({

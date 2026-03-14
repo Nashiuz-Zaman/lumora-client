@@ -1,4 +1,4 @@
-import { TCouponStatus } from "@/constants";
+import { TCouponStatus } from "@/constants/coupon";
 
 export interface ICoupon {
   _id?: string;

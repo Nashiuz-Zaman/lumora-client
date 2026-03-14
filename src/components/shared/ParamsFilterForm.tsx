@@ -10,11 +10,13 @@ import {
   useRef,
 } from "react";
 import { InputField } from "./InputField";
-import { ButtonBtn, ButtonBtnTrans } from "./buttons";
+
 import { SortDropdown } from "./SortDropdown";
-import { useRefState } from "@/hooks";
+import { useRefState } from "@/hooks/useRefState";
 import { TSortOptions } from "@/types/generic";
-import { SearchIcon } from "./icons";
+import { SearchIcon } from "./icons/SearchIcon";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 
 export type TStatusOptions<K extends Record<string, any>> = {
   label: string;
@@ -23,7 +25,7 @@ export type TStatusOptions<K extends Record<string, any>> = {
 
 export interface IParamsFilterFormProps<
   Params extends Record<string, any>,
-  Resource extends Record<string, any>
+  Resource extends Record<string, any>,
 > {
   params: Params;
   setParams: Dispatch<SetStateAction<Params>>;
@@ -38,7 +40,7 @@ export interface IParamsFilterFormProps<
 
 export const ParamsFilterForm = <
   Params extends Record<string, any>,
-  Resource extends Record<string, any>
+  Resource extends Record<string, any>,
 >({
   params,
   setParams,
@@ -72,7 +74,7 @@ export const ParamsFilterForm = <
     (value: string | number) => {
       setParams((prev) => ({ ...prev, sort: value }));
     },
-    [setParams]
+    [setParams],
   );
 
   const handleStatusChange = (status: string | number) => {
@@ -92,7 +94,7 @@ export const ParamsFilterForm = <
         value={params.search}
         placeholder={placeholder || `Search ${roleLabel}s`}
         inputClassName="rounded-md"
-        className="w-full lg:!max-w-[20rem] 2xl:!max-w-[27rem]"
+        className="w-full lg:max-w-[20rem]! 2xl:!max-w-[27rem]!"
       />
 
       <div className="flex flex-col xs:flex-row items-center justify-between w-full gap-4 xl:ml-4">
@@ -125,7 +127,7 @@ export const ParamsFilterForm = <
             className="ml-auto"
           />
 
-          <ButtonBtn type="submit" className="!successClasses !py-2 !px-3">
+          <ButtonBtn type="submit" className="successClasses! py-2! px-3!">
             Search
           </ButtonBtn>
         </div>

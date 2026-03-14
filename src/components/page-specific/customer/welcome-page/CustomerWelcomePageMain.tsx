@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { TRootState } from "@/libs/redux/store";
 
 // Shared Components
-import { InnerContainer } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
 
 // Local Page Components
 import { LinkCard } from "./LinkCard";

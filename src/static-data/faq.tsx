@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { IFAQ } from "@/components/page-specific/main/faq/FAQItem";
+import { IFAQ } from "@page-specific/main/faq/FAQItem";
 
 export const faqData: IFAQ[] = [
   {

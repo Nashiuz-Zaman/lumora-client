@@ -1,8 +1,8 @@
 "use client";
 
 import { ReactNode, useEffect, useRef } from "react";
-import { InnerContainer } from "@/components/shared";
-import { useRefState } from "@/hooks";
+import { InnerContainer } from "@containers/InnerContainer";
+import { useRefState } from "@/hooks/useRefState";
 
 interface ITopPanelProps {
   /** Buttons / actions to show on the right */

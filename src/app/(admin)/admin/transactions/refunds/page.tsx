@@ -1,4 +1,4 @@
-import { RefundsMain } from "@/components/page-specific";
+import { RefundsMain } from "@page-specific/admin/transactions/refunds/RefundsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,8 +1,9 @@
 "use client";
 
-import { InputCheckbox } from "@/components/shared";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
 import { IReturnRequest } from "@/types/returnRequest";
-import { formatDateTime, formatPrice } from "@/utils";
+import { formatDateTime } from "@/utils/formatDateTime";
+import { formatPrice } from "@/utils/formatPrice";
 
 interface IProcessedRequestRowProps {
   requestData: IReturnRequest;

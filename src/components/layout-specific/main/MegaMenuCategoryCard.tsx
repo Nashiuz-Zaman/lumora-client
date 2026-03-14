@@ -1,6 +1,7 @@
 "use client";
 
-import { GridCard, IGridCardImage, LinkBtnTrans } from "@/components/shared";
+import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
+import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
 
 export interface IMegaMenuCategoryCard {
   heading: string;

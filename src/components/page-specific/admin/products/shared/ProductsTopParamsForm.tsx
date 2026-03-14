@@ -1,12 +1,8 @@
 "use client";
 
-import {
-  IParamsFilterFormProps,
-  ParamsFilterForm,
-  TStatusOptions,
-} from "@/components/shared";
+import { IParamsFilterFormProps, ParamsFilterForm, TStatusOptions } from "@/components/shared/ParamsFilterForm";
 import { IProduct } from "@/types";
-import { IProductQueriesParams } from "@/hooks";
+import { IProductQueriesParams } from "@/hooks/useProductsQueries";
 
 const ProductsTopParamsForm = ({
   params,

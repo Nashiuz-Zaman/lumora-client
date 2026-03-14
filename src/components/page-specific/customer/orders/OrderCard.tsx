@@ -1,20 +1,15 @@
 import { IOrder } from "@/types";
-import {
-  formatDateTime,
-  formatPrice,
-  getOrderStatusLabel,
-  getOrderStatusTextColor,
-} from "@/utils";
+import { formatDateTime } from "@/utils/formatDateTime";
+import { formatPrice } from "@/utils/formatPrice";
+import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/statusUtils";
 
-import {
-  ButtonBtn,
-  GoToIcon,
-  LinkBtn,
-  LinkBtnTrans,
-  LocationIcon,
-  WarningIcon,
-} from "@/components/shared";
-import { OrderStatus } from "@/constants";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { GoToIcon } from "@icons/GoToIcon";
+import { LinkBtn } from "@buttons/LinkBtn";
+import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
+import { LocationIcon } from "@icons/LocationIcon";
+import { WarningIcon } from "@icons/WarningIcon";
+import { OrderStatus } from "@/constants/order";
 import { OrderItemCard } from "./OrderItemCard";
 
 interface IOrderCardProps {

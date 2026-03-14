@@ -1,4 +1,4 @@
-import { TUserStatusValue } from "@/constants";
+import { TUserStatusValue } from "@/constants/user";
 import { IRole } from "./role";
 import { IUserBasic } from "./shared";
 

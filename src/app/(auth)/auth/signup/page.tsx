@@ -1,7 +1,5 @@
-//  THIS IS A PAGE
-
-import { SignupPageMain } from "@/components/page-specific";
 import { Metadata } from "next";
+import { SignupPageMain } from "@page-specific/auth-pages/SignupPageMain";
 
 export const metadata: Metadata = {
   title: "Sign Up | Lumora",
@@ -9,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function SignupPage() {
   return (
-    <div className="flex items-center justify-center bg-white p-8">
+    <div className="flex items-center justify-center p-8">
       <SignupPageMain />
     </div>
   );

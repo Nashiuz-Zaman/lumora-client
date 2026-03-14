@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AdminUsersLayoutMain } from "@/components/layout-specific/admin";
+import { AdminUsersLayoutMain } from "@layout-specific/admin/users/AdminUsersLayoutMain";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <AdminUsersLayoutMain>{children}</AdminUsersLayoutMain>

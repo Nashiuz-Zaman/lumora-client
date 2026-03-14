@@ -2,7 +2,8 @@
 
 import { useRef } from "react";
 import gsap from "gsap";
-import { CartIcon, LinkBtn } from "@/components/shared";
+import { CartIcon } from "@icons/CartIcon";
+import { LinkBtn } from "@buttons/LinkBtn";
 import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 

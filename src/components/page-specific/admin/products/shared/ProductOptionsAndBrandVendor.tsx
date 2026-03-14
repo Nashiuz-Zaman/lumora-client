@@ -3,12 +3,10 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { IProduct } from "@/types";
 
-import {
-  FormSectionHeading,
-  InputCheckbox,
-  InputField,
-} from "@/components/shared";
-import { ProductStatus } from "@/constants";
+import { FormSectionHeading } from "@/components/shared/FormSectionHeading";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputField } from "@/components/shared/InputField";
+import { ProductStatus } from "@/constants/product";
 import { ChangeEvent } from "react";
 
 type TProductOptionsAndBrandVendorProps = {

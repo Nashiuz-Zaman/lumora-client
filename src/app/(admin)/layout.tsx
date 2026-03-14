@@ -1,5 +1,5 @@
-import { AdminLayoutMain } from "@/components/layout-specific/admin";
-import { UserRoles } from "@/constants";
+import { AdminLayoutMain } from "@layout-specific/admin/AdminLayoutMain";
+import { UserRoles } from "@/constants/user";
 import { ProtectedRouteProvider } from "@/providers";
 import { Suspense } from "react";
 

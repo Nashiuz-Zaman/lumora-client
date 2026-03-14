@@ -1,43 +1,39 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-  TrashcanIcon,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
 import { CouponTopParamsForm } from "../shared/CouponTopParamsForm";
 import { ExpiredCouponRow } from "./ExpiredCouponRow";
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 
 // Providers
 import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
-import {
-  useModal,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-  useCouponQueries,
-} from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useCouponQueries } from "@/hooks/useCouponQueries";
 import { useRef } from "react";
 
 // Constants
-import { UserRoles, CouponStatus, CouponSortOptions } from "@/constants";
+import { UserRoles } from "@/constants/user";
+import { CouponStatus, CouponSortOptions } from "@/constants/coupon";
 
 // Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { ICoupon } from "@/types";
 
 // Redux / API
-import { useDeleteCouponsMutation } from "@/libs/redux/apiSlices/coupon.api.slice";
+import { useDeleteCouponsMutation } from "@apiSlices/coupon.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

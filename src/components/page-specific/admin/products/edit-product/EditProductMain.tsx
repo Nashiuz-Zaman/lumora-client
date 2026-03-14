@@ -1,11 +1,13 @@
 "use client";
 
-import { InnerContainer, LinkBtn } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
+import { LinkBtn } from "@buttons/LinkBtn";
 import { ProductForm } from "../shared/ProductForm";
 import { IProduct } from "@/types";
 import ColorBadge from "@/components/shared/ColorBadge";
-import { ProductStatus } from "@/constants";
-import { useRefState, useSetElementText } from "@/hooks";
+import { ProductStatus } from "@/constants/product";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
 
 export const EditProductMain = ({ product }: { product: IProduct }) => {
   // Determine badge content and styling

@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product.api.slice";
+import { useGetProductsAdminQuery } from "@apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 import { useState, ChangeEvent } from "react";
 

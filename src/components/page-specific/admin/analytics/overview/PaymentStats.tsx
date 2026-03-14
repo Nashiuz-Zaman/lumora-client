@@ -1,10 +1,10 @@
 "use client";
 
-import { useGetPaymentStatsQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
+import { useGetPaymentStatsQuery } from "@apiSlices/analytics.api.slice";
 import { StatsCard } from "../shared/StatsCard";
 import { formatPrice } from "@/utils/formatPrice";
 import { IAnalyticDateParams } from "@/types";
-import { ErrorMessage } from "@/components/shared";
+import { ErrorMessage } from "@/components/shared/ErrorMessage";
 
 interface IPaymentStatsProps {
   dateParams: IAnalyticDateParams;

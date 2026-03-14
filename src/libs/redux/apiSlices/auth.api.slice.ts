@@ -1,6 +1,6 @@
 import { IApiResponse, IUserPopulated } from "@/types";
 import { baseApiSlice } from "./base.api.slice";
-import { IGoogleUser } from "@/hooks";
+import { IGoogleUser } from "@/hooks/useAuthMethods";
 import { TAppDispatch } from "../store";
 
 // ----------

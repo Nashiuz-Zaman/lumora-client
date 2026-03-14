@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AdminProductsLayoutMain } from "@/components/layout-specific/admin";
+import { AdminProductsLayoutMain } from "@layout-specific/admin/products/AdminProductsLayoutMain";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <AdminProductsLayoutMain>{children}</AdminProductsLayoutMain>

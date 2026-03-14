@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { NoData, CustomSwiper } from "@/components/shared";
-import ViewVideoModal from "@/components/modals/ViewVideoModal";
-import { useModal } from "@/hooks";
-import { extractVideoId } from "@/utils";
+import { NoData } from "@/components/shared/NoData";
+import { CustomSwiper } from "@/components/shared/CustomSwiper";
+import ViewVideoModal from "@modals/ViewVideoModal";
+import { useModal } from "@/hooks/useModal";
+import { extractVideoId } from "@/utils/extractVideoId";
 import { IVideo } from "@/types";
 
 interface IProductVideosProps {

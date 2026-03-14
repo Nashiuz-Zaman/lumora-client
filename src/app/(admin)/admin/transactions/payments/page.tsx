@@ -1,4 +1,4 @@
-import { PaymentsMain } from "@/components/page-specific";
+import { PaymentsMain } from "@page-specific/admin/transactions/payments/PaymentsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,27 +1,22 @@
 "use client";
 
-import {
-  InnerContainer,
-  LoadingSpinner,
-  NoData,
-  Pagination,
-} from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { NoData } from "@/components/shared/NoData";
+import { Pagination } from "@/components/shared/Pagination";
 import { OrderCard } from "./OrderCard";
 import { PageSection } from "./PageSection";
 
-import {
-  IOrderQueriesParams,
-  TStatusValue,
-  useModal,
-  useOrderQueries,
-  useSelectable,
-} from "@/hooks";
+import { IOrderQueriesParams, TStatusValue, useOrderQueries } from "@/hooks/useOrderQueries";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
 import { CustomerDashboardFilterForm } from "../shared/CustomerDashboardFilterForm";
 import { ICancelOrdersCustomerArgs, IOrder, TSortOptions } from "@/types";
-import { OrderStatus } from "@/constants";
-import { ConfirmationModal } from "@/components/modals";
-import { useCancelOrdersCustomerMutation } from "@/libs/redux/apiSlices/order.api.slice";
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { OrderStatus } from "@/constants/order";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
+import { useCancelOrdersCustomerMutation } from "@apiSlices/order.api.slice";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 const STATUSES = [
   { label: "All", value: "all" },

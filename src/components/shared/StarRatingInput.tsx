@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { StarEmptyIcon, StarFullIcon } from "./icons";
+import { StarEmptyIcon } from "./icons/StarEmptyIcon";
+import { StarFullIcon } from "./icons/StarFullIcon";
 
 interface IStarRatingInputProps {
   value: number;

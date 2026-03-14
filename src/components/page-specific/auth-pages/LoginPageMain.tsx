@@ -1,9 +1,9 @@
 "use client";
 
-import { AuthForm, TAuthForm } from "@/components/page-specific";
-import { CompanyLogoBtn } from "@/components/shared";
-import { useAuthMethods } from "@/hooks/useAuthMethods";
 import { UseFormSetError } from "react-hook-form";
+import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
+import { useAuthMethods } from "@/hooks/useAuthMethods";
+import { AuthForm, TAuthForm } from "./AuthForm";
 
 export const LoginPageMain = () => {
   const { localLogin, isLocalLoginLoading, loginWithGoogle } = useAuthMethods();

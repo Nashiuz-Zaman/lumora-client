@@ -1,12 +1,8 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
 import { PaymentsTopParamsForm } from "../shared/PaymentsTopParamsForm";
 import { PaymentRow } from "./PaymentRow";
 
@@ -14,15 +10,14 @@ import { PaymentRow } from "./PaymentRow";
 import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
-import {
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-  usePaymentQueries,
-} from "@/hooks";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { usePaymentQueries } from "@/hooks/usePaymentQueries";
 
 // Constants
-import { UserRoles, PaymentSortOptions, PaymentType } from "@/constants";
+import { UserRoles } from "@/constants/user";
+import { PaymentSortOptions, PaymentType } from "@/constants/payment";
 
 // Types
 import { IPayment } from "@/types";

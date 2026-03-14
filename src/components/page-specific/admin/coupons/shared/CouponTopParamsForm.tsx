@@ -1,7 +1,7 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared";
-import { ICouponQueriesParams } from "@/hooks";
+import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared/ParamsFilterForm";
+import { ICouponQueriesParams } from "@/hooks/useCouponQueries";
 import { ICoupon } from "@/types";
 
 export const CouponTopParamsForm = ({

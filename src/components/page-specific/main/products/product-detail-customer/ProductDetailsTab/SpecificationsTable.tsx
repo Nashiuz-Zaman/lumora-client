@@ -1,6 +1,6 @@
 "use client";
 
-import { NoData } from "@/components/shared";
+import { NoData } from "@/components/shared/NoData";
 
 interface ISpecification {
   key: string;

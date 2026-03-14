@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonBtn } from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 
 export default function GlobalError({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

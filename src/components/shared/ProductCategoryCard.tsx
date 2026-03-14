@@ -1,11 +1,8 @@
 "use client";
 
-import {
-  GridCard,
-  IGridCardImage,
-  LinkBtn,
-  SlideInOutWrapperX,
-} from "@/components/shared";
+import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
+import { LinkBtn } from "@buttons/LinkBtn";
+import { SlideInOutWrapperX } from "@/components/shared/SlideInOutWrapperX";
 import { HTMLAttributes } from "react";
 
 export interface ICategoryCardProps extends HTMLAttributes<HTMLDivElement> {

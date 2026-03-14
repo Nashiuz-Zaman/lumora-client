@@ -1,11 +1,9 @@
-import {
-  ProductCategories,
-  ProductsFromCollection,
-  IntroBanner,
-} from "@/components/page-specific";
-import { ProductCollectionSkeleton } from "@/components/shared/skeletons/ProductCollectionSkeleton";
 import { Metadata } from "next";
 import { Suspense } from "react";
+import { ProductsFromCollection } from "@page-specific/main/home/ProductsFromCollection/ProductsFromCollection";
+import { ProductCategories } from "@page-specific/main/home/ProductCategories";
+import IntroBanner from "@page-specific/main/home/intro-banner/IntroBanner";
+import { ProductCollectionSkeleton } from "@shared/skeletons/ProductCollectionSkeleton";
 
 export const metadata: Metadata = {
   title: "Lumora | Products from top brands all in one place for you",

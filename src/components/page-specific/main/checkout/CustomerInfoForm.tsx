@@ -1,12 +1,10 @@
 "use client";
 
 import { useForm, UseFormSetError } from "react-hook-form";
-import {
-  IcfyIcon,
-  InputField,
-  ButtonBtn,
-  ErrorMessage,
-} from "@/components/shared";
+import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { InputField } from "@/components/shared/InputField";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ErrorMessage } from "@/components/shared/ErrorMessage";
 import { ICustomerInfoFormValues } from "@/types";
 
 export interface ICustomerInfoFormProps {

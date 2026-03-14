@@ -4,7 +4,7 @@ import { useEffect, useState, MouseEvent } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
-import { useClickOutside } from "@/hooks";
+import { useClickOutside } from "@/hooks/useClickOutside";
 import { IUserPopulated } from "@/types";
 
 type TUserMenuWithAvatarProps = {

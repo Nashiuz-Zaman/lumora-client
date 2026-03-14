@@ -1,7 +1,7 @@
 import { Metadata } from "next";
-import { InnerContainer } from "@/components/shared";
-import { OrderTrackingFormAndPanel } from "@/components/page-specific";
 import { Suspense } from "react";
+import { InnerContainer } from "@containers/InnerContainer";
+import { OrderTrackingFormAndPanel } from "@page-specific/main/track-order/OrderTrackingFormAndPanel";
 
 export const metadata: Metadata = {
   title:

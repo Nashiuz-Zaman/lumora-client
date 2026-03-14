@@ -3,7 +3,9 @@
 import { useFormContext } from "react-hook-form";
 
 import { IProduct } from "@/types";
-import { InputField, TextArea, FormSectionHeading } from "@/components/shared";
+import { InputField } from "@/components/shared/InputField";
+import { TextArea } from "@/components/shared/TextArea";
+import { FormSectionHeading } from "@/components/shared/FormSectionHeading";
 
 type TSEOManagerProps = {
   heading?: string;

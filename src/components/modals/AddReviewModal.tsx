@@ -5,22 +5,22 @@ import { createPortal } from "react-dom";
 import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
-import { useModal, useAuthState } from "@/hooks";
-import { usePostReviewMutation } from "@/libs/redux/apiSlices/reviews.api.slice";
+import { useModal } from "@/hooks/useModal";
+import { useAuthState } from "@/hooks/useAuthState";
+import { usePostReviewMutation } from "@apiSlices/reviews.api.slice";
 // utils
-import { showToast, catchAsyncGeneral } from "@/utils";
+import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 
 // shared
-import {
-  StarRatingInput,
-  ButtonBtn,
-  ButtonBtnTrans,
-  TextArea,
-  InputField,
-  ErrorMessage,
-} from "@/components/shared";
+import { StarRatingInput } from "@/components/shared/StarRatingInput";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { TextArea } from "@/components/shared/TextArea";
+import { InputField } from "@/components/shared/InputField";
+import { ErrorMessage } from "@/components/shared/ErrorMessage";
 
-import { ReviewIcon } from "@/components/shared";
+import { ReviewIcon } from "@icons/ReviewIcon";
 import { BaseModal } from "./BaseModal";
 import { IReview } from "@/types/review";
 

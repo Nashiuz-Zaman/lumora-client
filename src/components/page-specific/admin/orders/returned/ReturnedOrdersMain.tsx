@@ -1,31 +1,27 @@
 "use client";
 
-import {
-  Pagination,
-  TabularData,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-  ArchiveIcon,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { ArchiveIcon } from "@icons/ArchiveIcon";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 import { ProtectedRouteProvider } from "@/providers";
 import { ReturnedOrderRow } from "./ReturnedOrderRow";
 
-import {
-  useDynamicHeight,
-  useRefState,
-  useSetElementText,
-  useOrderQueries,
-  useSelectable,
-  useModal,
-} from "@/hooks";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useOrderQueries } from "@/hooks/useOrderQueries";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useModal } from "@/hooks/useModal";
 import { useRef } from "react";
-import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { UserRoles } from "@/constants/user";
+import { OrderSortOptions, OrderStatus } from "@/constants/order";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 import { IOrder } from "@/types";
-import { useArchiveOrdersMutation } from "@/libs/redux/apiSlices/order.api.slice";
+import { useArchiveOrdersMutation } from "@apiSlices/order.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

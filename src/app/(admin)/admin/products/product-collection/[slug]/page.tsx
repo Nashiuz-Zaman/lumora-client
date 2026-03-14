@@ -1,4 +1,4 @@
-import { ProductCollectionMain } from "@/components/page-specific";
+import { ProductCollectionMain } from "@page-specific/admin/products/product-collection/ProductCollectionMain";
 import { Metadata } from "next";
 import startCase from "lodash/startCase";
 

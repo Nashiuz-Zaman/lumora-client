@@ -3,7 +3,8 @@ import {
   IQueryMeta,
   TPopulatedProductInCollectionWithReviewStats,
 } from "@/types";
-import { catchAsyncServer, getBaseApiUrl } from "@/utils";
+import { catchAsyncServer } from "@/utils/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
 
 export const fetchCollectionProducts = catchAsyncServer(
   async (collectionSlug: string) => {

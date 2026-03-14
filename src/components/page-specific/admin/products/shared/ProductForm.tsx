@@ -10,14 +10,15 @@ import SpecsCreator from "./SpecsCreator";
 import SEOManager from "./SEOManager";
 import { ProductStatus } from "@/constants/product";
 import { ProductOptionsAndBrandVendor } from "./ProductOptionsAndBrandVendor";
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
+import { useLazyGetSignedUrlQuery } from "@apiSlices/cloudinary.api.slice";
 import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
 import {
   useCreateProductMutation,
   useUpdateProductMutation,
-} from "@/libs/redux/apiSlices/product.api.slice";
-import { catchAsyncGeneral, showToast } from "@/utils";
-import { ButtonBtn } from "@/components/shared";
+} from "@apiSlices/product.api.slice";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 import cloneDeep from "lodash/cloneDeep";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

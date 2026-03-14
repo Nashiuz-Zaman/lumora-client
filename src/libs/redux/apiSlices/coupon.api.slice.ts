@@ -1,4 +1,4 @@
-import { IUseCouponQueriesArgs } from "@/hooks";
+import { IUseCouponQueriesArgs } from "@/hooks/useCouponQueries";
 import { baseApiSlice } from "./base.api.slice";
 import { IApiResponse, ICoupon, TQueryDataWithQueryMeta } from "@/types";
 

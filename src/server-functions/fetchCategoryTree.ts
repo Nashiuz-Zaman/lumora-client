@@ -1,5 +1,6 @@
 import { IApiResponse, ICategoryTreeItem } from "@/types";
-import { catchAsyncServer, getBaseApiUrl } from "@/utils";
+import { catchAsyncServer } from "@/utils/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
 
 export const fetchCategoryTree = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();

@@ -4,17 +4,14 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { ProductSortOptions } from "@/constants/product";
 
-import {
-  buildUrlWithParams,
-  csvToBooleanRecord,
-  getQueryParamsFromSearchParams,
-  decompressBase64UrlToObject,
-  booleanRecordToCsv,
-  cleanObject,
-} from "@/utils";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
+import { csvToBooleanRecord, booleanRecordToCsv } from "@/utils/csvUtils";
+import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { decompressBase64UrlToObject } from "@/utils/compression";
+import { cleanObject } from "@/utils/cleanObject";
 import { useEffect, useMemo, useState } from "react";
 import { useProductSearchParamsManagement } from "./useProductSearchParamsManagement";
-import { useSearchProductsQuery } from "@/libs/redux/apiSlices/product.api.slice";
+import { useSearchProductsQuery } from "@apiSlices/product.api.slice";
 
 export interface ISearchPageForm {
   subCategory: Record<string, boolean>;

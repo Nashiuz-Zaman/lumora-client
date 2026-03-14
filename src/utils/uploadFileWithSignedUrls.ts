@@ -1,4 +1,4 @@
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
+import { useLazyGetSignedUrlQuery } from "@apiSlices/cloudinary.api.slice";
 import axios from "axios";
 
 type TGetSignedUrlFn = ReturnType<typeof useLazyGetSignedUrlQuery>[0];

@@ -1,12 +1,11 @@
 "use client";
 
 // Components
-import {
-  CompanyLogoBtn,
-  InnerContainer,
-  UserMenuWithoutAvatar,
-} from "@/components/shared";
-import { useAuthMethods, useRefState } from "@/hooks";
+import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
+import { InnerContainer } from "@containers/InnerContainer";
+import { UserMenuWithoutAvatar } from "@/components/shared/UserMenuWithoutAvatar";
+import { useAuthMethods } from "@/hooks/useAuthMethods";
+import { useRefState } from "@/hooks/useRefState";
 import { useEffect, useRef } from "react";
 
 export const AdminHeader = () => {

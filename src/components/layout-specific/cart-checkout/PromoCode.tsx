@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { ButtonBtn, ErrorMessage, InputField } from "@/components/shared";
-import { catchAsyncGeneral } from "@/utils";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { InputField } from "@/components/shared/InputField";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { useCartState } from "@/hooks/useCartState";
 
 interface IPromoCodeProps {

@@ -1,4 +1,4 @@
-import { DeliveredOrdersMain } from "@/components/page-specific";
+import { DeliveredOrdersMain } from "@page-specific/admin/orders/delivered/DeliveredOrdersMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

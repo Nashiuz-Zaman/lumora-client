@@ -1,6 +1,6 @@
 "use client";
 
-import { CustomMarquee } from "@/components/shared";
+import { CustomMarquee } from "@/components/shared/CustomMarquee";
 import Image from "next/image";
 
 const renderFunc = ({ data, index }: { data: string; index: number }) => {

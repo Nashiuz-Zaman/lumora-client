@@ -1,7 +1,7 @@
 "use client";
 
-import { LineChart } from "@/components/shared";
-import { useGetCustomerGrowthQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
+import { LineChart } from "@/components/shared/LineChart";
+import { useGetCustomerGrowthQuery } from "@apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 
 interface ICustomerTrendsChartProps {

@@ -1,8 +1,8 @@
 "use client";
 
 import { createContext, ReactNode } from "react";
-import { UserRoles } from "@/constants";
-import { useGetCurrentUserQuery } from "@/libs/redux/apiSlices/auth.api.slice";
+import { UserRoles } from "@/constants/user";
+import { useGetCurrentUserQuery } from "@apiSlices/auth.api.slice";
 import { IUserPopulated } from "@/types";
 
 export interface IAuthStateContext {

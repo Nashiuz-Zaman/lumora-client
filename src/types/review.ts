@@ -1,4 +1,4 @@
-import { TReviewStatus } from "@/constants";
+import { TReviewStatus } from "@/constants/review";
 import { IUser } from "./user";
 import { IProduct } from "./product";
 import { IQueryMeta } from "./generic";

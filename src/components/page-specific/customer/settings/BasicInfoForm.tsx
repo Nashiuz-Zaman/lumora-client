@@ -1,16 +1,16 @@
 "use client";
 
 import { useForm } from "react-hook-form";
-import {
-  ButtonBtn,
-  InputField,
-  ProfilePhotoChanger,
-} from "@/components/shared";
-import { catchAsyncGeneral, showToast, uploadFileWithSignedUrl } from "@/utils";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { InputField } from "@/components/shared/InputField";
+import { ProfilePhotoChanger } from "@/components/shared/ProfilePhotoChanger";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
+import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
 import { Heading } from "./Heading";
 import { ICustomerProfile, TImage } from "@/types";
-import { useUpdateCustomerBasicInfoMutation } from "@/libs/redux/apiSlices/customer.api.slice";
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
+import { useUpdateCustomerBasicInfoMutation } from "@apiSlices/customer.api.slice";
+import { useLazyGetSignedUrlQuery } from "@apiSlices/cloudinary.api.slice";
 import { useState } from "react";
 
 interface IBasicInfoFormProps {

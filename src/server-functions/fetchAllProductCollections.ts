@@ -1,5 +1,6 @@
 import { IApiResponse, IProductCollectionsByPage } from "@/types";
-import { catchAsyncServer, getBaseApiUrl } from "@/utils";
+import { catchAsyncServer } from "@/utils/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
 
 export const fetchAllProductCollections = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();

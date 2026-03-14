@@ -4,18 +4,16 @@
 import { ICategoryTreeItem, TProductWithMinimalReviewStats } from "@/types";
 
 // Components - Shared
-import {
-  ButtonBtn,
-  ButtonBtnTrans,
-  InnerContainer,
-  GridCard,
-} from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { InnerContainer } from "@containers/InnerContainer";
+import { GridCard } from "@/components/shared/GridCard";
 
 // Components - Local
 import { FeaturedProductCard } from "./FeaturedProductCard";
 
 // Hooks
-import { useProductSearchParamsManagement } from "@/hooks";
+import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts?: TProductWithMinimalReviewStats[];

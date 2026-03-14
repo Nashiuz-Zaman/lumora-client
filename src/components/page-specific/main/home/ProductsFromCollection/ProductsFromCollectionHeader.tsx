@@ -1,14 +1,12 @@
 "use client";
 
-import {
-  ButtonBtnTrans,
-  CaretLeftIcon,
-  CaretRightIcon,
-  SectionHeading,
-  SectionTagline,
-} from "@/components/shared";
-import { TCustomSwiperProps } from "@/components/shared";
-import { useProductSearchParamsManagement } from "@/hooks";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { CaretLeftIcon } from "@icons/CaretLeftIcon";
+import { CaretRightIcon } from "@icons/CaretRightIcon";
+import { SectionHeading } from "@/components/shared/SectionHeading";
+import { SectionTagline } from "@/components/shared/SectionTagline";
+import { TCustomSwiperProps } from "@/components/shared/CustomSwiper";
+import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import { ICategoryTreeItem } from "@/types";
 
 export interface IProductsFromCollectionHeaderProps {

@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Drawer from "@/components/shared/Drawer";
 import { AdminSideNavbar } from "./AdminSideNavbar";
-import { MobileMenuBtn } from "@/components/shared";
-import { useClickOutside, useDrawer, useRefState } from "@/hooks";
+import { MobileMenuBtn } from "@buttons/MobileMenuBtn";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { useDrawer } from "@/hooks/useDrawer";
+import { useRefState } from "@/hooks/useRefState";
 
 export const MobileAdminSideNavbar = () => {
   const { openDrawer, closeDrawer, showDrawer } = useDrawer();

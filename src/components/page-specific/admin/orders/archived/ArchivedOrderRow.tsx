@@ -1,12 +1,9 @@
 "use client";
 
 import { IOrder } from "@/types";
-import {
-  getOrderStatusLabel,
-  getOrderStatusTextColor,
-  formatPrice,
-  formatDateTime,
-} from "@/utils";
+import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/statusUtils";
+import { formatPrice } from "@/utils/formatPrice";
+import { formatDateTime } from "@/utils/formatDateTime";
 
 interface IDeliveredOrderRowProps {
   orderData: IOrder;

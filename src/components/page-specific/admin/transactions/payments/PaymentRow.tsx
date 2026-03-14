@@ -4,7 +4,8 @@
 import { IPayment } from "@/types";
 
 // utils
-import { formatDateTime, formatPrice } from "@/utils";
+import { formatDateTime } from "@/utils/formatDateTime";
+import { formatPrice } from "@/utils/formatPrice";
 
 interface IPaymentRowProps {
   paymentData: IPayment;

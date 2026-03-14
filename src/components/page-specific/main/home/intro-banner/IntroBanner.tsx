@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Slider } from "@/components/shared";
+import { Slider } from "@/components/shared/Slider";
 import { TopBannerIntro } from "../TopBannerIntro";
 import { Suspense } from "react";
 

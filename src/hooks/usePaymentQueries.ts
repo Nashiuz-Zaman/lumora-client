@@ -5,23 +5,21 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // Utils
-import {
-  getQueryParamsFromSearchParams,
-  cleanObject,
-  buildUrlWithParams,
-} from "@/utils";
+import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { cleanObject } from "@/utils/cleanObject";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
 import isEqual from "lodash/isEqual";
 
 // Constants
 import { OrderSortOptions } from "@/constants/order";
 
 // API Hooks
-import { useGetPaymentsQuery } from "@/libs/redux/apiSlices/payment.api.slice";
+import { useGetPaymentsQuery } from "@apiSlices/payment.api.slice";
 
 // Types
 import { IQueryMeta } from "@/types";
 import { IPayment } from "@/types/payment";
-import { TPaymentType } from "@/constants";
+import { TPaymentType } from "@/constants/payment";
 
 export interface IPaymentQueriesParams {
   page: number;

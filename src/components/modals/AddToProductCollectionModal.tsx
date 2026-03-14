@@ -1,24 +1,21 @@
 "use client";
 
 import { createPortal } from "react-dom";
-import {
-  useModal,
-  useProductCollectionModalQueries,
-  useSelectable,
-} from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useProductCollectionModalQueries } from "@/hooks/useProductCollectionModalQueries";
+import { useSelectable } from "@/hooks/useSelectable";
 import { BaseModal } from "./BaseModal";
-import {
-  ButtonBtn,
-  ButtonBtnTrans,
-  LoadingSpinner,
-  InputField,
-  NoData,
-  Pagination,
-} from "../shared";
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { ButtonBtn } from "../shared/buttons/ButtonBtn";
+import { ButtonBtnTrans } from "../shared/buttons/ButtonBtnTrans";
+import { LoadingSpinner } from "../shared/LoadingSpinner";
+import { InputField } from "../shared/InputField";
+import { NoData } from "../shared/NoData";
+import { Pagination } from "../shared/Pagination";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 import { IProduct } from "@/types";
 import AdminProductCard from "../page-specific/admin/products/shared/AdminProductCard";
-import { useAddProductsToProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection.api.slice";
+import { useAddProductsToProductCollectionMutation } from "@apiSlices/productCollection.api.slice";
 
 interface IAddToProductCollectionModalProps {
   slug: string;

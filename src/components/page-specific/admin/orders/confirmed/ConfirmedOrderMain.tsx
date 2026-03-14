@@ -1,41 +1,34 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  WarningIcon,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { WarningIcon } from "@icons/WarningIcon";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import { ConfirmedOrderRow } from "./ConfirmedOrderRow";
-import {
-  CancelOrderModalAdmin,
-  IShippingFormValues,
-  ShippingModal,
-} from "@/components/modals";
+import { CancelOrderModalAdmin } from "@modals/CancelOrderModalAdmin";
+import { IShippingFormValues, ShippingModal } from "@modals/ShippingModal";
 
 // Providers
 import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
-import {
-  useOrderQueries,
-  useModal,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-} from "@/hooks";
+import { useOrderQueries } from "@/hooks/useOrderQueries";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
 import { useRef } from "react";
 
 // Constants
-import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
+import { UserRoles } from "@/constants/user";
+import { OrderSortOptions, OrderStatus } from "@/constants/order";
 
 // Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { ICancelOrdersAdminArgs, IMarkOrderShippedArgs, IOrder } from "@/types";
@@ -44,7 +37,7 @@ import { ICancelOrdersAdminArgs, IMarkOrderShippedArgs, IOrder } from "@/types";
 import {
   useCancelOrdersAdminMutation,
   useMarkOrderShippedMutation,
-} from "@/libs/redux/apiSlices/order.api.slice";
+} from "@apiSlices/order.api.slice";
 
 // React Hook Form
 import { UseFormReset } from "react-hook-form";

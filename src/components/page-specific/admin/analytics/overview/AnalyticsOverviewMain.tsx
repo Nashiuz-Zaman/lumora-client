@@ -10,9 +10,10 @@ import { useSelector } from "react-redux";
 import { TRootState } from "@/libs/redux/store";
 import { useMemo } from "react";
 import { IAnalyticDateParams } from "@/types";
-import { useRefState, useSetElementText } from "@/hooks";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
 import { TopCategorySalesPercentageChart } from "./TopCategorySalesPercentageChart";
-import { generateChartTitle } from "@/utils";
+import { generateChartTitle } from "@/utils/generateChartTitle";
 
 export const AnalyticsOverviewMain = () => {
   const { refs } = useRefState();

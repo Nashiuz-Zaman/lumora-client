@@ -4,14 +4,16 @@ import { useForm } from "react-hook-form";
 import { Icon } from "@iconify/react";
 
 // Components
-import { InputField, ButtonBtn } from "@/components/shared";
+import { InputField } from "@/components/shared/InputField";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 import { Heading } from "./Heading";
 
 // Utils
-import { showToast, catchAsyncGeneral } from "@/utils";
+import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 
 // Redux
-import { useUpdateCustomerPasswordFromSettingsMutation } from "@/libs/redux/apiSlices/customer.api.slice";
+import { useUpdateCustomerPasswordFromSettingsMutation } from "@apiSlices/customer.api.slice";
 
 interface IPasswordFormData {
   currentPassword: string;

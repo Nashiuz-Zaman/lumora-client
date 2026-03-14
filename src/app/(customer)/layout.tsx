@@ -1,5 +1,5 @@
-import { CustomerLayoutMain } from "@/components/layout-specific/customer/CustomerLayoutMain";
-import { UserRoles } from "@/constants";
+import { CustomerLayoutMain } from "@layout-specific/customer/CustomerLayoutMain";
+import { UserRoles } from "@/constants/user";
 import {ProtectedRouteProvider} from "@/providers";
 import { Suspense } from "react";
 

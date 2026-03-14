@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { BaseModal } from "./BaseModal";
-import { ButtonBtn } from "../shared";
-import { useModal } from "@/hooks";
+import { ButtonBtn } from "../shared/buttons/ButtonBtn";
+import { useModal } from "@/hooks/useModal";
 
 export const DemoNoticeModal = () => {
   const { isModalOpen, openModal, closeModal } = useModal();

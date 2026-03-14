@@ -1,7 +1,9 @@
 "use client";
 
 import { BaseModal } from "./BaseModal";
-import { ButtonBtn, ButtonBtnTrans, TextArea } from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { TextArea } from "@/components/shared/TextArea";
 
 interface ICancelOrderModalAdminProps {
   isOpen: boolean;

@@ -14,10 +14,11 @@ import {
   useRemoveCouponFromCartMutation,
   useRemoveItemFromCartMutation,
   useUpdateCartItemQtyMutation,
-} from "@/libs/redux/apiSlices/cart.api.slice";
-import { emptyCart } from "@/constants";
+} from "@apiSlices/cart.api.slice";
+import { emptyCart } from "@/constants/cart";
 import { TPopulatedCart } from "@/types/cart";
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 export interface ICartStateContext {
   cart: TPopulatedCart;

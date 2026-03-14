@@ -1,16 +1,17 @@
 "use client";
-import { UserRoles } from "@/constants";
-import { showToast, catchAsyncGeneral } from "@/utils";
+import { UserRoles } from "@/constants/user";
+import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { useRouter } from "next/navigation";
 import {
   ILocalLoginRequest,
   useLocalLoginMutation,
   useSocialLoginMutation,
   useLogoutMutation,
-} from "@/libs/redux/apiSlices/auth.api.slice";
+} from "@apiSlices/auth.api.slice";
 import useFirebaseMethods from "./useFirebaseMethods";
-import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer.api.slice";
-import { TAuthForm } from "@/components/page-specific";
+import { useSignupCustomerMutation } from "@apiSlices/customer.api.slice";
+import { TAuthForm } from "@page-specific/auth-pages/AuthForm";
 import { UseFormSetError } from "react-hook-form";
 import { IUser } from "@/types";
 

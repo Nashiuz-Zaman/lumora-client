@@ -2,21 +2,17 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {
-  ButtonBtn,
-  RatingStars,
-  ThumbIconFilledIcon,
-} from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { RatingStars } from "@/components/shared/RatingStars";
+import { ThumbIconFilledIcon } from "@icons/ThumbIconFilledIcon";
 
-import { useAuthState } from "@/hooks";
-import { useMarkReviewHelpfulMutation } from "@/libs/redux/apiSlices/reviews.api.slice";
+import { useAuthState } from "@/hooks/useAuthState";
+import { useMarkReviewHelpfulMutation } from "@apiSlices/reviews.api.slice";
 
-import {
-  showToast,
-  catchAsyncGeneral,
-  generateAvatar,
-  formatDateTime,
-} from "@/utils";
+import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { generateAvatar } from "@/utils/generateAvatar";
+import { formatDateTime } from "@/utils/formatDateTime";
 import { useRouter } from "next/navigation";
 import { IReview } from "@/types/review";
 import { IUser } from "@/types";

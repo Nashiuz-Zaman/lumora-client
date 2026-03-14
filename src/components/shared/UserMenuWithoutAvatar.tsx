@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-import { useClickOutside } from "@/hooks";
-import { ThreeDotIcon } from "./icons";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { ThreeDotIcon } from "./icons/ThreeDotIcon";
 
 type TUserMenuWithoutAvatarProps = {
   logoutFunction?: () => void;

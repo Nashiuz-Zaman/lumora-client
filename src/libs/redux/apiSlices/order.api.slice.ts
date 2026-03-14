@@ -7,7 +7,7 @@ import {
   TQueryDataWithQueryMeta,
 } from "@/types";
 import { baseApiSlice } from "./base.api.slice";
-import { IOrderQueriesParams } from "@/hooks";
+import { IOrderQueriesParams } from "@/hooks/useOrderQueries";
 
 export const orderApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({

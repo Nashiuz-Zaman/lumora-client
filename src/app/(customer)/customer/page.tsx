@@ -1,4 +1,4 @@
-import { CustomerWelcomePageMain } from "@/components/page-specific";
+import { CustomerWelcomePageMain } from "@page-specific/customer/welcome-page/CustomerWelcomePageMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

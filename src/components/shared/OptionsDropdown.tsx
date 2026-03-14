@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
-import { useClickOutside } from "@/hooks";
+import { useClickOutside } from "@/hooks/useClickOutside";
 
 interface IOptionsDropdownProps {
   children: ReactNode;

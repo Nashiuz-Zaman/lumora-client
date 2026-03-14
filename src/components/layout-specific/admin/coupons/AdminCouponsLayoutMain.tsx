@@ -2,11 +2,11 @@
 
 import { ReactNode } from "react";
 import { usePathname } from "next/navigation";
-import { usePortalTarget } from "@/hooks";
+import { usePortalTarget } from "@/hooks/usePortalTarget";
 
 // Shared components
-import { TopPanel } from "@/components/page-specific";
-import { CreateCouponModal } from "@/components/modals";
+import { TopPanel } from "@page-specific/admin/shared/TopPanel";
+import { CreateCouponModal } from "@modals/CreateCouponModal";
 
 export const AdminCouponsLayoutMain = ({
   children,

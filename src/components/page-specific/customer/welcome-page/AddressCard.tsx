@@ -1,4 +1,4 @@
-import { LinkBtn } from "@/components/shared";
+import { LinkBtn } from "@buttons/LinkBtn";
 import { ICustomerAddress } from "@/types";
 import { isEmpty } from "lodash";
 

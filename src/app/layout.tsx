@@ -27,8 +27,9 @@ import {
 // ---------------------------------------------------------
 // COMPONENTS
 // ---------------------------------------------------------
-import { Backdrop } from "@/components/shared";
-import { DemoNoticeModal, ProductQuickViewModal } from "@/components/modals";
+import { Backdrop } from "@/components/shared/Backdrop";
+import { DemoNoticeModal } from "@modals/DemoNoticeModal";
+import { ProductQuickViewModal } from "@modals/ProductQuickViewModal";
 
 // ---------------------------------------------------------
 // SERVER / DATABASE

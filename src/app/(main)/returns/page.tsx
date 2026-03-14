@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { Metadata } from "next";
-import { InnerContainer } from "@/components/shared";
-import {
-  ReturnProcessSteps,
-  ReturnRequestForm,
-} from "@/components/page-specific";
+import { InnerContainer } from "@containers/InnerContainer";
+import { ReturnProcessSteps } from "@page-specific/main/returns/ReturnProcessSteps";
+import { ReturnRequestForm } from "@page-specific/main/returns/ReturnRequestForm";
 
 export const metadata: Metadata = {
   title: "Order Returns - Lumora",

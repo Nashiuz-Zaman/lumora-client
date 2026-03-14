@@ -1,4 +1,4 @@
-import { TOrderStatusValue } from "@/constants";
+import { TOrderStatusValue } from "@/constants/order";
 import { ICart, TPopulatedCartItem } from "./cart";
 import { ICustomer } from "./customer";
 import { IUserBasic } from "./shared";

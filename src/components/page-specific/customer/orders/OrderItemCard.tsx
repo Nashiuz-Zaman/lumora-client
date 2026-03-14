@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { formatPrice } from "@/utils";
+import { formatPrice } from "@/utils/formatPrice";
 import { TPopulatedCartItem } from "@/types";
 
 interface IOrderItemCardProps {

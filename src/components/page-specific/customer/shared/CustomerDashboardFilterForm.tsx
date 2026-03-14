@@ -7,16 +7,16 @@ import {
   SetStateAction,
   useCallback,
 } from "react";
-import { InputField } from "@/components/shared";
-import { ButtonBtn } from "@/components/shared/buttons";
+import { InputField } from "@/components/shared/InputField";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 import { SortDropdown } from "@/components/shared/SortDropdown";
-import { SearchIcon } from "@/components/shared/icons";
+import { SearchIcon } from "@icons/SearchIcon";
 import { StatusTabs, TStatusOptions } from "../orders/StatusTabs";
 import { TSortOptions } from "@/types/generic";
 
 export interface ICustomerDashboardFilterFormProps<
   Params extends Record<string, any>,
-  Resource extends Record<string, any>
+  Resource extends Record<string, any>,
 > {
   formParams: Params;
   setFormParams: Dispatch<SetStateAction<Params>>;
@@ -32,7 +32,7 @@ export interface ICustomerDashboardFilterFormProps<
 
 export const CustomerDashboardFilterForm = <
   Params extends Record<string, any>,
-  StatusResource extends Record<string, any>
+  StatusResource extends Record<string, any>,
 >({
   formParams,
   setFormParams,
@@ -55,7 +55,7 @@ export const CustomerDashboardFilterForm = <
     (value: string | number) => {
       setFormParams((prev) => ({ ...prev, sort: value }));
     },
-    [setFormParams]
+    [setFormParams],
   );
 
   // Status change

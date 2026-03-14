@@ -1,4 +1,4 @@
-import { RejectedRequestsMain } from "@/components/page-specific";
+import { RejectedRequestsMain } from "@page-specific/admin/returns/rejected/RejectedRequestsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

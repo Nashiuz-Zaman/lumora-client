@@ -1,4 +1,4 @@
-import { AnalyticsOverviewMain } from "@/components/page-specific";
+import { AnalyticsOverviewMain } from "@page-specific/admin/analytics/overview/AnalyticsOverviewMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

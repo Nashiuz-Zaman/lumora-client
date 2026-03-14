@@ -3,8 +3,8 @@
 import { ReactNode } from "react";
 
 // Shared components
-import { TopPanel } from "@/components/page-specific";
-import { ReturnRequestModal } from "@/components/modals";
+import { TopPanel } from "@page-specific/admin/shared/TopPanel";
+import { ReturnRequestModal } from "@modals/ReturnRequestModal";
 
 export const ReturnsLayoutMain = ({ children }: { children: ReactNode }) => {
   return (

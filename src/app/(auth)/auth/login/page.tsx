@@ -1,7 +1,5 @@
-//  THIS IS A PAGE
-
-import { LoginPageMain } from "@/components/page-specific/auth-pages/LoginPageMain";
 import { Metadata } from "next";
+import { LoginPageMain } from "@page-specific/auth-pages/LoginPageMain";
 
 export const metadata: Metadata = {
   title: "Login | Lumora",
@@ -9,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
   return (
-    <div className="flex items-center justify-center bg-white p-8">
+    <div className="flex items-center justify-center p-8">
       <LoginPageMain />
     </div>
   );

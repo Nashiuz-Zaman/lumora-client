@@ -1,4 +1,4 @@
-import { CancelledOrdersMain } from "@/components/page-specific";
+import { CancelledOrdersMain } from "@page-specific/admin/orders/cancelled/CancelledOrderMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

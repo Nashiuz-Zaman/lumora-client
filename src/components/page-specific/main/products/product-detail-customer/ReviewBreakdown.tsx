@@ -1,6 +1,8 @@
 "use client";
 
-import { NoData, RatingStars, StarFullIcon } from "@/components/shared";
+import { NoData } from "@/components/shared/NoData";
+import { RatingStars } from "@/components/shared/RatingStars";
+import { StarFullIcon } from "@icons/StarFullIcon";
 
 interface IReviewStats {
   averageRating: number;

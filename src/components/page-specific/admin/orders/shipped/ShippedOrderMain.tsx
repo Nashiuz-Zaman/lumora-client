@@ -1,34 +1,30 @@
 "use client";
 
-import {
-  Pagination,
-  TabularData,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-  DeliverIcon,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { DeliverIcon } from "@icons/DeliverIcon";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import { ProtectedRouteProvider } from "@/providers";
 import { ShippedOrderRow } from "./ShippedOrderRow";
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 
-import {
-  useOrderQueries,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useModal,
-} from "@/hooks";
-import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
+import { useOrderQueries } from "@/hooks/useOrderQueries";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useModal } from "@/hooks/useModal";
+import { UserRoles } from "@/constants/user";
+import { OrderSortOptions, OrderStatus } from "@/constants/order";
 
 // Types
 import { IOrder } from "@/types";
 
 import { useRef } from "react";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
-import { catchAsyncGeneral, showToast } from "@/utils";
-import { useMarkOrdersDeliveredMutation } from "@/libs/redux/apiSlices/order.api.slice";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
+import { useMarkOrdersDeliveredMutation } from "@apiSlices/order.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

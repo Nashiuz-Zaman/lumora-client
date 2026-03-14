@@ -5,19 +5,17 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // Utils
-import {
-  getQueryParamsFromSearchParams,
-  cleanObject,
-  buildUrlWithParams,
-  cleanStatusParam,
-} from "@/utils";
+import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { cleanObject } from "@/utils/cleanObject";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
+import { cleanStatusParam } from "@/utils/statusUtils";
 import isEqual from "lodash/isEqual";
 
 // Constants
 import { ProductSortOptions } from "@/constants/product";
 
 // API Hooks
-import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product.api.slice";
+import { useGetProductsAdminQuery } from "@apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 
 // Types

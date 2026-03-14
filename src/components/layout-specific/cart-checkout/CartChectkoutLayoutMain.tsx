@@ -1,8 +1,9 @@
 "use client";
 
-import StepIndicator from "@/components/layout-specific/cart-checkout/StepIndicator";
-import { InnerContainer, LoadingSpinner } from "@/components/shared";
-import { OrderSummary } from "@/components/layout-specific/cart-checkout/OrderSummary";
+import StepIndicator from "@layout-specific/cart-checkout/StepIndicator";
+import { InnerContainer } from "@containers/InnerContainer";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { OrderSummary } from "@layout-specific/cart-checkout/OrderSummary";
 import { usePathname } from "next/navigation";
 import { useCartState } from "@/hooks/useCartState";
 

@@ -1,7 +1,8 @@
 "use client";
 
 import { IOrder } from "@/types";
-import { formatPrice, formatDateTime } from "@/utils";
+import { formatPrice } from "@/utils/formatPrice";
+import { formatDateTime } from "@/utils/formatDateTime";
 
 export const OrderTrackingHeader = ({ order }: { order?: IOrder }) => {
   return (

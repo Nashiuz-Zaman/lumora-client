@@ -1,7 +1,8 @@
 "use client";
 
-import { CaretLeftIcon, CaretRightIcon } from "@/components/shared";
-import { TCustomSwiperProps } from "@/components/shared";
+import { CaretLeftIcon } from "@icons/CaretLeftIcon";
+import { CaretRightIcon } from "@icons/CaretRightIcon";
+import { TCustomSwiperProps } from "@/components/shared/CustomSwiper";
 
 interface IRelatedProductsHeaderProps {
   navigation: TCustomSwiperProps<any>["navigation"];

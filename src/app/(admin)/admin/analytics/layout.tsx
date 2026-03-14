@@ -1,4 +1,4 @@
-import { AdminAnalyticsLayoutMain } from "@/components/layout-specific/admin";
+import { AdminAnalyticsLayoutMain } from "@layout-specific/admin/analytics/AdminAnalyticsLayoutMain";
 import { ReactNode } from "react";
 
 const Layout = ({ children }: { children: ReactNode }) => (

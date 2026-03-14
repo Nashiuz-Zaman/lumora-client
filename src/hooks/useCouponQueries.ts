@@ -5,19 +5,17 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // Utils
-import {
-  getQueryParamsFromSearchParams,
-  cleanObject,
-  buildUrlWithParams,
-} from "@/utils";
+import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { cleanObject } from "@/utils/cleanObject";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
 import isEqual from "lodash/isEqual";
 
 // API Hooks
-import { useGetCouponsQuery } from "@/libs/redux/apiSlices/coupon.api.slice";
+import { useGetCouponsQuery } from "@apiSlices/coupon.api.slice";
 
 // Types
 import { ICoupon, IQueryMeta } from "@/types";
-import { CouponSortOptions, TCouponStatus } from "@/constants";
+import { CouponSortOptions, TCouponStatus } from "@/constants/coupon";
 
 export interface ICouponQueriesParams {
   page: number;

@@ -2,22 +2,17 @@
 
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import {
-  HeaderProductsSearchbar,
-  ExpandableSearchPortal,
-  CartBtn,
-  UserMenuWithoutAvatar,
-  UserMenuWithAvatar,
-  SearchbarProductCard,
-} from "../../shared";
-import {
-  BREAKPOINTS,
-  useAuthMethods,
-  useAuthState,
-  useMediaQuery,
-} from "@/hooks";
+import { HeaderProductsSearchbar } from "../../shared/HeaderProductsSearchbar";
+import { ExpandableSearchPortal } from "../../shared/ExpandableSearchPortal";
+import { CartBtn } from "../../shared/buttons/CartBtn";
+import { UserMenuWithoutAvatar } from "../../shared/UserMenuWithoutAvatar";
+import { UserMenuWithAvatar } from "../../shared/UserMenuWithAvatar";
+import { SearchbarProductCard } from "../../shared/SearchbarProductCard";
+import { BREAKPOINTS, useMediaQuery } from "@/hooks/useMediaQuery";
+import { useAuthMethods } from "@/hooks/useAuthMethods";
+import { useAuthState } from "@/hooks/useAuthState";
 import { ISearchbarResultProduct } from "@/types";
-import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product.api.slice";
+import { useLazySearchInSearchbarQuery } from "@apiSlices/product.api.slice";
 import { UserRoles } from "@/constants/user";
 import { useCartState } from "@/hooks/useCartState";
 

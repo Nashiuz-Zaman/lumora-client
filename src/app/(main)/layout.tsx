@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
-import Footer from "@/components/layout-specific/main/Footer/Footer";
-import HeaderClientWrapper from "@/components/layout-specific/main/HeaderClientWrapper";
-import Header from "@/components/layout-specific/main/Header";
+import Footer from "@layout-specific/main/Footer/Footer";
+import HeaderClientWrapper from "@layout-specific/main/HeaderClientWrapper";
+import Header from "@layout-specific/main/Header";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   return (

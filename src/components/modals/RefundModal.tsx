@@ -1,7 +1,9 @@
 "use client";
 
 import { BaseModal } from "./BaseModal";
-import { InputField, ButtonBtn, ButtonBtnTrans } from "../shared";
+import { InputField } from "../shared/InputField";
+import { ButtonBtn } from "../shared/buttons/ButtonBtn";
+import { ButtonBtnTrans } from "../shared/buttons/ButtonBtnTrans";
 import { useForm, SubmitHandler, UseFormReset } from "react-hook-form";
 
 export interface IRefundFormValues {

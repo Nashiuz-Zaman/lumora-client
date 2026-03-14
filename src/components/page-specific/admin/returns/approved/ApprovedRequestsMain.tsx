@@ -1,54 +1,46 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-  TrashcanIcon,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
 
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 import { ReturnsTopParamsForm } from "../shared/ReturnsTopParamsForm";
 
 // Providers
 import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
-import {
-  useModal,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-  useReturnRequestQueries,
-} from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useReturnRequestQueries } from "@/hooks/useReturnRequestQueries";
 import { MouseEvent, useRef } from "react";
 
 // Constants
-import {
-  UserRoles,
-  ReturnRequestSortOptions,
-  ReturnRequestStatus,
-} from "@/constants";
+import { UserRoles } from "@/constants/user";
+import { ReturnRequestSortOptions, ReturnRequestStatus } from "@/constants/returnRequest";
 
 // Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { IReturnRequest } from "@/types";
 
 // Redux / API
-import { useDeleteReturnRequestsMutation } from "@/libs/redux/apiSlices/returnRequest.api.slice";
+import { useDeleteReturnRequestsMutation } from "@apiSlices/returnRequest.api.slice";
 import { ProcessedRequestRow } from "../shared/ProcessedRequestRow";
 import { useDispatch } from "react-redux";
 import {
   setIsRequestModalOpen,
   setRequestId,
-} from "@/libs/redux/features/returnRequest/returnRequest";
-import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
+} from "@features/returnRequest/returnRequest";
+import { setBackdropOpen } from "@features/backdrop/backdropSlice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

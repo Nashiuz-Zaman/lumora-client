@@ -1,43 +1,39 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  WarningIcon,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { WarningIcon } from "@icons/WarningIcon";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { CouponTopParamsForm } from "../shared/CouponTopParamsForm";
 import { ActiveCouponRow } from "./ActiveCouponRow";
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 
 // Providers
 import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
-import {
-  useModal,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-  useCouponQueries,
-} from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useCouponQueries } from "@/hooks/useCouponQueries";
 import { useRef } from "react";
 
 // Constants
-import { UserRoles, CouponStatus, CouponSortOptions } from "@/constants";
+import { UserRoles } from "@/constants/user";
+import { CouponStatus, CouponSortOptions } from "@/constants/coupon";
 
 // Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { ICoupon } from "@/types";
 
 // Redux / API
-import { useExpireCouponMutation } from "@/libs/redux/apiSlices/coupon.api.slice";
+import { useExpireCouponMutation } from "@apiSlices/coupon.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { InnerContainer, CompanyLogoBtn } from "../../shared";
+import { InnerContainer } from "../../shared/containers/InnerContainer";
+import { CompanyLogoBtn } from "../../shared/buttons/CompanyLogoBtn";
 
 import { HeaderSearchAvatarAuthOptions } from "./HeaderSearchAvatarAuthOptions";
 import MegaMenuServerWrapper from "./MegamenuServerWrapper";

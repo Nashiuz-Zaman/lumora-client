@@ -1,5 +1,6 @@
 import { MouseEvent } from "react";
-import { CloseIcon, HamburgerIcon } from "../icons";
+import { CloseIcon } from "../icons/CloseIcon";
+import { HamburgerIcon } from "../icons/HamburgerIcon";
 
 export const MobileMenuBtn = ({
   onClick,

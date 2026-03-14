@@ -2,8 +2,8 @@
 
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFormContext, Controller } from "react-hook-form";
-import { SelectField } from "@/components/shared";
-import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category.api.slice";
+import { SelectField } from "@/components/shared/SelectField";
+import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 import { IProduct } from "@/types";
 
 export const CategorySelector = () => {

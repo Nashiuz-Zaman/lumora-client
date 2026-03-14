@@ -2,21 +2,20 @@
 
 // components
 import Image from "next/image";
-import { InputCheckbox, IcfyIcon, LinkBtnTrans } from "@/components/shared";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
 import ColorBadge from "@/components/shared/ColorBadge";
 
 // utils
-import {
-  formatPrice,
-  getProductStatusTextColor,
-  getStatusLabel,
-  formatDateTime,
-} from "@/utils";
+import { formatPrice } from "@/utils/formatPrice";
+import { getProductStatusTextColor, getStatusLabel } from "@/utils/statusUtils";
+import { formatDateTime } from "@/utils/formatDateTime";
 
 // types
 import { ProductStatus, TProductStatusValue } from "@/constants/product";
 import { IProduct } from "@/types";
-import { TUseSelectableReturn } from "@/hooks";
+import { TUseSelectableReturn } from "@/hooks/useSelectable";
 
 interface IProductRowProps {
   productData: IProduct;

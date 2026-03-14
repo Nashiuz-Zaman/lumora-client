@@ -4,12 +4,10 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { IProduct, IVariant } from "@/types";
 import { useState } from "react";
 import { VariantInformationBlock } from "./VariantInformationBlock";
-import {
-  ButtonBtn,
-  ButtonBtnTrans,
-  PlusIcon,
-  TrashcanIcon,
-} from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { PlusIcon } from "@icons/PlusIcon";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
 
 const defaultVariantKeys: string[] = [
   "sku",

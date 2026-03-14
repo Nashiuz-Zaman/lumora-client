@@ -1,4 +1,4 @@
-import { ActiveCouponsMain } from "@/components/page-specific";
+import { ActiveCouponsMain } from "@page-specific/admin/coupons/active/ActiveCouponsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

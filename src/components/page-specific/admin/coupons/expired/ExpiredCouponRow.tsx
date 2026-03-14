@@ -1,8 +1,8 @@
 "use client";
 
-import { InputCheckbox } from "@/components/shared";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
 import { ICoupon } from "@/types";
-import { formatDateTime } from "@/utils";
+import { formatDateTime } from "@/utils/formatDateTime";
 
 interface IExpiredCouponRowProps {
   couponData: ICoupon;
