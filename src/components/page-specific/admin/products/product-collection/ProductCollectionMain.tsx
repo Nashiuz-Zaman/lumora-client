@@ -12,7 +12,7 @@ import { useSelectable, useModal, useCollectionProductsQueries } from "@/hooks";
 
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { NoData } from "@/components/shared/NoData";
-import { useRemoveProductsFromProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection/productCollectionApiSlice";
+import { useRemoveProductsFromProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection.api.slice";
 import { catchAsyncGeneral, showToast } from "@/utils";
 
 export const ProductCollectionMain = ({
@@ -24,7 +24,7 @@ export const ProductCollectionMain = ({
     useCollectionProductsQueries(productCollectionSlug);
 
   const productsWithoutSerial = collectionProducts?.map(
-    (product) => product?.product
+    (product) => product?.product,
   );
 
   const {
@@ -73,7 +73,7 @@ export const ProductCollectionMain = ({
 
           <ButtonBtnTrans
             onClick={openModal}
-            className="text-red-600 font-inherit text-lg !gap-1"
+            className="text-red-600 font-inherit text-lg gap-1!"
             disabled={selected.length < 1}
           >
             <TrashcanIcon className="mr-1" />

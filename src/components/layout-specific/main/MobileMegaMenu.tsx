@@ -49,7 +49,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
   const easeCurve = "cubic-bezier(0.25, 1, 0.3, 1)";
 
   return (
-    <nav className="block relative z-5000 xl:hidden w-full bg-white border-b border-neutral-100">
+    <nav className="block relative xl:hidden w-full bg-white border-b border-neutral-100">
       {/* 2. INLINE TRIGGER BAR */}
       <InnerContainer>
         <div className="py-3 flex justify-between items-center">

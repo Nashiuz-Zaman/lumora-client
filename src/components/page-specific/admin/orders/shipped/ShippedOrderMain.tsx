@@ -9,7 +9,7 @@ import {
   DeliverIcon,
 } from "@/components/shared";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 import { ShippedOrderRow } from "./ShippedOrderRow";
 import { ConfirmationModal } from "@/components/modals";
 
@@ -28,7 +28,7 @@ import { IOrder } from "@/types";
 import { useRef } from "react";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
 import { catchAsyncGeneral, showToast } from "@/utils";
-import { useMarkOrdersDeliveredMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { useMarkOrdersDeliveredMutation } from "@/libs/redux/apiSlices/order.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

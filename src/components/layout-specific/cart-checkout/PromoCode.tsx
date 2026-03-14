@@ -3,17 +3,16 @@
 import { useState } from "react";
 import { ButtonBtn, ErrorMessage, InputField } from "@/components/shared";
 import { catchAsyncGeneral } from "@/utils";
-import { useCartActions, useCartState } from "@/hooks";
+import { useCartState } from "@/hooks/useCartState";
 
 interface IPromoCodeProps {
   appliedCode: string | null;
 }
 
 export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
-  const { cart } = useCartState() || {};
+  const { cart, applyCoupon, removeCoupon, isCartBusy } = useCartState() || {};
   const [couponCode, setCouponCode] = useState("");
   const [errorMessage, setErrorMessage] = useState<string>("");
-  const { applyCoupon, removeCoupon, isCartMutating } = useCartActions();
 
   // RTK Mutations with isLoading state
   const handleApply = catchAsyncGeneral(
@@ -82,12 +81,12 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setCouponCode(e.target.value)
               }
-              disabled={isCartMutating}
+              disabled={isCartBusy}
             />
             <ButtonBtn
               onClick={handleApply}
               className="secondaryClasses!"
-              isLoading={isCartMutating}
+              isLoading={isCartBusy}
             >
               Apply
             </ButtonBtn>
@@ -96,9 +95,9 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
           <button
             onClick={handleRemove}
             className="px-4 py-2 bg-red-100 cursor-pointer text-red-600 rounded-lg text-sm font-medium transition-colors border border-red-100 hover:border-red-200"
-            disabled={isCartMutating}
+            disabled={isCartBusy}
           >
-            {isCartMutating ? "Removing..." : "Remove"}
+            {isCartBusy ? "Removing..." : "Remove"}
           </button>
         )}
       </div>

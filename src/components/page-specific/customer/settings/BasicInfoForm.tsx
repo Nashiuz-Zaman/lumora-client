@@ -9,8 +9,8 @@ import {
 import { catchAsyncGeneral, showToast, uploadFileWithSignedUrl } from "@/utils";
 import { Heading } from "./Heading";
 import { ICustomerProfile, TImage } from "@/types";
-import { useUpdateCustomerBasicInfoMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
+import { useUpdateCustomerBasicInfoMutation } from "@/libs/redux/apiSlices/customer.api.slice";
+import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
 import { useState } from "react";
 
 interface IBasicInfoFormProps {
@@ -63,7 +63,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
       onFinally() {
         setIsloading(false);
       },
-    }
+    },
   );
 
   if (!data) return null;
@@ -75,7 +75,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
       }`}
     >
       <div className="flex items-center gap-2 mb-6">
-        <Heading text="Basic Information" className="!pl-0" />
+        <Heading text="Basic Information" className="pl-0!" />
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-[280px_1fr] gap-5">
@@ -132,7 +132,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
           <ButtonBtn
             type="submit"
             isLoading={isLoading}
-            className="w-full md:w-auto !text-sm tracking-wide bg-primary !rounded-full text-neutral-50 hover:bg-primary/90 px-6 py-2.5 transition-all duration-200 uppercase"
+            className="w-full md:w-auto text-sm! tracking-wide bg-primary rounded-full! text-neutral-50 hover:bg-primary/90 px-6 py-2.5 transition-all duration-200 uppercase"
           >
             Save Changes
           </ButtonBtn>

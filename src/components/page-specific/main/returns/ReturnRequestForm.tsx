@@ -12,8 +12,8 @@ import {
 } from "@/components/shared";
 import { catchAsyncGeneral, showToast, uploadFileWithSignedUrl } from "@/utils";
 import { ReturnReasons } from "@/constants/returnRequest";
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
-import { useCreateReturnRequestMutation } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
+import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
+import { useCreateReturnRequestMutation } from "@/libs/redux/apiSlices/returnRequest.api.slice";
 
 type TFormValues = {
   orderId: string;
@@ -62,8 +62,8 @@ export const ReturnRequestForm = () => {
       if (proofFiles && proofFiles?.length > 0) {
         const uploads = await Promise.all(
           Array.from(proofFiles).map(
-            async (f) => await uploadFileWithSignedUrl(f, getSignedUrl)
-          )
+            async (f) => await uploadFileWithSignedUrl(f, getSignedUrl),
+          ),
         );
 
         proofFileUrls = uploads as string[];
@@ -91,7 +91,7 @@ export const ReturnRequestForm = () => {
       onFinally() {
         setIsUploading(false);
       },
-    }
+    },
   );
 
   return (

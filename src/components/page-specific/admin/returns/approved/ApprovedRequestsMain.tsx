@@ -14,7 +14,7 @@ import { ConfirmationModal } from "@/components/modals";
 import { ReturnsTopParamsForm } from "../shared/ReturnsTopParamsForm";
 
 // Providers
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
 import {
@@ -41,7 +41,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { IReturnRequest } from "@/types";
 
 // Redux / API
-import { useDeleteReturnRequestsMutation } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
+import { useDeleteReturnRequestsMutation } from "@/libs/redux/apiSlices/returnRequest.api.slice";
 import { ProcessedRequestRow } from "../shared/ProcessedRequestRow";
 import { useDispatch } from "react-redux";
 import {
@@ -141,7 +141,7 @@ export const ApprovedRequestsMain = () => {
           sortOptions={[...ReturnRequestSortOptions]}
           setParams={setFormParams}
           onSubmit={handleSubmit}
-          className="!border-b-0"
+          className="border-b-0!"
         />
 
         {/* Delete selected button */}
@@ -149,7 +149,7 @@ export const ApprovedRequestsMain = () => {
           ref={tableActionsBlockRef}
           onClick={openModal}
           isLoading={isDeleting}
-          className="text-red-600 font-inherit ml-auto px-4 !h-[50px] shrink-0"
+          className="text-red-600 font-inherit ml-auto px-4 h-[50px]! shrink-0"
           disabled={selected.length < 1}
         >
           <TrashcanIcon />
@@ -172,7 +172,7 @@ export const ApprovedRequestsMain = () => {
 
         {/* Pagination */}
         {queryMeta?.totalPages > 1 && (
-          <div className="!h-[56px] border-t border-neutral-200 mt-auto flex items-center justify-center">
+          <div className="h-14! border-t border-neutral-200 mt-auto flex items-center justify-center">
             <Pagination
               totalPages={queryMeta.totalPages}
               currentPage={queryMeta.page}

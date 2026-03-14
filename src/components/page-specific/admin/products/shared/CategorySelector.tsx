@@ -3,7 +3,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFormContext, Controller } from "react-hook-form";
 import { SelectField } from "@/components/shared";
-import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categoryApiSlice";
+import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category.api.slice";
 import { IProduct } from "@/types";
 
 export const CategorySelector = () => {
@@ -21,14 +21,14 @@ export const CategorySelector = () => {
   const watchedTopCategory = watch("topCategory");
 
   const [selectedTopCategory, setSelectedTopCategory] = useState<string>(
-    getValues("topCategory") || ""
+    getValues("topCategory") || "",
   );
 
   const topCategories = categories.map((category) => category.topCategory);
 
   const subCategories =
     categories.find(
-      (category) => category.topCategory._id === selectedTopCategory
+      (category) => category.topCategory._id === selectedTopCategory,
     )?.subCategories || [];
 
   // Reset subCategory whenever topCategory changes

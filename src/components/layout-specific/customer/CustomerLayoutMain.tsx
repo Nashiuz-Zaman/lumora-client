@@ -7,7 +7,7 @@ import { CustomerHeader } from "./CustomerHeader";
 import MobileCustomerSideNavbar from "./MobileCustomerSideNavbar";
 import CustomerSideNavbar from "./CustomerSideNavbar";
 import { useDynamicHeight, useRefState } from "@/hooks";
-import { useGetCustomerProfileDataQuery } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useGetCustomerProfileDataQuery } from "@/libs/redux/apiSlices/customer.api.slice";
 import {
   setCustomerProfileData,
   setIsCustomerProfileLoading,

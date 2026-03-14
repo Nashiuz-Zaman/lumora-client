@@ -2,29 +2,11 @@
 
 import { CartItemCard } from "./CartItemCard";
 import { CartIcon, LinkBtn, LinkBtnTrans, NoData } from "@/components/shared/";
-import { useCartActions, useCartState } from "@/hooks";
-import {
-  IRemoveCartItemRequest,
-  IUpdateCartQtyRequest,
-} from "@/libs/redux/apiSlices/cart.api.slice";
+import { useCartState } from "@/hooks/useCartState";
 
 export const CartItemList = () => {
-  const { cart } = useCartState();
-  const { updateCartItemQuantity, removeCartItem, isCartMutating } =
-    useCartActions();
-
-  // Updates item qty in a cart
-  const updateQuantity = async ({
-    cartItemId,
-    quantity,
-  }: IUpdateCartQtyRequest) => {
-    await updateCartItemQuantity({ data: { cartItemId, quantity } });
-  };
-
-  // Completely removes the item from the cart
-  const removeItem = async (data: IRemoveCartItemRequest) => {
-    await removeCartItem(data);
-  };
+  const { cart, updateCartItemQuantity, removeCartItem, isCartBusy } =
+    useCartState();
 
   const cartItems = cart?.items || [];
 
@@ -32,7 +14,7 @@ export const CartItemList = () => {
     <div className="space-y-4 h-full flex flex-col">
       <div className="grow flex flex-col">
         {!cartItems.length && (
-          <div className="grow p-5 rounded-xl flex items-center justify-center">
+          <div className="grow min-h-100 lg:min-h-auto p-5 rounded-xl flex items-center justify-center">
             <div className="mb-16">
               <NoData text="Cart is empty" className="py-0! my-0! mb-4!" />
               <LinkBtn href="/products/s" className="primaryClasses!">
@@ -49,9 +31,9 @@ export const CartItemList = () => {
               <CartItemCard
                 key={`key-${i}`}
                 item={item}
-                updateQuantity={updateQuantity}
-                removeItem={removeItem}
-                isCartMutating={isCartMutating}
+                updateQuantity={updateCartItemQuantity}
+                removeItem={removeCartItem}
+                isCartMutating={isCartBusy}
               />
             ))}
           </div>

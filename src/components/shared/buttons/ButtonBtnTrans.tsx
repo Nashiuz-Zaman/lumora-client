@@ -3,8 +3,7 @@
 import { ReactNode, MouseEvent } from "react";
 import { LoadingIcon } from "../icons";
 
-interface IButtonBtnTransProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface IButtonBtnTransProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   isLoading?: boolean;
   iconModifyClasses?: string;

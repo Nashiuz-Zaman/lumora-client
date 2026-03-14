@@ -23,9 +23,9 @@ import { TRootState } from "@/libs/redux/store";
 import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
 import { useEffect, useRef, useState } from "react";
 
-import { useCartActions } from "@/hooks";
 import { IVariant } from "@/utils";
 import { IAddItemToCartRequest } from "@/libs/redux/apiSlices/cart.api.slice";
+import { useCartState } from "@/hooks/useCartState";
 
 export const ProductQuickViewModal = () => {
   const router = useRouter();
@@ -40,7 +40,7 @@ export const ProductQuickViewModal = () => {
   const [curProductVariant, setCurProductVariant] = useState<
     IVariant | undefined
   >();
-  const { addProductToCart, isCartMutating: isCartLoading } = useCartActions();
+  const { addProductToCart, isCartBusy } = useCartState();
 
   const [quantity, setQuantity] = useState<number>(1);
 
@@ -110,7 +110,7 @@ export const ProductQuickViewModal = () => {
     <BaseModal
       condition={isModalOpen}
       closeFunction={closeModal}
-      className="w-full! max-w-88 xs:max-w-120 sm:max-w-160 md:max-w-3xl min-h-100 max-h-[80vh] bg-white rounded-xl shadow-lg overflow-hidden z-500 p-4 flex flex-col"
+      className="w-full! max-w-88 xs:max-w-120 sm:max-w-160 md:max-w-3xl min-h-100 max-h-[90vh] bg-white rounded-xl shadow-lg overflow-hidden z-500 p-4 flex flex-col overflow-y-auto"
     >
       {isFetching && (
         <div className="relative w-full grow">
@@ -118,14 +118,14 @@ export const ProductQuickViewModal = () => {
         </div>
       )}
 
-      {isError && !isFetching && (
+      {!isFetching && isError && (
         <div className="py-10 text-center">
           <ErrorMessage text="Failed to load product. Please try again." />
         </div>
       )}
 
-      {quickViewModalData?.variants && !isFetching && (
-        <div className="grid sm:grid-cols-2 pt-2 gap-6 grow">
+      {!isFetching && quickViewModalData?.variants && (
+        <div className="grid md:grid-cols-2 pt-2 gap-4 md:gap-6 grow">
           {/* Product Image */}
           <div className="w-3/4 mx-auto aspect-square overflow-hidden">
             <Image
@@ -141,7 +141,7 @@ export const ProductQuickViewModal = () => {
           <div className="flex flex-col">
             <h2
               title={quickViewModalData.title}
-              className="line-clamp-3 text-xl font-semibold mb-4"
+              className="line-clamp-3 text-xl font-semibold mb-2 md:mb-4"
             >
               {quickViewModalData.title}
             </h2>
@@ -155,12 +155,12 @@ export const ProductQuickViewModal = () => {
               }
               oldPrice={curProductVariant?.oldPrice}
               discountPercentage={curProductVariant?.discountPercentage}
-              className="my-3"
+              className="mb-1 md:mb-3"
             />
 
             {/* Variants with selector */}
             {quickViewModalData.variants.length > 0 && (
-              <div className="mb-4">
+              <div className="mb-1.5 md:mb-4">
                 <VariantSelector
                   variants={quickViewModalData.variants}
                   onVariantSelect={setCurProductVariant}
@@ -168,10 +168,10 @@ export const ProductQuickViewModal = () => {
               </div>
             )}
 
-            <div className="mt-auto pt-4">
+            <div className="mt-auto pt-2 md:pt-4">
               <ButtonBtnTrans
                 onClick={handleViewDetails}
-                className="text-sm sm:text-base underline mr-auto mb-3"
+                className="block! text-sm sm:text-base w-max underline mr-auto! mb-3"
               >
                 View Details
               </ButtonBtnTrans>
@@ -185,9 +185,10 @@ export const ProductQuickViewModal = () => {
                   onIncrease={handleIncrease}
                   onDecrease={handleDecrease}
                 />
+                
                 <ButtonBtn
                   onClick={handleAddToCart}
-                  isLoading={isCartLoading}
+                  isLoading={isCartBusy}
                   disabled={!curProductVariant}
                   className="successClasses! rounded-full! px-5! py-2! gap-2!"
                 >

@@ -13,8 +13,7 @@ import {
 import { useModal } from "@/hooks";
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { ICoupon } from "@/types";
-import { useCreateCouponMutation } from "@/libs/redux/apiSlices/coupon/couponApiSlice";
-
+import { useCreateCouponMutation } from "@/libs/redux/apiSlices/coupon.api.slice";
 interface ICreateCouponModalProps {
   target?: HTMLElement | null; // where the trigger button will render
 }
@@ -54,7 +53,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
       onError: (_error, _args, message) => {
         setError("root", { message: message });
       },
-    }
+    },
   );
 
   return (
@@ -68,7 +67,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
           >
             + New Coupon
           </ButtonBtn>,
-          target
+          target,
         )}
 
       {/* Modal */}

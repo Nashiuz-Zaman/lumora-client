@@ -80,15 +80,16 @@ export const cartApiSlice = baseApiSlice.injectEndpoints({
         url: "/cart",
         method: "GET",
       }),
+      providesTags: ["Cart"],
     }),
 
     /* ---------------- ADD ITEM ---------------- */
 
     addItemToCart: builder.mutation<TCartResponse, IAddItemToCartRequest>({
-      query: (body) => ({
+      query: (data) => ({
         url: "/cart/item",
         method: "POST",
-        body,
+        data,
       }),
       onQueryStarted: handleCartSuccess,
     }),
@@ -99,7 +100,7 @@ export const cartApiSlice = baseApiSlice.injectEndpoints({
       query: ({ cartItemId, quantity }) => ({
         url: `/cart/item/${cartItemId}`,
         method: "PATCH",
-        body: { quantity },
+        data: { quantity },
       }),
       onQueryStarted: handleCartSuccess,
     }),
@@ -132,7 +133,7 @@ export const cartApiSlice = baseApiSlice.injectEndpoints({
       query: ({ couponCode }) => ({
         url: "/cart/coupon",
         method: "POST",
-        body: { couponCode },
+        data: { couponCode },
       }),
       onQueryStarted: handleCartSuccess,
     }),

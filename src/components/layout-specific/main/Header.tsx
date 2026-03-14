@@ -12,7 +12,8 @@ const Header = () => {
       <InnerContainer className="text-sm xl:text-base py-3 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
           <p className="text-center md:text-left capitalize font-semibold">
-            USE <span className="text-primary">LUCKY50</span> to get 50% OFF on orders above $7000
+            USE <span className="text-primary">LUCKY50</span> to get 50% OFF on
+            orders above $7000
           </p>
           <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
             <Link href="/track-order">Track Your Order</Link>
@@ -23,7 +24,7 @@ const Header = () => {
       </InnerContainer>
 
       {/* Main header content */}
-      <div className="bg-white border-y border-neutral-100">
+      <div className="bg-white border-y z-10 border-neutral-100">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
           <CompanyLogoBtn className="mr-6" />
 

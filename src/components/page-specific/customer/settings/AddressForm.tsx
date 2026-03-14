@@ -11,7 +11,7 @@ import { Heading } from "./Heading";
 import { showToast, catchAsyncGeneral } from "@/utils";
 
 // redux
-import { useUpdateCustomerAddressMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useUpdateCustomerAddressMutation } from "@/libs/redux/apiSlices/customer.api.slice";
 
 // types
 import { ICustomerAddress } from "@/types";

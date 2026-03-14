@@ -7,12 +7,8 @@ import {
   InnerContainer,
   UserMenuWithAvatar,
 } from "@/components/shared";
-import {
-  useAuthMethods,
-  useAuthState,
-  useCartState,
-  useRefState,
-} from "@/hooks";
+import { useAuthMethods, useAuthState, useRefState } from "@/hooks";
+import { useCartState } from "@/hooks/useCartState";
 import { useEffect, useRef } from "react";
 
 export const CustomerHeader = () => {

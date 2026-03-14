@@ -35,7 +35,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 
 // Types
 import { IPaginatedCustomer } from "@/types";
-import { useUnblockCustomersMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useUnblockCustomersMutation } from "@/libs/redux/apiSlices/customer.api.slice";
 
 // Redux / API
 const columns: TTableColumn[] = [

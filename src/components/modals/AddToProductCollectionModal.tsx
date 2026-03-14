@@ -18,7 +18,7 @@ import {
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { IProduct } from "@/types";
 import AdminProductCard from "../page-specific/admin/products/shared/AdminProductCard";
-import { useAddProductsToProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection/productCollectionApiSlice";
+import { useAddProductsToProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection.api.slice";
 
 interface IAddToProductCollectionModalProps {
   slug: string;
@@ -74,7 +74,7 @@ const AddToProductCollectionModal = ({
           >
             + Add To Collection
           </ButtonBtn>,
-          target
+          target,
         )}
 
       {/* The actual modal */}

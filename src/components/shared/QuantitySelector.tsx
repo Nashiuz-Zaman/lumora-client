@@ -21,7 +21,7 @@ export const QuantitySelector = ({
 }: IQuantitySelectorProps) => {
   return (
     <div
-      className={`flex items-center border border-neutral-300 rounded-lg overflow-hidden ${className}`}
+      className={`flex items-center border w-max border-neutral-300 rounded-lg overflow-hidden ${className}`}
     >
       <button
         type="button"

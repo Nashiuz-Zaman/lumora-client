@@ -8,7 +8,7 @@ import {
   ProductCard,
   SortDropdown,
 } from "@/components/shared";
-import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categoryApiSlice";
+import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category.api.slice";
 import { MobileSearchFilters } from "./MobileSearchFilter";
 import { useEffect } from "react";
 

@@ -10,12 +10,12 @@ import SpecsCreator from "./SpecsCreator";
 import SEOManager from "./SEOManager";
 import { ProductStatus } from "@/constants/product";
 import { ProductOptionsAndBrandVendor } from "./ProductOptionsAndBrandVendor";
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
+import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
 import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
 import {
   useCreateProductMutation,
   useUpdateProductMutation,
-} from "@/libs/redux/apiSlices/product/productApiSlice";
+} from "@/libs/redux/apiSlices/product.api.slice";
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { ButtonBtn } from "@/components/shared";
 import cloneDeep from "lodash/cloneDeep";
@@ -126,7 +126,7 @@ export const ProductForm = ({
         setIsLoading(false);
       },
       handleError: "toast",
-    }
+    },
   );
 
   return (

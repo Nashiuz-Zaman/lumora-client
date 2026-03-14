@@ -3,8 +3,8 @@
 import { LinkBtn, LockIcon } from "@/components/shared";
 import { PromoCode } from "./PromoCode";
 import { formatPrice } from "@/utils";
-import { useCartState } from "@/hooks";
 import { usePathname } from "next/navigation";
+import { useCartState } from "@/hooks/useCartState";
 
 export const OrderSummary = () => {
   const { cart } = useCartState();

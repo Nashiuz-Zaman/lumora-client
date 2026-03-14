@@ -15,7 +15,7 @@ import {
 } from "@/components/shared";
 import { ConfirmationModal } from "@/components/modals";
 
-import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/product.api.slice";
 
 import { showToast, catchAsyncGeneral } from "@/utils";
 import {

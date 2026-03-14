@@ -18,7 +18,7 @@ import {
 } from "@/components/modals";
 
 // Providers
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
 import {
@@ -44,7 +44,7 @@ import { ICancelOrdersAdminArgs, IMarkOrderShippedArgs, IOrder } from "@/types";
 import {
   useCancelOrdersAdminMutation,
   useMarkOrderShippedMutation,
-} from "@/libs/redux/apiSlices/orders/orderApiSlice";
+} from "@/libs/redux/apiSlices/order.api.slice";
 
 // React Hook Form
 import { UseFormReset } from "react-hook-form";
@@ -121,7 +121,8 @@ const ConfirmedOrdersMain = () => {
     closeModal: closeCancelModal,
   } = useModal();
 
-  const [cancelOrders, { isLoading: isCancelling }] = useCancelOrdersAdminMutation();
+  const [cancelOrders, { isLoading: isCancelling }] =
+    useCancelOrdersAdminMutation();
 
   const handleAdminCancel = catchAsyncGeneral(async (args) => {
     const e = args?.e as React.FormEvent<HTMLFormElement>;
@@ -209,7 +210,7 @@ const ConfirmedOrdersMain = () => {
             />
           </div>
         )}
-      </div> 
+      </div>
 
       {/* Shipping Modal */}
       <ShippingModal

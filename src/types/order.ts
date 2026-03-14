@@ -1,7 +1,6 @@
 import { TOrderStatusValue } from "@/constants";
 import { ICart, TPopulatedCartItem } from "./cart";
 import { ICustomer } from "./customer";
-import { IUser } from "./user";
 import { IUserBasic } from "./shared";
 
 export interface IOrderActivity {
@@ -14,7 +13,7 @@ export interface IOrder extends IUserBasic {
   _id?: string;
   orderId?: string;
 
-  user: NonNullable<IUser["_id"]>;
+  user: string | null;
   cartId: NonNullable<ICart["_id"]>;
 
   shippingAddress: NonNullable<ICustomer["shippingAddress"]>;

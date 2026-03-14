@@ -11,8 +11,8 @@ import {
 
 interface ICartItemCardProps {
   item: TPopulatedCartItem;
-  updateQuantity: (data: IUpdateCartQtyRequest) => Promise<void>;
-  removeItem: (data: IRemoveCartItemRequest) => Promise<void>;
+  updateQuantity: ({ data }: { data: IUpdateCartQtyRequest }) => Promise<void>;
+  removeItem: ({ data }: { data: IRemoveCartItemRequest }) => Promise<void>;
   isCartMutating: boolean;
 }
 
@@ -38,9 +38,9 @@ export const CartItemCard = ({
 
   return (
     <div className="bg-white rounded-xl border border-neutral-100 p-6 transition-all duration-300 shadow-sm">
-      <div className="grid grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
         {/* Thumbnail */}
-        <div className="w-24 h-24 overflow-hidden flex items-center justify-center">
+        <div className="w-24 order-1 md:order-0 h-24 overflow-hidden flex items-center justify-center">
           {item.product.defaultImage ? (
             <Image
               src={item.product.defaultImage}
@@ -55,7 +55,7 @@ export const CartItemCard = ({
         </div>
 
         {/* Product Info */}
-        <div className="min-w-0">
+        <div className="min-w-0 order-2 md:order-1">
           <h3 className="line-clamp-3 font-semibold mb-2">
             {item.product.title || "Product name not found"}
           </h3>
@@ -81,8 +81,10 @@ export const CartItemCard = ({
                 className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
                   updateQuantity({
-                    cartItemId: item._id || "",
-                    quantity: item.quantity - 1,
+                    data: {
+                      cartItemId: item._id || "",
+                      quantity: item.quantity - 1,
+                    },
                   });
                 }}
                 disabled={item.quantity <= 1 || isCartMutating}
@@ -98,8 +100,10 @@ export const CartItemCard = ({
                 className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
                   updateQuantity({
-                    cartItemId: item._id || "",
-                    quantity: item.quantity + 1,
+                    data: {
+                      cartItemId: item._id || "",
+                      quantity: item.quantity + 1,
+                    },
                   });
                 }}
                 disabled={
@@ -122,11 +126,11 @@ export const CartItemCard = ({
         </div>
 
         {/* Remove */}
-
         <button
+          type="button"
           title="Remove Product"
-          className="w-10 inline-block ml-auto h-10 rounded-full bg-red-50 hover:bg-red-100 text-red-600 items-center justify-center transition-colors cursor-pointer"
-          onClick={() => removeItem({ cartItemId: item._id || "" })}
+          className="w-10 order-0 md:order-2 inline-block ml-auto h-10 rounded-full bg-red-100 hover:bg-red-200 text-red-600 items-center justify-center transition-colors duration-300 cursor-pointer"
+          onClick={() => removeItem({ data: { cartItemId: item._id ?? "" } })}
         >
           ✕
         </button>

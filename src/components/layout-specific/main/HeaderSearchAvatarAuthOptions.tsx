@@ -14,12 +14,12 @@ import {
   BREAKPOINTS,
   useAuthMethods,
   useAuthState,
-  useCartState,
   useMediaQuery,
 } from "@/hooks";
 import { ISearchbarResultProduct } from "@/types";
 import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { UserRoles } from "@/constants/user";
+import { useCartState } from "@/hooks/useCartState";
 
 export const HeaderSearchAvatarAuthOptions = () => {
   const { logout } = useAuthMethods();
