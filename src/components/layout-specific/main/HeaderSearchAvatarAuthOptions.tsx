@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
   HeaderProductsSearchbar,
@@ -26,6 +26,11 @@ export const HeaderSearchAvatarAuthOptions = () => {
   const { user } = useAuthState();
   const { cart } = useCartState();
   const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setMounted(true), 0);
+  }, []);
 
   // 1. Auth & Role Logic
   const { isAdmin, isCustomer, isAuthenticated } = useMemo(() => {
@@ -65,7 +70,7 @@ export const HeaderSearchAvatarAuthOptions = () => {
   return (
     <>
       {/* Desktop search bar */}
-      {isMinSm && (
+      {mounted && isMinSm && (
         <HeaderProductsSearchbar<ISearchbarResultProduct>
           results={results}
           renderResult={renderResult}
@@ -78,7 +83,7 @@ export const HeaderSearchAvatarAuthOptions = () => {
 
       <div className="ml-auto flex items-center gap-4">
         {/* Mobile expandable search */}
-        {!isMinSm && (
+        {mounted && isMinSm === false && (
           <ExpandableSearchPortal
             portalTargetId="header-search-mobile-screen"
             buttonClasses="text-xl"

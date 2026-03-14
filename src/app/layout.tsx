@@ -90,7 +90,7 @@ export default async function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <body
         className={`${poppins.className} text-neutral-700`}
-        suppressHydrationWarning
+        suppressHydrationWarning={true}
       >
         <ReduxProvider initialCategoryTree={categoryTree}>
           <AuthStateProvider>
