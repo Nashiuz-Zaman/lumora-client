@@ -2,8 +2,8 @@
 
 import { useForm } from "react-hook-form";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { InputField } from "@/components/shared/InputField";
-import { ProfilePhotoChanger } from "@/components/shared/ProfilePhotoChanger";
+import { InputField } from "@shared/InputField";
+import { ProfilePhotoChanger } from "@shared/ProfilePhotoChanger";
 import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { showToast } from "@/utils/showToast";
 import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";

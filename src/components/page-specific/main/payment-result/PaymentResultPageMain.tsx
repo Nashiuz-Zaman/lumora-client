@@ -1,9 +1,9 @@
 "use client";
 
 import { InnerContainer } from "@containers/InnerContainer";
-import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { IcfyIcon } from "@shared/IcfyIcon";
 import { LinkBtn } from "@buttons/LinkBtn";
-import { RedirectCountdown } from "@/components/shared/RedirectCountdown";
+import { RedirectCountdown } from "@shared/RedirectCountdown";
 
 import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
 import { useSearchParams, useRouter } from "next/navigation";

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { OptionsDropdown } from "@/components/shared/OptionsDropdown";
+import { OptionsDropdown } from "@shared/OptionsDropdown";
 import { DownCaretIcon } from "@icons/DownCaretIcon";
 import SortOptionsMenu from "./SortOptionsMenu";
 import { IRadioOption } from "./RadioBtnGroup";

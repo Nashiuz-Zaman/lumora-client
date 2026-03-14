@@ -1,4 +1,4 @@
-import { DonutChart } from "@/components/shared/DonutChart";
+import { DonutChart } from "@shared/DonutChart";
 import { useGetTopCategorySalesPercentageQuery } from "@apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 

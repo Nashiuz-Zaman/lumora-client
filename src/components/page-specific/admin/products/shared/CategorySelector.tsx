@@ -2,7 +2,7 @@
 
 import { ChangeEvent, useEffect, useState } from "react";
 import { useFormContext, Controller } from "react-hook-form";
-import { SelectField } from "@/components/shared/SelectField";
+import { SelectField } from "@shared/SelectField";
 import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 import { IProduct } from "@/types";
 

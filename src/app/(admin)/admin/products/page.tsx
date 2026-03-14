@@ -1,6 +1,6 @@
 // THIS IS A PAGE
 import { CollectionCard } from "@page-specific/admin/products/CollectionCard";
-import { DashboardPageHeading } from "@/components/shared/DashboardPageHeading";
+import { DashboardPageHeading } from "@shared/DashboardPageHeading";
 import { InnerContainer } from "@containers/InnerContainer";
 import { Metadata } from "next";
 

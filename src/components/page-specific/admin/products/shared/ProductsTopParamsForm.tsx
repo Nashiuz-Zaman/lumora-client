@@ -1,6 +1,6 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm, TStatusOptions } from "@/components/shared/ParamsFilterForm";
+import { IParamsFilterFormProps, ParamsFilterForm, TStatusOptions } from "@shared/ParamsFilterForm";
 import { IProduct } from "@/types";
 import { IProductQueriesParams } from "@/hooks/useProductsQueries";
 

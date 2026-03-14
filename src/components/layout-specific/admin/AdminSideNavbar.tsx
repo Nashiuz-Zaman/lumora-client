@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { IcfyIcon } from "@shared/IcfyIcon";
 import { useActiveLink } from "@/hooks/useActiveLink";
 import { navSections } from "@/static-data/adminNav";
 

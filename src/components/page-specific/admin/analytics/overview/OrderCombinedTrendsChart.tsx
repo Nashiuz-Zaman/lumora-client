@@ -1,6 +1,6 @@
 "use client";
 
-import { ColumnChartDual } from "@/components/shared/ColumnChartDual";
+import { ColumnChartDual } from "@shared/ColumnChartDual";
 import { useGetOrderTrendsCombinedQuery } from "@apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 

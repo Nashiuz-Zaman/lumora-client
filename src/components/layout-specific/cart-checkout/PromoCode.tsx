@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
-import { InputField } from "@/components/shared/InputField";
+import { ErrorMessage } from "@shared/ErrorMessage";
+import { InputField } from "@shared/InputField";
 import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { useCartState } from "@/hooks/useCartState";
 

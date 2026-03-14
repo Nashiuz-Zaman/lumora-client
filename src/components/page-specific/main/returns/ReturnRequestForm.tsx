@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { InputField } from "@/components/shared/InputField";
-import { SelectField } from "@/components/shared/SelectField";
+import { InputField } from "@shared/InputField";
+import { SelectField } from "@shared/SelectField";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { TextArea } from "@/components/shared/TextArea";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
-import { FileUploadField } from "@/components/shared/FileUploadField";
+import { TextArea } from "@shared/TextArea";
+import { ErrorMessage } from "@shared/ErrorMessage";
+import { FileUploadField } from "@shared/FileUploadField";
 import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { showToast } from "@/utils/showToast";
 import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";

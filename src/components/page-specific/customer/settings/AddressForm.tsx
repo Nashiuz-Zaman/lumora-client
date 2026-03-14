@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import { Icon } from "@iconify/react";
 
 // components
-import { InputField } from "@/components/shared/InputField";
+import { InputField } from "@shared/InputField";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { SelectField } from "@/components/shared/SelectField";
+import { SelectField } from "@shared/SelectField";
 import { Heading } from "./Heading";
 
 // utils

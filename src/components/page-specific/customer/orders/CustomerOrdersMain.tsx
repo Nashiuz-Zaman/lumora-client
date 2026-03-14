@@ -1,9 +1,9 @@
 "use client";
 
 import { InnerContainer } from "@containers/InnerContainer";
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
-import { NoData } from "@/components/shared/NoData";
-import { Pagination } from "@/components/shared/Pagination";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
+import { NoData } from "@shared/NoData";
+import { Pagination } from "@shared/Pagination";
 import { OrderCard } from "./OrderCard";
 import { PageSection } from "./PageSection";
 

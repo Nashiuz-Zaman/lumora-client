@@ -3,8 +3,8 @@
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { IcfyIcon } from "@/components/shared/IcfyIcon";
-import { InputField } from "@/components/shared/InputField";
+import { IcfyIcon } from "@shared/IcfyIcon";
+import { InputField } from "@shared/InputField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IOrder } from "@/types";
 

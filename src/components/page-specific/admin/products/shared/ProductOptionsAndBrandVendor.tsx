@@ -3,9 +3,9 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { IProduct } from "@/types";
 
-import { FormSectionHeading } from "@/components/shared/FormSectionHeading";
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
-import { InputField } from "@/components/shared/InputField";
+import { FormSectionHeading } from "@shared/FormSectionHeading";
+import { InputCheckbox } from "@shared/InputCheckbox";
+import { InputField } from "@shared/InputField";
 import { ProductStatus } from "@/constants/product";
 import { ChangeEvent } from "react";
 

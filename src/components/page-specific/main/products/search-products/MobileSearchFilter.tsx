@@ -1,10 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { AccordionVertical } from "@/components/shared/AccordionVertical";
+import { AccordionVertical } from "@shared/AccordionVertical";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { InputFieldMinMax } from "@/components/shared/InputFieldMinMax";
+import { InputFieldMinMax } from "@shared/InputFieldMinMax";
 import { CloseIcon } from "@icons/CloseIcon";
 import { ICategoryTreeItem } from "@/types";
 import { UseFormSetValue } from "react-hook-form";

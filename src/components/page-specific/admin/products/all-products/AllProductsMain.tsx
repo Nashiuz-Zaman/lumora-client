@@ -7,8 +7,8 @@ import ProductsTopParamsForm from "../shared/ProductsTopParamsForm";
 import ProductRow from "./ProductRow";
 import { TrashcanIcon } from "@icons/TrashcanIcon";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
-import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@shared/TabularData";
+import { Pagination } from "@shared/Pagination";
 import { ConfirmationModal } from "@modals/ConfirmationModal";
 
 import { useBulkDeleteProductsMutation } from "@apiSlices/product.api.slice";

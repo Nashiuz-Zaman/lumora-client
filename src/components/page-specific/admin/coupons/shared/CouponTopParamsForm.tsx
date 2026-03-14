@@ -1,6 +1,6 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared/ParamsFilterForm";
+import { IParamsFilterFormProps, ParamsFilterForm } from "@shared/ParamsFilterForm";
 import { ICouponQueriesParams } from "@/hooks/useCouponQueries";
 import { ICoupon } from "@/types";
 

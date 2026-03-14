@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { TProductWithMinimalReviewStats } from "@/types";
 import { FeaturedProductCard } from "./FeaturedProductCard";
-import { AccordionVertical } from "@/components/shared/AccordionVertical";
+import { AccordionVertical } from "@shared/AccordionVertical";
 import { InnerContainer } from "@containers/InnerContainer";
 import { CloseBtn } from "@buttons/CloseBtn";
 import { ButtonBtn } from "@buttons/ButtonBtn";

@@ -1,6 +1,6 @@
 "use client";
 
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 import { ICoupon } from "@/types";
 import { formatDateTime } from "@/utils/formatDateTime";
 

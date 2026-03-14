@@ -9,7 +9,7 @@ import {
 import Link from "next/link";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { GoogleIcon } from "@icons/GoogleIcon";
-import { InputField } from "@/components/shared/InputField";
+import { InputField } from "@shared/InputField";
 import { IUser } from "@/types";
 
 // -------------------------

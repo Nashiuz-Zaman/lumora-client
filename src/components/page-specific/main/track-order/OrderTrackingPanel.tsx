@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
 import { CurProducts } from "./CurProducts";
 import { OrderActivity } from "./OrderActivity";
 import { OrderTrackingHeader } from "./OrderTrackingHeader";

@@ -1,7 +1,7 @@
 "use client";
 
 import { TopPanel } from "@page-specific/admin/shared/TopPanel";
-import { SelectField } from "@/components/shared/SelectField";
+import { SelectField } from "@shared/SelectField";
 import {
   setMonth,
   setYear,

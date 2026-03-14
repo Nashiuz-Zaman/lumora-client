@@ -7,9 +7,9 @@ import {
   SetStateAction,
   useCallback,
 } from "react";
-import { InputField } from "@/components/shared/InputField";
+import { InputField } from "@shared/InputField";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { SortDropdown } from "@/components/shared/SortDropdown";
+import { SortDropdown } from "@shared/SortDropdown";
 import { SearchIcon } from "@icons/SearchIcon";
 import { StatusTabs, TStatusOptions } from "../orders/StatusTabs";
 import { TSortOptions } from "@/types/generic";

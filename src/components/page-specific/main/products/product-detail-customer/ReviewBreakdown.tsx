@@ -1,7 +1,7 @@
 "use client";
 
-import { NoData } from "@/components/shared/NoData";
-import { RatingStars } from "@/components/shared/RatingStars";
+import { NoData } from "@shared/NoData";
+import { RatingStars } from "@shared/RatingStars";
 import { StarFullIcon } from "@icons/StarFullIcon";
 
 interface IReviewStats {

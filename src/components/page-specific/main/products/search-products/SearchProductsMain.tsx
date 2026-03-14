@@ -3,9 +3,9 @@
 import { useSearchPageProductsQueries } from "@/hooks/useSearchPageProductsQueries";
 import { SearchFilters } from "./SearchFilter";
 import { InnerContainer } from "@containers/InnerContainer";
-import { Pagination } from "@/components/shared/Pagination";
-import { ProductCard } from "@/components/shared/ProductCard";
-import { SortDropdown } from "@/components/shared/SortDropdown";
+import { Pagination } from "@shared/Pagination";
+import { ProductCard } from "@shared/ProductCard";
+import { SortDropdown } from "@shared/SortDropdown";
 import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 import { MobileSearchFilters } from "./MobileSearchFilter";
 import { useEffect } from "react";

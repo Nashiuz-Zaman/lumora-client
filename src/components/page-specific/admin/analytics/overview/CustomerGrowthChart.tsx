@@ -1,6 +1,6 @@
 "use client";
 
-import { LineChart } from "@/components/shared/LineChart";
+import { LineChart } from "@shared/LineChart";
 import { useGetCustomerGrowthQuery } from "@apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 

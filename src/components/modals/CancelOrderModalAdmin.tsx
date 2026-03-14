@@ -3,7 +3,7 @@
 import { BaseModal } from "./BaseModal";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { TextArea } from "@/components/shared/TextArea";
+import { TextArea } from "@shared/TextArea";
 
 interface ICancelOrderModalAdminProps {
   isOpen: boolean;

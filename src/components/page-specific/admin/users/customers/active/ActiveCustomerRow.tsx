@@ -4,7 +4,7 @@
 import Image from "next/image";
 
 // components
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 
 // hooks
 import { TUseSelectableReturn } from "@/hooks/useSelectable";

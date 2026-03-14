@@ -1,7 +1,7 @@
 "use client";
 
-import { Pagination } from "@/components/shared/Pagination";
-import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { Pagination } from "@shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@shared/TabularData";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import {ProtectedRouteProvider} from "@/providers";
 import { DeliveredOrderRow } from "./ArchivedOrderRow";

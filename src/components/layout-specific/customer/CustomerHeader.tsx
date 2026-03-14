@@ -4,7 +4,7 @@
 import { CartBtn } from "@buttons/CartBtn";
 import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
 import { InnerContainer } from "@containers/InnerContainer";
-import { UserMenuWithAvatar } from "@/components/shared/UserMenuWithAvatar";
+import { UserMenuWithAvatar } from "@shared/UserMenuWithAvatar";
 import { useAuthMethods } from "@/hooks/useAuthMethods";
 import { useAuthState } from "@/hooks/useAuthState";
 import { useRefState } from "@/hooks/useRefState";

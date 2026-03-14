@@ -12,10 +12,10 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { Droppable } from "@/components/shared/DnD-Kit/Droppable";
-import { Draggable } from "@/components/shared/DnD-Kit/Draggable";
+import { Droppable } from "@shared/DnD-Kit/Droppable";
+import { Draggable } from "@shared/DnD-Kit/Draggable";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { IcfyIcon } from "@shared/IcfyIcon";
 import { IProduct } from "@/types";
 import { generateImagePreviews, isObjectURL } from "@/utils/generateImagePreviews";
 

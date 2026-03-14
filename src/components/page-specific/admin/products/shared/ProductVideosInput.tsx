@@ -1,8 +1,8 @@
 "use client";
 
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { InputField } from "@/components/shared/InputField";
-import { NoData } from "@/components/shared/NoData";
+import { InputField } from "@shared/InputField";
+import { NoData } from "@shared/NoData";
 import { PlusIcon } from "@icons/PlusIcon";
 import { TrashcanIcon } from "@icons/TrashcanIcon";
 

@@ -3,9 +3,9 @@
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { CaretLeftIcon } from "@icons/CaretLeftIcon";
 import { CaretRightIcon } from "@icons/CaretRightIcon";
-import { SectionHeading } from "@/components/shared/SectionHeading";
-import { SectionTagline } from "@/components/shared/SectionTagline";
-import { TCustomSwiperProps } from "@/components/shared/CustomSwiper";
+import { SectionHeading } from "@shared/SectionHeading";
+import { SectionTagline } from "@shared/SectionTagline";
+import { TCustomSwiperProps } from "@shared/CustomSwiper";
 import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import { ICategoryTreeItem } from "@/types";
 

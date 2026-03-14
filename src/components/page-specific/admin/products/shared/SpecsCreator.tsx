@@ -5,8 +5,8 @@ import { useFormContext, useFieldArray } from "react-hook-form";
 import { ElementType } from "react";
 import { IProduct } from "@/types";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { InputField } from "@/components/shared/InputField";
-import { NoData } from "@/components/shared/NoData";
+import { InputField } from "@shared/InputField";
+import { NoData } from "@shared/NoData";
 import { PlusIcon } from "@icons/PlusIcon";
 import { TrashcanIcon } from "@icons/TrashcanIcon";
 

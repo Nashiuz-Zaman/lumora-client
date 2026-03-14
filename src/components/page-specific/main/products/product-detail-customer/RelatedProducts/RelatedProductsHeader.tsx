@@ -2,7 +2,7 @@
 
 import { CaretLeftIcon } from "@icons/CaretLeftIcon";
 import { CaretRightIcon } from "@icons/CaretRightIcon";
-import { TCustomSwiperProps } from "@/components/shared/CustomSwiper";
+import { TCustomSwiperProps } from "@shared/CustomSwiper";
 
 interface IRelatedProductsHeaderProps {
   navigation: TCustomSwiperProps<any>["navigation"];

@@ -3,8 +3,8 @@
 import dynamic from "next/dynamic";
 import { useMediaQuery, BREAKPOINTS } from "@/hooks/useMediaQuery";
 import { InnerContainer } from "@containers/InnerContainer";
-import { SectionHeading } from "@/components/shared/SectionHeading";
-import { SectionTagline } from "@/components/shared/SectionTagline";
+import { SectionHeading } from "@shared/SectionHeading";
+import { SectionTagline } from "@shared/SectionTagline";
 
 const topBrandLogos: string[] = [
   "/logos/brand-logos/apple.png",

@@ -2,7 +2,7 @@
 
 import { TrashcanIcon } from "@icons/TrashcanIcon";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { Pagination } from "@/components/shared/Pagination";
+import { Pagination } from "@shared/Pagination";
 import { InnerContainer } from "@containers/InnerContainer";
 import { ConfirmationModal } from "@modals/ConfirmationModal";
 import AdminProductCard from "../shared/AdminProductCard";
@@ -10,8 +10,8 @@ import { useSelectable } from "@/hooks/useSelectable";
 import { useModal } from "@/hooks/useModal";
 import { useCollectionProductsQueries } from "@/hooks/useCollectionProductsQueries";
 
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
-import { NoData } from "@/components/shared/NoData";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
+import { NoData } from "@shared/NoData";
 import { useRemoveProductsFromProductCollectionMutation } from "@apiSlices/productCollection.api.slice";
 import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { showToast } from "@/utils/showToast";

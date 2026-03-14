@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import Drawer from "@/components/shared/Drawer";
+import Drawer from "@shared/Drawer";
 import { AdminSideNavbar } from "./AdminSideNavbar";
 import { MobileMenuBtn } from "@buttons/MobileMenuBtn";
 import { useClickOutside } from "@/hooks/useClickOutside";

@@ -4,7 +4,7 @@ import { useGetPaymentStatsQuery } from "@apiSlices/analytics.api.slice";
 import { StatsCard } from "../shared/StatsCard";
 import { formatPrice } from "@/utils/formatPrice";
 import { IAnalyticDateParams } from "@/types";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { ErrorMessage } from "@shared/ErrorMessage";
 
 interface IPaymentStatsProps {
   dateParams: IAnalyticDateParams;

@@ -3,7 +3,7 @@
 import { useGetOrderStatsQuery } from "@apiSlices/analytics.api.slice";
 import { IComparison, StatsCard } from "../shared/StatsCard";
 import { IAnalyticDateParams } from "@/types";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { ErrorMessage } from "@shared/ErrorMessage";
 
 interface IOrderStatsProps {
   dateParams: IAnalyticDateParams;

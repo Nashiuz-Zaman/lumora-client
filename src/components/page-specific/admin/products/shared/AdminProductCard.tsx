@@ -3,7 +3,7 @@
 import Image from "next/image";
 
 import { formatPrice } from "@/utils/formatPrice";
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 import { IProduct } from "@/types";
 import { TUseSelectableReturn } from "@/hooks/useSelectable";
 

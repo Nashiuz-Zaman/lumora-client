@@ -2,7 +2,7 @@
 
 import { useState, ChangeEvent, useEffect } from "react";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { InputField } from "@/components/shared/InputField";
+import { InputField } from "@shared/InputField";
 import { PlusIcon } from "@icons/PlusIcon";
 import { TrashcanIcon } from "@icons/TrashcanIcon";
 import { IProduct } from "@/types";

@@ -4,7 +4,7 @@ import { InnerContainer } from "@containers/InnerContainer";
 import { LinkBtn } from "@buttons/LinkBtn";
 import { ProductForm } from "../shared/ProductForm";
 import { IProduct } from "@/types";
-import ColorBadge from "@/components/shared/ColorBadge";
+import ColorBadge from "@shared/ColorBadge";
 import { ProductStatus } from "@/constants/product";
 import { useRefState } from "@/hooks/useRefState";
 import { useSetElementText } from "@/hooks/useSetElementText";

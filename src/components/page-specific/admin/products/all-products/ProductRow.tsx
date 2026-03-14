@@ -2,10 +2,10 @@
 
 // components
 import Image from "next/image";
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
-import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { InputCheckbox } from "@shared/InputCheckbox";
+import { IcfyIcon } from "@shared/IcfyIcon";
 import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
-import ColorBadge from "@/components/shared/ColorBadge";
+import ColorBadge from "@shared/ColorBadge";
 
 // utils
 import { formatPrice } from "@/utils/formatPrice";

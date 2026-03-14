@@ -4,7 +4,7 @@ import { CartItemCard } from "./CartItemCard";
 import { CartIcon } from "@icons/CartIcon";
 import { LinkBtn } from "@buttons/LinkBtn";
 import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
-import { NoData } from "@/components/shared/NoData";
+import { NoData } from "@shared/NoData";
 import { useCartState } from "@/hooks/useCartState";
 
 export const CartItemList = () => {

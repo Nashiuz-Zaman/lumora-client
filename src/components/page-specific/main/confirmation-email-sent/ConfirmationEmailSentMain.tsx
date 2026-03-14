@@ -1,7 +1,7 @@
 "use client";
 
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { IcfyIcon } from "@shared/IcfyIcon";
 import { useResendConfirmationEmailMutation } from "@apiSlices/email.api.slice";
 import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 import { useRouter, useSearchParams } from "next/navigation";

@@ -6,7 +6,7 @@ import { useCurrentUrlPath } from "@/hooks/useCurrentUrlPath";
 import { IRole } from "@/types";
 import { useAuthState } from "@/hooks/useAuthState";
 import { UserRoles } from "@/constants/user";
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
 
 interface IProtectedRouteProviderProps {
   children: ReactNode;

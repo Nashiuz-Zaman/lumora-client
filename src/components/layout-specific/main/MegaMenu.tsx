@@ -7,7 +7,7 @@ import { ICategoryTreeItem, TProductWithMinimalReviewStats } from "@/types";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { InnerContainer } from "@containers/InnerContainer";
-import { GridCard } from "@/components/shared/GridCard";
+import { GridCard } from "@shared/GridCard";
 
 // Components - Local
 import { FeaturedProductCard } from "./FeaturedProductCard";

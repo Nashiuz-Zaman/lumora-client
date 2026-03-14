@@ -1,7 +1,7 @@
 "use client";
 
 // components
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 import { IOrder } from "@/types";
 
 // utils

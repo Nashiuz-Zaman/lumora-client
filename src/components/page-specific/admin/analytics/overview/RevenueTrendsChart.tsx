@@ -1,6 +1,6 @@
 "use client";
 
-import { AreaChart } from "@/components/shared/AreaChart";
+import { AreaChart } from "@shared/AreaChart";
 import { useGetRevenueTrendsQuery } from "@apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 

@@ -6,10 +6,10 @@ import { AddReviewModal } from "@modals/AddReviewModal";
 import { ReviewItem } from "./ReviewItem";
 import { ReviewBreakdown } from "./ReviewBreakdown";
 
-import { Pagination } from "@/components/shared/Pagination";
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
-import { NoData } from "@/components/shared/NoData";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { Pagination } from "@shared/Pagination";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
+import { NoData } from "@shared/NoData";
+import { ErrorMessage } from "@shared/ErrorMessage";
 
 import { useGetProductReviewsAndStatsQuery } from "@apiSlices/reviews.api.slice";
 import { IReview, IReviewStats } from "@/types/review";

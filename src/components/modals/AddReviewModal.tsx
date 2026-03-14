@@ -13,12 +13,12 @@ import { showToast } from "@/utils/showToast";
 import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 
 // shared
-import { StarRatingInput } from "@/components/shared/StarRatingInput";
+import { StarRatingInput } from "@shared/StarRatingInput";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { TextArea } from "@/components/shared/TextArea";
-import { InputField } from "@/components/shared/InputField";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { TextArea } from "@shared/TextArea";
+import { InputField } from "@shared/InputField";
+import { ErrorMessage } from "@shared/ErrorMessage";
 
 import { ReviewIcon } from "@icons/ReviewIcon";
 import { BaseModal } from "./BaseModal";

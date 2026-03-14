@@ -2,12 +2,12 @@
 
 import { useState, useCallback, useEffect } from "react";
 
-import { AccordionVertical } from "@/components/shared/AccordionVertical";
+import { AccordionVertical } from "@shared/AccordionVertical";
 import { CartIcon } from "@icons/CartIcon";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { RatingStars } from "@/components/shared/RatingStars";
-import { QuantitySelector } from "@/components/shared/QuantitySelector";
-import { PriceDisplay } from "@/components/shared/PriceDisplay";
+import { RatingStars } from "@shared/RatingStars";
+import { QuantitySelector } from "@shared/QuantitySelector";
+import { PriceDisplay } from "@shared/PriceDisplay";
 import { AboutProduct } from "./AboutProduct";
 
 // types

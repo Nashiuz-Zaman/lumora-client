@@ -5,7 +5,7 @@ import { CaretRightIcon } from "@icons/CaretRightIcon";
 import { TProductWithMinimalReviewStats } from "@/types";
 import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
-import { RatingStars } from "@/components/shared/RatingStars";
+import { RatingStars } from "@shared/RatingStars";
 
 // Featured product card
 export const FeaturedProductCard = ({

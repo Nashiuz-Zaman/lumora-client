@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { RatingStars } from "@/components/shared/RatingStars";
+import { RatingStars } from "@shared/RatingStars";
 import { ThumbIconFilledIcon } from "@icons/ThumbIconFilledIcon";
 
 import { useAuthState } from "@/hooks/useAuthState";

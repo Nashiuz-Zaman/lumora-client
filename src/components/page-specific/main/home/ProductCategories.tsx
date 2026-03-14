@@ -1,5 +1,5 @@
 import { CenterContainer } from "@containers/CenterContainer";
-import { ProductCategoryCard } from "@/components/shared/ProductCategoryCard";
+import { ProductCategoryCard } from "@shared/ProductCategoryCard";
 import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 
 export const ProductCategories = async () => {

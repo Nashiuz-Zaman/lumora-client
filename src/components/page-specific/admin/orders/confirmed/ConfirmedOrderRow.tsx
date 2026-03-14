@@ -2,7 +2,7 @@
 
 // components
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 import { TruckIcon } from "@icons/TruckIcon";
 import { WarningIcon } from "@icons/WarningIcon";
 

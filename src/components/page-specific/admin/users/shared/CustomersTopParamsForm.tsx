@@ -1,6 +1,6 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared/ParamsFilterForm";
+import { IParamsFilterFormProps, ParamsFilterForm } from "@shared/ParamsFilterForm";
 import { ICustomerQueriesParams } from "@/hooks/useCustomersQueries";
 import { IOrder } from "@/types";
 

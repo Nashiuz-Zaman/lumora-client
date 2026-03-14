@@ -6,11 +6,11 @@ import { BaseModal } from "./BaseModal";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { CartIcon } from "@icons/CartIcon";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
-import { PriceDisplay } from "@/components/shared/PriceDisplay";
-import { VariantSelector } from "@/components/shared/VariantSelector";
-import { QuantitySelector } from "@/components/shared/QuantitySelector";
+import { ErrorMessage } from "@shared/ErrorMessage";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
+import { PriceDisplay } from "@shared/PriceDisplay";
+import { VariantSelector } from "@shared/VariantSelector";
+import { QuantitySelector } from "@shared/QuantitySelector";
 import { useLazyGetProductForCustomerQuery } from "@apiSlices/product.api.slice";
 import { useSelector, useDispatch } from "react-redux";
 import {

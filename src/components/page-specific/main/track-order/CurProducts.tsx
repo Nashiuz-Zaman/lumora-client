@@ -1,7 +1,7 @@
 "use client";
 
 // core
-import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@shared/TabularData";
 import { TrackOrderTableProductRow } from "./TrackOrderTableProductRow";
 import { TPopulatedCartItem } from "@/types";
 

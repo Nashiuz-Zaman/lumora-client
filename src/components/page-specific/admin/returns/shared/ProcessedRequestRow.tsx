@@ -1,6 +1,6 @@
 "use client";
 
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 import { IReturnRequest } from "@/types/returnRequest";
 import { formatDateTime } from "@/utils/formatDateTime";
 import { formatPrice } from "@/utils/formatPrice";

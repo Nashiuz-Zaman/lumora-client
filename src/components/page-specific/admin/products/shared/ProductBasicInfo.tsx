@@ -1,8 +1,8 @@
 "use client";
 
 import { useFormContext, Controller } from "react-hook-form";
-import { InputField } from "@/components/shared/InputField";
-import RichTextEditor from "@/components/shared/RichTextEditor/RichTextEditor";
+import { InputField } from "@shared/InputField";
+import RichTextEditor from "@shared/RichTextEditor/RichTextEditor";
 import { IProduct } from "@/types";
 import { CategorySelector } from "./CategorySelector";
 

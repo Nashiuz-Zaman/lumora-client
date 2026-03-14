@@ -1,8 +1,8 @@
 "use client";
 
 // Components
-import { Pagination } from "@/components/shared/Pagination";
-import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { Pagination } from "@shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@shared/TabularData";
 import { WarningIcon } from "@icons/WarningIcon";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { CustomersTopParamsForm } from "../../shared/CustomersTopParamsForm";

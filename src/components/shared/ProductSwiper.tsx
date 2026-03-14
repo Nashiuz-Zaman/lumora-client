@@ -1,7 +1,7 @@
 "use client";
 
-import { CustomSwiper, TCustomSwiperProps } from "@/components/shared/CustomSwiper";
-import { ProductCard } from "@/components/shared/ProductCard";
+import { CustomSwiper, TCustomSwiperProps } from "@shared/CustomSwiper";
+import { ProductCard } from "@shared/ProductCard";
 import { TProductWithMinimalReviewStats } from "@/types";
 
 interface IProductCollectionSwiperProps {

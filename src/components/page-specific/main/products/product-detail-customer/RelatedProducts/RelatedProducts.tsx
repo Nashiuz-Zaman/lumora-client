@@ -1,7 +1,7 @@
 "use client";
 
-import { TCustomSwiperProps } from "@/components/shared/CustomSwiper";
-import { ProductSwiper } from "@/components/shared/ProductSwiper";
+import { TCustomSwiperProps } from "@shared/CustomSwiper";
+import { ProductSwiper } from "@shared/ProductSwiper";
 import { InnerContainer } from "@containers/InnerContainer";
 import { TProductWithMinimalReviewStats } from "@/types";
 import { RelatedProductsHeader } from "./RelatedProductsHeader";

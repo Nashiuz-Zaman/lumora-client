@@ -8,9 +8,9 @@ import { useForm } from "react-hook-form";
 // Components
 import { BaseModal } from "@modals/BaseModal";
 import { ButtonBtn } from "@buttons/ButtonBtn";
-import { InputField } from "@/components/shared/InputField";
-import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
-import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { InputField } from "@shared/InputField";
+import { LoadingSpinner } from "@shared/LoadingSpinner";
+import { ErrorMessage } from "@shared/ErrorMessage";
 
 // Redux
 import {

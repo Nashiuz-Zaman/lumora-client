@@ -1,6 +1,6 @@
 "use client";
 
-import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { InputCheckbox } from "@shared/InputCheckbox";
 import { IOrder } from "@/types";
 import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/statusUtils";
 import { formatPrice } from "@/utils/formatPrice";

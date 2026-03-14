@@ -3,7 +3,7 @@
 // Components
 import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
 import { InnerContainer } from "@containers/InnerContainer";
-import { UserMenuWithoutAvatar } from "@/components/shared/UserMenuWithoutAvatar";
+import { UserMenuWithoutAvatar } from "@shared/UserMenuWithoutAvatar";
 import { useAuthMethods } from "@/hooks/useAuthMethods";
 import { useRefState } from "@/hooks/useRefState";
 import { useEffect, useRef } from "react";

@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { NoData } from "@/components/shared/NoData";
-import { CustomSwiper } from "@/components/shared/CustomSwiper";
+import { NoData } from "@shared/NoData";
+import { CustomSwiper } from "@shared/CustomSwiper";
 import ViewVideoModal from "@modals/ViewVideoModal";
 import { useModal } from "@/hooks/useModal";
 import { extractVideoId } from "@/utils/extractVideoId";

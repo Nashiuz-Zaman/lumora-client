@@ -1,7 +1,7 @@
 import { CenterContainer } from "@containers/CenterContainer";
 import { InnerContainer } from "@containers/InnerContainer";
-import { TCustomSwiperProps } from "@/components/shared/CustomSwiper";
-import { ProductSwiper } from "@/components/shared/ProductSwiper";
+import { TCustomSwiperProps } from "@shared/CustomSwiper";
+import { ProductSwiper } from "@shared/ProductSwiper";
 import { fetchCollectionProducts } from "@/server-functions/fetchCollectionProducts";
 import { ICategoryTreeItem } from "@/types";
 import { ProductsFromCollectionHeader } from "./ProductsFromCollectionHeader";
