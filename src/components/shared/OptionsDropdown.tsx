@@ -31,7 +31,7 @@ export const OptionsDropdown = ({
 
   return (
     <div
-      className={`modal-focus w-[12rem] p-5 bg-white shadow-md absolute -bottom-1 right-0 translate-y-full rounded-lg border border-neutral-200 ${className}`}
+      className={`modal-focus w-48 p-5 bg-white shadow-md absolute -bottom-1 right-0 translate-y-full rounded-lg border border-neutral-200 ${className}`}
     >
       {children}
     </div>

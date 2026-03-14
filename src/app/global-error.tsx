@@ -16,7 +16,7 @@ export default function GlobalError({
         <div className="bg-white rounded-lg shadow-md border border-neutral-100 p-4">
           <h2 className="mb-5 text-3xl font-semibold">Something went wrong!</h2>
 
-          <ButtonBtn onClick={() => reset()} className="primaryClasses !py-2 mx-auto">
+          <ButtonBtn onClick={() => reset()} className="primaryClasses py-2! mx-auto">
             Try Again
           </ButtonBtn>
         </div>
