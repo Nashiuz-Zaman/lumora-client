@@ -14,7 +14,7 @@ import { ExpiredCouponRow } from "./ExpiredCouponRow";
 import { ConfirmationModal } from "@/components/modals";
 
 // Providers
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
 import {
@@ -37,7 +37,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { ICoupon } from "@/types";
 
 // Redux / API
-import { useDeleteCouponsMutation } from "@/libs/redux/apiSlices/coupon/couponApiSlice";
+import { useDeleteCouponsMutation } from "@/libs/redux/apiSlices/coupon.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

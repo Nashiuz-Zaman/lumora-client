@@ -1,5 +1,5 @@
 import { DonutChart } from "@/components/shared";
-import { useGetTopCategorySalesPercentageQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { useGetTopCategorySalesPercentageQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 
 export const TopCategorySalesPercentageChart = ({

@@ -2,15 +2,14 @@
 import { UserRoles } from "@/constants";
 import { showToast, catchAsyncGeneral } from "@/utils";
 import { useRouter } from "next/navigation";
-import { useAuthState } from "./useAuthState";
 import {
   ILocalLoginRequest,
   useLocalLoginMutation,
   useSocialLoginMutation,
   useLogoutMutation,
-} from "@/libs/redux/apiSlices/auth/authApiSlice";
+} from "@/libs/redux/apiSlices/auth.api.slice";
 import useFirebaseMethods from "./useFirebaseMethods";
-import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useSignupCustomerMutation } from "@/libs/redux/apiSlices/customer.api.slice";
 import { TAuthForm } from "@/components/page-specific";
 import { UseFormSetError } from "react-hook-form";
 import { IUser } from "@/types";
@@ -31,7 +30,7 @@ export const useAuthMethods = () => {
     useSocialLoginMutation();
 
   const router = useRouter();
-  const { setUser } = useAuthState();
+
   const { customer } = UserRoles;
   const { loginGoogle } = useFirebaseMethods();
 
@@ -75,7 +74,6 @@ export const useAuthMethods = () => {
 
       if (res?.success) {
         const userData = res?.data?.user;
-        setUser(userData);
         if (onSuccess && typeof onSuccess === "function") onSuccess();
 
         showToast({
@@ -83,7 +81,7 @@ export const useAuthMethods = () => {
         });
 
         router.push(
-          `/${userData?.role.name === customer ? "customer" : "admin"}`,
+          `/${userData?.role?.name === customer ? "customer" : "admin"}`,
         );
       }
     },
@@ -115,11 +113,11 @@ export const useAuthMethods = () => {
 
       if (res?.success) {
         const userData = res?.data?.user;
-        setUser(userData);
+
         showToast({ message: res.message });
 
         router.push(
-          `/${userData?.role.name === customer ? "customer" : "admin"}`,
+          `/${userData?.role?.name === customer ? "customer" : "admin"}`,
         );
       }
     }
@@ -129,7 +127,6 @@ export const useAuthMethods = () => {
     const res = await logoutTrigger().unwrap();
 
     if (res.status === "success") {
-      setUser(null);
       router.replace("/");
       showToast({ message: "Signed Out", position: "top-center" });
     }

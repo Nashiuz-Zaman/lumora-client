@@ -1,15 +1,13 @@
 import { TUserStatusValue } from "@/constants";
 import { IRole } from "./role";
+import { IUserBasic } from "./shared";
 
 // ---------------------------------------------------------
 // USER MODEL
 // ---------------------------------------------------------
-export interface IUser {
+export interface IUser extends IUserBasic {
   _id?: string;
   displayName?: string;
-  name?: string;
-  email: string;
-  phone?: string;
   image?: string;
 
   isVerified: boolean;
@@ -23,7 +21,7 @@ export interface IUser {
 }
 
 // ---------------------------------------------------------
-// POPULATED USER 
+// POPULATED USER
 // ---------------------------------------------------------
 export interface IUserPopulated extends IUser {
   role: IRole;

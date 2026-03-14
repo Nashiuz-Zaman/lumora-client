@@ -1,7 +1,7 @@
 "use client";
 
 import { AreaChart } from "@/components/shared";
-import { useGetRevenueTrendsQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { useGetRevenueTrendsQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
 import { IAnalyticDateParams } from "@/types";
 
 interface IRevenueTrendsChartProps {

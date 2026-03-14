@@ -15,8 +15,8 @@ import { AboutProduct } from "./AboutProduct";
 // types
 import { IVariant, IProductWithFullReviewsStats } from "@/types/product";
 import { VariantSelector } from "./VariantSelector";
-import { ICartAction } from "@/types/cart";
-import { useCartActions } from "@/hooks";
+import { IAddItemToCartRequest } from "@/libs/redux/apiSlices/cart.api.slice";
+import { useCartState } from "@/hooks/useCartState";
 
 interface IRightSideDetailsProps {
   data: IProductWithFullReviewsStats;
@@ -34,7 +34,7 @@ export const RightSideDetails = ({
   const [quantity, setQuantity] = useState(1);
   const [isClient, setIsClient] = useState(false);
 
-  const { addRemoveProductToCart, isCartLoading } = useCartActions();
+  const { addProductToCart, isCartBusy } = useCartState();
 
   useEffect(() => {
     setIsClient(true);
@@ -50,14 +50,13 @@ export const RightSideDetails = ({
   const handleAddToCart = () => {
     if (!curProductVariant) return;
 
-    const cartPayload: ICartAction = {
-      action: "add",
-      product: data.product._id!,
-      variant: curProductVariant?._id as string,
+    const cartPayload: IAddItemToCartRequest = {
+      productId: data.product._id || "",
+      variantId: curProductVariant?._id || "",
       quantity,
     };
 
-    addRemoveProductToCart({ data: cartPayload });
+    addProductToCart({ data: cartPayload });
   };
 
   const handleDecrease = () => {
@@ -144,7 +143,7 @@ export const RightSideDetails = ({
         {/* Add to Cart */}
         <ButtonBtn
           onClick={handleAddToCart}
-          isLoading={isCartLoading}
+          isLoading={isCartBusy}
           disabled={isAddToCartDisabled || !curProductVariant}
           className="successClasses py-2.5! gap-2!"
         >

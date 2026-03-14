@@ -26,7 +26,7 @@ import {
   useApproveReturnRequestMutation,
   useGetReturnRequestQuery,
   useRejectReturnRequestMutation,
-} from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
+} from "@/libs/redux/apiSlices/returnRequest.api.slice";
 
 // Utils
 import { catchAsyncGeneral, formatPrice, showToast } from "@/utils";
@@ -40,7 +40,7 @@ interface IRefundForm {
 export const ReturnRequestModal = () => {
   const dispatch = useDispatch();
   const { requestId, isRequestModalOpen } = useSelector(
-    (state: TRootState) => state.returnRequest
+    (state: TRootState) => state.returnRequest,
   );
 
   const [approveRequest, { isLoading: isApproving }] =
@@ -52,7 +52,10 @@ export const ReturnRequestModal = () => {
 
   const { data, isFetching, isError } = useGetReturnRequestQuery(
     { id: requestId as string, populate: "order" },
-    { skip: !isRequestModalOpen || !requestId, refetchOnMountOrArgChange: true }
+    {
+      skip: !isRequestModalOpen || !requestId,
+      refetchOnMountOrArgChange: true,
+    },
   );
 
   const request = data?.success ? data.data?.returnRequest : undefined;
@@ -216,7 +219,7 @@ export const ReturnRequestModal = () => {
                     max: {
                       value: orderTotal,
                       message: `Cannot exceed order total (${formatPrice(
-                        orderTotal
+                        orderTotal,
                       )})`,
                     },
                   })}

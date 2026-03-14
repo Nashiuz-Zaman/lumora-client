@@ -2,16 +2,16 @@
 
 import StepIndicator from "@/components/layout-specific/cart-checkout/StepIndicator";
 import { InnerContainer, LoadingSpinner } from "@/components/shared";
-import { useCartState } from "@/hooks";
 import { OrderSummary } from "@/components/layout-specific/cart-checkout/OrderSummary";
 import { usePathname } from "next/navigation";
+import { useCartState } from "@/hooks/useCartState";
 
 const CartCheckoutLayoutMain = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { cart, isCartLoading } = useCartState();
+  const { cart, isCartBusy } = useCartState();
   const pathname = usePathname();
 
   let title = "Your Cart";
@@ -37,9 +37,7 @@ const CartCheckoutLayoutMain = ({
                 ) : null}
               </div>
 
-              {isCartLoading && (
-                <LoadingSpinner className="py-0! my-0! static!" />
-              )}
+              {isCartBusy && <LoadingSpinner className="py-0! my-0! static!" />}
             </div>
             <div className="hidden md:block">
               <StepIndicator />

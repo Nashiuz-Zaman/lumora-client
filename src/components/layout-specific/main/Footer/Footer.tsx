@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { InnerContainer } from "@/components/shared";
 import LogoSocials from "./LogoSocials";
-import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category/categoryApiSlice";
+import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category.api.slice";
 
 import { socialMediaLinks } from "@/static-data/footerData";
 import { useProductSearchParamsManagement } from "@/hooks";

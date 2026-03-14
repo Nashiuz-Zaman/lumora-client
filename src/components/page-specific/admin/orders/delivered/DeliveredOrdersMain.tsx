@@ -10,7 +10,7 @@ import {
 } from "@/components/shared";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import { ConfirmationModal } from "@/components/modals";
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 import { DeliveredOrderRow } from "./DeliveredOrderRow";
 
 import {
@@ -25,7 +25,7 @@ import { useRef } from "react";
 import { UserRoles, OrderSortOptions, OrderStatus } from "@/constants";
 import { catchAsyncGeneral, showToast } from "@/utils";
 import { IOrder } from "@/types";
-import { useArchiveOrdersMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { useArchiveOrdersMutation } from "@/libs/redux/apiSlices/order.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

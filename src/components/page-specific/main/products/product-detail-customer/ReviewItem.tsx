@@ -9,7 +9,7 @@ import {
 } from "@/components/shared";
 
 import { useAuthState } from "@/hooks";
-import { useMarkReviewHelpfulMutation } from "@/libs/redux/apiSlices/reviews/reviewsApiSlice";
+import { useMarkReviewHelpfulMutation } from "@/libs/redux/apiSlices/reviews.api.slice";
 
 import {
   showToast,

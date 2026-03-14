@@ -5,13 +5,13 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // Hooks
-import { useCartState, useModal, useOrderActions } from "@/hooks";
+import { useModal, useOrderActions } from "@/hooks";
 
 // Components
 import { CustomerInfoForm } from "./CustomerInfoForm";
 
 // Redux
-import { usePlaceOrderMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { usePlaceOrderMutation } from "@/libs/redux/apiSlices/order.api.slice";
 
 // Utils
 import { catchAsyncGeneral, showToast } from "@/utils";
@@ -20,9 +20,10 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { UseFormSetError } from "react-hook-form";
 import { ICustomerInfoFormValues } from "@/types";
 import { DummyPaymentGuideModal } from "@/components/modals";
+import { useCartState } from "@/hooks/useCartState";
 
 export const CheckoutPageMain = () => {
-  const { cart, isCartLoading } = useCartState();
+  const { cart, isCartBusy } = useCartState();
   const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { createOrderFromCart } = useOrderActions();
@@ -30,22 +31,22 @@ export const CheckoutPageMain = () => {
   const { isModalOpen: isGuideModalOpen, openModal, closeModal } = useModal();
 
   useEffect(() => {
-    if (!isCartLoading && !cart?._id) {
+    if (!isCartBusy && !cart?._id) {
       router.replace("/cart");
     }
-  }, [cart, isCartLoading, router]);
+  }, [cart, isCartBusy, router]);
 
   useEffect(() => {
     if (
       !isGuideModalOpen &&
-      !isCartLoading &&
+      !isCartBusy &&
       Array.isArray(cart?.items) &&
       cart?.items.length > 0
     ) {
       openModal();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isCartLoading, JSON.stringify(cart?.items)]);
+  }, [isCartBusy, JSON.stringify(cart?.items)]);
 
   const handlePlaceOrder = catchAsyncGeneral(
     async (args) => {
@@ -81,12 +82,13 @@ export const CheckoutPageMain = () => {
       onFinally() {
         setIsSubmitting(false);
       },
-    }
+    },
   );
 
   return (
     <div>
       <DummyPaymentGuideModal isOpen={isGuideModalOpen} onClose={closeModal} />
+
       <CustomerInfoForm
         onSubmit={handlePlaceOrder}
         isSubmitting={isSubmitting}

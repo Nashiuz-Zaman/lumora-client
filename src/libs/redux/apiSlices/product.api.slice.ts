@@ -1,5 +1,5 @@
 import { IProductSearchQueryParams } from "@/hooks";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import {
   IApiResponse,
   IGetProductsParams,

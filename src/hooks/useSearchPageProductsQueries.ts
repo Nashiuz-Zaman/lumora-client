@@ -14,7 +14,7 @@ import {
 } from "@/utils";
 import { useEffect, useMemo, useState } from "react";
 import { useProductSearchParamsManagement } from "./useProductSearchParamsManagement";
-import { useSearchProductsQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useSearchProductsQuery } from "@/libs/redux/apiSlices/product.api.slice";
 
 export interface ISearchPageForm {
   subCategory: Record<string, boolean>;
@@ -71,7 +71,7 @@ export const useSearchPageProductsQueries = () => {
     }) as IProductSearchQueryParams,
     {
       skip: !isClient,
-    }
+    },
   );
 
   const { page, search, q, form } = paramsFromUrl;

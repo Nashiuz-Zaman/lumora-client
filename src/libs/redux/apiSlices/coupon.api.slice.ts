@@ -1,5 +1,5 @@
 import { IUseCouponQueriesArgs } from "@/hooks";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 import { IApiResponse, ICoupon, TQueryDataWithQueryMeta } from "@/types";
 
 export const couponApiSlice = baseApiSlice.injectEndpoints({

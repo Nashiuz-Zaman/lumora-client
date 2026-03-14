@@ -11,7 +11,7 @@ import { Heading } from "./Heading";
 import { showToast, catchAsyncGeneral } from "@/utils";
 
 // Redux
-import { useUpdateCustomerPasswordFromSettingsMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useUpdateCustomerPasswordFromSettingsMutation } from "@/libs/redux/apiSlices/customer.api.slice";
 
 interface IPasswordFormData {
   currentPassword: string;

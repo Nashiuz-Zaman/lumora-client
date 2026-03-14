@@ -1,4 +1,4 @@
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 
 export const emailApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({

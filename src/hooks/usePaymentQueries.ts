@@ -16,7 +16,7 @@ import isEqual from "lodash/isEqual";
 import { OrderSortOptions } from "@/constants/order";
 
 // API Hooks
-import { useGetPaymentsQuery } from "@/libs/redux/apiSlices/payment/paymentApiSlice";
+import { useGetPaymentsQuery } from "@/libs/redux/apiSlices/payment.api.slice";
 
 // Types
 import { IQueryMeta } from "@/types";
@@ -54,7 +54,7 @@ export const usePaymentQueries = ({
   const rawQueryParams = useMemo(
     () =>
       getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
-    [searchParams]
+    [searchParams],
   );
 
   // Normalize params safely
@@ -65,7 +65,7 @@ export const usePaymentQueries = ({
       search: (rawQueryParams.search as string) || "",
       type: transactionType,
     }),
-    [rawQueryParams, transactionType]
+    [rawQueryParams, transactionType],
   );
 
   // Controlled form params
@@ -86,7 +86,7 @@ export const usePaymentQueries = ({
       buildUrlWithParams(path, {
         ...cleanObject(formParams),
         ...(page ? { page } : {}),
-      })
+      }),
     );
   };
 

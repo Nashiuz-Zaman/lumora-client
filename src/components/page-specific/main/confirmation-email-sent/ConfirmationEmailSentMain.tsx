@@ -1,7 +1,7 @@
 "use client";
 
 import { ButtonBtn, IcfyIcon } from "@/components/shared";
-import { useResendConfirmationEmailMutation } from "@/libs/redux/apiSlices/email/emailApiSlice";
+import { useResendConfirmationEmailMutation } from "@/libs/redux/apiSlices/email.api.slice";
 import { catchAsyncGeneral } from "@/utils";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";

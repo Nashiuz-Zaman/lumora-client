@@ -37,7 +37,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { IPaginatedCustomer } from "@/types";
 
 // Redux / API
-import { useBlockCustomersMutation } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useBlockCustomersMutation } from "@/libs/redux/apiSlices/customer.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" }, // checkbox only
@@ -173,4 +173,3 @@ export const ActiveCustomersMain = () => {
     </ProtectedRouteProvider>
   );
 };
-

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import Link from "next/link";
 import {
   HeaderProductsSearchbar,
@@ -14,25 +14,18 @@ import {
   BREAKPOINTS,
   useAuthMethods,
   useAuthState,
-  useCartState,
   useMediaQuery,
 } from "@/hooks";
 import { ISearchbarResultProduct } from "@/types";
-import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useLazySearchInSearchbarQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { UserRoles } from "@/constants/user";
+import { useCartState } from "@/hooks/useCartState";
 
 export const HeaderSearchAvatarAuthOptions = () => {
   const { logout } = useAuthMethods();
   const { user } = useAuthState();
   const { cart } = useCartState();
   const isMinSm = useMediaQuery(BREAKPOINTS.min["sm"]!);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsClient(true);
-    }, 0);
-  }, []);
 
   // 1. Auth & Role Logic
   const { isAdmin, isCustomer, isAuthenticated } = useMemo(() => {
@@ -69,59 +62,59 @@ export const HeaderSearchAvatarAuthOptions = () => {
     />
   );
 
-  if (isClient)
-    return (
-      <>
-        {/* Desktop search bar */}
-        {isMinSm && (
-          <HeaderProductsSearchbar<ISearchbarResultProduct>
+  return (
+    <>
+      {/* Desktop search bar */}
+      {isMinSm && (
+        <HeaderProductsSearchbar<ISearchbarResultProduct>
+          results={results}
+          renderResult={renderResult}
+          showIcon
+          trigger={triggerSearch}
+          className="border-neutral-200"
+          modalClassName="productSearchbarModal"
+        />
+      )}
+
+      <div className="ml-auto flex items-center gap-4">
+        {/* Mobile expandable search */}
+        {!isMinSm && (
+          <ExpandableSearchPortal
+            portalTargetId="header-search-mobile-screen"
+            buttonClasses="text-xl"
+            horizontalAccordionClasses="mb-5 xl:pb-6"
             results={results}
             renderResult={renderResult}
-            showIcon
             trigger={triggerSearch}
-            className="border-neutral-200"
+            searchbarClasses="border-neutral-200"
             modalClassName="productSearchbarModal"
           />
         )}
 
-        <div className="ml-auto flex items-center gap-4">
-          {/* Mobile expandable search */}
-          {!isMinSm && (
-            <ExpandableSearchPortal
-              portalTargetId="header-search-mobile-screen"
-              buttonClasses="text-xl"
-              horizontalAccordionClasses="mb-5 xl:pb-6"
-              results={results}
-              renderResult={renderResult}
-              trigger={triggerSearch}
-              searchbarClasses="border-neutral-200"
-              modalClassName="productSearchbarModal"
-            />
+        <div className="flex items-center gap-5">
+          {/* Cart always on the left */}
+          <CartBtn itemsQty={cart?.totalItemQty || 0} />
+
+          {/* Auth / User menu */}
+          {!isAuthenticated ? (
+            <div className="flex gap-5 font-medium">
+              <Link className="hover:underline" href="/auth/login">
+                Login
+              </Link>
+              <Link className="hover:underline" href="/auth/signup">
+                Sign Up
+              </Link>
+            </div>
+          ) : (
+            <>
+              {isAdmin && <UserMenuWithoutAvatar logoutFunction={logout} />}
+              {isCustomer && user && (
+                <UserMenuWithAvatar userData={user} logoutFunction={logout} />
+              )}
+            </>
           )}
-
-          <div className="ml-auto flex items-center gap-5">
-            <CartBtn itemsQty={cart?.totalItemQty || 0} />
-
-            {!isAuthenticated ? (
-              <>
-                <Link className="hover:underline" href="/auth/login">
-                  Login
-                </Link>
-                <Link className="hover:underline" href="/auth/signup">
-                  Sign Up
-                </Link>
-              </>
-            ) : (
-              <>
-                {isAdmin && <UserMenuWithoutAvatar logoutFunction={logout} />}
-
-                {isCustomer && user && (
-                  <UserMenuWithAvatar userData={user} logoutFunction={logout} />
-                )}
-              </>
-            )}
-          </div>
         </div>
-      </>
-    );
+      </div>
+    </>
+  );
 };

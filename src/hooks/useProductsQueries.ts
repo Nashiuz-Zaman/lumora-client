@@ -17,7 +17,7 @@ import isEqual from "lodash/isEqual";
 import { ProductSortOptions } from "@/constants/product";
 
 // API Hooks
-import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product/productApiSlice";
+import { useGetProductsAdminQuery } from "@/libs/redux/apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 
 // Types
@@ -44,7 +44,7 @@ export const useProductsQueries = () => {
         "status",
         "topCategory",
       ]),
-    [searchParams]
+    [searchParams],
   );
 
   // Normalize params safely
@@ -59,7 +59,7 @@ export const useProductsQueries = () => {
         ? (rawQueryParams.topCategory as string)
         : undefined,
     }),
-    [rawQueryParams]
+    [rawQueryParams],
   );
 
   // Controlled form params
@@ -80,7 +80,7 @@ export const useProductsQueries = () => {
       buildUrlWithParams(path, {
         ...cleanObject(formParams),
         ...(page ? { page } : {}),
-      })
+      }),
     );
   };
 
@@ -106,7 +106,7 @@ export const useProductsQueries = () => {
         limitFields:
           "defaultImage,title,status,brand,defaultPrice,totalVariants,totalStock,updatedAt,slug",
       }),
-    [finalQueryParams]
+    [finalQueryParams],
   );
 
   const query = useGetProductsAdminQuery(queryArgs);

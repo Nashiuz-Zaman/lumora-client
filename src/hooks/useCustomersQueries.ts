@@ -17,7 +17,7 @@ import isEqual from "lodash/isEqual";
 import { UserStatus } from "@/constants/user";
 
 // API
-import { useGetCustomerListQuery } from "@/libs/redux/apiSlices/customer/customerApiSlice";
+import { useGetCustomerListQuery } from "@/libs/redux/apiSlices/customer.api.slice";
 
 // Types
 import { IQueryMeta } from "@/types";
@@ -73,7 +73,7 @@ export const useCustomersQueries = ({
         "sort",
         "status",
       ]),
-    [searchParams]
+    [searchParams],
   );
 
   // -----------------------------
@@ -88,10 +88,10 @@ export const useCustomersQueries = ({
         status ??
         (cleanStatusParam(
           rawQueryParams.status,
-          Object.values(UserStatus)
+          Object.values(UserStatus),
         ) as TCustomerStatusValue),
     }),
-    [rawQueryParams, status]
+    [rawQueryParams, status],
   );
 
   // -----------------------------
@@ -115,7 +115,7 @@ export const useCustomersQueries = ({
       buildUrlWithParams(pathname, {
         ...cleanObject(formParams),
         ...(page ? { page } : {}),
-      })
+      }),
     );
   };
 
@@ -140,7 +140,7 @@ export const useCustomersQueries = ({
         limit,
         limitFields: limitFields.join(","),
       }),
-    [finalQueryParams, limit, limitFields]
+    [finalQueryParams, limit, limitFields],
   );
 
   // -----------------------------

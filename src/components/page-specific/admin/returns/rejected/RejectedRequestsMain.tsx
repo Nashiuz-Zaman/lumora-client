@@ -13,7 +13,7 @@ import { ConfirmationModal } from "@/components/modals";
 import { ReturnsTopParamsForm } from "../shared/ReturnsTopParamsForm";
 
 // Providers
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
 import {
@@ -40,7 +40,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { IReturnRequest } from "@/types";
 
 // Redux / API
-import { useDeleteReturnRequestsMutation } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
+import { useDeleteReturnRequestsMutation } from "@/libs/redux/apiSlices/returnRequest.api.slice";
 import { ProcessedRequestRow } from "../shared/ProcessedRequestRow";
 
 const columns: TTableColumn[] = [

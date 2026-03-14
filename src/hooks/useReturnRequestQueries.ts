@@ -12,7 +12,7 @@ import {
 } from "@/utils";
 
 // API Hook
-import { useGetReturnRequestsQuery } from "@/libs/redux/apiSlices/returnRequest/returnRequestApiSlice";
+import { useGetReturnRequestsQuery } from "@/libs/redux/apiSlices/returnRequest.api.slice";
 
 // Types
 import { IQueryMeta, IReturnRequest } from "@/types";
@@ -49,7 +49,7 @@ export const useReturnRequestQueries = ({
   const rawQueryParams = useMemo(
     () =>
       getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
-    [searchParams]
+    [searchParams],
   );
 
   // Normalize query params
@@ -62,7 +62,7 @@ export const useReturnRequestQueries = ({
       search: (rawQueryParams.search as string) || "",
       status: requestStatus,
     }),
-    [rawQueryParams, requestStatus]
+    [rawQueryParams, requestStatus],
   );
 
   // Controlled form state
@@ -83,7 +83,7 @@ export const useReturnRequestQueries = ({
       buildUrlWithParams(path, {
         ...cleanObject(formParams),
         ...(page ? { page } : {}),
-      })
+      }),
     );
   };
 

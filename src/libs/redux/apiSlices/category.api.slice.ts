@@ -1,5 +1,5 @@
 import { ICategoryTreeItem } from "@/types/category";
-import { baseApiSlice } from "../baseApiSlice";
+import { baseApiSlice } from "./base.api.slice";
 
 export const categoryApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({

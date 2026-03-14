@@ -1,11 +1,11 @@
-import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary/cloudinaryApiSlice";
+import { useLazyGetSignedUrlQuery } from "@/libs/redux/apiSlices/cloudinary.api.slice";
 import axios from "axios";
 
 type TGetSignedUrlFn = ReturnType<typeof useLazyGetSignedUrlQuery>[0];
 
 export const uploadFileWithSignedUrl = async (
   file: File,
-  getSignedUrl: TGetSignedUrlFn
+  getSignedUrl: TGetSignedUrlFn,
 ): Promise<string | void> => {
   const response = await getSignedUrl();
 

@@ -1,4 +1,5 @@
 import { TQueryDataWithQueryMeta } from "./generic";
+import { IUserBasic } from "./shared";
 import { IUser } from "./user";
 
 // ---------------------------------------------------------
@@ -16,10 +17,7 @@ export interface ICustomerAddress {
 // ---------------------------------------------------------
 // BASE CUSTOMER USER INFO (shared shape)
 // ---------------------------------------------------------
-export interface ICustomerUserBase {
-  name: IUser["name"];
-  email: IUser["email"];
-  phone?: IUser["phone"];
+export interface ICustomerUserBase extends IUserBasic {
   image?: IUser["image"];
   createdAt: IUser["createdAt"];
   lastLoginAt?: IUser["lastLoginAt"];

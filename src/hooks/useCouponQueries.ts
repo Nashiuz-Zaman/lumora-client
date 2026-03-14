@@ -13,7 +13,7 @@ import {
 import isEqual from "lodash/isEqual";
 
 // API Hooks
-import { useGetCouponsQuery } from "@/libs/redux/apiSlices/coupon/couponApiSlice";
+import { useGetCouponsQuery } from "@/libs/redux/apiSlices/coupon.api.slice";
 
 // Types
 import { ICoupon, IQueryMeta } from "@/types";
@@ -48,7 +48,7 @@ export const useCouponQueries = ({
   const rawQueryParams = useMemo(
     () =>
       getQueryParamsFromSearchParams(searchParams, ["page", "search", "sort"]),
-    [searchParams]
+    [searchParams],
   );
 
   // Normalize query params
@@ -59,7 +59,7 @@ export const useCouponQueries = ({
       search: (rawQueryParams?.search as string) || "",
       status: couponStatus,
     }),
-    [rawQueryParams, couponStatus]
+    [rawQueryParams, couponStatus],
   );
 
   // Controlled form params
@@ -80,7 +80,7 @@ export const useCouponQueries = ({
       buildUrlWithParams(path, {
         ...cleanObject(formParams),
         ...(page ? { page } : {}),
-      })
+      }),
     );
   };
 

@@ -20,7 +20,7 @@ import { CustomerDashboardFilterForm } from "../shared/CustomerDashboardFilterFo
 import { ICancelOrdersCustomerArgs, IOrder, TSortOptions } from "@/types";
 import { OrderStatus } from "@/constants";
 import { ConfirmationModal } from "@/components/modals";
-import { useCancelOrdersCustomerMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { useCancelOrdersCustomerMutation } from "@/libs/redux/apiSlices/order.api.slice";
 import { catchAsyncGeneral, showToast } from "@/utils";
 
 const STATUSES = [
@@ -89,8 +89,8 @@ export const CustomerOrdersMain = () => {
                 formParams.status === "all"
                   ? formParams.status
                   : Number(formParams.status) > 0
-                  ? (Number(formParams.status) as TStatusValue)
-                  : (1 as TStatusValue),
+                    ? (Number(formParams.status) as TStatusValue)
+                    : (1 as TStatusValue),
             } as IOrderQueriesParams
           }
           setFormParams={setFormParams}

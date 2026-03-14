@@ -17,50 +17,34 @@ export const ProtectedRouteProvider = ({
   children,
   allowedRoles = [],
 }: IProtectedRouteProviderProps) => {
-  const { user, isLoading } = useAuthState();
   const router = useRouter();
   const { fullUrl } = useCurrentUrlPath();
 
-  useEffect(() => {
-    const { admin, superAdmin, customer } = UserRoles;
+  const { user, isLoading } = useAuthState();
 
-    if (
-      isLoading === undefined ||
-      user === undefined ||
-      allowedRoles === undefined
-    )
-      return;
+  useEffect(() => {
     if (isLoading) return;
 
     if (!user) {
-      // User not logged in, redirect to login
-      const loginUrl = "/auth/login";
-
-      router.replace(`${loginUrl}?redirect=${encodeURIComponent(fullUrl)}`);
+      router.replace(`/auth/login?redirect=${encodeURIComponent(fullUrl)}`);
       return;
     }
 
-    const role: string | undefined = (user.role as IRole)?.name;
+    const role = (user.role as IRole)?.name;
 
     if (allowedRoles.length && (!role || !allowedRoles.includes(role))) {
-      if (role === customer) {
-        router.replace("/customer");
-      } else if (role === admin || role === superAdmin) {
-        router.replace("/admin");
-      } else {
-        router.replace("/");
-      }
-    }
-  }, [isLoading, user, allowedRoles, router, fullUrl]);
+      const { admin, superAdmin, customer } = UserRoles;
 
-  if (
-    isLoading ||
-    !user ||
-    (allowedRoles.length && !allowedRoles.includes((user.role as IRole)?.name))
-  ) {
+      if (role === customer) router.replace("/customer");
+      else if (role === admin || role === superAdmin) router.replace("/admin");
+      else router.replace("/");
+    }
+  }, [user, isLoading, allowedRoles, router, fullUrl]);
+
+  if (isLoading) {
     return (
       <div className="h-screen flex items-center justify-center">
-        <LoadingSpinner className="!static" />
+        <LoadingSpinner className="static!" />
       </div>
     );
   }

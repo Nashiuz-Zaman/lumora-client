@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 
 import { OrderTrackingForm } from "./OrderTrackingForm";
 import { OrderTrackingPanel } from "./OrderTrackingPanel";
-import { useTrackOrderQuery } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { useTrackOrderQuery } from "@/libs/redux/apiSlices/order.api.slice";
 
 export const OrderTrackingFormAndPanel = () => {
   const searchParams = useSearchParams();
@@ -15,7 +15,7 @@ export const OrderTrackingFormAndPanel = () => {
     {
       skip: !id,
       refetchOnMountOrArgChange: true,
-    }
+    },
   );
 
   const order = data?.success ? data.data?.order : undefined;

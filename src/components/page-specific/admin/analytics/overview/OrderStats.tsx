@@ -1,6 +1,6 @@
 "use client";
 
-import { useGetOrderStatsQuery } from "@/libs/redux/apiSlices/analytics/analyticsApiSlice";
+import { useGetOrderStatsQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
 import { IComparison, StatsCard } from "../shared/StatsCard";
 import { IAnalyticDateParams } from "@/types";
 import { ErrorMessage } from "@/components/shared";

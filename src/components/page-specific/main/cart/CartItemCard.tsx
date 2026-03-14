@@ -4,18 +4,16 @@ import Image from "next/image";
 import startCase from "lodash/startCase";
 import { TPopulatedCartItem } from "@/types/cart";
 import { formatPrice } from "@/utils";
-import { useCartActions } from "@/hooks";
-
-export type TUpdateQuantity = (
-  product: string,
-  variant: string,
-  change: number
-) => void;
+import {
+  IRemoveCartItemRequest,
+  IUpdateCartQtyRequest,
+} from "@/libs/redux/apiSlices/cart.api.slice";
 
 interface ICartItemCardProps {
   item: TPopulatedCartItem;
-  updateQuantity: TUpdateQuantity;
-  removeItem: (item: TPopulatedCartItem) => void;
+  updateQuantity: ({ data }: { data: IUpdateCartQtyRequest }) => Promise<void>;
+  removeItem: ({ data }: { data: IRemoveCartItemRequest }) => Promise<void>;
+  isCartMutating: boolean;
 }
 
 // --- COMPONENT ---
@@ -23,9 +21,8 @@ export const CartItemCard = ({
   item,
   updateQuantity,
   removeItem,
+  isCartMutating,
 }: ICartItemCardProps) => {
-  const { isCartLoading } = useCartActions();
-
   const excludedKeys = [
     "_id",
     "id",
@@ -36,14 +33,14 @@ export const CartItemCard = ({
     "stock",
   ];
   const variantSpecs = Object.entries(item.variant).filter(
-    ([key]) => !excludedKeys.includes(key)
+    ([key]) => !excludedKeys.includes(key),
   );
 
   return (
     <div className="bg-white rounded-xl border border-neutral-100 p-6 transition-all duration-300 shadow-sm">
-      <div className="grid grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
         {/* Thumbnail */}
-        <div className="w-24 h-24 overflow-hidden flex items-center justify-center">
+        <div className="w-24 order-1 md:order-0 h-24 overflow-hidden flex items-center justify-center">
           {item.product.defaultImage ? (
             <Image
               src={item.product.defaultImage}
@@ -58,9 +55,9 @@ export const CartItemCard = ({
         </div>
 
         {/* Product Info */}
-        <div className="min-w-0">
+        <div className="min-w-0 order-2 md:order-1">
           <h3 className="line-clamp-3 font-semibold mb-2">
-            {item.product.title || "Unnamed Product"}
+            {item.product.title || "Product name not found"}
           </h3>
 
           {/* Variant Details */}
@@ -83,10 +80,14 @@ export const CartItemCard = ({
               <button
                 className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
-                  if (!item?.product?._id || !item?.variant?._id) return;
-                  updateQuantity(item.product._id, item.variant._id, -1);
+                  updateQuantity({
+                    data: {
+                      cartItemId: item._id || "",
+                      quantity: item.quantity - 1,
+                    },
+                  });
                 }}
-                disabled={item.quantity <= 1 || isCartLoading}
+                disabled={item.quantity <= 1 || isCartMutating}
               >
                 −
               </button>
@@ -98,11 +99,15 @@ export const CartItemCard = ({
               <button
                 className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
-                  if (!item?.product?._id || !item?.variant?._id) return;
-                  updateQuantity(item.product._id, item.variant._id, 1);
+                  updateQuantity({
+                    data: {
+                      cartItemId: item._id || "",
+                      quantity: item.quantity + 1,
+                    },
+                  });
                 }}
                 disabled={
-                  item.quantity >= item.variant.stock! || isCartLoading
+                  item.quantity >= item.variant.stock! || isCartMutating
                 }
               >
                 +
@@ -121,11 +126,11 @@ export const CartItemCard = ({
         </div>
 
         {/* Remove */}
-
         <button
+          type="button"
           title="Remove Product"
-          className="w-10 inline-block ml-auto h-10 rounded-full bg-red-50 hover:bg-red-100 text-red-600 items-center justify-center transition-colors cursor-pointer"
-          onClick={() => removeItem(item)}
+          className="w-10 order-0 md:order-2 inline-block ml-auto h-10 rounded-full bg-red-100 hover:bg-red-200 text-red-600 items-center justify-center transition-colors duration-300 cursor-pointer"
+          onClick={() => removeItem({ data: { cartItemId: item._id ?? "" } })}
         >
           ✕
         </button>

@@ -1,17 +1,15 @@
 import { TReturnReason, TReturnRequestStatus } from "@/constants";
 import { IOrder } from "./order";
 import { IPayment } from "./payment";
+import { IUserBasic } from "./shared";
 
 // ---------------------------------------------------------
 // RETURN REQUEST MODEL
 // ---------------------------------------------------------
-export interface IReturnRequest<O = string, P = string> {
+export interface IReturnRequest<O = string, P = string> extends IUserBasic {
   _id?: string;
   order: O;
   payment: P;
-  name?: string;
-  email?: string;
-  phone?: string;
   orderId: string;
   total?: number;
   reason: TReturnReason;

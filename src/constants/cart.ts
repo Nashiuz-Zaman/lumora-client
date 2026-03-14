@@ -1,11 +1,9 @@
-export const CartActions = Object.freeze({
-  add: "add",
-  remove: "remove",
-} as const);
+import { TPopulatedCart } from "@/types";
 
-export const emptyCart = {
+
+export const emptyCart: TPopulatedCart = {
   _id: "",
-  user: "",
+  user: null,
   items: [],
   couponCode: "",
   discount: 0,

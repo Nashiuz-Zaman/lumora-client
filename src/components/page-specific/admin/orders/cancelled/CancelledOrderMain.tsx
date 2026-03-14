@@ -16,7 +16,7 @@ import { CancelledOrderRow } from "./CancelledOrderRow";
 import { ConfirmationModal } from "@/components/modals";
 
 // Providers
-import {ProtectedRouteProvider} from "@/providers";
+import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
 import {
@@ -39,7 +39,7 @@ import { catchAsyncGeneral, showToast } from "@/utils";
 import { IOrder } from "@/types";
 
 // Redux / API
-import { useArchiveOrdersMutation } from "@/libs/redux/apiSlices/orders/orderApiSlice";
+import { useArchiveOrdersMutation } from "@/libs/redux/apiSlices/order.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" },

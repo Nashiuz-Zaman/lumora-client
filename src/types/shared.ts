@@ -9,3 +9,9 @@ export type TCartTotalsShape = {
   discount: number;
   shippingFee: number;
 };
+
+export interface IUserBasic {
+  name: string;
+  email: string;
+  phone?: string;
+}

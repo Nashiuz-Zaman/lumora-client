@@ -13,7 +13,7 @@ import {
   ErrorMessage,
 } from "@/components/shared";
 
-import { useGetProductReviewsAndStatsQuery } from "@/libs/redux/apiSlices/reviews/reviewsApiSlice";
+import { useGetProductReviewsAndStatsQuery } from "@/libs/redux/apiSlices/reviews.api.slice";
 import { IReview, IReviewStats } from "@/types/review";
 import { IProductWithFullReviewsStats, IQueryMeta } from "@/types";
 
@@ -40,7 +40,7 @@ export const Reviews = ({
     refetch,
   } = useGetProductReviewsAndStatsQuery(
     { productId: product._id as string, page, limit: 3 },
-    { skip: page === 1 }
+    { skip: page === 1 },
   );
 
   // Use initial reviews for page 1
@@ -48,15 +48,15 @@ export const Reviews = ({
     page === 1
       ? initialReviews
       : reviewsData?.success
-      ? (reviewsData?.data?.reviews as IReview[])
-      : [];
+        ? (reviewsData?.data?.reviews as IReview[])
+        : [];
 
   const queryMeta: IQueryMeta | undefined =
     page === 1
       ? initialQueryMeta
       : reviewsData?.success
-      ? reviewsData?.data?.queryMeta
-      : undefined;
+        ? reviewsData?.data?.queryMeta
+        : undefined;
 
   const stats: IReviewStats | undefined =
     page === 1 ? initialStats : reviewsData?.data?.stats;

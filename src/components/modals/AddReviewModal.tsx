@@ -6,8 +6,7 @@ import { useForm, Controller } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 import { useModal, useAuthState } from "@/hooks";
-import { usePostReviewMutation } from "@/libs/redux/apiSlices/reviews/reviewsApiSlice";
-
+import { usePostReviewMutation } from "@/libs/redux/apiSlices/reviews.api.slice";
 // utils
 import { showToast, catchAsyncGeneral } from "@/utils";
 
@@ -40,7 +39,7 @@ export const AddReviewModal = ({
   const router = useRouter();
   const { openModal, closeModal, isModalOpen } = useModal();
   const [buttonContainer, setButtonContainer] = useState<HTMLElement | null>(
-    null
+    null,
   );
 
   const [postReview, { isLoading: isPosting }] = usePostReviewMutation();
@@ -91,7 +90,7 @@ export const AddReviewModal = ({
       onError: (_, __, message) => {
         setError("root", { type: "manual", message });
       },
-    }
+    },
   );
 
   const handleOpenModal = () => {
