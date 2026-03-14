@@ -2,7 +2,7 @@
 
 import { UseFormSetError } from "react-hook-form";
 import { AuthForm, TAuthForm } from "./AuthForm";
-import { CompanyLogoBtn } from "@/components/shared";
+import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
 import { useAuthMethods } from "@/hooks/useAuthMethods";
 
 export const SignupPageMain = () => {

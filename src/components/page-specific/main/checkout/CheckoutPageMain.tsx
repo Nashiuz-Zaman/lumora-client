@@ -5,21 +5,23 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // Hooks
-import { useModal, useOrderActions } from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useOrderActions } from "@/hooks/useOrderActions";
 
 // Components
 import { CustomerInfoForm } from "./CustomerInfoForm";
 
 // Redux
-import { usePlaceOrderMutation } from "@/libs/redux/apiSlices/order.api.slice";
+import { usePlaceOrderMutation } from "@apiSlices/order.api.slice";
 
 // Utils
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { UseFormSetError } from "react-hook-form";
 import { ICustomerInfoFormValues } from "@/types";
-import { DummyPaymentGuideModal } from "@/components/modals";
+import { DummyPaymentGuideModal } from "@modals/DummyPaymentGuideModal";
 import { useCartState } from "@/hooks/useCartState";
 
 export const CheckoutPageMain = () => {

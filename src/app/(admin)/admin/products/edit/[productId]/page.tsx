@@ -1,10 +1,11 @@
 // THIS IS A PAGE
 
-import { EditProductMain } from "@/components/page-specific";
-import { InnerContainer, LinkBtn } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
+import { LinkBtn } from "@buttons/LinkBtn";
 import { fetchProductForAdmin } from "@/server-functions/fetchProductForAdmin";
 import { IProduct } from "@/types";
 import type { Metadata } from "next";
+import { EditProductMain } from "@page-specific/admin/products/edit-product/EditProductMain";
 
 export const metadata: Metadata = {
   title: "Edit Product | Admin Panel",

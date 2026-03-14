@@ -1,19 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { AddReviewModal } from "@/components/modals";
+import { AddReviewModal } from "@modals/AddReviewModal";
 
 import { ReviewItem } from "./ReviewItem";
 import { ReviewBreakdown } from "./ReviewBreakdown";
 
-import {
-  Pagination,
-  LoadingSpinner,
-  NoData,
-  ErrorMessage,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { NoData } from "@/components/shared/NoData";
+import { ErrorMessage } from "@/components/shared/ErrorMessage";
 
-import { useGetProductReviewsAndStatsQuery } from "@/libs/redux/apiSlices/reviews.api.slice";
+import { useGetProductReviewsAndStatsQuery } from "@apiSlices/reviews.api.slice";
 import { IReview, IReviewStats } from "@/types/review";
 import { IProductWithFullReviewsStats, IQueryMeta } from "@/types";
 

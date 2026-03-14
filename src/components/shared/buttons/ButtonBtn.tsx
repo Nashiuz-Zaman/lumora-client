@@ -1,7 +1,7 @@
 "use client";
 
 import { ReactNode, MouseEvent } from "react";
-import { LoadingIcon } from "../icons";
+import { LoadingIcon } from "../icons/LoadingIcon";
 
 interface IButtonBtnProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement> {

@@ -1,19 +1,20 @@
 "use client";
 
-import {
-  TrashcanIcon,
-  ButtonBtnTrans,
-  Pagination,
-  InnerContainer,
-} from "@/components/shared";
-import { ConfirmationModal } from "@/components/modals";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { Pagination } from "@/components/shared/Pagination";
+import { InnerContainer } from "@containers/InnerContainer";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 import AdminProductCard from "../shared/AdminProductCard";
-import { useSelectable, useModal, useCollectionProductsQueries } from "@/hooks";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useModal } from "@/hooks/useModal";
+import { useCollectionProductsQueries } from "@/hooks/useCollectionProductsQueries";
 
 import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { NoData } from "@/components/shared/NoData";
-import { useRemoveProductsFromProductCollectionMutation } from "@/libs/redux/apiSlices/productCollection.api.slice";
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { useRemoveProductsFromProductCollectionMutation } from "@apiSlices/productCollection.api.slice";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 export const ProductCollectionMain = ({
   productCollectionSlug,

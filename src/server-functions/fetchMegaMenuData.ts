@@ -1,6 +1,7 @@
-import { TMegaMenuItem } from "@/components/layout-specific/main/MegaMenu";
+import { TMegaMenuItem } from "@layout-specific/main/MegaMenu";
 import { IApiResponse } from "@/types";
-import { catchAsyncServer, getBaseApiUrl } from "@/utils";
+import { catchAsyncServer } from "@/utils/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
 
 export const fetchMegaMenuData = catchAsyncServer(async () => {
   const apiUrl = getBaseApiUrl();

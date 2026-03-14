@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AdminCouponsLayoutMain } from "@/components/layout-specific/admin";
+import { AdminCouponsLayoutMain } from "@layout-specific/admin/coupons/AdminCouponsLayoutMain";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <AdminCouponsLayoutMain>{children}</AdminCouponsLayoutMain>

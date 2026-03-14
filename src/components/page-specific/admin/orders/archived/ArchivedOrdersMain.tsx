@@ -1,19 +1,17 @@
 "use client";
 
-import {
-  Pagination,
-  TabularData,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
 import { OrdersTopParamsForm } from "../shared/OrdersTopParamsForm";
 import {ProtectedRouteProvider} from "@/providers";
 import { DeliveredOrderRow } from "./ArchivedOrderRow";
 
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
-import { useRefState, useSetElementText } from "@/hooks";
-import { UserRoles, OrderSortOptions } from "@/constants";
-import { useOrderQueries } from "@/hooks";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { UserRoles } from "@/constants/user";
+import { OrderSortOptions } from "@/constants/order";
+import { useOrderQueries } from "@/hooks/useOrderQueries";
 import { IOrder } from "@/types";
 
 const columns: TTableColumn[] = [

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
-import { CartIcon } from "../icons";
+import { CartIcon } from "../icons/CartIcon";
 
 export const CartBtn = ({
   href = "/cart",

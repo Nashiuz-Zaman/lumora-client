@@ -4,14 +4,17 @@ import { useForm } from "react-hook-form";
 import { Icon } from "@iconify/react";
 
 // components
-import { InputField, ButtonBtn, SelectField } from "@/components/shared";
+import { InputField } from "@/components/shared/InputField";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { SelectField } from "@/components/shared/SelectField";
 import { Heading } from "./Heading";
 
 // utils
-import { showToast, catchAsyncGeneral } from "@/utils";
+import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
 
 // redux
-import { useUpdateCustomerAddressMutation } from "@/libs/redux/apiSlices/customer.api.slice";
+import { useUpdateCustomerAddressMutation } from "@apiSlices/customer.api.slice";
 
 // types
 import { ICustomerAddress } from "@/types";

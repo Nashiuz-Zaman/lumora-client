@@ -2,7 +2,7 @@
 
 import React from "react";
 import { FieldError } from "react-hook-form";
-import { FileInputButton } from "./buttons";
+import { FileInputButton } from "@buttons/FileInputBtn";
 import { Icon } from "@iconify/react";
 
 interface IFileUploadFieldProps {

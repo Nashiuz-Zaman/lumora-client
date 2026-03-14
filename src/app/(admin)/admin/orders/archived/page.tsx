@@ -1,4 +1,4 @@
-import { ArchivedOrdersMain } from "@/components/page-specific";
+import { ArchivedOrdersMain } from "@page-specific/admin/orders/archived/ArchivedOrdersMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,15 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import {
-  AccordionVertical,
-  ButtonBtn,
-  ButtonBtnTrans,
-  InputFieldMinMax,
-} from "@/components/shared";
+import { AccordionVertical } from "@/components/shared/AccordionVertical";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { InputFieldMinMax } from "@/components/shared/InputFieldMinMax";
 import { ICategoryTreeItem } from "@/types";
 import { UseFormSetValue } from "react-hook-form";
-import { ISearchPageForm } from "@/hooks";
+import { ISearchPageForm } from "@/hooks/useSearchPageProductsQueries";
 
 interface ISearchFiltersProps {
   categories: ICategoryTreeItem[];

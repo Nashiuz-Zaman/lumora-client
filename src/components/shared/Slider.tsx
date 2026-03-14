@@ -10,7 +10,8 @@ import {
 } from "react";
 import { flushSync } from "react-dom";
 
-import { CaretLeftIcon, CaretRightIcon } from "./icons";
+import { CaretLeftIcon } from "./icons/CaretLeftIcon";
+import { CaretRightIcon } from "./icons/CaretRightIcon";
 
 interface ISliderProps<T> {
   data: T[];

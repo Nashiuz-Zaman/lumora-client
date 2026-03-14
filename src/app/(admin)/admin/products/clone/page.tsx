@@ -1,12 +1,13 @@
 // THIS IS A PAGE
 
-import { CloneProductMain } from "@/components/page-specific";
-import { InnerContainer, LinkBtn } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
+import { LinkBtn } from "@buttons/LinkBtn";
 import { fetchProductForAdmin } from "@/server-functions/fetchProductForAdmin";
 import { IProduct } from "@/types";
-import { stripIdsAndResetSku } from "@/utils";
+import { stripIdsAndResetSku } from "@/utils/stripIdsAndResetSku";
 
 import type { Metadata } from "next";
+import { CloneProductMain } from "@page-specific/admin/products/clone-product/CloneProductMain";
 
 export const metadata: Metadata = {
   title: "Clone A Product | Admin Panel",

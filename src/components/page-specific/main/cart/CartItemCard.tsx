@@ -3,11 +3,11 @@
 import Image from "next/image";
 import startCase from "lodash/startCase";
 import { TPopulatedCartItem } from "@/types/cart";
-import { formatPrice } from "@/utils";
+import { formatPrice } from "@/utils/formatPrice";
 import {
   IRemoveCartItemRequest,
   IUpdateCartQtyRequest,
-} from "@/libs/redux/apiSlices/cart.api.slice";
+} from "@apiSlices/cart.api.slice";
 
 interface ICartItemCardProps {
   item: TPopulatedCartItem;

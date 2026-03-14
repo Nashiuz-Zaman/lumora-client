@@ -1,4 +1,4 @@
-import { BlockedCustomersMain } from "@/components/page-specific";
+import { BlockedCustomersMain } from "@page-specific/admin/users/customers/blocked/BlockedCustomersMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

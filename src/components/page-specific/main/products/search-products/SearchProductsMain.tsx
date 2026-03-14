@@ -1,18 +1,16 @@
 "use client";
 
-import { useSearchPageProductsQueries } from "@/hooks";
+import { useSearchPageProductsQueries } from "@/hooks/useSearchPageProductsQueries";
 import { SearchFilters } from "./SearchFilter";
-import {
-  InnerContainer,
-  Pagination,
-  ProductCard,
-  SortDropdown,
-} from "@/components/shared";
-import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category.api.slice";
+import { InnerContainer } from "@containers/InnerContainer";
+import { Pagination } from "@/components/shared/Pagination";
+import { ProductCard } from "@/components/shared/ProductCard";
+import { SortDropdown } from "@/components/shared/SortDropdown";
+import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 import { MobileSearchFilters } from "./MobileSearchFilter";
 import { useEffect } from "react";
 
-import { ProductSortOptions } from "@/constants";
+import { ProductSortOptions } from "@/constants/product";
 
 export const SearchProductsMain = () => {
   const { data: categories } = useGetCategoryTreeQuery();

@@ -1,8 +1,9 @@
 "use client";
 
-import { LinkBtn, LockIcon } from "@/components/shared";
+import { LinkBtn } from "@buttons/LinkBtn";
+import { LockIcon } from "@icons/LockIcon";
 import { PromoCode } from "./PromoCode";
-import { formatPrice } from "@/utils";
+import { formatPrice } from "@/utils/formatPrice";
 import { usePathname } from "next/navigation";
 import { useCartState } from "@/hooks/useCartState";
 

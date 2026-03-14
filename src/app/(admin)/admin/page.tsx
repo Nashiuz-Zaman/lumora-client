@@ -1,4 +1,4 @@
-import { AdminWelcomePageMain } from "@/components/page-specific";
+import { AdminWelcomePageMain } from "@page-specific/admin/welcome-page/AdminWelcomePageMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

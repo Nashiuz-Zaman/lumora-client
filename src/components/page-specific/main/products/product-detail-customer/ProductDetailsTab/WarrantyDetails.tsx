@@ -1,6 +1,6 @@
 "use client";
 
-import { NoData } from "@/components/shared";
+import { NoData } from "@/components/shared/NoData";
 import { sanitizeHtml } from "@/utils/safeHtml";
 
 export const WarrantyDetails = ({ data }: { data?: string | null }) => {

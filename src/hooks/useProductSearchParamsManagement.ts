@@ -2,12 +2,10 @@ import { useRouter } from "next/navigation";
 import { useCallback } from "react";
 
 import { ICategoryTreeItem } from "@/types";
-import { ProductSortOptions } from "@/constants";
-import {
-  cleanObject,
-  compressObjectToBase64Url,
-  buildUrlWithParams,
-} from "@/utils";
+import { ProductSortOptions } from "@/constants/product";
+import { cleanObject } from "@/utils/cleanObject";
+import { compressObjectToBase64Url } from "@/utils/compression";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
 
 type TCategoryInput =
   | { type: "subs"; subSlugs: string[] }

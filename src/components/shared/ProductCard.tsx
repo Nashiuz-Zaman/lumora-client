@@ -1,18 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { ButtonBtn } from "./buttons";
-import { formatPrice } from "@/utils";
+import { ButtonBtn } from "./buttons/ButtonBtn";
+import { formatPrice } from "@/utils/formatPrice";
 import { TProductWithMinimalReviewStats } from "@/types";
-import { CartIcon } from "./icons";
+import { CartIcon } from "./icons/CartIcon";
 import { RatingStars } from "./RatingStars";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import {
   setIsModalOpen,
   setQuickViewModalData,
-} from "@/libs/redux/features/productQuickView/productQuickViewSlice";
-import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
+} from "@features/productQuickView/productQuickViewSlice";
+import { setBackdropOpen } from "@features/backdrop/backdropSlice";
 
 type TProductCardData = TProductWithMinimalReviewStats;
 

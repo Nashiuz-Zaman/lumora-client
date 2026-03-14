@@ -1,7 +1,7 @@
 "use client";
 
 import { MetricCard } from "./MetricCard";
-import { useGetTotalProductsSoldQuery } from "@/libs/redux/apiSlices/analytics.api.slice";
+import { useGetTotalProductsSoldQuery } from "@apiSlices/analytics.api.slice";
 
 export const TotalProductsSold = () => {
   const { data, isFetching } = useGetTotalProductsSoldQuery(undefined, {

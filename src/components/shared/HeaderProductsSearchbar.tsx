@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef, FormEvent } from "react";
-import { ButtonBtnTrans } from "./buttons";
-import { SearchIcon } from "./icons";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { SearchIcon } from "./icons/SearchIcon";
 import { useDebouncedCallback } from "@/hooks/useDebouncedCallback";
 import { useClickOutside } from "@/hooks/useClickOutside";
 import { useRouter } from "next/navigation";
@@ -17,7 +17,7 @@ interface ISearchbarProps<T> {
   renderResult?: (
     item: T,
     index: number,
-    onClick: () => void
+    onClick: () => void,
   ) => React.ReactNode;
 }
 
@@ -48,7 +48,7 @@ export const HeaderProductsSearchbar = <T,>({
     (text: string) => {
       trigger?.(text);
     },
-    debounceDelay
+    debounceDelay,
   );
 
   // Input change handler
@@ -66,7 +66,7 @@ export const HeaderProductsSearchbar = <T,>({
       setIsResultModalOpen(true);
       debouncedTrigger(value);
     },
-    [debouncedTrigger]
+    [debouncedTrigger],
   );
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {

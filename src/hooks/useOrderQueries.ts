@@ -5,12 +5,10 @@ import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 // Utils
-import {
-  getQueryParamsFromSearchParams,
-  cleanObject,
-  buildUrlWithParams,
-  cleanStatusParam,
-} from "@/utils";
+import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { cleanObject } from "@/utils/cleanObject";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
+import { cleanStatusParam } from "@/utils/statusUtils";
 import isEqual from "lodash/isEqual";
 
 // Constants
@@ -20,10 +18,10 @@ import { OrderSortOptions, OrderStatus } from "@/constants/order";
 import {
   useGetOrdersForCustomerQuery,
   useGetOrdersPrivateQuery,
-} from "@/libs/redux/apiSlices/order.api.slice";
+} from "@apiSlices/order.api.slice";
 
 // Types
-import { TOrderStatusValue } from "@/constants";
+import { TOrderStatusValue } from "@/constants/order";
 import { IOrder, IQueryMeta } from "@/types";
 
 export type TStatusValue = TOrderStatusValue | "all";

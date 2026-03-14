@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { InnerContainer } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
 import LogoSocials from "./LogoSocials";
-import { useGetCategoryTreeQuery } from "@/libs/redux/apiSlices/category.api.slice";
+import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 
 import { socialMediaLinks } from "@/static-data/footerData";
-import { useProductSearchParamsManagement } from "@/hooks";
+import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import NavAddress from "./NavAddress";
 
 const Footer = () => {

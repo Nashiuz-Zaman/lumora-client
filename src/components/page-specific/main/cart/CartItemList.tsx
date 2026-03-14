@@ -1,7 +1,10 @@
 "use client";
 
 import { CartItemCard } from "./CartItemCard";
-import { CartIcon, LinkBtn, LinkBtnTrans, NoData } from "@/components/shared/";
+import { CartIcon } from "@icons/CartIcon";
+import { LinkBtn } from "@buttons/LinkBtn";
+import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
+import { NoData } from "@/components/shared/NoData";
 import { useCartState } from "@/hooks/useCartState";
 
 export const CartItemList = () => {

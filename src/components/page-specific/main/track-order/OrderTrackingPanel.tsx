@@ -1,13 +1,13 @@
 "use client";
 
 import React from "react";
-import { LoadingSpinner } from "@/components/shared";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 import { CurProducts } from "./CurProducts";
 import { OrderActivity } from "./OrderActivity";
 import { OrderTrackingHeader } from "./OrderTrackingHeader";
 import { ProgressTracker } from "./ProgressTracker";
 import { TTrackOrderData } from "@/types";
-import { OrderStatus } from "@/constants";
+import { OrderStatus } from "@/constants/order";
 
 interface IOrderTrackingPanelProps {
   orderData?: TTrackOrderData;

@@ -1,4 +1,4 @@
-import { PendingRequestsMain } from "@/components/page-specific";
+import { PendingRequestsMain } from "@page-specific/admin/returns/pending/PendingRequestsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

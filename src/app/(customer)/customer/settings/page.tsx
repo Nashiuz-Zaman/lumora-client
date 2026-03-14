@@ -1,4 +1,4 @@
-import { SettingsMain } from "@/components/page-specific";
+import { SettingsMain } from "@page-specific/customer/settings/SettingsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

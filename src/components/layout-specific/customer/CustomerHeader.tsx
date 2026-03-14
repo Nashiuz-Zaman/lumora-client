@@ -1,13 +1,13 @@
 "use client";
 
 // Components
-import {
-  CartBtn,
-  CompanyLogoBtn,
-  InnerContainer,
-  UserMenuWithAvatar,
-} from "@/components/shared";
-import { useAuthMethods, useAuthState, useRefState } from "@/hooks";
+import { CartBtn } from "@buttons/CartBtn";
+import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
+import { InnerContainer } from "@containers/InnerContainer";
+import { UserMenuWithAvatar } from "@/components/shared/UserMenuWithAvatar";
+import { useAuthMethods } from "@/hooks/useAuthMethods";
+import { useAuthState } from "@/hooks/useAuthState";
+import { useRefState } from "@/hooks/useRefState";
 import { useCartState } from "@/hooks/useCartState";
 import { useEffect, useRef } from "react";
 

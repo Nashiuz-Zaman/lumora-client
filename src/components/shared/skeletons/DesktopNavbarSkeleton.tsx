@@ -1,4 +1,4 @@
-import { InnerContainer } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
 
 export const DesktopNavbarSkeleton = () => {
   return (

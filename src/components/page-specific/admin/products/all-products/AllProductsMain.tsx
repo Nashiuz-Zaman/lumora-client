@@ -5,26 +5,21 @@ import { ProductSortOptions } from "@/constants/product";
 
 import ProductsTopParamsForm from "../shared/ProductsTopParamsForm";
 import ProductRow from "./ProductRow";
-import {
-  TrashcanIcon,
-  ButtonBtnTrans,
-  TabularData,
-  Pagination,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
-import { ConfirmationModal } from "@/components/modals";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { Pagination } from "@/components/shared/Pagination";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 
-import { useBulkDeleteProductsMutation } from "@/libs/redux/apiSlices/product.api.slice";
+import { useBulkDeleteProductsMutation } from "@apiSlices/product.api.slice";
 
-import { showToast, catchAsyncGeneral } from "@/utils";
-import {
-  useSelectable,
-  useModal,
-  useProductsQueries,
-  useRefState,
-  useSetElementText,
-} from "@/hooks";
+import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useModal } from "@/hooks/useModal";
+import { useProductsQueries } from "@/hooks/useProductsQueries";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
 import { MouseEvent } from "react";
 import { IProduct } from "@/types";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";

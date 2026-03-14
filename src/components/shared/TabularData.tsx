@@ -4,7 +4,7 @@ import { MouseEvent, ReactNode, useEffect, useState } from "react";
 import { LoadingSpinner } from "./LoadingSpinner";
 import { NoData } from "./NoData";
 import { InputCheckbox } from "./InputCheckbox";
-import { TUseSelectableReturn } from "@/hooks";
+import { TUseSelectableReturn } from "@/hooks/useSelectable";
 
 interface IClassNameObj {
   containerDiv?: string;

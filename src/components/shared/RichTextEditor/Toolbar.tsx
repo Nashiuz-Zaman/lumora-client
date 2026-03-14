@@ -1,7 +1,7 @@
 "use client";
 
 import { Editor } from "@tiptap/react";
-import { rgbToHex } from "@/utils";
+import { rgbToHex } from "@/utils/rgbToHex";
 import { IcfyIcon } from "../IcfyIcon";
 
 interface IToolbarProps {

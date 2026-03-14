@@ -1,7 +1,7 @@
 "use client";
 
 // components
-import { InnerContainer } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
 import { BasicInfoForm } from "./BasicInfoForm";
 import { AddressForm } from "./AddressForm";
 import { PasswordForm } from "./PasswordForm";

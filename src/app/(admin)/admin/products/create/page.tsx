@@ -1,7 +1,8 @@
 // THIS IS A PAGE
 
-import { CreateProductMain } from "@/components/page-specific";
 
+
+import { CreateProductMain } from "@page-specific/admin/products/create-product/CreateProductMain";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

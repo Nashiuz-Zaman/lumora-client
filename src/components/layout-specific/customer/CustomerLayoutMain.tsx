@@ -6,12 +6,13 @@ import { useDispatch } from "react-redux";
 import { CustomerHeader } from "./CustomerHeader";
 import MobileCustomerSideNavbar from "./MobileCustomerSideNavbar";
 import CustomerSideNavbar from "./CustomerSideNavbar";
-import { useDynamicHeight, useRefState } from "@/hooks";
-import { useGetCustomerProfileDataQuery } from "@/libs/redux/apiSlices/customer.api.slice";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useRefState } from "@/hooks/useRefState";
+import { useGetCustomerProfileDataQuery } from "@apiSlices/customer.api.slice";
 import {
   setCustomerProfileData,
   setIsCustomerProfileLoading,
-} from "@/libs/redux/features/customer/customerSlice";
+} from "@features/customer/customerSlice";
 
 export const CustomerLayoutMain = ({ children }: { children: ReactNode }) => {
   const { refs } = useRefState();

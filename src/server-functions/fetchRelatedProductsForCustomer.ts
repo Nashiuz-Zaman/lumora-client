@@ -1,5 +1,6 @@
 import { IApiResponse, TProductWithMinimalReviewStats } from "@/types";
-import { catchAsyncServer, getBaseApiUrl } from "@/utils";
+import { catchAsyncServer } from "@/utils/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
 
 export const fetchRelatedProductsForCustomer = catchAsyncServer(
   async (productId: string, topCategoryId: string) => {

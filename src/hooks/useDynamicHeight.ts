@@ -1,8 +1,9 @@
 "use client";
 
 import { RefObject, useEffect, useState } from "react";
-import { useResizeObserver, useScreenSize } from "./";
-import { getHeight } from "@/utils";
+import { useResizeObserver } from "./useResizeObserver";
+import { useScreenSize } from "./useScreenSize";
+import { getHeight } from "@/utils/getHeight";
 
 interface IUseDynamicHeightOptions {
   refElements?: (RefObject<HTMLElement> | null)[];

@@ -1,6 +1,8 @@
 "use client";
 
-import { StarEmptyIcon, StarFullIcon, StarHalfIcon } from "./icons";
+import { StarEmptyIcon } from "./icons/StarEmptyIcon";
+import { StarFullIcon } from "./icons/StarFullIcon";
+import { StarHalfIcon } from "./icons/StarHalfIcon";
 
 interface IRatingStarsProps {
   rating: number;
@@ -19,11 +21,11 @@ export const RatingStars = ({
     (_, i) => {
       const num = i + 1;
       return num <= rounded ? "full" : num - 0.5 <= rounded ? "half" : "empty";
-    }
+    },
   );
 
   return (
-    <div className={`flex items-center gap-[2px] text-yellow-400 ${className}`}>
+    <div className={`flex items-center gap-0.5 text-yellow-400 ${className}`}>
       {starEls.map((star, i) => {
         if (star === "full") return <StarFullIcon key={i} />;
         if (star === "half") return <StarHalfIcon key={i} />;

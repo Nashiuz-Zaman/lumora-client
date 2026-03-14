@@ -1,9 +1,10 @@
 "use client";
 
-import { InnerContainer } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
 import { ProductForm } from "../shared/ProductForm";
 import { IProduct } from "@/types";
-import { useRefState, useSetElementText } from "@/hooks";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
 
 export const CloneProductMain = ({ product }: { product?: IProduct }) => {
   // set the page heading below

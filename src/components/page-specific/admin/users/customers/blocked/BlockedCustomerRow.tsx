@@ -4,16 +4,16 @@
 import Image from "next/image";
 
 // components
-import { InputCheckbox } from "@/components/shared";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
 
 // hooks
-import { TUseSelectableReturn } from "@/hooks";
+import { TUseSelectableReturn } from "@/hooks/useSelectable";
 
 // types
 import { IPaginatedCustomer } from "@/types";
 
 // utils
-import { formatDateTime } from "@/utils";
+import { formatDateTime } from "@/utils/formatDateTime";
 
 interface IActiveCustomerRowProps {
   customer: IPaginatedCustomer;

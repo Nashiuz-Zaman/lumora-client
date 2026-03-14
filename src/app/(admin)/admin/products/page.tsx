@@ -1,6 +1,7 @@
 // THIS IS A PAGE
-import { CollectionCard } from "@/components/page-specific";
-import { DashboardPageHeading, InnerContainer } from "@/components/shared";
+import { CollectionCard } from "@page-specific/admin/products/CollectionCard";
+import { DashboardPageHeading } from "@/components/shared/DashboardPageHeading";
+import { InnerContainer } from "@containers/InnerContainer";
 import { Metadata } from "next";
 
 import { IProductCollectionsByPage } from "@/types";

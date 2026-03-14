@@ -1,7 +1,7 @@
 "use client";
 
 import { UseFormSetError } from "react-hook-form";
-import { CompanyLogoBtn } from "@/components/shared";
+import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
 import { useAuthMethods } from "@/hooks/useAuthMethods";
 import { AuthForm, TAuthForm } from "./AuthForm";
 

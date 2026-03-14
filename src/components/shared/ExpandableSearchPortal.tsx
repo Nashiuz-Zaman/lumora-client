@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { ButtonBtnTrans } from "./buttons";
-import { CloseIcon, SearchIcon } from "./icons";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { CloseIcon } from "./icons/CloseIcon";
+import { SearchIcon } from "./icons/SearchIcon";
 import { HeaderProductsSearchbar } from "./HeaderProductsSearchbar";
 import { AccordionHorizontal } from "./AccordionHorizontal";
 import { AccordionVertical } from "./AccordionVertical";
@@ -20,7 +21,7 @@ interface IExpandableSearchPortalProps<T> {
   renderResult?: (
     item: T,
     index: number,
-    onClick: () => void
+    onClick: () => void,
   ) => React.ReactNode;
   modalClassName?: string;
 }
@@ -40,7 +41,7 @@ export const ExpandableSearchPortal = <T,>({
   const [showVertical, setShowVertical] = useState(false);
   const [showHorizontal, setShowHorizontal] = useState(false);
   const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
-    null
+    null,
   );
 
   const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -121,7 +122,7 @@ export const ExpandableSearchPortal = <T,>({
               />
             </AccordionHorizontal>
           </AccordionVertical>,
-          portalContainer
+          portalContainer,
         )}
     </>
   );

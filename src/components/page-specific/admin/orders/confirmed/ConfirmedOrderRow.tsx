@@ -1,17 +1,20 @@
 "use client";
 
 // components
-import { ButtonBtnTrans, InputCheckbox } from "@/components/shared";
-import { TruckIcon, WarningIcon } from "@/components/shared";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
+import { TruckIcon } from "@icons/TruckIcon";
+import { WarningIcon } from "@icons/WarningIcon";
 
 // hooks
-import { TUseSelectableReturn } from "@/hooks";
+import { TUseSelectableReturn } from "@/hooks/useSelectable";
 
 // types
 import { IOrder } from "@/types";
 
 // utils
-import { formatDateTime, formatPrice } from "@/utils";
+import { formatDateTime } from "@/utils/formatDateTime";
+import { formatPrice } from "@/utils/formatPrice";
 
 interface IConfirmedOrderRowProps {
   orderData: IOrder;

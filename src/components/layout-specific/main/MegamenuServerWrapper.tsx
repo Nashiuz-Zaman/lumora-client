@@ -1,5 +1,5 @@
 import { MegaMenu, TMegaMenuItem } from "./MegaMenu";
-import { NoData } from "../../shared";
+import { NoData } from "../../shared/NoData";
 import { fetchMegaMenuData } from "@/server-functions/fetchMegaMenuData";
 import { MobileMegaMenu } from "./MobileMegaMenu";
 

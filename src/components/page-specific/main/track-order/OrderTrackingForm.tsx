@@ -2,7 +2,9 @@
 
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { ButtonBtn, IcfyIcon, InputField } from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { IcfyIcon } from "@/components/shared/IcfyIcon";
+import { InputField } from "@/components/shared/InputField";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IOrder } from "@/types";
 

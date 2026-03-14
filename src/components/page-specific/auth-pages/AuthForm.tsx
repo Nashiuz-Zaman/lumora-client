@@ -7,7 +7,9 @@ import {
   UseFormSetError,
 } from "react-hook-form";
 import Link from "next/link";
-import { ButtonBtn, GoogleIcon, InputField } from "@/components/shared";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { GoogleIcon } from "@icons/GoogleIcon";
+import { InputField } from "@/components/shared/InputField";
 import { IUser } from "@/types";
 
 // -------------------------

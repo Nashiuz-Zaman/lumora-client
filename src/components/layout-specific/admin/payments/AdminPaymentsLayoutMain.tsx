@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 
 // Shared components
-import { TopPanel } from "@/components/page-specific";
+import { TopPanel } from "@page-specific/admin/shared/TopPanel";
 
 export const AdminPaymentsLayoutMain = ({
   children,

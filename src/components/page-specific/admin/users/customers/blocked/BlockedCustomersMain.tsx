@@ -1,41 +1,37 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-  SuccessIcon,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { SuccessIcon } from "@icons/SuccessIcon";
 import { CustomersTopParamsForm } from "../../shared/CustomersTopParamsForm";
 import { BlockedCustomerRow } from "./BlockedCustomerRow";
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 
 // Providers
 import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
-import {
-  useModal,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-  useCustomersQueries,
-} from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useCustomersQueries } from "@/hooks/useCustomersQueries";
 import { useRef } from "react";
 
 // Constants
-import { UserRoles, OrderSortOptions, UserStatus } from "@/constants";
+import { UserRoles, UserStatus } from "@/constants/user";
+import { OrderSortOptions } from "@/constants/order";
 
 // Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { IPaginatedCustomer } from "@/types";
-import { useUnblockCustomersMutation } from "@/libs/redux/apiSlices/customer.api.slice";
+import { useUnblockCustomersMutation } from "@apiSlices/customer.api.slice";
 
 // Redux / API
 const columns: TTableColumn[] = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { ButtonBtn } from "../shared";
+import { ButtonBtn } from "../shared/buttons/ButtonBtn";
 import { BaseModal } from "./BaseModal";
 
 interface IConfirmationModalProps {

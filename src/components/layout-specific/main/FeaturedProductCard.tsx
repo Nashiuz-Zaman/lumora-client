@@ -1,10 +1,11 @@
 "use client";
 
-import { LinkBtnTrans, CaretRightIcon } from "@/components/shared";
+import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
+import { CaretRightIcon } from "@icons/CaretRightIcon";
 import { TProductWithMinimalReviewStats } from "@/types";
-import { formatPrice } from "@/utils";
+import { formatPrice } from "@/utils/formatPrice";
 import Image from "next/image";
-import { RatingStars } from "@/components/shared";
+import { RatingStars } from "@/components/shared/RatingStars";
 
 // Featured product card
 export const FeaturedProductCard = ({

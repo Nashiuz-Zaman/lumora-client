@@ -3,28 +3,26 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { BaseModal } from "./BaseModal";
-import {
-  ButtonBtn,
-  ButtonBtnTrans,
-  CartIcon,
-  ErrorMessage,
-  LoadingSpinner,
-  PriceDisplay,
-  VariantSelector,
-  QuantitySelector,
-} from "@/components/shared";
-import { useLazyGetProductForCustomerQuery } from "@/libs/redux/apiSlices/product.api.slice";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { CartIcon } from "@icons/CartIcon";
+import { ErrorMessage } from "@/components/shared/ErrorMessage";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
+import { PriceDisplay } from "@/components/shared/PriceDisplay";
+import { VariantSelector } from "@/components/shared/VariantSelector";
+import { QuantitySelector } from "@/components/shared/QuantitySelector";
+import { useLazyGetProductForCustomerQuery } from "@apiSlices/product.api.slice";
 import { useSelector, useDispatch } from "react-redux";
 import {
   setIsModalOpen,
   setQuickViewModalData,
-} from "@/libs/redux/features/productQuickView/productQuickViewSlice";
+} from "@features/productQuickView/productQuickViewSlice";
 import { TRootState } from "@/libs/redux/store";
-import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
+import { setBackdropOpen } from "@features/backdrop/backdropSlice";
 import { useEffect, useRef, useState } from "react";
 
-import { IVariant } from "@/utils";
-import { IAddItemToCartRequest } from "@/libs/redux/apiSlices/cart.api.slice";
+import { IVariant } from "@/utils/productVariantUtils";
+import { IAddItemToCartRequest } from "@apiSlices/cart.api.slice";
 import { useCartState } from "@/hooks/useCartState";
 
 export const ProductQuickViewModal = () => {

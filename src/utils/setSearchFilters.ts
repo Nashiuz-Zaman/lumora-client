@@ -1,7 +1,8 @@
-import { ProductSortOptions } from "@/constants";
+import { ProductSortOptions } from "@/constants/product";
 import { ICategoryTreeItem } from "@/types";
-import { cleanObject, compressObjectToBase64Url } from "./";
-import { IProductSearchQueryParams } from "@/hooks";
+import { cleanObject } from "./cleanObject";
+import { compressObjectToBase64Url } from "./compression";
+import { IProductSearchQueryParams } from "@/hooks/useSearchPageProductsQueries";
 
 /**
  * Returns a comma separated string of selected Sub Categories

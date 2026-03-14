@@ -1,7 +1,7 @@
 "use client";
 
-import { ButtonBtnTrans } from "@/components/shared";
-import { TrashcanIcon } from "@/components/shared";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
 import Link from "next/link";
 
 export const CollectionCard = ({

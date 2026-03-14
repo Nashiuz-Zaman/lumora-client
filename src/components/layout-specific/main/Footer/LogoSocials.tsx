@@ -1,6 +1,6 @@
 "use client";
 
-import { CompanyLogoBtn } from "@/components/shared";
+import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
 // core
 import Image from "next/image";
 import Link from "next/link";

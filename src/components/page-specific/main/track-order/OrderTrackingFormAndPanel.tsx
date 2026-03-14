@@ -4,7 +4,7 @@ import { useSearchParams } from "next/navigation";
 
 import { OrderTrackingForm } from "./OrderTrackingForm";
 import { OrderTrackingPanel } from "./OrderTrackingPanel";
-import { useTrackOrderQuery } from "@/libs/redux/apiSlices/order.api.slice";
+import { useTrackOrderQuery } from "@apiSlices/order.api.slice";
 
 export const OrderTrackingFormAndPanel = () => {
   const searchParams = useSearchParams();

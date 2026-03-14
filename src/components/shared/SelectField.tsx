@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { DownCaretIcon } from "./icons";
+import { DownCaretIcon } from "./icons/DownCaretIcon";
 
 interface IOption {
   text: string;

@@ -1,4 +1,4 @@
-import { AllProductsMain } from "@/components/page-specific";
+import { AllProductsMain } from "@page-specific/admin/products/all-products/AllProductsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

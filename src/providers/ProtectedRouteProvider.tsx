@@ -4,9 +4,9 @@ import { ReactNode, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useCurrentUrlPath } from "@/hooks/useCurrentUrlPath";
 import { IRole } from "@/types";
-import { useAuthState } from "@/hooks";
-import { UserRoles } from "@/constants";
-import { LoadingSpinner } from "@/components/shared";
+import { useAuthState } from "@/hooks/useAuthState";
+import { UserRoles } from "@/constants/user";
+import { LoadingSpinner } from "@/components/shared/LoadingSpinner";
 
 interface IProtectedRouteProviderProps {
   children: ReactNode;

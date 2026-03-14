@@ -7,7 +7,8 @@ import { ReactNode } from "react";
 import { AdminHeader } from "./AdminHeader";
 import { AdminSideNavbar } from "./AdminSideNavbar";
 import { MobileAdminSideNavbar } from "./MobileAdminSideNavbar";
-import { useDynamicHeight, useRefState } from "@/hooks";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useRefState } from "@/hooks/useRefState";
 
 export const AdminLayoutMain = ({ children }: { children: ReactNode }) => {
   const { refs } = useRefState();

@@ -1,4 +1,4 @@
-import { TReturnReason, TReturnRequestStatus } from "@/constants";
+import { TReturnReason, TReturnRequestStatus } from "@/constants/returnRequest";
 import { IOrder } from "./order";
 import { IPayment } from "./payment";
 import { IUserBasic } from "./shared";

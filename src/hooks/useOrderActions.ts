@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { OrderStatus } from "@/constants";
+import { OrderStatus } from "@/constants/order";
 import {
   ICart,
   ICustomerInfoFormValues,

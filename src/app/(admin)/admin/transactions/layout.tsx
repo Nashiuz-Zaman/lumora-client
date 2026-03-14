@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AdminPaymentsLayoutMain } from "@/components/layout-specific/admin";
+import { AdminPaymentsLayoutMain } from "@layout-specific/admin/payments/AdminPaymentsLayoutMain";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <AdminPaymentsLayoutMain>{children}</AdminPaymentsLayoutMain>

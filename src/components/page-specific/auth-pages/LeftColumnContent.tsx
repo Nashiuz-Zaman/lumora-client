@@ -2,7 +2,7 @@
 
 import { JSX, useRef } from "react";
 import { gsap } from "gsap";
-import { GridCard, IGridCardImage } from "@/components/shared";
+import { GridCard, IGridCardImage } from "@/components/shared/GridCard";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 gsap.registerPlugin(useGSAP);

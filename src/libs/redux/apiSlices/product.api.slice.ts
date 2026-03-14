@@ -1,4 +1,4 @@
-import { IProductSearchQueryParams } from "@/hooks";
+import { IProductSearchQueryParams } from "@/hooks/useSearchPageProductsQueries";
 import { baseApiSlice } from "./base.api.slice";
 import {
   IApiResponse,

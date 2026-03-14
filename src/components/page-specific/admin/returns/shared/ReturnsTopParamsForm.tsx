@@ -1,6 +1,6 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared";
+import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared/ParamsFilterForm";
 
 import { IReturnRequestQueriesParams } from "@/hooks/useReturnRequestQueries";
 import { IReturnRequest } from "@/types";

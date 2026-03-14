@@ -1,7 +1,6 @@
-"use client";
-
 import React, { useMemo } from "react";
-import { CaretLeftIcon, CaretRightIcon } from "./icons";
+import { CaretLeftIcon } from "./icons/CaretLeftIcon";
+import { CaretRightIcon } from "./icons/CaretRightIcon";
 
 type IPaginationProps = {
   totalPages: number;
@@ -70,24 +69,26 @@ export const Pagination = ({
         <CaretLeftIcon />
       </button>
 
-      <p className="px-2 flex items-center md:px-3 lg:px-4 !leading-none">
+      <p className="px-2 flex items-center md:px-3 lg:px-4 leading-none!">
         Page {cur} of {total}
       </p>
 
-      {pageRange.map((p) => (
-        <button
-          key={p}
-          onClick={() => goTo(p)}
-          aria-current={p === cur ? "page" : undefined}
-          className={`block px-2 cursor-pointer ${
-            p === cur
-              ? "font-bold text-primary underline underline-offset-4"
-              : "hover:underline hover:underline-offset-4"
-          }`}
-        >
-          {p}
-        </button>
-      ))}
+      {pageRange.map((p) => {
+        return (
+          <button
+            key={p}
+            onClick={() => goTo(p)}
+            aria-current={p === cur ? "page" : undefined}
+            className={`block px-2 cursor-pointer ${
+              p === cur
+                ? "font-bold text-primary underline underline-offset-4"
+                : "hover:underline hover:underline-offset-4"
+            }`}
+          >
+            {p}
+          </button>
+        );
+      })}
 
       <button
         onClick={() => goTo(cur + 1)}

@@ -1,15 +1,13 @@
 "use client";
 
 import { useState, ChangeEvent, useEffect } from "react";
-import {
-  ButtonBtnTrans,
-  InputField,
-  PlusIcon,
-  TrashcanIcon,
-} from "@/components/shared";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
+import { InputField } from "@/components/shared/InputField";
+import { PlusIcon } from "@icons/PlusIcon";
+import { TrashcanIcon } from "@icons/TrashcanIcon";
 import { IProduct } from "@/types";
 import { useWatch, useFormContext } from "react-hook-form";
-import { toLabel } from "@/utils";
+import { toLabel } from "@/utils/toLabel";
 
 interface IVariantInformationBlockProps {
   variantIndex: number;

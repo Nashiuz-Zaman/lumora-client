@@ -3,17 +3,16 @@
 import { createPortal } from "react-dom";
 import { useForm } from "react-hook-form";
 import { BaseModal } from "./BaseModal";
-import {
-  ButtonBtn,
-  ButtonBtnTrans,
-  SelectField,
-  ErrorMessage,
-  InputField,
-} from "../shared";
-import { useModal } from "@/hooks";
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { ButtonBtn } from "../shared/buttons/ButtonBtn";
+import { ButtonBtnTrans } from "../shared/buttons/ButtonBtnTrans";
+import { SelectField } from "../shared/SelectField";
+import { ErrorMessage } from "../shared/ErrorMessage";
+import { InputField } from "../shared/InputField";
+import { useModal } from "@/hooks/useModal";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 import { ICoupon } from "@/types";
-import { useCreateCouponMutation } from "@/libs/redux/apiSlices/coupon.api.slice";
+import { useCreateCouponMutation } from "@apiSlices/coupon.api.slice";
 interface ICreateCouponModalProps {
   target?: HTMLElement | null; // where the trigger button will render
 }

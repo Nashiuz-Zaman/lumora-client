@@ -2,20 +2,18 @@
 
 import { useState, useCallback, useEffect } from "react";
 
-import {
-  AccordionVertical,
-  CartIcon,
-  ButtonBtn,
-  RatingStars,
-  QuantitySelector,
-  PriceDisplay,
-} from "@/components/shared";
+import { AccordionVertical } from "@/components/shared/AccordionVertical";
+import { CartIcon } from "@icons/CartIcon";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { RatingStars } from "@/components/shared/RatingStars";
+import { QuantitySelector } from "@/components/shared/QuantitySelector";
+import { PriceDisplay } from "@/components/shared/PriceDisplay";
 import { AboutProduct } from "./AboutProduct";
 
 // types
 import { IVariant, IProductWithFullReviewsStats } from "@/types/product";
 import { VariantSelector } from "./VariantSelector";
-import { IAddItemToCartRequest } from "@/libs/redux/apiSlices/cart.api.slice";
+import { IAddItemToCartRequest } from "@apiSlices/cart.api.slice";
 import { useCartState } from "@/hooks/useCartState";
 
 interface IRightSideDetailsProps {

@@ -3,15 +3,13 @@
 import { useState, useEffect } from "react";
 import { TProductWithMinimalReviewStats } from "@/types";
 import { FeaturedProductCard } from "./FeaturedProductCard";
-import {
-  AccordionVertical,
-  InnerContainer,
-  CloseBtn,
-  ButtonBtn,
-  MobileMenuBtn,
-} from "@/components/shared";
+import { AccordionVertical } from "@/components/shared/AccordionVertical";
+import { InnerContainer } from "@containers/InnerContainer";
+import { CloseBtn } from "@buttons/CloseBtn";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { MobileMenuBtn } from "@buttons/MobileMenuBtn";
 
-import { useProductSearchParamsManagement } from "@/hooks";
+import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import { IMegaMenuProps } from "./MegaMenu";
 
 export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {

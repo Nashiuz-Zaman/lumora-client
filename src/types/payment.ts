@@ -1,4 +1,4 @@
-import { TPaymentType } from "@/constants";
+import { TPaymentType } from "@/constants/payment";
 import { IOrder } from "./order";
 import { IUserBasic } from "./shared";
 

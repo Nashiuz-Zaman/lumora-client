@@ -1,12 +1,8 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
 import { ReturnsTopParamsForm } from "../shared/ReturnsTopParamsForm";
 import { PendingRequestRow } from "./PendingRequestRow";
 
@@ -14,15 +10,14 @@ import { PendingRequestRow } from "./PendingRequestRow";
 import {ProtectedRouteProvider} from "@/providers";
 
 // Hooks
-import { useRefState, useSetElementText, useDynamicHeight } from "@/hooks";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
 import { useReturnRequestQueries } from "@/hooks/useReturnRequestQueries";
 
 // Constants
-import {
-  UserRoles,
-  ReturnRequestStatus,
-  ReturnRequestSortOptions,
-} from "@/constants";
+import { UserRoles } from "@/constants/user";
+import { ReturnRequestStatus, ReturnRequestSortOptions } from "@/constants/returnRequest";
 
 // Types
 import { IReturnRequest } from "@/types";
@@ -31,8 +26,8 @@ import { useDispatch } from "react-redux";
 import {
   setIsRequestModalOpen,
   setRequestId,
-} from "@/libs/redux/features/returnRequest/returnRequest";
-import { setBackdropOpen } from "@/libs/redux/features/backdrop/backdropSlice";
+} from "@features/returnRequest/returnRequest";
+import { setBackdropOpen } from "@features/backdrop/backdropSlice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "Order ID", width: "0.2fr" },

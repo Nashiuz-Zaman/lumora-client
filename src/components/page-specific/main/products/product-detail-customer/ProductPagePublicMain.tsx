@@ -1,4 +1,5 @@
-import { InnerContainer, NoData } from "@/components/shared";
+import { InnerContainer } from "@containers/InnerContainer";
+import { NoData } from "@/components/shared/NoData";
 import { ProductImages } from "./ProductImages";
 import { RightSideDetails } from "./RightSideDetails";
 import { ProductDetailsTabs } from "./ProductDetailsTab";

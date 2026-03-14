@@ -1,4 +1,4 @@
-import { ApprovedRequestsMain } from "@/components/page-specific";
+import { ApprovedRequestsMain } from "@page-specific/admin/returns/approved/ApprovedRequestsMain";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -3,7 +3,7 @@
 import { useState, useRef, ReactNode } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { CaretDownIcon } from "@/components/shared";
+import { CaretDownIcon } from "@icons/CaretDownIcon";
 
 gsap.registerPlugin(useGSAP);
 

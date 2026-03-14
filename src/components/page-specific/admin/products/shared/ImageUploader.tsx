@@ -12,9 +12,12 @@ import {
   useSensor,
   useSensors,
 } from "@dnd-kit/core";
-import { Droppable, Draggable, ButtonBtn, IcfyIcon } from "@/components/shared";
+import { Droppable } from "@/components/shared/DnD-Kit/Droppable";
+import { Draggable } from "@/components/shared/DnD-Kit/Draggable";
+import { ButtonBtn } from "@buttons/ButtonBtn";
+import { IcfyIcon } from "@/components/shared/IcfyIcon";
 import { IProduct } from "@/types";
-import { generateImagePreviews, isObjectURL } from "@/utils";
+import { generateImagePreviews, isObjectURL } from "@/utils/generateImagePreviews";
 
 type TImageUploaderProps = {
   heading?: string;

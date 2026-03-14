@@ -1,8 +1,8 @@
 "use client";
 
 import { ReactNode, useEffect, useRef } from "react";
-import { useClickOutside } from "@/hooks";
-import { CloseBtn } from "../shared";
+import { useClickOutside } from "@/hooks/useClickOutside";
+import { CloseBtn } from "../shared/buttons/CloseBtn";
 import gsap from "gsap";
 import { Transition } from "react-transition-group";
 

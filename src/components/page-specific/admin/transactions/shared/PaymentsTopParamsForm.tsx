@@ -1,6 +1,6 @@
 "use client";
 
-import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared";
+import { IParamsFilterFormProps, ParamsFilterForm } from "@/components/shared/ParamsFilterForm";
 import { IPaymentQueriesParams } from "@/hooks/usePaymentQueries";
 import { IPayment } from "@/types/payment";
 

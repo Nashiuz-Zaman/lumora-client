@@ -1,43 +1,39 @@
 "use client";
 
 // Components
-import {
-  Pagination,
-  TabularData,
-  WarningIcon,
-  ButtonBtnTrans,
-  TRenderTableRowProps,
-  TTableColumn,
-} from "@/components/shared";
+import { Pagination } from "@/components/shared/Pagination";
+import { TabularData, TRenderTableRowProps, TTableColumn } from "@/components/shared/TabularData";
+import { WarningIcon } from "@icons/WarningIcon";
+import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { CustomersTopParamsForm } from "../../shared/CustomersTopParamsForm";
 import { ActiveCustomerRow } from "./ActiveCustomerRow";
-import { ConfirmationModal } from "@/components/modals";
+import { ConfirmationModal } from "@modals/ConfirmationModal";
 
 // Providers
 import { ProtectedRouteProvider } from "@/providers";
 
 // Hooks
-import {
-  useModal,
-  useSelectable,
-  useRefState,
-  useSetElementText,
-  useDynamicHeight,
-  useCustomersQueries,
-} from "@/hooks";
+import { useModal } from "@/hooks/useModal";
+import { useSelectable } from "@/hooks/useSelectable";
+import { useRefState } from "@/hooks/useRefState";
+import { useSetElementText } from "@/hooks/useSetElementText";
+import { useDynamicHeight } from "@/hooks/useDynamicHeight";
+import { useCustomersQueries } from "@/hooks/useCustomersQueries";
 import { useRef } from "react";
 
 // Constants
-import { UserRoles, OrderSortOptions, UserStatus } from "@/constants";
+import { UserRoles, UserStatus } from "@/constants/user";
+import { OrderSortOptions } from "@/constants/order";
 
 // Utilities
-import { catchAsyncGeneral, showToast } from "@/utils";
+import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/showToast";
 
 // Types
 import { IPaginatedCustomer } from "@/types";
 
 // Redux / API
-import { useBlockCustomersMutation } from "@/libs/redux/apiSlices/customer.api.slice";
+import { useBlockCustomersMutation } from "@apiSlices/customer.api.slice";
 
 const columns: TTableColumn[] = [
   { columnTitle: "checkbox", width: "auto" }, // checkbox only

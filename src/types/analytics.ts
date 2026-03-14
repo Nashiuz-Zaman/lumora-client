@@ -1,4 +1,4 @@
-import { IComparison } from "@/components/page-specific/admin/analytics/shared/StatsCard";
+import { IComparison } from "@page-specific/admin/analytics/shared/StatsCard";
 
 // ---------------------------------------------------------
 // PAYMENT COMPARISON STRUCTURE

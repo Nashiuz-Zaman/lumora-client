@@ -2,8 +2,9 @@
 
 import { useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { buildUrlWithParams, cleanObject } from "@/utils";
-import { useGetProductsFromProductCollectionQuery } from "@/libs/redux/apiSlices/product.api.slice";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
+import { cleanObject } from "@/utils/cleanObject";
+import { useGetProductsFromProductCollectionQuery } from "@apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 
 export const useCollectionProductsQueries = (

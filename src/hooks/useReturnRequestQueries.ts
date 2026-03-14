@@ -5,18 +5,16 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import isEqual from "lodash/isEqual";
 
 // Utils
-import {
-  getQueryParamsFromSearchParams,
-  cleanObject,
-  buildUrlWithParams,
-} from "@/utils";
+import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { cleanObject } from "@/utils/cleanObject";
+import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
 
 // API Hook
-import { useGetReturnRequestsQuery } from "@/libs/redux/apiSlices/returnRequest.api.slice";
+import { useGetReturnRequestsQuery } from "@apiSlices/returnRequest.api.slice";
 
 // Types
 import { IQueryMeta, IReturnRequest } from "@/types";
-import { ReturnRequestSortOptions, TReturnRequestStatus } from "@/constants";
+import { ReturnRequestSortOptions, TReturnRequestStatus } from "@/constants/returnRequest";
 
 export interface IReturnRequestQueriesParams {
   page: number;

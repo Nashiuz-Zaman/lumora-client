@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 
-import { formatPrice } from "@/utils";
-import { InputCheckbox } from "@/components/shared";
+import { formatPrice } from "@/utils/formatPrice";
+import { InputCheckbox } from "@/components/shared/InputCheckbox";
 import { IProduct } from "@/types";
-import { TUseSelectableReturn } from "@/hooks";
+import { TUseSelectableReturn } from "@/hooks/useSelectable";
 
 interface IAdminProductCardProps {
   product: IProduct;

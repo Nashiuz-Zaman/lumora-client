@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { ButtonBtn } from "@/components/shared/buttons";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 import { OptionsDropdown } from "@/components/shared/OptionsDropdown";
-import { DownCaretIcon } from "@/components/shared/icons";
+import { DownCaretIcon } from "@icons/DownCaretIcon";
 import SortOptionsMenu from "./SortOptionsMenu";
 import { IRadioOption } from "./RadioBtnGroup";
 
@@ -15,7 +15,7 @@ export interface ISortDropdownProps {
   buttonClassName?: string;
   className?: string;
 }
- 
+
 export const SortDropdown = ({
   buttonLabel,
   selected,

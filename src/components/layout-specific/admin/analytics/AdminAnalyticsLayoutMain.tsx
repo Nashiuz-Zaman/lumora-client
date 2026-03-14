@@ -1,11 +1,11 @@
 "use client";
 
-import { TopPanel } from "@/components/page-specific";
-import { SelectField } from "@/components/shared";
+import { TopPanel } from "@page-specific/admin/shared/TopPanel";
+import { SelectField } from "@/components/shared/SelectField";
 import {
   setMonth,
   setYear,
-} from "@/libs/redux/features/analytics/analyticsSlice";
+} from "@features/analytics/analyticsSlice";
 import { TRootState } from "@/libs/redux/store";
 import { useDispatch, useSelector } from "react-redux";
 import { TotalRevenue } from "./TotalRevenue";
