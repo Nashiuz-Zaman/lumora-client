@@ -34,9 +34,9 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
       className={`w-full select-none text-center lg:text-left ${className}`}
     >
       {/* Headline */}
-      <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-semibold capitalize leading-none! mb-2 xl:mb-4 text-center lg:text-left">
+      <h1 className="text-4xl xl:text-5xl 2xl:text-6xl font-semibold capitalize leading-none! mb-2 xl:mb-4 text-center tracking-tighter lg:text-left">
         <span
-          className="opacity-0 inline-block bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent translate-y-[-200px]"
+          className="opacity-0 inline-block translate-y-[-200px]"
           id="shop-more-part"
         >
           Shop More
@@ -53,7 +53,7 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
       </h1>
 
       {/* Subtitle */}
-      <p className="text-neutral-400 mb-4 xl:mb-6 sm:w-[60%] sm:mx-auto text-center lg:w-full lg:mx-0 lg:text-left">
+      <p className="text-neutral-500/80 mb-4 xl:mb-6 sm:w-[60%] sm:mx-auto text-center lg:w-full lg:mx-0 lg:text-left">
         From tech gadgets to gourmet food, fashion to home essentials — discover
         everything you need in one place.
       </p>
