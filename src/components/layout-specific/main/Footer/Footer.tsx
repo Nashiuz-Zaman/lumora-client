@@ -1,77 +1,136 @@
 "use client";
 
-import Image from "next/image";
 import { InnerContainer } from "@containers/InnerContainer";
 import LogoSocials from "./LogoSocials";
-import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
-
-import { socialMediaLinks } from "@/static-data/footerData";
-import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import NavAddress from "./NavAddress";
+import Link from "next/link";
+import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
+import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
+import { socialMediaLinks } from "@/static-data/footerData";
+import FooterNewsletter from "@/components/layout-specific/main/Footer/FooterNewsletter";
+
+type TFooterLink = {
+  label: string;
+  href?: string;
+  onClick?: () => void;
+};
+
+const FooterLinkGroup = ({
+  title,
+  links,
+  columns = 1,
+}: {
+  title: string;
+  links: TFooterLink[];
+  columns?: 1 | 2;
+}) => {
+  return (
+    <div>
+      <h4 className="text-white uppercase font-semibold mb-6 tracking-wide">
+        {title}
+      </h4>
+
+      <ul
+        className={`grid ${columns === 1 ? "grid-cols-1" : "grid-cols-2"} gap-3 text-sm`}
+      >
+        {links.map((link, i) => (
+          <li key={i}>
+            {link.href ? (
+              <Link
+                href={link.href}
+                className="text-neutral-400 text-left hover:text-white transition-colors"
+              >
+                {link.label}
+              </Link>
+            ) : (
+              <button
+                onClick={link.onClick}
+                className="text-neutral-400 text-left hover:text-white transition-colors"
+              >
+                {link.label}
+              </button>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const Footer = () => {
-  const curYear = new Date().getFullYear();
-  const { data: categoryTree, isLoading, isError } = useGetCategoryTreeQuery();
+  const year = new Date().getFullYear();
+
+  const { data: categoryTree } = useGetCategoryTreeQuery();
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
-  return (
-    <footer className="bg-linear-to-br from-primary via-primary-dark to-primary-dark-2 text-neutral-50 mt-auto">
-      <InnerContainer>
-        <div className="grid grid-cols-1 gap-8 py-8 lg:pt-14 lg:pb-6 xl:grid-cols-[1fr_1.3fr]">
-          {/* Logo + socials */}
-          <div className="flex flex-col gap-10 mb-12">
-            <LogoSocials socialMediaLinks={socialMediaLinks} />
+  const categoryLinks: TFooterLink[] =
+    categoryTree?.flatMap((item) =>
+      item.subCategories.slice(0, 2).map((sub) => ({
+        label: sub.title,
+        onClick: () =>
+          handleCategoryClick({
+            type: "subs",
+            subSlugs: [sub.slug],
+          }),
+      })),
+    ) || [];
 
+  const supportLinks: TFooterLink[] = [
+    { label: "F.A.Q", href: "/faq" },
+    { label: "Help Center", href: "#" },
+    { label: "Returns", href: "/returns" },
+    { label: "Shipping", href: "#" },
+    { label: "Track Order", href: "/track-order" },
+  ];
+
+  const companyLinks: TFooterLink[] = [
+    { label: "About", href: "#" },
+    { label: "Careers", href: "#" },
+    { label: "Privacy", href: "#" },
+    { label: "Terms", href: "#" },
+  ];
+
+  return (
+    <footer className="bg-primary-dark-4 text-neutral-300 border-t border-white/5 mt-auto">
+      <InnerContainer>
+        {/* MAIN SECTION */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-12 py-20">
+          {/* Brand */}
+          <div className="space-y-8 lg:col-span-3">
+            <LogoSocials socialMediaLinks={socialMediaLinks} />
             <NavAddress />
           </div>
 
-          {/* Category navigation */}
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-8">
-            {isLoading && <p>Loading categories...</p>}
-            {isError && <p>Failed to load categories</p>}
-            {categoryTree &&
-              categoryTree.map((item) => (
-                <div key={item.topCategory._id}>
-                  <h4 className="font-semibold mb-2">
-                    {item.topCategory.title}
-                  </h4>
-                  <ul className="space-y-1 text-sm">
-                    {item.subCategories.map((sub) => (
-                      <li key={sub._id}>
-                        <button
-                          onClick={() => {
-                            handleCategoryClick({
-                              type: "subs",
-                              subSlugs: [sub.slug],
-                            });
-                          }}
-                          className="hover:underline cursor-pointer"
-                        >
-                          {sub.title}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
+          <div className="lg:col-span-2">
+            <FooterLinkGroup columns={2} title="Shop" links={categoryLinks} />
+          </div>
+
+          <div className="lg:col-span-2 grid grid-cols-2">
+            <FooterLinkGroup title="Support" links={supportLinks} />
+
+            <FooterLinkGroup title="Company" links={companyLinks} />
           </div>
         </div>
 
-        {/* Payment methods */}
-        <div className="flex justify-center">
-          <Image
-            src="/logos/payment-portal/payment.webp"
-            alt="Payment options"
-            width={598}
-            height={63}
-            className="w-48 sm:w-56 md:w-[18rem] lg:w-[24rem] xl:w-lg 2xl:w-148 h-auto my-6 lg:my-10"
-          />
-        </div>
+        {/* NEWSLETTER */}
+        <FooterNewsletter />
 
-        {/* Copyright */}
-        <small className="block text-center mb-6 text-xs sm:text-sm text-neutral-50 px-4">
-          © {curYear} | Developed by Nashiuz Zaman
-        </small>
+        {/* BOTTOM BAR */}
+        <div className="border-t border-white/5 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+          <p>© {year} Lumora by Nashiuz Zaman</p>
+
+          <div className="flex gap-6">
+            <Link href="/#" className="hover:text-white">
+              Privacy
+            </Link>
+            <Link href="/#" className="hover:text-white">
+              Terms
+            </Link>
+            <Link href="/#" className="hover:text-white">
+              Cookies
+            </Link>
+          </div>
+        </div>
       </InnerContainer>
     </footer>
   );

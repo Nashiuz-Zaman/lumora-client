@@ -24,7 +24,7 @@ const HomePage = async () => {
         <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             collectionSlug="top-selling-products-homepage"
-            title="Top Selling"
+            title="Best Sellers"
             tagline="Our best-sellers, loved by thousands."
             navigation={{
               nextEl: ".top-selling-products-homepage-next",

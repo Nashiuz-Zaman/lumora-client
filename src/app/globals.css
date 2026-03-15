@@ -14,6 +14,8 @@
   --color-primary: #ad46ff;
   --color-primary-dark: #8a38cc;
   --color-primary-dark-2: #6e2da3;
+  --color-primary-dark-3: #12081c;
+  --color-primary-dark-4: #0a0410;
   --color-primary-light: #bd6bff;
   --color-primary-light-2: #ca89ff;
   --color-secondary: #f6339a;
@@ -28,6 +30,10 @@
 html {
   font-size: 75% !important;
   scroll-behavior: smooth;
+}
+
+button {
+  cursor: pointer;
 }
 
 @media (min-width: 640px) {

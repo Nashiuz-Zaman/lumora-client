@@ -17,12 +17,12 @@ type LogoSocialsProps = {
 
 const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
   return (
-    <div className="xl:pr-14 2xl:pr-[8.6425rem]">
+    <div className="">
       {/* Logo */}
       <CompanyLogoBtn isBgDark={true} className="mb-6"/>
 
       {/* Description */}
-      <p className="text-neutral-50 text-sm sm:text-base leading-relaxed max-w-[32rem] mb-6">
+      <p className="text-neutral-400 text-sm leading-relaxed mb-6">
         Shop premium products from Apple, Nike, Gucci, and more—all delivered
         across the USA. Gadgets, fashion, and gourmet foods in one place.
       </p>
