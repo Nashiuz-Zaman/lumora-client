@@ -27,7 +27,7 @@ const Header = () => {
       {/* Main header content */}
       <div className="bg-white border-y z-10 border-neutral-100">
         <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
-          <CompanyLogoBtn className="mr-6" />
+          <CompanyLogoBtn className="mr-6 uppercase font-medium!" />
 
           {/* 2. Now dynamically loaded */}
           <HeaderSearchAvatarAuthOptions />

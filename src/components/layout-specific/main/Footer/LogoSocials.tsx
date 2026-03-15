@@ -19,7 +19,7 @@ const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
   return (
     <div className="">
       {/* Logo */}
-      <CompanyLogoBtn isBgDark={true} className="mb-6"/>
+      <CompanyLogoBtn isBgDark={false} className="mb-6 font-semibold uppercase"/>
 
       {/* Description */}
       <p className="text-neutral-400 text-sm leading-relaxed mb-6">

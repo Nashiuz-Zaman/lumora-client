@@ -71,7 +71,7 @@ export const HeaderSearchAvatarAuthOptions = () => {
           renderResult={renderResult}
           showIcon
           trigger={triggerSearch}
-          className="border-neutral-200"
+          className="border-neutral-100!"
           modalClassName="productSearchbarModal"
         />
       )}

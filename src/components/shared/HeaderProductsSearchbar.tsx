@@ -95,7 +95,7 @@ export const HeaderProductsSearchbar = <T,>({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-140 4xl:max-w-200 text-neutral-400 bg-white ${className}`}
+      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-140 4xl:max-w-200 text-neutral-400/60 bg-neutral-50 ${className}`}
     >
       <form
         onSubmit={handleSubmit}

@@ -46,7 +46,9 @@ export const address: IAddress = {
       heading: "New York Office",
       description: (
         <>
-          123 Fifth Avenue, Suite 500, New York, NY 10010
+          123 Fifth Avenue, Suite 500,
+          <br />
+          New York, NY 10010
           <br /> United States
         </>
       ),
@@ -55,7 +57,9 @@ export const address: IAddress = {
       heading: "San Francisco Office",
       description: (
         <>
-          456 Market Street, Floor 12, San Francisco, CA 94111
+          456 Market Street, Floor 12,
+          <br />
+          San Francisco, CA 94111
           <br /> United States
         </>
       ),

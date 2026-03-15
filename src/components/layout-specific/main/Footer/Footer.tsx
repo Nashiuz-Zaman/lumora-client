@@ -8,6 +8,14 @@ import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import { socialMediaLinks } from "@/static-data/footerData";
 import FooterNewsletter from "@/components/layout-specific/main/Footer/FooterNewsletter";
+import { Icon } from "@iconify/react";
+
+type FooterLinkGroupProps = {
+  title: string;
+  links: TFooterLink[];
+  columns?: 1 | 2;
+  icon?: string;
+};
 
 type TFooterLink = {
   label: string;
@@ -19,15 +27,13 @@ const FooterLinkGroup = ({
   title,
   links,
   columns = 1,
-}: {
-  title: string;
-  links: TFooterLink[];
-  columns?: 1 | 2;
-}) => {
+  icon,
+}: FooterLinkGroupProps) => {
   return (
     <div>
-      <h4 className="text-white uppercase font-semibold mb-6 tracking-wide">
+      <h4 className="flex items-center gap-2 text-white uppercase font-semibold mb-6 tracking-wide">
         {title}
+        {icon && <Icon icon={icon} className="text-white text-lg shrink-0" />}
       </h4>
 
       <ul
@@ -102,7 +108,12 @@ const Footer = () => {
           </div>
 
           <div className="lg:col-span-2">
-            <FooterLinkGroup columns={2} title="Shop" links={categoryLinks} />
+            <FooterLinkGroup
+              columns={2}
+              title="Shop"
+              links={categoryLinks}
+              icon="mdi:shopping-outline"
+            />
           </div>
 
           <div className="lg:col-span-2 grid grid-cols-2">

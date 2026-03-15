@@ -8,7 +8,7 @@ import { address } from "@/static-data/footerData";
 
 const NavAddress = () => {
   return (
-    <div className="flex items-start flex-col gap-7">
+    <div className="flex items-start gap-10">
       {address.addresses?.map((addr, i) => (
         <div key={i}>
           <AddressHeading heading={addr.heading} />

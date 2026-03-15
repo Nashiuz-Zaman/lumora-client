@@ -21,7 +21,7 @@ export const CartItemList = () => {
             <div className="mb-16">
               <NoData text="Cart is empty" className="py-0! my-0! mb-4!" />
               <LinkBtn href="/products/s" className="primaryClasses!">
-                <CartIcon className="text-xl" />
+                <CartIcon className="text-2xl" />
                 Back to Shopping
               </LinkBtn>
             </div>
