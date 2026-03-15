@@ -25,7 +25,7 @@ const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
       />
 
       {/* Description */}
-      <p className="text-neutral-400 text-sm leading-relaxed mb-6">
+      <p className="text-neutral-400 text-sm leading-relaxed mb-6 lg:max-w-[90%]">
         Shop premium products from Apple, Nike, Gucci, and more—all delivered
         across the USA. Gadgets, fashion, and gourmet foods in one place.
       </p>
