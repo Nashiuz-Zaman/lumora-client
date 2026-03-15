@@ -21,7 +21,7 @@ const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
       {/* Logo */}
       <CompanyLogoBtn
         isBgDark={false}
-        className="mb-6 font-semibold uppercase"
+        className="mb-6 font-semibold uppercase 2xl:text-5xl"
       />
 
       {/* Description */}
