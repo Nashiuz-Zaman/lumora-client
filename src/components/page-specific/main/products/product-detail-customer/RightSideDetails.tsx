@@ -12,7 +12,7 @@ import { AboutProduct } from "./AboutProduct";
 
 // types
 import { IVariant, IProductWithFullReviewsStats } from "@/types/product";
-import { VariantSelector } from "./VariantSelector";
+import { VariantSelector } from "@shared/VariantSelector";
 import { IAddItemToCartRequest } from "@apiSlices/cart.api.slice";
 import { useCartState } from "@/hooks/useCartState";
 
@@ -143,7 +143,7 @@ export const RightSideDetails = ({
           onClick={handleAddToCart}
           isLoading={isCartBusy}
           disabled={isAddToCartDisabled || !curProductVariant}
-          className="successClasses py-2.5! gap-2!"
+          className="successClasses py-2.5! gap-2! rounded-full!"
         >
           <CartIcon className="text-2xl" /> Add to cart
         </ButtonBtn>

@@ -26,7 +26,7 @@ export interface ICartStateContext {
   addProductToCart: (args: any) => Promise<any>;
   updateCartItemQuantity: (args: any) => Promise<any>;
   removeCartItem: (args: any) => Promise<any>;
-  clearUserCart: (args: any) => Promise<any>;
+  clearCartItems: (args: any) => Promise<any>;
   applyCoupon: (args: any) => Promise<any>;
   removeCoupon: () => Promise<any>;
 }
@@ -101,7 +101,7 @@ export const CartStateProvider = ({ children }: ICartStateProviderProps) => {
     showCartUpdateSuccessToast(result);
   });
 
-  const clearUserCart = catchAsyncGeneral(async () => {
+  const clearCartItems = catchAsyncGeneral(async () => {
     const result = await clearCart().unwrap();
     showCartUpdateSuccessToast(result);
   });
@@ -135,7 +135,7 @@ export const CartStateProvider = ({ children }: ICartStateProviderProps) => {
     addProductToCart,
     updateCartItemQuantity,
     removeCartItem,
-    clearUserCart,
+    clearCartItems,
     applyCoupon,
     removeCoupon,
   };

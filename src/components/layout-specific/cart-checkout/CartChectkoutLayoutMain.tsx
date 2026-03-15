@@ -6,6 +6,8 @@ import { LoadingSpinner } from "@shared/LoadingSpinner";
 import { OrderSummary } from "@layout-specific/cart-checkout/OrderSummary";
 import { usePathname } from "next/navigation";
 import { useCartState } from "@/hooks/useCartState";
+import { ButtonBtnTrans } from "@/components/shared/buttons/ButtonBtnTrans";
+import { CartIcon } from "@/components/shared/icons/CartIcon";
 
 const CartCheckoutLayoutMain = ({
   children,
@@ -14,6 +16,7 @@ const CartCheckoutLayoutMain = ({
 }) => {
   const { cart, isCartBusy } = useCartState();
   const pathname = usePathname();
+  const { clearCartItems } = useCartState();
 
   let title = "Your Cart";
   if (pathname.startsWith("/checkout")) {
@@ -27,19 +30,34 @@ const CartCheckoutLayoutMain = ({
       <div className="2xl:max-w-[85%] mx-auto px-4 py-6">
         <div className="mb-8">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-6">
-              <div className="shrink-0">
-                <h2 className="text-3xl font-medium mb-2">{title}</h2>
+            <div className="flex items-center grow justify-between pr-20">
+              <div className="flex items-center gap-6">
+                {/* Cart Heading */}
+                <div className="shrink-0">
+                  <h2 className="text-3xl font-medium mb-2">{title}</h2>
+                  {pathname.startsWith("/cart") && cart?.totalItemQty ? (
+                    <p className="text-neutral-400">
+                      {cart.totalItemQty} items ready for checkout
+                    </p>
+                  ) : null}
+                </div>
 
-                {pathname.startsWith("/cart") && cart?.totalItemQty ? (
-                  <p className="text-neutral-400">
-                    {cart.totalItemQty} items ready for checkout
-                  </p>
-                ) : null}
+                {/* Cart Activity Loading Spinner */}
+                {isCartBusy && (
+                  <LoadingSpinner className="py-0! my-0! static!" />
+                )}
               </div>
 
-              {isCartBusy && <LoadingSpinner className="py-0! my-0! static!" />}
+              {cart.totalItemQty && cart.totalItemQty > 0 ? (
+                <ButtonBtnTrans
+                  onClick={clearCartItems}
+                  className="text-secondary hover:text-secondary-dark transition-colors duration-150 hover:underline"
+                >
+                  <CartIcon className="text-2xl" /> Clear Cart
+                </ButtonBtnTrans>
+              ) : null}
             </div>
+
             <div className="hidden md:block">
               <StepIndicator />
             </div>
