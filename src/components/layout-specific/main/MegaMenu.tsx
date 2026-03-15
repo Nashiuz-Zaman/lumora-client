@@ -42,10 +42,10 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                     {topCategory.title}
                   </p>
 
-                  <div className="absolute mt-px flex left-0 -translate-y-px top-full opacity-0 collapse group-hover:transition-all group-hover:duration-350 group-hover:delay-150 group-hover:ease group-hover:opacity-100 group-hover:visible w-full justify-center z-5000 text-xs 3xl:text-base">
-                    <div className="w-full grid grid-cols-[1fr_1fr_2fr] gap-6 p-6 rounded-b-2xl shadow-lg items-start bg-white border border-neutral-100 border-t-0">
+                  <div className="absolute mt-px flex x-center -translate-y-px top-full opacity-0 collapse group-hover:transition-all group-hover:duration-350 group-hover:delay-150 group-hover:ease group-hover:opacity-100 group-hover:visible w-[90%] justify-center z-5000 text-xs 3xl:text-base">
+                    <div className="w-full grid grid-cols-[2.5fr_2fr_5.5fr] gap-6 p-6 rounded-b-2xl shadow-2xl items-start bg-white border border-neutral-100 border-t-0">
                       {/* Left column: Grid card */}
-                      <div className="bg-neutral-100 rounded-lg p-6 flex items-center justify-center">
+                      <div className="bg-neutral-100/70 rounded-lg p-6 flex items-center justify-center">
                         <div className="w-[90%]">
                           <GridCard
                             images={
