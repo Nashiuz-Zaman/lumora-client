@@ -71,7 +71,7 @@ const Footer = () => {
 
   const categoryLinks: TFooterLink[] =
     categoryTree?.flatMap((item) =>
-      item.subCategories.slice(0, 2).map((sub) => ({
+      item.subCategories.slice(0, 3).map((sub) => ({
         label: sub.title,
         onClick: () =>
           handleCategoryClick({
