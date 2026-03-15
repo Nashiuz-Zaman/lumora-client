@@ -15,9 +15,10 @@ export const withRetry = async <T>(
   try {
     return await fn();
   } catch (error) {
-    if (retries <= 1) throw error;
+    // Only retry if shouldRetry returns true
+    if (!shouldRetry(error) || retries <= 1) throw error;
 
-    // Jitter: a random offset between 0 and 200ms
+    // Jitter: a random offset between 0 and 400ms
     const offset = Math.random() * 400;
     const totalDelay = delay + offset;
 
@@ -26,6 +27,7 @@ export const withRetry = async <T>(
     console.warn(
       `Retryable error detected. Retrying in ${Math.round(totalDelay)}ms...`,
     );
+
     return withRetry(fn, retries - 1, delay, shouldRetry);
   }
 };
