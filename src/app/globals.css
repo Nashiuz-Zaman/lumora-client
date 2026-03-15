@@ -70,17 +70,17 @@ html {
 }
 
 @utility blackOutlinedToPrimaryClasses {
-  @apply bg-transparent border border-neutral-300 text-neutral-500
+  @apply bg-transparent border border-neutral-400! text-neutral-700!
          active:bg-primary lg:hover:bg-primary lg:hover:text-neutral-50
          active:text-neutral-50 lg:hover:border-primary active:border-primary
-         disabled:hover:bg-transparent disabled:hover:border-neutral-300;
+         disabled:hover:bg-transparent disabled:hover:border-neutral-300!;
 }
 
 @utility primaryOutlinedClasses {
-  @apply bg-transparent border text-primary border-primary
-         active:bg-primary lg:hover:bg-primary lg:hover:text-neutral-50
-         active:text-neutral-50 lg:hover:border-primary
-         disabled:hover:bg-transparent disabled:hover:text-primary disabled:hover:border-primary;
+  @apply bg-transparent border text-primary-light! disabled:hover:text-primary border-primary-light!
+         active:bg-primary-light lg:hover:bg-primary-light! lg:hover:text-white
+         active:text-white lg:hover:border-primary-light
+         disabled:hover:bg-transparent  disabled:hover:border-primary;
 }
 
 @utility primaryLightClasses {

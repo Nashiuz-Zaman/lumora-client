@@ -4,6 +4,7 @@ import { GridCard, IGridCardImage } from "@shared/GridCard";
 import { LinkBtn } from "@buttons/LinkBtn";
 import { SlideInOutWrapperX } from "@shared/SlideInOutWrapperX";
 import { HTMLAttributes } from "react";
+import { CaretRightIcon } from "@/components/shared/icons/CaretRightIcon";
 
 export interface ICategoryCardProps extends HTMLAttributes<HTMLDivElement> {
   heading: string;
@@ -14,8 +15,7 @@ export interface ICategoryCardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const slideInOutPanelGradient = "bg-white/30 backdrop-blur-[3px]";
-const btnClasses =
-  "primaryLightClasses !rounded-md";
+const btnClasses = "secondaryClasses !rounded-full";
 
 export const ProductCategoryCard = ({
   heading,
@@ -45,7 +45,7 @@ export const ProductCategoryCard = ({
       >
         <div className="py-10 flex items-center justify-center">
           <LinkBtn href={linkUrl} className={btnClasses}>
-            {linkText}
+            {linkText} <CaretRightIcon />
           </LinkBtn>
         </div>
       </SlideInOutWrapperX>

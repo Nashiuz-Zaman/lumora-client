@@ -115,9 +115,9 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           <ButtonBtn
             onClick={handleClick}
             title="Add Item To Cart"
-            className="primaryLightClasses py-2! mx-auto gap-2! font-medium!"
+            className="primaryOutlinedClasses! rounded-full! py-2! mx-auto gap-2! font-medium!"
           >
-            <CartIcon className="text-xl" /> Add to Cart
+            <CartIcon className="text-2xl" /> Add to Cart
           </ButtonBtn>
         </div>
       </div>

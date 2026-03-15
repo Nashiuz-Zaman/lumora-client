@@ -8,6 +8,7 @@ import { SectionTagline } from "@shared/SectionTagline";
 import { TCustomSwiperProps } from "@shared/CustomSwiper";
 import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
 import { ICategoryTreeItem } from "@/types";
+import { ButtonBtn } from "@buttons/ButtonBtn";
 
 export interface IProductsFromCollectionHeaderProps {
   title: string;
@@ -51,22 +52,22 @@ export const ProductsFromCollectionHeader = ({
       </div>
 
       <div className="flex items-center gap-3 ml-auto">
-        <button
+        <ButtonBtn
           className={`${navigation?.prevEl.replace(
             ".",
             "",
-          )} w-10 h-10 relative rounded-full border border-neutral-300 hover:bg-neutral-100 cursor-pointer shadow-md transition-all duration-300 text-neutral-500 active:scale-75`}
+          )} w-10 h-10 p-5! relative rounded-full! primaryLightClasses!  shadow-md transition-all duration-300 active:scale-60!`}
         >
           <CaretLeftIcon className="xy-center absolute" />
-        </button>
-        <button
+        </ButtonBtn>
+        <ButtonBtn
           className={`${navigation?.nextEl.replace(
             ".",
             "",
-          )} w-10 h-10 relative rounded-full border border-neutral-300 hover:bg-neutral-100! text-neutral-500 cursor-pointer shadow-md transition-all duration-300 active:scale-75`}
+          )} w-10 h-10 p-5! relative rounded-full! primaryLightClasses!  shadow-md transition-all duration-300 active:scale-60!`}
         >
-          <CaretRightIcon className="xy-center absolute"/>
-        </button>
+          <CaretRightIcon className="xy-center absolute" />
+        </ButtonBtn>
       </div>
     </div>
   );
