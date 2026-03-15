@@ -34,7 +34,7 @@ export const ProductCategoryCard = ({
       {...props}
     >
       {/* Top Heading */}
-      <h3 className="text-base sm:text-lg font-semibold mb-3">{heading}</h3>
+      <h2 className="text-base sm:text-lg font-semibold mb-3">{heading}</h2>
 
       {/* Image Grid */}
       <GridCard images={images} />

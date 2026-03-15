@@ -14,7 +14,7 @@ export const CompanyLogoBtn = ({
   return (
     <Link href="/" className={`inline-block text-2xl ${className}`}>
       <p
-        className={`${
+        className={`tracking-wider ${
           isBgDark
             ? "text-neutral-50"
             : "bg-linear-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent"

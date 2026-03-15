@@ -10,22 +10,27 @@ export const socialMediaLinks: ISocialMediaLink[] = [
   {
     src: "/logos/social-media/fb.svg",
     href: "https://www.facebook.com/",
+    alt: "Facebook",
   },
   {
     src: "/logos/social-media/instagram.svg",
     href: "https://www.instagram.com/",
+    alt: "Instagram",
   },
   {
     src: "/logos/social-media/whatsapp.svg",
     href: "https://www.whatsapp.com/",
+    alt: "WhatsApp",
   },
   {
     src: "/logos/social-media/telegram.svg",
     href: "https://telegram.org/",
+    alt: "Telegram",
   },
   {
     src: "/logos/social-media/twitter.svg",
     href: "https://twitter.com/?lang=en",
+    alt: "Twitter",
   },
 ];
 

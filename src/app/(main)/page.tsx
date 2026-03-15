@@ -20,7 +20,7 @@ const HomePage = async () => {
         <ProductCategories />
       </Suspense>
 
-      <div className="space-y-8 my-8">
+      <div className="space-y-8 my-28!">
         <Suspense fallback={<ProductCollectionSkeleton />}>
           <ProductsFromCollection
             collectionSlug="top-selling-products-homepage"

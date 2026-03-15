@@ -27,18 +27,21 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
   const { handleCategoryClick } = useProductSearchParamsManagement();
 
   return (
-    <nav className="hidden xl:block w-full bg-white border-b border-neutral-100">
+    <nav className="hidden xl:block w-full bg-white">
       <InnerContainer className="relative!">
-        <div className="flex items-center justify-center gap-6 relative">
+        <div className="flex items-center justify-center relative">
           {categories?.map(
             ({ topCategory, subCategories, featuredProducts = [] }) => {
               return (
-                <div key={topCategory._id} className="group">
-                  <p className="cursor-pointer transition-colors duration-200 hover:text-primary font-medium text-xs 2xl:text-sm 3xl:text-base py-3 2xl:py-4">
+                <div
+                  key={topCategory._id}
+                  className="group border-b-2 border-transparent hover:border-primary/60 transition-colors duration-500 px-4 cursor-pointer"
+                >
+                  <p className="cursor-pointer transition-colors duration-200 hover:text-primary font-medium text-xs 2xl:text-sm 3xl:text-base py-4 pb-2">
                     {topCategory.title}
                   </p>
 
-                  <div className="absolute mt-px flex left-0 top-full opacity-0 collapse group-hover:transition-all group-hover:duration-350 group-hover:delay-150 group-hover:ease group-hover:opacity-100 group-hover:visible w-full justify-center z-5000 text-xs 3xl:text-base">
+                  <div className="absolute mt-px flex left-0 -translate-y-px top-full opacity-0 collapse group-hover:transition-all group-hover:duration-350 group-hover:delay-150 group-hover:ease group-hover:opacity-100 group-hover:visible w-full justify-center z-5000 text-xs 3xl:text-base">
                     <div className="w-full grid grid-cols-[1fr_1fr_2fr] gap-6 p-6 rounded-b-2xl shadow-lg items-start bg-white border border-neutral-100 border-t-0">
                       {/* Left column: Grid card */}
                       <div className="bg-neutral-100 rounded-lg p-6 flex items-center justify-center">

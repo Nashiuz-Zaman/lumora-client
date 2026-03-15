@@ -111,7 +111,11 @@ export const HeaderProductsSearchbar = <T,>({
         />
 
         {showIcon && (
-          <ButtonBtnTrans type="submit" className="text-inherit">
+          <ButtonBtnTrans
+            aria-label="Search products button"
+            type="submit"
+            className="text-inherit"
+          >
             <SearchIcon className="px-3 2md:text-2xl" />
           </ButtonBtnTrans>
         )}

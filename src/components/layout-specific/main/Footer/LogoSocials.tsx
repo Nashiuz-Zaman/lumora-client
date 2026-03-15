@@ -5,21 +5,24 @@ import { CompanyLogoBtn } from "@buttons/CompanyLogoBtn";
 import Image from "next/image";
 import Link from "next/link";
 
-type SocialMediaLink = {
+type TSocialMediaLink = {
   src: string;
   href: string;
   alt?: string;
 };
 
 type LogoSocialsProps = {
-  socialMediaLinks: SocialMediaLink[];
+  socialMediaLinks: TSocialMediaLink[];
 };
 
 const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
   return (
     <div className="">
       {/* Logo */}
-      <CompanyLogoBtn isBgDark={false} className="mb-6 font-semibold uppercase"/>
+      <CompanyLogoBtn
+        isBgDark={false}
+        className="mb-6 font-semibold uppercase"
+      />
 
       {/* Description */}
       <p className="text-neutral-400 text-sm leading-relaxed mb-6">
@@ -37,7 +40,7 @@ const LogoSocials = ({ socialMediaLinks }: LogoSocialsProps) => {
             >
               <Image
                 src={media.src}
-                alt={media.alt || "Social media link"}
+                alt={`${media.alt} icon`}
                 width={20}
                 height={20}
                 className="w-5 h-5"

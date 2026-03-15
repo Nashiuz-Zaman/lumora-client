@@ -38,7 +38,7 @@ export const Slider = <T,>({
   // --- Build slides with clones ---
   const slides = useMemo(
     () => [data[data.length - 1], ...data, data[0]],
-    [data]
+    [data],
   );
 
   useEffect(() => {
@@ -105,7 +105,7 @@ export const Slider = <T,>({
       stopAutoPlay();
       startAutoPlay();
     },
-    [isAnimating, startAutoPlay, stopAutoPlay]
+    [isAnimating, startAutoPlay, stopAutoPlay],
   );
 
   // --- Autoplay lifecycle ---
@@ -161,6 +161,7 @@ export const Slider = <T,>({
         <div className="absolute bottom-4 x-center flex gap-2">
           {data.map((_, i) => (
             <button
+              aria-label="Go to this image slide button"
               key={`key-${i}`}
               ref={(el) => {
                 if (el && !switcherRefs.current.includes(el)) {

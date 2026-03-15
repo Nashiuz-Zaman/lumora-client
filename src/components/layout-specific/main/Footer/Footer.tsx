@@ -31,10 +31,10 @@ const FooterLinkGroup = ({
 }: FooterLinkGroupProps) => {
   return (
     <div>
-      <h4 className="flex items-center gap-2 text-white uppercase font-semibold mb-6 tracking-wide">
+      <h2 className="flex items-center gap-2 text-white uppercase font-semibold mb-6 tracking-wide">
         {title}
         {icon && <Icon icon={icon} className="text-white text-lg shrink-0" />}
-      </h4>
+      </h2>
 
       <ul
         className={`grid ${columns === 1 ? "grid-cols-1" : "grid-cols-2"} gap-3 text-sm`}
