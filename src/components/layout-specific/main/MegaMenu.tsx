@@ -14,6 +14,7 @@ import { FeaturedProductCard } from "./FeaturedProductCard";
 
 // Hooks
 import { useProductSearchParamsManagement } from "@/hooks/useProductSearchParamsManagement";
+import { CaretRightIcon } from "@/components/shared/icons/CaretRightIcon";
 
 export type TMegaMenuItem = ICategoryTreeItem & {
   featuredProducts?: TProductWithMinimalReviewStats[];
@@ -112,9 +113,9 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                               categories,
                             });
                           }}
-                          className="primaryClasses! mx-auto"
+                          className="secondaryClasses! rounded-full! mx-auto"
                         >
-                          View all products
+                          View all products <CaretRightIcon />
                         </ButtonBtn>
                       </div>
                     </div>
