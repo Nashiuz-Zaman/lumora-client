@@ -1,24 +1,25 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
-// Reusable media query hook
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
+  const subscribe = (callback: () => void) => {
     const media = window.matchMedia(query);
 
-    const update = () => setMatches(media.matches);
-    update(); // run once on mount
+    // initial sync
+    media.addEventListener("change", callback);
 
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, [query]);
+    return () => media.removeEventListener("change", callback);
+  };
 
-  return matches;
+  const getSnapshot = () => {
+    return window.matchMedia(query).matches;
+  };
+
+  const getServerSnapshot = () => false;
+
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 }
-
 // breakpoints
 const rawBreakpoints = {
   "2xs": "360px",

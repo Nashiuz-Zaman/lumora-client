@@ -1,9 +1,14 @@
-import { useEffect } from "react";
+"use client";
+
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { BREAKPOINTS, useMediaQuery } from "@/hooks/useMediaQuery";
+
+gsap.registerPlugin(ScrollTrigger);
 
 interface IUseHeaderScrollAnimOptions {
-  hideThreshold?: number;
   triggerStart?: number;
   shadowThreshold?: number;
   duration?: number;
@@ -15,16 +20,23 @@ export const useHeaderScrollAnim = (
   selector: string = ".animated-header",
 ) => {
   const {
-    triggerStart = 50,
+    triggerStart = 300,
     shadowThreshold = 100,
     duration = 0.25,
     shadowCSS = "0 4px 20px rgba(0, 0, 0, 0.08)",
   } = options;
 
+  const isSmDown = useMediaQuery(BREAKPOINTS.max.sm!);
+  const isSmDownRef = useRef(isSmDown);
+
+  useEffect(() => {
+    isSmDownRef.current = isSmDown;
+  }, [isSmDown]);
+
   const className = "js-header-scroll-active";
+  const ease = "cubic-bezier(0.25, 1, 0.3, 1)";
 
-  const unifiedEase = "cubic-bezier(0.25, 1, 0.3, 1)";
-
+  // inject styles once
   useEffect(() => {
     const id = "header-scroll-anim-styles";
     if (document.getElementById(id)) return;
@@ -33,8 +45,8 @@ export const useHeaderScrollAnim = (
     style.id = id;
     style.innerHTML = `
       .header-anim-base {
-        transition: transform ${duration}s ${unifiedEase}, 
-                    box-shadow ${duration}s ${unifiedEase} !important;
+        transition: transform ${duration}s ${ease}, 
+                    box-shadow ${duration}s ${ease} !important;
         will-change: transform;
       }
       .${className} {
@@ -42,7 +54,7 @@ export const useHeaderScrollAnim = (
       }
     `;
     document.head.appendChild(style);
-  }, [shadowCSS, duration, unifiedEase]);
+  }, [shadowCSS, duration, ease]);
 
   useGSAP(() => {
     const header = document.querySelector(selector);
@@ -50,47 +62,59 @@ export const useHeaderScrollAnim = (
 
     header.classList.add("header-anim-base");
 
-    let lastScrollY = window.scrollY;
-    let isShadowActive = false;
+    if (isSmDownRef.current) {
+      gsap.set(header, { yPercent: 0 });
+      return;
+    }
 
-    const showHideAnim = gsap
-      .to(header, {
-        y: "-100%",
-        paused: true,
-        duration: duration,
+    const hide = () =>
+      gsap.to(header, {
+        yPercent: -100,
+        duration,
         ease: "none",
-      })
-      .reversed(true);
+        overwrite: "auto",
+      });
 
-    const handleScroll = () => {
-      const current = window.scrollY;
-      const delta = current - lastScrollY;
+    const show = () =>
+      gsap.to(header, {
+        yPercent: 0,
+        duration,
+        ease: "none",
+        overwrite: "auto",
+      });
 
-      // Direction detection (1px sensitive)
-      if (delta > 0 && current > triggerStart) {
-        showHideAnim.play(); // hide
-      } else if (delta < 0) {
-        showHideAnim.reverse(); // show
-      }
+    const trigger = ScrollTrigger.create({
+      start: triggerStart,
+      end: "max",
 
-      // Shadow toggle
-      if (current > shadowThreshold) {
-        if (!isShadowActive) {
-          header.classList.add(className);
-          isShadowActive = true;
-        }
-      } else if (isShadowActive) {
-        header.classList.remove(className);
-        isShadowActive = false;
-      }
+      onEnter: () => {
+        if (isSmDownRef.current) return;
+        // scroll passed triggerStart
+        hide();
+      },
 
-      lastScrollY = current;
-    };
+      onLeaveBack: () => {
+        // scroll above triggerStart
+        show();
+      },
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
+      onUpdate: (self) => {
+        if (isSmDownRef.current) return;
+
+        // direction-based toggle only
+        if (self.direction === 1) hide();
+        else if (self.direction === -1) show();
+      },
+    });
+
+    const shadowTrigger = ScrollTrigger.create({
+      start: shadowThreshold,
+      toggleClass: { targets: header, className },
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      trigger.kill();
+      shadowTrigger.kill();
     };
-  });
+  }, []);
 };
