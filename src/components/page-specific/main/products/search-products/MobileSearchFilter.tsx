@@ -71,7 +71,6 @@ export const MobileSearchFilters = ({
                 <InputFieldMinMax
                   min={0}
                   max={50000}
-                  step={10}
                   prefix="$"
                   labelMin="Min Price"
                   labelMax="Max Price"
@@ -195,7 +194,7 @@ export const MobileSearchFilters = ({
           </div>
 
           {/* Apply Button */}
-          <ButtonBtn type="submit" className="!primaryClasses w-full">
+          <ButtonBtn type="submit" className="primaryClasses! w-full">
             Apply Filters
           </ButtonBtn>
         </form>

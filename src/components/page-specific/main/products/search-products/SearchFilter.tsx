@@ -33,11 +33,11 @@ export const SearchFilters = ({
         (acc, cat) => ({
           ...acc,
           [cat.topCategory.slug]: cat.subCategories.some(
-            (sub) => watchedValues.subCategory[sub.slug]
+            (sub) => watchedValues.subCategory[sub.slug],
           ),
         }),
-        {}
-      ) || {}
+        {},
+      ) || {},
   );
 
   return (
@@ -46,9 +46,8 @@ export const SearchFilters = ({
       <div>
         <h3 className="font-semibold mb-2">Price Range</h3>
         <InputFieldMinMax
-          min={watchedValues.priceMin}
-          max={watchedValues.priceMax}
-          step={10}
+          min={0}
+          max={50000}
           prefix="$"
           labelMin="Min Price"
           labelMax="Max Price"
@@ -64,10 +63,10 @@ export const SearchFilters = ({
         <h3 className="font-semibold mb-2">Categories</h3>
         {categories.map((cat) => {
           const allSubChecked = cat.subCategories.every(
-            (sub) => watchedValues.subCategory[sub.slug]
+            (sub) => watchedValues.subCategory[sub.slug],
           );
           const someSubChecked = cat.subCategories.some(
-            (sub) => watchedValues.subCategory[sub.slug]
+            (sub) => watchedValues.subCategory[sub.slug],
           );
 
           return (
@@ -89,7 +88,7 @@ export const SearchFilters = ({
                     onChange={(e) => {
                       const checked = e.target.checked;
                       cat.subCategories.forEach((sub) =>
-                        setValue(`subCategory.${sub.slug}`, checked)
+                        setValue(`subCategory.${sub.slug}`, checked),
                       );
                     }}
                     onClick={(e) => e.stopPropagation()}
@@ -172,7 +171,7 @@ export const SearchFilters = ({
       )}
 
       {/* Apply Filters Button */}
-      <ButtonBtn type="submit" className="!primaryClasses">
+      <ButtonBtn type="submit" className="primaryClasses!">
         Apply Filters
       </ButtonBtn>
     </form>

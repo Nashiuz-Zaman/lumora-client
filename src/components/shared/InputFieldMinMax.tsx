@@ -7,8 +7,8 @@ interface InputFieldMinMaxProps {
   labelMax?: string;
   min?: number;
   max?: number;
-  step?: number;
-  prefix?: string; // optional prefix like "$" or "%"
+
+  prefix?: string;
   placeholderMin?: string;
   placeholderMax?: string;
   onChange?: (minValue: number, maxValue: number) => void;
@@ -19,31 +19,29 @@ export const InputFieldMinMax = ({
   labelMax = "Max",
   min = 0,
   max = 100,
-  step = 1,
+
   prefix,
   placeholderMin,
   placeholderMax,
   onChange,
 }: InputFieldMinMaxProps) => {
-  const [currentMin, setCurrentMin] = useState(min);
-  const [currentMax, setCurrentMax] = useState(max);
+  const [currentMin, setCurrentMin] = useState<number>(min);
+  const [currentMax, setCurrentMax] = useState<number>(max);
 
   const handleMinChange = (value: number) => {
-    const val = Math.min(value, currentMax);
-    setCurrentMin(val);
-    onChange?.(val, currentMax);
+    setCurrentMin(value);
+    onChange?.(value, currentMax);
   };
 
   const handleMaxChange = (value: number) => {
-    const val = Math.max(value, currentMin);
-    setCurrentMax(val);
-    onChange?.(currentMin, val);
+    setCurrentMax(value);
+    onChange?.(currentMin, value);
   };
 
   const renderInput = (
     value: number,
     onChangeHandler: (val: number) => void,
-    placeholder?: string
+    placeholder?: string,
   ) => (
     <div className="relative">
       {prefix && (
@@ -51,12 +49,11 @@ export const InputFieldMinMax = ({
           {prefix}
         </span>
       )}
-       
+
       <input
         type="number"
         min={min}
         max={max}
-        step={step}
         value={value}
         onChange={(e) => onChangeHandler(Number(e.target.value))}
         className={`w-full ${
