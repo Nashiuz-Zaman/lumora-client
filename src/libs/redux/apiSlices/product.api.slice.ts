@@ -1,4 +1,3 @@
-import { IProductSearchQueryParams } from "@/hooks/useSearchPageProductsQueries";
 import { baseApiSlice } from "./base.api.slice";
 import {
   IApiResponse,
@@ -10,6 +9,7 @@ import {
   TQueryDataWithQueryMeta,
   ISearchbarResultProduct,
   IProductWithFullReviewsStats,
+  IMultipleResourceQueryParams,
 } from "@/types";
 
 // --- API slice ---
@@ -57,7 +57,7 @@ export const productsApiSlice = baseApiSlice.injectEndpoints({
           brands: string[];
         }>
       >,
-      IProductSearchQueryParams
+      IMultipleResourceQueryParams
     >({
       query: (params) => ({
         url: "/products/search",
