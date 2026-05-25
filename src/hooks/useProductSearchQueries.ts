@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useSearchParams } from "next/navigation";
-import { useForm, useWatch } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ProductSortOptions } from "@/constants/product";
 import { buildUrlWithParams } from "@/utils/common/http/buildUrlWithParams";
 import { csvToBooleanRecord } from "@/utils/common/io/csvUtils";
@@ -43,17 +43,15 @@ export const useProductSearchQueries = () => {
       priceMax: priceMax ?? 50000,
       priceMin: priceMin ?? 0,
       sort: decompressed?.sort ?? `-${ProductSortOptions[1].value}`,
-      subCategory: csvToBooleanRecord(decompressed?.subCategory),
-      brand: csvToBooleanRecord(decompressed?.brand),
+      subCategory: csvToBooleanRecord(decompressed?.subCategory) ?? {},
+      brand: csvToBooleanRecord(decompressed?.brand) ?? {},
     };
   }, [searchParams]);
 
   // 2. Initialize RHF
   const form = useForm<ISearchProductQueriesForm>({
-    defaultValues: formParamsFromUrl,
+    defaultValues: formParamsFromUrl as ISearchProductQueriesForm,
   });
-
-  const watchedValues = useWatch({ control: form.control });
 
   // 3. If URL changes (for example back button), update form fields
   useEffect(() => {
@@ -98,7 +96,6 @@ export const useProductSearchQueries = () => {
   return {
     control: form.control,
     handleSubmit,
-    watchedValues,
     setValue: form.setValue,
     changePage: (page: number) => {
       pushToUrl({ ...form.getValues(), page });
