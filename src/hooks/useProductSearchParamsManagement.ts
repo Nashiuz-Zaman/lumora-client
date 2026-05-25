@@ -15,6 +15,16 @@ type TCategoryInput =
       categories: ICategoryTreeItem[];
     };
 
+export interface ISearchProductQueriesForm {
+  page: number;
+  sort: string;
+  search: string;
+  subCategory: Record<string, boolean>;
+  brand: Record<string, boolean>;
+  priceMin: number;
+  priceMax: number;
+}
+
 /**
  * Hook for managing product search params and navigation
  */
@@ -25,37 +35,45 @@ export const useProductSearchParamsManagement = () => {
    * Returns a comma separated string of selected Sub Categories
    */
   const buildSubCategoryCSVString = useCallback(
-    (args: TCategoryInput): string => {
-      let subSlugs: string[] = [];
+    (args: TCategoryInput): Record<string, boolean> => {
+      let subCategorySlugs: string[] = [];
 
       if (args.type === "subs") {
-        subSlugs = args.subSlugs;
+        subCategorySlugs = args.subSlugs;
       }
 
       if (args.type === "top") {
         const topCategoryData = args.categories.find(
-          (cat) => cat.topCategory.slug === args.topSlug
+          (cat) => cat.topCategory.slug === args.topSlug,
         );
 
         if (topCategoryData) {
-          subSlugs = topCategoryData.subCategories.map((sub) => sub.slug);
+          subCategorySlugs = topCategoryData.subCategories.map(
+            (sub) => sub.slug,
+          );
         }
       }
 
-      return subSlugs.join(",");
+      const subCategoryRecord: Record<string, boolean> = {};
+
+      subCategorySlugs.forEach((category) => {
+        subCategoryRecord[category] = true;
+      });
+
+      return subCategoryRecord;
     },
-    []
+    [],
   );
 
   interface IFilterValues {
-    subCategory?: string;
-    brand?: string;
+    subCategory?: Record<string, boolean>;
+    brand?: Record<string, boolean>;
     priceMin?: number;
     priceMax?: number;
     sort?: string;
     page?: number;
     search?: string;
-    form?: boolean
+    form?: boolean;
   }
 
   /**
@@ -63,8 +81,8 @@ export const useProductSearchParamsManagement = () => {
    */
   const buildSearchQueryParams = useCallback((values: IFilterValues = {}) => {
     const {
-      subCategory = "",
-      brand = "",
+      subCategory = {},
+      brand = {},
       priceMin = 0,
       priceMax = 50000,
       sort = `-${ProductSortOptions[1].value}`,
@@ -95,14 +113,14 @@ export const useProductSearchParamsManagement = () => {
       const subCategory = buildSubCategoryCSVString(input);
 
       const queryParams = buildSearchQueryParams({
-        subCategory: subCategory ? subCategory : "",
+        subCategory,
       });
 
       const url = buildUrlWithParams("/products/s", queryParams);
 
       router.push(url + "&form=false");
     },
-    [router, buildSubCategoryCSVString, buildSearchQueryParams]
+    [router, buildSubCategoryCSVString, buildSearchQueryParams],
   );
 
   return {
