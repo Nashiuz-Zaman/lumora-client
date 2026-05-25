@@ -1,9 +1,9 @@
 "use client";
 
-import { useHeaderScrollAnim } from "@/hooks/useHeaderScrollAnim";
+import { useHeaderScrollAnimation } from "@/hooks/useHeaderScrollAnimation";
 
 const HeaderClientWrapper = ({ header }: { header: React.ReactNode }) => {
-  useHeaderScrollAnim();
+  useHeaderScrollAnimation();
 
   return <>{header}</>;
 };
