@@ -122,3 +122,21 @@ export interface IGetProductsParams {
   sort?: string;
   [key: string]: unknown;
 }
+
+export interface ISearchProductQueriesForm {
+  page: number;
+  sort: string;
+  search: string;
+  subCategory: Record<string, boolean>;
+  brand: Record<string, boolean>;
+  priceMin: number;
+  priceMax: number;
+}
+
+export interface IDecompressedParams {
+  subCategory?: string;
+  brand?: string;
+  sort?: string;
+  priceMin?: number;
+  priceMax?: number;
+}
