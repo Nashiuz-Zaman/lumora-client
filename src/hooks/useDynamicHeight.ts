@@ -3,7 +3,7 @@
 import { RefObject, useEffect, useState } from "react";
 import { useResizeObserver } from "./useResizeObserver";
 import { useScreenSize } from "./useScreenSize";
-import { getHeight } from "@/utils/getHeight";
+import { getHeight } from "@/utils/common/ui/getHeight";
 
 interface IUseDynamicHeightOptions {
   refElements?: (RefObject<HTMLElement> | null)[];

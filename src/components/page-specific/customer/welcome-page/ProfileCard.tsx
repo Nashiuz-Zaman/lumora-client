@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { Icon } from "@iconify/react";
 import { ICustomerProfile } from "@/types";
-import { formatDateTime } from "@/utils/formatDateTime";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 
 interface IProfileCardProps {
   user: ICustomerProfile;

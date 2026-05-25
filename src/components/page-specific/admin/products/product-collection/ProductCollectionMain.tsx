@@ -13,8 +13,8 @@ import { useCollectionProductsQueries } from "@/hooks/useCollectionProductsQueri
 import { LoadingSpinner } from "@shared/LoadingSpinner";
 import { NoData } from "@shared/NoData";
 import { useRemoveProductsFromProductCollectionMutation } from "@apiSlices/productCollection.api.slice";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 export const ProductCollectionMain = ({
   productCollectionSlug,

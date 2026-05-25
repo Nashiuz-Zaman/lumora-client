@@ -2,7 +2,7 @@
 
 import { useGetPaymentStatsQuery } from "@apiSlices/analytics.api.slice";
 import { StatsCard } from "../shared/StatsCard";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import { IAnalyticDateParams } from "@/types";
 import { ErrorMessage } from "@shared/ErrorMessage";
 

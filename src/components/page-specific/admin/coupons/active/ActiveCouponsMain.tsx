@@ -26,8 +26,8 @@ import { UserRoles } from "@/constants/user";
 import { CouponStatus, CouponSortOptions } from "@/constants/coupon";
 
 // Utilities
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 // Types
 import { ICoupon } from "@/types";

@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosError } from "axios";
 import { BaseQueryFn } from "@reduxjs/toolkit/query";
-import { withRetry } from "@/utils/withRetry";
+import { withRetry } from "@/utils/common/http/withRetry";
 
 interface IAxiosBaseQueryArgs {
   url: string;

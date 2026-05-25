@@ -1,8 +1,8 @@
 "use client";
 
 // Utils
-import { formatDateTime } from "@/utils/formatDateTime";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 
 // Types
 import { IReturnRequest } from "@/types";

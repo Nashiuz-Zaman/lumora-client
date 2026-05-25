@@ -17,7 +17,7 @@ import { Draggable } from "@shared/DnD-Kit/Draggable";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { IcfyIcon } from "@shared/IcfyIcon";
 import { IProduct } from "@/types";
-import { generateImagePreviews, isObjectURL } from "@/utils/generateImagePreviews";
+import { generateImagePreviews, isObjectURL } from "@/utils/common/ui/generateImagePreviews";
 
 type TImageUploaderProps = {
   heading?: string;

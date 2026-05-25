@@ -9,10 +9,10 @@ import { ThumbIconFilledIcon } from "@icons/ThumbIconFilledIcon";
 import { useAuthState } from "@/hooks/useAuthState";
 import { useMarkReviewHelpfulMutation } from "@apiSlices/reviews.api.slice";
 
-import { showToast } from "@/utils/showToast";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { generateAvatar } from "@/utils/generateAvatar";
-import { formatDateTime } from "@/utils/formatDateTime";
+import { showToast } from "@/utils/common/ui/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { generateAvatar } from "@/utils/common/ui/generateAvatar";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 import { useRouter } from "next/navigation";
 import { IReview } from "@/types/review";
 import { IUser } from "@/types";

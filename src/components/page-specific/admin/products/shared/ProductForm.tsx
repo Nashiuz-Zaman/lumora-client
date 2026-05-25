@@ -11,13 +11,13 @@ import SEOManager from "./SEOManager";
 import { ProductStatus } from "@/constants/product";
 import { ProductOptionsAndBrandVendor } from "./ProductOptionsAndBrandVendor";
 import { useLazyGetSignedUrlQuery } from "@apiSlices/cloudinary.api.slice";
-import { uploadFileWithSignedUrl } from "@/utils/uploadFileWithSignedUrls";
+import { uploadFileWithSignedUrl } from "@/utils/cloudinary/uploadFileWithSignedUrls";
 import {
   useCreateProductMutation,
   useUpdateProductMutation,
 } from "@apiSlices/product.api.slice";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import cloneDeep from "lodash/cloneDeep";
 import { useRouter } from "next/navigation";

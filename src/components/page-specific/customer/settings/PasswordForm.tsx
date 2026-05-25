@@ -9,8 +9,8 @@ import { ButtonBtn } from "@buttons/ButtonBtn";
 import { Heading } from "./Heading";
 
 // Utils
-import { showToast } from "@/utils/showToast";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
 
 // Redux
 import { useUpdateCustomerPasswordFromSettingsMutation } from "@apiSlices/customer.api.slice";

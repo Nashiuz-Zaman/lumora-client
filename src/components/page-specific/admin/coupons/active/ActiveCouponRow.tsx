@@ -2,7 +2,7 @@
 
 import { InputCheckbox } from "@shared/InputCheckbox";
 import { ICoupon } from "@/types";
-import { formatDateTime } from "@/utils/formatDateTime";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 
 interface IActiveCouponRowProps {
   couponData: ICoupon;

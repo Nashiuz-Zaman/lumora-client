@@ -9,8 +9,8 @@ import { SelectField } from "../shared/SelectField";
 import { ErrorMessage } from "../shared/ErrorMessage";
 import { InputField } from "../shared/InputField";
 import { useModal } from "@/hooks/useModal";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 import { ICoupon } from "@/types";
 import { useCreateCouponMutation } from "@apiSlices/coupon.api.slice";
 interface ICreateCouponModalProps {

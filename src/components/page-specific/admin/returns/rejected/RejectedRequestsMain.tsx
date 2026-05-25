@@ -25,8 +25,8 @@ import { UserRoles } from "@/constants/user";
 import { ReturnRequestSortOptions, ReturnRequestStatus } from "@/constants/returnRequest";
 
 // Utilities
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 // Types
 import { IReturnRequest } from "@/types";

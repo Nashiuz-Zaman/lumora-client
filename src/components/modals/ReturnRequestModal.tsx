@@ -27,9 +27,9 @@ import {
 } from "@apiSlices/returnRequest.api.slice";
 
 // Utils
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { formatPrice } from "@/utils/formatPrice";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
+import { showToast } from "@/utils/common/ui/showToast";
 import { ReturnRequestStatus } from "@/constants/returnRequest";
 import type { TRootState } from "@/libs/redux/store";
 

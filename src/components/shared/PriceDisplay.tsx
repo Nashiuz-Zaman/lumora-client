@@ -1,6 +1,6 @@
 "use client";
 
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 
 interface IPriceDisplayProps {
   price: number;

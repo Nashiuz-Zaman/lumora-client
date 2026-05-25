@@ -9,8 +9,8 @@ import { useModal } from "@/hooks/useModal";
 import { useAuthState } from "@/hooks/useAuthState";
 import { usePostReviewMutation } from "@apiSlices/reviews.api.slice";
 // utils
-import { showToast } from "@/utils/showToast";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
 
 // shared
 import { StarRatingInput } from "@shared/StarRatingInput";

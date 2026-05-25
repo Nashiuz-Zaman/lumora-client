@@ -7,7 +7,7 @@ import { PlusIcon } from "@icons/PlusIcon";
 import { TrashcanIcon } from "@icons/TrashcanIcon";
 import { IProduct } from "@/types";
 import { useWatch, useFormContext } from "react-hook-form";
-import { toLabel } from "@/utils/toLabel";
+import { toLabel } from "@/utils/common/formatters/toLabel";
 
 interface IVariantInformationBlockProps {
   variantIndex: number;

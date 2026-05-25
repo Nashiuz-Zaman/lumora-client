@@ -1,6 +1,6 @@
 import { IApiResponse, IProduct, IProductWithFullReviewsStats } from "@/types";
-import { catchAsyncServer } from "@/utils/catchAsyncServer";
-import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
+import { catchAsyncServer } from "@/utils/common/error/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/common/http/getBaseApiUrl";
 
 interface IGetProductOptions {
   limitFields?: (keyof IProduct)[];

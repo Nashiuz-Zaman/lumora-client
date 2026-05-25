@@ -4,7 +4,7 @@ import { InnerContainer } from "@containers/InnerContainer";
 import { LinkBtn } from "@buttons/LinkBtn";
 import { fetchProductForAdmin } from "@/server-functions/fetchProductForAdmin";
 import { IProduct } from "@/types";
-import { stripIdsAndResetSku } from "@/utils/stripIdsAndResetSku";
+import { stripIdsAndResetSku } from "@/utils/product/stripIdsAndResetSku";
 
 import type { Metadata } from "next";
 import { CloneProductMain } from "@page-specific/admin/products/clone-product/CloneProductMain";

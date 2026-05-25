@@ -1,7 +1,7 @@
 "use client";
 
 import { MetricCard } from "./MetricCard";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import { useGetTotalRevenueQuery } from "@apiSlices/analytics.api.slice";
 
 export const TotalRevenue = () => {

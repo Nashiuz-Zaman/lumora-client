@@ -13,8 +13,8 @@ import { ConfirmationModal } from "@modals/ConfirmationModal";
 
 import { useBulkDeleteProductsMutation } from "@apiSlices/product.api.slice";
 
-import { showToast } from "@/utils/showToast";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
 import { useSelectable } from "@/hooks/useSelectable";
 import { useModal } from "@/hooks/useModal";
 import { useProductsQueries } from "@/hooks/useProductsQueries";

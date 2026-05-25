@@ -22,8 +22,8 @@ import { IOrder } from "@/types";
 
 import { useRef } from "react";
 import { useDynamicHeight } from "@/hooks/useDynamicHeight";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 import { useMarkOrdersDeliveredMutation } from "@apiSlices/order.api.slice";
 
 const columns: TTableColumn[] = [

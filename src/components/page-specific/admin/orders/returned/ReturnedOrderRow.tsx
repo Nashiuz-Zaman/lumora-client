@@ -2,9 +2,9 @@
 
 import { InputCheckbox } from "@shared/InputCheckbox";
 import { IOrder } from "@/types";
-import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/statusUtils";
-import { formatPrice } from "@/utils/formatPrice";
-import { formatDateTime } from "@/utils/formatDateTime";
+import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/common/helpers/statusUtils";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 
 interface IReturnedOrderRowProps {
   orderData: IOrder;

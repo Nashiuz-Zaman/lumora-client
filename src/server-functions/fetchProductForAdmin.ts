@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { IApiResponse, IProduct } from "@/types";
-import { catchAsyncServer } from "@/utils/catchAsyncServer";
-import { getBaseApiUrl } from "@/utils/getBaseApiUrl";
+import { catchAsyncServer } from "@/utils/common/error/catchAsyncServer";
+import { getBaseApiUrl } from "@/utils/common/http/getBaseApiUrl";
 
 export const fetchProductForAdmin = catchAsyncServer(
   async (productId: string) => {

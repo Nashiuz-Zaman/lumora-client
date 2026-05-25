@@ -2,8 +2,8 @@
 
 import { useMemo } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
-import { cleanObject } from "@/utils/cleanObject";
+import { buildUrlWithParams } from "@/utils/common/http/buildUrlWithParams";
+import { cleanObject } from "@/utils/common/formatters/cleanObject";
 import { useGetProductsFromProductCollectionQuery } from "@apiSlices/product.api.slice";
 import { IQueryMeta } from "@/types";
 

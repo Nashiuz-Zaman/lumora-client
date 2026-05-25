@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import { TPopulatedCartItem } from "@/types";
 
 interface ITrackOrderTableProductRowProps {

@@ -18,8 +18,8 @@ import { useModal } from "@/hooks/useModal";
 import { useRef } from "react";
 import { UserRoles } from "@/constants/user";
 import { OrderSortOptions, OrderStatus } from "@/constants/order";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 import { IOrder } from "@/types";
 import { useArchiveOrdersMutation } from "@apiSlices/order.api.slice";
 

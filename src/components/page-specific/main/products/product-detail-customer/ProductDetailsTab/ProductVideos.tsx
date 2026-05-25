@@ -6,7 +6,7 @@ import { NoData } from "@shared/NoData";
 import { CustomSwiper } from "@shared/CustomSwiper";
 import ViewVideoModal from "@modals/ViewVideoModal";
 import { useModal } from "@/hooks/useModal";
-import { extractVideoId } from "@/utils/extractVideoId";
+import { extractVideoId } from "@/utils/common/helpers/extractVideoId";
 import { IVideo } from "@/types";
 
 interface IProductVideosProps {

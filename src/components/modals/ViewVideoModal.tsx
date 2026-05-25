@@ -1,6 +1,6 @@
 // ViewVideoModal.tsx
 import { BaseModal } from "./BaseModal";
-import { extractVideoId } from "@/utils/extractVideoId";
+import { extractVideoId } from "@/utils/common/helpers/extractVideoId";
 
 interface IViewVideoModalProps {
   videoUrl: string;

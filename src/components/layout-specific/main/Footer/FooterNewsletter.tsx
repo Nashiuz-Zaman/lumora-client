@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from "react";
 import { InputField } from "@shared/InputField";
-import { showToast } from "@/utils/showToast";
+import { showToast } from "@/utils/common/ui/showToast";
 
 const FooterNewsletter = () => {
   const [email, setEmail] = useState("");

@@ -3,7 +3,7 @@
 import { LinkBtn } from "@buttons/LinkBtn";
 import { LockIcon } from "@icons/LockIcon";
 import { PromoCode } from "./PromoCode";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import { usePathname } from "next/navigation";
 import { useCartState } from "@/hooks/useCartState";
 

@@ -8,9 +8,9 @@ import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
 import ColorBadge from "@shared/ColorBadge";
 
 // utils
-import { formatPrice } from "@/utils/formatPrice";
-import { getProductStatusTextColor, getStatusLabel } from "@/utils/statusUtils";
-import { formatDateTime } from "@/utils/formatDateTime";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
+import { getProductStatusTextColor, getStatusLabel } from "@/utils/common/helpers/statusUtils";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 
 // types
 import { ProductStatus, TProductStatusValue } from "@/constants/product";

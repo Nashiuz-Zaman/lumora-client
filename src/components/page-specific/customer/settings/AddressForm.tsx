@@ -10,8 +10,8 @@ import { SelectField } from "@shared/SelectField";
 import { Heading } from "./Heading";
 
 // utils
-import { showToast } from "@/utils/showToast";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
 
 // redux
 import { useUpdateCustomerAddressMutation } from "@apiSlices/customer.api.slice";

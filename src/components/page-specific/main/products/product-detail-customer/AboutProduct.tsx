@@ -1,6 +1,6 @@
 "use client";
 
-import { sanitizeHtml } from "@/utils/safeHtml";
+import { sanitizeHtml } from "@/utils/common/ui/safeHtml";
 
 type AboutProductProps = {
   data: string;

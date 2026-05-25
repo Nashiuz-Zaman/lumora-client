@@ -3,7 +3,7 @@
 import { LinkBtnTrans } from "@buttons/LinkBtnTrans";
 import { CaretRightIcon } from "@icons/CaretRightIcon";
 import { TProductWithMinimalReviewStats } from "@/types";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import Image from "next/image";
 import { RatingStars } from "@shared/RatingStars";
 

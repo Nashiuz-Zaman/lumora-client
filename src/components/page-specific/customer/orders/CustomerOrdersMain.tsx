@@ -15,8 +15,8 @@ import { ICancelOrdersCustomerArgs, IOrder, TSortOptions } from "@/types";
 import { OrderStatus } from "@/constants/order";
 import { ConfirmationModal } from "@modals/ConfirmationModal";
 import { useCancelOrdersCustomerMutation } from "@apiSlices/order.api.slice";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 const STATUSES = [
   { label: "All", value: "all" },

@@ -3,7 +3,7 @@
 import Image from "next/image";
 import startCase from "lodash/startCase";
 import { TPopulatedCartItem } from "@/types/cart";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import {
   IRemoveCartItemRequest,
   IUpdateCartQtyRequest,

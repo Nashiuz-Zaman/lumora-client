@@ -26,8 +26,8 @@ import { UserRoles, UserStatus } from "@/constants/user";
 import { OrderSortOptions } from "@/constants/order";
 
 // Utilities
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 // Types
 import { IPaginatedCustomer } from "@/types";

@@ -7,7 +7,7 @@ import {
   getVariantOptionValues,
   findMatchedVariant,
   buildVariantLabel,
-} from "@/utils/productVariantUtils";
+} from "@/utils/product/productVariantUtils";
 
 interface IVariantSelectorProps {
   variants: IVariant[];

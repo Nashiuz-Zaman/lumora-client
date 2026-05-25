@@ -4,7 +4,7 @@ import { IcfyIcon } from "@shared/IcfyIcon";
 import { LinkBtn } from "@buttons/LinkBtn";
 import { RedirectCountdown } from "@shared/RedirectCountdown";
 
-import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
+import { getQueryParamsFromSearchParams } from "@/utils/common/http/getQueryParamsFromSearchParams";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 

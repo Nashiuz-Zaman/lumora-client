@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ButtonBtn } from "./buttons/ButtonBtn";
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import { TProductWithMinimalReviewStats } from "@/types";
 import { CartIcon } from "./icons/CartIcon";
 import { RatingStars } from "./RatingStars";

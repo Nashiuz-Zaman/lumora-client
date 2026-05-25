@@ -13,7 +13,7 @@ import { TUseSelectableReturn } from "@/hooks/useSelectable";
 import { IPaginatedCustomer } from "@/types";
 
 // utils
-import { formatDateTime } from "@/utils/formatDateTime";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 
 interface IActiveCustomerRowProps {
   customer: IPaginatedCustomer;

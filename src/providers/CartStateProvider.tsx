@@ -17,8 +17,8 @@ import {
 } from "@apiSlices/cart.api.slice";
 import { emptyCart } from "@/constants/cart";
 import { TPopulatedCart } from "@/types/cart";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 export interface ICartStateContext {
   cart: TPopulatedCart;

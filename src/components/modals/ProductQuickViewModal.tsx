@@ -21,7 +21,7 @@ import { TRootState } from "@/libs/redux/store";
 import { setBackdropOpen } from "@features/backdrop/backdropSlice";
 import { useEffect, useRef, useState } from "react";
 
-import { IVariant } from "@/utils/productVariantUtils";
+import { IVariant } from "@/utils/product/productVariantUtils";
 import { IAddItemToCartRequest } from "@apiSlices/cart.api.slice";
 import { useCartState } from "@/hooks/useCartState";
 

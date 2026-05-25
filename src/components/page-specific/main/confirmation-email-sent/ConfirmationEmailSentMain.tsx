@@ -3,7 +3,7 @@
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { IcfyIcon } from "@shared/IcfyIcon";
 import { useResendConfirmationEmailMutation } from "@apiSlices/email.api.slice";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
 

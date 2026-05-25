@@ -1,7 +1,7 @@
 "use client";
 
 import { NoData } from "@shared/NoData";
-import { sanitizeHtml } from "@/utils/safeHtml";
+import { sanitizeHtml } from "@/utils/common/ui/safeHtml";
 
 export const WarrantyDetails = ({ data }: { data?: string | null }) => {
   const sanitizedHtml = data ? sanitizeHtml(data) : "";

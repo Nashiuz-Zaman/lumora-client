@@ -5,9 +5,9 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import isEqual from "lodash/isEqual";
 
 // Utils
-import { getQueryParamsFromSearchParams } from "@/utils/getQueryParamsFromSearchParams";
-import { cleanObject } from "@/utils/cleanObject";
-import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
+import { getQueryParamsFromSearchParams } from "@/utils/common/http/getQueryParamsFromSearchParams";
+import { cleanObject } from "@/utils/common/formatters/cleanObject";
+import { buildUrlWithParams } from "@/utils/common/http/buildUrlWithParams";
 
 // API Hook
 import { useGetReturnRequestsQuery } from "@apiSlices/returnRequest.api.slice";

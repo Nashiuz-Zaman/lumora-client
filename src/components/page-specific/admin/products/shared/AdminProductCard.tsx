@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-import { formatPrice } from "@/utils/formatPrice";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
 import { InputCheckbox } from "@shared/InputCheckbox";
 import { IProduct } from "@/types";
 import { TUseSelectableReturn } from "@/hooks/useSelectable";

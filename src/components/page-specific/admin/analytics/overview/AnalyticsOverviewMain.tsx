@@ -13,7 +13,7 @@ import { IAnalyticDateParams } from "@/types";
 import { useRefState } from "@/hooks/useRefState";
 import { useSetElementText } from "@/hooks/useSetElementText";
 import { TopCategorySalesPercentageChart } from "./TopCategorySalesPercentageChart";
-import { generateChartTitle } from "@/utils/generateChartTitle";
+import { generateChartTitle } from "@/utils/analytics/generateChartTitle";
 
 export const AnalyticsOverviewMain = () => {
   const { refs } = useRefState();

@@ -1,7 +1,7 @@
 import { IOrder } from "@/types";
-import { formatDateTime } from "@/utils/formatDateTime";
-import { formatPrice } from "@/utils/formatPrice";
-import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/statusUtils";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
+import { formatPrice } from "@/utils/common/formatters/formatPrice";
+import { getOrderStatusLabel, getOrderStatusTextColor } from "@/utils/common/helpers/statusUtils";
 
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { GoToIcon } from "@icons/GoToIcon";

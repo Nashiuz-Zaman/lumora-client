@@ -15,8 +15,8 @@ import { CustomerInfoForm } from "./CustomerInfoForm";
 import { usePlaceOrderMutation } from "@apiSlices/order.api.slice";
 
 // Utils
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
-import { showToast } from "@/utils/showToast";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
+import { showToast } from "@/utils/common/ui/showToast";
 
 // Types
 import { UseFormSetError } from "react-hook-form";

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ErrorMessage } from "@shared/ErrorMessage";
 import { InputField } from "@shared/InputField";
-import { catchAsyncGeneral } from "@/utils/catchAsyncGeneral";
+import { catchAsyncGeneral } from "@/utils/common/error/catchAsyncGeneral";
 import { useCartState } from "@/hooks/useCartState";
 
 interface IPromoCodeProps {

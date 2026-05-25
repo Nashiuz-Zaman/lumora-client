@@ -1,7 +1,7 @@
 "use client";
 
 import { Icon } from "@iconify/react";
-import { formatDateTime } from "@/utils/formatDateTime";
+import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 import { statusDesignMap } from "@/constants/order";
 import { IOrderActivity } from "@/types";
 
