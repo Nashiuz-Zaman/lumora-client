@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchPageProductsQueries } from "@/hooks/useSearchPageProductsQueries";
+import { useProductSearchQueries } from "@/hooks/useProductSearchQueries";
 import { SearchFilters } from "./SearchFilter";
 import { InnerContainer } from "@containers/InnerContainer";
 import { Pagination } from "@shared/Pagination";
@@ -8,31 +8,26 @@ import { ProductCard } from "@shared/ProductCard";
 import { SortDropdown } from "@shared/SortDropdown";
 import { useGetCategoryTreeQuery } from "@apiSlices/category.api.slice";
 import { MobileSearchFilters } from "./MobileSearchFilter";
-import { useEffect } from "react";
-
 import { ProductSortOptions } from "@/constants/product";
+import { useWatch } from "react-hook-form";
+import { ISearchProductQueriesForm } from "@/types";
 
 export const SearchProductsMain = () => {
   const { data: categories } = useGetCategoryTreeQuery();
   const {
     handleSubmit,
-    watchedValues,
     setValue,
     brands,
     products,
     isFetching,
     queryMeta,
     changePage,
-  } = useSearchPageProductsQueries();
+    control,
+  } = useProductSearchQueries();
 
-  //  remove searchFilters on unmount
-  useEffect(() => {
-    return () => {
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("searchFilters");
-      }
-    };
-  }, []);
+  const watchedValues = useWatch({
+    control,
+  }) as ISearchProductQueriesForm;
 
   if (!categories) return null;
 
@@ -63,7 +58,7 @@ export const SearchProductsMain = () => {
               if (!value) return;
               setValue("sort", value);
             }}
-            selected={watchedValues.sort}
+            selected={watchedValues.sort ?? ""}
             options={[...ProductSortOptions]}
             buttonLabel="Sort Products"
             className="ml-auto"

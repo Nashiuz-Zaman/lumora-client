@@ -7,13 +7,13 @@ import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { InputFieldMinMax } from "@shared/InputFieldMinMax";
 import { ICategoryTreeItem } from "@/types";
 import { UseFormSetValue } from "react-hook-form";
-import { ISearchPageForm } from "@/hooks/useSearchPageProductsQueries";
+import { ISearchProductQueriesForm } from "@/types";
 
 interface ISearchFiltersProps {
   categories: ICategoryTreeItem[];
   brands: string[];
-  watchedValues: ISearchPageForm;
-  setValue: UseFormSetValue<ISearchPageForm>;
+  watchedValues: ISearchProductQueriesForm;
+  setValue: UseFormSetValue<ISearchProductQueriesForm>;
   handleSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 

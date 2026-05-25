@@ -6,15 +6,14 @@ import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { InputFieldMinMax } from "@shared/InputFieldMinMax";
 import { CloseIcon } from "@icons/CloseIcon";
-import { ICategoryTreeItem } from "@/types";
+import { ICategoryTreeItem, ISearchProductQueriesForm } from "@/types";
 import { UseFormSetValue } from "react-hook-form";
-import { ISearchPageForm } from "@/hooks/useSearchPageProductsQueries";
 
 interface IMobileSearchFiltersProps {
   categories: ICategoryTreeItem[];
   brands: string[];
-  watchedValues: ISearchPageForm;
-  setValue: UseFormSetValue<ISearchPageForm>;
+  watchedValues: ISearchProductQueriesForm;
+  setValue: UseFormSetValue<ISearchProductQueriesForm>;
   handleSubmit: (e?: React.BaseSyntheticEvent) => void;
 }
 
@@ -100,10 +99,10 @@ export const MobileSearchFilters = ({
               <div className="mt-2 space-y-2">
                 {categories.map((cat) => {
                   const allSubChecked = cat.subCategories.every(
-                    (sub) => watchedValues.subCategory[sub.slug]
+                    (sub) => watchedValues.subCategory[sub.slug],
                   );
                   const someSubChecked = cat.subCategories.some(
-                    (sub) => watchedValues.subCategory[sub.slug]
+                    (sub) => watchedValues.subCategory[sub.slug],
                   );
 
                   return (
@@ -116,7 +115,7 @@ export const MobileSearchFilters = ({
                           onChange={(e) => {
                             const checked = e.target.checked;
                             cat.subCategories.forEach((sub) =>
-                              setValue(`subCategory.${sub.slug}`, checked)
+                              setValue(`subCategory.${sub.slug}`, checked),
                             );
                           }}
                         />
@@ -136,7 +135,7 @@ export const MobileSearchFilters = ({
                               onChange={(e) =>
                                 setValue(
                                   `subCategory.${sub.slug}`,
-                                  e.target.checked
+                                  e.target.checked,
                                 )
                               }
                             />

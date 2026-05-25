@@ -13,7 +13,7 @@ import { isEqual } from "lodash";
 import { IDecompressedParams, ISearchProductQueriesForm } from "@/types";
 import { buildProductSearchQueryParams } from "@/utils/product/buildProductSearchQueryParams";
 
-export const useSearchPageProductsQueries = () => {
+export const useProductSearchQueries = () => {
   const searchParams = useSearchParams();
   const path = usePathname();
 

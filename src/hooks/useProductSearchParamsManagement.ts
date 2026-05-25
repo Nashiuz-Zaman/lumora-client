@@ -1,11 +1,8 @@
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-
 import { ICategoryTreeItem } from "@/types";
-import { ProductSortOptions } from "@/constants/product";
-import { cleanObject } from "@/utils/cleanObject";
-import { compressObjectToBase64Url } from "@/utils/compression";
-import { buildUrlWithParams } from "@/utils/buildUrlWithParams";
+import { buildUrlWithParams } from "@/utils/common/http/buildUrlWithParams";
+import { buildProductSearchQueryParams } from "@/utils/product/buildProductSearchQueryParams";
 
 type TCategoryInput =
   | { type: "subs"; subSlugs: string[] }
@@ -14,16 +11,6 @@ type TCategoryInput =
       topSlug: string;
       categories: ICategoryTreeItem[];
     };
-
-export interface ISearchProductQueriesForm {
-  page: number;
-  sort: string;
-  search: string;
-  subCategory: Record<string, boolean>;
-  brand: Record<string, boolean>;
-  priceMin: number;
-  priceMax: number;
-}
 
 /**
  * Hook for managing product search params and navigation
@@ -34,7 +21,7 @@ export const useProductSearchParamsManagement = () => {
   /**
    * Returns a comma separated string of selected Sub Categories
    */
-  const buildSubCategoryCSVString = useCallback(
+  const buildSubCategoryBooleanRecord = useCallback(
     (args: TCategoryInput): Record<string, boolean> => {
       let subCategorySlugs: string[] = [];
 
@@ -65,54 +52,14 @@ export const useProductSearchParamsManagement = () => {
     [],
   );
 
-  interface IFilterValues {
-    subCategory?: Record<string, boolean>;
-    brand?: Record<string, boolean>;
-    priceMin?: number;
-    priceMax?: number;
-    sort?: string;
-    page?: number;
-    search?: string;
-    form?: boolean;
-  }
-
-  /**
-   * Returns query params object for product search operations
-   */
-  const buildSearchQueryParams = useCallback((values: IFilterValues = {}) => {
-    const {
-      subCategory = {},
-      brand = {},
-      priceMin = 0,
-      priceMax = 50000,
-      sort = `-${ProductSortOptions[1].value}`,
-      page = 1,
-      search = "",
-    } = values;
-
-    const qObj = cleanObject({
-      subCategory,
-      brand,
-      priceMin,
-      priceMax,
-      sort,
-    });
-
-    return cleanObject({
-      page,
-      search,
-      q: compressObjectToBase64Url(qObj),
-    });
-  }, []);
-
   /**
    * Handle category click and navigate to search page
    */
   const handleCategoryClick = useCallback(
     (input: TCategoryInput) => {
-      const subCategory = buildSubCategoryCSVString(input);
+      const subCategory = buildSubCategoryBooleanRecord(input);
 
-      const queryParams = buildSearchQueryParams({
+      const queryParams = buildProductSearchQueryParams({
         subCategory,
       });
 
@@ -120,12 +67,11 @@ export const useProductSearchParamsManagement = () => {
 
       router.push(url + "&form=false");
     },
-    [router, buildSubCategoryCSVString, buildSearchQueryParams],
+    [router, buildSubCategoryBooleanRecord],
   );
 
   return {
     handleCategoryClick,
-    buildSubCategoryCSVString,
-    buildSearchQueryParams,
+    buildSubCategoryCSVString: buildSubCategoryBooleanRecord,
   };
 };
