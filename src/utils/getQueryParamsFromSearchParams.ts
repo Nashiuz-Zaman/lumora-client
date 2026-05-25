@@ -1,6 +1,6 @@
 export const getQueryParamsFromSearchParams = (
   searchParams: URLSearchParams,
-  keys: string[]
+  keys: string[],
 ): Record<string, string | number | boolean> => {
   const result: Record<string, string | number | boolean> = {};
 
