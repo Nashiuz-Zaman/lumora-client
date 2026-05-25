@@ -7,7 +7,7 @@ import { buildUrlWithParams } from "@/utils/common/http/buildUrlWithParams";
 import { csvToBooleanRecord } from "@/utils/common/io/csvUtils";
 import { getQueryParamsFromSearchParams } from "@/utils/common/http/getQueryParamsFromSearchParams";
 import { decompressBase64UrlToObject } from "@/utils/common/io/compression";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useSearchProductsQuery } from "@apiSlices/product.api.slice";
 import { isEqual } from "lodash";
 import { IDecompressedParams, ISearchProductQueriesForm } from "@/types";
@@ -16,6 +16,7 @@ import { buildProductSearchQueryParams } from "@/utils/product/buildProductSearc
 export const useProductSearchQueries = () => {
   const searchParams = useSearchParams();
   const path = usePathname();
+  const previousSubCategoryRef = useRef<string>("");
 
   // 1. Extract values from URL (The Source of Truth)
   const formParamsFromUrl: ISearchProductQueriesForm = useMemo(() => {
@@ -34,23 +35,30 @@ export const useProductSearchQueries = () => {
       decompressed = decompressBase64UrlToObject<IDecompressedParams>(q);
     }
 
-    const priceMax = decompressed?.priceMax;
-    const priceMin = decompressed?.priceMin;
+    const currentSubCategory = decompressed?.subCategory ?? "";
+
+    const shouldResetBrands =
+      previousSubCategoryRef.current &&
+      previousSubCategoryRef.current !== currentSubCategory;
+
+    previousSubCategoryRef.current = currentSubCategory;
 
     return {
       page: Number(rawQueryParams.page) || 1,
       search: String(rawQueryParams.search) ?? "",
-      priceMax: priceMax ?? 50000,
-      priceMin: priceMin ?? 0,
+      priceMax: decompressed?.priceMax ?? 50000,
+      priceMin: decompressed?.priceMin ?? 0,
       sort: decompressed?.sort ?? `-${ProductSortOptions[1].value}`,
-      subCategory: csvToBooleanRecord(decompressed?.subCategory) ?? {},
-      brand: csvToBooleanRecord(decompressed?.brand) ?? {},
+      subCategory: csvToBooleanRecord(currentSubCategory) ?? {},
+      brand: shouldResetBrands
+        ? {}
+        : (csvToBooleanRecord(decompressed?.brand) ?? {}),
     };
   }, [searchParams]);
 
   // 2. Initialize RHF
   const form = useForm<ISearchProductQueriesForm>({
-    defaultValues: formParamsFromUrl as ISearchProductQueriesForm,
+    defaultValues: formParamsFromUrl,
   });
 
   // 3. If URL changes (for example back button), update form fields
@@ -90,7 +98,7 @@ export const useProductSearchQueries = () => {
     return buildProductSearchQueryParams(formParamsFromUrl);
   }, [formParamsFromUrl]);
 
-  // --- Fetch products (reacts only to URL changes) ---
+  // --- Fetch products ---
   const { data, isFetching } = useSearchProductsQuery(apiQueryParams);
 
   return {
