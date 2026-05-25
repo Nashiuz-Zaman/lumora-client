@@ -1,4 +1,4 @@
-import { showToast } from "./showToast";
+import { showToast } from "@/utils/common/ui/showToast";
 
 type THandleErrorOption = "toast" | "function" | "throw";
 
