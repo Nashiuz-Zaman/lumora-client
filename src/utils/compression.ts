@@ -4,7 +4,9 @@ import { strToU8, strFromU8, zlibSync, unzlibSync } from "fflate";
 /**
  * Compress an object into a URL-safe base64 string
  */
-export const compressObjectToBase64Url = (obj: any): string => {
+export const compressObjectToBase64Url = <T extends Record<string, any>>(
+  obj: T,
+): string => {
   const json = JSON.stringify(obj);
   const compressed = zlibSync(strToU8(json));
   const base64 = btoa(String.fromCharCode(...compressed));
@@ -16,7 +18,7 @@ export const compressObjectToBase64Url = (obj: any): string => {
  * Decompress a base64 string back into an object
  */
 export const decompressBase64UrlToObject = <T = any>(
-  base64: string
+  base64: string,
 ): T | null => {
   try {
     // Reverse URL-safe Base64
