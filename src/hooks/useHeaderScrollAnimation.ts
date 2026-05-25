@@ -2,21 +2,18 @@
 
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { BREAKPOINTS, useMediaQuery } from "@/hooks/useMediaQuery";
 
-gsap.registerPlugin(ScrollTrigger);
-
-interface IUseHeaderScrollAnimOptions {
+interface IUseHeaderScrollAnimationOptions {
   triggerStart?: number;
   shadowThreshold?: number;
   duration?: number;
   shadowCSS?: string;
 }
 
-export const useHeaderScrollAnim = (
-  options: IUseHeaderScrollAnimOptions = {},
+export const useHeaderScrollAnimation = (
+  options: IUseHeaderScrollAnimationOptions = {},
   selector: string = ".animated-header",
 ) => {
   const {
@@ -36,7 +33,7 @@ export const useHeaderScrollAnim = (
   const className = "js-header-scroll-active";
   const ease = "cubic-bezier(0.25, 1, 0.3, 1)";
 
-  // inject styles once
+  // Inject styles once for the shadow transition
   useEffect(() => {
     const id = "header-scroll-anim-styles";
     if (document.getElementById(id)) return;
@@ -45,8 +42,7 @@ export const useHeaderScrollAnim = (
     style.id = id;
     style.innerHTML = `
       .header-anim-base {
-        transition: transform ${duration}s ${ease}, 
-                    box-shadow ${duration}s ${ease} !important;
+        transition: box-shadow ${duration}s ${ease} !important;
         will-change: transform;
       }
       .${className} {
@@ -83,38 +79,44 @@ export const useHeaderScrollAnim = (
         overwrite: "auto",
       });
 
-    const trigger = ScrollTrigger.create({
-      start: triggerStart,
-      end: "max",
+    // Native tracking variables
+    let lastScrollY = window.scrollY;
 
-      onEnter: () => {
-        if (isSmDownRef.current) return;
-        // scroll passed triggerStart
-        hide();
-      },
+    const handleScroll = () => {
+      if (isSmDownRef.current) return;
 
-      onLeaveBack: () => {
-        // scroll above triggerStart
+      const currentScrollY = window.scrollY;
+
+      // Determine direction (1 for down, -1 for up)
+      const direction = currentScrollY > lastScrollY ? 1 : -1;
+
+      // 1. Box-Shadow Toggle
+      if (currentScrollY >= shadowThreshold) {
+        header.classList.add(className);
+      } else {
+        header.classList.remove(className);
+      }
+
+      // 2. Position Animation Toggle
+      if (currentScrollY <= triggerStart) {
         show();
-      },
+      } else if (direction === 1) {
+        hide();
+      } else if (direction === -1) {
+        show();
+      }
 
-      onUpdate: (self) => {
-        if (isSmDownRef.current) return;
+      // Keep track of previous position
+      lastScrollY = currentScrollY;
+    };
 
-        // direction-based toggle only
-        if (self.direction === 1) hide();
-        else if (self.direction === -1) show();
-      },
-    });
+    // Run once initially to set correct state on page refresh
+    handleScroll();
 
-    const shadowTrigger = ScrollTrigger.create({
-      start: shadowThreshold,
-      toggleClass: { targets: header, className },
-    });
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      trigger.kill();
-      shadowTrigger.kill();
+      window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isSmDown]);
 };
