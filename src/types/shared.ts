@@ -15,3 +15,9 @@ export interface IUserBasic {
   email: string;
   phone?: string;
 }
+
+export interface IMultipleResourceQueryParams {
+  page: number;
+  q: string;
+  search: string;
+}
