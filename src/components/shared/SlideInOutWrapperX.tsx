@@ -43,8 +43,11 @@ export const SlideInOutWrapperX = ({
     const wrapperChild = wrapperChildRef.current;
 
     const handleEnter = () => {
+      gsap.set(wrapper, { scaleX: 0 });
+      gsap.set(wrapperChild, { y: "100%", opacity: 0 });
+
       const tl1 = gsap.timeline({
-        defaults: { ease: "power2.in", duration: 0.2 },
+        defaults: { ease: "power2.out", duration: 0.2 },
       });
       tl1.to(wrapper, { scaleX: 1 }).to(
         wrapperChild,
@@ -52,13 +55,13 @@ export const SlideInOutWrapperX = ({
           opacity: 1,
           y: "0%",
         },
-        "0.16"
+        "0.16",
       );
     };
 
     const handleLeave = () => {
       const tl2 = gsap.timeline({
-        defaults: { ease: "power2.in", duration: 0.2 },
+        defaults: { ease: "power2.out", duration: 0.2 },
       });
       tl2
         .to(wrapperChild, {
@@ -71,7 +74,7 @@ export const SlideInOutWrapperX = ({
             scaleX: "0",
             transformOrigin: "right",
           },
-          "0.16"
+          "0.16",
         )
         .to(wrapper, { transformOrigin: "left" });
     };
