@@ -17,9 +17,9 @@ export const useHeaderScrollAnimation = (
   selector: string = ".animated-header",
 ) => {
   const {
-    triggerStart = 300,
+    triggerStart = 167,
     shadowThreshold = 100,
-    duration = 0.25,
+    duration = 0.4,
     shadowCSS = "0 4px 20px rgba(0, 0, 0, 0.08)",
   } = options;
 
@@ -67,16 +67,14 @@ export const useHeaderScrollAnimation = (
       gsap.to(header, {
         yPercent: -100,
         duration,
-        ease: "none",
-        overwrite: "auto",
+        ease: "power2.out",
       });
 
     const show = () =>
       gsap.to(header, {
         yPercent: 0,
         duration,
-        ease: "none",
-        overwrite: "auto",
+        ease: "power2.out",
       });
 
     // Native tracking variables
@@ -88,7 +86,12 @@ export const useHeaderScrollAnimation = (
       const currentScrollY = window.scrollY;
 
       // Determine direction (1 for down, -1 for up)
-      const direction = currentScrollY > lastScrollY ? 1 : -1;
+      const direction =
+        currentScrollY - lastScrollY >= 20
+          ? 1
+          : lastScrollY - currentScrollY >= 20
+            ? -1
+            : 0;
 
       // 1. Box-Shadow Toggle
       if (currentScrollY >= shadowThreshold) {
