@@ -13,7 +13,9 @@ import { isEqual } from "lodash";
 import { IDecompressedParams, ISearchProductQueriesForm } from "@/types";
 import { buildProductSearchQueryParams } from "@/utils/product/buildProductSearchQueryParams";
 
-export const useProductSearchQueries = () => {
+export const useProductSearchQueries = (
+  resultsHeadingRef: React.RefObject<HTMLHeadingElement | null>,
+) => {
   const searchParams = useSearchParams();
   const path = usePathname();
   const previousSubCategoryRef = useRef<string>("");
@@ -68,7 +70,15 @@ export const useProductSearchQueries = () => {
     if (!isEqual(currentValues, formParamsFromUrl)) {
       form.reset(formParamsFromUrl);
     }
-  }, [formParamsFromUrl, form]);
+
+    // Smooth scroll to the results heading
+    if (resultsHeadingRef.current) {
+      resultsHeadingRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [formParamsFromUrl, form, resultsHeadingRef]);
 
   // 4. URL Update Logic
   const pushToUrl = (

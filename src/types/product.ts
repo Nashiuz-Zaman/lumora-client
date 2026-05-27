@@ -2,6 +2,8 @@ import { TProductStatusValue } from "@/constants/product";
 import { IReview } from "./review";
 import { IQueryMeta } from "./generic";
 import { TImage } from "./shared";
+import { ICategoryTreeItem } from "@/types/category";
+import { UseFormSetValue } from "react-hook-form";
 
 // ---------------------------------------------------------
 // VARIANT MODEL
@@ -121,6 +123,14 @@ export interface IGetProductsParams {
   limit?: number;
   sort?: string;
   [key: string]: unknown;
+}
+
+export interface ISearchFiltersProps {
+  categories: ICategoryTreeItem[];
+  brands: string[];
+  watchedValues: ISearchProductQueriesForm;
+  setValue: UseFormSetValue<ISearchProductQueriesForm>;
+  handleSubmit: (e?: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export interface ISearchProductQueriesForm {

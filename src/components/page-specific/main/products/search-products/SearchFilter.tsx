@@ -5,17 +5,7 @@ import { AccordionVertical } from "@shared/AccordionVertical";
 import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { InputFieldMinMax } from "@shared/InputFieldMinMax";
-import { ICategoryTreeItem } from "@/types";
-import { UseFormSetValue } from "react-hook-form";
-import { ISearchProductQueriesForm } from "@/types";
-
-interface ISearchFiltersProps {
-  categories: ICategoryTreeItem[];
-  brands: string[];
-  watchedValues: ISearchProductQueriesForm;
-  setValue: UseFormSetValue<ISearchProductQueriesForm>;
-  handleSubmit: (e?: React.BaseSyntheticEvent) => void;
-}
+import { ISearchFiltersProps } from "@/types";
 
 export const SearchFilters = ({
   categories,
