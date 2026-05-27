@@ -14,6 +14,7 @@ import { ISearchProductQueriesForm } from "@/types";
 import { useRef } from "react";
 
 export const SearchProductsMain = () => {
+  const resultsHeadingRef = useRef<HTMLHeadingElement>(null);
   const { data: categories } = useGetCategoryTreeQuery();
   const {
     handleSubmit,
@@ -24,8 +25,7 @@ export const SearchProductsMain = () => {
     queryMeta,
     changePage,
     control,
-  } = useProductSearchQueries();
-  const resultsHeadingRef = useRef<HTMLHeadingElement>(null);
+  } = useProductSearchQueries(resultsHeadingRef);
 
   const watchedValues = useWatch({
     control,
@@ -72,7 +72,7 @@ export const SearchProductsMain = () => {
             <div className="text-sm">
               <h2
                 ref={resultsHeadingRef}
-                className="text-2xl font-semibold mb-2"
+                className="text-2xl font-semibold mb-2 scroll-mt-80!"
               >
                 Results
               </h2>
