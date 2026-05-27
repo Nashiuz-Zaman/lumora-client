@@ -24,7 +24,8 @@
 }
 
 * {
-  scroll-margin-top: 25px !important;
+  scrollbar-width: thin; /* auto | thin | none */
+  scroll-margin-top: 4rem !important;
 }
 
 html {
@@ -182,11 +183,6 @@ a:link::selection,
 a:visited::selection {
   color: auto;
   @apply bg-transparent;
-}
-
-/* Entire scrollbar */
-* {
-  scrollbar-width: thin; /* auto | thin | none */
 }
 
 /* @media (prefers-color-scheme: dark) {
