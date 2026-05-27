@@ -6,16 +6,7 @@ import { ButtonBtn } from "@buttons/ButtonBtn";
 import { ButtonBtnTrans } from "@buttons/ButtonBtnTrans";
 import { InputFieldMinMax } from "@shared/InputFieldMinMax";
 import { CloseIcon } from "@icons/CloseIcon";
-import { ICategoryTreeItem, ISearchProductQueriesForm } from "@/types";
-import { UseFormSetValue } from "react-hook-form";
-
-interface IMobileSearchFiltersProps {
-  categories: ICategoryTreeItem[];
-  brands: string[];
-  watchedValues: ISearchProductQueriesForm;
-  setValue: UseFormSetValue<ISearchProductQueriesForm>;
-  handleSubmit: (e?: React.BaseSyntheticEvent) => void;
-}
+import { ISearchFiltersProps } from "@/types";
 
 export const MobileSearchFilters = ({
   categories,
@@ -23,7 +14,7 @@ export const MobileSearchFilters = ({
   watchedValues,
   setValue,
   handleSubmit,
-}: IMobileSearchFiltersProps) => {
+}: ISearchFiltersProps) => {
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [expanded, setExpanded] = useState<string | null>(null);
   const [expandedBrands, setExpandedBrands] = useState(false);
