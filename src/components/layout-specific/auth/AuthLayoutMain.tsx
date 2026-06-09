@@ -1,6 +1,6 @@
 "use client";
 
-import { LeftColumnContent } from "@page-specific/auth-pages/LeftColumnContent";
+import { LeftColumnContent } from "@/components/page-specific/auth/LeftColumnContent";
 import { ReactNode } from "react";
 
 const authImages = [

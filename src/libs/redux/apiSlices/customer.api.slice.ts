@@ -6,7 +6,7 @@ import {
 } from "@/types";
 import { baseApiSlice } from "./base.api.slice";
 import { TBasicInfoFormValues } from "@page-specific/customer/settings/BasicInfoForm";
-import { IAuthFormSignup } from "@page-specific/auth-pages/AuthForm";
+import { IAuthFormSignup } from "@/components/page-specific/auth/AuthForm";
 
 export const customerApiSlice = baseApiSlice.injectEndpoints({
   endpoints: (builder) => ({

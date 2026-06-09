@@ -11,7 +11,7 @@ import {
 } from "@apiSlices/auth.api.slice";
 import useFirebaseMethods from "./useFirebaseMethods";
 import { useSignupCustomerMutation } from "@apiSlices/customer.api.slice";
-import { TAuthForm } from "@page-specific/auth-pages/AuthForm";
+import { TAuthForm } from "@/components/page-specific/auth/AuthForm";
 import { UseFormSetError } from "react-hook-form";
 import { IUser } from "@/types";
 
