@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { LoginPageMain } from "@page-specific/auth-pages/LoginPageMain";
+import { LoginPageMain } from "@/components/page-specific/auth/LoginPageMain";
 
 export const metadata: Metadata = {
   title: "Login | Lumora",

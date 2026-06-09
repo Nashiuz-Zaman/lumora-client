@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import { SignupPageMain } from "@page-specific/auth-pages/SignupPageMain";
+import { SignupPageMain } from "@/components/page-specific/auth/SignupPageMain";
 
 export const metadata: Metadata = {
   title: "Sign Up | Lumora",
