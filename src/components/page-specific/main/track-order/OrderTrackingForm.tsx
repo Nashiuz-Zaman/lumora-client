@@ -45,7 +45,7 @@ export const OrderTrackingForm = () => {
 
         <ButtonBtn
           type="submit"
-          className="mt-10 !rounded-full !w-full md:!w-[80%] !primaryClasses mx-auto"
+          className="mt-10 !rounded-full !w-full md:!w-[80%] primary-classes! mx-auto"
         >
           <IcfyIcon icon="entypo:location" />
           Track Order

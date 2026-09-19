@@ -161,7 +161,7 @@ export const SearchFilters = ({
       )}
 
       {/* Apply Filters Button */}
-      <ButtonBtn type="submit" className="primaryClasses!">
+      <ButtonBtn type="submit" className="primary-classes!">
         Apply Filters
       </ButtonBtn>
     </form>

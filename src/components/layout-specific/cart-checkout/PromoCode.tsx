@@ -87,7 +87,7 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
             />
             <ButtonBtn
               onClick={handleApply}
-              className="secondaryClasses!"
+              className="secondary-classes!"
               isLoading={isCartBusy}
             >
               Apply

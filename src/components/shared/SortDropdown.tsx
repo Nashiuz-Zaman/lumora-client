@@ -31,7 +31,7 @@ export const SortDropdown = ({
       <ButtonBtn
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`!systemClasses sortDropdown-btn !px-4 !py-2 !gap-1.5 ${buttonClassName}`}
+        className={`!system-classes sortDropdown-btn !px-4 !py-2 !gap-1.5 ${buttonClassName}`}
       >
         {buttonLabel} <DownCaretIcon />
       </ButtonBtn>

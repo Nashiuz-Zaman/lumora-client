@@ -242,7 +242,7 @@ export const ReturnRequestModal = () => {
                   disabled={isRejecting}
                   isLoading={isApproving}
                   type="submit"
-                  className="!rounded-full !primaryClasses"
+                  className="!rounded-full primary-classes!"
                 >
                   Approve
                 </ButtonBtn>

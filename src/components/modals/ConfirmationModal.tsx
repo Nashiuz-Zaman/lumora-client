@@ -40,7 +40,7 @@ export const ConfirmationModal = ({
 
         <ButtonBtn
           isLoading={isLoading}
-          className="!dangerClasses !px-4 !py-2 !rounded-md"
+          className="!danger-classes !px-4 !py-2 !rounded-md"
           onClick={onConfirm}
         >
           Yes

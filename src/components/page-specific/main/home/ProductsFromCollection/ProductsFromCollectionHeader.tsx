@@ -56,7 +56,7 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.prevEl.replace(
             ".",
             "",
-          )} w-10 h-10 p-5! relative rounded-full! primaryLightClasses!  shadow-md transition-all duration-300 active:scale-60!`}
+          )} w-10 h-10 p-5! relative rounded-full! primary-light-classes!  shadow-md transition-all duration-300 active:scale-60!`}
         >
           <CaretLeftIcon className="xy-center absolute" />
         </ButtonBtn>
@@ -64,7 +64,7 @@ export const ProductsFromCollectionHeader = ({
           className={`${navigation?.nextEl.replace(
             ".",
             "",
-          )} w-10 h-10 p-5! relative rounded-full! primaryLightClasses!  shadow-md transition-all duration-300 active:scale-60!`}
+          )} w-10 h-10 p-5! relative rounded-full! primary-light-classes!  shadow-md transition-all duration-300 active:scale-60!`}
         >
           <CaretRightIcon className="xy-center absolute" />
         </ButtonBtn>

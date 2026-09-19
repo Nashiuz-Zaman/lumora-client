@@ -66,7 +66,7 @@ const AddToProductCollectionModal = ({
       {target &&
         createPortal(
           <ButtonBtn
-            className="!primaryClasses !rounded-full !py-2 !px-5"
+            className="primary-classes! !rounded-full !py-2 !px-5"
             onClick={openModal}
           >
             + Add To Collection
@@ -141,7 +141,7 @@ const AddToProductCollectionModal = ({
           <ButtonBtn
             isLoading={isAdding}
             onClick={handleAddToCollection}
-            className="mx-auto sm:mr-0 sm:ml-auto !primaryClasses"
+            className="mx-auto sm:mr-0 sm:ml-auto primary-classes!"
             disabled={selected.length === 0}
           >
             Add to Collection

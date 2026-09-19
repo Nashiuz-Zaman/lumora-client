@@ -70,7 +70,7 @@ export const OrderSummary = () => {
           <div>
             <LinkBtn
               href="/checkout"
-              className="primaryClasses! rounded-full! mx-auto mt-4"
+              className="primary-classes! rounded-full! mx-auto mt-4"
             >
               Secure Checkout
             </LinkBtn>

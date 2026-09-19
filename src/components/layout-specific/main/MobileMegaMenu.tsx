@@ -175,7 +175,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
                           });
                           closeMenu();
                         }}
-                        className="primaryClasses w-full!"
+                        className="primary-classes w-full!"
                       >
                         Shop All {cat.topCategory.title}
                       </ButtonBtn>

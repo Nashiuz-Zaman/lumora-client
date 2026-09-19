@@ -113,7 +113,7 @@ export const MegaMenu = ({ categories }: IMegaMenuProps) => {
                               categories,
                             });
                           }}
-                          className="secondaryClasses! rounded-full! mx-auto"
+                          className="secondary-classes! rounded-full! mx-auto"
                         >
                           View all products <CaretRightIcon />
                         </ButtonBtn>

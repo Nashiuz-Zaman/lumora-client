@@ -113,7 +113,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
         <div className="flex space-x-3">
           <LinkBtn
             href={`/track-order?id=${order.orderId}`}
-            className="primaryClasses py-2! rounded-full! px-4!"
+            className="primary-classes py-2! rounded-full! px-4!"
           >
             <LocationIcon />
             Track Order
@@ -122,7 +122,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
           {order?.status < OrderStatus.Shipped && (
             <ButtonBtn
               onClick={() => onClick(order._id as string)}
-              className="dangerClasses rounded-full! px-4! py-2!"
+              className="danger-classes rounded-full! px-4! py-2!"
             >
               <WarningIcon /> Cancel
             </ButtonBtn>

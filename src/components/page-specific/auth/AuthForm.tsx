@@ -155,7 +155,7 @@ export const AuthForm = ({
         <ButtonBtn
           type="submit"
           isLoading={isLoading}
-          className="primaryClasses! w-full! rounded-full!"
+          className="primary-classes! w-full! rounded-full!"
         >
           {mode === "signup" ? "Sign Up" : "Login"}
         </ButtonBtn>
@@ -187,7 +187,7 @@ export const AuthForm = ({
             <ButtonBtn
               type="button"
               onClick={onGoogleLogin}
-              className="flex items-center justify-center gap-2 !rounded-full !w-full !whiteGrayClasses !font-medium"
+              className="flex items-center justify-center gap-2 !rounded-full !w-full !white-gray-classes !font-medium"
             >
               <GoogleIcon />
               continue with Google

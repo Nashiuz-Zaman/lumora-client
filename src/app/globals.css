@@ -23,140 +23,82 @@
   --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
 }
 
-* {
-  scrollbar-width: thin; /* auto | thin | none */
-  scroll-margin-top: 4rem !important;
+@utility padded {
+  @apply px-4 lg:px-8;
 }
 
-html {
-  font-size: 75% !important;
-  scroll-behavior: smooth;
+@utility padded-left {
+  @apply pl-4 lg:pl-8;
 }
 
-button {
-  cursor: pointer;
+@utility padded-right {
+  @apply pr-4 lg:pr-8;
 }
 
-@media (min-width: 640px) {
-  /* sm */
-  html {
-    font-size: 81.25% !important;
-  }
-}
-
-@media (min-width: 850px) {
-  /* 2md */
-  html {
-    font-size: 87.5% !important;
-  }
-}
-
-@media (min-width: 1536px) {
-  /* 2xl */
-  html {
-    font-size: 93.75% !important;
-  }
-}
-
-@media (min-width: 1700px) {
-  /* 3xl  */
-  html {
-    font-size: 100% !important;
-  }
-}
-
-@utility scaleOnHover {
-  @apply active:scale-120 lg:hover:scale-120;
-}
-
-@utility primaryClasses {
+/* Button & UI Utilities */
+@utility primary-classes {
   @apply bg-primary border border-primary text-neutral-50
          active:bg-primary-dark active:border-primary-dark
-         lg:hover:bg-primary-dark lg:hover:border-primary-dark
-         disabled:hover:bg-primary disabled:hover:border-primary disabled:hover:text-neutral-50;
+         lg:hover:bg-primary-dark lg:hover:border-primary-dark;
 }
 
-@utility blackOutlinedToPrimaryClasses {
-  @apply bg-transparent border border-neutral-400! text-neutral-700!
-         active:bg-primary lg:hover:bg-primary lg:hover:text-neutral-50
-         active:text-neutral-50 lg:hover:border-primary active:border-primary
-         disabled:hover:bg-transparent disabled:hover:border-neutral-300!;
+@utility primary-outlined-classes {
+  @apply bg-transparent border border-primary-light text-primary-light
+         active:bg-primary-light active:text-white
+         lg:hover:bg-primary-light lg:hover:text-white lg:hover:border-primary-light;
 }
 
-@utility primaryOutlinedClasses {
-  @apply bg-transparent border text-primary-light! disabled:hover:text-primary border-primary-light!
-         active:bg-primary-light lg:hover:bg-primary-light! lg:hover:text-white
-         active:text-white lg:hover:border-primary-light
-         disabled:hover:bg-transparent  disabled:hover:border-primary;
-}
-
-@utility primaryLightClasses {
+@utility primary-light-classes {
   @apply bg-primary-light border border-primary-light text-neutral-50
-         active:bg-primary active:border-primary active:text-neutral-50
-         lg:hover:bg-primary lg:hover:border-primary lg:hover:text-neutral-50
-         disabled:hover:bg-primary-light disabled:hover:border-primary-light disabled:hover:text-neutral-50;
+         active:bg-primary active:border-primary
+         lg:hover:bg-primary lg:hover:border-primary;
 }
 
-@utility secondaryClasses {
+@utility secondary-classes {
   @apply bg-secondary border border-secondary text-neutral-50
          active:bg-secondary-dark active:border-secondary-dark
-         lg:hover:bg-secondary-dark lg:hover:border-secondary-dark
-         disabled:hover:bg-secondary disabled:hover:border-secondary disabled:hover:text-neutral-50;
+         lg:hover:bg-secondary-dark lg:hover:border-secondary-dark;
 }
 
-@utility dangerClasses {
+@utility danger-classes {
   @apply bg-red-600 border border-red-600 text-neutral-50
-         hover:bg-red-500 hover:border-red-500
-         disabled:hover:bg-red-600 disabled:hover:border-red-600 disabled:hover:text-neutral-50;
+         hover:bg-red-500 hover:border-red-500;
 }
 
-@utility successClasses {
+@utility success-classes {
   @apply bg-green-600 border border-green-600 text-neutral-50
-         hover:bg-green-500 hover:border-green-500
-         disabled:hover:bg-green-600 disabled:hover:border-green-600 disabled:hover:text-neutral-50;
+         hover:bg-green-500 hover:border-green-500;
 }
 
-@utility systemClasses {
+@utility system-classes {
   @apply bg-neutral-100 border border-neutral-200 text-neutral-800
-         hover:bg-neutral-200 hover:border-neutral-300
-         disabled:hover:bg-neutral-100 disabled:hover:border-neutral-200 disabled:hover:text-neutral-800;
+         hover:bg-neutral-200 hover:border-neutral-300;
 }
 
-@utility whiteGrayClasses {
-  @apply bg-white border border-neutral-200
-         hover:bg-neutral-100
-         disabled:hover:bg-white disabled:hover:border-neutral-200;
-}
-@utility whiteOutlinedClasses {
-  @apply bg-transparent border text-neutral-50 border-white
-         lg:hover:bg-white/20  active:bg-white/20
-         disabled:hover:bg-transparent;
+@utility white-gray-classes {
+  @apply bg-white border border-neutral-200 hover:bg-neutral-100;
 }
 
-@utility blackClasses {
+@utility black-classes {
   @apply bg-neutral-900 border border-neutral-900 text-neutral-50
-         hover:bg-neutral-800 hover:border-neutral-800
-         disabled:hover:bg-neutral-900 disabled:hover:border-neutral-900 disabled:hover:text-neutral-50;
+         hover:bg-neutral-800 hover:border-neutral-800;
 }
 
-@utility linkClasses {
-  @apply text-blue-500 hover:text-blue-700 hover:underline;
+@utility link-classes {
+  @apply text-blue-500 hover:text-blue-700 hover:underline transition-colors;
 }
 
-@utility filter-white {
-  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(329deg)
-    brightness(106%) contrast(101%);
-}
-
+/* Graphic & Layout Utilities */
 @utility xy-center {
-  @apply top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2;
+  @apply absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2;
 }
 
 @utility x-center {
-  @apply left-1/2 -translate-x-1/2;
+  @apply absolute left-1/2 -translate-x-1/2;
 }
+
 @utility y-center {
-  @apply top-1/2 -translate-y-1/2;
+  @apply absolute top-1/2 -translate-y-1/2;
 }
 
 @utility bg-center-cover {
@@ -175,25 +117,51 @@ button {
   -moz-appearance: none;
 }
 
-button::selection {
-  @apply bg-transparent;
-}
-
-a:link::selection,
-a:visited::selection {
-  color: auto;
-  @apply bg-transparent;
-}
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scroll-padding-top: 150px !important;
+    -webkit-tap-highlight-color: transparent;
   }
-} */
 
-/* body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  img {
+    @apply no-shaking;
+  }
+
+  button,
+  [role="button"] {
+    @apply cursor-pointer transition-all duration-200 ease-in-out
+           disabled:opacity-60 disabled:pointer-events-none;
+  }
+
+  /* Responsive Base Font Scaling */
+  @media (min-width: 640px) {
+    html {
+      font-size: 81.25%;
+    }
+  }
+  @media (min-width: 850px) {
+    html {
+      font-size: 87.5%;
+    }
+  }
+  @media (min-width: 1536px) {
+    html {
+      font-size: 93.75%;
+    }
+  }
+  @media (min-width: 1700px) {
+    html {
+      font-size: 100%;
+    }
+  }
+}

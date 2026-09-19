@@ -20,7 +20,7 @@ export const CartItemList = () => {
           <div className="grow min-h-100 lg:min-h-auto p-5 rounded-xl flex items-center justify-center">
             <div className="mb-16">
               <NoData text="Cart is empty" className="py-0! my-0! mb-4!" />
-              <LinkBtn href="/products/s" className="primaryClasses!">
+              <LinkBtn href="/products/s" className="primary-classes!">
                 <CartIcon className="text-2xl" />
                 Back to Shopping
               </LinkBtn>

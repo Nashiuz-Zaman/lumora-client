@@ -44,7 +44,7 @@ export const AddressCard = ({
           )}
         </div>
 
-        <LinkBtn href={href} className="mt-5 !rounded-lg !primaryClasses !py-2">
+        <LinkBtn href={href} className="mt-5 !rounded-lg primary-classes! !py-2">
           {btnText}
         </LinkBtn>
       </div>

@@ -27,7 +27,7 @@ export const MegaMenuCategoryCard = ({
       <GridCard images={images} className="mb-8" />
 
       {/* Bottom Link */}
-      <LinkBtnTrans href={linkUrl} className="linkClasses transition-all">
+      <LinkBtnTrans href={linkUrl} className="link-classes transition-all">
         {linkText}
       </LinkBtnTrans>
     </div>

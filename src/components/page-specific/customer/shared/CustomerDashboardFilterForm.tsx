@@ -103,10 +103,10 @@ export const CustomerDashboardFilterForm = <
             selected={String(formParams.sort || "")}
             options={sortOptions}
             onUpdate={handleSortChange}
-            buttonClassName="!systemClasses !px-3 !py-2 md:ml-6 xl:ml-10"
+            buttonClassName="!system-classes !px-3 !py-2 md:ml-6 xl:ml-10"
           />
 
-          <ButtonBtn type="submit" className="successClasses! py-2! px-3!">
+          <ButtonBtn type="submit" className="success-classes! py-2! px-3!">
             Search
           </ButtonBtn>
         </div>

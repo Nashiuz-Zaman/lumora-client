@@ -80,14 +80,14 @@ export const PaymentResultPageMain = () => {
         {typedStatus === "success" && (
           <LinkBtn
             href={`/track-order?id=${orderId}`}
-            className="successClasses! rounded-full!"
+            className="success-classes! rounded-full!"
           >
             Track your Order
           </LinkBtn>
         )}
 
         {typedStatus === "fail" && (
-          <LinkBtn href={`/checkout`} className="primaryClasses! rounded-full!">
+          <LinkBtn href={`/checkout`} className="primary-classes! rounded-full!">
             Try Again
           </LinkBtn>
         )}

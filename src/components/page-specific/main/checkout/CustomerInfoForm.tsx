@@ -142,7 +142,7 @@ export const CustomerInfoForm = ({
       <ButtonBtn
         isLoading={isSubmitting}
         type="submit"
-        className="successClasses! ml-auto gap-2 rounded-full!"
+        className="success-classes! ml-auto gap-2 rounded-full!"
       >
         <IcfyIcon className="text-3xl" icon="cib:samsung-pay" />
         Pay for order

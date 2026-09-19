@@ -80,7 +80,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
         <ButtonBtn
           onClick={handleHelpfulClick}
           className={`!py-2 !px-4 whitespace-nowrap ${
-            alreadyMarked ? "successClasses" : "hover:successClasses"
+            alreadyMarked ? "success-classes" : "hover:success-classes"
           }`}
           title={alreadyMarked ? "You found this helpful" : "Mark as helpful"}
           disabled={!isCustomer || alreadyMarked}

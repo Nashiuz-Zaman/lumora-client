@@ -85,7 +85,7 @@ export const RefundModal = ({
           <ButtonBtn
             type="submit"
             isLoading={isRefunding}
-            className="!primaryClasses !py-2"
+            className="primary-classes! !py-2"
           >
             Submit
           </ButtonBtn>
