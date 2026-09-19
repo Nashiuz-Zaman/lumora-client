@@ -133,6 +133,10 @@
     scroll-behavior: smooth;
   }
 
+  body {
+    @apply bg-white text-zinc-800;
+  }
+
   img {
     @apply no-shaking;
   }
