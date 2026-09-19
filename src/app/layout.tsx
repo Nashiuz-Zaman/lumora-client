@@ -1,58 +1,16 @@
-// ---------------------------------------------------------
-// GLOBAL STYLES
-// ---------------------------------------------------------
 import "./globals.css";
-
-// ---------------------------------------------------------
-// GLOBAL FONTS
-// ---------------------------------------------------------
 import { Inter } from "next/font/google";
-
-// ---------------------------------------------------------
-// UI LIBRARIES
-// ---------------------------------------------------------
-import { ToastContainer, Zoom } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-// ---------------------------------------------------------
-// PROVIDERS
-// ---------------------------------------------------------
-import {
-  ReduxProvider,
-  AuthStateProvider,
-  CartStateProvider,
-  RefsProvider,
-} from "@/providers";
-
-// ---------------------------------------------------------
-// COMPONENTS
-// ---------------------------------------------------------
-import { Backdrop } from "@shared/Backdrop";
-import { DemoNoticeModal } from "@modals/DemoNoticeModal";
-import { ProductQuickViewModal } from "@modals/ProductQuickViewModal";
-
-// ---------------------------------------------------------
-// SERVER / DATABASE
-// ---------------------------------------------------------
-import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
-
-// ---------------------------------------------------------
-// TYPES
-// ---------------------------------------------------------
 import type { Metadata } from "next";
 
-// ---------------------------------------------------------
-// FONT CONFIGURATION
-// ---------------------------------------------------------
+import { AppProviders } from "@/providers/AppProviders";
+import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
 });
 
-// ---------------------------------------------------------
-// METADATA
-// ---------------------------------------------------------
 export const metadata: Metadata = {
   title: "Lumora | Products from top brands all in one place for you",
   description:
@@ -88,44 +46,20 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const result = await fetchCategoryTree();
-  let categoryTree;
 
   if (!result || "isError" in result) {
     throw new Error("Categories loading error");
-  } else {
-    categoryTree = result.categoryTree;
   }
 
   return (
-    <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${inter.className} ${inter.variable}`} suppressHydrationWarning={true}>
-        <ReduxProvider initialCategoryTree={categoryTree}>
-          <AuthStateProvider>
-            <CartStateProvider>
-              <RefsProvider>
-                <ToastContainer
-                  position="top-center"
-                  autoClose={2000}
-                  transition={Zoom}
-                  hideProgressBar
-                  newestOnTop
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss
-                  draggable
-                  pauseOnHover
-                  theme="light"
-                />
-
-                <Backdrop />
-                <DemoNoticeModal />
-                <ProductQuickViewModal />
-
-                {children}
-              </RefsProvider>
-            </CartStateProvider>
-          </AuthStateProvider>
-        </ReduxProvider>
+    <html lang="en">
+      <body
+        className={`${inter.className} ${inter.variable}`}
+        suppressHydrationWarning
+      >
+        <AppProviders categoryTree={result.categoryTree}>
+          {children}
+        </AppProviders>
       </body>
     </html>
   );
