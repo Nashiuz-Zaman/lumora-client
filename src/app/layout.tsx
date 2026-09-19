@@ -6,7 +6,7 @@ import "./globals.css";
 // ---------------------------------------------------------
 // GLOBAL FONTS
 // ---------------------------------------------------------
-import { poppins } from "./fonts";
+import { Inter } from "next/font/google";
 
 // ---------------------------------------------------------
 // UI LIBRARIES
@@ -40,6 +40,15 @@ import { fetchCategoryTree } from "@/server-functions/fetchCategoryTree";
 // TYPES
 // ---------------------------------------------------------
 import type { Metadata } from "next";
+
+// ---------------------------------------------------------
+// FONT CONFIGURATION
+// ---------------------------------------------------------
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 // ---------------------------------------------------------
 // METADATA
@@ -89,10 +98,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body
-        className={`${poppins.className} text-neutral-700`}
-        suppressHydrationWarning={true}
-      >
+      <body className={`${inter.className} ${inter.variable}`} suppressHydrationWarning={true}>
         <ReduxProvider initialCategoryTree={categoryTree}>
           <AuthStateProvider>
             <CartStateProvider>
