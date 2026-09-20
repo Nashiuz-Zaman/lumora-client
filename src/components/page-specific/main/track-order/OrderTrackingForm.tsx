@@ -26,7 +26,7 @@ export const OrderTrackingForm = () => {
   };
 
   return (
-    <div className="bg-white border shadow-lg rounded-lg h-max border-neutral-100 p-8">
+    <div className="bg-white border shadow-lg rounded-lg h-max border-zinc-100 p-8">
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputField
           labelText="Order ID"
@@ -45,7 +45,7 @@ export const OrderTrackingForm = () => {
 
         <ButtonBtn
           type="submit"
-          className="mt-10 !rounded-full !w-full md:!w-[80%] !primaryClasses mx-auto"
+          className="mt-10 !rounded-full !w-full md:!w-[80%] primary-classes! mx-auto"
         >
           <IcfyIcon icon="entypo:location" />
           Track Order

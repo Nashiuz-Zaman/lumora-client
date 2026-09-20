@@ -23,7 +23,7 @@ const FooterNewsletter = () => {
           Join our newsletter
         </h3>
 
-        <p className="text-sm text-neutral-400">
+        <p className="text-sm text-zinc-400">
           Get exclusive deals and product launches.
         </p>
       </div>
@@ -39,7 +39,7 @@ const FooterNewsletter = () => {
           }
           className="flex-1"
           inputClassName="bg-primary-dark-3! border border-white/10! rounded-l-lg border-r-0 text-sm"
-          placeholderClassName="text-neutral-400"
+          placeholderClassName="text-zinc-400"
         />
 
         <button

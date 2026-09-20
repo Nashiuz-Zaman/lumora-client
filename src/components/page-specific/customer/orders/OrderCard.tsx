@@ -19,15 +19,15 @@ interface IOrderCardProps {
 
 export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
   return (
-    <div className="bg-white border border-neutral-100 rounded-lg shadow-md p-6">
+    <div className="bg-white border border-zinc-100 rounded-lg shadow-md p-6">
       {/* Header */}
       <div className="flex justify-between items-center mb-4">
         <div onClick={(e) => e.stopPropagation()}>
-          <h2 className="text-xl font-semibold text-neutral-800">
+          <h2 className="text-xl font-semibold text-zinc-800">
             Order #{order.orderId}
           </h2>
 
-          <p className="text-sm text-neutral-500">
+          <p className="text-sm text-zinc-500">
             Placed on {formatDateTime(order.createdAt!)} • {order.items.length}{" "}
             items
           </p>
@@ -50,18 +50,18 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
         </div>
 
         {/* Order summary */}
-        <div className="bg-neutral-50 rounded-lg p-4 border border-neutral-100 h-max">
-          <h3 className="font-semibold text-neutral-800 mb-3">Order Summary</h3>
+        <div className="bg-zinc-50 rounded-lg p-4 border border-zinc-100 h-max">
+          <h3 className="font-semibold text-zinc-800 mb-3">Order Summary</h3>
 
           {/* Subtotal */}
-          <div className="flex justify-between text-sm text-neutral-700 mb-1">
+          <div className="flex justify-between text-sm text-zinc-700 mb-1">
             <span>Subtotal</span>
             <span>{formatPrice(order.subtotal)}</span>
           </div>
 
           {/* Shipping */}
           {order.shippingFee !== undefined && (
-            <div className="flex justify-between text-sm text-neutral-700 mb-1">
+            <div className="flex justify-between text-sm text-zinc-700 mb-1">
               <span>Shipping</span>
               <span className={order.shippingFee === 0 ? "text-green-600" : ""}>
                 {order.shippingFee === 0
@@ -73,7 +73,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
 
           {/* Tax */}
           {order.tax !== undefined && (
-            <div className="flex justify-between text-sm text-neutral-700 mb-1">
+            <div className="flex justify-between text-sm text-zinc-700 mb-1">
               <span>Tax</span>
               <span>{formatPrice(order.tax)}</span>
             </div>
@@ -81,7 +81,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
 
           {/* Discount */}
           {order.discount !== undefined && (
-            <div className="flex justify-between text-sm text-neutral-700 mb-1">
+            <div className="flex justify-between text-sm text-zinc-700 mb-1">
               <span>Discount</span>
               <span className="text-red-600">
                 -{formatPrice(order.discount)}
@@ -90,7 +90,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
           )}
 
           {/* Total */}
-          <div className="flex justify-between font-bold text-lg text-neutral-800 mt-3">
+          <div className="flex justify-between font-bold text-lg text-zinc-800 mt-3">
             <span>Total</span>
             <span>{formatPrice(order.total)}</span>
           </div>
@@ -113,7 +113,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
         <div className="flex space-x-3">
           <LinkBtn
             href={`/track-order?id=${order.orderId}`}
-            className="primaryClasses py-2! rounded-full! px-4!"
+            className="primary-classes py-2! rounded-full! px-4!"
           >
             <LocationIcon />
             Track Order
@@ -122,7 +122,7 @@ export const OrderCard = ({ order, onClick }: IOrderCardProps) => {
           {order?.status < OrderStatus.Shipped && (
             <ButtonBtn
               onClick={() => onClick(order._id as string)}
-              className="dangerClasses rounded-full! px-4! py-2!"
+              className="danger-classes rounded-full! px-4! py-2!"
             >
               <WarningIcon /> Cancel
             </ButtonBtn>

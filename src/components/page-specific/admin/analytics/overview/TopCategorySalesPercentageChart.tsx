@@ -27,7 +27,7 @@ export const TopCategorySalesPercentageChart = ({
 
   return (
     <DonutChart
-      className="border border-neutral-200 w-full grow"
+      className="border border-zinc-200 w-full grow"
       data={values}
       labels={categories}
       tooltipUnit="%"

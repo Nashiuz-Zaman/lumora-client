@@ -43,7 +43,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
   });
 
   return (
-    <div className="p-4 sm:p-6 bg-neutral-50 rounded-md shadow-sm">
+    <div className="p-4 sm:p-6 bg-zinc-50 rounded-md shadow-sm">
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-5">
         <Image
           src={(review.user as IUser).image || generateAvatar(review.name)}
@@ -56,7 +56,7 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
           {review.name || "Guest"}
         </p>
 
-        <p className="mt-1 sm:mt-0 sm:ml-auto text-neutral-500 text-sm sm:text-base">
+        <p className="mt-1 sm:mt-0 sm:ml-auto text-zinc-500 text-sm sm:text-base">
           {helpfulBy.length} {helpfulBy.length === 1 ? "person" : "people"}{" "}
           found this helpful
         </p>
@@ -73,14 +73,14 @@ export const ReviewItem = ({ review }: IReviewItemProps) => {
       <p className="mb-4 text-sm sm:text-base">{review.comment}</p>
 
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-        <small className="text-neutral-500 text-xs sm:text-sm">
+        <small className="text-zinc-500 text-xs sm:text-sm">
           {formatDateTime(review.createdAt!, false)}
         </small>
 
         <ButtonBtn
           onClick={handleHelpfulClick}
           className={`!py-2 !px-4 whitespace-nowrap ${
-            alreadyMarked ? "successClasses" : "hover:successClasses"
+            alreadyMarked ? "success-classes" : "hover:success-classes"
           }`}
           title={alreadyMarked ? "You found this helpful" : "Mark as helpful"}
           disabled={!isCustomer || alreadyMarked}

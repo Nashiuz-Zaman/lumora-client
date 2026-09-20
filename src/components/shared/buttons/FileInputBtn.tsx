@@ -21,7 +21,7 @@ export const FileInputButton = ({
 }: IFileInputButtonProps) => {
   return (
     <label
-      className={`flex items-center gap-2 cursor-pointer px-4 py-2 border border-neutral-200 bg-neutral-100 rounded-lg hover:bg-neutral-200 transition w-fit ${className}`}
+      className={`flex items-center gap-2 cursor-pointer px-4 py-2 border border-zinc-200 bg-zinc-100 rounded-lg hover:bg-zinc-200 transition w-fit ${className}`}
     >
       {children}
       <span className="text-sm">{buttonText}</span>

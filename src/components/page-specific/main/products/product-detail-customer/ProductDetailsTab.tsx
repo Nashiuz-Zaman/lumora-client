@@ -20,7 +20,7 @@ export const ProductDetailsTabs = ({ product }: { product: IProduct }) => {
   return (
     <div className="w-full mb-20 min-h-[10rem] flex flex-col">
       {/* Tabs */}
-      <div className="flex border-b border-neutral-200 rounded-t-lg overflow-hidden">
+      <div className="flex border-b border-zinc-200 rounded-t-lg overflow-hidden">
         {tabs.map((tab) => (
           <button
             key={tab.id}
@@ -28,8 +28,8 @@ export const ProductDetailsTabs = ({ product }: { product: IProduct }) => {
             className={`px-5 py-2 text-sm font-medium transition-colors rounded-t-lg cursor-pointer -mb-[1px]
               ${
                 activeTab === tab.id
-                  ? "bg-primary border-x border-t border-neutral-200 text-neutral-50"
-                  : "text-neutral-500 hover:text-neutral-900"
+                  ? "bg-primary border-x border-t border-zinc-200 text-zinc-50"
+                  : "text-zinc-500 hover:text-zinc-900"
               }`}
           >
             {tab.label}

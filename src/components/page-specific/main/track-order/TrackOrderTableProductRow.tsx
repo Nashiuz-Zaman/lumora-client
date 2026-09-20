@@ -14,7 +14,7 @@ export const TrackOrderTableProductRow = ({
   isLastEl,
 }: ITrackOrderTableProductRowProps) => {
   const cellClasses = `text-sm font-medium px-4 py-3 flex items-center ${
-    !isLastEl ? "border-b border-neutral-200" : ""
+    !isLastEl ? "border-b border-zinc-200" : ""
   }`;
 
   if (!data) return null;
@@ -28,7 +28,7 @@ export const TrackOrderTableProductRow = ({
           alt={data.product.title || "Product image"}
           width={80}
           height={80}
-          className="w-12 md:w-16 lg:w-20 aspect-square object-contain rounded-md border border-neutral-200"
+          className="w-12 md:w-16 lg:w-20 aspect-square object-contain rounded-md border border-zinc-200"
         />
 
         <div>

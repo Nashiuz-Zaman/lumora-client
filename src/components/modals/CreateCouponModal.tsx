@@ -61,7 +61,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
       {target &&
         createPortal(
           <ButtonBtn
-            className="!primaryClasses !rounded-full !py-2 !px-5"
+            className="primary-classes! !rounded-full !py-2 !px-5"
             onClick={openModal}
           >
             + New Coupon
@@ -178,7 +178,7 @@ export const CreateCouponModal = ({ target }: ICreateCouponModalProps) => {
             <ButtonBtn
               type="submit"
               isLoading={isLoading}
-              className="!primaryClasses"
+              className="primary-classes!"
             >
               Create
             </ButtonBtn>

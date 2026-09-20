@@ -28,7 +28,7 @@ export const DemoNoticeModal = () => {
     >
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Important Notice</h2>
-        <p className="text-neutral-600 leading-relaxed mb-3">
+        <p className="text-zinc-600 leading-relaxed mb-3">
           Please note this is a <strong>demo project</strong>. Product data displayed here
           is <strong>entirely fictional</strong> except for the{" "}
           <strong>product names</strong> and <strong>images</strong>. Products
@@ -48,7 +48,7 @@ export const DemoNoticeModal = () => {
       <div className="pt-4">
         <ButtonBtn
           onClick={handleClose}
-          className="blackClasses text-neutral-50 font-medium  mx-auto !rounded-full"
+          className="black-classes text-zinc-50 font-medium  mx-auto !rounded-full"
         >
           Ok, I understand
         </ButtonBtn>

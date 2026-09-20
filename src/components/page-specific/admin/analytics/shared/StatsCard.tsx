@@ -32,13 +32,13 @@ export const StatsCard = ({
   // Skeleton loading
   if (isLoading) {
     return (
-      <div className="rounded-2xl border border-neutral-200 bg-white py-6 px-4 flex flex-col shadow-sm animate-pulse">
-        <div className="h-5 w-32 bg-neutral-200 rounded mb-5" />
+      <div className="rounded-2xl border border-zinc-200 bg-white py-6 px-4 flex flex-col shadow-sm animate-pulse">
+        <div className="h-5 w-32 bg-zinc-200 rounded mb-5" />
         <div className="flex items-center gap-2 mb-2">
-          <div className="h-8 w-16 bg-neutral-300 rounded-md" />
-          <div className="h-4 w-10 bg-neutral-200 rounded-md" />
+          <div className="h-8 w-16 bg-zinc-300 rounded-md" />
+          <div className="h-4 w-10 bg-zinc-200 rounded-md" />
         </div>
-        <div className="h-4 w-28 bg-neutral-200 rounded" />
+        <div className="h-4 w-28 bg-zinc-200 rounded" />
       </div>
     );
   }
@@ -56,7 +56,7 @@ export const StatsCard = ({
     ? negativeField
       ? "text-green-600"
       : "text-red-600"
-    : "text-neutral-400";
+    : "text-zinc-400";
 
   const arrowIcon = isIncrease
     ? "solar:round-arrow-up-bold"
@@ -66,7 +66,7 @@ export const StatsCard = ({
 
   return (
     <div
-      className={`rounded-xl border border-neutral-200 bg-white py-6 px-4 flex flex-col select-none ${className}`}
+      className={`rounded-xl border border-zinc-200 bg-white py-6 px-4 flex flex-col select-none ${className}`}
     >
       <h3 className="text-lg font-medium mb-5">{label}</h3>
 
@@ -94,7 +94,7 @@ export const StatsCard = ({
         )}
       </div>
 
-      <p className="text-neutral-400 text-sm">
+      <p className="text-zinc-400 text-sm">
         {capitalize(comparison?.type)} {comparisonText || "All time"}
       </p>
     </div>

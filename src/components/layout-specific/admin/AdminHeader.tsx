@@ -35,7 +35,7 @@ export const AdminHeader = () => {
   return (
     <header
       ref={adminHeaderRef}
-      className="h-16 xl:h-28 bg-white border-b border-neutral-200 flex items-center shrink-0"
+      className="h-16 xl:h-28 bg-white border-b border-zinc-200 flex items-center shrink-0"
     >
       <InnerContainer className="flex justify-between items-center">
         {/* Mobile nav button placeholder */}

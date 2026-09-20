@@ -50,7 +50,7 @@ export const OrderTrackingPanel = ({
   }
 
   return (
-    <div className="w-full overflow-hidden border border-neutral-200 rounded-md bg-white">
+    <div className="w-full overflow-hidden border border-zinc-200 rounded-md bg-white">
       {/* Header */}
       <OrderTrackingHeader order={orderData} />
 

@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const FAQPage = () => {
   return (
-    <main className="min-h-[80vh] bg-neutral-50 py-20">
+    <main className="min-h-[80vh] bg-zinc-50 py-20">
       <div className="container mx-auto px-4 md:px-8">
         <FAQSection />
       </div>

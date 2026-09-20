@@ -10,7 +10,7 @@ export const SectionHeader = ({ title, subtitle }: ISectionHeaderProps) => {
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-3 text-neutral-600 text-base md:text-lg">{subtitle}</p>
+        <p className="mt-3 text-zinc-600 text-base md:text-lg">{subtitle}</p>
       )}
     </div>
   );

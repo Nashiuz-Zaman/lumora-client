@@ -66,7 +66,7 @@ const AddToProductCollectionModal = ({
       {target &&
         createPortal(
           <ButtonBtn
-            className="!primaryClasses !rounded-full !py-2 !px-5"
+            className="primary-classes! !rounded-full !py-2 !px-5"
             onClick={openModal}
           >
             + Add To Collection
@@ -110,7 +110,7 @@ const AddToProductCollectionModal = ({
         )}
 
         {/* Products container */}
-        <div className="w-full grow overflow-y-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 py-7 px-5 gap-4 bg-neutral-100">
+        <div className="w-full grow overflow-y-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 py-7 px-5 gap-4 bg-zinc-100">
           {isFetching ? (
             <LoadingSpinner centered={true} />
           ) : products.length === 0 ? (
@@ -141,7 +141,7 @@ const AddToProductCollectionModal = ({
           <ButtonBtn
             isLoading={isAdding}
             onClick={handleAddToCollection}
-            className="mx-auto sm:mr-0 sm:ml-auto !primaryClasses"
+            className="mx-auto sm:mr-0 sm:ml-auto primary-classes!"
             disabled={selected.length === 0}
           >
             Add to Collection

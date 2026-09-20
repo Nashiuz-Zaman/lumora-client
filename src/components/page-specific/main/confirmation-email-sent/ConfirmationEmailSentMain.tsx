@@ -91,7 +91,7 @@ export const ConfirmationEmailSentMain = () => {
 
       <h2 className="text-2xl font-semibold mb-4">Confirmation Email Sent</h2>
 
-      <p className="text-neutral-600 mb-6 leading-relaxed">
+      <p className="text-zinc-600 mb-6 leading-relaxed">
         We’ve sent a confirmation email to{" "}
         <span className="font-medium text-primary">{email}</span>. <br />
         Please check your inbox and spam folders to verify your account.
@@ -106,7 +106,7 @@ export const ConfirmationEmailSentMain = () => {
       <ButtonBtn
         isLoading={isLoading}
         onClick={resendEmail}
-        className="!primaryClasses !rounded-full mx-auto"
+        className="primary-classes! !rounded-full mx-auto"
         disabled={isCooldown}
       >
         Resend Email

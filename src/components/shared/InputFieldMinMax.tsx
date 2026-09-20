@@ -45,7 +45,7 @@ export const InputFieldMinMax = ({
   ) => (
     <div className="relative">
       {prefix && (
-        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-neutral-500">
+        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-zinc-500">
           {prefix}
         </span>
       )}
@@ -58,7 +58,7 @@ export const InputFieldMinMax = ({
         onChange={(e) => onChangeHandler(Number(e.target.value))}
         className={`w-full ${
           prefix ? "pl-8" : "pl-4"
-        } pr-4 py-3 border border-neutral-200 rounded-lg focus:outline-0 text-neutral-800 placeholder-neutral-400 transition-all duration-200 hover:shadow-sm`}
+        } pr-4 py-3 border border-zinc-200 rounded-lg focus:outline-0 text-zinc-800 placeholder-zinc-400 transition-all duration-200 hover:shadow-sm`}
         placeholder={placeholder}
       />
     </div>
@@ -68,7 +68,7 @@ export const InputFieldMinMax = ({
     <div className="flex gap-4 items-center">
       {/* Min Field */}
       <div className="flex-1">
-        <label className="block text-sm font-medium text-neutral-700 mb-2">
+        <label className="block text-sm font-medium text-zinc-700 mb-2">
           {labelMin}
         </label>
         {renderInput(currentMin, handleMinChange, placeholderMin)}
@@ -76,7 +76,7 @@ export const InputFieldMinMax = ({
 
       {/* Max Field */}
       <div className="flex-1">
-        <label className="block text-sm font-medium text-neutral-700 mb-2">
+        <label className="block text-sm font-medium text-zinc-700 mb-2">
           {labelMax}
         </label>
         {renderInput(currentMax, handleMaxChange, placeholderMax)}

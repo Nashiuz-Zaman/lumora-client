@@ -20,13 +20,13 @@ export const OrderActivity = ({ activities }: IOrderActivityProps) => {
     : [];
 
   return (
-    <section className="px-4 md:px-6 lg:px-8 py-6 lg:py-8 border-t border-neutral-200">
+    <section className="px-4 md:px-6 lg:px-8 py-6 lg:py-8 border-t border-zinc-200">
       <h2 className="text-base lg:text-lg font-semibold mb-5">
         Order Activity
       </h2>
 
       {isEmpty ? (
-        <div className="text-center text-neutral-500 py-10">
+        <div className="text-center text-zinc-500 py-10">
           No order activity available.
         </div>
       ) : (
@@ -35,7 +35,7 @@ export const OrderActivity = ({ activities }: IOrderActivityProps) => {
             const { icon, text, color } = statusDesignMap[status] ?? {
               icon: "solar:info-square-bold",
               text: "Unknown activity",
-              color: "text-neutral-500",
+              color: "text-zinc-500",
             };
 
             return (
@@ -49,7 +49,7 @@ export const OrderActivity = ({ activities }: IOrderActivityProps) => {
                   <p className="text-sm lg:text-base font-medium mb-1">
                     {text}
                   </p>
-                  <time className="text-xs lg:text-sm text-neutral-500">
+                  <time className="text-xs lg:text-sm text-zinc-500">
                     {time ? formatDateTime(time) : "Unknown time"}
                   </time>
                 </div>

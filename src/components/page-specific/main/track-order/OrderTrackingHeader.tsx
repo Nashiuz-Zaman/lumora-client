@@ -6,9 +6,9 @@ import { formatDateTime } from "@/utils/common/formatters/formatDateTime";
 
 export const OrderTrackingHeader = ({ order }: { order?: IOrder }) => {
   return (
-    <div className="border-b border-neutral-200 px-4 py-5 md:px-6 lg:px-8 md:py-8 space-y-5">
+    <div className="border-b border-zinc-200 px-4 py-5 md:px-6 lg:px-8 md:py-8 space-y-5">
       {/* Order Summary Card */}
-      <div className="grid gap-4 md:grid-cols-2 md:items-center border border-neutral-200 bg-neutral-50 rounded-md px-4 py-5">
+      <div className="grid gap-4 md:grid-cols-2 md:items-center border border-zinc-200 bg-zinc-50 rounded-md px-4 py-5">
         {/* Order ID & Details */}
         <div>
           <p className="text-lg lg:text-2xl font-semibold">
@@ -38,8 +38,8 @@ export const OrderTrackingHeader = ({ order }: { order?: IOrder }) => {
 
       {/* ETA */}
       <div>
-        <p className="text-sm md:text-base font-medium text-neutral-700">
-          <span className="text-neutral-600 font-normal">
+        <p className="text-sm md:text-base font-medium text-zinc-700">
+          <span className="text-zinc-600 font-normal">
             Expected Arrival:
           </span>{" "}
           <span className="text-blue-500">

@@ -35,7 +35,7 @@ export const UserMenuWithAvatar = ({
   const photo = userData?.image;
 
   const optionsClasses =
-    "flex font-semibold text-neutral-500 items-center gap-2 hover:text-primary transition-all duration-200";
+    "flex font-semibold text-zinc-500 items-center gap-2 hover:text-primary transition-all duration-200";
 
   const dashboardLink = "/customer";
 
@@ -59,7 +59,7 @@ export const UserMenuWithAvatar = ({
 
       {/* User menu panel */}
       {showMenu && (
-        <div className="menu rounded-lg w-[18.125rem] bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 bottom-0 right-2 translate-y-[102%] space-y-5 text-left cursor-default userpanel-focus">
+        <div className="menu rounded-lg w-[18.125rem] bg-white border border-zinc-100 shadow-md p-4 px-6 absolute z-30 bottom-0 right-2 translate-y-[102%] space-y-5 text-left cursor-default userpanel-focus">
           {name && <p className="font-bold text-black md:text-lg">{name}</p>}
 
           <Link href="/" className={optionsClasses}>

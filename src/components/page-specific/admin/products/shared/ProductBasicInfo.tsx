@@ -14,7 +14,7 @@ export const ProductBasicInfo = () => {
   } = useFormContext<IProduct>();
 
   return (
-    <div className="bg-white p-5 border border-neutral-200 rounded-xl">
+    <div className="bg-white p-5 border border-zinc-200 rounded-xl">
       {/* Title & Subtitle */}
       <div className="mb-12">
         <InputField

@@ -67,7 +67,7 @@ export const RefundModal = ({
           error={errors.reason?.message}
           required
           inputClassName="rounded-md"
-          placeholderClassName="text-sm text-neutral-600"
+          placeholderClassName="text-sm text-zinc-600"
           labelTextClassName="font-medium text-sm"
         />
 
@@ -85,7 +85,7 @@ export const RefundModal = ({
           <ButtonBtn
             type="submit"
             isLoading={isRefunding}
-            className="!primaryClasses !py-2"
+            className="primary-classes! !py-2"
           >
             Submit
           </ButtonBtn>

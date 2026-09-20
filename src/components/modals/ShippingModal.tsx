@@ -88,7 +88,7 @@ export const ShippingModal = ({
           <ButtonBtn
             type="submit"
             isLoading={isLoading}
-            className="!primaryClasses"
+            className="primary-classes!"
           >
             Save
           </ButtonBtn>

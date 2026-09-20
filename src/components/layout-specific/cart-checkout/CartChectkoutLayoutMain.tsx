@@ -36,7 +36,7 @@ const CartCheckoutLayoutMain = ({
                 <div className="shrink-0">
                   <h2 className="text-3xl font-medium mb-2">{title}</h2>
                   {pathname.startsWith("/cart") && cart?.totalItemQty ? (
-                    <p className="text-neutral-400">
+                    <p className="text-zinc-400">
                       {cart.totalItemQty} items ready for checkout
                     </p>
                   ) : null}

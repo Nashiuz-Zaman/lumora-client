@@ -53,7 +53,7 @@ export const PaymentResultPageMain = () => {
 
   return (
     <div className="min-h-85 sm:min-h-100 lg:min-h-auto h-full grid place-content-center">
-      <div className="border border-neutral-200 shadow-md rounded-2xl p-10 bg-white flex flex-col items-center gap-6 max-w-lg mx-auto">
+      <div className="border border-zinc-200 shadow-md rounded-2xl p-10 bg-white flex flex-col items-center gap-6 max-w-lg mx-auto">
         <div className="text-center space-y-2">
           <div className="flex items-center gap-2 justify-center">
             <IcfyIcon
@@ -80,14 +80,14 @@ export const PaymentResultPageMain = () => {
         {typedStatus === "success" && (
           <LinkBtn
             href={`/track-order?id=${orderId}`}
-            className="successClasses! rounded-full!"
+            className="success-classes! rounded-full!"
           >
             Track your Order
           </LinkBtn>
         )}
 
         {typedStatus === "fail" && (
-          <LinkBtn href={`/checkout`} className="primaryClasses! rounded-full!">
+          <LinkBtn href={`/checkout`} className="primary-classes! rounded-full!">
             Try Again
           </LinkBtn>
         )}

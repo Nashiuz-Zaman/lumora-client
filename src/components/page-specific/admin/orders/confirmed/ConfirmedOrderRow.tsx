@@ -38,7 +38,7 @@ export const ConfirmedOrderRow = ({
   isLastEl,
 }: IConfirmedOrderRowProps) => {
   const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
-    !isLastEl ? "border-b border-neutral-200" : ""
+    !isLastEl ? "border-b border-zinc-200" : ""
   }`;
 
   if (!orderData) return null;

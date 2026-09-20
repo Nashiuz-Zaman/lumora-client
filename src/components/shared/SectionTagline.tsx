@@ -13,7 +13,7 @@ export const SectionTagline = ({
 }: ISectionTaglineProps) => {
   return (
     <p
-      className={`text-lg xl:text-xl text-neutral-500 ${className}`}
+      className={`text-lg xl:text-xl text-zinc-500 ${className}`}
     >
       {children}
     </p>

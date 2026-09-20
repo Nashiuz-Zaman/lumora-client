@@ -34,12 +34,12 @@ const Toolbar = ({ editor, className = "" }: IToolbarProps) => {
 
   const buttonClass = (active: boolean) =>
     `w-8 aspect-square rounded-md grid place-content-center ${
-      active ? "bg-primary text-neutral-50" : "text-inherit"
+      active ? "bg-primary text-zinc-50" : "text-inherit"
     }`;
 
   return (
     <div
-      className={`flex items-center gap-2 md:gap-5 justify-end p-2 border-b border-neutral-200 bg-neutral-100 ${className}`}
+      className={`flex items-center gap-2 md:gap-5 justify-end p-2 border-b border-zinc-200 bg-zinc-100 ${className}`}
     >
       {/* Bold */}
       <button
@@ -76,7 +76,7 @@ const Toolbar = ({ editor, className = "" }: IToolbarProps) => {
         title="Font Size"
         value={(editor.getAttributes("textStyle").fontSize as string) || ""}
         onChange={(e) => handleFontSizeChange(e.target.value)}
-        className="w-16 text-sm border border-neutral-200 rounded-md bg-white p-1"
+        className="w-16 text-sm border border-zinc-200 rounded-md bg-white p-1"
       >
         <option value="">Size</option>
         <option value="12px">12px</option>

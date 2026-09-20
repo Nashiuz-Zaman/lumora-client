@@ -1,37 +1,32 @@
 import Link from "next/link";
-import { InnerContainer } from "../../shared/containers/InnerContainer";
 import { CompanyLogoBtn } from "../../shared/buttons/CompanyLogoBtn";
-
 import { HeaderSearchAvatarAuthOptions } from "./HeaderSearchAvatarAuthOptions";
 import MegaMenuServerWrapper from "./MegamenuServerWrapper";
 import { Suspense } from "react";
 
 const Header = () => {
   return (
-    <header className="sticky animated-header top-0 z-2000 w-full">
-      {/* Top promo / links bar */}
-      <InnerContainer className="text-sm xl:text-base py-3 bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-4">
-          <p className="text-center md:text-left capitalize font-semibold">
-            USE <span className="text-primary">LUCKY50</span> to get 50% OFF on
-            orders above $7000
-          </p>
-          <div className="flex justify-center md:justify-end gap-6 font-medium [&>a]:hover:underline">
-            <Link href="/track-order">Track Your Order</Link>
-            <Link href="/faq">FAQ</Link>
-            <Link href="/returns">Returns</Link>
-          </div>
+    <header className="sticky animated-header top-0 bg-white z-1000 w-full">
+      {/* Top promo and links bar */}
+      <div className="text-xs xl:text-sm py-3 padded max-w-[1920px] mx-auto flex flex-col lg:flex-row lg:justify-between font-light gap-2 items-center">
+        <p className="text-center md:text-left capitalize">
+          Use LUCKY50 to get 50% Off. T&C applies.
+        </p>
+
+        <div className="flex justify-center lg:justify-end gap-4 [&>a]:hover:text-primary [&>a:transition-colors]">
+          <Link href="/track-order">Track Your Order</Link>
+          <Link href="/faq">FAQ</Link>
+          <Link href="/returns">Returns</Link>
         </div>
-      </InnerContainer>
+      </div>
 
       {/* Main header content */}
-      <div className="bg-white border-y z-10 border-neutral-100">
-        <InnerContainer className="flex items-center flex-wrap py-5 xl:py-6">
-          <CompanyLogoBtn className="mr-6 uppercase font-medium!" />
+      <div className="border-y border-zinc-100">
+        <div className="flex padded max-w-[1920px] mx-auto items-center flex-wrap py-5 xl:py-6">
+          <CompanyLogoBtn className="mr-6 tracking-tighter uppercase font-bold!" />
 
-          {/* 2. Now dynamically loaded */}
           <HeaderSearchAvatarAuthOptions />
-        </InnerContainer>
+        </div>
 
         <div
           id="header-search-mobile-screen"

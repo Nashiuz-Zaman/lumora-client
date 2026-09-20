@@ -27,7 +27,7 @@ const EditProductPage = async ({
           The product you are looking for could not be found.
         </p>
 
-        <LinkBtn href="/" className="primaryClasses">
+        <LinkBtn href="/" className="primary-classes">
           Go Home
         </LinkBtn>
       </InnerContainer>

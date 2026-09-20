@@ -49,7 +49,7 @@ export const TextArea = ({
       )}
 
       <div
-        className={`bg-white border border-neutral-200 p-2 w-full lg:px-4 lg:py-3 ${
+        className={`bg-white border border-zinc-200 p-2 w-full lg:px-4 lg:py-3 ${
           icon
             ? `grid ${
                 invertIconPosition

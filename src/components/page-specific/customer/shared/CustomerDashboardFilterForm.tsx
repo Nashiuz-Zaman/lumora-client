@@ -66,7 +66,7 @@ export const CustomerDashboardFilterForm = <
   return (
     <form onSubmit={onSubmit} className={`mb-12 ${className}`}>
       {/* heading */}
-      <h2 className="text-xl font-semibold text-neutral-800 mb-3">
+      <h2 className="text-xl font-semibold text-zinc-800 mb-3">
         {searchTitle}
       </h2>
 
@@ -84,7 +84,7 @@ export const CustomerDashboardFilterForm = <
         {/* Status Tabs */}
 
         {statusOptions.length > 0 && (
-          <h2 className="w-full text-xl font-semibold text-neutral-800 mb-4">
+          <h2 className="w-full text-xl font-semibold text-zinc-800 mb-4">
             {statusTitle}
           </h2>
         )}
@@ -103,10 +103,10 @@ export const CustomerDashboardFilterForm = <
             selected={String(formParams.sort || "")}
             options={sortOptions}
             onUpdate={handleSortChange}
-            buttonClassName="!systemClasses !px-3 !py-2 md:ml-6 xl:ml-10"
+            buttonClassName="!system-classes !px-3 !py-2 md:ml-6 xl:ml-10"
           />
 
-          <ButtonBtn type="submit" className="successClasses! py-2! px-3!">
+          <ButtonBtn type="submit" className="success-classes! py-2! px-3!">
             Search
           </ButtonBtn>
         </div>

@@ -61,7 +61,7 @@ const ProductPagePublic = async (props: { params: TParams }) => {
           The product you are looking for could not be found.
         </p>
 
-        <LinkBtn href="/" className="primaryClasses">
+        <LinkBtn href="/" className="primary-classes">
           Go Home
         </LinkBtn>
       </InnerContainer>

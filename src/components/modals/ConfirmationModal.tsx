@@ -33,14 +33,14 @@ export const ConfirmationModal = ({
       <div className="flex justify-end gap-4">
         <button
           onClick={onCancel}
-          className="px-4 py-2 rounded-md bg-neutral-200 hover:bg-neutral-300 transition"
+          className="px-4 py-2 rounded-md bg-zinc-200 hover:bg-zinc-300 transition"
         >
           No
         </button>
 
         <ButtonBtn
           isLoading={isLoading}
-          className="!dangerClasses !px-4 !py-2 !rounded-md"
+          className="!danger-classes !px-4 !py-2 !rounded-md"
           onClick={onConfirm}
         >
           Yes

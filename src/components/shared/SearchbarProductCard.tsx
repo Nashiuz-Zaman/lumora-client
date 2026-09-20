@@ -21,7 +21,7 @@ export const SearchbarProductCard = ({
     <Link
       onClick={onClick}
       href={`/products/${slug}`}
-      className="flex items-center gap-3 px-3 py-2.5 hover:bg-neutral-100 transition-colors cursor-pointer"
+      className="flex items-center gap-3 px-3 py-2.5 hover:bg-zinc-100 transition-colors cursor-pointer"
     >
       <div className="shrink-0 w-12 h-12 relative">
         <Image
@@ -33,7 +33,7 @@ export const SearchbarProductCard = ({
         />
       </div>
 
-      <p className="text-sm line-clamp-2 text-neutral-500">{title}</p>
+      <p className="text-sm line-clamp-2 text-zinc-500">{title}</p>
 
     </Link>
   );

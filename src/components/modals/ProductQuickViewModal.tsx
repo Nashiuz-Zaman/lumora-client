@@ -188,7 +188,7 @@ export const ProductQuickViewModal = () => {
                   onClick={handleAddToCart}
                   isLoading={isCartBusy}
                   disabled={!curProductVariant}
-                  className="successClasses! rounded-full! px-5! py-2! gap-2!"
+                  className="success-classes! rounded-full! px-5! py-2! gap-2!"
                 >
                   <CartIcon className="text-2xl" />
                   Add to Cart

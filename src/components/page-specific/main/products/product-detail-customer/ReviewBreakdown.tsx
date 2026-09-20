@@ -42,7 +42,7 @@ export const ReviewBreakdown = ({
           className="text-2xl gap-0! text-yellow-400!"
         />
         <span className="font-semibold text-lg">{averageRating} / 5</span>
-        <span className="text-neutral-400 text-sm">
+        <span className="text-zinc-400 text-sm">
           ({totalReviews} ratings)
         </span>
       </div>
@@ -65,7 +65,7 @@ export const ReviewBreakdown = ({
               </span>
 
               {/* Bar */}
-              <div className="h-4 rounded-full bg-neutral-200 overflow-hidden relative">
+              <div className="h-4 rounded-full bg-zinc-200 overflow-hidden relative">
                 <div
                   className="!h-full bg-orange-400 rounded-full transition-all duration-300"
                   style={{ width: `${percentage}%` }}
@@ -73,7 +73,7 @@ export const ReviewBreakdown = ({
               </div>
 
               {/* Percentage + count */}
-              <span className="text-sm text-right text-neutral-600">
+              <span className="text-sm text-right text-zinc-600">
                 {percentage}% ({count})
               </span>
             </div>

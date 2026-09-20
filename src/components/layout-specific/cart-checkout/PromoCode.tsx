@@ -61,9 +61,9 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
   );
 
   return (
-    <div className="bg-neutral-50 rounded-xl p-4">
+    <div className="bg-zinc-50 rounded-xl p-4">
       <div className="flex justify-between mb-3">
-        <span className="text-sm font-medium text-neutral-700">Promo Code</span>
+        <span className="text-sm font-medium text-zinc-700">Promo Code</span>
         {appliedCode && (
           <span className="text-xs text-green-600 font-medium">
             {appliedCode.toUpperCase()} Applied
@@ -87,7 +87,7 @@ export const PromoCode = ({ appliedCode }: IPromoCodeProps) => {
             />
             <ButtonBtn
               onClick={handleApply}
-              className="secondaryClasses!"
+              className="secondary-classes!"
               isLoading={isCartBusy}
             >
               Apply

@@ -16,7 +16,7 @@ const SEOManager = ({ heading = "SEO", className = "" }: TSEOManagerProps) => {
   const { register } = useFormContext<IProduct>();
 
   return (
-    <div className={`bg-white rounded-md p-5 mb-8 border border-neutral-200 ${className}`}>
+    <div className={`bg-white rounded-md p-5 mb-8 border border-zinc-200 ${className}`}>
       <FormSectionHeading tag="h4" text={heading} />
       <div className="space-y-4">
         {/* SEO Title */}

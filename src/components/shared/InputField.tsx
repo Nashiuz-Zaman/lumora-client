@@ -113,7 +113,7 @@ export const InputField = ({
       )}
 
       <div
-        className={`bg-white border border-neutral-200  items-center w-full px-4 py-3 ${
+        className={`bg-white border border-zinc-200  items-center w-full px-4 py-3 ${
           icon
             ? `grid ${
                 invertIconPosition

@@ -14,7 +14,7 @@ const ReturnRequestPage = () => {
       {/* Header + Description */}
       <section className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl font-bold mb-6">Need to return a product?</h2>
-        <p className="text-neutral-500 text-lg leading-relaxed">
+        <p className="text-zinc-500 text-lg leading-relaxed">
           At Lumora, your satisfaction is our priority. If you need to return a
           product, simply submit a request with your order ID, invoice of the
           order, a brief description of the issue, and any relevant files (like

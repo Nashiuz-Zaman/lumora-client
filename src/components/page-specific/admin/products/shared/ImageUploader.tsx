@@ -123,7 +123,7 @@ export const ImageUploader = ({
 
   return (
     <div
-      className={`space-y-4 bg-white p-5 rounded-xl border border-neutral-200 ${className}`}
+      className={`space-y-4 bg-white p-5 rounded-xl border border-zinc-200 ${className}`}
       onDrop={handleDrop}
       onDragOver={handleDragOver}
     >
@@ -142,7 +142,7 @@ export const ImageUploader = ({
         <ButtonBtn
           type="button"
           onClick={handleButtonClick}
-          className={`!primaryClasses !py-1 !px-4 ${buttonClassName}`}
+          className={`primary-classes! !py-1 !px-4 ${buttonClassName}`}
         >
           {buttonText}
         </ButtonBtn>
@@ -177,7 +177,7 @@ export const ImageUploader = ({
                 <button
                   type="button"
                   onClick={() => handleRemoveImage(i)}
-                  className="absolute top-2 right-2 bg-black/60 text-neutral-50 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity z-10"
+                  className="absolute top-2 right-2 bg-black/60 text-zinc-50 rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity z-10"
                 >
                   <IcfyIcon
                     className="w-4 h-4"

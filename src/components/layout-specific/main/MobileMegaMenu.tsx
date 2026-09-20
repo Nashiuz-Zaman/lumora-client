@@ -47,7 +47,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
   const easeCurve = "cubic-bezier(0.25, 1, 0.3, 1)";
 
   return (
-    <nav className="block relative xl:hidden w-full bg-white border-b border-neutral-100">
+    <nav className="block relative xl:hidden w-full bg-white border-b border-zinc-100">
       {/* 2. INLINE TRIGGER BAR */}
       <InnerContainer>
         <div className="py-3 flex justify-between items-center">
@@ -78,7 +78,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
         style={{ transitionTimingFunction: easeCurve }}
       >
         {/* Drawer Header (Fixed at top) */}
-        <div className="flex justify-between items-center p-5 border-b border-neutral-100 bg-neutral-50">
+        <div className="flex justify-between items-center p-5 border-b border-zinc-100 bg-zinc-50">
           <span className="fon text-xl tracking-tight">Menu</span>
           <CloseBtn onClick={closeMenu} />
         </div>
@@ -92,14 +92,14 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
               return (
                 <div
                   key={cat.topCategory._id}
-                  className="border-b border-neutral-100 last:border-0"
+                  className="border-b border-zinc-100 last:border-0"
                 >
                   {/* Top Category Button */}
                   <button
                     className={`w-full text-left px-5 py-4 font-medium text-base transition-colors duration-300 ${
                       isExpanded
-                        ? "bg-neutral-50 text-primary"
-                        : "bg-white text-neutral-800"
+                        ? "bg-zinc-50 text-primary"
+                        : "bg-white text-zinc-800"
                     }`}
                     onClick={() => toggleCategory(index)}
                   >
@@ -123,7 +123,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
                     animate={true}
                     duration="300ms"
                   >
-                    <div className="flex flex-col gap-4 px-5 pb-6 pt-2 bg-neutral-50">
+                    <div className="flex flex-col gap-4 px-5 pb-6 pt-2 bg-zinc-50">
                       {/* Subcategories */}
                       <div className="flex flex-col gap-3">
                         {cat?.subCategories.map((sub) => (
@@ -136,7 +136,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
                               });
                               closeMenu(); // Close drawer on navigation
                             }}
-                            className="text-left text-neutral-600 hover:text-primary hover:font-medium transition-all pl-2 border-l-2 border-transparent hover:border-primary"
+                            className="text-left text-zinc-600 hover:text-primary hover:font-medium transition-all pl-2 border-l-2 border-transparent hover:border-primary"
                           >
                             {sub.title}
                           </button>
@@ -146,8 +146,8 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
                       {/* Featured Products Mini-Grid */}
                       {cat?.featuredProducts &&
                         cat.featuredProducts?.length > 0 && (
-                          <div className="mt-4 pt-4 border-t border-neutral-200">
-                            <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider mb-3 block">
+                          <div className="mt-4 pt-4 border-t border-zinc-200">
+                            <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider mb-3 block">
                               Featured
                             </span>
                             <div className="grid grid-cols-2 gap-3">
@@ -175,7 +175,7 @@ export const MobileMegaMenu = ({ categories }: IMegaMenuProps) => {
                           });
                           closeMenu();
                         }}
-                        className="primaryClasses w-full!"
+                        className="primary-classes w-full!"
                       >
                         Shop All {cat.topCategory.title}
                       </ButtonBtn>

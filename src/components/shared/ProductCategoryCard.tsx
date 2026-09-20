@@ -15,7 +15,7 @@ export interface ICategoryCardProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const slideInOutPanelGradient = "bg-white/30 backdrop-blur-[3px]";
-const btnClasses = "secondaryClasses !rounded-full";
+const btnClasses = "secondary-classes !rounded-full";
 
 export const ProductCategoryCard = ({
   heading,

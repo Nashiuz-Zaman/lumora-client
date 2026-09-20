@@ -47,7 +47,7 @@ export const FileUploadField = ({
 
       {/* File previews */}
       {files && files.length > 0 && (
-        <ul className="list-disc ml-4 text-sm text-neutral-500 space-y-1">
+        <ul className="list-disc ml-4 text-sm text-zinc-500 space-y-1">
           {Array.from(files).map((file, idx) => (
             <li className="break-all" key={idx}>
               {file.name}

@@ -37,7 +37,7 @@ export const CustomerInfoForm = ({
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="max-w-[55rem] bg-neutral-50 p-7 rounded-xl"
+      className="max-w-[55rem] bg-zinc-50 p-7 rounded-xl"
     >
       {/* Root-level error */}
       {errors.root?.message && (
@@ -142,7 +142,7 @@ export const CustomerInfoForm = ({
       <ButtonBtn
         isLoading={isSubmitting}
         type="submit"
-        className="successClasses! ml-auto gap-2 rounded-full!"
+        className="success-classes! ml-auto gap-2 rounded-full!"
       >
         <IcfyIcon className="text-3xl" icon="cib:samsung-pay" />
         Pay for order

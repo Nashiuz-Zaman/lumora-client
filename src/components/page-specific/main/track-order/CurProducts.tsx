@@ -25,7 +25,7 @@ const renderRow = ({
 
 export const CurProducts = ({ data }: ICurProductsProps) => {
   return (
-    <div className="md:border-b border-neutral-200 mb-12">
+    <div className="md:border-b border-zinc-200 mb-12">
       <TabularData
         classNameObj={{
           heading:

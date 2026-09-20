@@ -155,21 +155,21 @@ export const AuthForm = ({
         <ButtonBtn
           type="submit"
           isLoading={isLoading}
-          className="primaryClasses! w-full! rounded-full!"
+          className="primary-classes! w-full! rounded-full!"
         >
           {mode === "signup" ? "Sign Up" : "Login"}
         </ButtonBtn>
 
         {/* Auth Links */}
         {mode === "signup" ? (
-          <p className="text-center text-sm text-neutral-500">
+          <p className="text-center text-sm text-zinc-500">
             Already have an account?{" "}
             <Link href="/auth/login" className="text-purple-600 font-medium">
               Login
             </Link>
           </p>
         ) : (
-          <p className="text-center text-sm text-neutral-500">
+          <p className="text-center text-sm text-zinc-500">
             Don’t have an account?{" "}
             <Link href="/auth/signup" className="text-purple-600 font-medium">
               Create one
@@ -180,14 +180,14 @@ export const AuthForm = ({
         {/* Google OAuth */}
         {mode === "login" && (
           <>
-            <div className="flex items-center justify-center gap-2 text-neutral-400">
+            <div className="flex items-center justify-center gap-2 text-zinc-400">
               <span>or</span>
             </div>
 
             <ButtonBtn
               type="button"
               onClick={onGoogleLogin}
-              className="flex items-center justify-center gap-2 !rounded-full !w-full !whiteGrayClasses !font-medium"
+              className="flex items-center justify-center gap-2 !rounded-full !w-full !white-gray-classes !font-medium"
             >
               <GoogleIcon />
               continue with Google

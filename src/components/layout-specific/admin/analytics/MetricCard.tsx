@@ -17,7 +17,7 @@ export const MetricCard = ({
 }: MetricCardProps) => {
   return (
     <div className="selection:bg-transparent">
-      <h2 className="text-lg text-neutral-400 mb-3">{title}</h2>
+      <h2 className="text-lg text-zinc-400 mb-3">{title}</h2>
 
       <span
         className={`text-3xl inline-block font-medium ${

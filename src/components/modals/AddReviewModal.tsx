@@ -104,7 +104,7 @@ export const AddReviewModal = ({
   const writeReviewButton = (
     <ButtonBtn
       onClick={handleOpenModal}
-      className="!successClasses !rounded-full mx-auto"
+      className="!success-classes !rounded-full mx-auto"
     >
       <ReviewIcon className="text-xl" />
       Write a customer review
@@ -166,7 +166,7 @@ export const AddReviewModal = ({
 
             <div className="flex justify-end gap-4 pt-2">
               <ButtonBtnTrans onClick={closeModal}>Cancel</ButtonBtnTrans>
-              <ButtonBtn className="successClasses!" isLoading={isPosting}>
+              <ButtonBtn className="success-classes!" isLoading={isPosting}>
                 Submit
               </ButtonBtn>
             </div>

@@ -49,7 +49,7 @@ export const CancelOrderModalAdmin = ({
           <ButtonBtnTrans onClick={onClose}>Cancel</ButtonBtnTrans>
           <ButtonBtn
             type="submit"
-            className="!primaryClasses"
+            className="primary-classes!"
             isLoading={isLoading}
           >
             Confirm Cancel

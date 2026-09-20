@@ -20,31 +20,31 @@ export const OrderSummary = () => {
   const couponCode = cart?.couponCode ?? "";
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-neutral-100 sticky top-6 overflow-hidden">
-      <div className="bg-linear-to-br from-primary to-purple-500 px-6 py-6 text-neutral-50">
+    <div className="bg-white rounded-xl shadow-sm border border-zinc-100 sticky top-6 overflow-hidden">
+      <div className="bg-linear-to-br from-primary to-purple-500 px-6 py-6 text-zinc-50">
         <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
-        <p className="text-neutral-50 text-sm">Review your purchase</p>
+        <p className="text-zinc-50 text-sm">Review your purchase</p>
       </div>
 
       <div className="px-6 py-6 space-y-6">
         <div className="space-y-3 text-sm">
           <div className="flex justify-between">
-            <span className="text-neutral-500">Subtotal</span>
+            <span className="text-zinc-500">Subtotal</span>
             <span className="font-medium">{formatPrice(subtotal)}</span>
           </div>
           <div className="flex justify-between">
-            <span className="text-neutral-500">Shipping</span>
+            <span className="text-zinc-500">Shipping</span>
             <span className="font-medium text-secondary">
               {formatPrice(shippingFee)}
             </span>
           </div>
           <div className="flex justify-between">
-            <span className="text-neutral-500">Tax</span>
+            <span className="text-zinc-500">Tax</span>
             <span className="font-medium">{formatPrice(tax)}</span>
           </div>
 
           <div className="flex justify-between">
-            <span className="text-neutral-500">Discount</span>
+            <span className="text-zinc-500">Discount</span>
             <span className="font-medium text-green-600">
               -{formatPrice(discount)}
             </span>
@@ -54,13 +54,13 @@ export const OrderSummary = () => {
         {/* Promo Code */}
         <PromoCode appliedCode={couponCode} />
 
-        <div className="border-t border-neutral-200 pt-4">
+        <div className="border-t border-zinc-200 pt-4">
           <div className="flex justify-between items-center mb-4">
             <span className="text-lg font-semibold">Total</span>
             <span className="text-2xl font-bold">{formatPrice(total)}</span>
           </div>
 
-          <p className="text-xs text-neutral-500 text-center">
+          <p className="text-xs text-zinc-500 text-center">
             *Final price may vary based on your location
           </p>
         </div>
@@ -70,7 +70,7 @@ export const OrderSummary = () => {
           <div>
             <LinkBtn
               href="/checkout"
-              className="primaryClasses! rounded-full! mx-auto mt-4"
+              className="primary-classes! rounded-full! mx-auto mt-4"
             >
               Secure Checkout
             </LinkBtn>

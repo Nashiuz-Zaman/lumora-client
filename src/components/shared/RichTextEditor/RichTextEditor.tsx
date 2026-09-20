@@ -75,7 +75,7 @@ const RichTextEditor = ({
       </p>
 
       <div
-        className={`w-full border border-neutral-200 rounded-md overflow-hidden ${className}`}
+        className={`w-full border border-zinc-200 rounded-md overflow-hidden ${className}`}
       >
         <Toolbar
           editor={editor as Editor | null}

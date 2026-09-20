@@ -28,7 +28,7 @@ export const EditProductMain = ({ product }: { product: IProduct }) => {
           </ColorBadge>
 
           <LinkBtn
-            className="!primaryClasses !px-3 !py-2"
+            className="primary-classes! !px-3 !py-2"
             href={`/admin/products/clone?productId=${product._id}`}
           >
             Create Clone

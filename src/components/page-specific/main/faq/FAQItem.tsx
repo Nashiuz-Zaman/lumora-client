@@ -32,7 +32,7 @@ export const FAQItem = ({ faq }: IFAQItemProps) => {
   }, [open]);
 
   return (
-    <div className="px-6 py-5 transition-all border-b border-neutral-100 last:border-none">
+    <div className="px-6 py-5 transition-all border-b border-zinc-100 last:border-none">
       <button
         className="flex w-full items-center justify-between cursor-pointer text-left"
         onClick={() => setOpen((prev) => !prev)}
@@ -40,7 +40,7 @@ export const FAQItem = ({ faq }: IFAQItemProps) => {
         <h3 className="text-base md:text-lg font-medium">{faq.question}</h3>
 
         <CaretDownIcon
-          className={`text-neutral-500 text-lg transition-transform duration-200 ${
+          className={`text-zinc-500 text-lg transition-transform duration-200 ${
             open ? "-rotate-180" : ""
           }`}
         />
@@ -51,7 +51,7 @@ export const FAQItem = ({ faq }: IFAQItemProps) => {
         className="overflow-hidden h-0 opacity-0"
         aria-hidden={!open}
       >
-        <p className="mt-3 text-neutral-600 text-sm md:text-base leading-relaxed">
+        <p className="mt-3 text-zinc-600 text-sm md:text-base leading-relaxed">
           {faq.answer}
         </p>
       </div>

@@ -40,7 +40,7 @@ export const LeftColumnContent = ({
   return (
     <div
       ref={containerRef}
-      className={`flex flex-col items-center justify-center gap-8 text-neutral-50 select-none ${className}`}
+      className={`flex flex-col items-center justify-center gap-8 text-zinc-50 select-none ${className}`}
     >
       <Link
         id="leftcol-heading"
@@ -54,7 +54,7 @@ export const LeftColumnContent = ({
 
       <p
         id="leftcol-subtitle"
-        className="translate-y-[-100px] opacity-0 text-lg md:text-xl text-center max-w-md  text-neutral-100"
+        className="translate-y-[-100px] opacity-0 text-lg md:text-xl text-center max-w-md  text-zinc-100"
       >
         {subtitle}
       </p>

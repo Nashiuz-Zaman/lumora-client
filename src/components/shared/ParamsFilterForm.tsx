@@ -85,7 +85,7 @@ export const ParamsFilterForm = <
     <form
       ref={ref}
       onSubmit={onSubmit}
-      className={`px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
+      className={`px-4 shrink-0 py-2 bg-white border-b border-zinc-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
     >
       <InputField
         icon={<SearchIcon />}
@@ -123,11 +123,11 @@ export const ParamsFilterForm = <
             selected={String(params.sort)}
             options={sortOptions}
             onUpdate={handleSortChange}
-            buttonClassName="!systemClasses !px-3 !py-2"
+            buttonClassName="!system-classes !px-3 !py-2"
             className="ml-auto"
           />
 
-          <ButtonBtn type="submit" className="successClasses! py-2! px-3!">
+          <ButtonBtn type="submit" className="success-classes! py-2! px-3!">
             Search
           </ButtonBtn>
         </div>

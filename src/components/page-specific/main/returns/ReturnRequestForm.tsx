@@ -162,7 +162,7 @@ export const ReturnRequestForm = () => {
       <ButtonBtn
         type="submit"
         isLoading={isUploading}
-        className="!primaryClasses ml-auto"
+        className="primary-classes! ml-auto"
       >
         Submit Return Request
       </ButtonBtn>

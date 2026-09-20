@@ -13,7 +13,7 @@ export const NoData = ({
 }: TNoDataProps) => {
   return (
     <p
-      className={`text-neutral-400 ${
+      className={`text-zinc-400 ${
         centered ? "absolute xy-center" : "my-24"
       } text-center ${className}`}
     >

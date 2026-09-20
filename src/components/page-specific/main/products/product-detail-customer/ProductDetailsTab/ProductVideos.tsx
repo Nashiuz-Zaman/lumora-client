@@ -43,7 +43,7 @@ export const ProductVideos = ({ data }: IProductVideosProps) => {
     return (
       <div
         key={url}
-        className="cursor-pointer group overflow-hidden rounded-lg border border-neutral-200 hover:shadow-lg transition duration-300 aspect-video xl"
+        className="cursor-pointer group overflow-hidden rounded-lg border border-zinc-200 hover:shadow-lg transition duration-300 aspect-video xl"
         onClick={() => handleThumbnailClick(url)}
       >
         {thumbnail ? (

@@ -22,7 +22,7 @@ const TrackOrderPage = () => {
           Track Your Order
         </h2>
 
-        <p className="mb-10 text-lg text-center md:text-left text-neutral-400">
+        <p className="mb-10 text-lg text-center md:text-left text-zinc-400">
           Efficient and transparent order monitoring at your fingertips.
         </p>
 

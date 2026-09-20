@@ -49,7 +49,7 @@ export const OrderStats = ({
         comparison={orderData?.totalOrders?.comparison}
         comparisonText={orderData?.comparisonText}
         isLoading={isFetching}
-        className="border border-neutral-200"
+        className="border border-zinc-200"
       />
       <StatsCard
         label="Completed Orders"
@@ -57,7 +57,7 @@ export const OrderStats = ({
         comparison={orderData?.completedOrders?.comparison}
         comparisonText={orderData?.comparisonText}
         isLoading={isFetching}
-        className="border border-neutral-200"
+        className="border border-zinc-200"
       />
       <StatsCard
         negativeField={true}
@@ -66,7 +66,7 @@ export const OrderStats = ({
         comparison={orderData?.cancelledOrders?.comparison}
         comparisonText={orderData?.comparisonText}
         isLoading={isFetching}
-        className="border border-neutral-200"
+        className="border border-zinc-200"
       />
       <StatsCard
         negativeField={true}
@@ -75,7 +75,7 @@ export const OrderStats = ({
         comparison={orderData?.returnedOrders?.comparison}
         comparisonText={orderData?.comparisonText}
         isLoading={isFetching}
-        className="border border-neutral-200"
+        className="border border-zinc-200"
       />
     </div>
   );
