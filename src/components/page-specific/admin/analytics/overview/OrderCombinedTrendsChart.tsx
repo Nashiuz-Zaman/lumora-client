@@ -38,7 +38,7 @@ export const OrderCombinedTrendsChart = ({
       labels={categories}
       series={series}
       colors={["#22C55E", "#EF4444"]}
-      className="border border-neutral-200"
+      className="border border-zinc-200"
       isLoading={isLoading}
     />
   );

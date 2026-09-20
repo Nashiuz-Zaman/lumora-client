@@ -139,29 +139,29 @@ export const ReturnRequestModal = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h4 className="font-semibold mb-1">Order ID</h4>
-              <p className="text-neutral-700">{request.orderId || "—"}</p>
+              <p className="text-zinc-700">{request.orderId || "—"}</p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-1">Customer</h4>
-              <p className="text-neutral-700">
+              <p className="text-zinc-700">
                 {request?.order?.name || "—"} ({request?.order?.email || "—"})
               </p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-1">Order Total</h4>
-              <p className="text-neutral-700">{formatPrice(orderTotal)}</p>
+              <p className="text-zinc-700">{formatPrice(orderTotal)}</p>
             </div>
 
             <div>
               <h4 className="font-semibold mb-1">Reason</h4>
-              <p className="text-neutral-700">{request.reason || "—"}</p>
+              <p className="text-zinc-700">{request.reason || "—"}</p>
             </div>
 
             <div className="md:col-span-2">
               <h4 className="font-semibold mb-1">Description</h4>
-              <p className="text-neutral-700 whitespace-pre-line">
+              <p className="text-zinc-700 whitespace-pre-line">
                 {request.description || "—"}
               </p>
             </div>
@@ -175,7 +175,7 @@ export const ReturnRequestModal = () => {
                     href={img}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-24 h-24 border border-neutral-200 rounded-md overflow-hidden"
+                    className="w-24 h-24 border border-zinc-200 rounded-md overflow-hidden"
                   >
                     <Image
                       src={img}
@@ -193,7 +193,7 @@ export const ReturnRequestModal = () => {
           {request?.status === ReturnRequestStatus.Pending && (
             <form
               onSubmit={handleSubmit((data) => handleApprove({ data }))}
-              className="border-t border-neutral-200 pt-6 mt-4 flex flex-col gap-4"
+              className="border-t border-zinc-200 pt-6 mt-4 flex flex-col gap-4"
             >
               <label className="flex items-center gap-3">
                 <input
@@ -233,7 +233,7 @@ export const ReturnRequestModal = () => {
                   disabled={isApproving}
                   type="button"
                   onClick={handleReject}
-                  className="!rounded-full bg-red-500 text-neutral-50 hover:bg-red-600"
+                  className="!rounded-full bg-red-500 text-zinc-50 hover:bg-red-600"
                 >
                   Reject
                 </ButtonBtn>

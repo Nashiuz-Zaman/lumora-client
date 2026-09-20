@@ -22,7 +22,7 @@ export const CartBtn = ({
       className={`relative text-3xl 2xl:text-4xl ${className}`}
     >
       {itemsQty > 0 && (
-        <span className="absolute p-1 h-6 min-w-6 grid place-content-center -top-3 left-full -translate-x-3 text-xs bg-red-500 rounded-full text-neutral-50">
+        <span className="absolute p-1 h-6 min-w-6 grid place-content-center -top-3 left-full -translate-x-3 text-xs bg-red-500 rounded-full text-zinc-50">
           {itemsQty}
         </span>
       )}

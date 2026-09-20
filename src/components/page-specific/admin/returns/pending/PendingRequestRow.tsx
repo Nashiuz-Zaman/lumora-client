@@ -16,8 +16,8 @@ export const PendingRequestRow = ({
   requestData,
   isLastEl,
 }: IPendingRequestRowProps) => {
-  const cellClasses = `font-medium text-sm px-4 py-3 flex items-center group-hover:bg-neutral-100 ${
-    !isLastEl ? "border-b border-neutral-200" : ""
+  const cellClasses = `font-medium text-sm px-4 py-3 flex items-center group-hover:bg-zinc-100 ${
+    !isLastEl ? "border-b border-zinc-200" : ""
   }`;
 
   if (!requestData) return null;

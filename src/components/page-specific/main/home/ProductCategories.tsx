@@ -13,7 +13,7 @@ export const ProductCategories = async () => {
   return (
     <CenterContainer
       id="all-product-categories"
-      className="bg-linear-to-b from-neutral-200 to-neutral-100 py-5"
+      className="bg-linear-to-b from-zinc-200 to-zinc-100 py-5"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {categoryTree?.map((category, i) => (

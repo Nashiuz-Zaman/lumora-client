@@ -44,7 +44,7 @@ export const ProductsFromCollectionHeader = ({
                 categories: categoryTree,
               })
             }
-            className="mt-5 underline text-neutral-400"
+            className="mt-5 underline text-zinc-400"
           >
             See All
           </ButtonBtnTrans>

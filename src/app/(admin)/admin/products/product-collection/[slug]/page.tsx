@@ -20,7 +20,7 @@ const AdminProductCollectionPage = async (props: { params: TParams }) => {
 
   return (
     <div className="grow flex flex-col">
-      <h2 className="font-medium xl:text-xl border-b border-neutral-200 px-5 py-3 bg-white text-xl text-center sm:text-left">
+      <h2 className="font-medium xl:text-xl border-b border-zinc-200 px-5 py-3 bg-white text-xl text-center sm:text-left">
         {`${pageTitle} Collection`}
       </h2>
 

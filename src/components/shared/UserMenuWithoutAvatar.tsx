@@ -29,21 +29,21 @@ export const UserMenuWithoutAvatar = ({
   if (!isClient) return null;
 
   const optionClasses =
-    "flex font-semibold text-neutral-500 items-center gap-2 hover:text-primary transition-all duration-200 cursor-pointer";
+    "flex font-semibold text-zinc-500 items-center gap-2 hover:text-primary transition-all duration-200 cursor-pointer";
 
   return (
     <div className={`relative ${className}`}>
       {/* Three-dot button */}
       <button
         onClick={() => setShowMenu((prev) => !prev)}
-        className="p-2 rounded-full hover:bg-neutral-100 cursor-pointer"
+        className="p-2 rounded-full hover:bg-zinc-100 cursor-pointer"
       >
         <ThreeDotIcon className="text-2xl three-dot-icon" />
       </button>
 
       {/* Dropdown menu */}
       {showMenu && (
-        <div className="menu rounded-lg w-72.5 bg-white border border-neutral-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
+        <div className="menu rounded-lg w-72.5 bg-white border border-zinc-100 shadow-md p-4 px-6 absolute z-30 top-full right-0 mt-2 space-y-5 text-left cursor-default">
           <Link
             onClick={() => setShowMenu(false)}
             href="/"

@@ -35,7 +35,7 @@ export const ProgressTracker = ({
           MAIN BAR (Horizontal on sm+)
       --------------------------------------------------------- */}
       <div className="hidden sm:block relative mb-10 w-[90%] mx-auto">
-        <div className="w-full h-3 bg-neutral-200 rounded-full overflow-hidden">
+        <div className="w-full h-3 bg-zinc-200 rounded-full overflow-hidden">
           <div
             className="h-full bg-linear-to-r from-primary to-secondary rounded-full transition-all duration-500"
             style={{ width: `${progressPercent}%` }}
@@ -66,19 +66,19 @@ export const ProgressTracker = ({
                     isCompleted ? "opacity-100" : "opacity-0"
                   }`}
                 >
-                  <Icon icon="mdi:check" className="w-4 h-4 text-neutral-50" />
+                  <Icon icon="mdi:check" className="w-4 h-4 text-zinc-50" />
                 </div>
 
                 {/* icon + title */}
                 <div className="flex flex-col items-center">
                   <div
                     className={
-                      "w-10 h-10 flex items-center justify-center rounded-full bg-neutral-100 text-neutral-600"
+                      "w-10 h-10 flex items-center justify-center rounded-full bg-zinc-100 text-zinc-600"
                     }
                   >
                     {renderIcon(stage.icon)}
                   </div>
-                  <span className="text-sm mt-1 text-neutral-700 text-center">
+                  <span className="text-sm mt-1 text-zinc-700 text-center">
                     {stage.title}
                   </span>
                 </div>
@@ -95,7 +95,7 @@ export const ProgressTracker = ({
       <div className="block sm:hidden w-full max-w-[12rem] mx-auto my-4">
         <div className="relative ml-6" style={{ height: stages.length * 90 }}>
           {/* Vertical bar */}
-          <div className="absolute left-0 top-0 h-full w-2 bg-neutral-200 rounded-full overflow-hidden">
+          <div className="absolute left-0 top-0 h-full w-2 bg-zinc-200 rounded-full overflow-hidden">
             <div
               className="w-full bg-linear-to-b from-primary to-secondary rounded-full transition-all duration-500"
               style={{
@@ -125,7 +125,7 @@ export const ProgressTracker = ({
                   className={`w-4 h-4 rounded-full border-2 ${
                     isCompleted
                       ? "bg-green-600 border-green-600"
-                      : "bg-white border-neutral-300"
+                      : "bg-white border-zinc-300"
                   }`}
                 />
 
@@ -134,13 +134,13 @@ export const ProgressTracker = ({
                     className={`w-10 h-10 flex items-center justify-center rounded-full mb-1 ${
                       isCompleted
                         ? "bg-green-50 text-green-700"
-                        : "bg-neutral-100 text-neutral-600"
+                        : "bg-zinc-100 text-zinc-600"
                     }`}
                   >
                     {renderIcon(stage.icon)}
                   </div>
 
-                  <span className="text-sm text-neutral-700">
+                  <span className="text-sm text-zinc-700">
                     {stage.title}
                   </span>
                 </div>

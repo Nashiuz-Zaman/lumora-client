@@ -53,7 +53,7 @@ export const TopBannerIntro = ({ className = "" }: { className?: string }) => {
       </h1>
 
       {/* Subtitle */}
-      <p className="text-neutral-500/80 mb-4 xl:mb-6 sm:w-[60%] sm:mx-auto text-center lg:w-full lg:mx-0 lg:text-left">
+      <p className="text-zinc-500/80 mb-4 xl:mb-6 sm:w-[60%] sm:mx-auto text-center lg:w-full lg:mx-0 lg:text-left">
         From tech gadgets to gourmet food, fashion to home essentials — discover
         everything you need in one place.
       </p>

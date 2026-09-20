@@ -34,7 +34,7 @@ export const BlockedCustomerRow = ({
   isLastEl,
 }: IActiveCustomerRowProps) => {
   const cellClasses = `font-medium text-sm px-4 py-3 flex items-center ${
-    !isLastEl ? "border-b border-neutral-200" : ""
+    !isLastEl ? "border-b border-zinc-200" : ""
   }`;
 
   if (!customer) return null;
@@ -51,7 +51,7 @@ export const BlockedCustomerRow = ({
 
       {/* Avatar */}
       <td className={cellClasses}>
-        <div className="relative w-9 h-9 rounded-full overflow-hidden bg-neutral-200">
+        <div className="relative w-9 h-9 rounded-full overflow-hidden bg-zinc-200">
           <Image
             src={customer.image as string}
             alt={customer.name || "Customer"}

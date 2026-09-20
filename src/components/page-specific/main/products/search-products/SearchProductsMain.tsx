@@ -76,7 +76,7 @@ export const SearchProductsMain = () => {
               >
                 Results
               </h2>
-              <p className="text-neutral-500">
+              <p className="text-zinc-500">
                 {products.length > 0
                   ? `Showing ${
                       ((queryMeta?.page as number) - 1) * queryMeta!.limit + 1
@@ -94,7 +94,7 @@ export const SearchProductsMain = () => {
                 ? Array.from({ length: 8 }).map((_, i) => (
                     <div
                       key={i}
-                      className="h-48 bg-neutral-200 animate-pulse rounded"
+                      className="h-48 bg-zinc-200 animate-pulse rounded"
                     />
                   ))
                 : products.map((product) => (

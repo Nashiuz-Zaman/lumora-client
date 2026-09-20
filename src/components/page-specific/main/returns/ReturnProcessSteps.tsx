@@ -35,13 +35,13 @@ export const ReturnProcessSteps = () => {
         {steps.map((step, index) => (
           <div
             key={index}
-            className="flex flex-col items-center text-center bg-white rounded-2xl p-6 transition border border-neutral-200"
+            className="flex flex-col items-center text-center bg-white rounded-2xl p-6 transition border border-zinc-200"
           >
             <div className="bg-blue-100 text-blue-500 rounded-full p-4 mb-4">
               <Icon icon={step.icon} width="32" height="32" />
             </div>
             <h3 className="text-lg font-medium mb-2">{step.title}</h3>
-            <p className="text-sm text-neutral-600">{step.description}</p>
+            <p className="text-sm text-zinc-600">{step.description}</p>
           </div>
         ))}
       </div>

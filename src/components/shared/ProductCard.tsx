@@ -51,7 +51,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
       >
         {/* Discount badge */}
         {savings > 0 && (
-          <span className="absolute top-0 left-1 bg-green-600 text-neutral-50 text-xs font-semibold px-2 py-1 rounded-sm shadow-sm">
+          <span className="absolute top-0 left-1 bg-green-600 text-zinc-50 text-xs font-semibold px-2 py-1 rounded-sm shadow-sm">
             Save {formatPrice(savings)}
           </span>
         )}
@@ -75,7 +75,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
         <div className="mb-2 grow">
           <p
             title={title}
-            className="text-sm sm:text-base font-medium text-center text-neutral-700 line-clamp-2"
+            className="text-sm sm:text-base font-medium text-center text-zinc-700 line-clamp-2"
           >
             {title}
           </p>
@@ -83,7 +83,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
 
         {/* Rating row */}
         <div className="mt-auto">
-          <div className="flex items-center mt-auto justify-center gap-1 text-neutral-500 mb-2">
+          <div className="flex items-center mt-auto justify-center gap-1 text-zinc-500 mb-2">
             <RatingStars
               rating={averageRating ?? 0}
               className="text-yellow-400"
@@ -97,7 +97,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
               {formatPrice(defaultPrice!)}
             </span>
             {defaultOldPrice && (
-              <span className="line-through text-sm text-neutral-400 sm:text-base">
+              <span className="line-through text-sm text-zinc-400 sm:text-base">
                 {formatPrice(defaultOldPrice)}
               </span>
             )}
@@ -106,7 +106,7 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
           {/* Brand */}
           <div
             title="Brand"
-            className="text-center text-xs sm:text-sm text-neutral-500 mb-4 font-medium capitalize"
+            className="text-center text-xs sm:text-sm text-zinc-500 mb-4 font-medium capitalize"
           >
             {brand}
           </div>

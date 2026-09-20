@@ -63,7 +63,7 @@ export const PasswordForm = () => {
   );
 
   return (
-    <div className="max-w-xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8">
+    <div className="max-w-xl shadow-md rounded-2xl border border-zinc-100 p-6 md:p-8">
       <div className="flex items-center gap-2 mb-6">
         <Icon icon="mdi:lock-outline" className="text-xl text-primary" />
         <Heading text="Change Password" />
@@ -83,8 +83,8 @@ export const PasswordForm = () => {
               required: "Current password is required",
             })}
             error={errors.currentPassword?.message}
-            inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-            labelTextClassName="text-[0.9rem] text-neutral-700 font-medium"
+            inputClassName="rounded-md border border-zinc-200 placeholder:text-zinc-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+            labelTextClassName="text-[0.9rem] text-zinc-700 font-medium"
           />
 
           <InputField
@@ -96,8 +96,8 @@ export const PasswordForm = () => {
               required: "New password is required",
             })}
             error={errors.newPassword?.message}
-            inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-            labelTextClassName="text-[0.9rem] text-neutral-700 font-medium"
+            inputClassName="rounded-md border border-zinc-200 placeholder:text-zinc-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+            labelTextClassName="text-[0.9rem] text-zinc-700 font-medium"
           />
 
           <InputField
@@ -111,15 +111,15 @@ export const PasswordForm = () => {
                 value === watch("newPassword") || "Passwords do not match",
             })}
             error={errors.confirmPassword?.message}
-            inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
-            labelTextClassName="text-[0.9rem] text-neutral-700 font-medium"
+            inputClassName="rounded-md border border-zinc-200 placeholder:text-zinc-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+            labelTextClassName="text-[0.9rem] text-zinc-700 font-medium"
           />
         </div>
 
         <ButtonBtn
           type="submit"
           isLoading={isLoading}
-          className="w-full md:w-auto text-sm! tracking-wide bg-primary text-neutral-50 hover:bg-primary/90 rounded-full! px-6 py-2.5 transition-all duration-200 uppercase"
+          className="w-full md:w-auto text-sm! tracking-wide bg-primary text-zinc-50 hover:bg-primary/90 rounded-full! px-6 py-2.5 transition-all duration-200 uppercase"
         >
           Change Password
         </ButtonBtn>

@@ -85,7 +85,7 @@ export const ParamsFilterForm = <
     <form
       ref={ref}
       onSubmit={onSubmit}
-      className={`px-4 shrink-0 py-2 bg-white border-b border-neutral-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
+      className={`px-4 shrink-0 py-2 bg-white border-b border-zinc-200 flex flex-col lg:flex-row gap-5 items-center justify-between ${className}`}
     >
       <InputField
         icon={<SearchIcon />}

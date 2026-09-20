@@ -109,7 +109,7 @@ export const DonutChart = ({
       )}
 
       {!isLoading && !data && (
-        <div className="absolute y-center left-[55%] flex flex-col items-center justify-center text-neutral-400">
+        <div className="absolute y-center left-[55%] flex flex-col items-center justify-center text-zinc-400">
           <span className="text-sm font-medium">No data available</span>
         </div>
       )}

@@ -29,7 +29,7 @@ export const CustomerTrendsChart = ({
     <LineChart
       categories={categories}
       data={values}
-      className="grow border border-neutral-200"
+      className="grow border border-zinc-200"
       tooltipUnit=""
       isLoading={isLoading}
       seriesName="Customers"

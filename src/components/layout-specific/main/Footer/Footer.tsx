@@ -44,14 +44,14 @@ const FooterLinkGroup = ({
             {link.href ? (
               <Link
                 href={link.href}
-                className="text-neutral-400 text-left hover:text-white transition-colors"
+                className="text-zinc-400 text-left hover:text-white transition-colors"
               >
                 {link.label}
               </Link>
             ) : (
               <button
                 onClick={link.onClick}
-                className="text-neutral-400 text-left hover:text-white transition-colors"
+                className="text-zinc-400 text-left hover:text-white transition-colors"
               >
                 {link.label}
               </button>
@@ -97,7 +97,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary-dark-4 text-neutral-300 border-t border-white/5 mt-auto">
+    <footer className="bg-primary-dark-4 text-zinc-300 border-t border-white/5 mt-auto">
       <InnerContainer>
         {/* MAIN SECTION */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-12 py-20">
@@ -127,7 +127,7 @@ const Footer = () => {
         <FooterNewsletter />
 
         {/* BOTTOM BAR */}
-        <div className="border-t border-white/5 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-neutral-400">
+        <div className="border-t border-white/5 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-zinc-400">
           <p>© {year} Lumora by Nashiuz Zaman</p>
 
           <div className="flex gap-6">

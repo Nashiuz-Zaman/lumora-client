@@ -23,7 +23,7 @@ const AdminProductCard = ({
   return (
     <div
       key={product._id}
-      className={`rounded-xl border border-neutral-100 shadow-sm w-full max-h-[18rem] h-full py-4 px-3 bg-white transition flex flex-col items-center text-center ${className}`}
+      className={`rounded-xl border border-zinc-100 shadow-sm w-full max-h-[18rem] h-full py-4 px-3 bg-white transition flex flex-col items-center text-center ${className}`}
     >
       {/* Checkbox */}
       <InputCheckbox

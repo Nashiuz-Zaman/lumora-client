@@ -64,7 +64,7 @@ export const AddressForm = ({
   return (
     <div
       {...props}
-      className={`max-w-xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8 ${
+      className={`max-w-xl shadow-md rounded-2xl border border-zinc-100 p-6 md:p-8 ${
         className || ""
       }`}
     >
@@ -86,16 +86,16 @@ export const AddressForm = ({
       >
         <InputField
           labelText="Address"
-          labelTextClassName="text-sm text-neutral-700 font-medium"
-          inputClassName="rounded-md placeholder:text-neutral-500 text-sm transition-all duration-150"
+          labelTextClassName="text-sm text-zinc-700 font-medium"
+          inputClassName="rounded-md placeholder:text-zinc-500 text-sm transition-all duration-150"
           placeholder="Road No. 13/x, House no. 1320/C, Flat No. 5D"
           {...register("address")}
         />
 
         <SelectField
           labelText="Country"
-          labelTextClassName="text-sm text-neutral-700 font-medium"
-          selectClassName="text-sm focus:outline-none text-neutral-700 bg-transparent"
+          labelTextClassName="text-sm text-zinc-700 font-medium"
+          selectClassName="text-sm focus:outline-none text-zinc-700 bg-transparent"
           className="rounded-md transition-all duration-150"
           options={[
             { text: "Select One", value: "Select One" },
@@ -119,8 +119,8 @@ export const AddressForm = ({
         <InputField
           labelText="Region/State"
           placeholder="e.g. New York"
-          labelTextClassName="text-sm text-neutral-700 font-medium"
-          inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
+          labelTextClassName="text-sm text-zinc-700 font-medium"
+          inputClassName="rounded-md border border-zinc-200 placeholder:text-zinc-500 text-sm focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all duration-150"
           {...register("state")}
         />
 
@@ -128,16 +128,16 @@ export const AddressForm = ({
           <InputField
             labelText="City"
             placeholder="e.g. New York"
-            labelTextClassName="text-sm text-neutral-700 font-medium"
-            inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm transition-all duration-150"
+            labelTextClassName="text-sm text-zinc-700 font-medium"
+            inputClassName="rounded-md border border-zinc-200 placeholder:text-zinc-500 text-sm transition-all duration-150"
             {...register("city")}
           />
 
           <InputField
             labelText="Zip Code"
             placeholder="10001"
-            labelTextClassName="text-sm text-neutral-700 font-medium"
-            inputClassName="rounded-md border border-neutral-200 placeholder:text-neutral-500 text-sm transition-all duration-150"
+            labelTextClassName="text-sm text-zinc-700 font-medium"
+            inputClassName="rounded-md border border-zinc-200 placeholder:text-zinc-500 text-sm transition-all duration-150"
             {...register("zipCode")}
           />
         </div>
@@ -145,7 +145,7 @@ export const AddressForm = ({
         <ButtonBtn
           type="submit"
           isLoading={isLoading}
-          className="w-full md:w-auto !text-sm tracking-wide bg-primary text-neutral-50 hover:bg-primary/90 !rounded-full px-6 py-2.5 transition-all duration-200 uppercase"
+          className="w-full md:w-auto !text-sm tracking-wide bg-primary text-zinc-50 hover:bg-primary/90 !rounded-full px-6 py-2.5 transition-all duration-200 uppercase"
         >
           Save Changes
         </ButtonBtn>

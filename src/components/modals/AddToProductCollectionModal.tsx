@@ -110,7 +110,7 @@ const AddToProductCollectionModal = ({
         )}
 
         {/* Products container */}
-        <div className="w-full grow overflow-y-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 py-7 px-5 gap-4 bg-neutral-100">
+        <div className="w-full grow overflow-y-auto relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 py-7 px-5 gap-4 bg-zinc-100">
           {isFetching ? (
             <LoadingSpinner centered={true} />
           ) : products.length === 0 ? (

@@ -18,7 +18,7 @@ export const DummyPaymentGuideModal = ({
       allowCloseOnOutsideClick={false}
       className="bg-white shadow-lg rounded-xl p-6 max-w-md w-full"
     >
-      <div className="space-y-3 text-sm leading-relaxed text-neutral-700">
+      <div className="space-y-3 text-sm leading-relaxed text-zinc-700">
         <p className="font-semibold text-primary-dark text-lg">
           Dummy Payment Guide
         </p>

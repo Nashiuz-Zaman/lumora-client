@@ -37,7 +37,7 @@ const SortOptionsMenu = ({
         onChange={(value) => setSortBy(String(value))}
         selectedValue={sortBy}
         name="sortBy"
-        className="pb-4 border-b border-neutral-200 mb-4"
+        className="pb-4 border-b border-zinc-200 mb-4"
         options={options}
       />
 

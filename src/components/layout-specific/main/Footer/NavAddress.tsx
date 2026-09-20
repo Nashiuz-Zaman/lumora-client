@@ -13,7 +13,7 @@ const NavAddress = () => {
         <div key={i}>
           <AddressHeading heading={addr.heading} />
 
-          <address className="not-italic text-sm text-neutral-400 leading-relaxed capitalize">
+          <address className="not-italic text-sm text-zinc-400 leading-relaxed capitalize">
             {addr.description}
           </address>
         </div>

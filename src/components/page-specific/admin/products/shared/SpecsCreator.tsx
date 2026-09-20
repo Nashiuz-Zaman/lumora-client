@@ -33,7 +33,7 @@ const SpecsCreator = ({
 
   return (
     <div
-      className={`p-5 bg-white border border-neutral-200 rounded-xl ${className}`}
+      className={`p-5 bg-white border border-zinc-200 rounded-xl ${className}`}
     >
       {/* Heading and Add Button */}
       <div className="flex items-center justify-between mb-1">
@@ -49,7 +49,7 @@ const SpecsCreator = ({
         )}
       </div>
 
-      <p className="text-sm text-neutral-400">
+      <p className="text-sm text-zinc-400">
         Add specifications e.g width, length, capacity, color etc.
       </p>
 

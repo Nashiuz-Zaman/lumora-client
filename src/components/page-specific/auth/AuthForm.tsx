@@ -162,14 +162,14 @@ export const AuthForm = ({
 
         {/* Auth Links */}
         {mode === "signup" ? (
-          <p className="text-center text-sm text-neutral-500">
+          <p className="text-center text-sm text-zinc-500">
             Already have an account?{" "}
             <Link href="/auth/login" className="text-purple-600 font-medium">
               Login
             </Link>
           </p>
         ) : (
-          <p className="text-center text-sm text-neutral-500">
+          <p className="text-center text-sm text-zinc-500">
             Don’t have an account?{" "}
             <Link href="/auth/signup" className="text-purple-600 font-medium">
               Create one
@@ -180,7 +180,7 @@ export const AuthForm = ({
         {/* Google OAuth */}
         {mode === "login" && (
           <>
-            <div className="flex items-center justify-center gap-2 text-neutral-400">
+            <div className="flex items-center justify-center gap-2 text-zinc-400">
               <span>or</span>
             </div>
 

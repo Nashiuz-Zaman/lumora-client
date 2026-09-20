@@ -13,7 +13,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
   const { checkIfActive } = useActiveLink();
 
   const activeClasses =
-    "!bg-linear-to-r !from-primary-light !to-primary !text-neutral-50 ml-1";
+    "!bg-linear-to-r !from-primary-light !to-primary !text-zinc-50 ml-1";
 
   // nav-link class is only for Mobile Side Nav functionality
   const link-classes =
@@ -26,7 +26,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
     >
       {navSections.map((section, i) => (
         <div key={i}>
-          <h3 className="mb-3 text-sm text-neutral-400">{section.heading}</h3>
+          <h3 className="mb-3 text-sm text-zinc-400">{section.heading}</h3>
           <ul className={linkSublistClasses}>
             {section.items.map((item, j) => (
               <li key={j}>

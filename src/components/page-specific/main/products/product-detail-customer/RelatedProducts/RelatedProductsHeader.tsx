@@ -24,7 +24,7 @@ export const RelatedProductsHeader = ({
           className={`${navigation?.prevEl.replace(
             ".",
             ""
-          )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-neutral-50 hover:bg-primary-dark cursor-pointer shadow-md transition`}
+          )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-zinc-50 hover:bg-primary-dark cursor-pointer shadow-md transition`}
         >
           <CaretLeftIcon />
         </button>
@@ -32,7 +32,7 @@ export const RelatedProductsHeader = ({
           className={`${navigation?.nextEl.replace(
             ".",
             ""
-          )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-neutral-50 hover:bg-primary-dark cursor-pointer shadow-md transition`}
+          )} w-10 h-10 flex items-center justify-center rounded-full bg-primary text-zinc-50 hover:bg-primary-dark cursor-pointer shadow-md transition`}
         >
           <CaretRightIcon />
         </button>

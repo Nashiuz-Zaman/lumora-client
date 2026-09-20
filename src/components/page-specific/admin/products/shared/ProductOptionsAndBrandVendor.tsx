@@ -21,7 +21,7 @@ export const ProductOptionsAndBrandVendor = ({
   return (
     <div className={className}>
       {/* Product Options */}
-      <div className="bg-white rounded-xl border border-neutral-200 p-5 mb-6">
+      <div className="bg-white rounded-xl border border-zinc-200 p-5 mb-6">
         <FormSectionHeading tag="h4" text="Product Options" />
 
         <Controller
@@ -44,7 +44,7 @@ export const ProductOptionsAndBrandVendor = ({
       </div>
 
       {/* Brand & Vendor */}
-      <div className="bg-white rounded-xl p-5 border border-neutral-200">
+      <div className="bg-white rounded-xl p-5 border border-zinc-200">
         <InputField
           {...register("brand")}
           labelText="Brand"

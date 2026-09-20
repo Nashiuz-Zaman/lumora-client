@@ -31,8 +31,8 @@ const ProductRow = ({
   isLastEl,
 }: IProductRowProps) => {
   // common tailwind classes
-  const cellClasses = `font-medium text-sm px-4 py-2 flex items-center group-hover:bg-neutral-100 ${
-    !isLastEl ? "border-b border-neutral-200" : ""
+  const cellClasses = `font-medium text-sm px-4 py-2 flex items-center group-hover:bg-zinc-100 ${
+    !isLastEl ? "border-b border-zinc-200" : ""
   }`;
 
   if (!productData) return null;

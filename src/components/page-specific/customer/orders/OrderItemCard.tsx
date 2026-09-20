@@ -24,11 +24,11 @@ export const OrderItemCard = ({ item }: IOrderItemCardProps) => {
       <div className="w-full wrap-anywhere">
         <p
           title={item.product?.title}
-          className="font-medium text-neutral-700 line-clamp-2"
+          className="font-medium text-zinc-700 line-clamp-2"
         >
           {item.product?.title}
         </p>
-        <p className="font-semibold text-neutral-800">
+        <p className="font-semibold text-zinc-800">
           {formatPrice(item.variant.price!)}
         </p>
       </div>

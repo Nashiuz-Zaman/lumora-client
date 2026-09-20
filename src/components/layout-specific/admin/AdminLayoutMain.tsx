@@ -29,7 +29,7 @@ export const AdminLayoutMain = ({ children }: { children: ReactNode }) => {
         <MobileAdminSideNavbar />
 
         {/* Lg screen Navbar */}
-        <div className="overflow-y-auto h-full w-full hidden xl:block border-r border-neutral-200 pr-2 py-2">
+        <div className="overflow-y-auto h-full w-full hidden xl:block border-r border-zinc-200 pr-2 py-2">
           <AdminSideNavbar />
         </div>
 

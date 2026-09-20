@@ -24,7 +24,7 @@ export const MobileSearchFilters = ({
   };
 
   return (
-    <div className="block xl:hidden w-full border-b border-neutral-200">
+    <div className="block xl:hidden w-full border-b border-zinc-200">
       {/* Toggle button */}
 
       <div className="pb-3 flex justify-between items-center">
@@ -41,7 +41,7 @@ export const MobileSearchFilters = ({
       {filtersOpen && (
         <form
           onSubmit={handleSubmit}
-          className="bg-white border-t border-neutral-200 space-y-4 py-4"
+          className="bg-white border-t border-zinc-200 space-y-4 py-4"
         >
           {/* Price Range */}
           <div>

@@ -36,7 +36,7 @@ const ProductVideosInput = ({
   });
 
   return (
-    <div className={`p-5 bg-white border border-neutral-200 rounded-xl ${className}`}>
+    <div className={`p-5 bg-white border border-zinc-200 rounded-xl ${className}`}>
       {/* Heading and Add Button */}
       <div className="flex items-center justify-between mb-2">
         <HeadingTag className="font-semibold text-xl">{heading}</HeadingTag>
@@ -51,7 +51,7 @@ const ProductVideosInput = ({
         )}
       </div>
 
-      <p className="text-sm text-neutral-400 mb-5">
+      <p className="text-sm text-zinc-400 mb-5">
         Add product video links (YouTube, Vimeo, etc.)
       </p>
 

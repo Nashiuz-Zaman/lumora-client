@@ -21,8 +21,8 @@ const StepIndicator = () => {
           <div
             className={`w-8 h-8 rounded-full flex items-center justify-center font-semibold transition-colors ${
               isActive
-                ? "bg-primary text-neutral-50"
-                : "bg-neutral-200 text-neutral-500"
+                ? "bg-primary text-zinc-50"
+                : "bg-zinc-200 text-zinc-500"
             }`}
           >
             {step.number}
@@ -40,7 +40,7 @@ const StepIndicator = () => {
             )}
             <span
               className={`ml-2 font-medium ${
-                isActive ? "text-primary" : "text-neutral-500"
+                isActive ? "text-primary" : "text-zinc-500"
               }`}
             >
               {step.label}
@@ -48,7 +48,7 @@ const StepIndicator = () => {
 
             {/* connector line */}
             {i < steps.length - 1 && (
-              <div className="w-8 h-px bg-neutral-300 mx-4"></div>
+              <div className="w-8 h-px bg-zinc-300 mx-4"></div>
             )}
           </div>
         );

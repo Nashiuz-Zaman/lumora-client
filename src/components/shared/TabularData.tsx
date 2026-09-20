@@ -89,7 +89,7 @@ export const TabularData = <T extends Record<string, any>>({
               col?.columnTitle?.toLowerCase() === "checkbox" ? (
                 <th
                   key={i}
-                  className={`text-left first:pl-4 sticky top-0 capitalize border-y bg-neutral-100  border-neutral-200 pl-4 pr-2 h-14 flex items-center justify-start ${
+                  className={`text-left first:pl-4 sticky top-0 capitalize border-y bg-zinc-100  border-zinc-200 pl-4 pr-2 h-14 flex items-center justify-start ${
                     classNameObj.heading || ""
                   }`}
                 >
@@ -101,7 +101,7 @@ export const TabularData = <T extends Record<string, any>>({
               ) : (
                 <th
                   key={i}
-                  className={`text-left sticky top-0 h-14 flex items-center bg-neutral-100  border-neutral-200 px-4 capitalize font-semibold border-y ${
+                  className={`text-left sticky top-0 h-14 flex items-center bg-zinc-100  border-zinc-200 px-4 capitalize font-semibold border-y ${
                     classNameObj.heading || ""
                   }`}
                 >

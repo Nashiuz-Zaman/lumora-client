@@ -71,7 +71,7 @@ export const HeaderSearchAvatarAuthOptions = () => {
           renderResult={renderResult}
           showIcon
           trigger={triggerSearch}
-          className="border-neutral-100!"
+          className="border-zinc-100!"
           modalClassName="productSearchbarModal"
         />
       )}
@@ -86,7 +86,7 @@ export const HeaderSearchAvatarAuthOptions = () => {
             results={results}
             renderResult={renderResult}
             trigger={triggerSearch}
-            searchbarClasses="border-neutral-200"
+            searchbarClasses="border-zinc-200"
             modalClassName="productSearchbarModal"
           />
         )}

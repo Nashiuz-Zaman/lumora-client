@@ -95,7 +95,7 @@ export const HeaderProductsSearchbar = <T,>({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-140 4xl:max-w-200 text-neutral-400/60 bg-neutral-50 ${className}`}
+      className={`relative w-full sm:max-w-[20rem] xl:max-w-[24rem] 2xl:max-w-140 4xl:max-w-200 text-zinc-400/60 bg-zinc-50 ${className}`}
     >
       <form
         onSubmit={handleSubmit}
@@ -107,7 +107,7 @@ export const HeaderProductsSearchbar = <T,>({
           value={searchText}
           placeholder="Search for products"
           onChange={handleChange}
-          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base text-neutral-700 border-inherit bg-inherit"
+          className="w-full px-3 py-2 sm:py-2.5 md:py-3 focus:outline-none text-sm md:text-base text-zinc-700 border-inherit bg-inherit"
         />
 
         {showIcon && (
@@ -123,9 +123,9 @@ export const HeaderProductsSearchbar = <T,>({
 
       {isResultModalOpen && results && results.length > 0 && renderResult && (
         <div
-          className={`absolute left-0 right-0 mt-1 bg-white shadow-lg border border-neutral-200 z-500 ${modalClassName}`}
+          className={`absolute left-0 right-0 mt-1 bg-white shadow-lg border border-zinc-200 z-500 ${modalClassName}`}
         >
-          <ul className="divide-y divide-neutral-100">
+          <ul className="divide-y divide-zinc-100">
             {results.map((item, i) => (
               <li key={`key-${i}`}>
                 {renderResult(item, i, () => {

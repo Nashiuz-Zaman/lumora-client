@@ -55,7 +55,7 @@ export const AdminAnalyticsLayoutMain = ({
     <div className="h-full flex flex-col">
       {/*  TopPanel */}
       <TopPanel
-        className="border-neutral-200"
+        className="border-zinc-200"
         actions={
           <div className="flex items-center gap-4">
             <SelectField
@@ -82,7 +82,7 @@ export const AdminAnalyticsLayoutMain = ({
         }
       />
 
-      <div className="grid grid-cols-2 gap-6 border-b border-neutral-200 sm:flex items-center p-4 sm:gap-6 lg:gap-10">
+      <div className="grid grid-cols-2 gap-6 border-b border-zinc-200 sm:flex items-center p-4 sm:gap-6 lg:gap-10">
         <TotalRevenue />
         <AverageOrderTotal />
         <TotalCustomers />

@@ -134,7 +134,7 @@ export const ShippedOrdersMain = () => {
         />
 
         {queryMeta?.totalPages > 1 && (
-          <div className="!h-[56px] !shrink-0 border-t border-neutral-200 mt-auto flex items-center justify-center">
+          <div className="!h-[56px] !shrink-0 border-t border-zinc-200 mt-auto flex items-center justify-center">
             <Pagination
               totalPages={queryMeta?.totalPages}
               currentPage={queryMeta?.page}

@@ -11,7 +11,7 @@ interface IProfileCardProps {
 
 export const ProfileCard = ({ user }: IProfileCardProps) => {
   return (
-    <div className="relative text-center border border-neutral-100 rounded-2xl bg-white p-6 shadow-md">
+    <div className="relative text-center border border-zinc-100 rounded-2xl bg-white p-6 shadow-md">
       <div className="mx-auto mb-5 w-30 aspect-square overflow-hidden rounded-full bg-linear-to-br from-primary/20 to-primary/5 flex items-center justify-center ring-2 ring-white">
         {user?.image ? (
           <Image
@@ -31,10 +31,10 @@ export const ProfileCard = ({ user }: IProfileCardProps) => {
 
       <div className="space-y-1">
         <p className="text-sm">Welcome back</p>
-        <h2 className="text-2xl font-semibold text-neutral-800">
+        <h2 className="text-2xl font-semibold text-zinc-800">
           {user?.name || "Customer"}
         </h2>
-        <p className="text-sm text-neutral-500">
+        <p className="text-sm text-zinc-500">
           Joined: {formatDateTime(user.createdAt!, false)}
         </p>
       </div>

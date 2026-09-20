@@ -70,7 +70,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
 
   return (
     <div
-      className={`max-w-3xl shadow-md rounded-2xl border border-neutral-100 p-6 md:p-8 ${
+      className={`max-w-3xl shadow-md rounded-2xl border border-zinc-100 p-6 md:p-8 ${
         className || ""
       }`}
     >
@@ -86,10 +86,10 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
             buttonText="Change Photo"
             wrapperClasses="flex flex-col items-center"
             buttonClasses="!text-sm mt-3"
-            imageClasses="rounded-full shadow-sm border border-neutral-100"
+            imageClasses="rounded-full shadow-sm border border-zinc-100"
             onFileSelect={(file: File) => setValue("image", file)}
           />
-          <p className="text-sm text-neutral-500 text-center leading-relaxed">
+          <p className="text-sm text-zinc-500 text-center leading-relaxed">
             Profile photo helps personalize your account.
           </p>
         </div>
@@ -102,8 +102,8 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
           <div className="grid grid-cols-1 gap-4 md:gap-6">
             <InputField
               labelText="Name"
-              labelTextClassName="text-sm font-medium text-neutral-700 mb-1"
-              inputClassName="rounded-md border border-neutral-200 bg-neutral-50/70 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-neutral-400 px-4 py-2.5 text-sm transition-all duration-150"
+              labelTextClassName="text-sm font-medium text-zinc-700 mb-1"
+              inputClassName="rounded-md border border-zinc-200 bg-zinc-50/70 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-zinc-400 px-4 py-2.5 text-sm transition-all duration-150"
               placeholder="Kevin Gilbert"
               {...register("name", { required: "Full name is required" })}
               error={errors.name?.message}
@@ -112,8 +112,8 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
             <InputField
               labelText="Email Address"
               type="email"
-              labelTextClassName="text-sm font-medium text-neutral-700 mb-1"
-              inputClassName="rounded-md border border-neutral-200 bg-neutral-50/70 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-neutral-400 px-4 py-2.5 text-sm transition-all duration-150"
+              labelTextClassName="text-sm font-medium text-zinc-700 mb-1"
+              inputClassName="rounded-md border border-zinc-200 bg-zinc-50/70 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-zinc-400 px-4 py-2.5 text-sm transition-all duration-150"
               placeholder="kevin.gilbert@gmail.com"
               {...register("email", { required: "Email is required" })}
               error={errors.email?.message}
@@ -121,8 +121,8 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
 
             <InputField
               labelText="Phone Number"
-              labelTextClassName="text-sm font-medium text-neutral-700 mb-1"
-              inputClassName="rounded-md border border-neutral-200 bg-neutral-50/70 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-neutral-400 px-4 py-2.5 text-sm transition-all duration-150"
+              labelTextClassName="text-sm font-medium text-zinc-700 mb-1"
+              inputClassName="rounded-md border border-zinc-200 bg-zinc-50/70 focus:bg-white focus:border-primary focus:ring-2 focus:ring-primary/20 placeholder:text-zinc-400 px-4 py-2.5 text-sm transition-all duration-150"
               placeholder="+1-202-555-0118"
               {...register("phone")}
               error={errors.phone?.message}
@@ -132,7 +132,7 @@ export const BasicInfoForm = ({ data, className }: IBasicInfoFormProps) => {
           <ButtonBtn
             type="submit"
             isLoading={isLoading}
-            className="w-full md:w-auto text-sm! tracking-wide bg-primary rounded-full! text-neutral-50 hover:bg-primary/90 px-6 py-2.5 transition-all duration-200 uppercase"
+            className="w-full md:w-auto text-sm! tracking-wide bg-primary rounded-full! text-zinc-50 hover:bg-primary/90 px-6 py-2.5 transition-all duration-200 uppercase"
           >
             Save Changes
           </ButtonBtn>

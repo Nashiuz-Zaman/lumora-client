@@ -70,7 +70,7 @@ export const Reviews = ({
       <div className="flex flex-col items-center">
         <ReviewBreakdown
           stats={stats!}
-          className="pb-6 border-b border-neutral-200 mb-10"
+          className="pb-6 border-b border-zinc-200 mb-10"
         />
 
         <div className="text-center">

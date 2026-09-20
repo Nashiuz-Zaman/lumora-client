@@ -34,7 +34,7 @@ export const PriceDisplay = ({
 
       {/* Old price */}
       {oldPrice !== undefined && oldPrice > price && (
-        <span className="text-neutral-400 line-through text-lg 2xl:text-xl">
+        <span className="text-zinc-400 line-through text-lg 2xl:text-xl">
           {formatPrice(oldPrice)}
         </span>
       )}

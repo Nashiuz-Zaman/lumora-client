@@ -70,8 +70,8 @@ export const VariantSelector = ({
                     }
                     className={`px-4 py-2 cursor-pointer transition-all rounded-md border ${
                       isSelected
-                        ? "bg-secondary text-neutral-50 border-secondary"
-                        : "bg-white text-neutral-700 border-neutral-200"
+                        ? "bg-secondary text-zinc-50 border-secondary"
+                        : "bg-white text-zinc-700 border-zinc-200"
                     }`}
                   >
                     {value}
@@ -94,7 +94,7 @@ export const VariantSelector = ({
             </p>
           )
         ) : (
-          <p className="text-neutral-500 font-normal">
+          <p className="text-zinc-500 font-normal">
             Please select all options
           </p>
         )}

@@ -74,14 +74,14 @@ export const RightSideDetails = ({
       <div>
         <h2 className="text-2xl font-semibold leading-snug">{product.title}</h2>
         {product.subtitle && (
-          <p className="text-sm text-neutral-500">{product.subtitle}</p>
+          <p className="text-sm text-zinc-500">{product.subtitle}</p>
         )}
       </div>
 
       {/* Ratings */}
       <div className="flex items-center gap-2 text-lg 2xl:text-xl">
         <RatingStars rating={reviewStats?.averageRating ?? 0} />
-        <span className="text-base 2xl:text-lg text-neutral-600">
+        <span className="text-base 2xl:text-lg text-zinc-600">
           {reviewStats?.totalReviews ?? 0} ratings
         </span>
       </div>

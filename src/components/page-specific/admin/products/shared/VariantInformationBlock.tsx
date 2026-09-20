@@ -58,8 +58,8 @@ export const VariantInformationBlock = ({
   };
 
   return (
-    <div className="rounded-md p-4 sm:p-5 bg-white border border-neutral-200">
-      <h4 className="text-neutral-400 mb-4 text-base">
+    <div className="rounded-md p-4 sm:p-5 bg-white border border-zinc-200">
+      <h4 className="text-zinc-400 mb-4 text-base">
         Variant {variantIndex + 1}
       </h4>
 

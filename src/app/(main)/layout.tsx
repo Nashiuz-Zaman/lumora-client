@@ -5,7 +5,7 @@ import Header from "@layout-specific/main/Header";
 
 const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
-    <div className="min-h-screen relative flex flex-col max-w-480 mx-auto">
+    <div className="min-h-screen relative flex flex-col">
       <HeaderClientWrapper header={<Header />} />
 
       <main className="flex flex-col grow">{children}</main>

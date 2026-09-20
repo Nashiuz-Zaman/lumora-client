@@ -37,7 +37,7 @@ export const CartItemCard = ({
   );
 
   return (
-    <div className="bg-white rounded-xl border border-neutral-100 p-6 transition-all duration-300 shadow-sm">
+    <div className="bg-white rounded-xl border border-zinc-100 p-6 transition-all duration-300 shadow-sm">
       <div className="grid grid-cols-1 md:grid-cols-[auto_1fr_0.1fr] gap-6 items-start">
         {/* Thumbnail */}
         <div className="w-24 order-1 md:order-0 h-24 overflow-hidden flex items-center justify-center">
@@ -50,7 +50,7 @@ export const CartItemCard = ({
               className="object-contain w-full h-full"
             />
           ) : (
-            <span className="text-neutral-50 text-3xl">No Image</span>
+            <span className="text-zinc-50 text-3xl">No Image</span>
           )}
         </div>
 
@@ -62,7 +62,7 @@ export const CartItemCard = ({
 
           {/* Variant Details */}
           {variantSpecs?.length > 0 && (
-            <div className="grid grid-cols-2 gap-2 text-sm text-neutral-600 mb-3">
+            <div className="grid grid-cols-2 gap-2 text-sm text-zinc-600 mb-3">
               {variantSpecs.map(([key, value]) => (
                 <div key={key}>
                   <span className="font-semibold text-primary">
@@ -78,7 +78,7 @@ export const CartItemCard = ({
           <div className="grid grid-cols-[auto_1fr] items-center gap-4">
             <div className="flex items-center space-x-3">
               <button
-                className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
                   updateQuantity({
                     data: {
@@ -97,7 +97,7 @@ export const CartItemCard = ({
               </span>
 
               <button
-                className="w-10 h-10 rounded-full bg-neutral-100 hover:bg-neutral-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                className="w-10 h-10 rounded-full bg-zinc-100 hover:bg-zinc-200 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 onClick={() => {
                   updateQuantity({
                     data: {
@@ -118,7 +118,7 @@ export const CartItemCard = ({
               <div className="text-xl font-bold mb-1">
                 {formatPrice((item.variant.price ?? 0) * item.quantity)}
               </div>
-              <div className="text-sm text-neutral-500">
+              <div className="text-sm text-zinc-500">
                 {formatPrice(item.variant.price ?? 0)} each
               </div>
             </div>

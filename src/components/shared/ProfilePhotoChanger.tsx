@@ -45,7 +45,7 @@ export const ProfilePhotoChanger = ({
     >
       {/* Profile photo */}
       <div
-        className={`w-32 h-32 rounded-full border border-neutral-200 overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md ${imageClasses}`}
+        className={`w-32 h-32 rounded-full border border-zinc-200 overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md ${imageClasses}`}
       >
         {currentImage ? (
           <Image
@@ -56,10 +56,10 @@ export const ProfilePhotoChanger = ({
             alt="Profile picture"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center bg-neutral-100">
+          <div className="w-full h-full flex items-center justify-center bg-zinc-100">
             <IcfyIcon
               icon="mingcute:user-3-fill"
-              className="text-[3rem] text-neutral-400"
+              className="text-[3rem] text-zinc-400"
             />
           </div>
         )}
@@ -67,7 +67,7 @@ export const ProfilePhotoChanger = ({
 
       {/* Upload button */}
       <label
-        className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-neutral-700 text-neutral-50 font-semibold text-sm cursor-pointer shadow-sm hover:shadow-md transition-all duration-200 ${buttonClasses}`}
+        className={`flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-zinc-700 text-zinc-50 font-semibold text-sm cursor-pointer shadow-sm hover:shadow-md transition-all duration-200 ${buttonClasses}`}
       >
         <IcfyIcon icon="mdi:camera" />
         <span>{buttonText}</span>

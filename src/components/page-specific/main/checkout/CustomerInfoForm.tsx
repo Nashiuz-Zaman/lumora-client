@@ -37,7 +37,7 @@ export const CustomerInfoForm = ({
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="max-w-[55rem] bg-neutral-50 p-7 rounded-xl"
+      className="max-w-[55rem] bg-zinc-50 p-7 rounded-xl"
     >
       {/* Root-level error */}
       {errors.root?.message && (

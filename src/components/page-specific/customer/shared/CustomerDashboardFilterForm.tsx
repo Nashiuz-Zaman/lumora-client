@@ -66,7 +66,7 @@ export const CustomerDashboardFilterForm = <
   return (
     <form onSubmit={onSubmit} className={`mb-12 ${className}`}>
       {/* heading */}
-      <h2 className="text-xl font-semibold text-neutral-800 mb-3">
+      <h2 className="text-xl font-semibold text-zinc-800 mb-3">
         {searchTitle}
       </h2>
 
@@ -84,7 +84,7 @@ export const CustomerDashboardFilterForm = <
         {/* Status Tabs */}
 
         {statusOptions.length > 0 && (
-          <h2 className="w-full text-xl font-semibold text-neutral-800 mb-4">
+          <h2 className="w-full text-xl font-semibold text-zinc-800 mb-4">
             {statusTitle}
           </h2>
         )}
