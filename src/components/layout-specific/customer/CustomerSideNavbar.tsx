@@ -58,7 +58,7 @@ export const CustomerSideNavbar = ({
   const activeClasses = "!bg-zinc-50/20 translate-x-2 shadow-lg";
 
   // nav-link class is only for Mobile Side Nav functionality
-  const link-classes =
+  const linkClasses =
     "nav-link flex items-center px-4 py-2 rounded-lg gap-2 font-medium text-zinc-50 hover:!bg-zinc-50/20 transition-all duration-300 hover:translate-x-2";
   const linkSublistClasses = "mb-7 space-y-1";
 
@@ -73,7 +73,7 @@ export const CustomerSideNavbar = ({
               <li key={j}>
                 <Link
                   href={item.path}
-                  className={`${link-classes} ${
+                  className={`${linkClasses} ${
                     checkIfActive(item.path, item.checkSubstr)
                       ? activeClasses
                       : ""

@@ -16,7 +16,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
     "!bg-linear-to-r !from-primary-light !to-primary !text-zinc-50 ml-1";
 
   // nav-link class is only for Mobile Side Nav functionality
-  const link-classes =
+  const linkClasses =
     "nav-link flex items-center transition-all px-4 py-2 hover:text-primary rounded-xl gap-2 font-medium hover:ml-1";
   const linkSublistClasses = "mb-7 space-y-1";
 
@@ -32,7 +32,7 @@ export const AdminSideNavbar = ({ className = "" }: IAdminSideNavbarProps) => {
               <li key={j}>
                 <Link
                   href={item.path}
-                  className={`${link-classes} ${
+                  className={`${linkClasses} ${
                     checkIfActive(item.path, item.checkSubstr ?? false)
                       ? activeClasses
                       : ""
