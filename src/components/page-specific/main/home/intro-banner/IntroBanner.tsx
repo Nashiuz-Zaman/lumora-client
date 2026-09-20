@@ -15,9 +15,9 @@ const sliderImages = [
 
 export const IntroBanner = () => {
   return (
-    <section className="w-full lg:h-120 xl:h-168 grid grid-cols-1 lg:grid-cols-[1.5fr_4fr] gap-2">
+    <section className="w-full lg:h-120 xl:h-168 grid grid-cols-1 lg:grid-cols-[1.8fr_4fr] gap-2 max-w-[1920px] mx-auto">
       {/* Original top banner intro */}
-      <div className="lg:h-full py-10 md:py-12 lg:py-0 grid place-content-center px-5 xl:px-5 2xl:px-14">
+      <div className="lg:h-full py-10 md:py-12 lg:py-0 grid place-content-center padded">
         <TopBannerIntro />
       </div>
 
