@@ -96,7 +96,8 @@ export const ProductCard = ({ data, className = "" }: IProductCardProps) => {
             <span className="font-bold text-base sm:text-lg">
               {formatPrice(defaultPrice!)}
             </span>
-            {defaultOldPrice && (
+
+            {defaultOldPrice !== 0 && (
               <span className="line-through text-sm text-zinc-400 sm:text-base">
                 {formatPrice(defaultOldPrice)}
               </span>
